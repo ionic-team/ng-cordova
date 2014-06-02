@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   footer = require('gulp-footer'),
   header = require('gulp-header'),
   jshint = require('gulp-jshint'),
+  uglify = require('gulp-uglify'),
   rename = require('gulp-rename');
 
 
@@ -16,6 +17,7 @@ gulp.task('build', function() {
     .pipe(footer(buildConfig.closureEnd))
     .pipe(header(buildConfig.banner))
     .pipe(gulp.dest(buildConfig.dist))
+    .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
     }))
