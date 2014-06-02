@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('Network', [function () {
+  .factory('$cordovaNetwork', [function () {
 
     return {
 

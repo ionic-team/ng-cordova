@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.device', [])
 
-  .factory('Device', [function () {
+  .factory('$cordovaDevice', [function () {
 
     return {
       getDevice: function () {

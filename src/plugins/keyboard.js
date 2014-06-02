@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.keyboard', [])
 
-  .factory('Keyboard', [function () {
+  .factory('$cordovaKeyboard', [function () {
 
     return {
       hideAccessoryBar: function (bool) {

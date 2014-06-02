@@ -1,10 +1,10 @@
 angular.module('ngCordova.plugins.vibration', [])
 
-.factory('Vibration', [function() {
+.factory('$cordovaVibration', [function() {
 
   return {
   	vibrate: function(times) {
   	  return navigator.notification.vibrate(time);
-	}
+	  }
   }
 }]);

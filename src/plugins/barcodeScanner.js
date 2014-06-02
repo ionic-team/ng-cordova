@@ -1,20 +1,16 @@
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-  .factory('BarcodeScanner', ['$q', function ($q) {
+  .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
     return {
       scan: function () {
         var q = $q.defer();
 
         cordova.plugins.barcodeScanner.scan(function (result) {
-            // Do any magic you need
-            q.resolve(result);
-          },
-
-          function (err) {
-            q.reject(err);
-          },
-          options);
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        }, options);
 
         return q.promise;
       },
@@ -30,12 +26,10 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
          */
 
         cordova.plugins.barcodeScanner.encode(type, data, function (result) {
-            q.resolve(result);
-          },
-
-          function (err) {
-            q.reject(err);
-          });
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
 
         return q.promise;
       }

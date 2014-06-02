@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.geolocation', [])
 
-.factory('Geolocation', ['$q', function($q) {
+.factory('$cordovaGeolocation', ['$q', function($q) {
 
   return {
     getCurrentPosition: function(options) {
