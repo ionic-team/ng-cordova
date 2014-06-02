@@ -14,6 +14,7 @@ module.exports = {
   dist: 'dist',
 
   jsFiles: [
+    'src/module.js',
     'src/plugins/**/*.js',
     'src/utils/**/*.js'
   ],

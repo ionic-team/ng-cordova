@@ -1,8 +1,8 @@
-angular.module('ngCordova.plugins.camera', [])
+angular.module('ngCordova.plugins.camera', ['ngCordova.mocks'])
 
-.factory('$cordovaCamera', ['$q', '$timeout', '$cordovaMocksWhen', function($q, $timeout, $cordovaMocksWhen) {
+.factory('$cordovaCamera', ['$q', '$timeout', '$cordovaMockWhen', function($q, $timeout, $cordovaMockWhen) {
 
-  var when = $cordovaMocksWhen('$cordovaCamera');
+  var when = $cordovaMockWhen('$cordovaCamera');
 
   return {
 
@@ -10,7 +10,7 @@ angular.module('ngCordova.plugins.camera', [])
       when.when(tag, data);
     },
 
-    getPicture: function(options, tag) {
+    getPicture: function(tag, options) {
       var q = $q.defer();
       $timeout(function() {
         // Return any when value, if any
@@ -19,4 +19,4 @@ angular.module('ngCordova.plugins.camera', [])
       return q.promise;
     }
   }
-});
+}]);

@@ -4,6 +4,10 @@
  * See LICENSE in this repository for license information
  */
 (function(){
+angular.module('ngCordova', [
+  'ngCordova.plugins'
+]);
+
 angular.module('ngCordova.plugins.accelerometer', [])
 
 .factory('$cordovaAccelerometer', ['$q', function($q) {

@@ -1,14 +1,13 @@
-angular.module('ngCordova.mocks.when', [])
+angular.module('ngCordova.mocks', [])
 
 .factory('$cordovaMockWhen', function() {
   return function(service) {
-    this.service = service;
-
-    this.whens = [];
+    var service = service;
+    var whens = [];
 
     return {
       when: function(condition, ret) {
-        this.whens.push({
+        whens.push({
           condition: condition,
           returnValue: ret
         });
@@ -16,8 +15,8 @@ angular.module('ngCordova.mocks.when', [])
       check: function(condition) {
         var when;
 
-        for(var i = 0, j = this.whens.length; i < j; i++) {
-          when = this.whens[i];
+        for(var i = 0, j = whens.length; i < j; i++) {
+          when = whens[i];
           if(when.condition === condition) {
             return when.returnValue;
           }
