@@ -1,4 +1,4 @@
-ngCordova: AngularJS Cordova Services
+ngCordova: AngularJS + Cordova Services
 ==========
 
 <img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />
