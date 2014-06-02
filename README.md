@@ -1,7 +1,7 @@
 ngCordova: AngularJS Cordova Services
 ==========
 
-![ngCordova logo](http://ionicframework.com/img/ngcordova-context-logo.png)
+![ngCordova logo](http://ionicframework.com/img/ngcordova-context-logo.png =250x)
 
 NOTE: This repo is a work-in-progress and has not shipped a first release. Stay tuned for an update the week of June 2nd.
 
