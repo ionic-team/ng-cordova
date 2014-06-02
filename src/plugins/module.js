@@ -1,4 +1,5 @@
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.camera',
-  'ngCordova.plugins.geolocation'
+  'ngCordova.plugins.geolocation',
+  'ngCordova.plugins.compass'
 ]);
