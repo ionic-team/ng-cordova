@@ -1,0 +1,245 @@
+
+/**
+ * Tabs
+ * --------------------------------------------------
+ * A navigation bar with any number of tab items supported.
+ */
+
+.tabs {
+  @include display-flex();
+  @include flex-direction(horizontal);
+  @include justify-content(center);
+  @include translate3d(0,0,0);
+
+  @include tab-style($tabs-default-bg, $tabs-default-border, $tabs-default-text);
+  @include tab-badge-style($tabs-default-text, $tabs-default-bg);
+
+  position: absolute;
+  bottom: 0;
+
+  z-index: $z-index-tabs;
+
+  width: 100%;
+  height: $tabs-height;
+
+  border-style: solid;
+  border-top-width: 1px;
+
+  background-size: 0;
+  line-height: $tabs-height;
+
+  @media (min--moz-device-pixel-ratio: 1.5),
+         (-webkit-min-device-pixel-ratio: 1.5),
+         (min-device-pixel-ratio: 1.5),
+         (min-resolution: 144dpi),
+         (min-resolution: 1.5dppx) {
+    padding-top: 2px;
+    border-top: none !important;
+    border-bottom: none !important;
+    background-position: top;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+  }
+
+}
+/* Allow parent element of tabs to define color, or just the tab itself */
+.tabs-light > .tabs,
+.tabs.tabs-light {
+  @include tab-style($tabs-light-bg, $tabs-light-border, $tabs-light-text);
+  @include tab-badge-style($tabs-light-text, $tabs-light-bg);
+}
+.tabs-stable > .tabs,
+.tabs.tabs-stable {
+  @include tab-style($tabs-stable-bg, $tabs-stable-border, $tabs-stable-text);
+  @include tab-badge-style($tabs-stable-text, $tabs-stable-bg);
+}
+.tabs-positive > .tabs,
+.tabs.tabs-positive {
+  @include tab-style($tabs-positive-bg, $tabs-positive-border, $tabs-positive-text);
+  @include tab-badge-style($tabs-positive-text, $tabs-positive-bg);
+}
+.tabs-calm > .tabs,
+.tabs.tabs-calm {
+  @include tab-style($tabs-calm-bg, $tabs-calm-border, $tabs-calm-text);
+  @include tab-badge-style($tabs-calm-text, $tabs-calm-bg);
+}
+.tabs-assertive > .tabs,
+.tabs.tabs-assertive {
+  @include tab-style($tabs-assertive-bg, $tabs-assertive-border, $tabs-assertive-text);
+  @include tab-badge-style($tabs-assertive-text, $tabs-assertive-bg);
+}
+.tabs-balanced > .tabs,
+.tabs.tabs-balanced {
+  @include tab-style($tabs-balanced-bg, $tabs-balanced-border, $tabs-balanced-text);
+  @include tab-badge-style($tabs-balanced-text, $tabs-balanced-bg);
+}
+.tabs-energized > .tabs,
+.tabs.tabs-energized {
+  @include tab-style($tabs-energized-bg, $tabs-energized-border, $tabs-energized-text);
+  @include tab-badge-style($tabs-energized-text, $tabs-energized-bg);
+}
+.tabs-royal > .tabs,
+.tabs.tabs-royal {
+  @include tab-style($tabs-royal-bg, $tabs-royal-border, $tabs-royal-text);
+  @include tab-badge-style($tabs-royal-text, $tabs-royal-bg);
+}
+.tabs-dark > .tabs,
+.tabs.tabs-dark {
+  @include tab-style($tabs-dark-bg, $tabs-dark-border, $tabs-dark-text);
+  @include tab-badge-style($tabs-dark-text, $tabs-dark-bg);
+}
+
+/* Allow parent element to have tabs-top */
+/* If you change this, change platform.scss as well */
+.tabs-top > .tabs,
+.tabs.tabs-top {
+  top: $bar-height;
+  padding-top: 0;
+  padding-bottom: 2px;
+  background-position: bottom;
+}
+
+.tab-item {
+  @include flex(1);
+  display: block;
+  overflow: hidden;
+
+  max-width: $tab-item-max-width;
+  height: 100%;
+
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-weight: 400;
+  font-size: $tabs-text-font-size;
+  font-family: $font-family-light-sans-serif;
+
+  opacity: 0.7;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.tabs-item-hide > .tabs,
+.tabs.tabs-item-hide {
+  display: none;
+}
+
+.tabs-icon-top > .tabs .tab-item,
+.tabs-icon-top.tabs .tab-item,
+.tabs-icon-bottom > .tabs .tab-item,
+.tabs-icon-bottom.tabs .tab-item {
+  font-size: $tabs-text-font-size-side-icon;
+  line-height: $tabs-text-font-size;
+}
+
+.tab-item .icon {
+  display: block;
+  margin: 0 auto;
+  height: $tabs-icon-size;
+  font-size: $tabs-icon-size;
+}
+
+.tabs-icon-left.tabs .tab-item,
+.tabs-icon-left > .tabs .tab-item,
+.tabs-icon-right.tabs .tab-item,
+.tabs-icon-right > .tabs .tab-item {
+  font-size: $tabs-text-font-size-side-icon;
+
+  .icon {
+    display: inline-block;
+    vertical-align: top;
+
+    &:before {
+    font-size: $tabs-icon-size - 8;
+    line-height: $tabs-height;
+    }
+  }
+}
+
+.tabs-icon-left > .tabs .tab-item .icon,
+.tabs-icon-left.tabs .tab-item .icon {
+  padding-right: 3px;
+}
+
+.tabs-icon-right > .tabs .tab-item .icon,
+.tabs-icon-right.tabs .tab-item .icon {
+  padding-left: 3px;
+}
+
+.tabs-icon-only > .tabs .icon,
+.tabs-icon-only.tabs .icon {
+  line-height: inherit;
+}
+
+.tab-item.has-badge {
+  position: relative;
+}
+
+.tab-item .badge {
+  position: absolute;
+  top: 4%;
+  right: 33%; // fallback
+  right: calc(50% - 26px);
+  padding: $tabs-badge-padding;
+  height: auto;
+  font-size: $tabs-badge-font-size;
+  line-height: $tabs-badge-font-size + 4;
+}
+
+/* Navigational tab */
+
+/* Active state for tab */
+.tab-item.tab-item-active,
+.tab-item.active,
+.tab-item.activated {
+  opacity: 1;
+
+  &.tab-item-light {
+    color: $light;
+  }
+  &.tab-item-stable {
+    color: $stable;
+  }
+  &.tab-item-positive {
+    color: $positive;
+  }
+  &.tab-item-calm {
+    color: $calm;
+  }
+  &.tab-item-assertive {
+    color: $assertive;
+  }
+  &.tab-item-balanced {
+    color: $balanced;
+  }
+  &.tab-item-energized {
+    color: $energized;
+  }
+  &.tab-item-royal {
+    color: $royal;
+  }
+  &.tab-item-dark {
+    color: $dark;
+  }
+}
+
+.item.tabs {
+  @include display-flex();
+  padding: 0;
+
+  .icon:before {
+    position: relative;
+  }
+}
+
+.tab-item.disabled,
+.tab-item[disabled] {
+  opacity: .4;
+  cursor: default;
+  pointer-events: none;
+}
