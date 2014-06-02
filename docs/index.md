@@ -43,3 +43,28 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 ```
 
 [1] [https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
+
+
+### `$cordovaAccelerometer`
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaAccelerometer) {
+  $cordovaAccelerometer.getCurrentAcceleration().then(function(result) {
+
+    // Accelerometer data available in result
+
+  }, function(err) {
+  
+    // An error occured. Show a message to the user?
+
+  });
+
+  $cordovaCamera.watchAcceleration({
+  }, function(result) {
+  }, function(err) {
+  });
+
+  // Clear a watch by watchID
+  $cordovaAccelerometer.clearWatch(watchID);
+});
+```
