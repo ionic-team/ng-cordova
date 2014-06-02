@@ -9,7 +9,7 @@ angular.module('ngCordova.plugins.notification', [])
     confirm: function(message, callback, title, buttonName) {
 	  return navigator.notification.confirm.apply(navigator.notification, arguments);
     },
-    prompt: function((message, promptCallback, title, buttonLabels, defaultText) {
+    prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
 	  return navigator.notification.prompt.apply(navigator.notification, arguments);
     },
     beep: function(times) {
