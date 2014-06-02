@@ -1,11 +1,12 @@
 angular.module('ngCordova.plugins.accelerometer', [])
 
-.factory('Accelerometer', ['$q', function($q) {
+.factory('$cordovaAccelerometer', ['$q', function($q) {
 
   return {
     getCurrentAcceleration: function() {
       var q = $q.defer();
-	  navigator.accelerometer.getCurrentAcceleration(function(result) {
+
+      navigator.accelerometer.getCurrentAcceleration(function(result) {
         // Do any magic you need
         q.resolve(result);
       }, function(err) {
@@ -17,7 +18,7 @@ angular.module('ngCordova.plugins.accelerometer', [])
     watchAcceleration: function(options) {
       var q = $q.defer();
 
-	  navigator.accelerometer.watchAcceleration(function(result) {
+      navigator.accelerometer.watchAcceleration(function(result) {
         // Do any magic you need
         q.resolve(result);
       }, function(err) {
