@@ -5,5 +5,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.compass',
   'ngCordova.plugins.notification',
   'ngCordova.plugins.vibration',
-  'ngCordova.plugins.network'
+  'ngCordova.plugins.network',
+  'ngCordova.plugins.device'
 ]);
