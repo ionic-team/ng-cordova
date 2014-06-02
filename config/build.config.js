@@ -13,10 +13,7 @@ module.exports = {
 
   dist: 'dist',
 
-  paths: {
-    js: ['src/**/*.js'],
-    test: 'src/**/*.spec.js'
-  },
+  jsFiles: ['src/**/*.js'],
 
   versionData: {
     version: pkg.version

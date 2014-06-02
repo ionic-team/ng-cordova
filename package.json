@@ -6,13 +6,18 @@
     "url": "git://github.com/driftyco/ng-cordova.git"
   },
   "devDependencies": {
+    "karma": "^0.12.16",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.2",
     "gulp-rename": "^1.2.0",
     "gulp-concat": "^2.2.0",
     "gulp-header": "^1.0.2",
     "gulp-footer": "^1.0.4",
     "gulp": "^3.7.0",
     "gulp-jshint": "^1.6.1",
-    "gulp-uglify": "^0.2.1"
+    "gulp-uglify": "^0.2.1",
+    "minimist": "^0.1.0"
   },
   "licenses": [
     {
