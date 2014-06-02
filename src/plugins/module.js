@@ -7,5 +7,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.network',
   'ngCordova.plugins.device',
-  'ngCordova.plugins.barcodeScanner'
+  'ngCordova.plugins.barcodeScanner',
+  'ngCordova.plugins.splashscreen'
 ]);
