@@ -45,41 +45,41 @@ angular.module('ngCordova.plugins.accelerometer', [])
 
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-  .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
+.factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
-    return {
-      scan: function () {
-        var q = $q.defer();
+  return {
+    scan: function () {
+      var q = $q.defer();
 
-        cordova.plugins.barcodeScanner.scan(function (result) {
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
-        }, options);
+      cordova.plugins.barcodeScanner.scan(function (result) {
+        q.resolve(result);
+      }, function (err) {
+        q.reject(err);
+      }, options);
 
-        return q.promise;
-      },
+      return q.promise;
+    },
 
-      encode: function (type, data) {
-        var q = $q.defer();
+    encode: function (type, data) {
+      var q = $q.defer();
 
-        /* TODO needs work for type:
-         make the default:  BarcodeScanner.Encode.TEXT_TYPE
-         other options: .EMAIL_TYPE, .PHONE_TYPE, .SMS_TYPE
+      /* TODO needs work for type:
+       make the default:  BarcodeScanner.Encode.TEXT_TYPE
+       other options: .EMAIL_TYPE, .PHONE_TYPE, .SMS_TYPE
 
-         docs: https://github.com/wildabeast/BarcodeScanner#encoding-a-barcode
-         */
+       docs: https://github.com/wildabeast/BarcodeScanner#encoding-a-barcode
+       */
 
-        cordova.plugins.barcodeScanner.encode(type, data, function (result) {
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
-        });
+      cordova.plugins.barcodeScanner.encode(type, data, function (result) {
+        q.resolve(result);
+      }, function (err) {
+        q.reject(err);
+      });
 
-        return q.promise;
-      }
+      return q.promise;
     }
-  }]);
+  }
+}]);
 
 angular.module('ngCordova.plugins.camera', [])
 
@@ -133,111 +133,112 @@ angular.module('ngCordova.plugins.compass', [])
 
 angular.module('ngCordova.plugins.contacts', [])
 
-  .factory('Contacts', ['$q', function ($q) {
+.factory('Contacts', ['$q', function ($q) {
 
-    return {
-      save: function (contact) {
-        var q = $q.defer();
-        var deviceContact = navigator.contacts.create(contact);
+  return {
+    save: function (contact) {
+      var q = $q.defer();
+      var deviceContact = navigator.contacts.create(contact);
 
-        deviceContact.save(function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
-        return q.promise;
-      },
+      deviceContact.save(function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
+    },
 
-      remove: function (contact) {
-        var q = $q.defer();
-        var deviceContact = navigator.contacts.create(contact);
+    remove: function (contact) {
+      var q = $q.defer();
+      var deviceContact = navigator.contacts.create(contact);
 
-        deviceContact.remove(function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
-        return q.promise;
-      },
+      deviceContact.remove(function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
+    },
 
-      clone: function (contact) {
-        var deviceContact = navigator.contacts.create(contact);
-        return deviceContact.clone(contact)
-      },
+    clone: function (contact) {
+      var deviceContact = navigator.contacts.create(contact);
+      return deviceContact.clone(contact)
+    },
 
-      find: function (options) {
-        var q = $q.defer();
-        var fields = options.fields || ['id', 'displayName'];
-        delete options.fields;
+    find: function (options) {
+      var q = $q.defer();
+      var fields = options.fields || ['id', 'displayName'];
+      delete options.fields;
 
-        navigator.contacts.find(fields, function (results) {
-            q.resolve(results);
-          },
-          function (err) {
-            q.reject(err);
-          },
-          options);
+      navigator.contacts.find(fields, function (results) {
+          q.resolve(results);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
 
-        return q.promise;
-      }
-
-      /*
-       getContact: function (contact) {
-       var q = $q.defer();
-
-       navigator.contacts.pickContact(function (contact) {
-
-       })
-
-       }
-       */
-
-      // TODO: method to set / get ContactAddress
-      // TODO: method to set / get ContactError
-      // TODO: method to set / get ContactField
-      // TODO: method to set / get ContactName
-      // TODO: method to set / get ContactOrganization
-
+      return q.promise;
     }
 
-  }]);
+    /*
+     getContact: function (contact) {
+     var q = $q.defer();
+
+     navigator.contacts.pickContact(function (contact) {
+
+     })
+
+     }
+     */
+
+    // TODO: method to set / get ContactAddress
+    // TODO: method to set / get ContactError
+    // TODO: method to set / get ContactField
+    // TODO: method to set / get ContactName
+    // TODO: method to set / get ContactOrganization
+
+  }
+
+}]);
+
 angular.module('ngCordova.plugins.device', [])
 
-  .factory('$cordovaDevice', [function () {
+.factory('$cordovaDevice', [function () {
 
-    return {
-      getDevice: function () {
-        return device;
-      },
+  return {
+    getDevice: function () {
+      return device;
+    },
 
-      getCordova: function () {
-        return device.cordova;
-      },
+    getCordova: function () {
+      return device.cordova;
+    },
 
-      getModel: function () {
-        return device.model;
-      },
+    getModel: function () {
+      return device.model;
+    },
 
-      // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
-      getName: function () {
-        return device.name;
-      },
+    // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+    getName: function () {
+      return device.name;
+    },
 
-      getPlatform: function () {
-        return device.platform;
-      },
+    getPlatform: function () {
+      return device.platform;
+    },
 
-      getUUID: function () {
-        return device.uuid;
-      },
+    getUUID: function () {
+      return device.uuid;
+    },
 
-      getVersion: function () {
-        return device.version;
-      }
+    getVersion: function () {
+      return device.version;
     }
-  }]);
+  }
+}]);
 
 angular.module('ngCordova.plugins.geolocation', [])
 
@@ -276,28 +277,28 @@ angular.module('ngCordova.plugins.geolocation', [])
 
 angular.module('ngCordova.plugins.keyboard', [])
 
-  .factory('$cordovaKeyboard', [function () {
+.factory('$cordovaKeyboard', [function () {
 
-    return {
-      hideAccessoryBar: function (bool) {
-        return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
-      },
+  return {
+    hideAccessoryBar: function (bool) {
+      return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
+    },
 
-      close: function () {
-        return cordova.plugins.Keyboard.close();
-      },
+    close: function () {
+      return cordova.plugins.Keyboard.close();
+    },
 
-      disableScroll: function (bool) {
-        return cordova.plugins.Keyboard.disableScroll(bool);
-      },
+    disableScroll: function (bool) {
+      return cordova.plugins.Keyboard.disableScroll(bool);
+    },
 
-      isVisible: function () {
-        return cordova.plugins.Keyboard.isVisible
-      }
-
-      //TODO: add support for native.keyboardshow + native.keyboardhide
+    isVisible: function () {
+      return cordova.plugins.Keyboard.isVisible
     }
-  }]);
+
+    //TODO: add support for native.keyboardshow + native.keyboardhide
+  }
+}]);
 
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.accelerometer',
@@ -316,25 +317,25 @@ angular.module('ngCordova.plugins', [
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', [function () {
+.factory('$cordovaNetwork', [function () {
 
-    return {
+  return {
 
-      getNetwork: function () {
-        return navigator.connection.type;
-      },
+    getNetwork: function () {
+      return navigator.connection.type;
+    },
 
-      isOnline: function () {
-        var networkSate = navigator.connection.type;
-        return networkSate != Connection.UNKNOWN;
-      },
+    isOnline: function () {
+      var networkSate = navigator.connection.type;
+      return networkSate != Connection.UNKNOWN;
+    },
 
-      isOffline: function () {
-        var networkSate = navigator.connection.type;
-        return networkSate == Connection.UNKNOWN;
-      }
+    isOffline: function () {
+      var networkSate = navigator.connection.type;
+      return networkSate == Connection.UNKNOWN;
     }
-  }]);
+  }
+}]);
 
 angular.module('ngCordova.plugins.notification', [])
 
@@ -361,19 +362,19 @@ angular.module('ngCordova.plugins.notification', [])
 
 angular.module('ngCordova.plugins.splashscreen', [])
 
-  .factory('$cordovaSplashscreen', [ function () {
+.factory('$cordovaSplashscreen', [ function () {
 
-    return {
-      hide: function () {
-        return navigator.splashscreen.hide();
-      },
+  return {
+    hide: function () {
+      return navigator.splashscreen.hide();
+    },
 
-      show: function () {
-        return navigator.splashscreen.show();
-      }
-    };
+    show: function () {
+      return navigator.splashscreen.show();
+    }
+  };
 
-  }]);
+}]);
 
 angular.module('ngCordova.plugins.vibration', [])
 
