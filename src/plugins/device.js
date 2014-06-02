@@ -1,35 +1,35 @@
 angular.module('ngCordova.plugins.device', [])
 
-  .factory('$cordovaDevice', [function () {
+.factory('$cordovaDevice', [function () {
 
-    return {
-      getDevice: function () {
-        return device;
-      },
+  return {
+    getDevice: function () {
+      return device;
+    },
 
-      getCordova: function () {
-        return device.cordova;
-      },
+    getCordova: function () {
+      return device.cordova;
+    },
 
-      getModel: function () {
-        return device.model;
-      },
+    getModel: function () {
+      return device.model;
+    },
 
-      // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
-      getName: function () {
-        return device.name;
-      },
+    // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+    getName: function () {
+      return device.name;
+    },
 
-      getPlatform: function () {
-        return device.platform;
-      },
+    getPlatform: function () {
+      return device.platform;
+    },
 
-      getUUID: function () {
-        return device.uuid;
-      },
+    getUUID: function () {
+      return device.uuid;
+    },
 
-      getVersion: function () {
-        return device.version;
-      }
+    getVersion: function () {
+      return device.version;
     }
-  }]);
+  }
+}]);
