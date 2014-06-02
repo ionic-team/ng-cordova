@@ -3,5 +3,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.camera',
   'ngCordova.plugins.geolocation',
   'ngCordova.plugins.compass',
-  'ngCordova.plugins.notification'
+  'ngCordova.plugins.notification',
+  'ngCordova.plugins.vibration'
 ]);
