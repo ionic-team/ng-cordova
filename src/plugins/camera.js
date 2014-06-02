@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.camera', [])
 
-.factory('$cordovaCamera', ['$q', function($q) {
+.factory('$cordovaCamera', ['$q', '$cordovaMock', function($q, $cordovaMock) {
 
   return {
     getPicture: function(options) {
