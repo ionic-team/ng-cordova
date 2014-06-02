@@ -55,6 +55,10 @@ code {
   padding-top: 100px;
   text-align: left;
 }
+.site-wrapper-flow .mastfoot {
+  position: static;
+  margin-top: 50px;
+}
 .cover-container {
   margin-right: auto;
   margin-left: auto;
