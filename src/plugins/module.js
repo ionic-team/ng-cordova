@@ -9,5 +9,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.device',
   'ngCordova.plugins.barcodeScanner',
   'ngCordova.plugins.splashscreen',
-  'ngCordova.plugins.keyboard'
+  'ngCordova.plugins.keyboard',
+  'ngCordova.plugins.contacts'
 ]);
