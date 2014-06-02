@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.splashscreen', [])
 
-  .factory('Splashscreen', ['$q', function($q) {
+  .factory('Splashscreen', [ function () {
 
     return {
       hide: function () {

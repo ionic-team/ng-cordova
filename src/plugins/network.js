@@ -1,21 +1,21 @@
 angular.module('ngCordova.plugins.network', [])
 
-.factory('Network', ['$q', function($q) {
+  .factory('Network', [function () {
 
-  return {
+    return {
 
-    getNetwork: function () {
-      return navigator.connection.type;
-    },
+      getNetwork: function () {
+        return navigator.connection.type;
+      },
 
-    isOnline: function () {
-      var networkSate = navigator.connection.type;
-      return networkSate != Connection.UNKNOWN;
-    },
+      isOnline: function () {
+        var networkSate = navigator.connection.type;
+        return networkSate != Connection.UNKNOWN;
+      },
 
-    isOffline: function () {
-      var networkSate = navigator.connection.type;
-      return networkSate == Connection.UNKNOWN;
+      isOffline: function () {
+        var networkSate = navigator.connection.type;
+        return networkSate == Connection.UNKNOWN;
+      }
     }
-  }
-}]);
+  }]);
