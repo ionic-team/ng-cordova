@@ -26,10 +26,9 @@ angular.module('ngCordova.plugins.camera', [])
       return q.promise;
     }
   }
-}]);
-.
+}])
 
-angular.module('ngCordova.plugins', [
+.angular.module('ngCordova.plugins', [
   'ngCordova.plugins.camera'
 ]);
 
