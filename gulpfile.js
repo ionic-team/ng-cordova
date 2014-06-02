@@ -11,7 +11,16 @@ var gulp = require('gulp'),
   rename = require('gulp-rename');
 
 
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'build-mocks']);
+
+gulp.task('build-mocks', function() {
+  return gulp.src(buildConfig.mockJsFiles)
+    .pipe(concat('ng-cordova-mocks.js'))
+    .pipe(header(buildConfig.closureStart))
+    .pipe(footer(buildConfig.closureEnd))
+    .pipe(header(buildConfig.banner))
+    .pipe(gulp.dest(buildConfig.dist));
+});
 
 gulp.task('build', function() {
   return gulp.src(buildConfig.jsFiles)
@@ -41,6 +50,6 @@ gulp.task('karma-watch', function(done) {
   karma.start(karmaConf, done);
 });
 
-gulp.task('watch', ['build'], function() {
-  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build']);
+gulp.task('watch', ['build', 'build-mocks'], function() {
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build', 'build-mocks']);
 });

@@ -13,7 +13,12 @@ module.exports = {
 
   dist: 'dist',
 
-  jsFiles: ['src/**/*.js'],
+  jsFiles: [
+    'src/plugins/**/*.js',
+    'src/utils/**/*.js'
+  ],
+
+  mockJsFiles: ['src/mocks/**/*.js'],
 
   versionData: {
     version: pkg.version
