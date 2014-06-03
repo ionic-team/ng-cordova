@@ -69,8 +69,6 @@ module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
 });
 ```
 
-```javascript
-
 ### `$cordovaAccelerometer`
 
 ```javascript
