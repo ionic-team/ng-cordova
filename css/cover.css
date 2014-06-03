@@ -37,6 +37,10 @@ a:hover {
 
 html,
 body {
+  background-image:url("../img/bg.png");
+  background-size: 1099px 713px;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100%;
   background-color: #2d3036;
   -webkit-font-smoothing: antialiased;
@@ -50,6 +54,16 @@ body {
 body.full {
   box-shadow: none;
 }
+
+/*
+#bg-pattern {
+  background: url(../img/bg.png) no-repeat;
+  position: fixed;
+  text-align: center;
+  width: 1088px;
+  height: 713px;
+  overflow: hidden;
+}  */
 
 h1 {
   font-size: 36px;
