@@ -20,13 +20,15 @@ angular.module('ngCordova.plugins.geolocation', [])
 
       navigator.geolocation.watchPosition(function(result) {
         // Do any magic you need
-        q.resolve(result);
+        q.notify(result);
+
       }, function(err) {
         q.reject(err);
       }, options);
 
       return q.promise;
     },
+
     clearWatch: function(watchID) {
       return navigator.geolocation.clearWatch(watchID);
     }

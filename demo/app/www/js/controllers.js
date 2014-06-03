@@ -6,7 +6,8 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope) {
   $scope.plugins = [
-    { name: 'Camera', slug: 'camera' }
+    { name: 'Camera', slug: 'camera' },
+    { name: 'Geolocation', slug: 'geolocation' }
   ];
 })
 
@@ -24,6 +25,17 @@ angular.module('starter.controllers', [])
     }, function(err) {
       console.error('Unable to take pic', err);
       alert('Unable to take picture');
+    });
+  };
+})
+
+.controller('GeolocationCtrl', function($scope, $cordovaGeolocation) {
+  $scope.toggleTrack = function() {
+    $cordovaGeolocation.watchPosition().then(function(resp) {
+    }, function(err) {
+    }, function(position) {
+      $scope.lat = position.coords.latitude;
+      $scope.lng = position.coords.longitude;
     });
   };
 });
