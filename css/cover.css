@@ -205,11 +205,26 @@ code {
  * Footer
  */
 
-.mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
+.footer-hr {
+  margin-bottom: -10px;
 }
 
+.mastfoot {
+  font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.04em;
+  color: #AAB5C7;
+}
+
+a {
+  text-decoration: none;
+  color: #eef4ff;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #fff;
+}
 
 /*
  * Affix and center
