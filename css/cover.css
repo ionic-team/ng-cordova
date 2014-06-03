@@ -183,11 +183,12 @@ code {
  * Header
  */
 .masthead {
-  background-color: rgba(45,48,54,0.9);  
+  background-color: rgba(45,48,54,0.93);  
 }
 
 .masthead-brand {
   margin-top: -19px;
+  margin-left: -16px;
   margin-bottom: 0px;
 }
 
