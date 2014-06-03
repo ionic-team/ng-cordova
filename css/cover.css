@@ -104,7 +104,7 @@ code {
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
   color: #eef4ff;
-  border-bottom-color: #fff;
+  border-bottom-color: #eef4ff;
 }
 
 @media (min-width: 768px) {
