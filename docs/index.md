@@ -90,7 +90,7 @@ Monitor device orientation through the digital compass on a device.
 module.controller('PictureCtrl', function($scope, $cordovaCompass) {
   $scope.trackHeading = function() {
     // Pass options in [1]
-    $cordovaCamera.watchHeading(options).then(function() {
+    $cordovaCompass.watchHeading(options).then(function() {
       // Not currently used
     }, function(err) {
       // An error occured. Show a message to the user
