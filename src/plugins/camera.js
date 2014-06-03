@@ -6,6 +6,11 @@ angular.module('ngCordova.plugins.camera', [])
     getPicture: function(options) {
       var q = $q.defer();
 
+      if(!navigator.camera) {
+        q.resolve(null);
+        return q.promise;
+      }
+
       navigator.camera.getPicture(function(imageData) {
         q.resolve(imageData);
       }, function(err) {
