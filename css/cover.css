@@ -147,6 +147,12 @@ box-shadow: 0px 1px 0px rgba(194, 217, 255, 0.1);
 
 code {
   text-shadow: none;
+  padding: 2px 2px;
+  font-size: 90%;
+  color: #5796FF;
+  background: none;
+  white-space: nowrap;
+  border-radius: 4px;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
