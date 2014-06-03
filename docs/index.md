@@ -179,3 +179,39 @@ module.controller('MyCtrl', function($scope, $cordovaNetwork) {
   // See the various network types: https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype
 });
 ```
+
+### `$cordovaVibration`
+
+Vibrate the device programatically.
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaVibration) {
+
+  // Vibrate 100ms
+  $cordovaVibration.vibrate(100);
+
+});
+```
+
+### `$cordovaSplashscreen`
+
+Show or hide the Splash Screen.
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
+  $cordovaSplashscreen.show();
+});
+```
+
+<!--
+### `$cordovaNotification`
+
+Trigger alert, confirm, and prompt windows, or send beeps (beep, beep!)
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNotifications) {
+  
+  $cordovaNotifications.alert('Wow!');
+});
+```
+-->
