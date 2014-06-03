@@ -116,14 +116,14 @@ module.controller('PictureCtrl', function($scope, $cordovaCompass) {
 
 [1][https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading)
 
-### `$cordovaAccelerometer`
+### `$cordovaDeviceMotion`
 
 Track accelerometer changes as the device is moved, rotated, and shaken.
 
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaAccelerometer) {
-  $cordovaAccelerometer.getCurrentAcceleration().then(function(result) {
+module.controller('MyCtrl', function($scope, $cordovaDeviceMotion) {
+  $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
 
     // Accelerometer data available in result
 
@@ -133,13 +133,13 @@ module.controller('MyCtrl', function($scope, $cordovaAccelerometer) {
 
   });
 
-  $cordovaAccelerometer.watchAcceleration({
+  $cordovaDeviceMotion.watchAcceleration({
   }, function(result) {
   }, function(err) {
   });
 
   // Clear a watch by watchID
-  $cordovaAccelerometer.clearWatch(watchID);
+  $cordovaDeviceMotion.clearWatch(watchID);
 });
 ```
 
