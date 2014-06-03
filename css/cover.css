@@ -39,6 +39,7 @@ html,
 body {
   height: 100%;
   background-color: #2d3036;
+  -webkit-font-smoothing: antialiased;
 }
 body {
   color: #aab5c7;
@@ -48,6 +49,12 @@ body {
 }
 body.full {
   box-shadow: none;
+}
+
+h1 {
+  font-size: 36px;
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
 }
 
 code {
