@@ -1,6 +1,6 @@
-angular.module('ngCordova.plugins.compass', [])
+angular.module('ngCordova.plugins.deviceOrientation', [])
 
-.factory('$cordovaCompass', ['$q', function($q) {
+.factory('$cordovaDeviceOrientation', ['$q', function($q) {
 
   return {
     watchHeading: function(options) {

@@ -4,7 +4,7 @@ angular.module('ngCordova.plugins.vibration', [])
 
   return {
   	vibrate: function(times) {
-  	  return navigator.notification.vibrate(time);
+  	  return navigator.notification.vibrate(times);
 	  }
   }
 }]);

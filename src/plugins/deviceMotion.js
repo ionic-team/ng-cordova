@@ -1,6 +1,6 @@
-angular.module('ngCordova.plugins.accelerometer', [])
+angular.module('ngCordova.plugins.deviceMotion', [])
 
-.factory('$cordovaAccelerometer', ['$q', function($q) {
+.factory('$cordovadeviceMotion', ['$q', function($q) {
 
   return {
     getCurrentAcceleration: function() {
