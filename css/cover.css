@@ -94,6 +94,7 @@ code {
 
 .masthead-nav > li {
   font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight:normal;
   display: inline-block;
 }
 .masthead-nav > li + li {
@@ -106,10 +107,14 @@ code {
   font-weight: normal;
   color: #aab5c7; /* IE8 proofing */
   border-bottom: 2px solid transparent;
+  transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
+  color: #eef4ff;
   border-bottom-color: #eef4ff;
 }
 .masthead-nav > .active > a,
