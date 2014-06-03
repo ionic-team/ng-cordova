@@ -37,7 +37,6 @@ a:hover {
 
 html,
 body {
-  background-image:url('../img/bg.png');
   height: 100%;
   background-color: #2d3036;
   -webkit-font-smoothing: antialiased;
