@@ -95,6 +95,26 @@ h1 {
   color: #eef4ff;
 }
 
+h2 {
+  font-size: 30px;
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #eef4ff;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #eef4ff;
+}
+
+p {
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  letter-spacing: -0.01em;
+}
+
 .lead {
   font-size: 20px;
   font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -102,6 +122,27 @@ h1 {
   letter-spacing: -0.04em;
   color: #AAB5C7;
   margin-top: 20px;
+}
+
+.highlight {
+  background: none !important;
+}
+
+pre {
+display: block;
+padding: 10px;
+margin: 20px 0 40px;
+font-size: 13px;
+line-height: 1.42857143;
+word-break: break-all;
+word-wrap: break-word;
+color: #97A6BE;
+background-color: #1B1E24;
+border: 1px solid #0A0C0F;
+border-radius: 2px;
+box-shadow: 0px 1px 0px rgba(194, 217, 255, 0.1);
+-moz-box-shadow: 0px 1px 0px rgba(194, 217, 255, 0.1);
+-webkit-box-shadow: 0px 1px 0px rgba(194, 217, 255, 0.1);
 }
 
 code {
