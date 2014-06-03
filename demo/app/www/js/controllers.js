@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
   $scope.plugins = [
     { name: 'Camera', slug: 'camera' },
     { name: 'Geolocation', slug: 'geolocation' },
-    { name: 'Accelerometer', slug: 'accelerometer' }
+    { name: 'Device Motion', slug: 'device-motion' }
   ];
 })
 
