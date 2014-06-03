@@ -107,6 +107,7 @@ h3 {
   font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #eef4ff;
+  margin-top: 50px;
 }
 
 p {
@@ -131,7 +132,7 @@ p {
 pre {
 display: block;
 padding: 10px;
-margin: 20px 0 40px;
+margin: 20px 0 20px;
 font-size: 13px;
 line-height: 1.42857143;
 word-break: break-all;
