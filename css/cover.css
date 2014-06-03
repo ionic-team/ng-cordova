@@ -93,6 +93,7 @@ code {
 }
 
 .masthead-nav > li {
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
 }
 .masthead-nav > li + li {
