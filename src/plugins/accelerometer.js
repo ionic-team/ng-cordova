@@ -20,7 +20,7 @@ angular.module('ngCordova.plugins.accelerometer', [])
 
       navigator.accelerometer.watchAcceleration(function(result) {
         // Do any magic you need
-        q.resolve(result);
+        q.notify(result);
       }, function(err) {
         q.reject(err);
       }, options);

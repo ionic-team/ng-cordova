@@ -4,6 +4,7 @@ function ap {
   cordova plugin add org.apache.cordova.$1
 }
 
+ap console
 ap device
 ap camera
 ap vibration

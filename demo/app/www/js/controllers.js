@@ -7,7 +7,8 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope) {
   $scope.plugins = [
     { name: 'Camera', slug: 'camera' },
-    { name: 'Geolocation', slug: 'geolocation' }
+    { name: 'Geolocation', slug: 'geolocation' },
+    { name: 'Accelerometer', slug: 'accelerometer' }
   ];
 })
 
@@ -36,6 +37,20 @@ angular.module('starter.controllers', [])
     }, function(position) {
       $scope.lat = position.coords.latitude;
       $scope.lng = position.coords.longitude;
+    });
+  };
+})
+
+.controller('AccelCtrl', function($scope, $cordovaAccelerometer) {
+  console.log('Accel');
+  $scope.toggleTrack = function() {
+    $cordovaAccelerometer.watchAcceleration().then(function(resp) {
+    }, function(err) {
+    }, function(data) {
+      console.log('Data', data)
+      $scope.x = data.x;
+      $scope.y = data.y;
+      $scope.z = data.z;
     });
   };
 });
