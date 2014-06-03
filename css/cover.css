@@ -58,6 +58,13 @@ h1 {
   color: #eef4ff;
 }
 
+.lead {
+  font-size: 20px;
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #2d3036;
+}
+
 code {
   text-shadow: none;
 }
