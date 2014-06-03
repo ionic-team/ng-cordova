@@ -35,17 +35,10 @@ a:hover {
  * Base structure
  */
 
-html {
-  background: url(../img/bg.png) no-repeat center center fixed; 
-  height: 713px;
-  width: 1088px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+html,
 body {
-  height: 100%;
+  background-image:url('../img/bg.png');
+  height: 50%;
   background-color: #2d3036;
   -webkit-font-smoothing: antialiased;
 }
