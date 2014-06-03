@@ -82,6 +82,27 @@ module.controller('MyCtrl', function($scope, $cordovaBarcodeScanner) {
   });
 ```
 
+### `$cordovaCompass`
+
+Monitor device orientation through the digital compass on a device.
+
+```javascript
+module.controller('PictureCtrl', function($scope, $cordovaCompass) {
+  $scope.trackHeading = function() {
+    // Pass options in [1]
+    $cordovaCamera.watchHeading(options).then(function() {
+      // Not currently used
+    }, function(err) {
+      // An error occured. Show a message to the user
+    }, function(position) {
+      // Active updates of the heading here
+    });
+  }
+});
+```
+
+[1] [https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading)
+
 ### `$cordovaAccelerometer`
 
 Track accelerometer changes as the device is moved, rotated, and shaken.
