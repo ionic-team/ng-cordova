@@ -60,9 +60,11 @@ h1 {
 
 .lead {
   font-size: 20px;
-  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  color: #2d3036;
+  font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.04em;
+  color: #AAB5C7;
+  margin-top: 20px;
 }
 
 code {
