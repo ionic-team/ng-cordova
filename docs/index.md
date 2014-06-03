@@ -5,8 +5,6 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 ## Examples and Docs
 
-### AngularJS Module
-
 To use any of the plugin wrappers below, all you need to do is link to the `ng-cordova.js` file in your app. Then, include `ngCordova` as a dependency in your angular module:
 
 ```javascript
