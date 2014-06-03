@@ -93,7 +93,7 @@ code {
   font-size: 16px;
   font-weight: normal;
   color: #aab5c7; /* IE8 proofing */
-  border-bottom: #eef4ff;
+  border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
