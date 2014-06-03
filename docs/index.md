@@ -69,7 +69,23 @@ module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
 });
 ```
 
+### `$cordovaBarcodeScanner`
+
+Scan QR codes and bar codes. From the [wildabeast/BarcodeScanner](https://github.com/wildabeast/BarcodeScanner) plugin.
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaBarcodeScanner) {
+  $cordovaBarcodeScanner.scan().then(function(result) {
+    // Scanner result
+  }, function(err) {
+  });
+```
+
 ### `$cordovaAccelerometer`
+
+Track accelerometer changes as the device is moved, rotated, and shaken.
+
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaAccelerometer) {
