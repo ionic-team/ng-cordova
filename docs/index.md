@@ -44,6 +44,21 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
 [1] [https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
 
+### `$cordovaDevice`
+
+Grab device related information, such as platform, and device model.
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaDevice) {
+  var device = $cordovaDevice.getDevice();
+  var cordova = $cordovaDevice.getCordova();
+  var model = $cordovaDevice.getModel();
+  var platform = $cordovaDevice.getPlatform();
+  var uuid = $cordovaDevice.getUUID();
+  var version = $cordovaDevice.getVersion();
+});
+```
+
 ### `$cordovaGeolocation`
 
 Grab the current location of the user, or grab continuous location changes:
@@ -149,3 +164,5 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 ```
 
 [1][https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md](https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md)
+
+
