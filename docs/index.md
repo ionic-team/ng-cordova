@@ -166,3 +166,16 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 [1][https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md](https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md)
 
 
+### `$cordovaNetwork`
+
+Check network connection types, and track offline and online status.
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+  var type = $cordovaNetwork.getNetwork();
+
+  var isOnline = $cordovaNetwork.isOnline();
+
+  // See the various network types: https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype
+});
+```
