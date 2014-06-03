@@ -44,6 +44,32 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
 [1] [https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
 
+### `$cordovaGeolocation`
+
+Grab the current location of the user, or grab continuous location changes:
+
+```javascript
+module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
+  $scope.getPosition = function() {
+    $cordovaCamera.getCurrentPosition().then(function(position) {
+      // Position here: position.coords.latitude, position.coords.longitude
+    }, function(err) {});
+  }
+
+  $scope.trackPosition = function() {
+    $cordovaCamera.watchPosition().then(function() {
+      // Not currently used
+    }, function(err) {
+      // An error occured. Show a message to the user
+    }, function(position) {
+      // Active updates of the position here
+    });
+  }
+
+});
+```
+
+```javascript
 
 ### `$cordovaAccelerometer`
 
