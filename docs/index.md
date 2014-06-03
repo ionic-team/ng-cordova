@@ -101,7 +101,7 @@ module.controller('PictureCtrl', function($scope, $cordovaCompass) {
 });
 ```
 
-[1] [https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading)
+[1][https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md#navigatorcompasswatchheading)
 
 ### `$cordovaAccelerometer`
 
@@ -120,7 +120,7 @@ module.controller('MyCtrl', function($scope, $cordovaAccelerometer) {
 
   });
 
-  $cordovaCamera.watchAcceleration({
+  $cordovaAccelerometer.watchAcceleration({
   }, function(result) {
   }, function(err) {
   });
@@ -129,3 +129,23 @@ module.controller('MyCtrl', function($scope, $cordovaAccelerometer) {
   $cordovaAccelerometer.clearWatch(watchID);
 });
 ```
+
+### `$cordovaContacts`
+
+A powerful way to create, remove, and search through contacts on the device.
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaContacts) {
+  $scope.addContact = function() {
+    $cordovaContacts.save($scope.contactForm).then(function(result) {
+      // Contact saved
+    }, function(err) {
+      // Contact error
+    });
+  };
+
+  // Many more features, see the docs below
+});
+```
+
+[1][https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md](https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md)
