@@ -21,13 +21,36 @@ a:hover {
 }
 
 /* Custom default button */
-.btn-default,
+.btn-default {
+  font-size: 28px;
+  font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal !important;
+  color: #eef5ff;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background: none;
+  border: 2px solid #eef5ff;
+  border-radius: 80px;
+  padding: 10px 32px !important;
+  box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.5), inset 0px 0px 6px rgba(83, 149, 255, 0.5);
+  -moz-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.5), inset 0px 0px 6px rgba(83, 149, 255, 0.5);
+  -webkit-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.5), inset 0px 0px 6px rgba(83, 149, 255, 0.5);
+  text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.8);
+  -moz-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.8);
+  -webkit-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.8);
+  margin-top: 20px;
+}
 .btn-default:hover,
 .btn-default:focus {
-  color: #333;
+  color: #fff;
   text-shadow: none; /* Prevent inheritence from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
+  background: none;
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.7), inset 0px 0px 6px rgba(83, 149, 255, 0.7);
+  -moz-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.7), inset 0px 0px 6px rgba(83, 149, 255, 0.7);
+  -webkit-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.7), inset 0px 0px 6px rgba(83, 149, 255, 0.7);
+  text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.9);
+  -moz-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.9);
+  -webkit-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.9);
 }
 
 
