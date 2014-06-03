@@ -1,8 +1,8 @@
 angular.module('ngCordova.plugins', [
-  'ngCordova.plugins.accelerometer',
+  'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.camera',
   'ngCordova.plugins.geolocation',
-  'ngCordova.plugins.compass',
+  'ngCordova.plugins.deviceOrientation',
   'ngCordova.plugins.notification',
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.network',
@@ -10,5 +10,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.barcodeScanner',
   'ngCordova.plugins.splashscreen',
   'ngCordova.plugins.keyboard',
-  'ngCordova.plugins.contacts'
+  'ngCordova.plugins.contacts',
+  'ngCordova.plugins.statusbar'
 ]);
