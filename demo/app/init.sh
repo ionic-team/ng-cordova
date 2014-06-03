@@ -17,4 +17,4 @@ ap splashscreen
 ap device-orientation
 ap contacts
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard
-cordova plugin add https://github.com/phonegap-build/BarcodeScanner.git
+cordova plugin add https://github.com/wildabeast/BarcodeScanner.git 
