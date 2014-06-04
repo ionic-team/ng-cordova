@@ -9,13 +9,13 @@ angular.module('ngCordova.plugins.network', [])
     },
 
     isOnline: function () {
-      var networkSate = navigator.connection.type;
-      return networkSate != Connection.UNKNOWN;
+      var networkState = navigator.connection.type;
+      return networkState !== Connection.UNKNOWN && networkState !== Connection.NONE;
     },
 
     isOffline: function () {
-      var networkSate = navigator.connection.type;
-      return networkSate == Connection.UNKNOWN;
+      var networkState = navigator.connection.type;
+      return networkSate === Connection.UNKNOWN || networkState === Connection.NONE;
     }
   }
 }]);
