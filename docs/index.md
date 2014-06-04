@@ -70,7 +70,7 @@ module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
   }
 
   $scope.trackPosition = function() {
-    $cordovaCamera.watchPosition().then(function() {
+    $cordovaGeolocation.watchPosition().then(function() {
       // Not currently used
     }, function(err) {
       // An error occured. Show a message to the user
