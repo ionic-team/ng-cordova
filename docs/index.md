@@ -64,7 +64,7 @@ Grab the current location of the user, or grab continuous location changes:
 ```javascript
 module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
   $scope.getPosition = function() {
-    $cordovaCamera.getCurrentPosition().then(function(position) {
+    $cordovaGeolocation.getCurrentPosition().then(function(position) {
       // Position here: position.coords.latitude, position.coords.longitude
     }, function(err) {});
   }
