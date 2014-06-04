@@ -11,5 +11,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.splashscreen',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.contacts',
-  'ngCordova.plugins.statusbar'
+  'ngCordova.plugins.statusbar',
+  'ngCordova.plugins.sqlite'
 ]);
