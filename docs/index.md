@@ -134,8 +134,11 @@ module.controller('MyCtrl', function($scope, $cordovaDeviceMotion) {
   });
 
   $cordovaDeviceMotion.watchAcceleration({
-  }, function(result) {
+  }, function() {/* unused */},
   }, function(err) {
+    /* errors */
+  }, function(result) {
+    /* the result is notified here when it changes */
   });
 
   // Clear a watch by watchID
