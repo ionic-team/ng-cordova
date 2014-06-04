@@ -246,6 +246,30 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
   }
 }]);
 
+angular.module('ngCordova.plugins.file', [])
+
+.factory('File', ['$window', '$q', function ($window, $q) {
+
+  return {
+    requestFileSystem: function (type, size) {
+      var q = $q.defer();
+      
+      $window.requestFileSystem(type, size,
+
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        }
+      );
+
+      return q.promise;
+    }
+  };
+
+}]);
+
 angular.module('ngCordova.plugins.geolocation', [])
 
 .factory('$cordovaGeolocation', ['$q', function($q) {
@@ -321,7 +345,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.splashscreen',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.contacts',
-  'ngCordova.plugins.statusbar'
+  'ngCordova.plugins.statusbar',
+  'ngCordova.plugins.file'
 ]);
 
 angular.module('ngCordova.plugins.network', [])
