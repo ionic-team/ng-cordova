@@ -12,5 +12,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.contacts',
   'ngCordova.plugins.statusbar',
-  'ngCordova.plugins.file'
+  'ngCordova.plugins.file',
+  'ngCordova.plugins.socialSharing'
 ]);
