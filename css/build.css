@@ -1,0 +1,18 @@
+@font-face {font-family: 'AvenirNextLTPro-Regular';src: url('../fonts/28882F_0_0.eot');src: url('../fonts/28882F_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_0_0.woff') format('woff'),url('../fonts/28882F_0_0.ttf') format('truetype');}
+@font-face {font-family: 'AvenirNextLTPro-Medium';src: url('../fonts/28882F_1_0.eot');src: url('../fonts/28882F_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_1_0.woff') format('woff'),url('../fonts/28882F_1_0.ttf') format('truetype');}
+@font-face {font-family: 'AvenirNextLTPro-UltLt';src: url('../fonts/29CC36_0_0.eot');src: url('../fonts/29CC36_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/29CC36_0_0.woff') format('woff'),url('../fonts/29CC36_0_0.ttf') format('truetype');}
+
+body{
+    font-family: 'AvenirNextLTPro-Regular', 'helvetica','arial','sans-serif';
+    border-top: 4px solid #4f8ef7;
+}
+li{
+    list-style: none;
+}
+input:checked,
+input:checked+label{
+    color:#4f8ef7;
+}
+legend{
+    border-color: #4f8ef7;
+}
