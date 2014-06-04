@@ -7,7 +7,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       var q = $q.defer();
 
       navigator.compass.watchHeading(function(result) {
-        q.resolve(result);
+        q.notify(result);
       }, function(err) {
         q.reject(err);
       }, options);
