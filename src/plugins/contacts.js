@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.contacts', [])
 
-.factory('Contacts', ['$q', function ($q) {
+.factory('$cordovaContacts', ['$q', function ($q) {
 
   return {
     save: function (contact) {
