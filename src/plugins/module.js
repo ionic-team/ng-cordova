@@ -13,5 +13,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.contacts',
   'ngCordova.plugins.statusbar',
   'ngCordova.plugins.file',
-  'ngCordova.plugins.socialSharing'
+  'ngCordova.plugins.socialSharing',
+  'ngCordova.plugins.globalization'
 ]);
