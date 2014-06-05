@@ -6,13 +6,33 @@ body{
     font-family: 'AvenirNextLTPro-Regular', 'helvetica','arial','sans-serif';
     border-top: 4px solid #4f8ef7;
 }
+ul{
+    padding:0;
+}
 li{
     list-style: none;
+    border-bottom: 1px solid #dadee7;
 }
-input:checked,
-input:checked+label{
+input{
+    display:none;
+}
+label{
+    color:#80848f;
+    font-size: 15px;
+    padding-top: 20px;
+}
+input:checked+label,
+input:checked+label:before{
     color:#4f8ef7;
 }
-legend{
-    border-color: #4f8ef7;
+label:before{
+    font-family:'Ionicons';
+    content: "\f170";
+    font-size:36px;
+    color:#dadee7;
+    margin: -20px 10px 0 0;
+    float:left;
+}
+input:checked+label:before {
+    content: "\f16d";
 }
