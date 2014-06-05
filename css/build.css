@@ -6,8 +6,20 @@ body{
     font-family: 'AvenirNextLTPro-Regular', 'helvetica','arial','sans-serif';
     border-top: 4px solid #4f8ef7;
 }
+.logo{
+    margin:50px 0;
+}
+legend{
+    border-color: #36393e;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: 'AvenirNextLTPro-Medium';
+    letter-spacing: 2px;
+}
 ul{
-    padding:0;
+    padding:0 0 20px;
 }
 li{
     list-style: none;
@@ -19,7 +31,9 @@ input{
 label{
     color:#80848f;
     font-size: 15px;
-    padding-top: 20px;
+    padding: 17px 20px 0 20px;
+    margin:0;
+    font-family: 'AvenirNextLTPro-UltLt';
 }
 input:checked+label,
 input:checked+label:before{
@@ -30,9 +44,20 @@ label:before{
     content: "\f170";
     font-size:36px;
     color:#dadee7;
-    margin: -20px 10px 0 0;
+    margin: -18px 10px 0 0;
     float:left;
 }
 input:checked+label:before {
     content: "\f16d";
+}
+.btn{
+    background:transparent;
+    border:3px solid #4f8ef7;
+    width:100%;
+    border-radius: 2px;
+    text-transform: uppercase;
+    color:#4f8ef7;
+    font-family: 'AvenirNextLTPro-Medium';
+    letter-spacing: 2px;
+    padding:15px;
 }
