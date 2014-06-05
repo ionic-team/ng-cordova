@@ -14,7 +14,6 @@ angular.module('ngCordova.plugins.sqlite', [])
 
       execute: function (db, query, binding) {
         q = $q.defer();
-
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
               q.resolve(result);

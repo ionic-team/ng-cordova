@@ -12,5 +12,5 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.contacts',
   'ngCordova.plugins.statusbar',
-  'ngCordova.plugins.sqlite'
+  'ngCordova.plugins.file'
 ]);
