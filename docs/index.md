@@ -95,15 +95,15 @@ module.controller('MyCtrl', function($scope, $cordovaBarcodeScanner) {
   });
 ```
 
-### `$cordovaCompass`
+### `$cordovaDeviceOrientation`
 
 Monitor device orientation through the digital compass on a device.
 
 ```javascript
-module.controller('PictureCtrl', function($scope, $cordovaCompass) {
+module.controller('PictureCtrl', function($scope, $cordovaDeviceOrientation) {
   $scope.trackHeading = function() {
     // Pass options in [1]
-    $cordovaCompass.watchHeading(options).then(function() {
+    $cordovaDeviceOrientation.watchHeading(options).then(function() {
       // Not currently used
     }, function(err) {
       // An error occured. Show a message to the user
