@@ -1,6 +1,6 @@
-angular.module('ngCordova.plugins.notification', [])
+angular.module('ngCordova.plugins.dialogs', [])
 
-.factory('$cordovaNotification', [function() {
+.factory('$cordovaDialogs', [function() {
 
   return {
     alert: function(message, callback, title, buttonName) {
