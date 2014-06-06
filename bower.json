@@ -1,16 +1,27 @@
 {
-    "name": "ngCordova",
-    "version": "0.0.1",
-    "main": "dist/ng-cordova.min.js",
-    "ignore": [
-    	"config/*"
-    	"gulpfile.js",
-    	".gitignore",
-    	".bowerrc",
-    	"bower.json",
-    	"README.md"
-    ],
+    "name": "ng-cordova",
+    "version": "0.1.1-alpha",
     "homepage": "http://ngCordova.com/",
+    "authors": [
+        "Max Lynch <max@drifty.com>",
+        "Paolo Bernasconi <paolo.enrico.bernasconi@gmail.com>"
+    ],
+    "description": "AngularJS Cordova wrappers for common Cordova plugins.",
+    "main": [
+        "dist/*",
+        "src/*",
+        "demo/*"
+    ],
+    "keywords": [
+        "cordova",
+        "phonegap",
+        "angular",
+        "angularjs",
+        "ionic",
+        "cordova plugin"
+    ],
+    "license": "MIT",
+    "private": false,
     "devDependencies": {
     	"jquery": "latest"
     }
