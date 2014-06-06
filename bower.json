@@ -1,0 +1,17 @@
+{
+    "name": "ngCordova",
+    "version": "0.0.1",
+    "main": "dist/ng-cordova.min.js",
+    "ignore": [
+    	"config/*"
+    	"gulpfile.js",
+    	".gitignore",
+    	".bowerrc",
+    	"bower.json",
+    	"README.md"
+    ],
+    "homepage": "http://ngCordova.com/",
+    "devDependencies": {
+    	"jquery": "latest"
+    }
+}
