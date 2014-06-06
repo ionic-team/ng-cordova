@@ -204,15 +204,14 @@ module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
 });
 ```
 
-<!--
-### `$cordovaNotification`
+
+### `$cordovaDialogs`
 
 Trigger alert, confirm, and prompt windows, or send beeps (beep, beep!)
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaNotifications) {
+module.controller('MyCtrl', function($scope, $cordovaDialogs) {
   
-  $cordovaNotifications.alert('Wow!');
+  $cordovaDialogs.alert('Wow!');
 });
 ```
--->
