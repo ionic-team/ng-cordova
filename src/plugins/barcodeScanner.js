@@ -10,7 +10,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         q.resolve(result);
       }, function (err) {
         q.reject(err);
-      }, options);
+      });
 
       return q.promise;
     },
