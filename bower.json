@@ -21,8 +21,5 @@
         "cordova plugin"
     ],
     "license": "MIT",
-    "private": false,
-    "devDependencies": {
-    	"jquery": "latest"
-    }
+    "private": false
 }
