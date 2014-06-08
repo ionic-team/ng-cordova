@@ -1,8 +1,25 @@
 <ion-view title="Geolocation" ng-controller="GeolocationCtrl">
-  <ion-content padding="true">
-    <button class="button button-dark" ng-click="toggleTrack()">Toggle Track</button>
-    <br>
-    lat: {{lat}}
-    lng: {{lng}}
+  <ion-content scroll="false" padding="true">
+    <style>
+      #geo-val {
+        vertical-align: middle;
+        display: inline-block;
+        font-size: 35px;
+        color: #4a87ee;
+      }
+      #geo-box {
+        text-align: center;
+        width: 100%;
+        line-height: 283px;
+      }
+    </style>
+
+  <!--<button class="button button-dark" ng-click="toggleTrack()">Toggle Track</button>-->
+    <div id="geo-box">
+      <div id="geo-val" ng-bind="getLatLng()">
+        <div id="divot"></div>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>

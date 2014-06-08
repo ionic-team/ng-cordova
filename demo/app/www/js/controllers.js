@@ -8,7 +8,11 @@ angular.module('starter.controllers', [])
   $scope.plugins = [
     { name: 'Camera', slug: 'camera' },
     { name: 'Geolocation', slug: 'geolocation' },
-    { name: 'Device Motion', slug: 'device-motion' }
+    { name: 'Device Motion', slug: 'device-motion' },
+    { name: 'Device Orientation', slug: 'device-orientation' },
+    { name: 'Statusbar', slug: 'status-bar' },
+    { name: 'Vibration', slug: 'vibration' },
+    { name: 'Barcode', slug: 'barcode' }
   ];
 })
 
@@ -31,6 +35,18 @@ angular.module('starter.controllers', [])
 })
 
 .controller('GeolocationCtrl', function($scope, $cordovaGeolocation) {
+  $cordovaGeolocation.watchPosition().then(function(resp) {
+  }, function(err) {
+  }, function(position) {
+    $scope.lat = position.coords.latitude;
+    $scope.lng = position.coords.longitude;
+  });
+
+  $scope.getLatLng = function() {
+    if(!$scope.lat && !$scope.lng) { return '45.787, -89.052'; }
+    return $scope.lat.toFixed(3) + ', ' + $scope.lng.toFixed(3);
+  }
+  /*
   $scope.toggleTrack = function() {
     $cordovaGeolocation.watchPosition().then(function(resp) {
     }, function(err) {
@@ -39,6 +55,74 @@ angular.module('starter.controllers', [])
       $scope.lng = position.coords.longitude;
     });
   };
+  */
+})
+
+.controller('CompassCtrl', function($scope, $cordovaDeviceOrientation) {
+  $cordovaDeviceOrientation.watchHeading().then(function(resp) {
+  }, function(err) {
+  }, function(position) {
+    $scope.compass = position.magneticHeading;
+  });
+
+  /*
+  $scope.toggleTrack = function() {
+    $cordovaGeolocation.watchPosition().then(function(resp) {
+    }, function(err) {
+    }, function(position) {
+      $scope.lat = position.coords.latitude;
+      $scope.lng = position.coords.longitude;
+    });
+  };
+  */
+})
+
+.directive('rotateTo', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      rotateTo: '='
+    },
+    link: function($scope, $element, $attr) {
+      $scope.$watch('rotateTo', function(v) {
+        if(typeof v === 'undefined') { return; }
+        $element[0].style[ionic.CSS.TRANSFORM] = 'rotate(' + v + 'deg)';
+      });
+    }
+  }
+})
+
+.controller('StatusbarCtrl', function($scope, $cordovaStatusbar) {
+  $scope.toggleBar = function() {
+    if($cordovaStatusbar.isVisible()) {
+      $cordovaStatusbar.hide();
+    } else {
+      $cordovaStatusbar.show();
+    }
+  };
+})
+
+.controller('VibrationCtrl', function($scope, $cordovaVibration) {
+  $scope.data = {
+    vibrateTime: 500
+  };
+
+  $scope.vibrate = function() {
+    console.log('Vibrating', $scope.data.vibrateTime);
+    $cordovaVibration.vibrate($scope.data.vibrateTime);
+  }
+})
+
+.controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
+
+  $scope.scan = function() {
+    $cordovaBarcodeScanner.scan().then(function(result) {
+      $scope.scanResult = JSON.stringify(result);
+    }, function(err) {
+      $scope.scanResult = 'SCAN ERROR (see console)'
+      console.error(err);
+    });
+  }
 })
 
 .controller('AccelCtrl', function($scope, $cordovaAccelerometer) {

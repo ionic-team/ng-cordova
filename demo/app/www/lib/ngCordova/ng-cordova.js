@@ -9,47 +9,12 @@ angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
 
-angular.module('ngCordova.plugins.accelerometer', [])
-
-.factory('$cordovaAccelerometer', ['$q', function($q) {
-
-  return {
-    getCurrentAcceleration: function() {
-      var q = $q.defer();
-
-      navigator.accelerometer.getCurrentAcceleration(function(result) {
-        // Do any magic you need
-        q.resolve(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
-
-      return q.promise;
-    },
-    watchAcceleration: function(options) {
-      var q = $q.defer();
-
-      navigator.accelerometer.watchAcceleration(function(result) {
-        // Do any magic you need
-        q.notify(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
-
-      return q.promise;
-    },
-    clearWatch: function(watchID) {
-      return navigator.accelerometer.clearWatch(watchID);
-    }
-  }
-}]);
-
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
 .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
   return {
-    scan: function () {
+    scan: function (options) {
       var q = $q.defer();
 
       cordova.plugins.barcodeScanner.scan(function (result) {
@@ -115,25 +80,6 @@ angular.module('ngCordova.plugins.camera', [])
       return q.promise;
     }
     
-  }
-}]);
-
-angular.module('ngCordova.plugins.compass', [])
-
-.factory('$cordovaCompass', ['$q', function($q) {
-
-  return {
-    watchHeading: function(options) {
-      var q = $q.defer();
-
-      navigator.compass.watchHeading(function(result) {
-        q.resolve(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
-
-      return q.promise;
-    }
   }
 }]);
 
@@ -246,6 +192,60 @@ angular.module('ngCordova.plugins.device', [])
   }
 }]);
 
+angular.module('ngCordova.plugins.deviceMotion', [])
+
+.factory('$cordovaDeviceMotion', ['$q', function($q) {
+
+  return {
+    getCurrentAcceleration: function() {
+      var q = $q.defer();
+
+      navigator.accelerometer.getCurrentAcceleration(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    },
+    watchAcceleration: function(options) {
+      var q = $q.defer();
+
+      navigator.accelerometer.watchAcceleration(function(result) {
+        // Do any magic you need
+        q.notify(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    },
+    clearWatch: function(watchID) {
+      return navigator.accelerometer.clearWatch(watchID);
+    }
+  }
+}]);
+
+angular.module('ngCordova.plugins.deviceOrientation', [])
+
+.factory('$cordovaDeviceOrientation', ['$q', function($q) {
+
+  return {
+    watchHeading: function(options) {
+      var q = $q.defer();
+
+      navigator.compass.watchHeading(function(result) {
+        q.notify(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}]);
+
 angular.module('ngCordova.plugins.geolocation', [])
 
 .factory('$cordovaGeolocation', ['$q', function($q) {
@@ -309,10 +309,10 @@ angular.module('ngCordova.plugins.keyboard', [])
 }]);
 
 angular.module('ngCordova.plugins', [
-  'ngCordova.plugins.accelerometer',
+  'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.camera',
   'ngCordova.plugins.geolocation',
-  'ngCordova.plugins.compass',
+  'ngCordova.plugins.deviceOrientation',
   'ngCordova.plugins.notification',
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.network',
@@ -320,7 +320,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.barcodeScanner',
   'ngCordova.plugins.splashscreen',
   'ngCordova.plugins.keyboard',
-  'ngCordova.plugins.contacts'
+  'ngCordova.plugins.contacts',
+  'ngCordova.plugins.statusbar'
 ]);
 
 angular.module('ngCordova.plugins.network', [])
@@ -384,13 +385,70 @@ angular.module('ngCordova.plugins.splashscreen', [])
 
 }]);
 
+angular.module('ngCordova.plugins.statusbar', [])
+
+.factory('$cordovaStatusbar', [function() {
+
+  return {
+  	overlaysWebView: function(bool) {
+      return StatusBar.overlaysWebView(true);
+	  },
+
+    // styles: Default, LightContent, BlackTranslucent, BlackOpaque
+    style: function (style) {
+      switch (style) {
+        case 0:     // Default
+          return StatusBar.styleDefault();
+          break;
+
+        case 1:     // LightContent
+          return StatusBar.styleLightContent();
+          break;
+
+        case 2:     // BlackTranslucent
+          return StatusBar.styleBlackTranslucent();
+          break;
+
+        case 3:     // BlackOpaque
+          return StatusBar.styleBlackOpaque();
+          break;
+
+        default:  // Default
+          return StatusBar.styleDefault();
+      }
+    },
+
+
+    // supported names: black, darkGray, lightGray, white, gray, red, green, blue, cyan, yellow, magenta, orange, purple, brown
+    styleColor: function (color) {
+      return StatusBar.backgroundColorByName(color);
+    },
+    
+    styleHex: function (colorHex) {
+      return StatusBar.backgroundColorByHexString(colorHex);
+    },
+
+    hide: function () {
+      return StatusBar.hide();
+    },
+
+    show: function () {
+      return StatusBar.show()
+    },
+
+    isVisible: function () {
+      return StatusBar.isVisible();
+    }
+  }
+}]);
+
 angular.module('ngCordova.plugins.vibration', [])
 
 .factory('$cordovaVibration', [function() {
 
   return {
   	vibrate: function(times) {
-  	  return navigator.notification.vibrate(time);
+  	  return navigator.notification.vibrate(times);
 	  }
   }
 }]);
