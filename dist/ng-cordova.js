@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         q.resolve(result);
       }, function (err) {
         q.reject(err);
-      }, options);
+      });
 
       return q.promise;
     },
@@ -85,7 +85,7 @@ angular.module('ngCordova.plugins.camera', [])
 
 angular.module('ngCordova.plugins.contacts', [])
 
-.factory('Contacts', ['$q', function ($q) {
+.factory('$cordovaContacts', ['$q', function ($q) {
 
   return {
     save: function (contact) {
@@ -236,7 +236,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       var q = $q.defer();
 
       navigator.compass.watchHeading(function(result) {
-        q.resolve(result);
+        q.notify(result);
       }, function(err) {
         q.reject(err);
       }, options);
@@ -246,6 +246,274 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
   }
 }]);
 
+angular.module('ngCordova.plugins.dialogs', [])
+
+.factory('$cordovaDialogs', [function() {
+
+  return {
+    alert: function(message, callback, title, buttonName) {
+	    return navigator.notification.alert.apply(navigator.notification, arguments);
+    },
+
+    confirm: function(message, callback, title, buttonName) {
+	    return navigator.notification.confirm.apply(navigator.notification, arguments);
+    },
+
+    prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
+	    return navigator.notification.prompt.apply(navigator.notification, arguments);
+    },
+
+    beep: function(times) {
+	    return navigator.notification.beep(times);
+    }
+  }
+}]);
+
+// TODO: writeFile needs work, doesn't function
+// TODO: add support for readFile -> readAsData
+// TODO: add support for readFile -> readAsBinaryString
+// TODO: add support for readFile -> readAsArrayBuffer
+// TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
+// TODO: add documentation for FileError types
+// TODO: add abort() option to downloadFile and uploadFile methods.
+// TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
+// TODO: add support for onprogress property
+
+
+angular.module('ngCordova.plugins.file', [])
+
+//Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
+  .factory('$cordovaFile', ['$q', function ($q) {
+
+    return {
+      checkDir: function (dir) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getDirectory(dir, {create: false},
+              //Dir exists
+              function () {
+                q.resolve();
+              },
+              //Dir doesn't exist
+              function () {
+                q.reject();
+              }
+            );
+          }
+        );
+
+        return q.promise;
+      },
+
+      createDir: function (dir, replaceBOOL) {
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL});
+          }
+        );
+      },
+
+      checkFile: function (dir, file) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getFile('/' + dir + '/' + file, {create: false},
+              // File exists
+              function () {
+                q.resolve();
+              },
+              // File doesn't exist
+              function () {
+                q.reject();
+              }
+            );
+          }
+        );
+
+        return q.promise;
+      },
+
+      createFile: function (dir, file, replaceBOOL) {
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getFile('/' + dir + '/' + file, {create: true, exclusive: replaceBOOL},
+              function (success) {
+
+              },
+              function (err) {
+
+              });
+          }
+        );
+      },
+
+      removeFile: function (dir, file) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getFile('/' + dir + '/' + file, {create: false}, function (fileEntry) {
+              fileEntry.remove(function () {
+                q.resolve();
+              });
+            });
+          }
+        );
+
+        return q.promise;
+      },
+
+      writeFile: function (dir, file) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getFile('/' + dir + '/' + file, {create: false},
+              function (fileEntry) {
+                fileEntry.createWriter(
+                  function (fileWriter) {
+                    q.resolve(fileWriter);
+                  },
+                  function (error) {
+                    q.reject(error);
+                  });
+              }
+            );
+          }
+        );
+
+        return q.promise;
+      },
+
+      readFile: function (dir, file) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function (filesystem) {
+
+            filesystem.root.getFile('/' + dir + '/' + file, {create: false},
+              // success
+              function (fileEntry) {
+                fileEntry.file(function (file) {
+                  var reader = new FileReader();
+                  reader.onloadend = function () {
+                    q.resolve(this.result);
+                  };
+
+                  reader.readAsText(file);
+                });
+              },
+              // error
+              function (error) {
+                q.reject(error);
+              });
+          }
+        );
+
+        return q.promise;
+      },
+
+      downloadFile: function (source, filePath, trustAllHosts, options) {
+        var q = $q.defer();
+        var fileTransfer = new FileTransfer();
+        var uri = encodeURI(source);
+
+        fileTransfer.download(
+          uri,
+          filePath,
+          function (entry) {
+            q.resolve(entry);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          trustAllHosts, options);
+      },
+
+      uploadFile: function (server, filePath, options) {
+        var q = $q.defer();
+        var fileTransfer = new FileTransfer();
+        var uri = encodeURI(server);
+
+        fileTransfer.upload(
+          filePath,
+          uri,
+          function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          options)
+      }
+
+    };
+
+    function getFilesystem() {
+      var q = $q.defer();
+
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
+          q.resolve(filesystem);
+        },
+        function (err) {
+          q.reject(err);
+        });
+
+      return q.promise;
+    }
+  }]);
+angular.module('ngCordova.plugins.ga', [])
+
+    .factory('$cordovaGA', ['$q', function ($q) {
+
+        return {
+            
+            init: function (id, mingap) {
+                var q = $q.defer();
+                mingap = (mingap >= 0) ? mingap : 10;
+                window.plugins.gaPlugin.init(function (result) {q.resolve(result); },
+                                                    function (error) {q.reject(error); },
+                                                    id, mingap);
+                return q.promise;
+            },
+            
+            trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
+                var q = $q.defer();
+                window.plugins.gaPlugin.trackEvent(function (result) {q.resolve(result); },
+                                                    function (error) {q.reject(error); },
+                                                    category, eventAction, eventLabel, eventValue);
+                return q.promise;
+            },
+            
+            trackPage: function (success, fail, pageURL) {
+                var q = $q.defer();
+                window.plugins.gaPlugin.trackPage(function (result) {q.resolve(result); },
+                                                    function (error) {q.reject(error); },
+                                                    pageURL);
+                return q.promise;
+            },
+            
+            setVariable: function (success, fail, index, value) {
+                var q = $q.defer();
+                window.plugins.gaPlugin.setVariable(function (result) {q.resolve(result); },
+                                                    function (error) {q.reject(error); },
+                                                    index, value);
+                return q.promise;
+            },
+            
+            exit: function (success, fail) {
+                var q = $q.defer();
+                window.plugins.gaPlugin.exit(function (result) {q.resolve(result); },
+                                                    function (error) {q.reject(error); });
+                return q.promise;
+            }
+            
+        };
+
+    }]);
 angular.module('ngCordova.plugins.geolocation', [])
 
 .factory('$cordovaGeolocation', ['$q', function($q) {
@@ -283,6 +551,61 @@ angular.module('ngCordova.plugins.geolocation', [])
   }
 }]);
 
+angular.module('ngCordova.plugins.globalization', [])
+
+.factory('$cordovaGlobalization', ['$q', function ($q) {
+
+  return {
+    getPreferredLanguage: function (options) {
+      var q = $q.defer();
+
+      navigator.globalization.getPreferredLanguage(function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
+    },
+
+    getLocaleName: function (options) {
+      var q = $q.defer();
+
+      navigator.globalization.getLocaleName(function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
+    },
+
+    getFirstDayOfWeek: function (options) {
+      var q = $q.defer();
+
+      navigator.globalization.getFirstDayOfWeek(function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
+    }
+
+    //TODO:
+    // dateToString
+    // stringToDate
+    // getDatePattern
+    // getDateNames
+    // isDayLightSavingsTime
+    // numberToString
+    // stringToNumber
+    // getNumberPattern
+    // getCurrencyPattern
+  }
+
+}]);
+
 angular.module('ngCordova.plugins.keyboard', [])
 
 .factory('$cordovaKeyboard', [function () {
@@ -313,7 +636,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.camera',
   'ngCordova.plugins.geolocation',
   'ngCordova.plugins.deviceOrientation',
-  'ngCordova.plugins.notification',
+  'ngCordova.plugins.dialogs',
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.network',
   'ngCordova.plugins.device',
@@ -321,7 +644,15 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.splashscreen',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.contacts',
-  'ngCordova.plugins.statusbar'
+  'ngCordova.plugins.statusbar',
+  'ngCordova.plugins.file',
+  'ngCordova.plugins.socialSharing',
+  'ngCordova.plugins.globalization',
+  'ngCordova.plugins.sqlite',
+  'ngCordova.plugins.ga',
+  'ngCordova.plugins.push',
+  'ngCordova.plugins.spinnerDialog',
+  'ngCordova.plugins.pinDialog'
 ]);
 
 angular.module('ngCordova.plugins.network', [])
@@ -335,40 +666,155 @@ angular.module('ngCordova.plugins.network', [])
     },
 
     isOnline: function () {
-      var networkSate = navigator.connection.type;
-      return networkSate != Connection.UNKNOWN;
+      var networkState = navigator.connection.type;
+      return networkState !== Connection.UNKNOWN && networkState !== Connection.NONE;
     },
 
     isOffline: function () {
-      var networkSate = navigator.connection.type;
-      return networkSate == Connection.UNKNOWN;
+      var networkState = navigator.connection.type;
+      return networkSate === Connection.UNKNOWN || networkState === Connection.NONE;
     }
   }
 }]);
 
-angular.module('ngCordova.plugins.notification', [])
+angular.module('ngCordova.plugins.pinDialog', [])
 
-.factory('$cordovaNotification', [function() {
+.factory('$cordovaPinDialog', [function() {
 
   return {
-    alert: function(message, callback, title, buttonName) {
-	    return navigator.notification.alert.apply(navigator.notification, arguments);
-    },
-
-    confirm: function(message, callback, title, buttonName) {
-	    return navigator.notification.confirm.apply(navigator.notification, arguments);
-    },
-
     prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
-	    return navigator.notification.prompt.apply(navigator.notification, arguments);
-    },
-
-    beep: function(times) {
-	    return navigator.notification.beep(times);
+	    return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
     }
   }
+  
 }]);
+angular.module('ngCordova.plugins.push', [])
 
+.factory('$cordovaPush', ['$q', function ($q) {
+
+    return {
+
+        register: function (config) {
+
+            var q = $q.defer();
+
+            window.plugins.pushNotification.register(
+            function (result) {
+                q.resolve(result);
+            },
+            function (error) {
+                q.reject(error);
+            },
+            config);
+            
+            return q.promise;
+
+        }
+
+    };
+
+}]);
+// NOTE: shareViaSms -> access multiple numbers in a string like: '0612345678,0687654321'
+// NOTE: shareViaEmail -> if user cancels sharing email, success is still called
+// NOTE: shareViaEmail -> TO, CC, BCC must be an array, Files can be either null, string or array
+// TODO: add support for iPad
+// TODO: add support for Windows Phone
+// TODO: detailed docs for each social sharing types (each social platform has different requirements)
+
+angular.module('ngCordova.plugins.socialSharing', [])
+
+  .factory('$cordovaSocialSharing', ['$q', function ($q) {
+
+    return {
+      shareViaTwitter: function (message, image, link) {
+        var q = $q.defer();
+        window.plugins.socialsharing.shareViaTwitter(message, image, link,
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
+        return q.promise;
+      },
+
+      shareViaWhatsApp: function (message, image, link) {  // image ?? link ??
+        var q = $q.defer();
+        window.plugins.socialsharing.shareViaWhatsApp(message, image, link,
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
+        return q.promise;
+      },
+
+      shareViaFacebook: function (message, image, link) {  // image ?? link ??
+        var q = $q.defer();
+        window.plugins.socialsharing.shareViaFacebook(message, image, link,
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
+        return q.promise;
+      },
+
+      shareViaSMS: function (message, number) {
+        var q = $q.defer();
+        window.plugins.socialsharing.shareViaSMS(message, number,
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
+        return q.promise;
+      },
+
+      shareViaEmail: function (message, subject, toArr, ccArr, bccArr, file ) {
+        var q = $q.defer();
+        window.plugins.socialsharing.shareViaEmail(message, number,
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
+        return q.promise;
+      },
+
+      canShareVia: function (social, message, image, link) {
+        var q = $q.defer();
+        window.plugins.socialsharing.canShareVia(social, message, image, link,
+          function (success) {
+            q.resolve(success); // success
+          },
+          function (error) {
+            q.reject(error); // error
+          });
+        return q.promise;
+      }
+
+    }
+  }]);
+
+angular.module('ngCordova.plugins.spinnerDialog', [])
+
+.factory('$cordovaSpinnerDialog', [function() {
+
+  return {
+    show: function(title, message) {
+	    return window.plugins.spinnerDialog.show(title, message);
+    },
+    hide: function() {
+	    return window.plugins.spinnerDialog.hide();
+    }
+  }
+  
+}]);
 angular.module('ngCordova.plugins.splashscreen', [])
 
 .factory('$cordovaSplashscreen', [ function () {
@@ -384,6 +830,55 @@ angular.module('ngCordova.plugins.splashscreen', [])
   };
 
 }]);
+
+angular.module('ngCordova.plugins.sqlite', [])
+
+  .factory('$cordovaSQLite', ['$q', function ($q) {
+
+    return  {
+      openDB: function (dbName) {
+        return  window.sqlitePlugin.openDatabase({name: dbName});
+      },
+
+
+      openDBBackground: function (dbName) {
+        return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
+      },
+
+      execute: function (db, query, binding) {
+        q = $q.defer();
+        db.transaction(function (tx) {
+          tx.executeSql(query, binding, function (tx, result) {
+              q.resolve(result);
+            },
+            function (transaction, error) {
+              q.reject(error);
+            });
+        });
+        return q.promise;
+      },
+
+      nestedExecute: function (db, query1, query2, binding1, binding2) {
+        q = $q.defer();
+
+        db.transaction(function (tx) {
+            tx.executeSql(query1, binding1, function (tx, result) {
+              q.resolve(result);
+              tx.executeSql(query2, binding2, function (tx, res) {
+                q.resolve(res);
+              })
+            })
+          },
+          function (transaction, error) {
+            q.reject(error);
+          });
+
+        return q.promise;
+      }
+
+      // more methods here
+    }
+  }]);
 
 angular.module('ngCordova.plugins.statusbar', [])
 
