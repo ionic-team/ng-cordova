@@ -22,13 +22,19 @@ angular.module('myApp', ['ngCordova'])
 ### Installing Plugins
 
 Barcode Scanner Plugin
-```cordova plugin add https://github.com/wildabeast/BarcodeScanner.git```
+```
+cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
+```
 
 Camera Plugin
-```cordova plugin add org.apache.cordova.camera```
+```
+cordova plugin add org.apache.cordova.camera
+```
 
 Contacts Plugin
-```cordova plugin add org.apache.cordova.contacts```
+```
+cordova plugin add org.apache.cordova.contacts
+```
 
 Device Plugin
 ```cordova plugin add org.apache.cordova.device```
