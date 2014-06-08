@@ -11,12 +11,80 @@ To use any of the plugin wrappers below, all you need to do is link to the `ng-c
 angular.module('myApp', ['ngCordova'])
 ```
 
-**NOTE:** Include `ng-cordova.js` in your `.html` file before `cordova.js`:
+**NOTE:** Include `ng-cordova.js` in your `index.html` file before `cordova.js`:
 
 ```html
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 <script src="cordova.js"></script>
 ```
+
+
+### Installing Plugins
+
+Barcode Scanner Plugin
+`cordova plugin add https://github.com/wildabeast/BarcodeScanner.git`
+
+Camera Plugin
+`cordova plugin add org.apache.cordova.camera`
+
+Contacts Plugin
+`cordova plugin add org.apache.cordova.contacts`
+
+Device Plugin
+`cordova plugin add org.apache.cordova.device`
+
+Device Motion Plugin
+`cordova plugin add org.apache.cordova.device-motion`
+
+Device Orientation Plugin
+`cordova plugin add org.apache.cordova.device-orientation`
+
+Dialogs Plugin
+`cordova plugin add org.apache.cordova.dialogs`
+
+File Plugin
+`cordova plugin add org.apache.cordova.file`
+
+Google Analytics Plugin
+`cordova plugin add https://github.com/phonegap-build/GAPlugin.git`
+
+Geolocation Plugin
+`cordova plugin add org.apache.cordova.geolocation`
+
+Globalization Plugin
+`cordova plugin add org.apache.cordova.globalization`
+
+Ionic Keyboard Plugin
+`cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git`
+
+Network Plugin
+`cordova plugin add org.apache.cordova.network-information`
+
+Pin Dialog Plugin
+`cordova plugin add https://github.com/Paldom/PinDialog.git`
+
+Push Notifications Plugin
+`cordova plugin add https://github.com/phonegap-build/PushPlugin.git`
+
+Social Sharing Plugin
+`cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git`
+
+Spinner Dialog Plugin
+`cordova plugin add https://github.com/Paldom/SpinnerDialog.git`
+
+SplashScreen Plugin
+`cordova plugin add org.apache.cordova.splashscreen`
+
+SQLite Plugin
+`cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git`
+
+Statusbar Plugin
+`cordova plugin add org.apache.cordova.statusbar`
+
+Vibration Plugin
+`cordova plugin add org.apache.cordova.vibration`
+
+
 
 ### `$cordovaCamera`
 
