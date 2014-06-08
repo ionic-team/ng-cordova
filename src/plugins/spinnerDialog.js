@@ -1,4 +1,4 @@
-angular.module('ngCordova.plugins.spinnerdialog', [])
+angular.module('ngCordova.plugins.spinnerDialog', [])
 
 .factory('$cordovaSpinnerDialog', [function() {
 

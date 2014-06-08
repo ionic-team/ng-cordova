@@ -15,5 +15,9 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.file',
   'ngCordova.plugins.socialSharing',
   'ngCordova.plugins.globalization',
-  'ngCordova.plugins.sqlite'
+  'ngCordova.plugins.sqlite',
+  'ngCordova.plugins.ga',
+  'ngCordova.plugins.push',
+  'ngCordova.plugins.spinnerDialog',
+  'ngCordova.plugins.pinDialog'
 ]);

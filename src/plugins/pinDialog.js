@@ -1,4 +1,4 @@
-angular.module('ngCordova.plugins.pindialog', [])
+angular.module('ngCordova.plugins.pinDialog', [])
 
 .factory('$cordovaPinDialog', [function() {
 
