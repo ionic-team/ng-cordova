@@ -11,6 +11,13 @@ To use any of the plugin wrappers below, all you need to do is link to the `ng-c
 angular.module('myApp', ['ngCordova'])
 ```
 
+**NOTE:** Include `ng-cordova.js` in your `.html` file before `cordova.js`:
+
+```html
+<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+<script src="cordova.js"></script>
+```
+
 ### `$cordovaCamera`
 
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
