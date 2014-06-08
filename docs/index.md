@@ -40,58 +40,112 @@ cordova plugin add org.apache.cordova.contacts
 ```
 
 Device Plugin
-```cordova plugin add org.apache.cordova.device```
+
+```
+cordova plugin add org.apache.cordova.device
+```
 
 Device Motion Plugin
-```cordova plugin add org.apache.cordova.device-motion```
+
+```
+cordova plugin add org.apache.cordova.device-motion
+```
 
 Device Orientation Plugin
-```cordova plugin add org.apache.cordova.device-orientation```
+
+```
+cordova plugin add org.apache.cordova.device-orientation
+```
 
 Dialogs Plugin
-```cordova plugin add org.apache.cordova.dialogs```
+
+```
+cordova plugin add org.apache.cordova.dialogs
+```
 
 File Plugin
-```cordova plugin add org.apache.cordova.file```
+
+```
+cordova plugin add org.apache.cordova.file
+```
 
 Google Analytics Plugin
-```cordova plugin add https://github.com/phonegap-build/GAPlugin.git```
+
+```
+cordova plugin add https://github.com/phonegap-build/GAPlugin.git
+```
 
 Geolocation Plugin
-```cordova plugin add org.apache.cordova.geolocation```
+
+```
+cordova plugin add org.apache.cordova.geolocation
+```
 
 Globalization Plugin
-```cordova plugin add org.apache.cordova.globalization```
+
+```
+cordova plugin add org.apache.cordova.globalization
+```
 
 Ionic Keyboard Plugin
-```cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git```
+
+```
+cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
+```
 
 Network Plugin
-```cordova plugin add org.apache.cordova.network-information```
+
+```
+cordova plugin add org.apache.cordova.network-information
+```
 
 Pin Dialog Plugin
-```cordova plugin add https://github.com/Paldom/PinDialog.git```
+
+```
+cordova plugin add https://github.com/Paldom/PinDialog.git
+```
 
 Push Notifications Plugin
-```cordova plugin add https://github.com/phonegap-build/PushPlugin.git```
+
+```
+cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+```
 
 Social Sharing Plugin
-```cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git```
+
+```
+cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
+```
 
 Spinner Dialog Plugin
-```cordova plugin add https://github.com/Paldom/SpinnerDialog.git```
+
+```
+cordova plugin add https://github.com/Paldom/SpinnerDialog.git
+```
 
 SplashScreen Plugin
-```cordova plugin add org.apache.cordova.splashscreen```
+
+```
+cordova plugin add org.apache.cordova.splashscreen
+```
 
 SQLite Plugin
-```cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git```
+
+```
+cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+```
 
 Statusbar Plugin
-```cordova plugin add org.apache.cordova.statusbar```
+
+```
+cordova plugin add org.apache.cordova.statusbar
+```
 
 Vibration Plugin
-```cordova plugin add org.apache.cordova.vibration```
+
+```
+cordova plugin add org.apache.cordova.vibration
+```
 
 
 
