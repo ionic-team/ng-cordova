@@ -11,7 +11,7 @@ To use any of the plugin wrappers below, all you need to do is link to the `ng-c
 angular.module('myApp', ['ngCordova'])
 ```
 
-**NOTE:** Include `ng-cordova.js` in your `index.html` file before `cordova.js`:
+> **NOTE:** Include `ng-cordova.js` in your `index.html` file before `cordova.js`:
 
 ```html
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
@@ -22,16 +22,19 @@ angular.module('myApp', ['ngCordova'])
 ### Installing Plugins
 
 Barcode Scanner Plugin
+
 ```
 cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 ```
 
 Camera Plugin
+
 ```
 cordova plugin add org.apache.cordova.camera
 ```
 
 Contacts Plugin
+
 ```
 cordova plugin add org.apache.cordova.contacts
 ```
