@@ -149,6 +149,13 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(source);
+        
+        fileTransfer.onprogress = function(progressEvent) {
+          if (progressEvent.lengthComputable) {
+			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+			q.notify(perc);
+		  }
+        };
 
         fileTransfer.download(
           uri,
@@ -160,12 +167,21 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           },
           trustAllHosts, options);
+          
+          return q.promise;
       },
 
       uploadFile: function (server, filePath, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
+        
+        fileTransfer.onprogress = function(progressEvent) {
+          if (progressEvent.lengthComputable) {
+			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+			q.notify(perc);
+		  }
+        };
 
         fileTransfer.upload(
           filePath,
@@ -177,6 +193,8 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           },
           options)
+          
+          return q.promise
       }
 
     };
