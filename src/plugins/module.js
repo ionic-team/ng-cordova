@@ -19,5 +19,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.ga',
   'ngCordova.plugins.push',
   'ngCordova.plugins.spinnerDialog',
-  'ngCordova.plugins.pinDialog'
+  'ngCordova.plugins.pinDialog',
+  'ngCordova.plugins.localNotification'
 ]);
