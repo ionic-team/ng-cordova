@@ -11,7 +11,7 @@ angular.module('ngCordova.plugins.deviceMotion', [])
         q.resolve(result);
       }, function(err) {
         q.reject(err);
-      }, options);
+      });
 
       return q.promise;
     },
