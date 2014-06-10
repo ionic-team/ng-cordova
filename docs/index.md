@@ -258,18 +258,20 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
-
     });
   };
   
   $scope.watchAcceleration = function () {
   	var options = { frequency: 3000 };  // Update every 3 seconds
   	
-  	$cordovaDeviceMotion.watchAcceleration(options).then(function(result) {
-      // returns watch ID to be used in clearWatch
-    }, function(err) {
-      // An error occured. Show a message to the user
-
+  	$cordovaDeviceMotion.watchAcceleration(options).then(
+      function() {/* unused */},  
+      function(err) {},
+      function(acceleration) {
+        $cordovaDialogs.alert('Acceleration X: ' + acceleration.x + '\n' +
+           'Acceleration Y: ' + acceleration.y + '\n' +
+           'Acceleration Z: ' + acceleration.z + '\n' +
+           'Timestamp: '      + acceleration.timestamp + '\n');
     });
   };
   
