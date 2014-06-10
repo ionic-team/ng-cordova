@@ -7,11 +7,7 @@
         "Paolo Bernasconi <paolo.enrico.bernasconi@gmail.com>"
     ],
     "description": "AngularJS Cordova wrappers for common Cordova plugins.",
-    "main": [
-        "dist/*",
-        "src/*",
-        "demo/*"
-    ],
+    "main": "./dist/ng-cordova.js",
     "keywords": [
         "cordova",
         "phonegap",
