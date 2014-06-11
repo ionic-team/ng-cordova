@@ -84,6 +84,8 @@ input:checked+label:before {
 }
 
 .btn:focus {
+    color: #7FAEFD;
+    text-decoration: none;
     box-shadow: none !important;
     outline: none !important
 }
