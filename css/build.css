@@ -4,7 +4,8 @@
 
 body{
     font-family: 'AvenirNextLTPro-Regular', 'helvetica','arial','sans-serif';
-    border-top: 4px solid #4f8ef7;
+    border-top: 2px solid #4f8ef7;
+    -webkit-font-smoothing: antialiased !important;
 }
 .logo{
     margin:50px 0;
@@ -30,10 +31,11 @@ input{
 }
 label{
     color:#80848f;
-    font-size: 15px;
-    padding: 17px 20px 0 20px;
+    font-size: 16px;
+    padding: 20px 20px 4px 20px;
     margin:0;
     font-family: 'AvenirNextLTPro-UltLt';
+    font-weight: normal;
 }
 input:checked+label,
 input:checked+label:before{
@@ -42,9 +44,9 @@ input:checked+label:before{
 label:before{
     font-family:'Ionicons';
     content: "\f170";
-    font-size:36px;
+    font-size:32px;
     color:#dadee7;
-    margin: -18px 10px 0 0;
+    margin: -12px 12px 0 0;
     float:left;
 }
 input:checked+label:before {
