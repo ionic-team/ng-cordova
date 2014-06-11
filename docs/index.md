@@ -19,144 +19,15 @@ angular.module('myApp', ['ngCordova'])
 ```
 
 
-### Installing Plugins
-
-Barcode Scanner Plugin
-
-```
-cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
-```
-
-Camera Plugin
-
-```
-cordova plugin add org.apache.cordova.camera
-```
-
-Contacts Plugin
-
-```
-cordova plugin add org.apache.cordova.contacts
-```
-
-Device Plugin
-
-```
-cordova plugin add org.apache.cordova.device
-```
-
-Device Motion Plugin
-
-```
-cordova plugin add org.apache.cordova.device-motion
-```
-
-Device Orientation Plugin
-
-```
-cordova plugin add org.apache.cordova.device-orientation
-```
-
-Dialogs Plugin
-
-```
-cordova plugin add org.apache.cordova.dialogs
-```
-
-File Plugin
-
-```
-cordova plugin add org.apache.cordova.file
-```
-
-Google Analytics Plugin
-
-```
-cordova plugin add https://github.com/phonegap-build/GAPlugin.git
-```
-
-Geolocation Plugin
-
-```
-cordova plugin add org.apache.cordova.geolocation
-```
-
-Globalization Plugin
-
-```
-cordova plugin add org.apache.cordova.globalization
-```
-
-Ionic Keyboard Plugin
-
-```
-cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
-```
-
-Network Plugin
-
-```
-cordova plugin add org.apache.cordova.network-information
-```
-
-Pin Dialog Plugin
-
-```
-cordova plugin add https://github.com/Paldom/PinDialog.git
-```
-
-Push Notifications Plugin
-
-```
-cordova plugin add https://github.com/phonegap-build/PushPlugin.git
-```
-
-Social Sharing Plugin
-
-```
-cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
-```
-
-Spinner Dialog Plugin
-
-```
-cordova plugin add https://github.com/Paldom/SpinnerDialog.git
-```
-
-SplashScreen Plugin
-
-```
-cordova plugin add org.apache.cordova.splashscreen
-```
-
-SQLite Plugin
-
-```
-cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
-```
-
-Statusbar Plugin
-
-```
-cordova plugin add org.apache.cordova.statusbar
-```
-
-Toast Plugin
-
-```
-cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
-```
-
-Vibration Plugin
-
-```
-cordova plugin add org.apache.cordova.vibration
-```
-
 ### `$cordovaBarcodeScanner`
 
 The [Barcode Scanner Plugin](https://github.com/wildabeast/BarcodeScanner/) opens a camera view and automagically scans a barcode, returning the data back to you.
 [View Official Docs](https://github.com/wildabeast/BarcodeScanner/#using-the-plugin)
+
+
+```
+cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
+```
 
 ```javascript
 
@@ -190,27 +61,33 @@ module.controller('BarcodeScannerCtrl', function($scope, $cordovaBarcodeScanner)
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
 from a device. [View Official Docs](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera)
 
+```
+cordova plugin add org.apache.cordova.camera
+```
+
 ```javascript
 
 module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
   $scope.takePicture = function() {
-    $cordovaCamera.getPicture({
-
-      // See all the possible Camera options from the Camera docs:
-      // https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions
-
-    }).then(function(imageData) {
-
+    var options = { 
+        quality : 75, 
+        destinationType : Camera.DestinationType.DATA_URL, 
+        sourceType : Camera.PictureSourceType.CAMERA, 
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false
+    };
+    
+    $cordovaCamera.getPicture(options).then(function(imageData) {
       // Success! Image data is here
-
     }, function(err) {
-
       // An error occured. Show a message to the user
-
     });
   }
-
 });
 ```
 
@@ -220,6 +97,10 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 ### `$cordovaContacts`
 
 A powerful way to create, remove, and search through contacts on the device.
+
+```
+cordova plugin add org.apache.cordova.contacts
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaContacts) {
@@ -231,7 +112,7 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
     });
   };
 
-  // Many more features, see the docs below
+  // Many more features will be added shortly
 });
 ```
 
@@ -239,6 +120,10 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 ### `$cordovaDevice`
 
 Grab device related information, such as platform, and device model.
+
+```
+cordova plugin add org.apache.cordova.device
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaDevice) {
@@ -257,10 +142,14 @@ module.controller('MyCtrl', function($scope, $cordovaDevice) {
 Get access to the device's accelerometer.
 [View Official Docs](https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md)
 
+```
+cordova plugin add org.apache.cordova.device-motion
+```
+
 ```javascript
 module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   $scope.getAcceleration = function () {
-  	$cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
+    $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
@@ -268,9 +157,9 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   };
   
   $scope.watchAcceleration = function () {
-  	var options = { frequency: 3000 };  // Update every 3 seconds
-  	
-  	var watchID = $cordovaDeviceMotion.watchAcceleration(options).then(
+    var options = { frequency: 3000 };  // Update every 3 seconds
+    
+    var watchID = $cordovaDeviceMotion.watchAcceleration(options).then(
       function() {/* unused */},  
       function(err) {},
       function(acceleration) {
@@ -282,7 +171,7 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   };
   
   $scope.clearWatch = function() {
-	// use watchID from watchAccelaration()
+  // use watchID from watchAccelaration()
 
     $cordovaDeviceMotion.clearWatch(watchID).then(function(result) {
       // Success! 
@@ -300,38 +189,32 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
 Get access to the device's compass.
 [View Official Docs](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md)
 
+```
+cordova plugin add org.apache.cordova.device-orientation
+```
+
 ```javascript
-module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceOrientation) {
-  $scope.getHeading = function () {
-  	$cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
+module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrientation) {
+
+    $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
-
     });
-  };
   
-  $scope.watchHeading = function () {
-  	var options = { frequency: 3000 }; // Update every 3 seconds
-
-  	$cordovaDeviceOrientation.watchHeading(options).then(function(result) {
+    var options = { frequency: 3000 }; // Update every 3 seconds
+    $cordovaDeviceOrientation.watchHeading(options).then(function(result) {
       // returns watch ID to be used in clearWatch
     }, function(err) {
       // An error occured. Show a message to the user
-
     });
-  };
   
-  $scope.clearWatch = function() {
-  	// use the watch ID from watchHeading() promise
-  	
+    // use the watch ID from watchHeading() promise
     $cordovaDeviceOrientation.clearWatch(watchID).then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
-
     });
-  }
 });
 ```
 
@@ -340,10 +223,22 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceOrientation
 
 Trigger alert, confirm, and prompt windows, or send beeps (beep, beep!)
 
+```
+cordova plugin add org.apache.cordova.dialogs
+```
+
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaDialogs) {
   
   $cordovaDialogs.alert('Wow!');
+  
+  $cordovaDialogs.confirm('Are you sure?');
+
+  $cordovaDialogs.prompt('Please Login');
+
+  // beep 3 times
+  $cordovaDialogs.beep(3);
+
 });
 ```
 
@@ -352,6 +247,10 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
 
 A Plugin to get access to the device's files and directories.
 [View Official Docs](https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md)
+
+```
+cordova plugin add org.apache.cordova.file
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaFile) {
@@ -431,24 +330,76 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 Grab the current location of the user, or grab continuous location changes:
 [View Official Docs](https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md)
 
-```javascript
-module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
-  $scope.getPosition = function() {
-    $cordovaGeolocation.getCurrentPosition().then(function(position) {
-      // Position here: position.coords.latitude, position.coords.longitude
-    }, function(err) {});
-  }
 
-  $scope.trackPosition = function() {
-    $cordovaGeolocation.watchPosition().then(function() {
+```
+cordova plugin add org.apache.cordova.geolocation
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaGeolocation) {
+  $cordovaGeolocation.getCurrentPosition().then(function(position) {
+      // Position here: position.coords.latitude, position.coords.longitude
+    }, function(err) {
+      // error
+    });
+
+  $cordovaGeolocation.watchPosition().then(function() {
       // Not currently used
     }, function(err) {
       // An error occured. Show a message to the user
     }, function(position) {
       // Active updates of the position here
-    });
-  }
+  });
+});
+```
 
+### `$cordovaGlobalization`
+
+Check network connection types, and track offline and online status.
+[View Official Docs](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md)
+
+```
+cordova plugin add org.apache.cordova.globalization
+```
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
+  $cordovaGlobalization.getPreferredLanguage().then(
+    function(result) {
+      // result
+    }, 
+    function(error) {
+      // error
+  });
+    
+  $cordovaGlobalization.getLocaleName().then(
+    function(result) {
+      // result
+    }, 
+    function(error) {
+      // error
+  });
+  
+  $cordovaGlobalization.getFirstDayOfWeek().then(
+    function(result) {
+      // result
+    }, 
+    function(error) {
+      // error
+  });
+  
+    // Soon implemented:
+    // dateToString
+    // stringToDate
+    // getDatePattern
+    // getDateNames
+    // isDayLightSavingsTime
+    // numberToString
+    // stringToNumber
+    // getNumberPattern
+    // getCurrencyPattern
+    
 });
 ```
 
@@ -458,21 +409,52 @@ module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
 Check network connection types, and track offline and online status.
 [View Official Docs](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md)
 
+```
+cordova plugin add org.apache.cordova.network-information
+```
+
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaNetwork) {
   var type = $cordovaNetwork.getNetwork();
-
+  
   var isOnline = $cordovaNetwork.isOnline();
-
-  // See the various network types: https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype
+  
+  var isOffline = $cordovaNetwork.isOffline();
 });
 ```
+[View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
 
+
+
+### `$cordovaPinDialog`
+
+Numeric password dialog.
+
+```
+cordova plugin add https://github.com/Paldom/PinDialog.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaPush) {
+
+  $cordovaPinDialog.prompt('Some message here').then(
+    function(result) {
+      // result
+    },
+    function (error) {
+      // error
+  })
+});
+```
 
 ### `$cordovaPush`
 
 Allows your application to receive push notifications
 [View Official Docs](https://github.com/phonegap-build/PushPlugin#-plugin-api)
+
+```
+cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaPush) {
@@ -515,7 +497,11 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
 
 ### `$cordovaSocialSharing`
 
-Social Sharing plugin
+Social Sharing plugin.
+
+```
+cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
@@ -548,26 +534,52 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
   });
   
   // TO, CC, BCC must be an array, Files can be either null, string or array
-  $cordovaSocialSharing.shareViaEmail(message, subject, toArr, bccArr, file).then(function(result) {
+  $cordovaSocialSharing.shareViaEmail(message, subject, toArr, bccArr, file).then(
+    function(result) {
       // Success! 
-  }, function(err) {
+    }, function(err) {
       // An error occured. Show a message to the user
-  });
+    });
   
   
-  $cordovaSocialSharing.canShareVia(socialType, message, image, link).then(function(result) {
+  $cordovaSocialSharing.canShareVia(socialType, message, image, link).then(
+    function(result) {
       // Success! 
-  }, function(err) {
+    }, function(err) {
       // An error occured. Show a message to the user
-  });
+    });
 });
 ```
 
+### `$cordovaSpinnerDialog`
+
+A dialog with a spinner wheel.
+[View Official Docs](https://github.com/Paldom/SpinnerDialog)
+
+```
+cordova plugin add https://github.com/Paldom/SpinnerDialog.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
+  
+  // Show spinner dialog with message
+  // Title and message only works on Android
+  $cordovaSpinnerDialog.show("title","message");
+
+  // Hide spinner dialog
+  $cordovaSpinnerDialog.hide();
+});
+```
 
 
 ### `$cordovaSplashscreen`
 
 Show or hide the Splash Screen.
+
+```
+cordova plugin add org.apache.cordova.splashscreen
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
@@ -579,6 +591,10 @@ module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
 ### `$cordovaStatusbar`
 
 Configure the device's StatusBar with colors and styles.
+
+```
+cordova plugin add org.apache.cordova.statusbar
+```
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaStatusbar) {
@@ -607,6 +623,10 @@ module.controller('MyCtrl', function($scope, $cordovaStatusbar) {
 
 This plugin allows you to show a native Toast (a little text popup) on iOS, Android and WP8. It's great for showing a non intrusive native notification which is guaranteed always in the viewport of the browser.
 [View Official Docs](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
+
+```
+cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+```
 
 You have two choices to make when showing a Toast: where to show it and for how long.
 
@@ -653,6 +673,10 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 Vibrate the device programatically.
 [View Official Docs](https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md)
 
+```
+cordova plugin add org.apache.cordova.vibration
+```
+
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaVibration) {
 
@@ -661,4 +685,3 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 
 });
 ```
-
