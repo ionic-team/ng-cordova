@@ -30,7 +30,7 @@ input{
     display:none;
 }
 label{
-    color:#80848f;
+    color:#929BA8;
     font-size: 16px;
     padding: 20px 20px 4px 20px;
     margin:0;
@@ -62,4 +62,5 @@ input:checked+label:before {
     font-family: 'AvenirNextLTPro-Medium';
     letter-spacing: 2px;
     padding:15px;
+    margin-bottom: 40px;
 }
