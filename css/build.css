@@ -75,10 +75,15 @@ input:checked+label:before {
     margin-bottom: 50px;
 }
 
-.btn:hover .btn:focus {
+.btn:hover {
     color: #7FAEFD;
     text-decoration: none;
     border: 2px solid #7FAEFD;
+    box-shadow: none !important;
+    outline: none !important
+}
+
+.btn:focus {
     box-shadow: none !important;
     outline: none !important
 }
