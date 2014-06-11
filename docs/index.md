@@ -610,9 +610,10 @@ This plugin allows you to show a native Toast (a little text popup) on iOS, Andr
 
 You have two choices to make when showing a Toast: where to show it and for how long.
 
- - show(message, duration, position)
-⋅⋅⋅duration: 'short', 'long'⋅⋅
-⋅⋅⋅position: 'top', 'center', 'bottom'⋅⋅
+- show(message, duration, position)
+  - duration: 'short', 'long'
+  - position: 'top', 'center', 'bottom'
+
 You can also use any of these convenience methods:
 
 - showShortTop(message)
