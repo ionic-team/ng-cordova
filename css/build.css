@@ -86,6 +86,7 @@ input:checked+label:before {
 
 .btn:focus {
     color: #4F8EF7;
+    border: 2px solid #4F8EF7;
     text-decoration: none;
     box-shadow: none !important;
     outline: none !important
