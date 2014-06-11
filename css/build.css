@@ -2,15 +2,17 @@
 @font-face {font-family: 'AvenirNextLTPro-Medium';src: url('../fonts/28882F_1_0.eot');src: url('../fonts/28882F_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_1_0.woff') format('woff'),url('../fonts/28882F_1_0.ttf') format('truetype');}
 @font-face {font-family: 'AvenirNextLTPro-UltLt';src: url('../fonts/29CC36_0_0.eot');src: url('../fonts/29CC36_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/29CC36_0_0.woff') format('woff'),url('../fonts/29CC36_0_0.ttf') format('truetype');}
 
-body{
+body {
     font-family: 'AvenirNextLTPro-Regular', 'helvetica','arial','sans-serif';
     border-top: 2px solid #4f8ef7;
     -webkit-font-smoothing: antialiased !important;
 }
+
 .logo{
     margin:50px 0;
 }
-legend{
+
+legend {
     border-color: #36393e;
     padding-bottom: 10px;
     margin-bottom: 15px;
@@ -19,17 +21,21 @@ legend{
     font-family: 'AvenirNextLTPro-Medium';
     letter-spacing: 2px;
 }
-ul{
+
+ul {
     padding:0 0 20px;
 }
-li{
+
+li {
     list-style: none;
     border-bottom: 1px solid #dadee7;
 }
-input{
+
+input {
     display:none;
 }
-label{
+
+label {
     color:#929BA8;
     font-size: 16px;
     padding: 20px 20px 4px 20px;
@@ -37,11 +43,13 @@ label{
     font-family: 'AvenirNextLTPro-Regular';
     font-weight: normal;
 }
+
 input:checked+label,
 input:checked+label:before{
     color:#4f8ef7;
 }
-label:before{
+
+label:before {
     font-family:'Ionicons';
     content: "\f170";
     font-size:32px;
@@ -49,18 +57,31 @@ label:before{
     margin: -12px 12px 0 0;
     float:left;
 }
+
 input:checked+label:before {
     content: "\f16d";
 }
-.btn{
-    background:transparent;
-    border:3px solid #4f8ef7;
-    width:100%;
+
+.btn {
+    background: #FFF;
+    border: 2px solid #4F8EF7;
+    width: 100%;
     border-radius: 2px;
     text-transform: uppercase;
-    color:#4f8ef7;
+    color: #4F8EF7;
     font-family: 'AvenirNextLTPro-Medium';
-    letter-spacing: 2px;
-    padding:15px;
-    margin-bottom: 40px;
+    letter-spacing: 3px;
+    padding: 15px;
+    margin-bottom: 50px;
 }
+
+.btn:hover .btn:focus {
+    color: #7FAEFD;
+    text-decoration: none;
+    border: 2px solid #7FAEFD;
+    box-shadow: none !important;
+    outline: none !important
+}
+
+
+
