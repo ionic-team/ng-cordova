@@ -21,5 +21,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.spinnerDialog',
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.localNotification',
-  'ngCordova.plugins.toast'
+  'ngCordova.plugins.toast',
+  'ngCordova.plugins.capture'
 ]);
