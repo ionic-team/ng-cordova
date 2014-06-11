@@ -429,7 +429,7 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 ### `$cordovaGeolocation`
 
 Grab the current location of the user, or grab continuous location changes:
-[View Official Docs](https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md)
+[View Official Docs](https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md)
 
 ```javascript
 module.controller('PictureCtrl', function($scope, $cordovaGeolocation) {
