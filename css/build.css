@@ -43,6 +43,7 @@ label {
     margin:0;
     font-family: 'AvenirNextLTPro-Regular';
     font-weight: normal;
+    width: 100%;
 }
 
 input:checked+label,
