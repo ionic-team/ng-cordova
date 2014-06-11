@@ -141,6 +141,12 @@ Statusbar Plugin
 cordova plugin add org.apache.cordova.statusbar
 ```
 
+Toast Plugin
+```
+cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+```
+
+
 Vibration Plugin
 
 ```
@@ -592,6 +598,50 @@ module.controller('MyCtrl', function($scope, $cordovaStatusbar) {
   $cordovaStatusbar.show();
   
   var isVisible = $cordovaStatusbar.isVisible();
+
+});
+```
+
+
+### `$cordovaToast`
+
+This plugin allows you to show a native Toast (a little text popup) on iOS, Android and WP8. It's great for showing a non intrusive native notification which is guaranteed always in the viewport of the browser.
+[View Official Docs](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
+
+You have two choices to make when showing a Toast: where to show it and for how long.
+
+ - show(message, duration, position)
+⋅⋅⋅duration: 'short', 'long'⋅⋅
+⋅⋅⋅position: 'top', 'center', 'bottom'⋅⋅
+You can also use any of these convenience methods:
+
+- showShortTop(message)
+- showShortCenter(message)
+- showShortBottom(message)
+- showLongTop(message)
+- showLongCenter(message)
+- showLongBottom(message)
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaVibration) {
+
+  $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
+    // success
+  }, function (error) {
+    // error
+  });
+
+  $cordovaToast.showShortTop('Here is a message').then(function(success) {
+    // success
+  }, function (error) {
+    // error
+  });
+
+  $cordovaToast.showLongBotton('Here is a message').then(function(success) {
+    // success
+  }, function (error) {
+    // error
+  });
 
 });
 ```
