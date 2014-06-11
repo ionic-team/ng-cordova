@@ -34,7 +34,7 @@ label{
     font-size: 16px;
     padding: 20px 20px 4px 20px;
     margin:0;
-    font-family: 'AvenirNextLTPro-UltLt';
+    font-family: 'AvenirNextLTPro-Regular';
     font-weight: normal;
 }
 input:checked+label,
