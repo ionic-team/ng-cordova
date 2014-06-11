@@ -142,10 +142,10 @@ cordova plugin add org.apache.cordova.statusbar
 ```
 
 Toast Plugin
+
 ```
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 ```
-
 
 Vibration Plugin
 
