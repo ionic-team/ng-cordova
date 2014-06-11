@@ -270,7 +270,7 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   $scope.watchAcceleration = function () {
   	var options = { frequency: 3000 };  // Update every 3 seconds
   	
-  	$cordovaDeviceMotion.watchAcceleration(options).then(
+  	var watchID = $cordovaDeviceMotion.watchAcceleration(options).then(
       function() {/* unused */},  
       function(err) {},
       function(acceleration) {
@@ -282,7 +282,7 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   };
   
   $scope.clearWatch = function() {
-	// returns watch ID to be used in clearWatch
+	// use watchID from watchAccelaration()
 
     $cordovaDeviceMotion.clearWatch(watchID).then(function(result) {
       // Success! 
