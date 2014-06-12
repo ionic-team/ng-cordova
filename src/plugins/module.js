@@ -20,5 +20,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.push',
   'ngCordova.plugins.spinnerDialog',
   'ngCordova.plugins.pinDialog',
-  'ngCordova.plugins.localNotification'
+  'ngCordova.plugins.localNotification',
+  'ngCordova.plugins.backgroundGeolocation'
 ]);
