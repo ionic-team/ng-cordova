@@ -685,3 +685,49 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 
 });
 ```
+
+
+### `$cordovaCapture`
+
+This plugin allows you to record sound, video and images throught the native capabilities of the device
+[View Official Docs](http://docs.phonegap.com/en/2.2.0/cordova_media_capture_capture.md.html#Capture)
+
+```
+cordova plugin add org.apache.cordova.media-capture
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaCapture) {
+
+  $scope.captureAudio = function() {
+    var options = { limit: 3, duration: 10 };
+    
+    $cordovaCapture.captureAudio(options).then(function(audioData) {
+      // Success! Audio data is here
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  }
+
+  $scope.captureImage = function() {
+    var options = { limit: 3 };
+    
+    $cordovaCapture.captureImage(options).then(function(imageData) {
+      // Success! Image data is here
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  }
+
+  $scope.captureVideo = function() {
+    var options = { limit: 3, duration: 15 };
+    
+    $cordovaCapture.captureVideo(options).then(function(videoData) {
+      // Success! Video data is here
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  }
+
+});
+```
