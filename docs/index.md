@@ -355,8 +355,8 @@ module.controller('MyCtrl', function($scope, $cordovaGeolocation) {
 
 ### `$cordovaGlobalization`
 
-Check network connection types, and track offline and online status.
-[View Official Docs](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md)
+Obtains information and performs operations specific to the user's locale and timezone.
+[View Official Docs](http://docs.phonegap.com/en/2.2.0/cordova_globalization_globalization.md.html)
 
 ```
 cordova plugin add org.apache.cordova.globalization
