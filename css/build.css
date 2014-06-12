@@ -26,7 +26,7 @@ li{
     border-bottom: 1px solid #dadee7;
 }
 input{
-    display:none;
+    /*display:none;*/
 }
 label{
     color:#80848f;
