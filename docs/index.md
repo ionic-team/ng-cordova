@@ -356,7 +356,7 @@ module.controller('MyCtrl', function($scope, $cordovaGeolocation) {
 ### `$cordovaGlobalization`
 
 Obtains information and performs operations specific to the user's locale and timezone.
-[View Official Docs](http://docs.phonegap.com/en/2.2.0/cordova_globalization_globalization.md.html)
+[View Official Docs](https://github.com/apache/cordova-plugin-globalization/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.globalization
@@ -690,7 +690,7 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 ### `$cordovaCapture`
 
 This plugin allows you to record sound, video and images throught the native capabilities of the device
-[View Official Docs](http://docs.phonegap.com/en/2.2.0/cordova_media_capture_capture.md.html#Capture)
+[View Official Docs](https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.media-capture
