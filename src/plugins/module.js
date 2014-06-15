@@ -22,5 +22,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.localNotification',
   'ngCordova.plugins.toast',
-  'ngCordova.plugins.capture'
+  'ngCordova.plugins.capture',
+  'ngCordova.plugins.appAvailability'
 ]);
