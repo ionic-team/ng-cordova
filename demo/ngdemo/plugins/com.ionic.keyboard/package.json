@@ -1,0 +1,11 @@
+{
+    "version": "0.0.1",
+    "name": "com.ionic.keyboard",
+    "cordova_name": "Keyboard",
+    "description": "Ionic Keyboard Plugin",
+    "license": "MIT",
+    "keywords": [
+        "ionic",
+        "keyboard"
+    ]
+}

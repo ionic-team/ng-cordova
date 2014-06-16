@@ -1,0 +1,34 @@
+<ion-view title="Dialog">
+    <ion-content padding="true">
+        <div class="card">
+            <div class="item item-divider">
+                Dialog
+            </div>
+            <div class="item item-text-wrap">
+                {{action}}
+            </div>
+            <div class="item item-divider">
+                <p>
+                    <button class="button button-full button-positive" ng-click="alert()">
+                        Alert
+                    </button>
+                </p>
+                <p>
+                    <button class="button button-full button-positive" ng-click="confirm()">
+                        Confirm
+                    </button>
+                </p>
+                <p>
+                    <button class="button button-full button-positive" ng-click="prompt()">
+                        Prompt
+                    </button>
+                </p>
+                <p>
+                    <button class="button button-full button-positive" ng-click="beep()">
+                        Beep
+                    </button>
+                </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
