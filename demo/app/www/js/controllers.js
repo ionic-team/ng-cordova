@@ -12,7 +12,8 @@ angular.module('starter.controllers', [])
     { name: 'Device Orientation', slug: 'device-orientation' },
     { name: 'Statusbar', slug: 'status-bar' },
     { name: 'Vibration', slug: 'vibration' },
-    { name: 'Barcode', slug: 'barcode' }
+    { name: 'Barcode', slug: 'barcode' },
+    { name: 'Network', slug: 'network' }
   ];
 })
 
@@ -112,6 +113,47 @@ angular.module('starter.controllers', [])
     $cordovaVibration.vibrate($scope.data.vibrateTime);
   }
 })
+
+  .controller('NetworkCtrl', function($scope, $log, $cordovaNetwork) {
+
+    var connectionType = 'undefined',
+        connectionIsOnline = 'undefined',
+        connectionIsOffline = 'undefined';
+
+    $scope.connectiontype = connectionType;
+    $scope.connectionIsOnline = connectionIsOnline;
+    $scope.connectionIsOffline = connectionIsOffline;
+
+    // we are here to show when it breaks being used/called outside a function
+    try {
+      $log.log($cordovaNetwork.getNetwork());
+      $scope.connectiontype = $cordovaNetwork.getNetwork();
+    } catch (e) {
+      $log.log('$cordovaNetwork.getNetwork()', e);
+    };
+
+    try {
+      $log.log($cordovaNetwork.isOnline());
+      $scope.connectionIsOnline = $cordovaNetwork.isOnline();
+    } catch (e) {
+      $log.log('$cordovaNetwork.isOnline()', e);
+    };
+
+    try {
+      $log.log($cordovaNetwork.isOffline());
+      $scope.connectionIsOffline = $cordovaNetwork.isOffline();
+    } catch (e) {
+      $log.log('$cordovaNetwork.isOffline()', e);
+    };
+
+    $scope.connectionStatus = function () {
+      $scope.connectiontype = $cordovaNetwork.getNetwork();
+      $scope.connectionIsOnline = $cordovaNetwork.isOnline();
+      $scope.connectionIsOffline = $cordovaNetwork.isOffline();
+    };
+    
+  })
+
 
 .controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
 

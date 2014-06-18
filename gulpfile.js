@@ -10,8 +10,7 @@ var gulp = require('gulp'),
   karmaConf = require('./config/karma.conf.js');
   rename = require('gulp-rename');
 
-
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'copy-to-demo-app']);
 
 gulp.task('build', function() {
   return gulp.src(buildConfig.jsFiles)
@@ -25,6 +24,11 @@ gulp.task('build', function() {
       extname: '.min.js'
     }))
     .pipe(gulp.dest(buildConfig.dist));
+});
+
+gulp.task('copy-to-demo-app', function(){
+  gulp.src([buildConfig.dist+'/*.js'])
+    .pipe(gulp.dest(buildConfig.demoAppNgCordovaLib));
 });
 
 gulp.task('karma', function(done) {
@@ -41,6 +45,6 @@ gulp.task('karma-watch', function(done) {
   karma.start(karmaConf, done);
 });
 
-gulp.task('watch', ['build'], function() {
-  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build']);
+gulp.task('watch', ['build', 'copy-to-demo-app'], function() {
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build', 'copy-to-demo-app']);
 });
