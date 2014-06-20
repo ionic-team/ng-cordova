@@ -18,7 +18,7 @@ angular.module('ngCordova.plugins.geolocation', [])
     watchPosition: function(options) {
       var q = $q.defer();
 
-      watchId = navigator.geolocation.watchPosition(function(result) {
+      var watchId = navigator.geolocation.watchPosition(function(result) {
         // Do any magic you need
         q.resolve(watchID);
         q.notify(result);
