@@ -151,10 +151,7 @@ angular.module('ngCordova.plugins.file', [])
         var uri = encodeURI(source);
         
         fileTransfer.onprogress = function(progressEvent) {
-          if (progressEvent.lengthComputable) {
-			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			q.notify(perc);
-		  }
+            q.notify(progressEvent);
         };
 
         fileTransfer.download(
@@ -177,10 +174,7 @@ angular.module('ngCordova.plugins.file', [])
         var uri = encodeURI(server);
         
         fileTransfer.onprogress = function(progressEvent) {
-          if (progressEvent.lengthComputable) {
-			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			q.notify(perc);
-		  }
+            q.notify(progressEvent);
         };
 
         fileTransfer.upload(
