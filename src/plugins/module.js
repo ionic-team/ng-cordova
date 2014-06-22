@@ -23,5 +23,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.localNotification',
   'ngCordova.plugins.toast',
   'ngCordova.plugins.capture',
-  'ngCordova.plugins.appAvailability'
+  'ngCordova.plugins.appAvailability',
+  'ngCordova.plugins.prefs'  
 ]);
