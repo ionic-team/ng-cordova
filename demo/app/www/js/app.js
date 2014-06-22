@@ -43,6 +43,9 @@ angular.module('starter', ['ngCordova', 'ionic', 'starter.controllers'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/plugin/camera');
+  //$urlRouterProvider.otherwise('/app/plugin/camera');
+  // todo: back to ^^ changed to show that the landing page has network undefined
+  $urlRouterProvider.otherwise('/app/plugin/network');
+  
 });
 

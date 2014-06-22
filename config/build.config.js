@@ -15,6 +15,8 @@ module.exports = {
 
   jsFiles: ['src/**/*.js'],
 
+  demoAppNgCordovaLib: 'demo/app/www/lib/ngCordova',
+
   versionData: {
     version: pkg.version
   }
