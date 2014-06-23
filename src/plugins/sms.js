@@ -13,5 +13,5 @@ angular.module('ngCordova.plugins.sms', [])
         });
       }
     }
-  }
-]);
+
+}]);
