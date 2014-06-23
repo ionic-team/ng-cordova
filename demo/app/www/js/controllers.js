@@ -12,7 +12,8 @@ angular.module('starter.controllers', [])
     { name: 'Device Orientation', slug: 'device-orientation' },
     { name: 'Statusbar', slug: 'status-bar' },
     { name: 'Vibration', slug: 'vibration' },
-    { name: 'Barcode', slug: 'barcode' }
+    { name: 'Barcode', slug: 'barcode' },
+    { name: 'Preferences', slug: 'preferences' }
   ];
 })
 
@@ -112,6 +113,40 @@ angular.module('starter.controllers', [])
     $cordovaVibration.vibrate($scope.data.vibrateTime);
   }
 })
+
+
+.controller('PreferencesCtrl', function($scope, $log, $cordovaPreferences) {
+
+  var key = 'exampleKey';
+  $scope.data = {};
+  $scope.data.showMore = false;
+  $scope.data.key = key;
+
+  $scope.preferencesSet = function() {
+    $cordovaPreferences.set(key, $scope.data.value)
+      .then(function(result) {
+        if(result) {
+          $log.log(key+' was succesfully set to:', $scope.data.value);
+          $scope.data.showMore = true;          
+        } else {
+          $log.log(key+' was not set to: '+$scope.data.value+' we got ', result);                  
+        }
+      }, function(err) {
+        $log.log(key+' was not set to: '+$scope.data.value+' due to', err);        
+      });
+  };
+  
+  $scope.preferencesGet = function() {
+    $cordovaPreferences.get(key)
+      .then(function(value) {
+        $log.log(key+' get was succesfully:', value);
+        $scope.data.pref = value;
+      }, function(err) {
+        $log.log(key+' get was not succesfully: '+$scope.data.value+' due to', err);        
+      });
+  };
+})
+
 
 .controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
 

@@ -1,4 +1,3 @@
-// TODO: writeFile needs work, doesn't function
 // TODO: add support for readFile -> readAsData
 // TODO: add support for readFile -> readAsBinaryString
 // TODO: add support for readFile -> readAsArrayBuffer
@@ -44,12 +43,17 @@ angular.module('ngCordova.plugins.file', [])
         );
       },
 
-      checkFile: function (dir, file) {
+      checkFile: function (filePath) {
         var q = $q.defer();
+
+        // Backward compatibility for previous function checkFile(dir, file)
+        if (arguments.length == 2) {
+            filePath = '/' + filePath + '/' + arguments[1];
+        }
 
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getFile('/' + dir + '/' + file, {create: false},
+            filesystem.root.getFile(filePath, {create: false},
               // File exists
               function () {
                 q.resolve();
@@ -65,10 +69,15 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      createFile: function (dir, file, replaceBOOL) {
+      createFile: function (filePath, replaceBOOL) {
+        // Backward compatibility for previous function createFile(dir, file, replaceBOOL)
+        if (arguments.length == 3) {
+            filePath = '/' + filePath + '/' + arguments[1];
+        }
+
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getFile('/' + dir + '/' + file, {create: true, exclusive: replaceBOOL},
+            filesystem.root.getFile(filePath, {create: true, exclusive: replaceBOOL},
               function (success) {
 
               },
@@ -79,12 +88,17 @@ angular.module('ngCordova.plugins.file', [])
         );
       },
 
-      removeFile: function (dir, file) {
+      removeFile: function (filePath) {
         var q = $q.defer();
+
+        // Backward compatibility for previous function removeFile(dir, file)
+        if (arguments.length == 2) {
+            filePath = '/' + filePath + '/' + arguments[1];
+        }
 
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getFile('/' + dir + '/' + file, {create: false}, function (fileEntry) {
+            filesystem.root.getFile(filePath, {create: false}, function (fileEntry) {
               fileEntry.remove(function () {
                 q.resolve();
               });
@@ -95,12 +109,12 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      writeFile: function (dir, file, data) {
+      writeFile: function (filePath, data) {
         var q = $q.defer();
 
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getFile('/' + dir + '/' + file, {create: true},
+            filesystem.root.getFile(filePath, {create: true},
               function (fileEntry) {
                 fileEntry.createWriter(
                   function (fileWriter) {
@@ -120,13 +134,18 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      readFile: function (dir, file) {
+      readFile: function (filePath) {
         var q = $q.defer();
+
+        // Backward compatibility for previous function readFile(dir, file)
+        if (arguments.length == 2) {
+            filePath = '/' + filePath + '/' + arguments[1];
+        }
 
         getFilesystem().then(
           function (filesystem) {
 
-            filesystem.root.getFile('/' + dir + '/' + file, {create: false},
+            filesystem.root.getFile(filePath, {create: false},
               // success
               function (fileEntry) {
                 fileEntry.file(function (file) {
@@ -154,10 +173,7 @@ angular.module('ngCordova.plugins.file', [])
         var uri = encodeURI(source);
         
         fileTransfer.onprogress = function(progressEvent) {
-          if (progressEvent.lengthComputable) {
-			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			q.notify(perc);
-		  }
+            q.notify(progressEvent);
         };
 
         fileTransfer.download(
@@ -180,10 +196,7 @@ angular.module('ngCordova.plugins.file', [])
         var uri = encodeURI(server);
         
         fileTransfer.onprogress = function(progressEvent) {
-          if (progressEvent.lengthComputable) {
-			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			q.notify(perc);
-		  }
+            q.notify(progressEvent);
         };
 
         fileTransfer.upload(

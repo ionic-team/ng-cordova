@@ -9,6 +9,24 @@ angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
 
+angular.module('ngCordova.plugins.appAvailability', [])
+
+.factory('$cordovaAppAvailability', ['$q', function ($q) {
+
+  return {
+    check: function(urlScheme) {
+      var q = $q.defer();
+
+      appAvailability.check(urlScheme, function (result) {
+        q.resolve(result);
+      }, function (err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    }
+  }
+}]);
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
 .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
@@ -838,7 +856,9 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.localNotification',
   'ngCordova.plugins.toast',
-  'ngCordova.plugins.capture'
+  'ngCordova.plugins.capture',
+  'ngCordova.plugins.appAvailability',
+  'ngCordova.plugins.prefs'  
 ]);
 
 angular.module('ngCordova.plugins.network', [])
@@ -858,7 +878,7 @@ angular.module('ngCordova.plugins.network', [])
 
     isOffline: function () {
       var networkState = navigator.connection.type;
-      return networkSate === Connection.UNKNOWN || networkState === Connection.NONE;
+      return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
     }
   }
 }]);
@@ -874,6 +894,40 @@ angular.module('ngCordova.plugins.pinDialog', [])
   }
   
 }]);
+angular.module('ngCordova.plugins.prefs', [])
+
+  .factory('$cordovaPreferences', ['$window', '$q', function ($window, $q) {
+
+    return {
+
+      set: function (key, value) {
+        var q = $q.defer();
+        
+        $window.applicationPreferences.set(key, value, function(result) {
+          q.resolve(result);
+        }, function(err) {
+          q.reject(err);
+        });
+        
+        return q.promise;
+      },
+      
+
+      get: function (key) {
+        var q = $q.defer();
+        
+        $window.applicationPreferences.get(key, function(value) {
+          q.resolve(value);
+        }, function(err) {
+          q.reject(err);
+        });
+        
+        return q.promise;
+      }
+
+    }
+  }]);
+
 angular.module('ngCordova.plugins.push', [])
 
 .factory('$cordovaPush', ['$q', function ($q) {
@@ -1230,7 +1284,13 @@ angular.module('ngCordova.plugins.vibration', [])
   return {
   	vibrate: function(times) {
   	  return navigator.notification.vibrate(times);
-	  }
+	  },
+    vibrateWithPattern: function(pattern, repeat) {
+      return navigator.notification.vibrateWithPattern(pattern, repeat);
+    },
+    cancelVibration: function() {
+      return navigator.notification.cancelVibration();
+    }
   }
 }]);
 
