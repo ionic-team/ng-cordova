@@ -170,6 +170,28 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
+      readFileMetadata: function (filePath) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function (filesystem) {
+            filesystem.root.getFile(filePath, {create: false},
+              // success
+              function (fileEntry) {
+                fileEntry.file(function (file) {
+                  q.resolve(file);
+                });
+              },
+              // error
+              function (error) {
+                q.reject(error);
+              });
+          }
+        );
+
+        return q.promise;
+      },
+
       downloadFile: function (source, filePath, trustAllHosts, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
