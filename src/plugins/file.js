@@ -74,6 +74,7 @@ angular.module('ngCordova.plugins.file', [])
         // Backward compatibility for previous function createFile(dir, file, replaceBOOL)
         if (arguments.length == 3) {
             filePath = '/' + filePath + '/' + arguments[1];
+            replaceBOOL = arguments[2];
         }
 
         getFilesystem().then(
