@@ -1,16 +1,16 @@
 angular.module('ngCordova.plugins.sms', [])
 
-.factory('$cordovaSms', [function () {
+.factory('$cordovaSms', ['$q', function ($q) {
 
     return {
       send: function (number, message, intent, cb) {
+        var q = $q.defer();
         sms.send(number, message, intent, function (res) {
-          cb(null, res);
+          q.resolve(res);
         }, function (err) {
-          if(err) {
-            cb(err);
-          }
-        });
+          q.reject(err)
+        })
+        return q.promise;
       }
     }
 
