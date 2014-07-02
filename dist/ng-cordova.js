@@ -247,7 +247,7 @@ angular.module('ngCordova.plugins.device', [])
       return device.model;
     },
 
-    // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+    // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
     getName: function () {
       return device.name;
     },
