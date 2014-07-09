@@ -3,7 +3,7 @@ angular.module('ngCordova.plugins.globalization', [])
 .factory('$cordovaGlobalization', ['$q', function ($q) {
 
   return {
-    getPreferredLanguage: function (options) {
+    getPreferredLanguage: function () {
       var q = $q.defer();
 
       navigator.globalization.getPreferredLanguage(function (result) {
@@ -15,7 +15,7 @@ angular.module('ngCordova.plugins.globalization', [])
       return q.promise;
     },
 
-    getLocaleName: function (options) {
+    getLocaleName: function () {
       var q = $q.defer();
 
       navigator.globalization.getLocaleName(function (result) {
@@ -27,7 +27,7 @@ angular.module('ngCordova.plugins.globalization', [])
       return q.promise;
     },
 
-    getFirstDayOfWeek: function (options) {
+    getFirstDayOfWeek: function () {
       var q = $q.defer();
 
       navigator.globalization.getFirstDayOfWeek(function (result) {
