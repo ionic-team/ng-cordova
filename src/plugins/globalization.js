@@ -37,7 +37,7 @@ angular.module('ngCordova.plugins.globalization', [])
           q.reject(err);
         });
       return q.promise;
-    }
+    },
 
     // "date" parameter must be a JavaScript Date Object.
     dateToString: function(date, options) {
@@ -53,7 +53,7 @@ angular.module('ngCordova.plugins.globalization', [])
         },
         options);
       return q.promise;
-    }
+    },
 
     stringToDate: function(dateString, options) {
       var q = $q.defer();
@@ -68,10 +68,23 @@ angular.module('ngCordova.plugins.globalization', [])
         },
         options);
       return q.promise;
+    },
+
+    getDatePattern: function(options) {
+      var q = $q.defer();
+
+      navigator.globalization.getDatePattern(
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
     }
 
     // TODO
-    // getDatePattern
     // getDateNames
     // isDayLightSavingsTime
     // numberToString
