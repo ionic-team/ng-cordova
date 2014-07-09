@@ -111,10 +111,24 @@ angular.module('ngCordova.plugins.globalization', [])
           q.reject(err);
         });
       return q.promise;
+    },
+
+    numberToString: function(number, options) {
+      var q = $q.defer();
+
+      navigator.globalization.numberToString(
+        number,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
     }
 
     // TODO
-    // numberToString
     // stringToNumber
     // getNumberPattern
     // getCurrencyPattern
