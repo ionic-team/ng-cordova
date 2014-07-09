@@ -55,8 +55,22 @@ angular.module('ngCordova.plugins.globalization', [])
       return q.promise;
     }
 
+    stringToDate: function(dateString, options) {
+      var q = $q.defer();
+
+      navigator.globalization.stringToDate(
+        dateString,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    }
+
     // TODO
-    // stringToDate
     // getDatePattern
     // getDateNames
     // isDayLightSavingsTime
