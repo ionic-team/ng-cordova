@@ -141,10 +141,23 @@ angular.module('ngCordova.plugins.globalization', [])
         },
         options);
       return q.promise;
+    },
+
+    getNumberPattern: function(options) {
+      var q = $q.defer();
+
+      navigator.globalization.getNumberPattern(
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
     }
 
     // TODO
-    // getNumberPattern
     // getCurrencyPattern
   }
 
