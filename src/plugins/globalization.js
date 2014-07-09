@@ -96,10 +96,24 @@ angular.module('ngCordova.plugins.globalization', [])
         },
         options);
       return q.promise;
+    },
+
+    // "date" parameter must be a JavaScript Date Object.
+    isDayLightSavingsTime: function(date) {
+      var q = $q.defer();
+
+      navigator.globalization.isDayLightSavingsTime(
+        date,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
     }
 
     // TODO
-    // isDayLightSavingsTime
     // numberToString
     // stringToNumber
     // getNumberPattern
