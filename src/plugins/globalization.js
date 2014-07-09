@@ -155,10 +155,22 @@ angular.module('ngCordova.plugins.globalization', [])
         },
         options);
       return q.promise;
+    },
+
+    getCurrencyPattern: function(currencyCode) {
+      var q = $q.defer();
+
+      navigator.globalization.getCurrencyPattern(
+        currencyCode,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
     }
 
-    // TODO
-    // getCurrencyPattern
   }
 
 }]);
