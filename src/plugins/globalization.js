@@ -39,8 +39,23 @@ angular.module('ngCordova.plugins.globalization', [])
       return q.promise;
     }
 
-    //TODO:
-    // dateToString
+    // "date" parameter must be a JavaScript Date Object.
+    dateToString: function(date, options) {
+      var q = $q.defer();
+
+      navigator.globalization.dateToString(
+        date,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    }
+
+    // TODO
     // stringToDate
     // getDatePattern
     // getDateNames
