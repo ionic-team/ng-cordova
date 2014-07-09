@@ -82,10 +82,23 @@ angular.module('ngCordova.plugins.globalization', [])
         },
         options);
       return q.promise;
+    },
+
+    getDateNames: function(options) {
+      var q = $q.defer();
+
+      navigator.globalization.getDateNames(
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
     }
 
     // TODO
-    // getDateNames
     // isDayLightSavingsTime
     // numberToString
     // stringToNumber
