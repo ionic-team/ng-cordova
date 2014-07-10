@@ -10,6 +10,7 @@ angular.module('starter.controllers', [])
     { name: 'Geolocation', slug: 'geolocation' },
     { name: 'Device Motion', slug: 'device-motion' },
     { name: 'Device Orientation', slug: 'device-orientation' },
+    { name: 'Flashlight', slug: 'flashlight' },
     { name: 'Statusbar', slug: 'status-bar' },
     { name: 'Vibration', slug: 'vibration' },
     { name: 'Barcode', slug: 'barcode' },
@@ -104,6 +105,15 @@ angular.module('starter.controllers', [])
     } else {
       $cordovaStatusbar.show();
     }
+  };
+})
+
+.controller('FlashlightCtrl', function($scope, $cordovaFlashlight) {
+  $scope.on = function() {
+    $cordovaFlashlight.switchOn();
+  };
+  $scope.off = function() {
+    $cordovaFlashlight.switchOff();
   };
 })
 
