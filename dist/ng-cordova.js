@@ -364,7 +364,6 @@ angular.module('ngCordova.plugins.dialogs', [])
   }
 }]);
 
-// TODO: writeFile needs work, doesn't function
 // TODO: add support for readFile -> readAsData
 // TODO: add support for readFile -> readAsBinaryString
 // TODO: add support for readFile -> readAsArrayBuffer
@@ -477,21 +476,19 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      writeFile: function (filePath) {
+      writeFile: function (filePath, data) {
         var q = $q.defer();
-
-        // Backward compatibility for previous function writeFile(dir, file)
-        if (arguments.length == 2) {
-            filePath = '/' + filePath + '/' + arguments[1];
-        }
 
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getFile(filePath, {create: false},
+            filesystem.root.getFile(filePath, {create: true},
               function (fileEntry) {
                 fileEntry.createWriter(
                   function (fileWriter) {
-                    q.resolve(fileWriter);
+                    fileWriter.onwriteend = function(evt) {
+                      q.resolve(evt);
+                    }
+                    fileWriter.write(data);
                   },
                   function (error) {
                     q.reject(error);
@@ -749,7 +746,7 @@ angular.module('ngCordova.plugins.globalization', [])
 .factory('$cordovaGlobalization', ['$q', function ($q) {
 
   return {
-    getPreferredLanguage: function (options) {
+    getPreferredLanguage: function () {
       var q = $q.defer();
 
       navigator.globalization.getPreferredLanguage(function (result) {
@@ -761,7 +758,7 @@ angular.module('ngCordova.plugins.globalization', [])
       return q.promise;
     },
 
-    getLocaleName: function (options) {
+    getLocaleName: function () {
       var q = $q.defer();
 
       navigator.globalization.getLocaleName(function (result) {
@@ -773,7 +770,7 @@ angular.module('ngCordova.plugins.globalization', [])
       return q.promise;
     },
 
-    getFirstDayOfWeek: function (options) {
+    getFirstDayOfWeek: function () {
       var q = $q.defer();
 
       navigator.globalization.getFirstDayOfWeek(function (result) {
@@ -783,18 +780,140 @@ angular.module('ngCordova.plugins.globalization', [])
           q.reject(err);
         });
       return q.promise;
+    },
+
+    // "date" parameter must be a JavaScript Date Object.
+    dateToString: function(date, options) {
+      var q = $q.defer();
+
+      navigator.globalization.dateToString(
+        date,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    stringToDate: function(dateString, options) {
+      var q = $q.defer();
+
+      navigator.globalization.stringToDate(
+        dateString,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    getDatePattern: function(options) {
+      var q = $q.defer();
+
+      navigator.globalization.getDatePattern(
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    getDateNames: function(options) {
+      var q = $q.defer();
+
+      navigator.globalization.getDateNames(
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    // "date" parameter must be a JavaScript Date Object.
+    isDayLightSavingsTime: function(date) {
+      var q = $q.defer();
+
+      navigator.globalization.isDayLightSavingsTime(
+        date,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
+    },
+
+    numberToString: function(number, options) {
+      var q = $q.defer();
+
+      navigator.globalization.numberToString(
+        number,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    stringToNumber: function(numberString, options) {
+      var q = $q.defer();
+
+      navigator.globalization.stringToNumber(
+        numberString,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    getNumberPattern: function(options) {
+      var q = $q.defer();
+
+      navigator.globalization.getNumberPattern(
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        },
+        options);
+      return q.promise;
+    },
+
+    getCurrencyPattern: function(currencyCode) {
+      var q = $q.defer();
+
+      navigator.globalization.getCurrencyPattern(
+        currencyCode,
+        function (result) {
+          q.resolve(result);
+        },
+        function (err) {
+          q.reject(err);
+        });
+      return q.promise;
     }
 
-    //TODO:
-    // dateToString
-    // stringToDate
-    // getDatePattern
-    // getDateNames
-    // isDayLightSavingsTime
-    // numberToString
-    // stringToNumber
-    // getNumberPattern
-    // getCurrencyPattern
   }
 
 }]);
@@ -954,13 +1073,15 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.ga',
   'ngCordova.plugins.push',
   'ngCordova.plugins.spinnerDialog',
+  'ngCordova.plugins.sms',
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.localNotification',
   'ngCordova.plugins.toast',
   'ngCordova.plugins.flashlight',
   'ngCordova.plugins.capture',
   'ngCordova.plugins.appAvailability',
-  'ngCordova.plugins.prefs'  
+  'ngCordova.plugins.prefs',
+  'ngCordova.plugins.printer'
 ]);
 
 angular.module('ngCordova.plugins.network', [])
@@ -1030,6 +1151,23 @@ angular.module('ngCordova.plugins.prefs', [])
     }
   }]);
 
+angular.module('ngCordova.plugins.printer', [])
+
+.factory('$cordovaPrinter', ['$q', function ($q) {
+
+    return {
+      isAvailable: function () {
+        window.plugin.printer.isServiceAvailable(function (isAvailable) {
+          return isAvailable ? true : false;
+        });
+      },
+
+      print: function (doc) {
+        window.plugin.printer.print(doc);
+      }
+    }
+  }
+]);
 angular.module('ngCordova.plugins.push', [])
 
 .factory('$cordovaPush', ['$q', function ($q) {
@@ -1077,11 +1215,26 @@ angular.module('ngCordova.plugins.push', [])
         }
     };
 }]);
-// NOTE: shareViaSms -> access multiple numbers in a string like: '0612345678,0687654321'
+angular.module('ngCordova.plugins.sms', [])
+
+.factory('$cordovaSms', ['$q', function ($q) {
+
+    return {
+      send: function (number, message, intent) {
+        var q = $q.defer();
+        sms.send(number, message, intent, function (res) {
+          q.resolve(res);
+        }, function (err) {
+          q.reject(err)
+        })
+        return q.promise;
+      }
+    }
+
+}]);
 // NOTE: shareViaEmail -> if user cancels sharing email, success is still called
 // NOTE: shareViaEmail -> TO, CC, BCC must be an array, Files can be either null, string or array
 // TODO: add support for iPad
-// TODO: add support for Windows Phone
 // TODO: detailed docs for each social sharing types (each social platform has different requirements)
 
 angular.module('ngCordova.plugins.socialSharing', [])
@@ -1089,9 +1242,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
   .factory('$cordovaSocialSharing', ['$q', function ($q) {
 
     return {
-      shareViaTwitter: function (message, image, link) {
+      share: function (message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaTwitter(message, image, link,
+        window.plugins.socialsharing.share(message, subject, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -1101,9 +1254,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
-      shareViaWhatsApp: function (message, image, link) {  // image ?? link ??
+      shareViaTwitter: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaWhatsApp(message, image, link,
+        window.plugins.socialsharing.shareViaTwitter(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -1113,9 +1266,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
-      shareViaFacebook: function (message, image, link) {  // image ?? link ??
+      shareViaWhatsApp: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaFacebook(message, image, link,
+        window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -1125,9 +1278,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
-      shareViaSMS: function (message, number) {
+      shareViaFacebook: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaSMS(message, number,
+        window.plugins.socialsharing.shareViaFacebook(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -1137,9 +1290,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
-      shareViaEmail: function (message, subject, toArr, ccArr, bccArr, file ) {
+      shareViaSMS: function (message, commaSeparatedPhoneNumbers) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaEmail(message, number,
+        window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
           function () {
             q.resolve(true); // success
           },
@@ -1149,15 +1302,51 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
-      canShareVia: function (social, message, image, link) {
+      shareViaEmail: function (message, subject, toArr, ccArr, bccArr, fileArr) {
         var q = $q.defer();
-        window.plugins.socialsharing.canShareVia(social, message, image, link,
+        window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
+        return q.promise;
+      },
+
+      canShareViaEmail: function () {
+        var q = $q.defer();
+        window.plugins.socialsharing.canShareViaEmail(
+            function () {
+              q.resolve(true); // success
+            },
+            function () {
+              q.reject(false); // error
+            });
+        return q.promise;
+      },
+
+      canShareVia: function (via, message, subject, file, link) {
+        var q = $q.defer();
+        window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
           function (success) {
             q.resolve(success); // success
           },
           function (error) {
             q.reject(error); // error
           });
+        return q.promise;
+      },
+
+      shareVia: function (via, message, subject, file, link) {
+        var q = $q.defer();
+        window.plugins.socialsharing.shareVia(via, message, subject, file, link,
+            function () {
+              q.resolve(true); // success
+            },
+            function () {
+              q.reject(false); // error
+            });
         return q.promise;
       }
 
