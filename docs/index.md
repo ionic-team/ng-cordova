@@ -148,6 +148,8 @@ cordova plugin add org.apache.cordova.device-motion
 
 ```javascript
 module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
+  var watch;
+
   $scope.getAcceleration = function () {
     $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
       // Success! 
@@ -157,9 +159,11 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   };
   
   $scope.watchAcceleration = function () {
-    var options = { frequency: 3000 };  // Update every 3 seconds
+    var options = { frequency: 1000 };  // Update every 1 second
     
-    var watchID = $cordovaDeviceMotion.watchAcceleration(options).then(
+    watch = $cordovaDeviceMotion.watchAcceleration(options);
+
+    watch.promise.then(
       function() {/* unused */},  
       function(err) {},
       function(acceleration) {
@@ -173,7 +177,9 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   $scope.clearWatch = function() {
   // use watchID from watchAccelaration()
 
-    $cordovaDeviceMotion.clearWatch(watchID).then(function(result) {
+    if(!watch) { return; }
+
+    $cordovaDeviceMotion.clearWatch(watch.watchId).then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
@@ -202,15 +208,18 @@ module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrient
       // An error occured. Show a message to the user
     });
   
-    var options = { frequency: 3000 }; // Update every 3 seconds
-    $cordovaDeviceOrientation.watchHeading(options).then(function(result) {
-      // returns watch ID to be used in clearWatch
-    }, function(err) {
-      // An error occured. Show a message to the user
-    });
+    var options = { frequency: 1000 }; // Update every 1 second
+    var watch = $cordovaDeviceOrientation.watchHeading(options);
+
+    watch.promise.then(function(result) { /* unused */ },
+      function(err) {
+        // An error occured. Show a message to the user
+      }, function(position) {
+        // Heading comes back in
+        // position.magneticHeading
+      });
   
-    // use the watch ID from watchHeading() promise
-    $cordovaDeviceOrientation.clearWatch(watchID).then(function(result) {
+    $cordovaDeviceOrientation.clearWatch(watch.watchId).then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
@@ -343,12 +352,17 @@ module.controller('MyCtrl', function($scope, $cordovaGeolocation) {
       // error
     });
 
-  $cordovaGeolocation.watchPosition().then(function() {
+  var watch = $cordovaGeolocation.watchPosition({
+    frequency: 1000
+  });
+
+  watch.promise.then(function() {
       // Not currently used
     }, function(err) {
       // An error occured. Show a message to the user
     }, function(position) {
       // Active updates of the position here
+      // position.coords.latitude/longitude
   });
 });
 ```
