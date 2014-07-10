@@ -26,5 +26,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.capture',
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.prefs',
-  'ngCordova.plugins.customURLScheme'
+  'ngCordova.plugins.customURLScheme',
+  'ngCordova.plugins.clipboard'
 ]);
