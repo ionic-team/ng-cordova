@@ -36,7 +36,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('GeolocationCtrl', function($scope, $cordovaGeolocation) {
-  $cordovaGeolocation.watchPosition().then(function(resp) {
+  $cordovaGeolocation.watchPosition({
+    frequency: 100
+  }).promise.then(function(resp) {
   }, function(err) {
   }, function(position) {
     $scope.lat = position.coords.latitude;
@@ -45,7 +47,7 @@ angular.module('starter.controllers', [])
 
   $scope.getLatLng = function() {
     if(!$scope.lat && !$scope.lng) { return '45.787, -89.052'; }
-    return $scope.lat.toFixed(3) + ', ' + $scope.lng.toFixed(3);
+    return $scope.lat.toFixed(7) + ', ' + $scope.lng.toFixed(7);
   }
   /*
   $scope.toggleTrack = function() {
@@ -60,7 +62,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('CompassCtrl', function($scope, $cordovaDeviceOrientation) {
-  $cordovaDeviceOrientation.watchHeading().then(function(resp) {
+  $cordovaDeviceOrientation.watchHeading({
+    frequency: 100
+  }).promise.then(function(resp) {
   }, function(err) {
   }, function(position) {
     $scope.compass = position.magneticHeading;
@@ -160,13 +164,15 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('AccelCtrl', function($scope, $cordovaAccelerometer) {
+.controller('AccelCtrl', function($scope, $cordovaDeviceMotion) {
   console.log('Accel');
   $scope.toggleTrack = function() {
-    $cordovaAccelerometer.watchAcceleration().then(function(resp) {
+    console.log('Accel tracking');
+    $cordovaDeviceMotion.watchAcceleration({
+      frequency: 100
+    }).promise.then(function(resp) {
     }, function(err) {
     }, function(data) {
-      console.log('Data', data)
       $scope.x = data.x;
       $scope.y = data.y;
       $scope.z = data.z;

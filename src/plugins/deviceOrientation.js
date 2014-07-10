@@ -17,14 +17,16 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
     watchHeading: function(options) {
       var q = $q.defer();
 
-      var watchID = navigator.compass.watchHeading(function(result) {
-        q.resolve(watchID);
+      var watchId = navigator.compass.watchHeading(function(result) {
         q.notify(result);
       }, function(err) {
         q.reject(err);
       }, options);
 
-      return q.promise;
+      return {
+        watchId: watchId,
+        promise: q.promise
+      }
     },
     clearWatch: function(watchID) {
       navigator.compass.clearWatch();

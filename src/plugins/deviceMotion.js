@@ -18,15 +18,18 @@ angular.module('ngCordova.plugins.deviceMotion', [])
     watchAcceleration: function(options) {
       var q = $q.defer();
 
-      var watchID = navigator.accelerometer.watchAcceleration(function(result) {
+      var watchId = navigator.accelerometer.watchAcceleration(function(result) {
         // Do any magic you need
-        q.resolve(watchID);
+        //q.resolve(watchID);
         q.notify(result);
       }, function(err) {
         q.reject(err);
       }, options);
 
-      return q.promise;
+      return {
+        watchId: watchId,
+        promise: q.promise
+      }
     },
     clearWatch: function(watchID) {
       return navigator.accelerometer.clearWatch(watchID);
