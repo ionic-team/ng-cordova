@@ -4,8 +4,8 @@
 
 
 @font-face {font-family: 'AvenirNextLTPro-Regular';src: url('../fonts/28882F_0_0.eot');src: url('../fonts/28882F_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_0_0.woff') format('woff'),url('../fonts/28882F_0_0.ttf') format('truetype');}
- 
-  
+
+
 @font-face {font-family: 'AvenirNextLTPro-Medium';src: url('../fonts/28882F_1_0.eot');src: url('../fonts/28882F_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_1_0.woff') format('woff'),url('../fonts/28882F_1_0.ttf') format('truetype');}
 
 
@@ -191,7 +191,7 @@ code {
  * Header
  */
 .masthead {
-  background-color: #2d3036;;  
+  background-color: #2d3036;;
 }
 
 .masthead-brand {
@@ -240,6 +240,62 @@ code {
     float: right;
   }
 }
+
+
+/*
+ * Sidemenu
+ */
+
+
+.fixed-menu {
+    position: fixed;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+
+
+.left-menu {
+    margin-top: 8px;
+    padding-left: 0;
+    list-style: none;
+    font-size: 12px; }
+.left-menu:first-child {
+    margin-top: 0; }
+.left-menu a {
+    display: block;
+    color: #444;
+    text-decoration: none; }
+.left-menu a:hover {
+    background: transparent !important; }
+.left-menu li {
+    display: none;
+    margin: 8px 0;
+    list-style: none; }
+.left-menu li.menu-title {
+    display: block;
+    margin-top: 0; }
+.left-menu li ul {
+    display: none;
+    padding-left: 12px; }
+.left-menu .menu-title a {
+    color: #aaaaaa;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    line-height: 20px; }
+.left-menu.nav li.active > a {
+    border-right: 2px solid #4F8EF7;
+    color: #4F8EF7; }
+.left-menu.nav li.active > ul {
+    display: block; }
+.left-menu.nav > li > a {
+    padding: 1px 0; }
+
+.left-menu.active-menu .menu-title a {
+    color: #4F8EF7; }
+.left-menu.active-menu li {
+    display: block; }
+
 
 
 /*
