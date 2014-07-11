@@ -1,3 +1,4 @@
 name: ngCordova
 markdown: redcarpet
 pygments: true
+exclude: ['node_modules']
