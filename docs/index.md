@@ -279,37 +279,36 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
   });
   
   
-  $cordovaFile.checkFile(directory, file).then(function(result) {
+  $cordovaFile.checkFile(filePath).then(function(result) {
       // Success! 
   }, function(err) {
       // An error occured. Show a message to the user
   });
   
   
-  // parameters: directory, file, replace (boolean)
-  $cordovaFile.createFile(directory, file, true).then(function(result) {
+  // parameters: filePath, replace (boolean)
+  $cordovaFile.createFile(filePath, true).then(function(result) {
       // Success! 
   }, function(err) {
       // An error occured. Show a message to the user
   });
   
   
-  $cordovaFile.removeFile(directory, file).then(function(result) {
+  $cordovaFile.removeFile(filePath).then(function(result) {
       // Success! 
   }, function(err) {
       // An error occured. Show a message to the user
   });
   
   
-  // doesn't function at the moment
-  $cordovaFile.writeFile(directory, file).then(function(result) {
+  $cordovaFile.writeFile(filePath).then(function(result) {
       // Success! 
   }, function(err) {
       // An error occured. Show a message to the user
   });
   
   // Reads a file as TEXT
-  $cordovaFile.readFile(directory, file).then(function(result) {
+  $cordovaFile.readFile(filePath).then(function(result) {
       // Success! 
   }, function(err) {
       // An error occured. Show a message to the user
