@@ -27,5 +27,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.capture',
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.prefs',
-  'ngCordova.plugins.printer'
+  'ngCordova.plugins.printer',
+  'ngCordova.plugins.bluetoothSerial'
 ]);
