@@ -263,7 +263,7 @@ code {
     margin-top: 0; }
 .left-menu a {
     display: block;
-    color: #444;
+    color: #4F8EF7;
     text-decoration: none; }
 .left-menu a:hover {
     background: transparent !important; }
@@ -367,6 +367,6 @@ a:hover {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 900px;
   }
 }
