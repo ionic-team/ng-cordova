@@ -1,35 +1,53 @@
 /**
  * @author langstra
  */
-// TODO: add support for readFile -> readAsData
-// TODO: add support for readFile -> readAsBinaryString
-// TODO: add support for readFile -> readAsArrayBuffer
-// TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
-// TODO: add documentation for FileError types
-// TODO: add abort() option to downloadFile and uploadFile methods.
-// TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
-// TODO: add support for onprogress property
+// TODO: add support for upload
+// TODO: add support for abort
 
-
-angular.module('ngCordova.plugins.file', [])
+angular.module('ngCordova.plugins.fileTransfer', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-    .factory('$cordovaFile', ['$q', function ($q) {
+    .factory('$cordovaFileTransfer', ['$q', function ($q) {
 
         return {
-            download: function (link, fileEntry, filename) {
-                var e = $q.defer();
-                var path = fileEntry.toURL();
-                var fileTransfer = new FileTransfer();
+            /**
+             *
+             * @param {String} link - Link of the resource to be downloaded
+             * @param {String} path - Path on the device to save the resource to
+             * @param {String} filename - Name of the file
+             * @param {Object} options - Optional parameter, see the official docs for possible headers
+             * @param {Boolean} trustAllHosts - Optional parameter, defaults to false. If set to true, it accepts all security certificates
+             * @returns {.watchHeading.promise|*|.watchPosition.promise|.watchAcceleration.promise|promise} - Promise can result in an error code when rejected or the path to the saved file
+             */
+            download: function (link, path, filename, options, trustAllHosts) {
 
-                fileTransfer.download(
-                    link,
-                    path + filename,
-                    function (file) {
-                        e.resolve(file.toURI());
-                    },
-                    function (error) {
-                        return e.resolve(error.code);
+                var e = $q.defer();
+
+                getFilesystem().then(
+                    function (filesystem) {
+                        filesystem.root.getDirectory(path, {create: true},
+                            function (fileEntry) {
+
+                                var path = fileEntry.toURL();
+                                var fileTransfer = new FileTransfer();
+
+                                fileTransfer.download(
+                                    link,
+                                    path + filename,
+                                    function (file) {
+                                        e.resolve(file.toURL());
+                                    },
+                                    function (error) {
+                                        return e.resolve(error.code);
+                                    },
+                                    trustAllHosts || false,
+                                    options || {}
+                                );
+                            },
+                            function (err) {
+                                e.reject(err.code);
+                            }
+                        );
                     }
                 );
 
@@ -40,4 +58,17 @@ angular.module('ngCordova.plugins.file', [])
                 return null
             }
         };
+
+        function getFilesystem() {
+            var q = $q.defer();
+
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
+                    q.resolve(filesystem);
+                },
+                function (err) {
+                    q.reject(err);
+                });
+
+            return q.promise;
+        }
     }]);
