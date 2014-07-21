@@ -5,8 +5,6 @@
 // TODO: add support for abort
 
 angular.module('ngCordova.plugins.fileTransfer', [])
-
-//Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
     .factory('$cordovaFileTransfer', ['$q', function ($q) {
 
         return {
@@ -22,15 +20,12 @@ angular.module('ngCordova.plugins.fileTransfer', [])
             download: function (link, path, filename, options, trustAllHosts) {
 
                 var e = $q.defer();
-
                 getFilesystem().then(
                     function (filesystem) {
                         filesystem.root.getDirectory(path, {create: true},
                             function (fileEntry) {
-
                                 var path = fileEntry.toURL();
                                 var fileTransfer = new FileTransfer();
-
                                 fileTransfer.download(
                                     link,
                                     path + filename,
@@ -38,7 +33,7 @@ angular.module('ngCordova.plugins.fileTransfer', [])
                                         e.resolve(file.toURL());
                                     },
                                     function (error) {
-                                        return e.resolve(error.code);
+                                        return e.reject(error.code);
                                     },
                                     trustAllHosts || false,
                                     options || {}

@@ -141,7 +141,7 @@ angular.module('ngCordova.plugins.camera', [])
 
       return q.promise;
     }
-    
+
   }
 }]);
 
@@ -604,7 +604,7 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(source);
-        
+
         fileTransfer.onprogress = function(progressEvent) {
             q.notify(progressEvent);
         };
@@ -619,7 +619,7 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           },
           trustAllHosts, options);
-          
+
           return q.promise;
       },
 
@@ -627,7 +627,7 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
-        
+
         fileTransfer.onprogress = function(progressEvent) {
             q.notify(progressEvent);
         };
@@ -642,7 +642,7 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           },
           options)
-          
+
           return q.promise
       }
 
@@ -661,6 +661,61 @@ angular.module('ngCordova.plugins.file', [])
       return q.promise;
     }
   }]);
+
+// TODO: add support for upload
+// TODO: add support for abort
+    angular.module('ngCordova.plugins.fileTransfer', [])
+        .factory('$cordovaFileTransfer', ['$q', function ($q) {
+
+            return {
+                /**
+                 *
+                 * @param {String} link - Link of the resource to be downloaded
+                 * @param {String} path - Path on the device to save the resource to
+                 * @param {String} filename - Name of the file
+                 * @param {Object} options - Optional parameter, see the official docs for possible headers
+                 * @param {Boolean} trustAllHosts - Optional parameter, defaults to false. If set to true, it accepts all security certificates
+                 * @returns {.watchHeading.promise|*|.watchPosition.promise|.watchAcceleration.promise|promise} - Promise can result in an error code when rejected or the path to the saved file
+                 */
+                download: function (link, path, filename, options, trustAllHosts) {
+
+                    var e = $q.defer();
+                    getFilesystem().then(function (filesystem) {
+                            filesystem.root.getDirectory(path, {create: true},
+                                function (fileEntry) {
+                                    var path = fileEntry.toURL();
+                                    var fileTransfer = new FileTransfer();
+                                    fileTransfer.download(link, path + filename,
+                                        function (file) { e.resolve(file.toURL()); },
+                                        function (error) { return e.reject(error.code); },
+                                        trustAllHosts || false, options || {}
+                                    );
+                                },
+                                function (err) { e.reject(err.code); }
+                            );
+                        });
+                    return e.promise;
+                }, upload: function () {
+                    return null
+                }, abort: function () {
+                    return null
+                }
+            };
+
+            function getFilesystem() {
+                var q = $q.defer();
+
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
+                        q.resolve(filesystem);
+                    },
+                    function (err) {
+                        q.reject(err);
+                    });
+
+                return q.promise;
+            }
+        }]);
+
 angular.module('ngCordova.plugins.flashlight', [])
 
 .factory('$cordovaFlashlight', ['$q', function ($q) {
@@ -701,7 +756,7 @@ angular.module('ngCordova.plugins.ga', [])
     .factory('$cordovaGA', ['$q', function ($q) {
 
         return {
-            
+
             init: function (id, mingap) {
                 var q = $q.defer();
                 mingap = (mingap >= 0) ? mingap : 10;
@@ -710,7 +765,7 @@ angular.module('ngCordova.plugins.ga', [])
                                                     id, mingap);
                 return q.promise;
             },
-            
+
             trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
                 var q = $q.defer();
                 window.plugins.gaPlugin.trackEvent(function (result) {q.resolve(result); },
@@ -718,7 +773,7 @@ angular.module('ngCordova.plugins.ga', [])
                                                     category, eventAction, eventLabel, eventValue);
                 return q.promise;
             },
-            
+
             trackPage: function (success, fail, pageURL) {
                 var q = $q.defer();
                 window.plugins.gaPlugin.trackPage(function (result) {q.resolve(result); },
@@ -726,7 +781,7 @@ angular.module('ngCordova.plugins.ga', [])
                                                     pageURL);
                 return q.promise;
             },
-            
+
             setVariable: function (success, fail, index, value) {
                 var q = $q.defer();
                 window.plugins.gaPlugin.setVariable(function (result) {q.resolve(result); },
@@ -734,14 +789,14 @@ angular.module('ngCordova.plugins.ga', [])
                                                     index, value);
                 return q.promise;
             },
-            
+
             exit: function (success, fail) {
                 var q = $q.defer();
                 window.plugins.gaPlugin.exit(function (result) {q.resolve(result); },
                                                     function (error) {q.reject(error); });
                 return q.promise;
             }
-            
+
         };
 
     }]);
@@ -1111,6 +1166,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.contacts',
   'ngCordova.plugins.statusbar',
   'ngCordova.plugins.file',
+  'ngCordova.plugins.fileTransfer',
   'ngCordova.plugins.socialSharing',
   'ngCordova.plugins.globalization',
   'ngCordova.plugins.sqlite',
@@ -1160,7 +1216,7 @@ angular.module('ngCordova.plugins.pinDialog', [])
 	    return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
     }
   }
-  
+
 }]);
 angular.module('ngCordova.plugins.prefs', [])
 
@@ -1170,26 +1226,26 @@ angular.module('ngCordova.plugins.prefs', [])
 
       set: function (key, value) {
         var q = $q.defer();
-        
+
         $window.applicationPreferences.set(key, value, function(result) {
           q.resolve(result);
         }, function(err) {
           q.reject(err);
         });
-        
+
         return q.promise;
       },
-      
+
 
       get: function (key) {
         var q = $q.defer();
-        
+
         $window.applicationPreferences.get(key, function(value) {
           q.resolve(value);
         }, function(err) {
           q.reject(err);
         });
-        
+
         return q.promise;
       }
 
@@ -1227,10 +1283,10 @@ angular.module('ngCordova.plugins.push', [])
                 q.reject(error);
             },
             config);
-            
+
             return q.promise;
         },
-        
+
         unregister: function (options) {
             var q = $q.defer();
             window.plugins.pushNotification.unregister(
@@ -1241,10 +1297,10 @@ angular.module('ngCordova.plugins.push', [])
                 q.reject(error);
             },
             options);
-            
+
             return q.promise;
         },
-        
+
         // iOS only
         setBadgeNumber: function(number) {
         	var q = $q.defer();
@@ -1410,7 +1466,7 @@ angular.module('ngCordova.plugins.spinnerDialog', [])
 	    return window.plugins.spinnerDialog.hide();
     }
   }
-  
+
 }]);
 angular.module('ngCordova.plugins.splashscreen', [])
 
@@ -1515,7 +1571,7 @@ angular.module('ngCordova.plugins.statusbar', [])
     styleColor: function (color) {
       return StatusBar.backgroundColorByName(color);
     },
-    
+
     styleHex: function (colorHex) {
       return StatusBar.backgroundColorByHexString(colorHex);
     },
