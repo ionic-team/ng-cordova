@@ -203,7 +203,7 @@ angular.module('ngCordova.plugins.file', [])
                     filesystem.root.getDirectory(filePath, {create: true}, function(absolutePath) {
                         fileTransfer.download(
                             uri,
-                            absolutePath,
+                            absolutePath.toURL() + fileName,
                             function (entry) {
                                 q.resolve(entry);
                             },
@@ -211,11 +211,12 @@ angular.module('ngCordova.plugins.file', [])
                                 q.reject(error);
                             },
                             trustAllHosts, options);
-
-                        return q.promise;
+                    }, function(error) {
+                        q.reject(error);
                     });
                 }
             );
+            return q.promise;
         },
 
       uploadFile: function (server, filePath, options) {
