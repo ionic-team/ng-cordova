@@ -36,11 +36,23 @@ angular.module('ngCordova.plugins.file', [])
       },
 
       createDir: function (dir, replaceBOOL) {
+        var q = $q.defer();
+
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL});
+            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL},
+                //Dir exists or is created successfully
+                function () {
+                    q.resolve();
+                },
+                //Dir doesn't exist and is not created
+                function () {
+                    q.reject();
+                }
+            );
           }
         );
+        return q.promise;
       },
 
       checkFile: function (filePath) {
