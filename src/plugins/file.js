@@ -190,28 +190,33 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      downloadFile: function (source, filePath, trustAllHosts, options) {
-        var q = $q.defer();
-        var fileTransfer = new FileTransfer();
-        var uri = encodeURI(source);
-        
-        fileTransfer.onprogress = function(progressEvent) {
-            q.notify(progressEvent);
-        };
+        downloadFile: function (source, filePath, fileName, trustAllHosts, options) {
+            var q = $q.defer();
+            var fileTransfer = new FileTransfer();
+            var uri = encodeURI(source);
 
-        fileTransfer.download(
-          uri,
-          filePath,
-          function (entry) {
-            q.resolve(entry);
-          },
-          function (error) {
-            q.reject(error);
-          },
-          trustAllHosts, options);
-          
-          return q.promise;
-      },
+            fileTransfer.onprogress = function(progressEvent) {
+                q.notify(progressEvent);
+            };
+            getFilesystem().then(
+                function (filesystem) {
+                    filesystem.root.getDirectory(filePath, {create: true}, function(absolutePath) {
+                        fileTransfer.download(
+                            uri,
+                            absolutePath,
+                            function (entry) {
+                                q.resolve(entry);
+                            },
+                            function (error) {
+                                q.reject(error);
+                            },
+                            trustAllHosts, options);
+
+                        return q.promise;
+                    });
+                }
+            );
+        },
 
       uploadFile: function (server, filePath, options) {
         var q = $q.defer();
