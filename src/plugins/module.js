@@ -21,5 +21,12 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.spinnerDialog',
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.localNotification',
+  'ngCordova.plugins.toast',
+  'ngCordova.plugins.flashlight',
+  'ngCordova.plugins.capture',
+  'ngCordova.plugins.appAvailability',
+  'ngCordova.plugins.prefs',
+  'ngCordova.plugins.printer',
+  'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.backgroundGeolocation'
 ]);
