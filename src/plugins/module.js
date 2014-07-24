@@ -28,5 +28,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
-  'ngCordova.plugins.bluetoothSerial'
+  'ngCordova.plugins.bluetoothSerial',
+  'ngCordova.plugins.backgroundGeolocation'
 ]);
