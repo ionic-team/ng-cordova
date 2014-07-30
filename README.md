@@ -37,4 +37,8 @@ https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 https://github.com/phonegap-build/GAPlugin.git
 https://github.com/driftyco/ionic-plugins-keyboard
 https://github.com/wildabeast/BarcodeScanner
+https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin
+https://github.com/apache/cordova-plugin-media-capture
+https://github.com/ohh2ahh/AppAvailability
+https://github.com/dferrell/plugins-application-preferences
 ```
