@@ -5,6 +5,36 @@ ngCordova: Cordova with Angulary Goodness
 
 [http://ngCordova.com](http://ngcordova.com/)
 
-AngularJS Cordova wrappers for common Cordova plugins.
+ngCordova gives you simple AngularJS wrappers for common Cordova plugins.
 
-Created by the [Ionic Framework](http://ionicframework.com/) team.
+Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
+
+### Plugins
+
+ngCordova currently has support for the following plugins:
+
+```
+org.apache.cordova.camera
+org.apache.cordova.console
+org.apache.cordova.contacts
+org.apache.cordova.device
+org.apache.cordova.device-motion
+org.apache.cordova.device-orientation
+org.apache.cordova.dialogs
+org.apache.cordova.file
+org.apache.cordova.geolocation
+org.apache.cordova.globalization
+org.apache.cordova.network-information
+org.apache.cordova.splashscreen
+org.apache.cordova.statusbar
+org.apache.cordova.vibration
+https://github.com/Paldom/PinDialog.git
+https://github.com/phonegap-build/PushPlugin.git
+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
+https://github.com/Paldom/SpinnerDialog.git
+https://github.com/brodysoft/Cordova-SQLitePlugin.git
+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+https://github.com/phonegap-build/GAPlugin.git
+https://github.com/driftyco/ionic-plugins-keyboard
+https://github.com/wildabeast/BarcodeScanner
+```
