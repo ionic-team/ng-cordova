@@ -19,25 +19,25 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
     args.push(success);
     args.push(failure);
 
-    cordova.plugins.bluetoothSerial[f_name].apply(this, args);
+    window.bluetoothSerial[f_name].apply(this, args);
 
     return q.promise;
   };
 
   return {
-    connect:          promise_f('connect', macAddress),
-    connectInsecure:  promise_f('connectInsecure', macAddress),
-    disconnect:       promise_f('disconnect'),
-    list:             promise_f('list'),
-    isEnabled:        promise_f('isEnabled'),
-    isConnected:      promise_f('isConnected'),
-    available:        promise_f('available'),
-    read:             promise_f('read'),
-    readUntil:        promise_f('readUntil', delimiter),
-    write:            promise_f('write', data),
-    subscribe:        promise_f('subscribe', delimiter),
-    unsubscribe:      promise_f('unsubscribe'),
-    clear:            promise_f('clear'),
-    readRSSI:         promise_f('readRSSI')
+    connect:          function (macAddress) { return promise_f('connect', macAddress); },
+    connectInsecure:  function (macAddress) { return promise_f('connectInsecure', macAddress); },
+    disconnect:       function () { return promise_f('disconnect'); },
+    list:             function () { return promise_f('list'); },
+    isEnabled:        function () { return promise_f('isEnabled'); },
+    isConnected:      function () { return promise_f('isConnected'); },
+    available:        function () { return promise_f('available'); },
+    read:             function () { return promise_f('read'); },
+    readUntil:        function (delimiter) { return promise_f('readUntil', delimiter); },
+    write:            function (data) { return promise_f('write', data); },
+    subscribe:        function (delimiter) { return promise_f('subscribe', delimiter); },
+    unsubscribe:      function () { return promise_f('unsubscribe'); },
+    clear:            function () { return promise_f('clear'); },
+    readRSSI:         function () { return promise_f('readRSSI'); }
   };
 }]);
