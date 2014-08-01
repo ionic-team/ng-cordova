@@ -27,6 +27,71 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
+angular.module('ngCordova.plugins.backgroundGeolocation', [])
+
+.factory('$cordovaBackgroundGeolocation', ['$q',
+  function ($q) {
+
+
+    return {
+
+      init: function() {
+        window.navigator.geolocation.getCurrentPosition(function(location) {
+          return location;
+        });
+      },
+
+      configure: function(options) {
+        
+       this.init();
+
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.configure(
+         function (result){
+           q.resolve(result);
+           window.plugins.backgroundGeoLocation.finish();
+         },
+         function (err) {
+           q.reject(err);
+         },options);
+
+       this.start();
+
+       return q.promise;
+     },
+
+     start : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.start(
+         function(result){
+           q.resolve(result);
+         },
+         function(err){
+           q.reject(err);
+         });
+
+       return q.promise;
+     },
+
+     stop : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.stop(
+         function (result) {
+           q.resolve(result);
+         },
+         function (err) {
+           q.reject(err);
+         });
+
+       return q.promise;
+     }
+   };
+ }
+ ]);
+
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
 .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
@@ -201,6 +266,20 @@ angular.module('ngCordova.plugins.capture', [])
   }
 }]);
 
+angular.module('ngCordova.plugins.clipboard', [])
+
+.factory('$cordovaClipboard', [function() {
+
+  return {
+    copy: function(text, onSuccess, onError) {
+	    return window.cordova.plugins.clipboard.copy(text, onSuccess, onError);
+    },
+
+    paste: function(onSuccess, onError) {
+	    return window.cordova.plugins.clipboard.copy(onSuccess, onError);
+    }
+  }
+}]);
 angular.module('ngCordova.plugins.contacts', [])
 
 .factory('$cordovaContacts', ['$q', function ($q) {
@@ -1126,7 +1205,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
-  'ngCordova.plugins.bluetoothSerial'
+  'ngCordova.plugins.bluetoothSerial',
+  'ngCordova.plugins.backgroundGeolocation'
 ]);
 
 angular.module('ngCordova.plugins.network', [])
@@ -1443,7 +1523,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       execute: function (db, query, binding) {
-        q = $q.defer();
+        var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
               q.resolve(result);
@@ -1456,7 +1536,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       nestedExecute: function (db, query1, query2, binding1, binding2) {
-        q = $q.defer();
+        var q = $q.defer();
 
         db.transaction(function (tx) {
             tx.executeSql(query1, binding1, function (tx, result) {
