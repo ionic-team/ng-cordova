@@ -170,23 +170,57 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileMetadata: function (filePath) {
         var q = $q.defer();
-
-        getFilesystem().then(
-          function (filesystem) {
-            filesystem.root.getFile(filePath, {create: false},
-              // success
-              function (fileEntry) {
-                fileEntry.file(function (file) {
-                  q.resolve(file);
+          getFilesystem().then(
+            function (filesystem) {
+              filesystem.root.getFile(filePath, {create: false},
+                // success
+                function (fileEntry) {
+                  fileEntry.file(function (file) {
+                    q.resolve(file);
+                  });
+                },
+                // error
+                function (error) {
+                  q.reject(error);
                 });
-              },
-              // error
-              function (error) {
-                q.reject(error);
-              });
+            }
+          );
+
+        return q.promise;
+      },
+      
+      readFileAbsolute: function (){
+        var q = $q.defer();
+        window.resolveLocalFileSystemURI(filePath, 
+          function (fileEntry) {
+            fileEntry.file(function(file) {
+              var reader = new FileReader();
+              reader.onloadend = function () {
+                q.resolve(this.result);
+              };
+
+              reader.readAsText(file);
+            })
+          },
+          function (error) {
+            q.reject(error);  
           }
         );
-
+      },
+      
+      readFileMetadataAbsolute: function (filePath){
+        var q = $q.defer();
+        window.resolveLocalFileSystemURI(filePath, 
+          function (fileEntry) {
+            fileEntry.file(function(file) {
+              q.resolve(file);
+            })
+          },
+          function (error) {
+            q.reject(error);  
+          }
+        );
+        
         return q.promise;
       },
 
