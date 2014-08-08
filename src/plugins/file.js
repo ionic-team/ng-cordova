@@ -11,7 +11,7 @@
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', function ($q) {
+  .factory('$cordovaFile', ['$q', function ($q, $timeout) {
 
     return {
       checkDir: function (dir) {
@@ -217,6 +217,12 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
+        if(options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function() {
+            fileTransfer.abort();
+          }, options.timeout);
+          options.timeout = null;
+        }
         
         fileTransfer.onprogress = function(progressEvent) {
             q.notify(progressEvent);
