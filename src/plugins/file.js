@@ -11,7 +11,7 @@
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', function ($q, $timeout) {
+  .factory('$cordovaFile', ['$q', '$timeout', function ($q, $timeout) {
 
     return {
       checkDir: function (dir) {
