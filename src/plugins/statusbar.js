@@ -4,8 +4,8 @@ angular.module('ngCordova.plugins.statusbar', [])
 
   return {
   	overlaysWebView: function(bool) {
-      return StatusBar.overlaysWebView(true);
-	  },
+      return StatusBar.overlaysWebView(!!bool);
+	},
 
     // styles: Default, LightContent, BlackTranslucent, BlackOpaque
     style: function (style) {
