@@ -9,6 +9,29 @@ angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
 
+angular.module('ngCordova.plugins.adMob', [])
+
+    .factory('$cordovaAdMob', [function() {
+
+      return {
+        createBannerView: function(options, success, fail) {
+          return window.plugins.AdMob.createBannerView(options, success, fail);
+        },
+        createInterstitialView: function(options, success, fail) {
+          return window.plugins.AdMob.createInterstitialView(options, success, fail);
+        },
+        requestAd: function(options, success, fail) {
+          return window.plugins.AdMob.requestAd(options, success, fail);
+        },
+        showAd: function(options, success, fail) {
+          return window.plugins.AdMob.showAd(options, success, fail);
+        },
+        requestInterstitialAd: function(options, success, fail) {
+          return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
+        }
+
+      }
+}]);
 angular.module('ngCordova.plugins.appAvailability', [])
 
 .factory('$cordovaAppAvailability', ['$q', function ($q) {
@@ -27,6 +50,71 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
+angular.module('ngCordova.plugins.backgroundGeolocation', [])
+
+.factory('$cordovaBackgroundGeolocation', ['$q',
+  function ($q) {
+
+
+    return {
+
+      init: function() {
+        window.navigator.geolocation.getCurrentPosition(function(location) {
+          return location;
+        });
+      },
+
+      configure: function(options) {
+        
+       this.init();
+
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.configure(
+         function (result){
+           q.resolve(result);
+           window.plugins.backgroundGeoLocation.finish();
+         },
+         function (err) {
+           q.reject(err);
+         },options);
+
+       this.start();
+
+       return q.promise;
+     },
+
+     start : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.start(
+         function(result){
+           q.resolve(result);
+         },
+         function(err){
+           q.reject(err);
+         });
+
+       return q.promise;
+     },
+
+     stop : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.stop(
+         function (result) {
+           q.resolve(result);
+         },
+         function (err) {
+           q.reject(err);
+         });
+
+       return q.promise;
+     }
+   };
+ }
+ ]);
+
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
 .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
@@ -86,26 +174,26 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
     args.push(success);
     args.push(failure);
 
-    cordova.plugins.bluetoothSerial[f_name].apply(this, args);
+    window.bluetoothSerial[f_name].apply(this, args);
 
     return q.promise;
   };
 
   return {
-    connect:          promise_f('connect', macAddress),
-    connectInsecure:  promise_f('connectInsecure', macAddress),
-    disconnect:       promise_f('disconnect'),
-    list:             promise_f('list'),
-    isEnabled:        promise_f('isEnabled'),
-    isConnected:      promise_f('isConnected'),
-    available:        promise_f('available'),
-    read:             promise_f('read'),
-    readUntil:        promise_f('readUntil', delimiter),
-    write:            promise_f('write', data),
-    subscribe:        promise_f('subscribe', delimiter),
-    unsubscribe:      promise_f('unsubscribe'),
-    clear:            promise_f('clear'),
-    readRSSI:         promise_f('readRSSI')
+    connect:          function (macAddress) { return promise_f('connect', macAddress); },
+    connectInsecure:  function (macAddress) { return promise_f('connectInsecure', macAddress); },
+    disconnect:       function () { return promise_f('disconnect'); },
+    list:             function () { return promise_f('list'); },
+    isEnabled:        function () { return promise_f('isEnabled'); },
+    isConnected:      function () { return promise_f('isConnected'); },
+    available:        function () { return promise_f('available'); },
+    read:             function () { return promise_f('read'); },
+    readUntil:        function (delimiter) { return promise_f('readUntil', delimiter); },
+    write:            function (data) { return promise_f('write', data); },
+    subscribe:        function (delimiter) { return promise_f('subscribe', delimiter); },
+    unsubscribe:      function () { return promise_f('unsubscribe'); },
+    clear:            function () { return promise_f('clear'); },
+    readRSSI:         function () { return promise_f('readRSSI'); }
   };
 }]);
 
@@ -201,6 +289,37 @@ angular.module('ngCordova.plugins.capture', [])
   }
 }]);
 
+angular.module('ngCordova.plugins.clipboard', [])
+
+  .factory('$cordovaClipboard', ['$q', function ($q) {
+
+    return {
+      copy: function (text) {
+        var q = $q.defer();
+
+        window.cordova.plugins.clipboard.copy(text,
+          function () {
+            q.resolve();
+          }, function () {
+            q.reject();
+          });
+
+        return q.promise;
+      },
+
+      paste: function () {
+        var q = $q.defer();
+
+        window.cordova.plugins.clipboard.copy(function () {
+          q.resolve();
+        }, function () {
+          q.reject();
+        });
+
+        return q.promise;
+      }
+    }
+  }]);
 angular.module('ngCordova.plugins.contacts', [])
 
 .factory('$cordovaContacts', ['$q', function ($q) {
@@ -380,7 +499,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       }
     },
     clearWatch: function(watchID) {
-      navigator.compass.clearWatch();
+      navigator.compass.clearWatch(watchID);
     }
   }
 }]);
@@ -407,6 +526,137 @@ angular.module('ngCordova.plugins.dialogs', [])
     }
   }
 }]);
+
+/*global facebookConnectPlugin,angular */
+'use strict';
+angular.module('ngCordova.plugins.facebookConnect', [])
+    .provider('$cordova', [
+
+        function () {
+
+            this.FacebookAppId = undefined;
+
+            this.setFacebookAppId = function (id) {
+                this.FacebookAppId = id;
+            };
+
+            this.$get = [
+
+                function () {
+
+                    var FbAppId = this.FacebookAppId;
+
+                    return {
+                        getFacebookAppId: function () {
+                            return FbAppId;
+                        }
+                    };
+
+                }
+            ];
+
+        }
+    ])
+    .factory('$cordovaFacebookConnect', ['$q', '$cordova',
+        function ($q, $cordova) {
+
+
+            return {
+
+                init: function (appId) {
+                    if (!window.cordova) {
+                        facebookConnectPlugin.browserInit(appId);
+                    }
+                },
+
+                login: function (o) {
+
+                    this.init($cordova.getFacebookAppId());
+
+                    var q = $q.defer();
+                    facebookConnectPlugin.login(o,
+                        function (res) {
+                            q.resolve(res);
+                        }, function (res) {
+                            q.reject(res);
+                        });
+
+                    return q.promise;
+                },
+
+                showDialog: function (o) {
+
+                    var q = $q.defer();
+                    facebookConnectPlugin.showDialog(o,
+                        function (res) {
+                            q.resolve(res);
+                        },
+                        function (err) {
+                            q.reject(err);
+                        });
+
+                    return q.promise;
+                },
+
+                api: function (path, permission) {
+
+                    var q = $q.defer();
+                    facebookConnectPlugin.api(path, permission,
+                        function (res) {
+                            q.resolve(res);
+                        },
+                        function (err) {
+                            q.reject(err);
+                        });
+
+                    return q.promise;
+                },
+
+                getAccessToken: function () {
+
+                    var q = $q.defer();
+                    facebookConnectPlugin.getAccessToken(function (res) {
+                            q.resolve(res);
+                        },
+                        function (err) {
+                            q.reject(err);
+                        });
+
+                    return q.promise;
+                },
+
+                getLoginStatus: function () {
+
+                    var q = $q.defer();
+                    facebookConnectPlugin.getLoginStatus(function (res) {
+                            q.resolve(res);
+                        },
+                        function (err) {
+                            q.reject(err);
+                        });
+
+                    return q.promise;
+
+                },
+
+                logout: function () {
+
+                    var q = $q.defer();
+                    facebookConnectPlugin.logout(function (res) {
+                            q.resolve(res);
+                        },
+                        function (err) {
+                            q.reject(err);
+                        });
+
+                    return q.promise;
+
+                }
+
+
+            };
+        }
+    ]);
 
 // TODO: add support for readFile -> readAsData
 // TODO: add support for readFile -> readAsBinaryString
@@ -446,11 +696,47 @@ angular.module('ngCordova.plugins.file', [])
       },
 
       createDir: function (dir, replaceBOOL) {
+        var q = $q.defer();
+
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL});
+            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL},
+                //Dir exists or is created successfully
+                function () {
+                    q.resolve();
+                },
+                //Dir doesn't exist and is not created
+                function () {
+                    q.reject();
+                }
+            );
           }
         );
+        return q.promise;
+      },
+
+      listDir: function(filePath) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function(filesystem) {
+            filesystem.root.getDirectory(filePath, {create: false}, function(parent) {
+              var reader = parent.createReader();
+              reader.readEntries(
+                  function(entries) {
+                    q.resolve(entries);
+                  },
+                  function() {
+                    q.reject('DIR_READ_ERROR : ' + filePath);
+                  }
+              );
+            }, function() {
+                q.reject('DIR_NOT_FOUND : ' + filePath);
+            });
+          }
+        );
+
+        return q.promise;
       },
 
       checkFile: function (filePath) {
@@ -599,29 +885,64 @@ angular.module('ngCordova.plugins.file', [])
 
         return q.promise;
       },
-
-      downloadFile: function (source, filePath, trustAllHosts, options) {
+      
+      readFileAbsolute: function (){
         var q = $q.defer();
-        var fileTransfer = new FileTransfer();
-        var uri = encodeURI(source);
-        
-        fileTransfer.onprogress = function(progressEvent) {
-            q.notify(progressEvent);
-        };
+        window.resolveLocalFileSystemURI(filePath, 
+          function (fileEntry) {
+            fileEntry.file(function(file) {
+              var reader = new FileReader();
+              reader.onloadend = function () {
+                q.resolve(this.result);
+              };
 
-        fileTransfer.download(
-          uri,
-          filePath,
-          function (entry) {
-            q.resolve(entry);
+              reader.readAsText(file);
+            })
           },
           function (error) {
-            q.reject(error);
-          },
-          trustAllHosts, options);
-          
-          return q.promise;
+            q.reject(error);  
+          }
+        );
       },
+      
+      readFileMetadataAbsolute: function (filePath){
+        var q = $q.defer();
+        window.resolveLocalFileSystemURI(filePath, 
+          function (fileEntry) {
+            fileEntry.file(function(file) {
+              q.resolve(file);
+            })
+          },
+          function (error) {
+            q.reject(error);  
+          }
+        );
+        
+        return q.promise;
+      },
+
+        downloadFile: function (source, filePath, trustAllHosts, options) {
+            var q = $q.defer();
+            var fileTransfer = new FileTransfer();
+            var uri = encodeURI(source);
+
+            fileTransfer.onprogress = function(progressEvent) {
+                q.notify(progressEvent);
+            };
+
+            fileTransfer.download(
+                uri,
+                filePath,
+                function (entry) {
+                    q.resolve(entry);
+                },
+                function (error) {
+                    q.reject(error);
+                },
+                trustAllHosts, options);
+
+            return q.promise;
+        },
 
       uploadFile: function (server, filePath, options) {
         var q = $q.defer();
@@ -661,6 +982,7 @@ angular.module('ngCordova.plugins.file', [])
       return q.promise;
     }
   }]);
+
 angular.module('ngCordova.plugins.flashlight', [])
 
 .factory('$cordovaFlashlight', ['$q', function ($q) {
@@ -698,53 +1020,71 @@ angular.module('ngCordova.plugins.flashlight', [])
 ]);
 angular.module('ngCordova.plugins.ga', [])
 
-    .factory('$cordovaGA', ['$q', function ($q) {
+  .factory('$cordovaGA', ['$q', function ($q) {
 
-        return {
-            
-            init: function (id, mingap) {
-                var q = $q.defer();
-                mingap = (mingap >= 0) ? mingap : 10;
-                window.plugins.gaPlugin.init(function (result) {q.resolve(result); },
-                                                    function (error) {q.reject(error); },
-                                                    id, mingap);
-                return q.promise;
-            },
-            
-            trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
-                var q = $q.defer();
-                window.plugins.gaPlugin.trackEvent(function (result) {q.resolve(result); },
-                                                    function (error) {q.reject(error); },
-                                                    category, eventAction, eventLabel, eventValue);
-                return q.promise;
-            },
-            
-            trackPage: function (success, fail, pageURL) {
-                var q = $q.defer();
-                window.plugins.gaPlugin.trackPage(function (result) {q.resolve(result); },
-                                                    function (error) {q.reject(error); },
-                                                    pageURL);
-                return q.promise;
-            },
-            
-            setVariable: function (success, fail, index, value) {
-                var q = $q.defer();
-                window.plugins.gaPlugin.setVariable(function (result) {q.resolve(result); },
-                                                    function (error) {q.reject(error); },
-                                                    index, value);
-                return q.promise;
-            },
-            
-            exit: function (success, fail) {
-                var q = $q.defer();
-                window.plugins.gaPlugin.exit(function (result) {q.resolve(result); },
-                                                    function (error) {q.reject(error); });
-                return q.promise;
-            }
-            
-        };
+    return {
 
-    }]);
+      init: function (id, mingap) {
+        var q = $q.defer();
+        mingap = (mingap >= 0) ? mingap : 10;
+        window.plugins.gaPlugin.init(function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          id, mingap);
+        return q.promise;
+      },
+
+      trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
+        var q = $q.defer();
+        window.plugins.gaPlugin.trackEvent(function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          category, eventAction, eventLabel, eventValue);
+        return q.promise;
+      },
+
+      trackPage: function (success, fail, pageURL) {
+        var q = $q.defer();
+        window.plugins.gaPlugin.trackPage(function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          pageURL);
+        return q.promise;
+      },
+
+      setVariable: function (success, fail, index, value) {
+        var q = $q.defer();
+        window.plugins.gaPlugin.setVariable(function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          index, value);
+        return q.promise;
+      },
+
+      exit: function (success, fail) {
+        var q = $q.defer();
+        window.plugins.gaPlugin.exit(function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          });
+        return q.promise;
+      }
+    };
+  }]);
 angular.module('ngCordova.plugins.geolocation', [])
 
 .factory('$cordovaGeolocation', ['$q', function($q) {
@@ -962,6 +1302,60 @@ angular.module('ngCordova.plugins.globalization', [])
 
 }]);
 
+// Google Maps needs ALOT of work!
+// Not for production use
+
+angular.module('ngCordova.plugins.googleMap', [])
+
+  .factory('$cordovaGoogleMap', ['$q', function ($q) {
+
+    var map = null;
+
+    return {
+      getMap: function (options) {
+        var q = $q.defer();
+
+        if (!window.plugin.google.maps) {
+          q.reject(null);
+        }
+        else {
+          var div = document.getElementById("map_canvas");
+          map = window.plugin.google.maps.Map.getMap(options);
+          map.setDiv(div);
+          q.resolve(map);
+        }
+        return q.promise;
+      },
+
+
+      isMapLoaded: function () { // check if an instance of the map exists
+        if (map) return true;
+        else return false;
+      },
+      addMarker: function (markerOptions) { // add a marker to the map with given markerOptions
+        var q = $q.defer();
+        map.addMarker(markerOptions, function (marker) {
+          q.resolve(marker);
+        });
+
+        return q.promise;
+      },
+      getMapTypeIds: function () {
+        return window.plugin.google.maps.mapTypeId;
+      },
+      setVisible: function (isVisible) {
+        var q = $q.defer();
+        map.setVisible(isVisible);
+        return q.promise;
+      },
+      // I don't know how to deallocate te map and the google map plugin.
+      cleanup: function () {
+        map = null;
+        delete map;
+      }
+    }
+  }]);
+
 angular.module('ngCordova.plugins.keyboard', [])
 
 .factory('$cordovaKeyboard', [function () {
@@ -1127,9 +1521,103 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
   'ngCordova.plugins.bluetoothSerial',
-  'ngCordova.plugins.adMob'
+  'ngCordova.plugins.backgroundGeolocation',
+  'ngCordova.plugins.facebookConnect',
+  'ngCordova.plugins.adMob',
+  'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.clipboard',
+  'ngCordova.plugins.nativeAudio'
 ]);
 
+angular.module('ngCordova.plugins.nativeAudio', [])
+
+  .factory('$cordovaNativeAudio', ['$q', function ($q) {
+
+    return {
+      preloadSimple: function (id, assetPath) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.preloadSimple(id, assetPath,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
+      },
+
+      preloadComplex: function (id, assetPath, volume, voices) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
+      },
+
+      play: function (id) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.play(id,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
+      },
+
+      stop: function (id) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.stop(id,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+        return q.promise;
+      },
+
+      loop: function (id) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.loop(id,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
+      },
+
+      unload: function (id) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.unload(id,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
+      }
+    }
+  }]);
 angular.module('ngCordova.plugins.network', [])
 
 .factory('$cordovaNetwork', [function () {
@@ -1444,7 +1932,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       execute: function (db, query, binding) {
-        q = $q.defer();
+        var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
               q.resolve(result);
@@ -1457,7 +1945,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       nestedExecute: function (db, query1, query2, binding1, binding2) {
-        q = $q.defer();
+        var q = $q.defer();
 
         db.transaction(function (tx) {
             tx.executeSql(query1, binding1, function (tx, result) {
@@ -1629,30 +2117,6 @@ angular.module('ngCordova.plugins.vibration', [])
       return navigator.notification.cancelVibration();
     }
   }
-}]);
-
-angular.module('ngCordova.plugins.adMob', [])
-
-    .factory('$cordovaAdMob', [function() {
-
-      return {
-        createBannerView: function(options, success, fail) {
-          return window.plugins.AdMob.createBannerView(options, success, fail);
-        },
-        createInterstitialView: function(options, success, fail) {
-          return window.plugins.AdMob.createInterstitialView(options, success, fail);
-        },
-        requestAd: function(options, success, fail) {
-          return window.plugins.AdMob.requestAd(options, success, fail);
-        },
-        showAd: function(options, success, fail) {
-          return window.plugins.AdMob.showAd(options, success, fail);
-        },
-        requestInterstitialAd: function(options, success, fail) {
-          return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
-        }
-
-      }
 }]);
 
 })();
