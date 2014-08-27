@@ -103,7 +103,9 @@ angular.module('ngCordova.plugins.file', [])
       },
 
       createFile: function (filePath, replaceBOOL) {
-        // Backward compatibility for previous function createFile(dir, file, replaceBOOL)
+        // Backward compatibility for previous function createFile(filepath replaceBOOL)
+        var q = $q.defer();
+
         if (arguments.length == 3) {
           filePath = '/' + filePath + '/' + arguments[1];
           replaceBOOL = arguments[2];
@@ -113,13 +115,15 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getFile(filePath, {create: true, exclusive: replaceBOOL},
               function (success) {
-
+                q.resolve(success);
               },
               function (err) {
-
+                q.reject(err);
               });
           }
         );
+
+        return q.promise;
       },
 
       removeFile: function (filePath) {
