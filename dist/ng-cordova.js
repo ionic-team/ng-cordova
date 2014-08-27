@@ -27,6 +27,71 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
+angular.module('ngCordova.plugins.backgroundGeolocation', [])
+
+.factory('$cordovaBackgroundGeolocation', ['$q',
+  function ($q) {
+
+
+    return {
+
+      init: function() {
+        window.navigator.geolocation.getCurrentPosition(function(location) {
+          return location;
+        });
+      },
+
+      configure: function(options) {
+        
+       this.init();
+
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.configure(
+         function (result){
+           q.resolve(result);
+           window.plugins.backgroundGeoLocation.finish();
+         },
+         function (err) {
+           q.reject(err);
+         },options);
+
+       this.start();
+
+       return q.promise;
+     },
+
+     start : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.start(
+         function(result){
+           q.resolve(result);
+         },
+         function(err){
+           q.reject(err);
+         });
+
+       return q.promise;
+     },
+
+     stop : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.stop(
+         function (result) {
+           q.resolve(result);
+         },
+         function (err) {
+           q.reject(err);
+         });
+
+       return q.promise;
+     }
+   };
+ }
+ ]);
+
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
 .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
@@ -276,8 +341,11 @@ angular.module('ngCordova.plugins.contacts', [])
 
 angular.module('ngCordova.plugins.device', [])
 
-.factory('$cordovaDevice', [function () {
+.factory('$cordovaDevice', ['$q', function ($q) {
 
+  var readyDeferred = $q.defer();
+  document.addEventListener('deviceready', function () { readyDeferred.resolve(); }, false);
+  
   return {
     getDevice: function () {
       return device;
@@ -291,7 +359,7 @@ angular.module('ngCordova.plugins.device', [])
       return device.model;
     },
 
-    // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+    // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
     getName: function () {
       return device.name;
     },
@@ -306,7 +374,9 @@ angular.module('ngCordova.plugins.device', [])
 
     getVersion: function () {
       return device.version;
-    }
+    },
+
+    ready: readyDeferred.promise
   }
 }]);
 
@@ -1126,7 +1196,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
-  'ngCordova.plugins.bluetoothSerial'
+  'ngCordova.plugins.bluetoothSerial',
+  'ngCordova.plugins.backgroundGeolocation'
 ]);
 
 angular.module('ngCordova.plugins.network', [])
@@ -1443,7 +1514,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       execute: function (db, query, binding) {
-        q = $q.defer();
+        var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
               q.resolve(result);
@@ -1456,7 +1527,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       nestedExecute: function (db, query1, query2, binding1, binding2) {
-        q = $q.defer();
+        var q = $q.defer();
 
         db.transaction(function (tx) {
             tx.executeSql(query1, binding1, function (tx, result) {

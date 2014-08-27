@@ -1,7 +1,10 @@
 angular.module('ngCordova.plugins.device', [])
 
-.factory('$cordovaDevice', [function () {
+.factory('$cordovaDevice', ['$q', function ($q) {
 
+  var readyDeferred = $q.defer();
+  document.addEventListener('deviceready', function () { readyDeferred.resolve(); }, false);
+  
   return {
     getDevice: function () {
       return device;
@@ -15,7 +18,7 @@ angular.module('ngCordova.plugins.device', [])
       return device.model;
     },
 
-    // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+    // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
     getName: function () {
       return device.name;
     },
@@ -30,6 +33,8 @@ angular.module('ngCordova.plugins.device', [])
 
     getVersion: function () {
       return device.version;
-    }
+    },
+
+    ready: readyDeferred.promise
   }
 }]);
