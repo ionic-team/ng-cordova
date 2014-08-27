@@ -30,5 +30,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.printer',
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.backgroundGeolocation',
-  'ngCordova.plugins.facebookConnect'
+  'ngCordova.plugins.facebookConnect',
+  'ngCordova.plugins.adMob',
+  'ngCordova.plugins.googleMap'
 ]);
