@@ -29,7 +29,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       }
     },
     clearWatch: function(watchID) {
-      navigator.compass.clearWatch();
+      navigator.compass.clearWatch(watchID);
     }
   }
 }]);
