@@ -1,0 +1,12 @@
+<ion-view title="Dialogs">
+    <ion-content padding="true">
+        <p>Network Type: {{networkType}}</p>
+        <p>Network Status:</p>
+        <div ng-show="isOnline">
+            <h1>Online</h1>
+        </div>
+        <div ng-show="isOffline">
+            <h1>Offline</h1>
+        </div>
+    </ion-content>
+</ion-view>

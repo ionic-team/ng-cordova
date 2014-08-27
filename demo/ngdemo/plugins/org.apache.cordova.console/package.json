@@ -1,0 +1,22 @@
+{
+    "version": "0.2.9",
+    "name": "org.apache.cordova.console",
+    "cordova_name": "Console",
+    "description": "Cordova Console Plugin",
+    "license": "Apache 2.0",
+    "repo": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-console.git",
+    "issue": "https://issues.apache.org/jira/browse/CB/component/12320644",
+    "keywords": [
+        "cordova",
+        "console"
+    ],
+    "platforms": [
+        "ios",
+        "ubuntu",
+        "wp7",
+        "wp8",
+        "windows8"
+    ],
+    "engines": [],
+    "englishdoc": "<!---\n    Licensed to the Apache Software Foundation (ASF) under one\n    or more contributor license agreements.  See the NOTICE file\n    distributed with this work for additional information\n    regarding copyright ownership.  The ASF licenses this file\n    to you under the Apache License, Version 2.0 (the\n    \"License\"); you may not use this file except in compliance\n    with the License.  You may obtain a copy of the License at\n\n      http://www.apache.org/licenses/LICENSE-2.0\n\n    Unless required by applicable law or agreed to in writing,\n    software distributed under the License is distributed on an\n    \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n    KIND, either express or implied.  See the License for the\n    specific language governing permissions and limitations\n    under the License.\n-->\n\n# org.apache.cordova.console\n\nThis plugin is meant to ensure that console.log() is as useful as it can be.\nIt adds additional function for iOS, Ubuntu, Windows Phone 8, and Windows 8. If\nyou are happy with how console.log() works for you, then you probably\ndon't need this plugin.\n\n## Installation\n\n    cordova plugin add org.apache.cordova.console\n\n### Android Quirks\n\nOn some platforms other than Android, console.log() will act on multiple\narguments, such as console.log(\"1\", \"2\", \"3\"). However, Android will act only\non the first argument. Subsequent arguments to console.log() will be ignored.\nThis plugin is not the cause of that, it is a limitation of Android itself.\n"
+}

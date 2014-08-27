@@ -1,0 +1,39 @@
+<ion-view title="Device Motion">
+    <ion-content padding="true">
+        <div class="card">
+            <div class="item item-divider">
+                Acceleration
+            </div>
+            <div class="item item-text-wrap">
+                {{msg}}
+            </div>
+            <div class="item item-body">
+                <p>X: {{x}}</p>
+
+                <p>Y: {{y}}</p>
+
+                <p>Z: {{z}}</p>
+
+                <p>Time: {{timestamp}}</p>
+            </div>
+            <div class="item item-divider">
+                Acceleration
+            </div>
+            <p>
+                <button class="button button-full button-positive" ng-click="getAcceleration()">
+                    Snapshot
+                </button>
+            </p>
+            <p>
+                <button class="button button-full button-positive" ng-click="watchAcceleration()">
+                    Watch
+                </button>
+            </p>
+            <p>
+                <button class="button button-full button-positive" ng-click="clearWatch()">
+                    Clear
+                </button>
+            </p>
+        </div>
+    </ion-content>
+</ion-view>
