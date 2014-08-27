@@ -2,4 +2,4 @@
 node_modules/
 .idea/*
 demo/platforms/*
-demo/plugins
+demo/plugins/*
