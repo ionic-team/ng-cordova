@@ -21,10 +21,7 @@ angular.module('demo', [
   'demo.preferences.ctrl',
   'demo.statusbar.ctrl',
   'demo.toast.ctrl',
-  'demo.vibration.ctrl',
-
-
-  'starter.controller'
+  'demo.vibration.ctrl'
 ])
 
   .run(function ($ionicPlatform) {
