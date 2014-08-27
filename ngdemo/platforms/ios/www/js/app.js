@@ -8,16 +8,21 @@ angular.module('demo', [
   'ngCordova',
 
   // modules
+  'demo.barcodeScanner.ctrl',
   'demo.camera.ctrl',
   'demo.device.ctrl',
   'demo.deviceMotion.ctrl',
   'demo.deviceOrientation.ctrl',
   'demo.dialogs.ctrl',
+  'demo.flashlight.ctrl',
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.network.ctrl',
+  'demo.preferences.ctrl',
+  'demo.statusbar.ctrl',
   'demo.toast.ctrl',
   'demo.vibration.ctrl',
+
 
   'starter.controller'
 ])
@@ -44,6 +49,31 @@ angular.module('demo', [
       .state('menu', {
         url: "/menu",
         templateUrl: "app/menu.html"
+      })
+
+      .state('barcodeScanner', {
+        url: '/barcodeScanner',
+        templateUrl: 'app/barcodeScanner/barcodeScanner.html',
+        controller: "BarcodeScannerCtrl"
+      })
+
+      .state('statusbar', {
+        url: '/statusbar',
+        templateUrl: 'app/statusbar/statusbar.html',
+        controller: "StatusbarCtrl"
+      })
+
+      .state('preferences', {
+        url: '/preferences',
+        templateUrl: 'app/preferences/preferences.html',
+        controller: "PreferencesCtrl"
+      })
+
+
+      .state('flashlight', {
+        url: '/flashlight',
+        templateUrl: 'app/flashlight/flashlight.html',
+        controller: "FlashlightCtrl"
       })
 
       .state('deviceMotion', {

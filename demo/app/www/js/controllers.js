@@ -98,15 +98,15 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('StatusbarCtrl', function($scope, $cordovaStatusbar) {
-  $scope.toggleBar = function() {
-    if($cordovaStatusbar.isVisible()) {
-      $cordovaStatusbar.hide();
-    } else {
-      $cordovaStatusbar.show();
-    }
-  };
-})
+  .controller('StatusbarCtrl', function ($scope, $cordovaStatusbar) {
+    $scope.toggleBar = function () {
+      if ($cordovaStatusbar.isVisible()) {
+        $cordovaStatusbar.hide();
+      } else {
+        $cordovaStatusbar.show();
+      }
+    };
+  })
 
 .controller('FlashlightCtrl', function($scope, $cordovaFlashlight) {
   $scope.on = function() {
