@@ -43,6 +43,30 @@ angular.module('ngCordova.plugins.file', [])
         );
       },
 
+      listDir: function(filePath) {
+        var q = $q.defer();
+
+        getFilesystem().then(
+          function(filesystem) {
+            filesystem.root.getDirectory(filePath, {create: false}, function(parent) {
+              var reader = parent.createReader();
+              reader.readEntries(
+                  function(entries) {
+                    q.resolve(entries);
+                  },
+                  function() {
+                    q.reject('DIR_READ_ERROR : ' + filePath);
+                  }
+              );
+            }, function() {
+                q.reject('DIR_NOT_FOUND : ' + filePath);
+            });
+          }
+        );
+
+        return q.promise;
+      },
+
       checkFile: function (filePath) {
         var q = $q.defer();
 
