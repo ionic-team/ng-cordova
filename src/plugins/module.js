@@ -32,5 +32,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.facebookConnect',
   'ngCordova.plugins.adMob',
-  'ngCordova.plugins.googleMap'
+  'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.clipboard'
 ]);
