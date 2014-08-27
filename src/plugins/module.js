@@ -34,5 +34,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.clipboard',
-  'ngCordova.plugins.nativeAudio'
+  'ngCordova.plugins.nativeAudio',
+  'ngCordova.plugins.media'
 ]);
