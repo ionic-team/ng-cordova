@@ -19,7 +19,7 @@ angular.module('ngCordova.plugins.file', [])
             filesystem.root.getDirectory(dir, {create: false},
               //Dir exists
               function (entry) {
-                q.resolve();
+                q.resolve(entry);
               },
               //Dir doesn't exist
               function (error_code) {
