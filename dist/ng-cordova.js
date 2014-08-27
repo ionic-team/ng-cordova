@@ -678,12 +678,12 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getDirectory(dir, {create: false},
               //Dir exists
-              function () {
-                q.resolve();
+              function (entry) {
+                q.resolve(entry);
               },
               //Dir doesn't exist
-              function () {
-                q.reject();
+              function (error_code) {
+                q.reject(error_code);
               }
             );
           }
@@ -699,12 +699,12 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL},
               //Dir exists or is created successfully
-              function () {
-                q.resolve();
+              function (entry) {
+                q.resolve(entry);
               },
               //Dir doesn't exist and is not created
-              function () {
-                q.reject();
+              function (error_code) {
+                q.reject(error_code);
               }
             );
           }
@@ -748,12 +748,12 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getFile(filePath, {create: false},
               // File exists
-              function () {
-                q.resolve();
+              function (file) {
+                q.resolve(file);
               },
               // File doesn't exist
-              function () {
-                q.reject();
+              function (error_code) {
+                q.reject(error_code);
               }
             );
           }
