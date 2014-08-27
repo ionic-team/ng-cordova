@@ -27,6 +27,71 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
+angular.module('ngCordova.plugins.backgroundGeolocation', [])
+
+.factory('$cordovaBackgroundGeolocation', ['$q',
+  function ($q) {
+
+
+    return {
+
+      init: function() {
+        window.navigator.geolocation.getCurrentPosition(function(location) {
+          return location;
+        });
+      },
+
+      configure: function(options) {
+        
+       this.init();
+
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.configure(
+         function (result){
+           q.resolve(result);
+           window.plugins.backgroundGeoLocation.finish();
+         },
+         function (err) {
+           q.reject(err);
+         },options);
+
+       this.start();
+
+       return q.promise;
+     },
+
+     start : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.start(
+         function(result){
+           q.resolve(result);
+         },
+         function(err){
+           q.reject(err);
+         });
+
+       return q.promise;
+     },
+
+     stop : function () {
+       var q = $q.defer();
+
+       window.plugins.backgroundGeoLocation.stop(
+         function (result) {
+           q.resolve(result);
+         },
+         function (err) {
+           q.reject(err);
+         });
+
+       return q.promise;
+     }
+   };
+ }
+ ]);
+
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
 .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
@@ -1126,9 +1191,134 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
-  'ngCordova.plugins.bluetoothSerial'
+  'ngCordova.plugins.bluetoothSerial',
+  'ngCordova.plugins.backgroundGeolocation',
+  'ngCordova.plugins.nativeAudio'
 ]);
 
+angular.module('ngCordova.plugins.nativeAudio', [])
+
+    .factory('$cordovaNativeAudio', ['$q', function ($q) {
+
+        return {
+
+
+            preloadSimple: function (id, assetPath) {
+
+                var q = $q.defer();
+
+                window.plugins.NativeAudio.preloadSimple(id, assetPath,
+
+                    function (result) {
+                        q.resolve(result)
+                    },
+                    function (err) {
+                        q.reject(err);
+                    }
+                );
+
+                return q.promise;
+            },
+
+
+            preloadComplex: function (id, assetPath, volume, voices) {
+
+                var q = $q.defer();
+
+                window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
+
+                    function (result) {
+                        q.resolve(result)
+                    },
+                    function (err) {
+                        q.reject(err);
+                    }
+                );
+
+                return q.promise;
+
+            },
+
+
+            play: function (id) {
+
+                var q = $q.defer();
+
+                window.plugins.NativeAudio.play(id,
+
+                    function (result) {
+                        q.resolve(result)
+                    },
+                    function (err) {
+                        q.reject(err);
+                    }
+                );
+
+                return q.promise;
+
+            },
+
+
+            stop: function (id) {
+
+                var q = $q.defer();
+
+                window.plugins.NativeAudio.stop(id,
+
+                    function (result) {
+                        q.resolve(result)
+                    },
+                    function (err) {
+                        q.reject(err);
+                    }
+                );
+
+                return q.promise;
+
+            },
+
+
+            loop: function (id) {
+
+                var q = $q.defer();
+
+                window.plugins.NativeAudio.loop(id,
+
+                    function (result) {
+                        q.resolve(result)
+                    },
+                    function (err) {
+                        q.reject(err);
+                    }
+                );
+
+                return q.promise;
+
+            },
+
+
+            unload: function (id) {
+
+                var q = $q.defer();
+
+                window.plugins.NativeAudio.unload(id,
+
+                    function (result) {
+                        q.resolve(result)
+                    },
+                    function (err) {
+                        q.reject(err);
+                    }
+                );
+
+                return q.promise;
+
+            }
+
+        }
+
+    }
+    ]);
 angular.module('ngCordova.plugins.network', [])
 
 .factory('$cordovaNetwork', [function () {
@@ -1443,7 +1633,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       execute: function (db, query, binding) {
-        q = $q.defer();
+        var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
               q.resolve(result);
@@ -1456,7 +1646,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       nestedExecute: function (db, query1, query2, binding1, binding2) {
-        q = $q.defer();
+        var q = $q.defer();
 
         db.transaction(function (tx) {
             tx.executeSql(query1, binding1, function (tx, result) {
