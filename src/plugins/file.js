@@ -168,8 +168,9 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      readFile: function (filePath) {
+      readFile: function (filePath) {  /// now deprecated in new ng-cordova version
         var q = $q.defer();
+        console.log('readFile is now deprecated as of v0.1.4-alpha, use readAsText instead');
 
         // Backward compatibility for previous function readFile(dir, file)
         if (arguments.length == 2) {
