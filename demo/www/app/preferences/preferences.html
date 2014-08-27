@@ -1,0 +1,38 @@
+<ion-view title="Preferences">
+	<ion-content>
+
+		<div class="list">
+
+			<form name="preferencesForm" ng-submit="preferencesSet()" novalidate>
+
+				<label class="item item-input">
+					<input type="text"
+					       ng-model="data.value"
+					       placeholder="Write something to be store in preferences">
+				</label>
+
+				<button class="button button-block button-positive"
+				        ng-disabled="preferencesForm.$invalid">
+					$cordovaPreferences
+					.set('{{ data.key }}', '{{ data.value }}')
+				</button>
+			</form>
+		</div>
+
+		<div class="list card" ng-show="data.showMore">
+
+			<div class="item">
+				{{ data.pref }}
+			</div>
+
+			<div class="item item-text-wrap">
+				<button class="button button-stable"
+				        ng-click="preferencesGet()">
+					$cordovaPreferences
+					.get('{{ data.key }}')
+				</button>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>
