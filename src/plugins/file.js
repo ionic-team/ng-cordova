@@ -36,11 +36,23 @@ angular.module('ngCordova.plugins.file', [])
       },
 
       createDir: function (dir, replaceBOOL) {
+        var q = $q.defer();
+
         getFilesystem().then(
           function (filesystem) {
-            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL});
+            filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL},
+                //Dir exists or is created successfully
+                function () {
+                    q.resolve();
+                },
+                //Dir doesn't exist and is not created
+                function () {
+                    q.reject();
+                }
+            );
           }
         );
+        return q.promise;
       },
 
       listDir: function(filePath) {
@@ -214,28 +226,28 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      downloadFile: function (source, filePath, trustAllHosts, options) {
-        var q = $q.defer();
-        var fileTransfer = new FileTransfer();
-        var uri = encodeURI(source);
-        
-        fileTransfer.onprogress = function(progressEvent) {
-            q.notify(progressEvent);
-        };
+        downloadFile: function (source, filePath, trustAllHosts, options) {
+            var q = $q.defer();
+            var fileTransfer = new FileTransfer();
+            var uri = encodeURI(source);
 
-        fileTransfer.download(
-          uri,
-          filePath,
-          function (entry) {
-            q.resolve(entry);
-          },
-          function (error) {
-            q.reject(error);
-          },
-          trustAllHosts, options);
-          
-          return q.promise;
-      },
+            fileTransfer.onprogress = function(progressEvent) {
+                q.notify(progressEvent);
+            };
+
+            fileTransfer.download(
+                uri,
+                filePath,
+                function (entry) {
+                    q.resolve(entry);
+                },
+                function (error) {
+                    q.reject(error);
+                },
+                trustAllHosts, options);
+
+            return q.promise;
+        },
 
       uploadFile: function (server, filePath, options) {
         var q = $q.defer();
