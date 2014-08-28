@@ -28,14 +28,14 @@ angular.module('ngCordova.plugins.facebookConnect', [])
 
         }
     ])
-    .factory('$cordovaFacebookConnect', ['$q', '$cordova',
-        function ($q, $cordova) {
+    .factory('$cordovaFacebookConnect', ['$q', '$window', '$cordova',
+        function ($q, $window, $cordova) {
 
 
             return {
 
                 init: function (appId) {
-                    if (!window.cordova) {
+                    if (!$window.cordova) {
                         facebookConnectPlugin.browserInit(appId);
                     }
                 },
