@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.googleMap', [])
 
-  .factory('$cordovaGoogleMap', ['$q', function ($q) {
+  .factory('$cordovaGoogleMap', ['$q', '$window', function ($q, $window) {
 
     var map = null;
 
@@ -11,12 +11,12 @@ angular.module('ngCordova.plugins.googleMap', [])
       getMap: function (options) {
         var q = $q.defer();
 
-        if (!window.plugin.google.maps) {
+        if (!$window.plugin.google.maps) {
           q.reject(null);
         }
         else {
           var div = document.getElementById("map_canvas");
-          map = window.plugin.google.maps.Map.getMap(options);
+          map = $window.plugin.google.maps.Map.getMap(options);
           map.setDiv(div);
           q.resolve(map);
         }
@@ -37,7 +37,7 @@ angular.module('ngCordova.plugins.googleMap', [])
         return q.promise;
       },
       getMapTypeIds: function () {
-        return window.plugin.google.maps.mapTypeId;
+        return $window.plugin.google.maps.mapTypeId;
       },
       setVisible: function (isVisible) {
         var q = $q.defer();

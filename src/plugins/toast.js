@@ -1,11 +1,11 @@
 angular.module('ngCordova.plugins.toast', [])
 
-.factory('$cordovaToast', ['$q', function ($q) {
+.factory('$cordovaToast', ['$q', '$window', function ($q, $window) {
 
     return {
       showShortTop: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showShortTop(message, function (response) {
+        $window.plugins.toast.showShortTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -15,7 +15,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showShortCenter: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showShortCenter(message, function (response) {
+        $window.plugins.toast.showShortCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -25,7 +25,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showShortBottom: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showShortBottom(message, function (response) {
+        $window.plugins.toast.showShortBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -35,7 +35,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongTop: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showLongTop(message, function (response) {
+        $window.plugins.toast.showLongTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -45,7 +45,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongCenter: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showLongCenter(message, function (response) {
+        $window.plugins.toast.showLongCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -55,7 +55,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongBottom: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showLongBottom(message, function (response) {
+        $window.plugins.toast.showLongBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -66,7 +66,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       show: function (message, duration, position) {
         var q = $q.defer();
-        window.plugins.toast.show(message, duration, position, function (response) {
+        $window.plugins.toast.show(message, duration, position, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)

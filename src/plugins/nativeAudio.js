@@ -1,11 +1,11 @@
 angular.module('ngCordova.plugins.nativeAudio', [])
 
-  .factory('$cordovaNativeAudio', ['$q', function ($q) {
+  .factory('$cordovaNativeAudio', ['$q', '$window', function ($q, $window) {
 
     return {
       preloadSimple: function (id, assetPath) {
         var q = $q.defer();
-        window.plugins.NativeAudio.preloadSimple(id, assetPath,
+        $window.plugins.NativeAudio.preloadSimple(id, assetPath,
           function (result) {
             q.resolve(result)
           },
@@ -19,7 +19,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       preloadComplex: function (id, assetPath, volume, voices) {
         var q = $q.defer();
-        window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
+        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
           function (result) {
             q.resolve(result)
           },
@@ -33,7 +33,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       play: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.play(id,
+        $window.plugins.NativeAudio.play(id,
           function (result) {
             q.resolve(result)
           },
@@ -47,7 +47,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       stop: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.stop(id,
+        $window.plugins.NativeAudio.stop(id,
           function (result) {
             q.resolve(result)
           },
@@ -60,7 +60,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       loop: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.loop(id,
+        $window.plugins.NativeAudio.loop(id,
           function (result) {
             q.resolve(result)
           },
@@ -74,7 +74,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       unload: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.unload(id,
+        $window.plugins.NativeAudio.unload(id,
           function (result) {
             q.resolve(result)
           },

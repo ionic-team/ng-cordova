@@ -11,23 +11,23 @@ angular.module('ngCordova', [
 
 angular.module('ngCordova.plugins.adMob', [])
 
-    .factory('$cordovaAdMob', [function() {
+    .factory('$cordovaAdMob', ['$window',function($window) {
 
       return {
         createBannerView: function(options, success, fail) {
-          return window.plugins.AdMob.createBannerView(options, success, fail);
+          return $window.plugins.AdMob.createBannerView(options, success, fail);
         },
         createInterstitialView: function(options, success, fail) {
-          return window.plugins.AdMob.createInterstitialView(options, success, fail);
+          return $window.plugins.AdMob.createInterstitialView(options, success, fail);
         },
         requestAd: function(options, success, fail) {
-          return window.plugins.AdMob.requestAd(options, success, fail);
+          return $window.plugins.AdMob.requestAd(options, success, fail);
         },
         showAd: function(options, success, fail) {
-          return window.plugins.AdMob.showAd(options, success, fail);
+          return $window.plugins.AdMob.showAd(options, success, fail);
         },
         requestInterstitialAd: function(options, success, fail) {
-          return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
+          return $window.plugins.AdMob.requestInterstitialAd(options, success, fail);
         }
 
       }
@@ -52,14 +52,14 @@ angular.module('ngCordova.plugins.appAvailability', [])
 }]);
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-.factory('$cordovaBackgroundGeolocation', ['$q',
-  function ($q) {
+.factory('$cordovaBackgroundGeolocation', ['$q', '$window',
+  function ($q, $window) {
 
 
     return {
 
       init: function() {
-        window.navigator.geolocation.getCurrentPosition(function(location) {
+        $window.navigator.geolocation.getCurrentPosition(function(location) {
           return location;
         });
       },
@@ -70,10 +70,10 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.configure(
+       $window.plugins.backgroundGeoLocation.configure(
          function (result){
            q.resolve(result);
-           window.plugins.backgroundGeoLocation.finish();
+           $window.plugins.backgroundGeoLocation.finish();
          },
          function (err) {
            q.reject(err);
@@ -87,7 +87,7 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
      start : function () {
        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.start(
+       $window.plugins.backgroundGeoLocation.start(
          function(result){
            q.resolve(result);
          },
@@ -101,7 +101,7 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
      stop : function () {
        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.stop(
+       $window.plugins.backgroundGeoLocation.stop(
          function (result) {
            q.resolve(result);
          },
@@ -155,7 +155,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
-.factory('$cordovaBluetoothSerial', ['$q' , function ($q) {
+.factory('$cordovaBluetoothSerial', ['$q' , '$window', function ($q, $window) {
 
   var promise_f = function() {
     var q = $q.defer();
@@ -174,7 +174,7 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
     args.push(success);
     args.push(failure);
 
-    window.bluetoothSerial[f_name].apply(this, args);
+    $window.bluetoothSerial[f_name].apply(this, args);
 
     return q.promise;
   };
@@ -291,13 +291,13 @@ angular.module('ngCordova.plugins.capture', [])
 
 angular.module('ngCordova.plugins.clipboard', [])
 
-  .factory('$cordovaClipboard', ['$q', function ($q) {
+  .factory('$cordovaClipboard', ['$q', '$window', function ($q, $window) {
 
     return {
       copy: function (text) {
         var q = $q.defer();
 
-        window.cordova.plugins.clipboard.copy(text,
+        $window.cordova.plugins.clipboard.copy(text,
           function () {
             q.resolve();
           }, function () {
@@ -310,7 +310,7 @@ angular.module('ngCordova.plugins.clipboard', [])
       paste: function () {
         var q = $q.defer();
 
-        window.cordova.plugins.clipboard.copy(function () {
+        $window.cordova.plugins.clipboard.copy(function () {
           q.resolve();
         }, function () {
           q.reject();
@@ -557,14 +557,14 @@ angular.module('ngCordova.plugins.facebookConnect', [])
 
         }
     ])
-    .factory('$cordovaFacebookConnect', ['$q', '$cordova',
-        function ($q, $cordova) {
+    .factory('$cordovaFacebookConnect', ['$q', '$window', '$cordova',
+        function ($q, $window, $cordova) {
 
 
             return {
 
                 init: function (appId) {
-                    if (!window.cordova) {
+                    if (!$window.cordova) {
                         facebookConnectPlugin.browserInit(appId);
                     }
                 },
@@ -668,7 +668,7 @@ angular.module('ngCordova.plugins.facebookConnect', [])
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', function ($q) {
+  .factory('$cordovaFile', ['$q', '$window', function ($q, $window) {
 
     return {
       checkDir: function (dir) {
@@ -1023,7 +1023,7 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileAbsolute: function () {
         var q = $q.defer();
-        window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               var reader = new FileReader();
@@ -1042,7 +1042,7 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileMetadataAbsolute: function (filePath) {
         var q = $q.defer();
-        window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               q.resolve(file);
@@ -1107,7 +1107,7 @@ angular.module('ngCordova.plugins.file', [])
     function getFilesystem() {
       var q = $q.defer();
 
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
+      $window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
           q.resolve(filesystem);
         },
         function (err) {
@@ -1120,12 +1120,12 @@ angular.module('ngCordova.plugins.file', [])
 
 angular.module('ngCordova.plugins.flashlight', [])
 
-.factory('$cordovaFlashlight', ['$q', function ($q) {
+.factory('$cordovaFlashlight', ['$q', '$window', function ($q, $window) {
 
     return {
       available: function () {
         var q = $q.defer();
-        window.plugins.flashlight.available(function (isAvailable) {
+        $window.plugins.flashlight.available(function (isAvailable) {
           q.resolve(isAvailable);
         });
         return q.promise;
@@ -1133,7 +1133,7 @@ angular.module('ngCordova.plugins.flashlight', [])
 
       switchOn: function () {
         var q = $q.defer();
-        window.plugins.flashlight.switchOn(function (response) {
+        $window.plugins.flashlight.switchOn(function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -1143,7 +1143,7 @@ angular.module('ngCordova.plugins.flashlight', [])
 
       switchOff: function () {
         var q = $q.defer();
-        window.plugins.flashlight.switchOff(function (response) {
+        $window.plugins.flashlight.switchOff(function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -1155,14 +1155,14 @@ angular.module('ngCordova.plugins.flashlight', [])
 ]);
 angular.module('ngCordova.plugins.ga', [])
 
-  .factory('$cordovaGA', ['$q', function ($q) {
+  .factory('$cordovaGA', ['$q', '$window', function ($q, $window) {
 
     return {
 
       init: function (id, mingap) {
         var q = $q.defer();
         mingap = (mingap >= 0) ? mingap : 10;
-        window.plugins.gaPlugin.init(function (result) {
+        $window.plugins.gaPlugin.init(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -1174,7 +1174,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
         var q = $q.defer();
-        window.plugins.gaPlugin.trackEvent(function (result) {
+        $window.plugins.gaPlugin.trackEvent(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -1186,7 +1186,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       trackPage: function (success, fail, pageURL) {
         var q = $q.defer();
-        window.plugins.gaPlugin.trackPage(function (result) {
+        $window.plugins.gaPlugin.trackPage(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -1198,7 +1198,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       setVariable: function (success, fail, index, value) {
         var q = $q.defer();
-        window.plugins.gaPlugin.setVariable(function (result) {
+        $window.plugins.gaPlugin.setVariable(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -1210,7 +1210,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       exit: function (success, fail) {
         var q = $q.defer();
-        window.plugins.gaPlugin.exit(function (result) {
+        $window.plugins.gaPlugin.exit(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -1442,7 +1442,7 @@ angular.module('ngCordova.plugins.globalization', [])
 
 angular.module('ngCordova.plugins.googleMap', [])
 
-  .factory('$cordovaGoogleMap', ['$q', function ($q) {
+  .factory('$cordovaGoogleMap', ['$q', '$window', function ($q, $window) {
 
     var map = null;
 
@@ -1450,12 +1450,12 @@ angular.module('ngCordova.plugins.googleMap', [])
       getMap: function (options) {
         var q = $q.defer();
 
-        if (!window.plugin.google.maps) {
+        if (!$window.plugin.google.maps) {
           q.reject(null);
         }
         else {
           var div = document.getElementById("map_canvas");
-          map = window.plugin.google.maps.Map.getMap(options);
+          map = $window.plugin.google.maps.Map.getMap(options);
           map.setDiv(div);
           q.resolve(map);
         }
@@ -1476,7 +1476,7 @@ angular.module('ngCordova.plugins.googleMap', [])
         return q.promise;
       },
       getMapTypeIds: function () {
-        return window.plugin.google.maps.mapTypeId;
+        return $window.plugin.google.maps.mapTypeId;
       },
       setVisible: function (isVisible) {
         var q = $q.defer();
@@ -1518,13 +1518,13 @@ angular.module('ngCordova.plugins.keyboard', [])
 
 angular.module('ngCordova.plugins.localNotification', [])
 
-.factory('$cordovaLocalNotification', ['$q',
-    function ($q) {
+.factory('$cordovaLocalNotification', ['$q', '$window',
+    function ($q, $window) {
 
         return {
             add: function (options, scope) {
                 var q = $q.defer();
-                window.plugin.notification.local.add(
+                $window.plugin.notification.local.add(
                     options,
                     function (result) {
                         q.resolve(result);
@@ -1535,7 +1535,7 @@ angular.module('ngCordova.plugins.localNotification', [])
 
             cancel: function (id, scope) {
                 var q = $q.defer();
-                window.plugin.notification.local.cancel(
+                $window.plugin.notification.local.cancel(
                     id, function (result) {
                         q.resolve(result);
                     }, scope);
@@ -1546,7 +1546,7 @@ angular.module('ngCordova.plugins.localNotification', [])
             cancelAll: function (scope) {
                 var q = $q.defer();
 
-                window.plugin.notification.local.cancelAll(
+                $window.plugin.notification.local.cancelAll(
                     function (result) {
                         q.resolve(result);
                     }, scope);
@@ -1557,7 +1557,7 @@ angular.module('ngCordova.plugins.localNotification', [])
             isScheduled: function (id, scope) {
                 var q = $q.defer();
 
-                window.plugin.notification.local.isScheduled(
+                $window.plugin.notification.local.isScheduled(
                     id,
                     function (result) {
                         q.resolve(result);
@@ -1569,7 +1569,7 @@ angular.module('ngCordova.plugins.localNotification', [])
             getScheduledIds: function (scope) {
                 var q = $q.defer();
 
-                window.plugin.notification.local.getScheduledIds(
+                $window.plugin.notification.local.getScheduledIds(
                     function (result) {
                         q.resolve(result);
                     }, scope);
@@ -1580,7 +1580,7 @@ angular.module('ngCordova.plugins.localNotification', [])
             isTriggered: function (id, scope) {
                 var q = $q.defer();
 
-                window.plugin.notification.local.isTriggered(
+                $window.plugin.notification.local.isTriggered(
                     id, function (result) {
                         q.resolve(result);
                     }, scope);
@@ -1591,7 +1591,7 @@ angular.module('ngCordova.plugins.localNotification', [])
             getTriggeredIds: function (scope) {
                 var q = $q.defer();
 
-                window.plugin.notification.local.getTriggeredIds(
+                $window.plugin.notification.local.getTriggeredIds(
                     function (result) {
                         q.resolve(result);
                     }, scope);
@@ -1600,27 +1600,27 @@ angular.module('ngCordova.plugins.localNotification', [])
             },
 
             getDefaults: function () {
-                return window.plugin.notification.local.getDefaults();
+                return $window.plugin.notification.local.getDefaults();
             },
 
             setDefaults: function (Object) {
-                window.plugin.notification.local.setDefaults(Object);
+                $window.plugin.notification.local.setDefaults(Object);
             },
 
             onadd: function () {
-                return window.plugin.notification.local.onadd;
+                return $window.plugin.notification.local.onadd;
             },
 
             ontrigger: function () {
-                return window.plugin.notification.local.ontrigger;
+                return $window.plugin.notification.local.ontrigger;
             },
 
             onclick: function () {
-                return window.plugin.notification.local.onclick;
+                return $window.plugin.notification.local.onclick;
             },
 
             oncancel: function () {
-                return window.plugin.notification.local.oncancel;
+                return $window.plugin.notification.local.oncancel;
             }
         }
     }
@@ -1753,12 +1753,12 @@ angular.module('ngCordova.plugins', [
 
 angular.module('ngCordova.plugins.nativeAudio', [])
 
-  .factory('$cordovaNativeAudio', ['$q', function ($q) {
+  .factory('$cordovaNativeAudio', ['$q', '$window', function ($q, $window) {
 
     return {
       preloadSimple: function (id, assetPath) {
         var q = $q.defer();
-        window.plugins.NativeAudio.preloadSimple(id, assetPath,
+        $window.plugins.NativeAudio.preloadSimple(id, assetPath,
           function (result) {
             q.resolve(result)
           },
@@ -1772,7 +1772,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       preloadComplex: function (id, assetPath, volume, voices) {
         var q = $q.defer();
-        window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
+        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
           function (result) {
             q.resolve(result)
           },
@@ -1786,7 +1786,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       play: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.play(id,
+        $window.plugins.NativeAudio.play(id,
           function (result) {
             q.resolve(result)
           },
@@ -1800,7 +1800,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       stop: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.stop(id,
+        $window.plugins.NativeAudio.stop(id,
           function (result) {
             q.resolve(result)
           },
@@ -1813,7 +1813,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       loop: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.loop(id,
+        $window.plugins.NativeAudio.loop(id,
           function (result) {
             q.resolve(result)
           },
@@ -1827,7 +1827,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       unload: function (id) {
         var q = $q.defer();
-        window.plugins.NativeAudio.unload(id,
+        $window.plugins.NativeAudio.unload(id,
           function (result) {
             q.resolve(result)
           },
@@ -1864,11 +1864,11 @@ angular.module('ngCordova.plugins.network', [])
 
 angular.module('ngCordova.plugins.pinDialog', [])
 
-.factory('$cordovaPinDialog', [function() {
+.factory('$cordovaPinDialog', ['$window', function($window) {
 
   return {
     prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
-	    return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
+	    return $window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
     }
   }
   
@@ -1909,28 +1909,28 @@ angular.module('ngCordova.plugins.prefs', [])
 
 angular.module('ngCordova.plugins.printer', [])
 
-.factory('$cordovaPrinter', ['$q', function ($q) {
+.factory('$cordovaPrinter', ['$q', '$window', function ($q, $window) {
 
     return {
       isAvailable: function () {
-        window.plugin.printer.isServiceAvailable(function (isAvailable) {
+        $window.plugin.printer.isServiceAvailable(function (isAvailable) {
           return isAvailable ? true : false;
         });
       },
 
       print: function (doc) {
-        window.plugin.printer.print(doc);
+        $window.plugin.printer.print(doc);
       }
     }
   }
 ]);
 angular.module('ngCordova.plugins.push', [])
 
-.factory('$cordovaPush', ['$q', function ($q) {
+.factory('$cordovaPush', ['$q', '$window', function ($q, $window) {
     return {
         register: function (config) {
             var q = $q.defer();
-            window.plugins.pushNotification.register(
+            $window.plugins.pushNotification.register(
             function (result) {
                 q.resolve(result);
             },
@@ -1944,7 +1944,7 @@ angular.module('ngCordova.plugins.push', [])
         
         unregister: function (options) {
             var q = $q.defer();
-            window.plugins.pushNotification.unregister(
+            $window.plugins.pushNotification.unregister(
             function (result) {
                 q.resolve(result);
             },
@@ -1959,7 +1959,7 @@ angular.module('ngCordova.plugins.push', [])
         // iOS only
         setBadgeNumber: function(number) {
         	var q = $q.defer();
-            window.plugins.pushNotification.setApplicationIconBadgeNumber(
+            $window.plugins.pushNotification.setApplicationIconBadgeNumber(
             function (result) {
                 q.resolve(result);
             },
@@ -1995,12 +1995,12 @@ angular.module('ngCordova.plugins.sms', [])
 
 angular.module('ngCordova.plugins.socialSharing', [])
 
-  .factory('$cordovaSocialSharing', ['$q', function ($q) {
+  .factory('$cordovaSocialSharing', ['$q', '$window', function ($q, $window) {
 
     return {
       share: function (message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.share(message, subject, file, link,
+        $window.plugins.socialsharing.share(message, subject, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -2012,7 +2012,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaTwitter: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaTwitter(message, file, link,
+        $window.plugins.socialsharing.shareViaTwitter(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -2024,7 +2024,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaWhatsApp: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
+        $window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -2036,7 +2036,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaFacebook: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaFacebook(message, file, link,
+        $window.plugins.socialsharing.shareViaFacebook(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -2048,7 +2048,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaSMS: function (message, commaSeparatedPhoneNumbers) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
+        $window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
           function () {
             q.resolve(true); // success
           },
@@ -2060,7 +2060,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaEmail: function (message, subject, toArr, ccArr, bccArr, fileArr) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
+        $window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
           function () {
             q.resolve(true); // success
           },
@@ -2072,7 +2072,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       canShareViaEmail: function () {
         var q = $q.defer();
-        window.plugins.socialsharing.canShareViaEmail(
+        $window.plugins.socialsharing.canShareViaEmail(
             function () {
               q.resolve(true); // success
             },
@@ -2084,7 +2084,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       canShareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
+        $window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
           function (success) {
             q.resolve(success); // success
           },
@@ -2096,7 +2096,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareVia(via, message, subject, file, link,
+        $window.plugins.socialsharing.shareVia(via, message, subject, file, link,
             function () {
               q.resolve(true); // success
             },
@@ -2111,14 +2111,14 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
 angular.module('ngCordova.plugins.spinnerDialog', [])
 
-.factory('$cordovaSpinnerDialog', [function() {
+.factory('$cordovaSpinnerDialog', ['$window', function($window) {
 
   return {
     show: function(title, message) {
-	    return window.plugins.spinnerDialog.show(title, message);
+	    return $window.plugins.spinnerDialog.show(title, message);
     },
     hide: function() {
-	    return window.plugins.spinnerDialog.hide();
+	    return $window.plugins.spinnerDialog.hide();
     }
   }
   
@@ -2141,16 +2141,16 @@ angular.module('ngCordova.plugins.splashscreen', [])
 
 angular.module('ngCordova.plugins.sqlite', [])
 
-  .factory('$cordovaSQLite', ['$q', function ($q) {
+  .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
     return  {
       openDB: function (dbName) {
-        return  window.sqlitePlugin.openDatabase({name: dbName});
+        return  $window.sqlitePlugin.openDatabase({name: dbName});
       },
 
 
       openDBBackground: function (dbName) {
-        return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
+        return $window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
       },
 
       execute: function (db, query, binding) {
@@ -2247,12 +2247,12 @@ angular.module('ngCordova.plugins.statusbar', [])
 
 angular.module('ngCordova.plugins.toast', [])
 
-.factory('$cordovaToast', ['$q', function ($q) {
+.factory('$cordovaToast', ['$q', '$window', function ($q, $window) {
 
     return {
       showShortTop: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showShortTop(message, function (response) {
+        $window.plugins.toast.showShortTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -2262,7 +2262,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showShortCenter: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showShortCenter(message, function (response) {
+        $window.plugins.toast.showShortCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -2272,7 +2272,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showShortBottom: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showShortBottom(message, function (response) {
+        $window.plugins.toast.showShortBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -2282,7 +2282,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongTop: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showLongTop(message, function (response) {
+        $window.plugins.toast.showLongTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -2292,7 +2292,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongCenter: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showLongCenter(message, function (response) {
+        $window.plugins.toast.showLongCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -2302,7 +2302,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongBottom: function (message) {
         var q = $q.defer();
-        window.plugins.toast.showLongBottom(message, function (response) {
+        $window.plugins.toast.showLongBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
@@ -2313,7 +2313,7 @@ angular.module('ngCordova.plugins.toast', [])
 
       show: function (message, duration, position) {
         var q = $q.defer();
-        window.plugins.toast.show(message, duration, position, function (response) {
+        $window.plugins.toast.show(message, duration, position, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
