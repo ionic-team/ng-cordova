@@ -4,7 +4,8 @@
     "homepage": "http://ngCordova.com/",
     "authors": [
         "Max Lynch <max@drifty.com>",
-        "Paolo Bernasconi <paolo.enrico.bernasconi@gmail.com>"
+        "Paolo Bernasconi <paolo.enrico.bernasconi@gmail.com>",
+        "Chad Campbell <chad.campbell@ecofic.com>"
     ],
     "description": "AngularJS Cordova wrappers for common Cordova plugins.",
     "main": "./dist/ng-cordova.js",
