@@ -749,3 +749,28 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
 });
 ```
+
+### `$cordovaSQLite`
+
+Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
+
+```
+cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaSQLite) {
+
+  var db = $cordovaSQLite.openDB({ name: "my.db" });
+
+  $scope.execute = function() {
+    var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
+    $cordovaSQLite.execute(db, query, ["test", 100]).then(function(tx, res) {
+      console.log("insertId: " + res.insertId);
+    }, function (err) {
+      console.error(err);
+    });
+  };
+
+});
+```
