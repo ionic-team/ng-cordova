@@ -448,7 +448,7 @@ cordova plugin add https://github.com/Paldom/PinDialog.git
 ```
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaPush) {
+module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 
   $cordovaPinDialog.prompt('Some message here').then(
     function(result) {
