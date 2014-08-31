@@ -159,8 +159,13 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
   };
   
   $scope.watchAcceleration = function () {
-    var options = { frequency: 1000 };  // Update every 1 second
-    
+    // Update every 3 seconds for 1 minute
+    var options = { 
+      maximumAge: 3000, 
+      timeout: 60 * 1000, 
+      enableHighAccuracy: true
+    };
+
     watch = $cordovaDeviceMotion.watchAcceleration(options);
 
     watch.promise.then(
