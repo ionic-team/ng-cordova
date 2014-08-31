@@ -8,8 +8,11 @@ angular.module('demo', [
   'ngCordova',
 
   // modules
+ // 'demo.adMob.ctrl',  // not working???
   'demo.barcodeScanner.ctrl',
   'demo.camera.ctrl',
+  'demo.clipboard.ctrl',
+  'demo.contacts.ctrl',
   'demo.device.ctrl',
   'demo.deviceMotion.ctrl',
   'demo.deviceOrientation.ctrl',
@@ -46,6 +49,56 @@ angular.module('demo', [
       .state('menu', {
         url: "/menu",
         templateUrl: "app/menu.html"
+      })
+
+
+      .state('clipboard', {
+        url: '/clipboard',
+        templateUrl: 'app/clipboard/clipboard.html',
+        controller: "ClipboardCtrl"
+      })
+
+      .state('facebook', {
+        url: '/facebook',
+        templateUrl: 'app/facebook/facebook.html',
+        controller: "FacebookCtrl"
+      })
+
+
+      .state('contacts', {
+        url: '/contacts',
+        templateUrl: 'app/contacts/contacts.html',
+        controller: "ContactsCtrl"
+      })
+
+      .state('file', {
+        url: '/file',
+        templateUrl: 'app/file/file.html',
+        controller: "FileCtrl"
+      })
+
+      .state('googleAnalytics', {
+        url: '/googleAnalytics',
+        templateUrl: 'app/googleAnalytics/googleAnalytics.html',
+        controller: "GoogleAnalyticsCtrl"
+      })
+
+      .state('printer', {
+        url: '/printer',
+        templateUrl: 'app/printer/printer.html',
+        controller: "PrinterCtrl"
+      })
+
+      .state('socialSharing', {
+        url: '/socialSharing',
+        templateUrl: 'app/socialSharing/socialSharing.html',
+        controller: "SocialSharingCtrl"
+      })
+
+      .state('sqlite', {
+        url: '/sqlite',
+        templateUrl: 'app/sqlite/sqlite.html',
+        controller: "SqliteCtrl"
       })
 
       .state('barcodeScanner', {
