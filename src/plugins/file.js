@@ -163,9 +163,16 @@ angular.module('ngCordova.plugins.file', [])
                   },
                   function (error) {
                     q.reject(error);
-                  });
+                  }
+                );
+              },
+              function (error) {
+                q.reject(error);
               }
             );
+          },
+          function (error) {
+            q.reject(error);
           }
         );
 
