@@ -28,6 +28,7 @@ org.apache.cordova.network-information
 org.apache.cordova.splashscreen
 org.apache.cordova.statusbar
 org.apache.cordova.vibration
+org.apache.cordova.battery-status
 https://github.com/Paldom/PinDialog.git
 https://github.com/phonegap-build/PushPlugin.git
 https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
