@@ -662,7 +662,7 @@ You can also use any of these convenience methods:
 - showLongBottom(message)
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaVibration) {
+module.controller('MyCtrl', function($scope, $cordovaToast) {
 
   $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
     // success
