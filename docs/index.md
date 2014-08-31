@@ -774,3 +774,30 @@ module.controller('MyCtrl', function($scope, $cordovaSQLite) {
 
 });
 ```
+
+### `$cordovaBatteryStatus`
+
+This plugin provides an implementation of an old version of the Battery Status Events API. [View Offical Docs](https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md)
+
+```
+cordova plugin add org.apache.cordova.battery-status
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
+
+  $cordovaBatteryStatus.onBatteryStatus(function (status) {
+    // status.level: The percentage of battery charge (0-100). (Number)
+    // status.isPlugged: A boolean that indicates whether the device is plugged in (Boolean)
+  });
+
+  $cordovaBatteryStatus.onBatteryCritical(function (status) {
+    // status available with same keys
+  });
+
+  $cordovaBatteryStatus.onBatteryLow(function (status) {
+    // status available with same keys
+  });
+});
+```
+
