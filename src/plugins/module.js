@@ -35,5 +35,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.clipboard',
   'ngCordova.plugins.nativeAudio',
-  'ngCordova.plugins.media'
+  'ngCordova.plugins.media',
+  'ngCordova.plugins.battery-status'
 ]);
