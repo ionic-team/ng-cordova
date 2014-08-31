@@ -1,0 +1,40 @@
+<!--
+ - save(contact)
+ - remove(contact)
+ - clone(contact)
+ - find(options)
+-->
+
+
+<ion-view title="Contacts">
+	<ion-content>
+		<div class="list">
+			<label class="item item-input">
+				<input type="text" ng-model="contact" placeholder="Contact info">
+			</label>
+
+		</div>
+
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="save(contact)">
+				Create new Contact
+			</button>
+
+		</div>
+
+		<div class="list">
+			<label class="item item-input">
+				<input type="text"
+				       ng-model="data.value"
+				       placeholder="Remove - contact">
+			</label>
+		</div>
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="remove(contact)">
+				Paste!
+			</button>
+		</div>
+	</ion-content>
+</ion-view>
