@@ -813,7 +813,7 @@ cordova plugin add https://github.com/shazron/KeychainPlugin.git
 module.controller('MyCtrl', function($scope, $cordovaKeychain) {
 
   $scope.getValueFromKey = function(key) {
-    $cordovaKeychain.getForKey(key).then(function(value) {
+    $cordovaKeychain.getForKey(key, servicename).then(function(value) {
       console.log(value);
     }, function (err) {
       console.error(err);
