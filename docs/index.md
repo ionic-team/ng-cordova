@@ -801,3 +801,24 @@ module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
 });
 ```
 
+### `$cordovaKeychain`
+
+Accessing the keychain of iOS from cordova [View Docs](https://github.com/shazron/KeychainPlugin)
+
+```
+cordova plugin add https://github.com/shazron/KeychainPlugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaKeychain) {
+
+  $scope.getValueFromKey = function(key) {
+    $cordovaKeychain.getForKey(key).then(function(value) {
+      console.log(value);
+    }, function (err) {
+      console.error(err);
+    });
+  };
+
+});
+```
