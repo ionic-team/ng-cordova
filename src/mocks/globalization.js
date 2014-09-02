@@ -6,7 +6,7 @@
  * A service for testing features related to a user's locale and timezone.
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGlobalization', function($q) {
 	var throwsError = false;
 	var preferredLanguage = 'en';
 	var firstDayOfWeek = 'Sunday';
@@ -234,4 +234,4 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 			return defer.promise;			
 		}	
 	};
-}]);
+});

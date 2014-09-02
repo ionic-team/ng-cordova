@@ -6,7 +6,7 @@
  * A service for testing vibration
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
+ngCordovaMocks.factory('$cordovaVibration', function($timeout) {
 	var isVibrating = false;
 	var vibrateTimer = null;
 
@@ -76,4 +76,4 @@ ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
 			}
 		}
 	};
-}]);
+});

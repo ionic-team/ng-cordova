@@ -6,7 +6,7 @@
  * A service for mocking the accelerometer
  * in an app build with ngCordova.
 **/  
-ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceMotion', function ($interval, $q) {
 	var currentAcceleration = null;
 	var throwsError = false;
 	var positions = [];
@@ -132,4 +132,4 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 			return defer.promise;
 		}
 	};
-}]);
+});

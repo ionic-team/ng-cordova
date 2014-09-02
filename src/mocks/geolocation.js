@@ -6,7 +6,7 @@
  * A service for testing location services
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaGeolocation', function($interval, $q) {
 	var throwsError = false;
 	var useHostAbilities = true;
 
@@ -213,4 +213,4 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 			return defer.promise;
 		}		
 	};
-}]);
+});

@@ -6,7 +6,7 @@
  * A service for testing features related with contacts
  * in an app build with ngCordova.
 **/  
-ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaContacts', function($q) {
 	var throwsError = false;
 	var contacts = [];
 
@@ -113,4 +113,4 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 			return defer.promise;			
 		}
 	};
-}]);
+});
