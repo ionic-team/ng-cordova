@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.googleMap', [])
 
-  .factory('$cordovaGoogleMap', ['$q', function ($q) {
+  .factory('$cordovaGoogleMap', function ($q) {
 
     var map = null;
 
@@ -47,7 +47,6 @@ angular.module('ngCordova.plugins.googleMap', [])
       // I don't know how to deallocate te map and the google map plugin.
       cleanup: function () {
         map = null;
-        delete map;
       }
-    }
-  }]);
+    };
+  });

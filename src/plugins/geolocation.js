@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.geolocation', [])
 
-.factory('$cordovaGeolocation', ['$q', function($q) {
+.factory('$cordovaGeolocation', function($q) {
 
   return {
     getCurrentPosition: function(options) {
@@ -29,11 +29,11 @@ angular.module('ngCordova.plugins.geolocation', [])
       return {
         watchId: watchId,
         promise: q.promise
-      }
+      };
     },
 
     clearWatch: function(watchID) {
       return navigator.geolocation.clearWatch(watchID);
     }
-  }
-}]);
+  };
+});

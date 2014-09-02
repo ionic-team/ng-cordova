@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.appAvailability', [])
 
-.factory('$cordovaAppAvailability', ['$q', function ($q) {
+.factory('$cordovaAppAvailability', function ($q) {
 
   return {
     check: function(urlScheme) {
@@ -14,5 +14,5 @@ angular.module('ngCordova.plugins.appAvailability', [])
 
       return q.promise;
     }
-  }
-}]);
+  };
+});

@@ -1,12 +1,11 @@
 angular.module('ngCordova.plugins.sqlite', [])
 
-  .factory('$cordovaSQLite', ['$q', function ($q) {
+  .factory('$cordovaSQLite', function ($q) {
 
     return  {
       openDB: function (dbName) {
         return  window.sqlitePlugin.openDatabase({name: dbName});
       },
-
 
       openDBBackground: function (dbName) {
         return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
@@ -16,11 +15,10 @@ angular.module('ngCordova.plugins.sqlite', [])
         var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
-              q.resolve(result);
-            },
-            function (transaction, error) {
-              q.reject(error);
-            });
+            q.resolve(result);
+          }, function (transaction, error) {
+            q.reject(error);
+          });
         });
         return q.promise;
       },
@@ -29,20 +27,19 @@ angular.module('ngCordova.plugins.sqlite', [])
         var q = $q.defer();
 
         db.transaction(function (tx) {
-            tx.executeSql(query1, binding1, function (tx, result) {
-              q.resolve(result);
-              tx.executeSql(query2, binding2, function (tx, res) {
-                q.resolve(res);
-              })
-            })
-          },
-          function (transaction, error) {
-            q.reject(error);
+          tx.executeSql(query1, binding1, function (tx, result) {
+            q.resolve(result);
+            tx.executeSql(query2, binding2, function (tx, res) {
+              q.resolve(res);
+            });
           });
+        }, function (transaction, error) {
+          q.reject(error);
+        });
 
         return q.promise;
       }
 
-      // more methods here
-    }
-  }]);
+      // TODO: more methods here
+    };
+  });

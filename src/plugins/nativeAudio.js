@@ -1,13 +1,13 @@
 angular.module('ngCordova.plugins.nativeAudio', [])
 
-  .factory('$cordovaNativeAudio', ['$q', function ($q) {
+  .factory('$cordovaNativeAudio', function ($q) {
 
     return {
       preloadSimple: function (id, assetPath) {
         var q = $q.defer();
         window.plugins.NativeAudio.preloadSimple(id, assetPath,
           function (result) {
-            q.resolve(result)
+            q.resolve(result);
           },
           function (err) {
             q.reject(err);
@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         var q = $q.defer();
         window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices,
           function (result) {
-            q.resolve(result)
+            q.resolve(result);
           },
           function (err) {
             q.reject(err);
@@ -35,7 +35,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         var q = $q.defer();
         window.plugins.NativeAudio.play(id,
           function (result) {
-            q.resolve(result)
+            q.resolve(result);
           },
           function (err) {
             q.reject(err);
@@ -49,7 +49,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         var q = $q.defer();
         window.plugins.NativeAudio.stop(id,
           function (result) {
-            q.resolve(result)
+            q.resolve(result);
           },
           function (err) {
             q.reject(err);
@@ -62,7 +62,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         var q = $q.defer();
         window.plugins.NativeAudio.loop(id,
           function (result) {
-            q.resolve(result)
+            q.resolve(result);
           },
           function (err) {
             q.reject(err);
@@ -76,7 +76,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         var q = $q.defer();
         window.plugins.NativeAudio.unload(id,
           function (result) {
-            q.resolve(result)
+            q.resolve(result);
           },
           function (err) {
             q.reject(err);
@@ -85,5 +85,5 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
         return q.promise;
       }
-    }
-  }]);
+    };
+  });

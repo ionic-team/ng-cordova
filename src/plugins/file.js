@@ -4,11 +4,10 @@
 // TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
 // TODO: add support for onprogress property
 
-
 angular.module('ngCordova.plugins.file', [])
 
-//Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', function ($q) {
+  // Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
+  .factory('$cordovaFile', function ($q) {
 
     return {
       checkDir: function (dir) {
@@ -379,7 +378,7 @@ angular.module('ngCordova.plugins.file', [])
               };
 
               reader.readAsText(file);
-            })
+            });
           },
           function (error) {
             q.reject(error);
@@ -393,7 +392,7 @@ angular.module('ngCordova.plugins.file', [])
           function (fileEntry) {
             fileEntry.file(function (file) {
               q.resolve(file);
-            })
+            });
           },
           function (error) {
             q.reject(error);
@@ -446,9 +445,8 @@ angular.module('ngCordova.plugins.file', [])
           },
           options);
 
-        return q.promise
+        return q.promise;
       }
-
     };
 
     function getFilesystem() {
@@ -463,4 +461,4 @@ angular.module('ngCordova.plugins.file', [])
 
       return q.promise;
     }
-  }]);
+  });

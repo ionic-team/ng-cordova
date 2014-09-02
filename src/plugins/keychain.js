@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.keychain', [])
 
-  .factory('$cordovaKeychain', ['$q', function ($q) {
+  .factory('$cordovaKeychain', function ($q) {
 
     var kc = new Keychain();
 
@@ -40,5 +40,5 @@ angular.module('ngCordova.plugins.keychain', [])
 
         return defer.promise;
       }
-    }
-  }]);
+    };
+  });

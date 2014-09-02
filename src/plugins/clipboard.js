@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.clipboard', [])
 
-  .factory('$cordovaClipboard', ['$q', function ($q) {
+  .factory('$cordovaClipboard', function ($q) {
 
     return {
       copy: function (text) {
@@ -27,5 +27,5 @@ angular.module('ngCordova.plugins.clipboard', [])
 
         return q.promise;
       }
-    }
-  }]);
+    };
+  });

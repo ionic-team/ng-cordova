@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.adMob', [])
 
-    .factory('$cordovaAdMob', [function() {
+  .factory('$cordovaAdMob', function() {
 
       return {
         createBannerView: function(options, success, fail) {
@@ -18,6 +18,5 @@ angular.module('ngCordova.plugins.adMob', [])
         requestInterstitialAd: function(options, success, fail) {
           return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
         }
-
-      }
-}]);
+      };
+  });

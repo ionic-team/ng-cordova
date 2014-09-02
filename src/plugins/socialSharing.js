@@ -5,17 +5,17 @@
 
 angular.module('ngCordova.plugins.socialSharing', [])
 
-  .factory('$cordovaSocialSharing', ['$q', function ($q) {
+  .factory('$cordovaSocialSharing', function ($q) {
 
     return {
       share: function (message, subject, file, link) {
         var q = $q.defer();
         window.plugins.socialsharing.share(message, subject, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -24,10 +24,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.shareViaTwitter(message, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -36,10 +36,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -48,10 +48,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.shareViaFacebook(message, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -60,10 +60,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -72,10 +72,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -84,10 +84,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.canShareViaEmail(
             function () {
-              q.resolve(true); // success
+              q.resolve(true);
             },
             function () {
-              q.reject(false); // error
+              q.reject(false);
             });
         return q.promise;
       },
@@ -96,10 +96,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
           function (success) {
-            q.resolve(success); // success
+            q.resolve(success);
           },
           function (error) {
-            q.reject(error); // error
+            q.reject(error);
           });
         return q.promise;
       },
@@ -108,13 +108,12 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         window.plugins.socialsharing.shareVia(via, message, subject, file, link,
             function () {
-              q.resolve(true); // success
+              q.resolve(true);
             },
             function () {
-              q.reject(false); // error
+              q.reject(false);
             });
         return q.promise;
       }
-
-    }
-  }]);
+    };
+  });

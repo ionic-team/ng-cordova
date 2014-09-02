@@ -1,9 +1,8 @@
 angular.module('ngCordova.plugins.network', [])
 
-.factory('$cordovaNetwork', [function () {
+.factory('$cordovaNetwork', function () {
 
   return {
-
     getNetwork: function () {
       return navigator.connection.type;
     },
@@ -17,5 +16,5 @@ angular.module('ngCordova.plugins.network', [])
       var networkState = navigator.connection.type;
       return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
     }
-  }
-}]);
+  };
+});

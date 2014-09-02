@@ -1,8 +1,6 @@
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-.factory('$cordovaBackgroundGeolocation', ['$q',
-  function ($q) {
-
+.factory('$cordovaBackgroundGeolocation', function ($q) {
 
     return {
 
@@ -13,7 +11,7 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
       },
 
       configure: function(options) {
-        
+
        this.init();
 
        var q = $q.defer();
@@ -60,5 +58,4 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
        return q.promise;
      }
    };
- }
- ]);
+ });

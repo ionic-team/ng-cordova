@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.toast', [])
 
-.factory('$cordovaToast', ['$q', function ($q) {
+  .factory('$cordovaToast', function ($q) {
 
     return {
       showShortTop: function (message) {
@@ -8,8 +8,8 @@ angular.module('ngCordova.plugins.toast', [])
         window.plugins.toast.showShortTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       },
 
@@ -18,8 +18,8 @@ angular.module('ngCordova.plugins.toast', [])
         window.plugins.toast.showShortCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       },
 
@@ -28,8 +28,8 @@ angular.module('ngCordova.plugins.toast', [])
         window.plugins.toast.showShortBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       },
 
@@ -38,8 +38,8 @@ angular.module('ngCordova.plugins.toast', [])
         window.plugins.toast.showLongTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       },
 
@@ -48,8 +48,8 @@ angular.module('ngCordova.plugins.toast', [])
         window.plugins.toast.showLongCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       },
 
@@ -58,22 +58,19 @@ angular.module('ngCordova.plugins.toast', [])
         window.plugins.toast.showLongBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       },
-
 
       show: function (message, duration, position) {
         var q = $q.defer();
         window.plugins.toast.show(message, duration, position, function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
-        })
+          q.reject(error);
+        });
         return q.promise;
       }
-    }
-
-  }
-]);
+    };
+  });
