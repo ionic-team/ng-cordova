@@ -6,9 +6,10 @@
 angular.module('demo', [
   'ionic',
   'ngCordova',
+  'ui.ace',
 
   // modules
- // 'demo.adMob.ctrl',  // not working???
+  // 'demo.adMob.ctrl',  // not working???
   'demo.barcodeScanner.ctrl',
   'demo.camera.ctrl',
   'demo.clipboard.ctrl',

@@ -1,0 +1,67 @@
+<!-- Source Code Examples -->
+
+<ion-modal-view>
+	<ion-header-bar class="bar bar-dark">
+		<button class="button button-clear right-buttons" ng-click="closeModal()">Close</button>
+		<h1 class="title">Source</h1>
+	</ion-header-bar>
+	<ion-content padding="true">
+		<div class="card">
+			<div class="item item-divider">
+				.getCurrentAcceleration
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 130px;"
+					>$cordovaDeviceMotion
+  .getCurrentAcceleration()
+  .then(function (motion) {
+    // success, use motion
+  }, function (err) {
+    // error
+  });</pre>
+		</div>
+
+
+		<div class="card">
+			<div class="item item-divider">
+				.watchAcceleration
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : false, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 180px;"
+					>var options = { frequency: 3000 };
+var watch = $cordovaDeviceMotion.watchAcceleration(options);
+watch.promise.then(
+  function () {  /* unused */ },
+  function (err) {
+    // error
+  },
+  function (motion) {
+    // motion with constant updates
+  });</pre>
+		</div>
+
+
+		<div class="card">
+			<div class="item item-divider">
+				.clearWatch
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : false, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 150px;"
+					>// use watch.watchID from watchAccelaration()
+$cordovaDeviceMotion
+  .clearWatch(watch.watchID)
+  .then(function (result) {
+    // success
+  }, function (err) {
+    // error
+  });</pre>
+		</div>
+
+	</ion-content>
+</ion-modal-view>

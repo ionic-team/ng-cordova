@@ -1,0 +1,29 @@
+<!-- Source Code Examples -->
+
+<ion-modal-view>
+	<ion-header-bar class="bar bar-dark">
+		<button class="button button-clear right-buttons" ng-click="closeModal()">Close</button>
+		<h1 class="title">Source</h1>
+	</ion-header-bar>
+	<ion-content padding="true">
+		<div class="card">
+			<div class="item item-divider">
+				.scan
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 150px;"
+					>$cordovaBarcodeScanner
+  .scan()
+  .then(function(imageData) {
+    // Success! Barcode data
+  },
+  function(err) {
+    // An error occured
+  });</pre>
+		</div>
+
+
+	</ion-content>
+</ion-modal-view>
