@@ -1,5 +1,5 @@
 ---
-layout: content
+layout: docs
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
@@ -18,8 +18,8 @@ angular.module('myApp', ['ngCordova'])
 <script src="cordova.js"></script>
 ```
 
-
-### `$cordovaBarcodeScanner`
+<a class="anchor" name="BarcodeScanner"></a>
+### [`$cordovaBarcodeScanner`](#BarcodeScanner)
 
 The [Barcode Scanner Plugin](https://github.com/wildabeast/BarcodeScanner/) opens a camera view and automagically scans a barcode, returning the data back to you.
 [View Official Docs](https://github.com/wildabeast/BarcodeScanner/#using-the-plugin)
@@ -55,8 +55,9 @@ module.controller('BarcodeScannerCtrl', function($scope, $cordovaBarcodeScanner)
 });
 ```
 
+<a class="anchor" name="Camera"></a>
 
-### `$cordovaCamera`
+### [`$cordovaCamera`](#Camera)
 
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
 from a device. [View Official Docs](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera)
@@ -93,8 +94,9 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
 [View Camera Options](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
 
+<a class="anchor" name="Contacts"></a>
 
-### `$cordovaContacts`
+### [`$cordovaContacts`](#Contacts)
 
 A powerful way to create, remove, and search through contacts on the device.
 
@@ -116,8 +118,9 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 });
 ```
 
+<a class="anchor" name="Device"></a>
 
-### `$cordovaDevice`
+### [`$cordovaDevice`](#Device)
 
 Grab device related information, such as platform, and device model.
 
@@ -136,8 +139,9 @@ module.controller('MyCtrl', function($scope, $cordovaDevice) {
 });
 ```
 
+<a class="anchor" name="DeviceMotion"></a>
 
-### `$cordovaDeviceMotion`
+### [`$cordovaDeviceMotion`](#DeviceMotion)
 
 Get access to the device's accelerometer.
 [View Official Docs](https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md)
@@ -194,8 +198,9 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
 });
 ```
 
+<a class="anchor" name="DeviceOrientation"></a>
 
-### `$cordovaDeviceOrientation`
+### [`$cordovaDeviceOrientation`](#DeviceOrientation)
 
 Get access to the device's compass.
 [View Official Docs](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md)
@@ -232,8 +237,9 @@ module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrient
 });
 ```
 
+<a class="anchor" name="Dialogs"></a>
 
-### `$cordovaDialogs`
+### [`$cordovaDialogs`](#Dialogs)
 
 Trigger alert, confirm, and prompt windows, or send beeps (beep, beep!)
 
@@ -256,8 +262,9 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
 });
 ```
 
+<a class="anchor" name="File"></a>
 
-### `$cordovaFile`
+### [`$cordovaFile`](#File)
 
 A Plugin to get access to the device's files and directories.
 [View Official Docs](https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md)
@@ -337,8 +344,9 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 });
 ```
 
+<a class="anchor" name="Geolocation"></a>
 
-### `$cordovaGeolocation`
+### [`$cordovaGeolocation`](#Geolocation)
 
 Grab the current location of the user, or grab continuous location changes:
 [View Official Docs](https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md)
@@ -371,7 +379,9 @@ module.controller('MyCtrl', function($scope, $cordovaGeolocation) {
 });
 ```
 
-### `$cordovaGlobalization`
+<a class="anchor" name="Globalization"></a>
+
+### [`$cordovaGlobalization`](#Globalization)
 
 Obtains information and performs operations specific to the user's locale and timezone.
 [View Official Docs](https://github.com/apache/cordova-plugin-globalization/blob/master/doc/index.md)
@@ -421,8 +431,9 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
 });
 ```
 
+<a class="anchor" name="Network"></a>
 
-### `$cordovaNetwork`
+### [`$cordovaNetwork`](#Network)
 
 Check network connection types, and track offline and online status.
 [View Official Docs](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md)
@@ -443,8 +454,9 @@ module.controller('MyCtrl', function($scope, $cordovaNetwork) {
 [View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
 
 
+<a class="anchor" name="PinDialog"></a>
 
-### `$cordovaPinDialog`
+### [`$cordovaPinDialog`](#PinDialog)
 
 Numeric password dialog.
 
@@ -465,7 +477,9 @@ module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 });
 ```
 
-### `$cordovaPush`
+<a class="anchor" name="Push"></a>
+
+### [`$cordovaPush`](#Push)
 
 Allows your application to receive push notifications
 [View Official Docs](https://github.com/phonegap-build/PushPlugin#-plugin-api)
@@ -512,8 +526,9 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
 });
 ```
 
+<a class="anchor" name="SocialSharing"></a>
 
-### `$cordovaSocialSharing`
+### [`$cordovaSocialSharing`](#SocialSharing)
 
 Social Sharing plugin.
 
@@ -569,7 +584,9 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
 });
 ```
 
-### `$cordovaSpinnerDialog`
+<a class="anchor" name="SpinnerDialog"></a>
+
+### [`$cordovaSpinnerDialog`](#SpinnerDialog)
 
 A dialog with a spinner wheel.
 [View Official Docs](https://github.com/Paldom/SpinnerDialog)
@@ -590,8 +607,9 @@ module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
 });
 ```
 
+<a class="anchor" name="Splashscreen"></a>
 
-### `$cordovaSplashscreen`
+### [`$cordovaSplashscreen`](#Splashscreen)
 
 Show or hide the Splash Screen.
 
@@ -605,8 +623,9 @@ module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
 });
 ```
 
+<a class="anchor" name="Statusbar"></a>
 
-### `$cordovaStatusbar`
+### [`$cordovaStatusbar`](#Statusbar)
 
 Configure the device's StatusBar with colors and styles.
 
@@ -636,8 +655,9 @@ module.controller('MyCtrl', function($scope, $cordovaStatusbar) {
 });
 ```
 
+<a class="anchor" name="Toast"></a>
 
-### `$cordovaToast`
+### [`$cordovaToast`](#Toast)
 
 This plugin allows you to show a native Toast (a little text popup) on iOS, Android and WP8. It's great for showing a non intrusive native notification which is guaranteed always in the viewport of the browser.
 [View Official Docs](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
@@ -685,8 +705,8 @@ module.controller('MyCtrl', function($scope, $cordovaToast) {
 });
 ```
 
-
-### `$cordovaVibration`
+<a class="anchor" name="Vibration"></a>
+### [`$cordovaVibration`](#Vibration)
 
 Vibrate the device programatically.
 [View Official Docs](https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md)
@@ -704,8 +724,8 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 });
 ```
 
-
-### `$cordovaCapture`
+<a class="anchor" name="Capture"></a>
+### [`$cordovaCapture`](#Capture)
 
 This plugin allows you to record sound, video and images throught the native capabilities of the device
 [View Official Docs](https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md)
