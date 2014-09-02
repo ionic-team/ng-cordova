@@ -7,8 +7,12 @@ module.exports = {
     'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js',
     'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-mocks.js'
   ]
-    .concat(buildConfig.jsFiles)
-    .concat('test/**/*.js'),
+    .concat(buildConfig.pluginFiles)
+    .concat('test/plugins/*.js')
+
+    .concat(buildConfig.mockFiles)
+    .concat('test/mocks/*.js')
+  ,
 
   frameworks: ['jasmine'],
   reporters: ['progress'],
