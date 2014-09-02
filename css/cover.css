@@ -181,6 +181,13 @@ code {
   margin-left: auto;
 }
 
+@media (max-width: 767px) {
+    .site-wrapper-flow {
+        padding-top: 0;
+        text-align: left;
+    }
+}
+
 /* Padding for spacing */
 .inner {
   padding: 30px;
@@ -191,7 +198,8 @@ code {
  * Header
  */
 .masthead {
-  background-color: #2d3036;;
+  background-color: #2d3036;
+    z-index: 99;
 }
 
 .masthead-brand {
@@ -370,3 +378,48 @@ a:hover {
     width: 900px;
   }
 }
+
+.menu-docked {
+    display: none;
+}
+
+
+@media (min-width: 992px) {
+    .menu-docked {
+        display: block;
+        top: 100px;
+        position: fixed;
+    }
+
+    .menu-docked .nav {
+        background-color: #383c42;
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 70px;
+
+    }
+
+    .menu-docked .menu-title {
+        color: #FFFFFF;
+    }
+
+    .menu-docked a {
+        font-size: 14px;
+        line-height: 14px;
+    }
+}
+
+/*
+ * Anchor fixing
+ */
+
+.anchor{
+    display: block;
+    height: 60px; /*same height as header*/
+    margin-top: -94px; /*same height as header*/
+    visibility: hidden;
+}
+
+
+
+

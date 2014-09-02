@@ -103,7 +103,7 @@ var ionicSite = (function(){
             fixedMenu
               .css({
                 width: fixedMenu.width() + 'px',
-                top: '20px'
+                top: '100px'
               })
               .addClass("fixed-menu");
           }
@@ -114,7 +114,7 @@ var ionicSite = (function(){
               .removeClass("fixed-menu")
               .css({
                 width: 'auto',
-                top: '20px'
+                top: '100px'
               });
           }
           if(scrollTop < 200) {
