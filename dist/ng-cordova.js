@@ -1060,6 +1060,7 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           }
         );
+        return q.promise;
       },
 
       readFileMetadataAbsolute: function (filePath) {
