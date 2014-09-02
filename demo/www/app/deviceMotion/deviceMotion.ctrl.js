@@ -1,6 +1,6 @@
 angular.module('demo.deviceMotion.ctrl', [])
 
-  .controller('DeviceMotionCtrl', function ($scope, $cordovaDeviceMotion) {
+  .controller('DeviceMotionCtrl', function ($scope, $cordovaDeviceMotion, $ionicModal) {
     var watchID;
 
     $scope.getAcceleration = function () {
@@ -39,6 +39,30 @@ angular.module('demo.deviceMotion.ctrl', [])
         }, function (err) {
           $scope.msg = err.message;
         });
+    };
+
+
+    /*
+     Ionic modal with source code
+     */
+
+    $ionicModal.fromTemplateUrl('app/deviceMotion/deviceMotion-source.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+
+    $scope.closeModal = function () {
+      $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+      $scope.modal.remove();
+    });
+
+    $scope.showSource = function () {
+      $scope.modal.show();
     }
   });
 

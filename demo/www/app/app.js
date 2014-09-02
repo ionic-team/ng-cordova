@@ -6,6 +6,7 @@
 angular.module('demo', [
   'ionic',
   'ngCordova',
+  'ui.ace',
 
   // modules
  // 'demo.adMob.ctrl',  // not working???

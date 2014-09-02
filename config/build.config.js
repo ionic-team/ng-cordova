@@ -8,12 +8,20 @@ module.exports = {
     ' * Copyright 2014 Drifty Co. http://drifty.com/\n' +
     ' * See LICENSE in this repository for license information\n' +
     ' */\n',
+
   closureStart: '(function(){\n',
   closureEnd: '\n})();',
 
   dist: 'dist',
+  pluginFiles: [ 
+    'src/module.js',
+    'src/plugins/*.js' 
+  ],
 
-  jsFiles: ['src/**/*.js'],
+  mockFiles: [ 
+    'src/module-mocks.js',
+    'src/mocks/*.js'
+  ],
 
   versionData: {
     version: pkg.version

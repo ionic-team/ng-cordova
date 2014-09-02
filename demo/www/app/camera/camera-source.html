@@ -1,0 +1,38 @@
+<!-- Source Code Example -->
+<ion-modal-view>
+	<ion-header-bar class="bar bar-dark">
+		<button class="button button-clear right-buttons" ng-click="closeModal()">Close</button>
+		<h1 class="title">Source</h1>
+	</ion-header-bar>
+	<ion-content padding="true">
+		<div class="card">
+			<div class="item item-divider">
+				.getPicture
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : false, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 350px;"
+					>var options = {
+  quality : 75,
+  destinationType : Camera.DestinationType.DATA_URL,
+  sourceType : Camera.PictureSourceType.CAMERA,
+  allowEdit : true,
+  encodingType: Camera.EncodingType.JPEG,
+  targetWidth: 100,
+  targetHeight: 100,
+  popoverOptions: CameraPopoverOptions,
+  saveToPhotoAlbum: false
+};
+
+$cordovaCamera
+  .getPicture(options)
+  .then(function(imageData) {
+    // Success! Image data
+  }, function(err) {
+    // An error occurred
+  });</pre>
+		</div>
+
+	</ion-content>
+</ion-modal-view>
