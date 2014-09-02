@@ -13,7 +13,7 @@ var ngCordovaMocks = angular.module('ngCordovaMocks', []);
  * A service for testing barcode scanner features
  * in an app build with ngCordova.
 **/ 
-ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaBarcodeScanner', ["$q", function($q) {
 	var throwsError = false;
 
 	var scannedText = '';
@@ -103,7 +103,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
  * A service for testing camera features
  * in an app build with ngCordova.
 **/ 
-ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCamera', ["$q", function($q) {
 	var throwsError = false;
 
 	return {
@@ -143,7 +143,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
  *
  * @example
  */ 
-ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCapture', ["$q", function($q) {
 	var throwsError = false;
 
 	return {
@@ -197,7 +197,7 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
  * A service for testing features related with contacts
  * in an app build with ngCordova.
 **/  
-ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaContacts', ["$q", function($q) {
 	var throwsError = false;
 	var contacts = [];
 
@@ -421,7 +421,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
  * A service for mocking the accelerometer
  * in an app build with ngCordova.
 **/  
-ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceMotion', ["$interval", "$q", function ($interval, $q) {
 	var currentAcceleration = null;
 	var throwsError = false;
 	var positions = [];
@@ -556,7 +556,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
  * A service for testing compass fetures 
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function ($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceOrientation', ["$interval", "$q", function ($interval, $q) {
 	var currentHeading = null;
 	var throwsError = false;
 	var readings = [];
@@ -837,7 +837,7 @@ ngCordovaMocks.factory('$cordovaDialogs', function() {
  * A service for testing interaction with device directories and files
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFile', ["$q", function($q) {
 	var throwsError = false;
 	var fileSystem = {};
 
@@ -963,7 +963,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
  * A service for testing location services
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaGeolocation', ["$interval", "$q", function($interval, $q) {
 	var throwsError = false;
 	var useHostAbilities = true;
 
@@ -1179,7 +1179,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
  * A service for testing features related to a user's locale and timezone.
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGlobalization', ["$q", function($q) {
 	var throwsError = false;
 	var preferredLanguage = 'en';
 	var firstDayOfWeek = 'Sunday';
@@ -1465,7 +1465,7 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
  * A service for testing via social services
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaSocialSharing', ["$q", function($q) {
 	var throwsError = false;
 	var message = '';
 	var image = '';
@@ -1832,7 +1832,7 @@ ngCordovaMocks.factory('$cordovaStatusbar', function() {
  * A service for testing vibration
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
+ngCordovaMocks.factory('$cordovaVibration', ["$timeout", function($timeout) {
 	var isVibrating = false;
 	var vibrateTimer = null;
 
