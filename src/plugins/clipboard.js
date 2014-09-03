@@ -19,8 +19,8 @@ angular.module('ngCordova.plugins.clipboard', [])
       paste: function () {
         var q = $q.defer();
 
-        window.cordova.plugins.clipboard.copy(function () {
-          q.resolve();
+        window.cordova.plugins.clipboard.paste(function (text) {
+          q.resolve(text);
         }, function () {
           q.reject();
         });
