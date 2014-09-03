@@ -725,6 +725,37 @@ module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 });
 ```
 
+
+<a class="anchor" name="Preferences"></a>
+### [`$cordovaPreferences`](#Preferences)
+
+Accessing application preference with the [application-preferences](https://github.com/dferrell/plugins-application-preferences) plugin.
+
+[View Docs](https://github.com/dferrell/plugins-application-preferences)
+
+
+```
+cordova plugin add https://github.com/dferrell/plugins-application-preferences.git
+```
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaPreferences) {
+
+  $scope.getName = function () {
+    $cordovaPreferences.get('name_identifier').then(function (name) {
+      $scope.name = name;
+    })
+  };
+
+  $scope.setName = function () {
+    $cordovaPreferences.get('name_identifier', 'homer').then(function () {
+      console.log('successfully saved!');
+    })
+  };
+});
+```
+
 <a class="anchor" name="Push"></a>
 
 ### [`$cordovaPush`](#Push)
