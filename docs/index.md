@@ -18,6 +18,116 @@ angular.module('myApp', ['ngCordova'])
 <script src="cordova.js"></script>
 ```
 
+<a class="anchor" name="AdMob"></a>
+### [`$cordovaAdMob`](#AdMob)
+
+The [AdMob](https://github.com/floatinghotpot/cordova-admob-pro) plugin presents AdMob Ads in Mobile App/Games natively from JavaScript.
+[View Official Docs](https://github.com/floatinghotpot/cordova-admob-pro#quick-start-example-code)
+
+
+```
+cordova plugin add com.google.cordova.admob
+```
+
+
+```javascript
+
+module.controller('AdMobCtrl', function($scope, $cordovaAdMob) {
+		// AdMob implementation here
+		// coming soon...
+});
+```
+
+<a class="anchor" name="AppAvailability"></a>
+### [`$cordovaAppAvailability`](#AppAvailability)
+
+The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows you to check if an app is installed on the user's device. It requires an URI Scheme (e.g. twitter://) on iOS or a Package Name (e.g com.twitter.android) on Android.
+
+**[View Official Docs](https://github.com/ohh2ahh/AppAvailability)**
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>iOS Schemes</th>
+            <th>Android Schemes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>twitter://</td>
+            <td>com.twitter.android</td>
+        </tr>
+        <tr>
+            <td>fb://</td>
+            <td>com.facebook.katana</td>
+        </tr>
+       
+        <tr>
+            <td>whatsapp://</td>
+            <td>com.whatsapp</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+```
+cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
+```
+
+
+```javascript
+
+module.controller('AppAvailCtrl', function($scope, $cordovaAppAvailability) {
+
+  $cordovaAppAvailability
+    .check('twitter://')
+    .then(function(success) {
+      // success
+    },
+    function (error) {
+      // error
+    });
+});
+```
+
+
+
+<a class="anchor" name="BatteryStatus"></a>
+### [`$cordovaBatteryStatus`](#BatteryStatus)
+
+The [BatteryStatus](https://github.com/apache/cordova-plugin-battery-status) plugin provides an API for the current battery status.
+
+[View Official Docs](https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md)
+
+
+```
+cordova plugin add org.apache.cordova.battery-status
+```
+
+
+```javascript
+
+module.controller('BatteryCtrl', function($scope, $cordovaBatteryStatus) {
+  
+  $cordovaBatteryStatus.onBatteryStatus(function(result) {
+    var batteryLevel = result.level;       // (0 - 100)
+    var isPluggedIn  = result.isPlugged;   // bool
+  });
+  
+  $cordovaBatteryStatus.onBatteryCritical(function(result) {
+    var batteryLevel = result.level;       // (0 - 100)
+    var isPluggedIn  = result.isPlugged;   // bool
+  });
+    
+  $cordovaBatteryStatus.onBatteryLow(function(result) {
+    var batteryLevel = result.level;       // (0 - 100)
+    var isPluggedIn  = result.isPlugged;   // bool
+  });
+});
+
+```
+
 <a class="anchor" name="BarcodeScanner"></a>
 ### [`$cordovaBarcodeScanner`](#BarcodeScanner)
 
@@ -94,8 +204,94 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
 [View Camera Options](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
 
-<a class="anchor" name="Contacts"></a>
 
+<a class="anchor" name="Capture"></a>
+### [`$cordovaCapture`](#Capture)
+
+This plugin allows you to record sound, video and images throught the native capabilities of the device
+[View Official Docs](https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md)
+
+```
+cordova plugin add org.apache.cordova.media-capture
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaCapture) {
+
+  $scope.captureAudio = function() {
+    var options = { limit: 3, duration: 10 };
+    
+    $cordovaCapture.captureAudio(options).then(function(audioData) {
+      // Success! Audio data is here
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  }
+
+  $scope.captureImage = function() {
+    var options = { limit: 3 };
+    
+    $cordovaCapture.captureImage(options).then(function(imageData) {
+      // Success! Image data is here
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  }
+
+  $scope.captureVideo = function() {
+    var options = { limit: 3, duration: 15 };
+    
+    $cordovaCapture.captureVideo(options).then(function(videoData) {
+      // Success! Video data is here
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  }
+
+});
+```
+
+
+
+<a class="anchor" name="Clipboard"></a>
+### [`$cordovaClipboard`](#Clipboard)
+
+The [Clipboard](https://github.com/VersoSolutions/CordovaClipboard) plugin provides an API for the current battery status.
+
+[View Official Docs](https://github.com/VersoSolutions/CordovaClipboard)
+
+
+```
+cordova plugin add https://github.com/VersoSolutions/CordovaClipboard
+```
+
+
+```javascript
+
+module.controller('ClipboardCtrl', function($scope, $cordovaClipboard) {
+  
+  $cordovaClipboard
+    .copy('text to copy')
+    .then(function () {
+      // success
+    }, function () {
+      // error
+    });
+    
+  $cordovaClipboard
+    .paste()
+    .then(function (result) {
+      // success, use result
+    }, function () {
+      // error
+    });
+    
+});
+
+```
+
+
+<a class="anchor" name="Contacts"></a>
 ### [`$cordovaContacts`](#Contacts)
 
 A powerful way to create, remove, and search through contacts on the device.
@@ -431,8 +627,31 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
 });
 ```
 
-<a class="anchor" name="Network"></a>
 
+<a class="anchor" name="Keychain"></a>
+### `$cordovaKeychain`
+
+Accessing the keychain of iOS from cordova [View Docs](https://github.com/shazron/KeychainPlugin)
+
+```
+cordova plugin add https://github.com/shazron/KeychainPlugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaKeychain) {
+
+  $scope.getValueFromKey = function(key) {
+    $cordovaKeychain.getForKey(key, servicename).then(function(value) {
+      console.log(value);
+    }, function (err) {
+      console.error(err);
+    });
+  };
+
+});
+```
+
+<a class="anchor" name="Network"></a>
 ### [`$cordovaNetwork`](#Network)
 
 Check network connection types, and track offline and online status.
@@ -454,8 +673,8 @@ module.controller('MyCtrl', function($scope, $cordovaNetwork) {
 [View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
 
 
-<a class="anchor" name="PinDialog"></a>
 
+<a class="anchor" name="PinDialog"></a>
 ### [`$cordovaPinDialog`](#PinDialog)
 
 Numeric password dialog.
@@ -584,8 +803,8 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
 });
 ```
 
-<a class="anchor" name="SpinnerDialog"></a>
 
+<a class="anchor" name="SpinnerDialog"></a>
 ### [`$cordovaSpinnerDialog`](#SpinnerDialog)
 
 A dialog with a spinner wheel.
@@ -607,8 +826,9 @@ module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
 });
 ```
 
-<a class="anchor" name="Splashscreen"></a>
 
+
+<a class="anchor" name="Splashscreen"></a>
 ### [`$cordovaSplashscreen`](#Splashscreen)
 
 Show or hide the Splash Screen.
@@ -623,8 +843,36 @@ module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
 });
 ```
 
-<a class="anchor" name="Statusbar"></a>
 
+
+<a class="anchor" name="SQLite"></a>
+### `$cordovaSQLite`
+
+Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
+
+```
+cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaSQLite) {
+
+  var db = $cordovaSQLite.openDB({ name: "my.db" });
+
+  $scope.execute = function() {
+    var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
+    $cordovaSQLite.execute(db, query, ["test", 100]).then(function(tx, res) {
+      console.log("insertId: " + res.insertId);
+    }, function (err) {
+      console.error(err);
+    });
+  };
+
+});
+```
+
+
+<a class="anchor" name="Statusbar"></a>
 ### [`$cordovaStatusbar`](#Statusbar)
 
 Configure the device's StatusBar with colors and styles.
@@ -720,125 +968,6 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 
   // Vibrate 100ms
   $cordovaVibration.vibrate(100);
-
-});
-```
-
-<a class="anchor" name="Capture"></a>
-### [`$cordovaCapture`](#Capture)
-
-This plugin allows you to record sound, video and images throught the native capabilities of the device
-[View Official Docs](https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md)
-
-```
-cordova plugin add org.apache.cordova.media-capture
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaCapture) {
-
-  $scope.captureAudio = function() {
-    var options = { limit: 3, duration: 10 };
-    
-    $cordovaCapture.captureAudio(options).then(function(audioData) {
-      // Success! Audio data is here
-    }, function(err) {
-      // An error occured. Show a message to the user
-    });
-  }
-
-  $scope.captureImage = function() {
-    var options = { limit: 3 };
-    
-    $cordovaCapture.captureImage(options).then(function(imageData) {
-      // Success! Image data is here
-    }, function(err) {
-      // An error occured. Show a message to the user
-    });
-  }
-
-  $scope.captureVideo = function() {
-    var options = { limit: 3, duration: 15 };
-    
-    $cordovaCapture.captureVideo(options).then(function(videoData) {
-      // Success! Video data is here
-    }, function(err) {
-      // An error occured. Show a message to the user
-    });
-  }
-
-});
-```
-
-### `$cordovaSQLite`
-
-Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
-
-```
-cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaSQLite) {
-
-  var db = $cordovaSQLite.openDB({ name: "my.db" });
-
-  $scope.execute = function() {
-    var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
-    $cordovaSQLite.execute(db, query, ["test", 100]).then(function(tx, res) {
-      console.log("insertId: " + res.insertId);
-    }, function (err) {
-      console.error(err);
-    });
-  };
-
-});
-```
-
-### `$cordovaBatteryStatus`
-
-This plugin provides an implementation of an old version of the Battery Status Events API. [View Offical Docs](https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md)
-
-```
-cordova plugin add org.apache.cordova.battery-status
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
-
-  $cordovaBatteryStatus.onBatteryStatus(function (status) {
-    // status.level: The percentage of battery charge (0-100). (Number)
-    // status.isPlugged: A boolean that indicates whether the device is plugged in (Boolean)
-  });
-
-  $cordovaBatteryStatus.onBatteryCritical(function (status) {
-    // status available with same keys
-  });
-
-  $cordovaBatteryStatus.onBatteryLow(function (status) {
-    // status available with same keys
-  });
-});
-```
-
-### `$cordovaKeychain`
-
-Accessing the keychain of iOS from cordova [View Docs](https://github.com/shazron/KeychainPlugin)
-
-```
-cordova plugin add https://github.com/shazron/KeychainPlugin.git
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaKeychain) {
-
-  $scope.getValueFromKey = function(key) {
-    $cordovaKeychain.getForKey(key, servicename).then(function(value) {
-      console.log(value);
-    }, function (err) {
-      console.error(err);
-    });
-  };
 
 });
 ```
