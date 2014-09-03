@@ -9,7 +9,7 @@ angular.module('demo', [
   'ui.ace',
 
   // modules
-  // 'demo.adMob.ctrl',  // not working???
+ // 'demo.adMob.ctrl',  // not working???
   'demo.barcodeScanner.ctrl',
   'demo.camera.ctrl',
   'demo.clipboard.ctrl',

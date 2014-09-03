@@ -8,7 +8,7 @@
  *
  * @example
  */ 
-ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCapture', function($q) {
 	var throwsError = false;
 
 	return {
@@ -53,4 +53,4 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
 			return defer.promise;
 		}
 	};
-}]);
+});

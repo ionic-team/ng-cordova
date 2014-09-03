@@ -1,8 +1,9 @@
 angular.module('ngCordova.plugins.contacts', [])
 
-.factory('$cordovaContacts', ['$q', function ($q) {
+.factory('$cordovaContacts', function ($q) {
 
   return {
+
     save: function (contact) {
       var q = $q.defer();
       var deviceContact = navigator.contacts.create(contact);
@@ -31,7 +32,7 @@ angular.module('ngCordova.plugins.contacts', [])
 
     clone: function (contact) {
       var deviceContact = navigator.contacts.create(contact);
-      return deviceContact.clone(contact)
+      return deviceContact.clone(contact);
     },
 
     find: function (options) {
@@ -67,6 +68,5 @@ angular.module('ngCordova.plugins.contacts', [])
     // TODO: method to set / get ContactName
     // TODO: method to set / get ContactOrganization
 
-  }
-
-}]);
+  };
+});

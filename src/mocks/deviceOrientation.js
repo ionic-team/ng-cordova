@@ -6,7 +6,7 @@
  * A service for testing compass fetures 
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function ($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceOrientation', function ($interval, $q) {
 	var currentHeading = null;
 	var throwsError = false;
 	var readings = [];
@@ -135,4 +135,4 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
 			return defer.promise;
 		}
 	};
-}]);
+});

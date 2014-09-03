@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.keyboard', [])
 
-.factory('$cordovaKeyboard', [function () {
+.factory('$cordovaKeyboard', function () {
 
   return {
     hideAccessoryBar: function (bool) {
@@ -16,9 +16,9 @@ angular.module('ngCordova.plugins.keyboard', [])
     },
 
     isVisible: function () {
-      return cordova.plugins.Keyboard.isVisible
+      return cordova.plugins.Keyboard.isVisible;
     }
 
     //TODO: add support for native.keyboardshow + native.keyboardhide
-  }
-}]);
+  };
+});

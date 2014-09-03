@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.ga', [])
 
-  .factory('$cordovaGA', ['$q', function ($q) {
+  .factory('$cordovaGA', function ($q) {
 
     return {
 
@@ -64,4 +64,4 @@ angular.module('ngCordova.plugins.ga', [])
         return q.promise;
       }
     };
-  }]);
+  });

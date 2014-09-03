@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.media', [])
 
-  .factory('$cordovaMedia', ['$q', function ($q) {
+  .factory('$cordovaMedia', function () {
 
     return {
       newMedia: function (src) {
@@ -20,8 +20,7 @@ angular.module('ngCordova.plugins.media', [])
           media: media,
           mediaStatus: mediaStatus,
           promise: q.promise
-        }
-
+        };
       },
 
       getCurrentPosition: function (source) {
@@ -29,7 +28,6 @@ angular.module('ngCordova.plugins.media', [])
 
         source.getCurrentPosition(function (success) {
           q.resolve(success);
-
         }, function (error) {
           q.reject(error);
         });
@@ -38,16 +36,14 @@ angular.module('ngCordova.plugins.media', [])
       },
 
       getDuration: function (source) {
-
         return source.getDuration();
       },
 
       play: function (source) {
-        return source.play();
-
         // iOS quirks :
         // -  myMedia.play({ numberOfLoops: 2 }) -> looping
         // -  myMedia.play({ playAudioWhenScreenIsLocked : false })
+        return source.play();
       },
 
       pause: function (source) {
@@ -58,9 +54,7 @@ angular.module('ngCordova.plugins.media', [])
         return source.release();
       },
 
-
       seekTo: function (source, milliseconds) {
-
         return source.seekTo(milliseconds);
       },
 
@@ -69,18 +63,15 @@ angular.module('ngCordova.plugins.media', [])
       },
 
       startRecord: function (source) {
-
         return source.startRecord();
       },
 
       stopRecord: function (source) {
-
         return source.stopRecord();
       },
 
       stop: function (source) {
-
         return source.stop();
       }
-    }
-  }]);
+    };
+  });

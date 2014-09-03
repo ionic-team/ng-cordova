@@ -6,7 +6,7 @@
  * A service for testing via social services
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaSocialSharing', function($q) {
 	var throwsError = false;
 	var message = '';
 	var image = '';
@@ -260,4 +260,4 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 			return defer.promise;
 		}
 	};
-}]);
+});

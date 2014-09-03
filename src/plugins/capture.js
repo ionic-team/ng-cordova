@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.capture', [])
 
-.factory('$cordovaCapture', ['$q', function($q) {
+.factory('$cordovaCapture', function($q) {
 
   return {
     captureAudio: function(options) {
@@ -51,5 +51,5 @@ angular.module('ngCordova.plugins.capture', [])
 
       return q.promise;
     }
-  }
-}]);
+  };
+});

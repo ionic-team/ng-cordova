@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
-.factory('$cordovaDeviceOrientation', ['$q', function($q) {
+.factory('$cordovaDeviceOrientation', function($q) {
 
   return {
     getCurrentHeading: function() {
@@ -14,6 +14,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
 
       return q.promise;
     },
+
     watchHeading: function(options) {
       var q = $q.defer();
 
@@ -26,10 +27,11 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       return {
         watchId: watchId,
         promise: q.promise
-      }
+      };
     },
+
     clearWatch: function(watchID) {
       navigator.compass.clearWatch(watchID);
     }
-  }
-}]);
+  };
+});

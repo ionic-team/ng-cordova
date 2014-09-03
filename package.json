@@ -17,7 +17,8 @@
     "gulp": "^3.7.0",
     "gulp-jshint": "^1.6.1",
     "gulp-uglify": "^0.2.1",
-    "minimist": "^0.1.0"
+    "minimist": "^0.1.0",
+    "gulp-ng-annotate": "~0.3.0"
   },
   "licenses": [
     {

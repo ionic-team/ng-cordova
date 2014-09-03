@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.printer', [])
 
-.factory('$cordovaPrinter', ['$q', function ($q) {
+  .factory('$cordovaPrinter', function ($q) {
 
     return {
       isAvailable: function () {
@@ -12,6 +12,5 @@ angular.module('ngCordova.plugins.printer', [])
       print: function (doc) {
         window.plugin.printer.print(doc);
       }
-    }
-  }
-]);
+    };
+  });

@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.globalization', [])
 
-.factory('$cordovaGlobalization', ['$q', function ($q) {
+.factory('$cordovaGlobalization', function ($q) {
 
   return {
     getPreferredLanguage: function () {
@@ -170,7 +170,5 @@ angular.module('ngCordova.plugins.globalization', [])
         });
       return q.promise;
     }
-
-  }
-
-}]);
+  };
+});

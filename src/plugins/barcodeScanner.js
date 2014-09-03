@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-.factory('$cordovaBarcodeScanner', ['$q', function ($q) {
+.factory('$cordovaBarcodeScanner', function ($q) {
 
   return {
     scan: function (options) {
@@ -33,5 +33,5 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
       return q.promise;
     }
-  }
-}]);
+  };
+});

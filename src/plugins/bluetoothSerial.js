@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
-.factory('$cordovaBluetoothSerial', ['$q' , function ($q) {
+.factory('$cordovaBluetoothSerial', function ($q) {
 
   var promise_f = function() {
     var q = $q.defer();
@@ -40,4 +40,4 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
     clear:            function () { return promise_f('clear'); },
     readRSSI:         function () { return promise_f('readRSSI'); }
   };
-}]);
+});

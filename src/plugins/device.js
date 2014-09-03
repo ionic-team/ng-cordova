@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.device', [])
 
-.factory('$cordovaDevice', [function () {
+.factory('$cordovaDevice', function () {
 
   return {
     getDevice: function () {
@@ -31,5 +31,5 @@ angular.module('ngCordova.plugins.device', [])
     getVersion: function () {
       return device.version;
     }
-  }
-}]);
+  };
+});

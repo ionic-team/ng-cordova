@@ -6,7 +6,7 @@
  * A service for testing interaction with device directories and files
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFile', function($q) {
 	var throwsError = false;
 	var fileSystem = {};
 
@@ -123,4 +123,4 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 			return defer.promise;			
 		}		
 	};
-}]);
+});

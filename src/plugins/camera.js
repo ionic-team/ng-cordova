@@ -1,6 +1,6 @@
 angular.module('ngCordova.plugins.camera', [])
 
-.factory('$cordovaCamera', ['$q', function($q) {
+.factory('$cordovaCamera', function($q) {
 
   return {
     getPicture: function(options) {
@@ -30,6 +30,5 @@ angular.module('ngCordova.plugins.camera', [])
 
       return q.promise;
     }
-    
-  }
-}]);
+  };
+});

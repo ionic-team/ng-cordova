@@ -7,19 +7,21 @@ var gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
   karma = require('karma').server,
-  karmaConf = require('./config/karma.conf.js');
-  rename = require('gulp-rename');
-
+  karmaConf = require('./config/karma.conf.js'),
+  rename = require('gulp-rename'),
+  ngAnnotate = require('gulp-ng-annotate');
 
 gulp.task('default', ['build']);
 
 gulp.task('build', function() {
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
+    .pipe(ngAnnotate())
     .pipe(header(buildConfig.closureStart))
-    .pipe(footer(buildConfig.closureEnd))    
+    .pipe(footer(buildConfig.closureEnd))
     .pipe(header(buildConfig.banner))
     .pipe(gulp.dest(buildConfig.dist))
+    .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
@@ -28,10 +30,12 @@ gulp.task('build', function() {
 
   return gulp.src(buildConfig.pluginFiles)
     .pipe(concat('ng-cordova.js'))
+    .pipe(ngAnnotate())
     .pipe(header(buildConfig.closureStart))
     .pipe(footer(buildConfig.closureEnd))
     .pipe(header(buildConfig.banner))
     .pipe(gulp.dest(buildConfig.dist))
+    .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
