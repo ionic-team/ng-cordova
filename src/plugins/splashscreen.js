@@ -4,11 +4,13 @@ angular.module('ngCordova.plugins.splashscreen', [])
 
   return {
     hide: function () {
-      return navigator.splashscreen.hide();
+      if(navigator.splashscreen)
+        return navigator.splashscreen.hide();
     },
 
     show: function () {
-      return navigator.splashscreen.show();
+      if(navigator.splashscreen)
+        return navigator.splashscreen.show();
     }
   };
 
