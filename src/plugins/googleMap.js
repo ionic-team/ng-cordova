@@ -1,3 +1,6 @@
+// install   :
+// link      :
+
 // Google Maps needs ALOT of work!
 // Not for production use
 
@@ -25,8 +28,7 @@ angular.module('ngCordova.plugins.googleMap', [])
 
 
       isMapLoaded: function () { // check if an instance of the map exists
-        if (map) return true;
-        else return false;
+        return !!map;
       },
       addMarker: function (markerOptions) { // add a marker to the map with given markerOptions
         var q = $q.defer();
@@ -47,7 +49,7 @@ angular.module('ngCordova.plugins.googleMap', [])
       // I don't know how to deallocate te map and the google map plugin.
       cleanup: function () {
         map = null;
-        delete map;
+        // delete map;
       }
     }
   }]);

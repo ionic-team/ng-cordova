@@ -1,6 +1,9 @@
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.printer', [])
 
-.factory('$cordovaPrinter', ['$q', function ($q) {
+  .factory('$cordovaPrinter', ['$q', function ($q) {
 
     return {
       isAvailable: function () {
@@ -14,4 +17,4 @@ angular.module('ngCordova.plugins.printer', [])
       }
     }
   }
-]);
+  ]);

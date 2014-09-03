@@ -1,3 +1,6 @@
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.nativeAudio', [])
 
   .factory('$cordovaNativeAudio', ['$q', function ($q) {

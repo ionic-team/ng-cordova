@@ -1,3 +1,6 @@
+// install   :      cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+// link      :      https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md
+
 angular.module('ngCordova.plugins.sqlite', [])
 
   .factory('$cordovaSQLite', ['$q', function ($q) {

@@ -1,3 +1,6 @@
+// install   :      cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
+// link      :      https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
+
 // NOTE: shareViaEmail -> if user cancels sharing email, success is still called
 // NOTE: shareViaEmail -> TO, CC, BCC must be an array, Files can be either null, string or array
 // TODO: add support for iPad
@@ -83,12 +86,12 @@ angular.module('ngCordova.plugins.socialSharing', [])
       canShareViaEmail: function () {
         var q = $q.defer();
         window.plugins.socialsharing.canShareViaEmail(
-            function () {
-              q.resolve(true); // success
-            },
-            function () {
-              q.reject(false); // error
-            });
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
         return q.promise;
       },
 
@@ -107,12 +110,12 @@ angular.module('ngCordova.plugins.socialSharing', [])
       shareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
         window.plugins.socialsharing.shareVia(via, message, subject, file, link,
-            function () {
-              q.resolve(true); // success
-            },
-            function () {
-              q.reject(false); // error
-            });
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
         return q.promise;
       }
 

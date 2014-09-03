@@ -1,3 +1,6 @@
+// install  :     cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
+// link     :     https://github.com/ohh2ahh/AppAvailability
+
 angular.module('ngCordova.plugins.appAvailability', [])
 
 .factory('$cordovaAppAvailability', ['$q', function ($q) {

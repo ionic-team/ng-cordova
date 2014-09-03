@@ -1,3 +1,6 @@
+// install   :     cordova plugin add org.apache.cordova.file
+// link      :     https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
+
 // TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
 // TODO: add documentation for FileError types
 // TODO: add abort() option to downloadFile and uploadFile methods.

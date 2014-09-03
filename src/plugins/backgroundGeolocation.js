@@ -1,64 +1,64 @@
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-.factory('$cordovaBackgroundGeolocation', ['$q',
-  function ($q) {
-
+  .factory('$cordovaBackgroundGeolocation', ['$q', function ($q) {
 
     return {
 
-      init: function() {
-        window.navigator.geolocation.getCurrentPosition(function(location) {
+      init: function () {
+        window.navigator.geolocation.getCurrentPosition(function (location) {
           return location;
         });
       },
 
-      configure: function(options) {
-        
-       this.init();
+      configure: function (options) {
 
-       var q = $q.defer();
+        this.init();
+        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.configure(
-         function (result){
-           q.resolve(result);
-           window.plugins.backgroundGeoLocation.finish();
-         },
-         function (err) {
-           q.reject(err);
-         },options);
+        window.plugins.backgroundGeoLocation.configure(
+          function (result) {
+            q.resolve(result);
+            window.plugins.backgroundGeoLocation.finish();
+          },
+          function (err) {
+            q.reject(err);
+          }, options);
 
-       this.start();
+        this.start();
 
-       return q.promise;
-     },
+        return q.promise;
+      },
 
-     start : function () {
-       var q = $q.defer();
+      start: function () {
+        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.start(
-         function(result){
-           q.resolve(result);
-         },
-         function(err){
-           q.reject(err);
-         });
+        window.plugins.backgroundGeoLocation.start(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-       return q.promise;
-     },
+        return q.promise;
+      },
 
-     stop : function () {
-       var q = $q.defer();
+      stop: function () {
+        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.stop(
-         function (result) {
-           q.resolve(result);
-         },
-         function (err) {
-           q.reject(err);
-         });
+        window.plugins.backgroundGeoLocation.stop(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-       return q.promise;
-     }
-   };
- }
- ]);
+        return q.promise;
+      }
+    };
+  }
+  ]);
