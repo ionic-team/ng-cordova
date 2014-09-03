@@ -44,4 +44,5 @@ https://github.com/ohh2ahh/AppAvailability
 https://github.com/dferrell/plugins-application-preferences
 https://github.com/shazron/KeychainPlugin.git
 https://github.com/katzer/cordova-plugin-printer
+https://github.com/aharris88/phonegap-sms-plugin
 ```
