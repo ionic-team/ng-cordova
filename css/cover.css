@@ -466,7 +466,21 @@ a:hover {
  */
 
 .table-docs {
-    width: auto;
-
+    width: 100%;
 }
 
+.table-green {
+    background-color: rgba(110, 225, 131, 0.89);
+    color : #000;
+}
+.table-red {
+    background-color: rgba(255, 80, 58, 0.86);
+}
+
+.table-border-right {
+    border-right: 1px #DDDDDD solid;
+}
+
+.table th{
+    text-align: center;
+}

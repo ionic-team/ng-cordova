@@ -755,7 +755,51 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
 
 ### [`$cordovaSocialSharing`](#SocialSharing)
 
-Social Sharing plugin.
+Share images, text, messages via Facebook, Twitter, Email, SMS, WhatsApp, etc using this plugin.
+
+<table class="table table-docs text-center">
+    <thead >
+        <tr>
+            <th  class="table-border-right"></th>
+            <th>FB iOS</th>
+            <th>FB Android</th>
+            <th>Twitter</th>
+            <th>Whatsapp</th>
+            <th>Email</th>
+            <th>SMS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="table-border-right">Message</td>
+            <td class="table-green"></td>
+            <td class="table-red"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+        </tr>
+        <tr>
+            <td  class="table-border-right">Image</td>
+            <td class="table-green"></td>
+            <td class="table-green">either</td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+        </tr>
+        <tr>
+            <td  class="table-border-right">Link</td>
+            <td class="table-green"></td>
+            <td class="table-green">or</td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+            <td class="table-green"></td>
+        </tr>
+    </tbody>
+</table>
+
 
 ```
 cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
@@ -764,44 +808,53 @@ cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plug
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
 
-  $cordovaSocialSharing.shareViaTwitter(message, image, link).then(function(result) {
+  $cordovaSocialSharing
+    .shareViaTwitter(message, image, link)
+    .then(function(result) {
       // Success! 
-  }, function(err) {
+    }, function(err) {
       // An error occured. Show a message to the user
-  });
+    });
   
-  
-  $cordovaSocialSharing.shareViaWhatsApp(message, image, link).then(function(result) {
-      // Success! 
-  }, function(err) {
-      // An error occured. Show a message to the user
-  });
-  
-  
-  $cordovaSocialSharing.shareViaFacebook(message, image, link).then(function(result) {
-      // Success! 
-  }, function(err) {
-      // An error occured. Show a message to the user
-  });
-  
-  // access multiple numbers in a string like: '0612345678,0687654321'
-  $cordovaSocialSharing.shareViaSMS(message, number).then(function(result) {
-      // Success! 
-  }, function(err) {
-      // An error occured. Show a message to the user
-  });
-  
-  // TO, CC, BCC must be an array, Files can be either null, string or array
-  $cordovaSocialSharing.shareViaEmail(message, subject, toArr, bccArr, file).then(
-    function(result) {
+  $cordovaSocialSharing
+    .shareViaWhatsApp(message, image, link)
+    .then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
     });
   
   
-  $cordovaSocialSharing.canShareVia(socialType, message, image, link).then(
-    function(result) {
+  $cordovaSocialSharing
+    .shareViaFacebook(message, image, link)
+    .then(function(result) {
+      // Success! 
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  
+  // access multiple numbers in a string like: '0612345678,0687654321'
+  $cordovaSocialSharing
+    .shareViaSMS(message, number)
+    .then(function(result) {
+      // Success! 
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  
+  // TO, CC, BCC must be an array, Files can be either null, string or array
+  $cordovaSocialSharing
+    .shareViaEmail(message, subject, toArr, bccArr, file)
+    .then(function(result) {
+      // Success! 
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+  
+  
+  $cordovaSocialSharing
+    .canShareVia(socialType, message, image, link)
+    .then(function(result) {
       // Success! 
     }, function(err) {
       // An error occured. Show a message to the user
