@@ -1030,3 +1030,23 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 
 });
 ```
+
+<a class="anchor" name="Sms"></a>
+### [`$cordovaSms`](#cordovaSms)
+
+This plugin allows you to easily send SMS. [View Docs](https://github.com/aharris88/phonegap-sms-plugin)
+
+```
+cordova plugin add https://github.com/aharris88/phonegap-sms-plugin
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaSms) {
+  var number = '12345678910';
+  var message = 'My message';
+
+  $cordovaSms.send(number, message).then(function () {
+    console.log('successfully sent');
+  });
+});
+```
