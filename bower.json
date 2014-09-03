@@ -9,7 +9,12 @@
     ],
     "description": "AngularJS Cordova wrappers for common Cordova plugins.",
     "main": "./dist/ng-cordova.js",
-    "ignore" : [],
+    "ignore" : [
+        "gulpfile.js",
+        "test",
+        "src",
+        "config"
+    ],
     "dependencies": {
         "angular": "1.2.0"
     },
