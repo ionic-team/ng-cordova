@@ -634,6 +634,29 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
 ```
 
 
+<a class="anchor" name="Keyboard"></a>
+### `$cordovaKeyboard`
+
+The cordova.plugins.Keyboard object provides functions to make interacting with the keyboard easier, and fires events to indicate that the keyboard will hide/show. [View Docs](https://github.com/driftyco/ionic-plugins-keyboard)
+
+```
+cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
+
+  $scope.hide = function(key) {
+    $cordovaKeyboard.hideAccessoryBar(true);
+  };
+
+  $scope.isVisible = function () {
+    $cordovaKeyboard.isVisible();
+  };
+
+});
+```
+
 <a class="anchor" name="Keychain"></a>
 ### `$cordovaKeychain`
 
