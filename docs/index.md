@@ -553,25 +553,31 @@ cordova plugin add org.apache.cordova.geolocation
 ```
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaGeolocation) {
-  $cordovaGeolocation.getCurrentPosition().then(function(position) {
-      // Position here: position.coords.latitude, position.coords.longitude
+module.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
+  
+  $cordovaGeolocation
+    .getCurrentPosition()
+    .then(function (position) {
+      var lat  = position.coords.latitude
+      var long = position.coords.longitude
     }, function(err) {
       // error
     });
 
-  var watch = $cordovaGeolocation.watchPosition({
-    frequency: 1000
-  });
-
-  watch.promise.then(function() {
-      // Not currently used
-    }, function(err) {
-      // An error occured. Show a message to the user
-    }, function(position) {
+  // begin watching
+  var watch = $cordovaGeolocation.watchPosition({ frequency: 1000 });
+  watch.promise.then(function() { /* Not  used */ }, 
+    function(err) {
+      // An error occurred.
+    }, 
+    function(position) {
       // Active updates of the position here
-      // position.coords.latitude/longitude
+      // position.coords.[ latitude / longitude]
   });
+  
+  // clear watch
+  $cordovaGeolocation.clearWatch(watch.watchID)
+  
 });
 ```
 
