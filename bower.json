@@ -9,7 +9,12 @@
     ],
     "description": "AngularJS Cordova wrappers for common Cordova plugins.",
     "main": "./dist/ng-cordova.js",
+    "ignore" : [],
+    "dependencies": {
+        "angular": "1.2.0"
+    },
     "keywords": [
+        "ngCordova",
         "cordova",
         "phonegap",
         "angular",
