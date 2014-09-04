@@ -702,6 +702,89 @@ module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 });
 ```
 
+
+<a class="anchor" name="ProgressIndicator"></a>
+### [`$cordovaProgress`](#ProgressIndicator)
+
+Various Progress Dialogs for indicating loading or downloading.
+[View Official Docs](http://pbernasconi.github.io/cordova-progressIndicator/)
+
+
+<table class="table table-docs text-center" style="width: auto">
+    <thead >
+        <tr>
+            <th class="table-border-right"></th>
+            <th>Simple </th>
+            <th>Determin</th>
+            <th>Annular</th>
+            <th>Bar</th>
+            <th>Success</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="table-border-right">Example</td>
+            <td><img class="img-responsive" src="/img/progressIndicator/simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/determinate-simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/annular-simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/bar-simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/success.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/text-top.jpg"></td>
+        </tr>
+        <tr>
+												<td class="table-border-right">Requires hide</td>
+												<td>true</td>
+												<td>false</td>
+												<td>false</td>
+												<td>false</td>
+												<td>true</td>
+												<td>true</td>
+        </tr>
+
+    </tbody>
+</table>
+
+```
+cordova plugin add org.pbernasconi.progressindicator
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaProgress) {
+
+$cordovaProgress.showSimple(true)  // requires .hide()
+
+$cordovaProgress.showSimpleWithLabel(true, "Loading") // .hide()
+  
+$cordovaProgress.showSimpleWithLabelDetail(true, "Loading", "detail")
+    // requires .hide()
+    
+$cordovaProgress.hide()
+
+
+$cordovaProgress.showDeterminate(false, 100000)
+
+$cordovaProgress.showDeterminateWithLabel(true, 50000, "Loading")
+
+$cordovaProgress.showAnnular(true, 50000)
+
+$cordovaProgress.showAnnularWithLabel(false, 100000, "Loading")
+
+$cordovaProgress.showBar(true, 50000)
+
+$cordovaProgress.showBarWithLabel(false, 100000, "Loading")
+
+
+$cordovaProgress.showSuccess(true) // requires .hide()
+
+$cordovaProgress.showText(false, 100000, "Loading")
+
+});
+```
+
+
+
+
 <a class="anchor" name="Push"></a>
 
 ### [`$cordovaPush`](#Push)
@@ -760,7 +843,7 @@ Share images, text, messages via Facebook, Twitter, Email, SMS, WhatsApp, etc us
 <table class="table table-docs text-center">
     <thead >
         <tr>
-            <th  class="table-border-right"></th>
+            <th class="table-border-right"></th>
             <th>FB iOS</th>
             <th>FB Android</th>
             <th>Twitter</th>
