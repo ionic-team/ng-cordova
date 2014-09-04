@@ -369,21 +369,24 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileAbsolute: function (filePath) {
         var q = $q.defer();
+        var fail = function (error) {
+            q.reject(error);
+        };
         window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               var reader = new FileReader();
               reader.onloadend = function () {
-                q.resolve(this.result);
+                if (this.error)
+                  fail(this.error);
+                else
+                  q.resolve(this.result);
               };
-
               reader.readAsText(file);
-            })
+            }, 
+            fail);
           },
-          function (error) {
-            q.reject(error);
-          }
-        );
+          fail);
         return q.promise;
       },
 
