@@ -713,6 +713,54 @@ module.controller('MyCtrl', function($scope, $cordovaKeychain) {
 });
 ```
 
+
+
+
+<a class="anchor" name="Media"></a>
+### [`$cordovaMedia`](#Media)
+
+Media plugin
+[View Official Docs](https://github.com/apache/cordova-plugin-media/blob/master/doc/index.md)
+
+```
+cordova plugin add org.apache.cordova.media
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+  	var src = "/src/audio.mp3";
+  
+  	var mediaSource = $cordovaMedia.newMedia(src)
+  	var promise = mediaSource.promise
+  	var mediaStatus = mediaSource.mediaStatus
+  	var media = mediaSource.media
+  
+  	$cordovaMedia.play(media)
+  	
+  	$cordovaMedia.pause(media)
+  	
+  	$cordovaMedia.stop(media)
+  	
+  	$cordovaMedia.release(media)
+  	
+  	$cordovaMedia.getDuration(media)
+  	
+  	$cordovaMedia.seekTo(media, 5000000) // milliseconds
+  	
+  	$cordovaMedia.setVolume(media, 80)
+  	
+  	$cordovaMedia.startRecord(media)
+  	
+  	$cordovaMedia.stopRecord(media)
+  
+  	$cordovaMedia.getCurrentPosition(media).then(...)
+});
+```
+
+
+
+
+
 <a class="anchor" name="Network"></a>
 ### [`$cordovaNetwork`](#Network)
 
