@@ -8,8 +8,12 @@
         "Chad Campbell <chad.campbell@ecofic.com>"
     ],
     "description": "AngularJS Cordova wrappers for common Cordova plugins.",
-    "main": "./dist/ng-cordova.js",
+    "main": [
+        "./dist/ng-cordova.js",
+        "./dist/ng-cordova.min.js"
+    ],
     "ignore" : [
+        "**/.*",
         "gulpfile.js",
         "test",
         "src",
