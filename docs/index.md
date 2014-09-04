@@ -703,6 +703,26 @@ module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 ```
 
 
+<a class="anchor" name="Printer"></a>
+### [`$cordovaPrinter`](#Printer)
+
+Printer plugin
+[View Official Docs](https://github.com/katzer/cordova-plugin-printer)
+
+```
+cordova plugin add https://github.com/katzer/cordova-plugin-printer.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaPrinter) {
+
+  $cordovaPrinter
+});
+```
+
+
+
+
 <a class="anchor" name="ProgressIndicator"></a>
 ### [`$cordovaProgress`](#ProgressIndicator)
 
