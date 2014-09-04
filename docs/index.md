@@ -756,8 +756,34 @@ module.controller('MyCtrl', function($scope, $cordovaPreferences) {
 });
 ```
 
-<a class="anchor" name="Push"></a>
+<a class="anchor" name="Printer"></a>
+### [`$cordovaPrinter`](#Printer)
 
+A bunch of printing plugins for Cordova.
+
+[View Docs](https://github.com/katzer/cordova-plugin-printer)
+
+
+```
+cordova plugin add https://github.com/katzer/cordova-plugin-printer.git
+```
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaPrinter) {
+
+  $cordovaPrinter.isAvailable().then(function (available) {
+    $scope.isPrintServiceAvailable = available;
+  });
+
+  $scope.print = function () {
+    $cordovaPrinter.print();
+  };
+
+});
+```
+
+<a class="anchor" name="Push"></a>
 ### [`$cordovaPush`](#Push)
 
 Allows your application to receive push notifications
