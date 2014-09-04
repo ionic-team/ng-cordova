@@ -380,6 +380,8 @@ angular.module('ngCordova.plugins.file', [])
             fileEntry.file(function (file) {
               var reader = new FileReader();
               reader.onloadend = function () {
+                // onloadend is called by the reader on success or fail 
+                // but this.error will only be !== null if an error has occured.
                 if (this.error)
                   fail(this.error);
                 else
@@ -395,15 +397,17 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileMetadataAbsolute: function (filePath) {
         var q = $q.defer();
+        var fail = function (error) {
+          q.reject(error);
+        };
         window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               q.resolve(file);
-            })
+            }, 
+            fail);
           },
-          function (error) {
-            q.reject(error);
-          }
+          fail
         );
 
         return q.promise;
