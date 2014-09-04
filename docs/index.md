@@ -634,6 +634,33 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
 ```
 
 
+
+<a class="anchor" name="Keyboard"></a>
+### `$cordovaKeyboard`
+
+Accessing the Keyboard of iOS from cordova [View Official Docs](https://github.com/driftyco/ionic-plugins-keyboard)
+
+```
+cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
+```
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
+
+  $cordovaKeyboard.hideAccessoryBar(true)
+
+  $cordovaKeyboard.disableScroll(true)
+  
+  $cordovaKeyboard.close()
+  
+  var isVisible = $cordovaKeyboard.isVisible()
+
+});
+```
+
+
+
 <a class="anchor" name="Keychain"></a>
 ### `$cordovaKeychain`
 
