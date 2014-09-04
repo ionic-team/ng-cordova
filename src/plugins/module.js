@@ -38,5 +38,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.media',
   'ngCordova.plugins.battery-status',
   'ngCordova.plugins.keychain',
-  'ngCordova.plugins.progressIndicator'
+  'ngCordova.plugins.progressIndicator',
+  'ngCordova.plugins.datePicker'
 ]);

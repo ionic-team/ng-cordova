@@ -14,6 +14,7 @@ angular.module('demo', [
   'demo.camera.ctrl',
   'demo.clipboard.ctrl',
   'demo.contacts.ctrl',
+  'demo.datePicker.ctrl',
   'demo.device.ctrl',
   'demo.deviceMotion.ctrl',
   'demo.deviceOrientation.ctrl',
@@ -57,6 +58,12 @@ angular.module('demo', [
         url: '/clipboard',
         templateUrl: 'app/clipboard/clipboard.html',
         controller: "ClipboardCtrl"
+      })
+
+      .state('datePicker', {
+        url: '/datePicker',
+        templateUrl: 'app/datePicker/datePicker.html',
+        controller: "DatePickerCtrl"
       })
 
       .state('facebook', {
@@ -201,4 +208,3 @@ angular.module('demo', [
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/menu');
   });
-
