@@ -1,4 +1,3 @@
-// TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
 // TODO: add documentation for FileError types
 // TODO: add abort() option to downloadFile and uploadFile methods.
 // TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
@@ -452,10 +451,14 @@ angular.module('ngCordova.plugins.file', [])
 
     };
 
-    function getFilesystem() {
+    function getFilesystem(type, size) {
+
       var q = $q.defer();
 
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
+      window.requestFileSystem(
+        type || LocalFileSystem.PERSISTENT, 
+        size || 1024 * 1024, 
+        function (filesystem) {
           q.resolve(filesystem);
         },
         function (err) {
