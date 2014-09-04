@@ -1,5 +1,5 @@
-// install   :
-// link      :
+// install   : cordova plugin add de.appplant.cordova.plugin.printer
+// link      : https://github.com/katzer/cordova-plugin-printer
 
 angular.module('ngCordova.plugins.printer', [])
 
