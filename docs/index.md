@@ -540,6 +540,36 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 });
 ```
 
+
+<a class="anchor" name="Flashlight"></a>
+
+### [`$cordovaFlashlight`](#Flashlight)
+
+Flashlight [View Official Docs](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
+
+```
+cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
+  
+  var isAvailable = $cordovaFlashlight.available()
+  
+  $cordovaFlashlight.switchOn()
+    .then(
+      function (success) { /* success */ },
+      function (error) { /* error */ });
+      
+      
+  $cordovaFlashlight.switchOff()
+				.then(
+						function (success) { /* success */ },
+							function (error) { /* error */ });
+});
+```
+
+
 <a class="anchor" name="Geolocation"></a>
 
 ### [`$cordovaGeolocation`](#Geolocation)
