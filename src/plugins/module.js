@@ -37,5 +37,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.nativeAudio',
   'ngCordova.plugins.media',
   'ngCordova.plugins.battery-status',
-  'ngCordova.plugins.keychain'
+  'ngCordova.plugins.keychain',
+  'ngCordova.plugins.progressIndicator'
 ]);
