@@ -560,12 +560,11 @@ module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
     .then(
       function (success) { /* success */ },
       function (error) { /* error */ });
-      
-      
+
   $cordovaFlashlight.switchOff()
-				.then(
-						function (success) { /* success */ },
-							function (error) { /* error */ });
+    .then(
+      function (success) { /* success */ },
+      function (error) { /* error */ });
 });
 ```
 
