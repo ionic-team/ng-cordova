@@ -1,6 +1,9 @@
+// install   :      cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+// link      :      https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
+
 angular.module('ngCordova.plugins.toast', [])
 
-.factory('$cordovaToast', ['$q', function ($q) {
+  .factory('$cordovaToast', ['$q', function ($q) {
 
     return {
       showShortTop: function (message) {
@@ -9,7 +12,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -19,7 +22,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -29,7 +32,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -39,7 +42,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -49,7 +52,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -59,7 +62,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -70,10 +73,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       }
     }
 
-  }
-]);
+  }]);

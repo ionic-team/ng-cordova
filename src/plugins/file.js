@@ -1,3 +1,6 @@
+// install   :     cordova plugin add org.apache.cordova.file
+// link      :     https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
+
 // TODO: add documentation for FileError types
 // TODO: add abort() option to downloadFile and uploadFile methods.
 // TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers

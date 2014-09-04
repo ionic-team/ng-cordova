@@ -1,130 +1,115 @@
-/*global facebookConnectPlugin,angular */
+// install   :
+// link      :
+
 'use strict';
 angular.module('ngCordova.plugins.facebookConnect', [])
-    .provider('$cordova', [
+  .provider('$cordova', [
 
+    function () {
+      this.FacebookAppId = undefined;
+
+      this.setFacebookAppId = function (id) {
+        this.FacebookAppId = id;
+      };
+
+      this.$get = [
         function () {
+          var FbAppId = this.FacebookAppId;
+          return {
+            getFacebookAppId: function () {
+              return FbAppId;
+            }
+          };
+        }];
+    }
+  ])
+  .factory('$cordovaFacebookConnect', ['$q', '$cordova', function ($q, $cordova) {
 
-            this.FacebookAppId = undefined;
-
-            this.setFacebookAppId = function (id) {
-                this.FacebookAppId = id;
-            };
-
-            this.$get = [
-
-                function () {
-
-                    var FbAppId = this.FacebookAppId;
-
-                    return {
-                        getFacebookAppId: function () {
-                            return FbAppId;
-                        }
-                    };
-
-                }
-            ];
-
+    return {
+      init: function (appId) {
+        if (!window.cordova) {
+          facebookConnectPlugin.browserInit(appId);
         }
-    ])
-    .factory('$cordovaFacebookConnect', ['$q', '$cordova',
-        function ($q, $cordova) {
+      },
 
+      login: function (o) {
+        this.init($cordova.getFacebookAppId());
 
-            return {
+        var q = $q.defer();
+        facebookConnectPlugin.login(o,
+          function (res) {
+            q.resolve(res);
+          }, function (res) {
+            q.reject(res);
+          });
 
-                init: function (appId) {
-                    if (!window.cordova) {
-                        facebookConnectPlugin.browserInit(appId);
-                    }
-                },
+        return q.promise;
+      },
 
-                login: function (o) {
+      showDialog: function (o) {
 
-                    this.init($cordova.getFacebookAppId());
+        var q = $q.defer();
+        facebookConnectPlugin.showDialog(o,
+          function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.login(o,
-                        function (res) {
-                            q.resolve(res);
-                        }, function (res) {
-                            q.reject(res);
-                        });
+        return q.promise;
+      },
 
-                    return q.promise;
-                },
+      api: function (path, permission) {
 
-                showDialog: function (o) {
+        var q = $q.defer();
+        facebookConnectPlugin.api(path, permission,
+          function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.showDialog(o,
-                        function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
+        return q.promise;
+      },
 
-                    return q.promise;
-                },
+      getAccessToken: function () {
+        var q = $q.defer();
+        facebookConnectPlugin.getAccessToken(function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                api: function (path, permission) {
+        return q.promise;
+      },
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.api(path, permission,
-                        function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
+      getLoginStatus: function () {
+        var q = $q.defer();
+        facebookConnectPlugin.getLoginStatus(function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    return q.promise;
-                },
+        return q.promise;
 
-                getAccessToken: function () {
+      },
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.getAccessToken(function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
+      logout: function () {
+        var q = $q.defer();
+        facebookConnectPlugin.logout(function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    return q.promise;
-                },
+        return q.promise;
 
-                getLoginStatus: function () {
-
-                    var q = $q.defer();
-                    facebookConnectPlugin.getLoginStatus(function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
-
-                    return q.promise;
-
-                },
-
-                logout: function () {
-
-                    var q = $q.defer();
-                    facebookConnectPlugin.logout(function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
-
-                    return q.promise;
-
-                }
-
-
-            };
-        }
-    ]);
+      }
+    };
+  }]);

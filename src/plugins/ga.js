@@ -1,9 +1,11 @@
+// install   :     cordova plugin add https://github.com/phonegap-build/GAPlugin.git
+// link      :     https://github.com/phonegap-build/GAPlugin
+
 angular.module('ngCordova.plugins.ga', [])
 
   .factory('$cordovaGA', ['$q', function ($q) {
 
     return {
-
       init: function (id, mingap) {
         var q = $q.defer();
         mingap = (mingap >= 0) ? mingap : 10;

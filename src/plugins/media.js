@@ -1,3 +1,6 @@
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.media', [])
 
   .factory('$cordovaMedia', ['$q', function ($q) {
