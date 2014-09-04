@@ -463,6 +463,18 @@ angular.module('ngCordova.plugins.contacts', [])
 
   }]);
 
+angular.module('ngCordova.plugins.datePicker', [])
+
+  .factory('$cordovaDatePicker', ['$window', function ($window) {
+
+    return {
+      show: function(options, fn) {
+        return $window.datePicker.show(options, fn);
+      }
+    }
+
+  }]);
+
 // install   :     cordova plugin add org.apache.cordova.device
 // link      :     https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
 
@@ -1900,7 +1912,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.media',
   'ngCordova.plugins.battery-status',
   'ngCordova.plugins.keychain',
-  'ngCordova.plugins.progressIndicator'
+  'ngCordova.plugins.progressIndicator',
+  'ngCordova.plugins.datePicker'
 ]);
 
 // install   :
