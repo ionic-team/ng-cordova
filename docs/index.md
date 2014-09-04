@@ -716,7 +716,10 @@ cordova plugin add https://github.com/katzer/cordova-plugin-printer.git
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaPrinter) {
 
-  $cordovaPrinter
+  var printerAvail = $cordovaPrinter.isAvailable()
+  
+  var doc = "<html> ... </html>";
+  $cordovaPrinter.print(doc)
 });
 ```
 
