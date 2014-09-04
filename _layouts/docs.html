@@ -14,16 +14,11 @@
 
 	<title>{{page.title}} - by the Ionic Framework Team</title>
 
-	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
-
-	<!-- Custom styles for this template -->
 	<link href="/css/cover.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
 
-	<!-- Just for debugging purposes. Don't actually copy this line! -->
-	<!--[if lt IE 9]>
-	<script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="../../assets/js/ie8-responsive-file-warning.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -44,7 +39,7 @@
 				<div class="inner">
 					<a class="masthead-brand" href="http://ngcordova.com"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
 					<ul class="nav masthead-nav">
-						<li><a href="http://ngcordova.com">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="active"><a href="/docs/">Docs</a></li>
 						<li><a href="http://ionicframework.com/">Ionic</a></li>
 						<li><a href="https://github.com/driftyco/ng-cordova/">GitHub</a></li>
@@ -76,6 +71,7 @@
 								<li><a href="#File">File</a></li>
 								<li><a href="#Geolocation">Geolocation</a></li>
 								<li><a href="#Globalization">Globalization</a></li>
+								<li><a href="#Keyboard">Keyboard</a></li>
 								<li><a href="#Keychain">Keychain</a></li>
 								<li><a href="#Network">Network</a></li>
 								<li><a href="#PinDialog">Pin Dialog</a></li>
@@ -101,28 +97,15 @@
 
 			</div>
 
-			<div class="mastfoot ">
-				<img class="footer-hr" src="/img/footer-divider.png" width="650" height="41">
-
-				<div class="inner">
-					<p>Built with &#60;3 by <a href="http://ionicframework.com" target="_blank">Ionic</a>, with help from <a href="https://github.com/driftyco/ng-cordova/graphs/contributors" target="_blank">these awesome
-						people</a>.</p>
-				</div>
-			</div>
+			{% include mastfoot.html %}
 
 		</div>
-
 	</div>
-
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
 <script src="/lib/bootstrap/bootstrap.js"></script>
-<script src="../js/main.js"></script>
+<script src="/js/main.js"></script>
 
 {% include analytics.html %}
 </body>

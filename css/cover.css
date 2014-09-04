@@ -420,7 +420,7 @@ a:hover {
 }
 
 .menu-docked {
-    display: block;
+    display: none;
 }
 
 @media (min-width: 992px) {
