@@ -55,8 +55,8 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
-// install   :
-// link      :
+// install   :     cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
+// link      :     https://github.com/christocracy/cordova-plugin-background-geolocation
 
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
@@ -604,25 +604,43 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
 
 angular.module('ngCordova.plugins.dialogs', [])
 
-  .factory('$cordovaDialogs', [function () {
+  .factory('$cordovaDialogs', ['$q', function ($q) {
 
     return {
-      alert: function (message, callback, title, buttonName) {
-        return navigator.notification.alert.apply(navigator.notification, arguments);
+      alert: function (message, title, buttonName) {
+        var d = $q.defer();
+
+        navigator.notification.alert(message, function () {
+          d.resolve();
+        }, title, buttonName);
+
+        return d.promise;
       },
 
-      confirm: function (message, callback, title, buttonName) {
-        return navigator.notification.confirm.apply(navigator.notification, arguments);
+      confirm: function (message, title, buttonLabels) {
+        var d = $q.defer();
+
+        navigator.notification.confirm(message, function () {
+          d.resolve();
+        }, title, buttonLabels);
+
+        return d.promise;
       },
 
-      prompt: function (message, promptCallback, title, buttonLabels, defaultText) {
-        return navigator.notification.prompt.apply(navigator.notification, arguments);
+      prompt: function (message, title, buttonLabels, defaultText) {
+        var d = $q.defer();
+
+        navigator.notification.confirm(message, function () {
+          d.resolve();
+        }, title, buttonLabels, defaultText);
+
+        return d.promise;
       },
 
       beep: function (times) {
         return navigator.notification.beep(times);
       }
-    }
+    };
   }]);
 
 // install   :
@@ -1916,8 +1934,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.datePicker'
 ]);
 
-// install   :
-// link      :
+// install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
+// link      : https://github.com/sidneys/cordova-plugin-nativeaudio
 
 angular.module('ngCordova.plugins.nativeAudio', [])
 
@@ -2084,8 +2102,8 @@ angular.module('ngCordova.plugins.prefs', [])
     }
   }]);
 
-// install   :
-// link      :
+// install   : cordova plugin add de.appplant.cordova.plugin.printer
+// link      : https://github.com/katzer/cordova-plugin-printer
 
 angular.module('ngCordova.plugins.printer', [])
 
@@ -2093,9 +2111,13 @@ angular.module('ngCordova.plugins.printer', [])
 
     return {
       isAvailable: function () {
+        var d = $q.defer();
+
         window.plugin.printer.isServiceAvailable(function (isAvailable) {
-          return isAvailable ? true : false;
+          d.resolve(isAvailable);
         });
+
+        return d.promise;
       },
 
       print: function (doc) {
