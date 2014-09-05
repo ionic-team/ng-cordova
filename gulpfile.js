@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
   karma = require('karma').server,
-  karmaConf = require('./config/karma.conf.js');
+  karmaConf = require('./config/karma.conf.js'),
   rename = require('gulp-rename');
 
 
@@ -46,6 +46,12 @@ gulp.task('karma', function(done) {
 
 
   karma.start(karmaConf, done);
+});
+
+gulp.task('lint', function() {
+  return gulp.src('./lib/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('YOUR_REPORTER_HERE'));
 });
 
 gulp.task('karma-watch', function(done) {
