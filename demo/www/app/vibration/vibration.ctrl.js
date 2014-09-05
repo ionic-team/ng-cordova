@@ -4,7 +4,7 @@ angular.module('demo.vibration.ctrl', [])
 
     $scope.duration = 100;
 
-    var vibrate = function(){
+    $scope.vibrate = function(){
       console.log("vibrating");
       $cordovaVibration.vibrate($scope.duration);
     }

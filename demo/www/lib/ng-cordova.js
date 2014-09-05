@@ -9,29 +9,34 @@ angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
 
+// install  :     cordova plugin add com.google.cordova.admob
+// link     :     https://github.com/floatinghotpot/cordova-admob-pro
+
 angular.module('ngCordova.plugins.adMob', [])
 
-    .factory('$cordovaAdMob', [function() {
+  .factory('$cordovaAdMob', [function () {
 
-      return {
-        createBannerView: function(options, success, fail) {
-          return window.plugins.AdMob.createBannerView(options, success, fail);
-        },
-        createInterstitialView: function(options, success, fail) {
-          return window.plugins.AdMob.createInterstitialView(options, success, fail);
-        },
-        requestAd: function(options, success, fail) {
-          return window.plugins.AdMob.requestAd(options, success, fail);
-        },
-        showAd: function(options, success, fail) {
-          return window.plugins.AdMob.showAd(options, success, fail);
-        },
-        requestInterstitialAd: function(options, success, fail) {
-          return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
-        }
-
+    return {
+      createBannerView: function (options, success, fail) {
+        return window.plugins.AdMob.createBannerView(options, success, fail);
+      },
+      createInterstitialView: function (options, success, fail) {
+        return window.plugins.AdMob.createInterstitialView(options, success, fail);
+      },
+      requestAd: function (options, success, fail) {
+        return window.plugins.AdMob.requestAd(options, success, fail);
+      },
+      showAd: function (options, success, fail) {
+        return window.plugins.AdMob.showAd(options, success, fail);
+      },
+      requestInterstitialAd: function (options, success, fail) {
+        return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
       }
-}]);
+    }
+  }]);
+// install  :     cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
+// link     :     https://github.com/ohh2ahh/AppAvailability
+
 angular.module('ngCordova.plugins.appAvailability', [])
 
 .factory('$cordovaAppAvailability', ['$q', function ($q) {
@@ -50,244 +55,305 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-.factory('$cordovaBackgroundGeolocation', ['$q',
-  function ($q) {
-
+  .factory('$cordovaBackgroundGeolocation', ['$q', function ($q) {
 
     return {
 
-      init: function() {
-        window.navigator.geolocation.getCurrentPosition(function(location) {
+      init: function () {
+        window.navigator.geolocation.getCurrentPosition(function (location) {
           return location;
         });
       },
 
-      configure: function(options) {
-        
-       this.init();
+      configure: function (options) {
 
-       var q = $q.defer();
+        this.init();
+        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.configure(
-         function (result){
-           q.resolve(result);
-           window.plugins.backgroundGeoLocation.finish();
-         },
-         function (err) {
-           q.reject(err);
-         },options);
+        window.plugins.backgroundGeoLocation.configure(
+          function (result) {
+            q.resolve(result);
+            window.plugins.backgroundGeoLocation.finish();
+          },
+          function (err) {
+            q.reject(err);
+          }, options);
 
-       this.start();
+        this.start();
 
-       return q.promise;
-     },
+        return q.promise;
+      },
 
-     start : function () {
-       var q = $q.defer();
+      start: function () {
+        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.start(
-         function(result){
-           q.resolve(result);
-         },
-         function(err){
-           q.reject(err);
-         });
+        window.plugins.backgroundGeoLocation.start(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-       return q.promise;
-     },
+        return q.promise;
+      },
 
-     stop : function () {
-       var q = $q.defer();
+      stop: function () {
+        var q = $q.defer();
 
-       window.plugins.backgroundGeoLocation.stop(
-         function (result) {
-           q.resolve(result);
-         },
-         function (err) {
-           q.reject(err);
-         });
+        window.plugins.backgroundGeoLocation.stop(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-       return q.promise;
-     }
-   };
- }
- ]);
+        return q.promise;
+      }
+    };
+  }
+  ]);
+
+// install  :    cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
+// link     :    https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
 
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-.factory('$cordovaBarcodeScanner', ['$q', function ($q) {
+  .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
-  return {
-    scan: function (options) {
-      var q = $q.defer();
+    return {
+      scan: function (options) {
+        var q = $q.defer();
 
-      cordova.plugins.barcodeScanner.scan(function (result) {
-        q.resolve(result);
-      }, function (err) {
-        q.reject(err);
-      });
+        cordova.plugins.barcodeScanner.scan(function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
 
-      return q.promise;
-    },
+        return q.promise;
+      },
 
-    encode: function (type, data) {
-      var q = $q.defer();
+      encode: function (type, data) {
+        var q = $q.defer();
 
-      /* TODO needs work for type:
-       make the default:  BarcodeScanner.Encode.TEXT_TYPE
-       other options: .EMAIL_TYPE, .PHONE_TYPE, .SMS_TYPE
+        /* TODO needs work for type:
+         make the default:  BarcodeScanner.Encode.TEXT_TYPE
+         other options: .EMAIL_TYPE, .PHONE_TYPE, .SMS_TYPE
 
-       docs: https://github.com/wildabeast/BarcodeScanner#encoding-a-barcode
-       */
+         docs: https://github.com/wildabeast/BarcodeScanner#encoding-a-barcode
+         */
 
-      cordova.plugins.barcodeScanner.encode(type, data, function (result) {
-        q.resolve(result);
-      }, function (err) {
-        q.reject(err);
-      });
+        cordova.plugins.barcodeScanner.encode(type, data, function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
 
-      return q.promise;
+        return q.promise;
+      }
     }
-  }
-}]);
+  }]);
+
+//  install   :   cordova plugin add org.apache.cordova.battery-status
+//  link      :   https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md
+
+angular.module('ngCordova.plugins.battery-status', [])
+
+  .factory('$cordovaBatteryStatus', [function () {
+    return {
+      onBatteryStatus: function (handler) {
+        window.addEventListener('batterystatus', handler, false);
+      },
+      onBatteryCritical: function (handler) {
+        window.addEventListener('batterycritical', handler, false);
+      },
+      onBatteryLow: function (handler) {
+        window.addEventListener('batterylow', handler, false);
+      }
+    }
+  }]);
+// install   :
+// link      :
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
-.factory('$cordovaBluetoothSerial', ['$q' , function ($q) {
+  .factory('$cordovaBluetoothSerial', ['$q' , function ($q) {
 
-  var promise_f = function() {
-    var q = $q.defer();
+    var promise_f = function () {
+      var q = $q.defer();
 
-    // callbacks
-    var success =  function (success) {
-      q.resolve(success);
+      // callbacks
+      var success = function (success) {
+        q.resolve(success);
+      };
+      var failure = function (failure) {
+        q.reject(failure);
+      };
+
+      // get func and set args
+      var f_name = arguments[0];
+      var args = Array.prototype.slice.call(arguments, 1, arguments.length);
+      args.push(success);
+      args.push(failure);
+
+      window.bluetoothSerial[f_name].apply(this, args);
+
+      return q.promise;
     };
-    var failure = function (failure) {
-      q.reject(failure);
+
+    return {
+      connect: function (macAddress) {
+        return promise_f('connect', macAddress);
+      },
+      connectInsecure: function (macAddress) {
+        return promise_f('connectInsecure', macAddress);
+      },
+      disconnect: function () {
+        return promise_f('disconnect');
+      },
+      list: function () {
+        return promise_f('list');
+      },
+      isEnabled: function () {
+        return promise_f('isEnabled');
+      },
+      isConnected: function () {
+        return promise_f('isConnected');
+      },
+      available: function () {
+        return promise_f('available');
+      },
+      read: function () {
+        return promise_f('read');
+      },
+      readUntil: function (delimiter) {
+        return promise_f('readUntil', delimiter);
+      },
+      write: function (data) {
+        return promise_f('write', data);
+      },
+      subscribe: function (delimiter) {
+        return promise_f('subscribe', delimiter);
+      },
+      unsubscribe: function () {
+        return promise_f('unsubscribe');
+      },
+      clear: function () {
+        return promise_f('clear');
+      },
+      readRSSI: function () {
+        return promise_f('readRSSI');
+      }
     };
+  }]);
 
-    // get func and set args
-    var f_name = arguments[0];
-    var args = Array.prototype.slice.call(arguments, 1, arguments.length);
-    args.push(success);
-    args.push(failure);
-
-    window.bluetoothSerial[f_name].apply(this, args);
-
-    return q.promise;
-  };
-
-  return {
-    connect:          function (macAddress) { return promise_f('connect', macAddress); },
-    connectInsecure:  function (macAddress) { return promise_f('connectInsecure', macAddress); },
-    disconnect:       function () { return promise_f('disconnect'); },
-    list:             function () { return promise_f('list'); },
-    isEnabled:        function () { return promise_f('isEnabled'); },
-    isConnected:      function () { return promise_f('isConnected'); },
-    available:        function () { return promise_f('available'); },
-    read:             function () { return promise_f('read'); },
-    readUntil:        function (delimiter) { return promise_f('readUntil', delimiter); },
-    write:            function (data) { return promise_f('write', data); },
-    subscribe:        function (delimiter) { return promise_f('subscribe', delimiter); },
-    unsubscribe:      function () { return promise_f('unsubscribe'); },
-    clear:            function () { return promise_f('clear'); },
-    readRSSI:         function () { return promise_f('readRSSI'); }
-  };
-}]);
+// install   :   cordova plugin add org.apache.cordova.camera
+// link      :   https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera
 
 angular.module('ngCordova.plugins.camera', [])
 
-.factory('$cordovaCamera', ['$q', function($q) {
+  .factory('$cordovaCamera', ['$q', function ($q) {
 
-  return {
-    getPicture: function(options) {
-      var q = $q.defer();
+    return {
+      getPicture: function (options) {
+        var q = $q.defer();
 
-      if(!navigator.camera) {
-        q.resolve(null);
+        if (!navigator.camera) {
+          q.resolve(null);
+          return q.promise;
+        }
+
+        navigator.camera.getPicture(function (imageData) {
+          q.resolve(imageData);
+        }, function (err) {
+          q.reject(err);
+        }, options);
+
+        return q.promise;
+      },
+
+      cleanup: function (options) {
+        var q = $q.defer();
+
+        navigator.camera.cleanup(function () {
+          q.resolve(arguments);
+        }, function (err) {
+          q.reject(err);
+        });
+
         return q.promise;
       }
-
-      navigator.camera.getPicture(function(imageData) {
-        q.resolve(imageData);
-      }, function(err) {
-        q.reject(err);
-      }, options);
-
-      return q.promise;
-    },
-    cleanup: function(options) {
-      var q = $q.defer();
-
-      navigator.camera.cleanup(function() {
-        q.resolve(arguments);
-      }, function(err) {
-        q.reject(err);
-      });
-
-      return q.promise;
     }
-    
-  }
-}]);
+  }]);
+
+// install   :    cordova plugin add org.apache.cordova.media-capture
+// link      :    https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.capture', [])
 
-.factory('$cordovaCapture', ['$q', function($q) {
+  .factory('$cordovaCapture', ['$q', function ($q) {
 
-  return {
-    captureAudio: function(options) {
-      var q = $q.defer();
+    return {
+      captureAudio: function (options) {
+        var q = $q.defer();
 
-      if(!navigator.device.capture) {
-        q.resolve(null);
-        return q.promise;
-      }
+        if (!navigator.device.capture) {
+          q.resolve(null);
+          return q.promise;
+        }
 
-      navigator.device.capture.captureAudio(function(audioData) {
+        navigator.device.capture.captureAudio(function (audioData) {
           q.resolve(audioData);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         }, options);
 
-      return q.promise;
-    },
-    captureImage: function(options) {
-      var q = $q.defer();
-
-      if(!navigator.device.capture) {
-        q.resolve(null);
         return q.promise;
-      }
+      },
+      captureImage: function (options) {
+        var q = $q.defer();
 
-      navigator.device.capture.captureImage(function(imageData) {
+        if (!navigator.device.capture) {
+          q.resolve(null);
+          return q.promise;
+        }
+
+        navigator.device.capture.captureImage(function (imageData) {
           q.resolve(imageData);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         }, options);
 
-      return q.promise;
-    },
-    captureVideo: function(options) {
-      var q = $q.defer();
+        return q.promise;
+      },
+      captureVideo: function (options) {
+        var q = $q.defer();
 
-      if(!navigator.device.capture) {
-        q.resolve(null);
+        if (!navigator.device.capture) {
+          q.resolve(null);
+          return q.promise;
+        }
+
+        navigator.device.capture.captureVideo(function (videoData) {
+          q.resolve(videoData);
+        }, function (err) {
+          q.reject(err);
+        }, options);
+
         return q.promise;
       }
-
-      navigator.device.capture.captureVideo(function(videoData) {
-          q.resolve(videoData);
-        }, function(err) {
-          q.reject(err);
-        }, options);
-
-      return q.promise;
     }
-  }
-}]);
+  }]);
+
+// install   :     cordova plugin add https://github.com/VersoSolutions/CordovaClipboard
+// link      :     https://github.com/VersoSolutions/CordovaClipboard
 
 angular.module('ngCordova.plugins.clipboard', [])
 
@@ -310,8 +376,8 @@ angular.module('ngCordova.plugins.clipboard', [])
       paste: function () {
         var q = $q.defer();
 
-        window.cordova.plugins.clipboard.copy(function () {
-          q.resolve();
+        window.cordova.plugins.clipboard.paste(function (text) {
+          q.resolve(text);
         }, function () {
           q.reject();
         });
@@ -320,343 +386,363 @@ angular.module('ngCordova.plugins.clipboard', [])
       }
     }
   }]);
+
+// install   :     cordova plugin add org.apache.cordova.contacts
+// link      :     https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md
+
 angular.module('ngCordova.plugins.contacts', [])
 
-.factory('$cordovaContacts', ['$q', function ($q) {
+  .factory('$cordovaContacts', ['$q', function ($q) {
 
-  return {
-    save: function (contact) {
-      var q = $q.defer();
-      var deviceContact = navigator.contacts.create(contact);
+    return {
+      save: function (contact) {
+        var q = $q.defer();
+        var deviceContact = navigator.contacts.create(contact);
 
-      deviceContact.save(function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
-    },
+        deviceContact.save(function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      },
 
-    remove: function (contact) {
-      var q = $q.defer();
-      var deviceContact = navigator.contacts.create(contact);
+      remove: function (contact) {
+        var q = $q.defer();
+        var deviceContact = navigator.contacts.create(contact);
 
-      deviceContact.remove(function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
-    },
+        deviceContact.remove(function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      },
 
-    clone: function (contact) {
-      var deviceContact = navigator.contacts.create(contact);
-      return deviceContact.clone(contact)
-    },
+      clone: function (contact) {
+        var deviceContact = navigator.contacts.create(contact);
+        return deviceContact.clone(contact)
+      },
 
-    find: function (options) {
-      var q = $q.defer();
-      var fields = options.fields || ['id', 'displayName'];
-      delete options.fields;
+      find: function (options) {
+        var q = $q.defer();
+        var fields = options.fields || ['id', 'displayName'];
+        delete options.fields;
 
-      navigator.contacts.find(fields, function (results) {
-          q.resolve(results);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
+        navigator.contacts.find(fields, function (results) {
+            q.resolve(results);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
 
-      return q.promise;
+        return q.promise;
+      }
+
+      /*
+       getContact: function (contact) {
+       var q = $q.defer();
+
+       navigator.contacts.pickContact(function (contact) {
+
+       })
+
+       }
+       */
+
+      // TODO: method to set / get ContactAddress
+      // TODO: method to set / get ContactError
+      // TODO: method to set / get ContactField
+      // TODO: method to set / get ContactName
+      // TODO: method to set / get ContactOrganization
+
     }
 
-    /*
-     getContact: function (contact) {
-     var q = $q.defer();
+  }]);
 
-     navigator.contacts.pickContact(function (contact) {
+angular.module('ngCordova.plugins.datePicker', [])
 
-     })
+  .factory('$cordovaDatePicker', ['$window', function ($window) {
 
-     }
-     */
+    return {
+      show: function(options, fn) {
+        return $window.datePicker.show(options, fn);
+      }
+    }
 
-    // TODO: method to set / get ContactAddress
-    // TODO: method to set / get ContactError
-    // TODO: method to set / get ContactField
-    // TODO: method to set / get ContactName
-    // TODO: method to set / get ContactOrganization
+  }]);
 
-  }
-
-}]);
+// install   :     cordova plugin add org.apache.cordova.device
+// link      :     https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.device', [])
 
-.factory('$cordovaDevice', [function () {
+  .factory('$cordovaDevice', [function () {
 
-  return {
-    getDevice: function () {
-      return device;
-    },
+    return {
+      getDevice: function () {
+        return device;
+      },
 
-    getCordova: function () {
-      return device.cordova;
-    },
+      getCordova: function () {
+        return device.cordova;
+      },
 
-    getModel: function () {
-      return device.model;
-    },
+      getModel: function () {
+        return device.model;
+      },
 
-    // Waraning: device.name is deprecated as of version 2.3.0. Use device.model instead.
-    getName: function () {
-      return device.name;
-    },
+      // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+      getName: function () {
+        return device.name;
+      },
 
-    getPlatform: function () {
-      return device.platform;
-    },
+      getPlatform: function () {
+        return device.platform;
+      },
 
-    getUUID: function () {
-      return device.uuid;
-    },
+      getUUID: function () {
+        return device.uuid;
+      },
 
-    getVersion: function () {
-      return device.version;
+      getVersion: function () {
+        return device.version;
+      }
     }
-  }
-}]);
+  }]);
+
+// install   :     cordova plugin add org.apache.cordova.device-motion
+// link      :     https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.deviceMotion', [])
 
-.factory('$cordovaDeviceMotion', ['$q', function($q) {
+  .factory('$cordovaDeviceMotion', ['$q', function ($q) {
 
-  return {
-    getCurrentAcceleration: function() {
-      var q = $q.defer();
+    return {
+      getCurrentAcceleration: function () {
+        var q = $q.defer();
 
-      navigator.accelerometer.getCurrentAcceleration(function(result) {
-        // Do any magic you need
-        q.resolve(result);
-      }, function(err) {
-        q.reject(err);
-      });
+        navigator.accelerometer.getCurrentAcceleration(function (result) {
+          // Do any magic you need
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
 
-      return q.promise;
-    },
-    watchAcceleration: function(options) {
-      var q = $q.defer();
+        return q.promise;
+      },
 
-      var watchId = navigator.accelerometer.watchAcceleration(function(result) {
-        // Do any magic you need
-        //q.resolve(watchID);
-        q.notify(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
+      watchAcceleration: function (options) {
+        var q = $q.defer();
 
-      return {
-        watchId: watchId,
-        promise: q.promise
+        var watchId = navigator.accelerometer.watchAcceleration(function (result) {
+          // Do any magic you need
+          //q.resolve(watchID);
+          q.notify(result);
+        }, function (err) {
+          q.reject(err);
+        }, options);
+
+        return {
+          watchId: watchId,
+          promise: q.promise
+        }
+      },
+
+      clearWatch: function (watchID) {
+        return navigator.accelerometer.clearWatch(watchID);
       }
-    },
-    clearWatch: function(watchID) {
-      return navigator.accelerometer.clearWatch(watchID);
     }
-  }
-}]);
+  }]);
+
+// install   :     cordova plugin add org.apache.cordova.device-orientation
+// link      :     https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
-.factory('$cordovaDeviceOrientation', ['$q', function($q) {
+  .factory('$cordovaDeviceOrientation', ['$q', function ($q) {
 
-  return {
-    getCurrentHeading: function() {
-      var q = $q.defer();
+    return {
+      getCurrentHeading: function () {
+        var q = $q.defer();
 
-      navigator.compass.getCurrentHeading(function(heading) {
-        q.resolve(heading);
-      }, function(err) {
-        q.reject(err);
-      });
+        navigator.compass.getCurrentHeading(function (heading) {
+          q.resolve(heading);
+        }, function (err) {
+          q.reject(err);
+        });
 
-      return q.promise;
-    },
-    watchHeading: function(options) {
-      var q = $q.defer();
+        return q.promise;
+      },
 
-      var watchId = navigator.compass.watchHeading(function(result) {
-        q.notify(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
+      watchHeading: function (options) {
+        var q = $q.defer();
 
-      return {
-        watchId: watchId,
-        promise: q.promise
+        var watchId = navigator.compass.watchHeading(function (result) {
+          q.notify(result);
+        }, function (err) {
+          q.reject(err);
+        }, options);
+
+        return {
+          watchId: watchId,
+          promise: q.promise
+        }
+      },
+
+      clearWatch: function (watchID) {
+        navigator.compass.clearWatch(watchID);
       }
-    },
-    clearWatch: function(watchID) {
-      navigator.compass.clearWatch(watchID);
     }
-  }
-}]);
+  }]);
+
+// install   :     cordova plugin add org.apache.cordova.dialogs
+// link      :     https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.dialogs', [])
 
-.factory('$cordovaDialogs', [function() {
+  .factory('$cordovaDialogs', [function () {
 
-  return {
-    alert: function(message, callback, title, buttonName) {
-	    return navigator.notification.alert.apply(navigator.notification, arguments);
-    },
+    return {
+      alert: function (message, callback, title, buttonName) {
+        return navigator.notification.alert.apply(navigator.notification, arguments);
+      },
 
-    confirm: function(message, callback, title, buttonName) {
-	    return navigator.notification.confirm.apply(navigator.notification, arguments);
-    },
+      confirm: function (message, callback, title, buttonName) {
+        return navigator.notification.confirm.apply(navigator.notification, arguments);
+      },
 
-    prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
-	    return navigator.notification.prompt.apply(navigator.notification, arguments);
-    },
+      prompt: function (message, promptCallback, title, buttonLabels, defaultText) {
+        return navigator.notification.prompt.apply(navigator.notification, arguments);
+      },
 
-    beep: function(times) {
-	    return navigator.notification.beep(times);
+      beep: function (times) {
+        return navigator.notification.beep(times);
+      }
     }
-  }
-}]);
+  }]);
 
-/*global facebookConnectPlugin,angular */
+// install   :
+// link      :
+
 'use strict';
 angular.module('ngCordova.plugins.facebookConnect', [])
-    .provider('$cordova', [
+  .provider('$cordova', [
 
+    function () {
+      this.FacebookAppId = undefined;
+
+      this.setFacebookAppId = function (id) {
+        this.FacebookAppId = id;
+      };
+
+      this.$get = [
         function () {
+          var FbAppId = this.FacebookAppId;
+          return {
+            getFacebookAppId: function () {
+              return FbAppId;
+            }
+          };
+        }];
+    }
+  ])
+  .factory('$cordovaFacebookConnect', ['$q', '$cordova', function ($q, $cordova) {
 
-            this.FacebookAppId = undefined;
-
-            this.setFacebookAppId = function (id) {
-                this.FacebookAppId = id;
-            };
-
-            this.$get = [
-
-                function () {
-
-                    var FbAppId = this.FacebookAppId;
-
-                    return {
-                        getFacebookAppId: function () {
-                            return FbAppId;
-                        }
-                    };
-
-                }
-            ];
-
+    return {
+      init: function (appId) {
+        if (!window.cordova) {
+          facebookConnectPlugin.browserInit(appId);
         }
-    ])
-    .factory('$cordovaFacebookConnect', ['$q', '$cordova',
-        function ($q, $cordova) {
+      },
 
+      login: function (o) {
+        this.init($cordova.getFacebookAppId());
 
-            return {
+        var q = $q.defer();
+        facebookConnectPlugin.login(o,
+          function (res) {
+            q.resolve(res);
+          }, function (res) {
+            q.reject(res);
+          });
 
-                init: function (appId) {
-                    if (!window.cordova) {
-                        facebookConnectPlugin.browserInit(appId);
-                    }
-                },
+        return q.promise;
+      },
 
-                login: function (o) {
+      showDialog: function (o) {
 
-                    this.init($cordova.getFacebookAppId());
+        var q = $q.defer();
+        facebookConnectPlugin.showDialog(o,
+          function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.login(o,
-                        function (res) {
-                            q.resolve(res);
-                        }, function (res) {
-                            q.reject(res);
-                        });
+        return q.promise;
+      },
 
-                    return q.promise;
-                },
+      api: function (path, permission) {
 
-                showDialog: function (o) {
+        var q = $q.defer();
+        facebookConnectPlugin.api(path, permission,
+          function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.showDialog(o,
-                        function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
+        return q.promise;
+      },
 
-                    return q.promise;
-                },
+      getAccessToken: function () {
+        var q = $q.defer();
+        facebookConnectPlugin.getAccessToken(function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                api: function (path, permission) {
+        return q.promise;
+      },
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.api(path, permission,
-                        function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
+      getLoginStatus: function () {
+        var q = $q.defer();
+        facebookConnectPlugin.getLoginStatus(function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    return q.promise;
-                },
+        return q.promise;
 
-                getAccessToken: function () {
+      },
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.getAccessToken(function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
+      logout: function () {
+        var q = $q.defer();
+        facebookConnectPlugin.logout(function (res) {
+            q.resolve(res);
+          },
+          function (err) {
+            q.reject(err);
+          });
 
-                    return q.promise;
-                },
+        return q.promise;
 
-                getLoginStatus: function () {
+      }
+    };
+  }]);
 
-                    var q = $q.defer();
-                    facebookConnectPlugin.getLoginStatus(function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
-
-                    return q.promise;
-
-                },
-
-                logout: function () {
-
-                    var q = $q.defer();
-                    facebookConnectPlugin.logout(function (res) {
-                            q.resolve(res);
-                        },
-                        function (err) {
-                            q.reject(err);
-                        });
-
-                    return q.promise;
-
-                }
-
-
-            };
-        }
-    ]);
+// install   :     cordova plugin add org.apache.cordova.file
+// link      :     https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
 
 // TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
 // TODO: add documentation for FileError types
@@ -678,12 +764,12 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getDirectory(dir, {create: false},
               //Dir exists
-              function () {
-                q.resolve();
+              function (entry) {
+                q.resolve(entry);
               },
               //Dir doesn't exist
-              function () {
-                q.reject();
+              function (error_code) {
+                q.reject(error_code);
               }
             );
           }
@@ -699,12 +785,12 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getDirectory(dir, {create: true, exclusive: replaceBOOL},
               //Dir exists or is created successfully
-              function () {
-                q.resolve();
+              function (entry) {
+                q.resolve(entry);
               },
               //Dir doesn't exist and is not created
-              function () {
-                q.reject();
+              function (error_code) {
+                q.reject(error_code);
               }
             );
           }
@@ -748,12 +834,12 @@ angular.module('ngCordova.plugins.file', [])
           function (filesystem) {
             filesystem.root.getFile(filePath, {create: false},
               // File exists
-              function () {
-                q.resolve();
+              function (file) {
+                q.resolve(file);
               },
               // File doesn't exist
-              function () {
-                q.reject();
+              function (error_code) {
+                q.reject(error_code);
               }
             );
           }
@@ -823,9 +909,16 @@ angular.module('ngCordova.plugins.file', [])
                   },
                   function (error) {
                     q.reject(error);
-                  });
+                  }
+                );
+              },
+              function (error) {
+                q.reject(error);
               }
             );
+          },
+          function (error) {
+            q.reject(error);
           }
         );
 
@@ -1118,9 +1211,12 @@ angular.module('ngCordova.plugins.file', [])
     }
   }]);
 
+// install   :     cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
+// link      :     https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin
+
 angular.module('ngCordova.plugins.flashlight', [])
 
-.factory('$cordovaFlashlight', ['$q', function ($q) {
+  .factory('$cordovaFlashlight', ['$q', function ($q) {
 
     return {
       available: function () {
@@ -1151,14 +1247,15 @@ angular.module('ngCordova.plugins.flashlight', [])
         return q.promise;
       }
     }
-  }
-]);
+  }]);
+// install   :     cordova plugin add https://github.com/phonegap-build/GAPlugin.git
+// link      :     https://github.com/phonegap-build/GAPlugin
+
 angular.module('ngCordova.plugins.ga', [])
 
   .factory('$cordovaGA', ['$q', function ($q) {
 
     return {
-
       init: function (id, mingap) {
         var q = $q.defer();
         mingap = (mingap >= 0) ? mingap : 10;
@@ -1220,222 +1317,231 @@ angular.module('ngCordova.plugins.ga', [])
       }
     };
   }]);
+// install   :     cordova plugin add org.apache.cordova.geolocation
+// link      :     https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md
+
 angular.module('ngCordova.plugins.geolocation', [])
 
-.factory('$cordovaGeolocation', ['$q', function($q) {
+  .factory('$cordovaGeolocation', ['$q', function ($q) {
 
-  return {
-    getCurrentPosition: function(options) {
-      var q = $q.defer();
+    return {
+      getCurrentPosition: function (options) {
+        var q = $q.defer();
 
-      navigator.geolocation.getCurrentPosition(function(result) {
-        // Do any magic you need
-        q.resolve(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
+        navigator.geolocation.getCurrentPosition(function (result) {
+          // Do any magic you need
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        }, options);
 
-      return q.promise;
-    },
-    watchPosition: function(options) {
-      var q = $q.defer();
+        return q.promise;
+      },
+      watchPosition: function (options) {
+        var q = $q.defer();
 
-      var watchId = navigator.geolocation.watchPosition(function(result) {
-        // Do any magic you need
-        q.notify(result);
+        var watchId = navigator.geolocation.watchPosition(function (result) {
+          // Do any magic you need
+          q.notify(result);
 
-      }, function(err) {
-        q.reject(err);
-      }, options);
+        }, function (err) {
+          q.reject(err);
+        }, options);
 
-      return {
-        watchId: watchId,
-        promise: q.promise
+        return {
+          watchId: watchId,
+          promise: q.promise
+        }
+      },
+
+      clearWatch: function (watchID) {
+        return navigator.geolocation.clearWatch(watchID);
       }
-    },
-
-    clearWatch: function(watchID) {
-      return navigator.geolocation.clearWatch(watchID);
     }
-  }
-}]);
+  }]);
+
+// install   :      cordova plugin add org.apache.cordova.globalization
+// link      :      https://github.com/apache/cordova-plugin-globalization/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.globalization', [])
 
-.factory('$cordovaGlobalization', ['$q', function ($q) {
+  .factory('$cordovaGlobalization', ['$q', function ($q) {
 
-  return {
-    getPreferredLanguage: function () {
-      var q = $q.defer();
+    return {
+      getPreferredLanguage: function () {
+        var q = $q.defer();
 
-      navigator.globalization.getPreferredLanguage(function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
-    },
+        navigator.globalization.getPreferredLanguage(function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      },
 
-    getLocaleName: function () {
-      var q = $q.defer();
+      getLocaleName: function () {
+        var q = $q.defer();
 
-      navigator.globalization.getLocaleName(function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
-    },
+        navigator.globalization.getLocaleName(function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      },
 
-    getFirstDayOfWeek: function () {
-      var q = $q.defer();
+      getFirstDayOfWeek: function () {
+        var q = $q.defer();
 
-      navigator.globalization.getFirstDayOfWeek(function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
-    },
+        navigator.globalization.getFirstDayOfWeek(function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      },
 
-    // "date" parameter must be a JavaScript Date Object.
-    dateToString: function(date, options) {
-      var q = $q.defer();
+      // "date" parameter must be a JavaScript Date Object.
+      dateToString: function (date, options) {
+        var q = $q.defer();
 
-      navigator.globalization.dateToString(
-        date,
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.dateToString(
+          date,
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    stringToDate: function(dateString, options) {
-      var q = $q.defer();
+      stringToDate: function (dateString, options) {
+        var q = $q.defer();
 
-      navigator.globalization.stringToDate(
-        dateString,
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.stringToDate(
+          dateString,
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    getDatePattern: function(options) {
-      var q = $q.defer();
+      getDatePattern: function (options) {
+        var q = $q.defer();
 
-      navigator.globalization.getDatePattern(
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.getDatePattern(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    getDateNames: function(options) {
-      var q = $q.defer();
+      getDateNames: function (options) {
+        var q = $q.defer();
 
-      navigator.globalization.getDateNames(
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.getDateNames(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    // "date" parameter must be a JavaScript Date Object.
-    isDayLightSavingsTime: function(date) {
-      var q = $q.defer();
+      // "date" parameter must be a JavaScript Date Object.
+      isDayLightSavingsTime: function (date) {
+        var q = $q.defer();
 
-      navigator.globalization.isDayLightSavingsTime(
-        date,
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
-    },
+        navigator.globalization.isDayLightSavingsTime(
+          date,
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      },
 
-    numberToString: function(number, options) {
-      var q = $q.defer();
+      numberToString: function (number, options) {
+        var q = $q.defer();
 
-      navigator.globalization.numberToString(
-        number,
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.numberToString(
+          number,
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    stringToNumber: function(numberString, options) {
-      var q = $q.defer();
+      stringToNumber: function (numberString, options) {
+        var q = $q.defer();
 
-      navigator.globalization.stringToNumber(
-        numberString,
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.stringToNumber(
+          numberString,
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    getNumberPattern: function(options) {
-      var q = $q.defer();
+      getNumberPattern: function (options) {
+        var q = $q.defer();
 
-      navigator.globalization.getNumberPattern(
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        },
-        options);
-      return q.promise;
-    },
+        navigator.globalization.getNumberPattern(
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          },
+          options);
+        return q.promise;
+      },
 
-    getCurrencyPattern: function(currencyCode) {
-      var q = $q.defer();
+      getCurrencyPattern: function (currencyCode) {
+        var q = $q.defer();
 
-      navigator.globalization.getCurrencyPattern(
-        currencyCode,
-        function (result) {
-          q.resolve(result);
-        },
-        function (err) {
-          q.reject(err);
-        });
-      return q.promise;
+        navigator.globalization.getCurrencyPattern(
+          currencyCode,
+          function (result) {
+            q.resolve(result);
+          },
+          function (err) {
+            q.reject(err);
+          });
+        return q.promise;
+      }
+
     }
 
-  }
+  }]);
 
-}]);
+// install   :
+// link      :
 
 // Google Maps needs ALOT of work!
 // Not for production use
@@ -1464,8 +1570,7 @@ angular.module('ngCordova.plugins.googleMap', [])
 
 
       isMapLoaded: function () { // check if an instance of the map exists
-        if (map) return true;
-        else return false;
+        return !!map;
       },
       addMarker: function (markerOptions) { // add a marker to the map with given markerOptions
         var q = $q.defer();
@@ -1486,145 +1591,201 @@ angular.module('ngCordova.plugins.googleMap', [])
       // I don't know how to deallocate te map and the google map plugin.
       cleanup: function () {
         map = null;
-        delete map;
+        // delete map;
       }
     }
   }]);
 
+// install   :      cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
+// link      :      https://github.com/driftyco/ionic-plugins-keyboard
+
+//TODO: add support for native.keyboardshow + native.keyboardhide
+
 angular.module('ngCordova.plugins.keyboard', [])
 
-.factory('$cordovaKeyboard', [function () {
+  .factory('$cordovaKeyboard', [function () {
 
-  return {
-    hideAccessoryBar: function (bool) {
-      return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
-    },
+    return {
+      hideAccessoryBar: function (bool) {
+        return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
+      },
 
-    close: function () {
-      return cordova.plugins.Keyboard.close();
-    },
+      close: function () {
+        return cordova.plugins.Keyboard.close();
+      },
 
-    disableScroll: function (bool) {
-      return cordova.plugins.Keyboard.disableScroll(bool);
-    },
+      disableScroll: function (bool) {
+        return cordova.plugins.Keyboard.disableScroll(bool);
+      },
 
-    isVisible: function () {
-      return cordova.plugins.Keyboard.isVisible
+      isVisible: function () {
+        return cordova.plugins.Keyboard.isVisible
+      }
     }
+  }]);
 
-    //TODO: add support for native.keyboardshow + native.keyboardhide
-  }
-}]);
+// install   :      cordova plugin add https://github.com/shazron/KeychainPlugin.git
+// link      :      https://github.com/shazron/KeychainPlugin
+
+angular.module('ngCordova.plugins.keychain', [])
+
+  .factory('$cordovaKeychain', ['$q', function ($q) {
+
+    var kc = new Keychain();
+
+    return {
+      getForKey: function (key, serviceName) {
+        var defer = $q.defer();
+
+        kc.getForKey(function (value) {
+          defer.resolve(value);
+        }, function (error) {
+          defer.reject(error);
+        }, key, serviceName);
+
+        return defer.promise;
+      },
+
+      setForKey: function (key, serviceName, value) {
+        var defer = $q.defer();
+
+        kc.setForKey(function () {
+          defer.resolve();
+        }, function (error) {
+          defer.reject(error);
+        }, key, serviceName, value);
+
+        return defer.promise;
+      },
+
+      removeForKey: function (ey, serviceName) {
+        var defer = $q.defer();
+
+        kc.removeForKey(function () {
+          defer.resolve();
+        }, function (error) {
+          defer.reject(error);
+        }, key, serviceName);
+
+        return defer.promise;
+      }
+    }
+  }]);
+// install   :
+// link      :
 
 angular.module('ngCordova.plugins.localNotification', [])
 
-.factory('$cordovaLocalNotification', ['$q',
+  .factory('$cordovaLocalNotification', ['$q',
     function ($q) {
 
-        return {
-            add: function (options, scope) {
-                var q = $q.defer();
-                window.plugin.notification.local.add(
-                    options,
-                    function (result) {
-                        q.resolve(result);
-                    },
-                    scope);
-                return q.promise;
+      return {
+        add: function (options, scope) {
+          var q = $q.defer();
+          window.plugin.notification.local.add(
+            options,
+            function (result) {
+              q.resolve(result);
             },
+            scope);
+          return q.promise;
+        },
 
-            cancel: function (id, scope) {
-                var q = $q.defer();
-                window.plugin.notification.local.cancel(
-                    id, function (result) {
-                        q.resolve(result);
-                    }, scope);
+        cancel: function (id, scope) {
+          var q = $q.defer();
+          window.plugin.notification.local.cancel(
+            id, function (result) {
+              q.resolve(result);
+            }, scope);
 
-                return q.promise;
-            },
+          return q.promise;
+        },
 
-            cancelAll: function (scope) {
-                var q = $q.defer();
+        cancelAll: function (scope) {
+          var q = $q.defer();
 
-                window.plugin.notification.local.cancelAll(
-                    function (result) {
-                        q.resolve(result);
-                    }, scope);
+          window.plugin.notification.local.cancelAll(
+            function (result) {
+              q.resolve(result);
+            }, scope);
 
-                return q.promise;
-            },
+          return q.promise;
+        },
 
-            isScheduled: function (id, scope) {
-                var q = $q.defer();
+        isScheduled: function (id, scope) {
+          var q = $q.defer();
 
-                window.plugin.notification.local.isScheduled(
-                    id,
-                    function (result) {
-                        q.resolve(result);
-                    }, scope);
+          window.plugin.notification.local.isScheduled(
+            id,
+            function (result) {
+              q.resolve(result);
+            }, scope);
 
-                return q.promise;
-            },
+          return q.promise;
+        },
 
-            getScheduledIds: function (scope) {
-                var q = $q.defer();
+        getScheduledIds: function (scope) {
+          var q = $q.defer();
 
-                window.plugin.notification.local.getScheduledIds(
-                    function (result) {
-                        q.resolve(result);
-                    }, scope);
+          window.plugin.notification.local.getScheduledIds(
+            function (result) {
+              q.resolve(result);
+            }, scope);
 
-                return q.promise;
-            },
+          return q.promise;
+        },
 
-            isTriggered: function (id, scope) {
-                var q = $q.defer();
+        isTriggered: function (id, scope) {
+          var q = $q.defer();
 
-                window.plugin.notification.local.isTriggered(
-                    id, function (result) {
-                        q.resolve(result);
-                    }, scope);
+          window.plugin.notification.local.isTriggered(
+            id, function (result) {
+              q.resolve(result);
+            }, scope);
 
-                return q.promise;
-            },
+          return q.promise;
+        },
 
-            getTriggeredIds: function (scope) {
-                var q = $q.defer();
+        getTriggeredIds: function (scope) {
+          var q = $q.defer();
 
-                window.plugin.notification.local.getTriggeredIds(
-                    function (result) {
-                        q.resolve(result);
-                    }, scope);
+          window.plugin.notification.local.getTriggeredIds(
+            function (result) {
+              q.resolve(result);
+            }, scope);
 
-                return q.promise;
-            },
+          return q.promise;
+        },
 
-            getDefaults: function () {
-                return window.plugin.notification.local.getDefaults();
-            },
+        getDefaults: function () {
+          return window.plugin.notification.local.getDefaults();
+        },
 
-            setDefaults: function (Object) {
-                window.plugin.notification.local.setDefaults(Object);
-            },
+        setDefaults: function (Object) {
+          window.plugin.notification.local.setDefaults(Object);
+        },
 
-            onadd: function () {
-                return window.plugin.notification.local.onadd;
-            },
+        onadd: function () {
+          return window.plugin.notification.local.onadd;
+        },
 
-            ontrigger: function () {
-                return window.plugin.notification.local.ontrigger;
-            },
+        ontrigger: function () {
+          return window.plugin.notification.local.ontrigger;
+        },
 
-            onclick: function () {
-                return window.plugin.notification.local.onclick;
-            },
+        onclick: function () {
+          return window.plugin.notification.local.onclick;
+        },
 
-            oncancel: function () {
-                return window.plugin.notification.local.oncancel;
-            }
+        oncancel: function () {
+          return window.plugin.notification.local.oncancel;
         }
+      }
     }
-]);
+  ]);
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.media', [])
 
   .factory('$cordovaMedia', ['$q', function ($q) {
@@ -1748,8 +1909,15 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.clipboard',
   'ngCordova.plugins.nativeAudio',
-  'ngCordova.plugins.media'
+  'ngCordova.plugins.media',
+  'ngCordova.plugins.battery-status',
+  'ngCordova.plugins.keychain',
+  'ngCordova.plugins.progressIndicator',
+  'ngCordova.plugins.datePicker'
 ]);
+
+// install   :
+// link      :
 
 angular.module('ngCordova.plugins.nativeAudio', [])
 
@@ -1840,39 +2008,48 @@ angular.module('ngCordova.plugins.nativeAudio', [])
       }
     }
   }]);
+// install   :      cordova plugin add org.apache.cordova.network-information
+// link      :      https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md
+
 angular.module('ngCordova.plugins.network', [])
 
-.factory('$cordovaNetwork', [function () {
+  .factory('$cordovaNetwork', [function () {
 
-  return {
+    return {
 
-    getNetwork: function () {
-      return navigator.connection.type;
-    },
+      getNetwork: function () {
+        return navigator.connection.type;
+      },
 
-    isOnline: function () {
-      var networkState = navigator.connection.type;
-      return networkState !== Connection.UNKNOWN && networkState !== Connection.NONE;
-    },
+      isOnline: function () {
+        var networkState = navigator.connection.type;
+        return networkState !== Connection.UNKNOWN && networkState !== Connection.NONE;
+      },
 
-    isOffline: function () {
-      var networkState = navigator.connection.type;
-      return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
+      isOffline: function () {
+        var networkState = navigator.connection.type;
+        return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
+      }
     }
-  }
-}]);
+  }]);
+
+// install   :      cordova plugin add https://github.com/Paldom/PinDialog.git
+// link      :      https://github.com/Paldom/PinDialog
 
 angular.module('ngCordova.plugins.pinDialog', [])
 
-.factory('$cordovaPinDialog', [function() {
+  .factory('$cordovaPinDialog', [function () {
 
-  return {
-    prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
-	    return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
+    return {
+      prompt: function (message, promptCallback, title, buttonLabels, defaultText) {
+        return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
+      }
     }
-  }
-  
-}]);
+
+  }]);
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.prefs', [])
 
   .factory('$cordovaPreferences', ['$window', '$q', function ($window, $q) {
@@ -1881,35 +2058,38 @@ angular.module('ngCordova.plugins.prefs', [])
 
       set: function (key, value) {
         var q = $q.defer();
-        
-        $window.applicationPreferences.set(key, value, function(result) {
+
+        $window.applicationPreferences.set(key, value, function (result) {
           q.resolve(result);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         });
-        
+
         return q.promise;
       },
-      
+
 
       get: function (key) {
         var q = $q.defer();
-        
-        $window.applicationPreferences.get(key, function(value) {
+
+        $window.applicationPreferences.get(key, function (value) {
           q.resolve(value);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         });
-        
+
         return q.promise;
       }
 
     }
   }]);
 
+// install   :
+// link      :
+
 angular.module('ngCordova.plugins.printer', [])
 
-.factory('$cordovaPrinter', ['$q', function ($q) {
+  .factory('$cordovaPrinter', ['$q', function ($q) {
 
     return {
       isAvailable: function () {
@@ -1923,57 +2103,147 @@ angular.module('ngCordova.plugins.printer', [])
       }
     }
   }
-]);
+  ]);
+// install   :      cordova plugin add org.pbernasconi.progressindicator
+// link      :      http://pbernasconi.github.io/cordova-progressIndicator/
+
+angular.module('ngCordova.plugins.progressIndicator', [])
+
+  .factory('$cordovaProgressIndicator', ['$q', function ($q) {
+
+    return {
+      showSimple: function (_dim) {
+        var dim = _dim || false;
+        return ProgressIndicator.showSimple(dim)
+      },
+
+      showSimpleWithLabel: function (_dim, _label) {
+        var dim = _dim || false;
+        var label = _label || "Loading...";
+        return ProgressIndicator.showSimpleWithLabel(dim, label);
+      },
+
+      showSimpleWithLabelDetail: function (_dim, _label, _detail) {
+        var dim = _dim || false;
+        var label = _label || "Loading...";
+        var detail = _detail || "Please wait";
+        return ProgressIndicator.showSimpleWithLabelDetail(dim, label, detail);
+      },
+
+      showDeterminate: function (_dim, _timeout) {
+        var dim = _dim || false;
+        var timeout = _timeout || 50000;
+        return ProgressIndicator.showDeterminate(dim, timeout)
+      },
+
+      showDeterminateWithLabel: function (_dim, _timeout, _label) {
+        var dim = _dim || false;
+        var timeout = _timeout || 50000;
+        var label = _label || "Loading...";
+
+        return ProgressIndicator.showDeterminateWithLabel(dim, timeout, label)
+      },
+
+      showAnnular: function (_dim, _timeout) {
+        var dim = _dim || false;
+        var timeout = _timeout || 50000;
+        return ProgressIndicator.showAnnular(dim, timeout)
+      },
+
+      showAnnularWithLabel: function (_dim, _timeout, _label) {
+        var dim = _dim || false;
+        var timeout = _timeout || 50000;
+        var label = _label || "Loading...";
+        return ProgressIndicator.showAnnularWithLabel(dim, timeout, label)
+      },
+
+      showBar: function (_dim, _timeout) {
+        var dim = _dim || false;
+        var timeout = _timeout || 50000;
+        return ProgressIndicator.showBar(dim, timeout)
+      },
+
+      showBarWithLabel: function (_dim, _timeout, _label) {
+        var dim = _dim || false;
+        var timeout = _timeout || 50000;
+        var label = _label || "Loading...";
+        return ProgressIndicator.showBarWithLabel(dim, timeout, label)
+      },
+
+      showSuccess: function (_dim) {
+        var dim = _dim || false;
+        return ProgressIndicator.showSuccess(dim)
+      },
+
+      showText: function (_dim, _text, _position) {
+        var dim = _dim || false;
+        var text = _text || "Warning";
+        var position = _position || "center";
+        return ProgressIndicator.showText(dim, text, position);
+      },
+
+      hide: function () {
+        return ProgressIndicator.hide();
+      }
+    }
+
+  }]);
+// install   :      cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+// link      :      https://github.com/phonegap-build/PushPlugin
+
 angular.module('ngCordova.plugins.push', [])
 
-.factory('$cordovaPush', ['$q', function ($q) {
+  .factory('$cordovaPush', ['$q', function ($q) {
     return {
-        register: function (config) {
-            var q = $q.defer();
-            window.plugins.pushNotification.register(
-            function (result) {
-                q.resolve(result);
-            },
-            function (error) {
-                q.reject(error);
-            },
-            config);
-            
-            return q.promise;
-        },
-        
-        unregister: function (options) {
-            var q = $q.defer();
-            window.plugins.pushNotification.unregister(
-            function (result) {
-                q.resolve(result);
-            },
-            function (error) {
-                q.reject(error);
-            },
-            options);
-            
-            return q.promise;
-        },
-        
-        // iOS only
-        setBadgeNumber: function(number) {
-        	var q = $q.defer();
-            window.plugins.pushNotification.setApplicationIconBadgeNumber(
-            function (result) {
-                q.resolve(result);
-            },
-            function (error) {
-                q.reject(error);
-            },
-            number);
-            return q.promise;
-        }
+      register: function (config) {
+        var q = $q.defer();
+        window.plugins.pushNotification.register(
+          function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          config);
+
+        return q.promise;
+      },
+
+      unregister: function (options) {
+        var q = $q.defer();
+        window.plugins.pushNotification.unregister(
+          function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          options);
+
+        return q.promise;
+      },
+
+      // iOS only
+      setBadgeNumber: function (number) {
+        var q = $q.defer();
+        window.plugins.pushNotification.setApplicationIconBadgeNumber(
+          function (result) {
+            q.resolve(result);
+          },
+          function (error) {
+            q.reject(error);
+          },
+          number);
+        return q.promise;
+      }
     };
-}]);
+  }]);
+// install   :      cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
+// link      :      https://github.com/aharris88/phonegap-sms-plugin
+
 angular.module('ngCordova.plugins.sms', [])
 
-.factory('$cordovaSms', ['$q', function ($q) {
+  .factory('$cordovaSms', ['$q', function ($q) {
 
     return {
       send: function (number, message, intent) {
@@ -1982,12 +2252,15 @@ angular.module('ngCordova.plugins.sms', [])
           q.resolve(res);
         }, function (err) {
           q.reject(err)
-        })
+        });
         return q.promise;
       }
     }
 
-}]);
+  }]);
+// install   :      cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
+// link      :      https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
+
 // NOTE: shareViaEmail -> if user cancels sharing email, success is still called
 // NOTE: shareViaEmail -> TO, CC, BCC must be an array, Files can be either null, string or array
 // TODO: add support for iPad
@@ -2073,12 +2346,12 @@ angular.module('ngCordova.plugins.socialSharing', [])
       canShareViaEmail: function () {
         var q = $q.defer();
         window.plugins.socialsharing.canShareViaEmail(
-            function () {
-              q.resolve(true); // success
-            },
-            function () {
-              q.reject(false); // error
-            });
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
         return q.promise;
       },
 
@@ -2097,47 +2370,56 @@ angular.module('ngCordova.plugins.socialSharing', [])
       shareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
         window.plugins.socialsharing.shareVia(via, message, subject, file, link,
-            function () {
-              q.resolve(true); // success
-            },
-            function () {
-              q.reject(false); // error
-            });
+          function () {
+            q.resolve(true); // success
+          },
+          function () {
+            q.reject(false); // error
+          });
         return q.promise;
       }
 
     }
   }]);
 
+// install   :       cordova plugin add https://github.com/Paldom/SpinnerDialog.git
+// link      :       https://github.com/Paldom/SpinnerDialog
+
 angular.module('ngCordova.plugins.spinnerDialog', [])
 
-.factory('$cordovaSpinnerDialog', [function() {
+  .factory('$cordovaSpinnerDialog', [function () {
 
-  return {
-    show: function(title, message) {
-	    return window.plugins.spinnerDialog.show(title, message);
-    },
-    hide: function() {
-	    return window.plugins.spinnerDialog.hide();
+    return {
+      show: function (title, message) {
+        return window.plugins.spinnerDialog.show(title, message);
+      },
+      hide: function () {
+        return window.plugins.spinnerDialog.hide();
+      }
     }
-  }
-  
-}]);
+
+  }]);
+// install   :      cordova plugin add org.apache.cordova.splashscreen
+// link      :      https://github.com/apache/cordova-plugin-splashscreen/blob/master/doc/index.md
+
 angular.module('ngCordova.plugins.splashscreen', [])
 
-.factory('$cordovaSplashscreen', [ function () {
+  .factory('$cordovaSplashscreen', [ function () {
 
-  return {
-    hide: function () {
-      return navigator.splashscreen.hide();
-    },
+    return {
+      hide: function () {
+        return navigator.splashscreen.hide();
+      },
 
-    show: function () {
-      return navigator.splashscreen.show();
-    }
-  };
+      show: function () {
+        return navigator.splashscreen.show();
+      }
+    };
 
-}]);
+  }]);
+
+// install   :      cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+// link      :      https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md
 
 angular.module('ngCordova.plugins.sqlite', [])
 
@@ -2188,66 +2470,72 @@ angular.module('ngCordova.plugins.sqlite', [])
     }
   }]);
 
+// install   :      cordova plugin add org.apache.cordova.statusbar
+// link      :      https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md
+
 angular.module('ngCordova.plugins.statusbar', [])
 
-.factory('$cordovaStatusbar', [function() {
+  .factory('$cordovaStatusbar', [function () {
 
-  return {
-  	overlaysWebView: function(bool) {
-      return StatusBar.overlaysWebView(true);
-	  },
+    return {
+      overlaysWebView: function (bool) {
+        return StatusBar.overlaysWebView(true);
+      },
 
-    // styles: Default, LightContent, BlackTranslucent, BlackOpaque
-    style: function (style) {
-      switch (style) {
-        case 0:     // Default
-          return StatusBar.styleDefault();
-          break;
+      // styles: Default, LightContent, BlackTranslucent, BlackOpaque
+      style: function (style) {
+        switch (style) {
+          case 0:     // Default
+            return StatusBar.styleDefault();
+            break;
 
-        case 1:     // LightContent
-          return StatusBar.styleLightContent();
-          break;
+          case 1:     // LightContent
+            return StatusBar.styleLightContent();
+            break;
 
-        case 2:     // BlackTranslucent
-          return StatusBar.styleBlackTranslucent();
-          break;
+          case 2:     // BlackTranslucent
+            return StatusBar.styleBlackTranslucent();
+            break;
 
-        case 3:     // BlackOpaque
-          return StatusBar.styleBlackOpaque();
-          break;
+          case 3:     // BlackOpaque
+            return StatusBar.styleBlackOpaque();
+            break;
 
-        default:  // Default
-          return StatusBar.styleDefault();
+          default:  // Default
+            return StatusBar.styleDefault();
+        }
+      },
+
+
+      // supported names: black, darkGray, lightGray, white, gray, red, green, blue, cyan, yellow, magenta, orange, purple, brown
+      styleColor: function (color) {
+        return StatusBar.backgroundColorByName(color);
+      },
+
+      styleHex: function (colorHex) {
+        return StatusBar.backgroundColorByHexString(colorHex);
+      },
+
+      hide: function () {
+        return StatusBar.hide();
+      },
+
+      show: function () {
+        return StatusBar.show()
+      },
+
+      isVisible: function () {
+        return StatusBar.isVisible();
       }
-    },
-
-
-    // supported names: black, darkGray, lightGray, white, gray, red, green, blue, cyan, yellow, magenta, orange, purple, brown
-    styleColor: function (color) {
-      return StatusBar.backgroundColorByName(color);
-    },
-    
-    styleHex: function (colorHex) {
-      return StatusBar.backgroundColorByHexString(colorHex);
-    },
-
-    hide: function () {
-      return StatusBar.hide();
-    },
-
-    show: function () {
-      return StatusBar.show()
-    },
-
-    isVisible: function () {
-      return StatusBar.isVisible();
     }
-  }
-}]);
+  }]);
+
+// install   :      cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+// link      :      https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
 
 angular.module('ngCordova.plugins.toast', [])
 
-.factory('$cordovaToast', ['$q', function ($q) {
+  .factory('$cordovaToast', ['$q', function ($q) {
 
     return {
       showShortTop: function (message) {
@@ -2256,7 +2544,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -2266,7 +2554,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -2276,7 +2564,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -2286,7 +2574,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -2296,7 +2584,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -2306,7 +2594,7 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       },
 
@@ -2317,28 +2605,30 @@ angular.module('ngCordova.plugins.toast', [])
           q.resolve(response);
         }, function (error) {
           q.reject(error)
-        })
+        });
         return q.promise;
       }
     }
 
-  }
-]);
+  }]);
+// install   :      cordova plugin add org.apache.cordova.vibration
+// link      :      https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md
+
 angular.module('ngCordova.plugins.vibration', [])
 
-.factory('$cordovaVibration', [function() {
+  .factory('$cordovaVibration', [function () {
 
-  return {
-  	vibrate: function(times) {
-  	  return navigator.notification.vibrate(times);
-	  },
-    vibrateWithPattern: function(pattern, repeat) {
-      return navigator.notification.vibrateWithPattern(pattern, repeat);
-    },
-    cancelVibration: function() {
-      return navigator.notification.cancelVibration();
+    return {
+      vibrate: function (times) {
+        return navigator.notification.vibrate(times);
+      },
+      vibrateWithPattern: function (pattern, repeat) {
+        return navigator.notification.vibrateWithPattern(pattern, repeat);
+      },
+      cancelVibration: function () {
+        return navigator.notification.cancelVibration();
+      }
     }
-  }
-}]);
+  }]);
 
 })();

@@ -18,7 +18,8 @@ ap splashscreen
 ap statusbar
 ap vibration
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard
-cordova plugin add https://github.com/wildabeast/BarcodeScanner.git 
+cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
+cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 cordova plugin add https://github.com/chrisekelley/AppPreferences
 cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
