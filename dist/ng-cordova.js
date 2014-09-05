@@ -1149,7 +1149,7 @@ angular.module('ngCordova.plugins.file', [])
         var fail = function (error) {
           q.reject(error);
         };
-        $window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURL(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               var reader = new FileReader();
@@ -1169,12 +1169,37 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
+      readFileAsBinaryStringAbsolute: function(filePath) {
+        var q = $q.defer();
+        var fail = function (error) {
+          q.reject(error);
+        };
+        $window.resolveLocalFileSystemURL(filePath,
+          function (fileEntry) {
+            fileEntry.file(function (file) {
+              var reader = new FileReader();
+              reader.onloadend = function () {
+                // onloadend is called by the reader on success or fail 
+                // but this.error will only be !== null if an error has occured.
+                if (this.error)
+                  fail(this.error);
+                else
+                  q.resolve(this.result);
+              };
+              reader.readAsBinaryString(file);
+            }, 
+            fail);
+          },
+          fail);
+        return q.promise;
+      },
+
       readFileAsArrayBufferAbsolute: function(filePath) {
         var q = $q.defer();
         var fail = function (error) {
           q.reject(error);
         };
-        $window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURL(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               var reader = new FileReader();
@@ -1199,7 +1224,7 @@ angular.module('ngCordova.plugins.file', [])
         var fail = function (error) {
           q.reject(error);
         };
-        $window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURL(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               q.resolve(file);
