@@ -5,6 +5,7 @@
 // TODO: add abort() option to downloadFile and uploadFile methods.
 // TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
 // TODO: add support for onprogress property
+// TODO: refactor/extract common code for accessing file entities, readers and writes to avoid duplication.
 
 angular.module('ngCordova.plugins.file', [])
 
@@ -400,6 +401,31 @@ angular.module('ngCordova.plugins.file', [])
                   q.resolve(this.result);
               };
               reader.readAsText(file);
+            }, 
+            fail);
+          },
+          fail);
+        return q.promise;
+      },
+
+      readFileAsArrayBufferAbsolute: function(filePath) {
+        var q = $q.defer();
+        var fail = function (error) {
+          q.reject(error);
+        };
+        $window.resolveLocalFileSystemURI(filePath,
+          function (fileEntry) {
+            fileEntry.file(function (file) {
+              var reader = new FileReader();
+              reader.onloadend = function () {
+                // onloadend is called by the reader on success or fail 
+                // but this.error will only be !== null if an error has occured.
+                if (this.error)
+                  fail(this.error);
+                else
+                  q.resolve(this.result);
+              };
+              reader.readAsArrayBuffer(file);
             }, 
             fail);
           },
