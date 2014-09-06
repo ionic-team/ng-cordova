@@ -458,6 +458,34 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
 });
 ```
 
+<a class="anchor" name="Flashlight"></a>
+
+### [`$cordovaFlashlight`](#Flashlight)
+
+This plugin allows you to switch the flashlight / torch of the device on and off.
+[View Docs](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
+
+```
+cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
+
+  $cordovaFlashlight.available().then(function (isAvailable) {
+    $scope.flashlightIsAvailable = isAvailable;
+  });
+
+  $scope.switchOn = function () {
+    $cordovaFlashlight.switchOn();
+  };
+
+  $scope.switchOff = function () {
+    $cordovaFlashlight.switchOff();
+  };
+});
+```
+
 <a class="anchor" name="File"></a>
 
 ### [`$cordovaFile`](#File)
