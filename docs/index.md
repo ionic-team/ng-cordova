@@ -314,6 +314,27 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 });
 ```
 
+<a class="anchor" name="DatePicker"></a>
+
+### [`$cordovaDatePicker`](#DatePicker)
+
+Show a native date or time picker widget.
+
+```
+cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaDatePicker) {
+  $cordovaDatePicker.show(
+    {date: new Date(), mode: 'date'},
+    function(date){
+      alert(date);
+    };
+  );
+});
+```
+
 <a class="anchor" name="Device"></a>
 
 ### [`$cordovaDevice`](#Device)
