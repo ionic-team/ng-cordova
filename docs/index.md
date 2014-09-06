@@ -91,7 +91,37 @@ module.controller('AppAvailCtrl', function($scope, $cordovaAppAvailability) {
 });
 ```
 
+<a class="anchor" name="BackgroundGeolocation"></a>
+### [`$cordovaBackgroundGeolocation`](#BackgroundGeolocation)
 
+Cross-platform background geolocation for Cordova / PhoneGap with battery-saving "circular region monitoring" and "stop detection".
+
+**[View Official Docs](https://github.com/christocracy/cordova-plugin-background-geolocation)**
+
+```
+cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
+```
+
+```javascript
+
+module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
+
+  var options = {
+    // https://github.com/christocracy/cordova-plugin-background-geolocation#config
+  };
+
+  // `configure` calls `start` internally
+  $cordovaBackgroundGeolocation.configure(options).then(function (location) {
+    console.log(location);
+  }, function (err) {
+    console.error(err);
+  });
+
+  $scope.stopBackgroundGeolocation = function () {
+    $cordovaBackgroundGeolocation.stop();
+  };
+});
+```
 
 <a class="anchor" name="BatteryStatus"></a>
 ### [`$cordovaBatteryStatus`](#BatteryStatus)
