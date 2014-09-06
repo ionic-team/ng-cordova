@@ -294,13 +294,10 @@ code {
     text-decoration: none;
 }
 
-.left-menu a:hover {
-    background: transparent !important;
-}
+.left-menu a:hover {}
 
 .left-menu li {
     display: none;
-    margin: 8px 0;
     list-style: none;
 }
 
@@ -332,7 +329,12 @@ code {
 }
 
 .left-menu.nav > li > a {
-    padding: 1px 0;
+    padding: 7px 70px 7px 10px;
+}
+
+.left-menu.nav > li > a:hover,
+.left-menu.nav > li > a:active {
+    background-color: #474A50;
 }
 
 .left-menu.active-menu .menu-title a {
@@ -435,13 +437,12 @@ a:hover {
     .menu-docked .nav {
         background-color: #383c42;
         border-radius: 10px;
-        padding-left: 10px;
-        padding-right: 70px;
-
     }
 
     .menu-docked .menu-title {
         color: #FFFFFF;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .menu-docked a {
@@ -484,4 +485,3 @@ a:hover {
 .table th{
     text-align: center;
 }
-
