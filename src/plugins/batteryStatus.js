@@ -3,16 +3,21 @@
 
 angular.module('ngCordova.plugins.battery-status', [])
 
-  .factory('$cordovaBatteryStatus', [function () {
-    return {
-      onBatteryStatus: function (handler) {
-        window.addEventListener('batterystatus', handler, false);
-      },
-      onBatteryCritical: function (handler) {
-        window.addEventListener('batterycritical', handler, false);
-      },
-      onBatteryLow: function (handler) {
-        window.addEventListener('batterylow', handler, false);
-      }
-    }
+  .factory('$cordovaBatteryStatus', ['$rootScope', function ($rootScope) {
+
+    var scope = $rootScope.$new();
+
+    window.addEventListener('batterystatus', function (event) {
+      scope.$emit('batterystatus', event.detail);
+    }, false);
+
+    window.addEventListener('batterycritical', function (event) {
+      scope.$emit('batterycritical', event.detail);
+    }, false);
+
+    window.addEventListener('batterylow', function (event) {
+      scope.$emit('batterylow', event.detail);
+    }, false);
+
+    return scope;
   }]);
