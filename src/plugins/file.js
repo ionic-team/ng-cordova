@@ -10,9 +10,9 @@
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-.provider('$cordovaFile', [function () {
+.provider('$cordovaFile', ['$window', function ($window) {
 
-  var _fileSystemType = LocalFileSystem.PERSISTENT;
+  var _fileSystemType = $window.LocalFileSystem ? LocalFileSystem.PERSISTENT : 0;
   var _fileSystemSize = 1024 * 1024;
 
   var fsProvider = {
