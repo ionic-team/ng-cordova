@@ -1,0 +1,44 @@
+<ion-view title="Device Orientation">
+
+	<ion-nav-buttons side="right">
+		<button class="button button-primary button-clear icon-right ion-code" ng-click="showSource()"></button>
+	</ion-nav-buttons>
+
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Compass Tool
+			</div>
+
+			<div class="item item-body">
+				<strong>Magnetic Heading</strong> &nbsp {{heading.magneticHeading}}
+			</div>
+			<div class="item item-body">
+				<strong>True Heading</strong> &nbsp {{heading.trueHeading}}
+			</div>
+			<div class="item item-body">
+				<strong>Accuracy </strong> &nbsp {{heading.headingAccuracy}}
+			</div>
+			<div class="item item-body">
+				<strong>Timestamp </strong> &nbsp {{heading.timestamp}}
+			</div>
+		</div>
+
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="getHeading()">
+				Get Current Heading
+			</button>
+
+			<div class="button-bar">
+				<button class="button button-stable" ng-click="watchHeading()">
+					Watch
+				</button>
+
+				<button class="button button-assertive" ng-click="clearWatch()">
+					Clear
+				</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

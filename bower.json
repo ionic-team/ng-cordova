@@ -1,14 +1,29 @@
 {
     "name": "ngCordova",
-    "version": "0.1.2-alpha",
+    "version": "0.1.3-alpha",
     "homepage": "http://ngCordova.com/",
     "authors": [
         "Max Lynch <max@drifty.com>",
-        "Paolo Bernasconi <paolo.enrico.bernasconi@gmail.com>"
+        "Paolo Bernasconi <paolo.enrico.bernasconi@gmail.com>",
+        "Chad Campbell <chad.campbell@ecofic.com>"
     ],
     "description": "AngularJS Cordova wrappers for common Cordova plugins.",
-    "main": "./dist/ng-cordova.js",
+    "main": [
+        "./dist/ng-cordova.js",
+        "./dist/ng-cordova.min.js"
+    ],
+    "ignore" : [
+        "**/.*",
+        "gulpfile.js",
+        "test",
+        "src",
+        "config"
+    ],
+    "dependencies": {
+        "angular": "1.2.0"
+    },
     "keywords": [
+        "ngCordova",
         "cordova",
         "phonegap",
         "angular",

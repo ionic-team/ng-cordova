@@ -1,11 +1,14 @@
+// install   :      cordova plugin add https://github.com/Paldom/PinDialog.git
+// link      :      https://github.com/Paldom/PinDialog
+
 angular.module('ngCordova.plugins.pinDialog', [])
 
-.factory('$cordovaPinDialog', [function() {
+  .factory('$cordovaPinDialog', [function () {
 
-  return {
-    prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
-	    return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
+    return {
+      prompt: function (message, promptCallback, title, buttonLabels, defaultText) {
+        return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
+      }
     }
-  }
-  
-}]);
+
+  }]);

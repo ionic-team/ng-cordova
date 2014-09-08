@@ -1,0 +1,47 @@
+<ion-view title="Device Motion">
+
+	<ion-nav-buttons side="right">
+		<button class="button button-primary button-clear icon-right ion-code" ng-click="showSource()"></button>
+	</ion-nav-buttons>
+
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Acceleration
+			</div>
+			<div class="item item-text-wrap" ng-show="msg">
+				{{msg}}
+			</div>
+			<div class="item">
+				<strong>X</strong> &nbsp {{motion.x}}
+			</div>
+			<div class="item">
+				<strong>Y</strong> &nbsp {{motion.y}}
+			</div>
+
+			<div class="item">
+				<strong>Z</strong> &nbsp {{motion.z}}
+			</div>
+			<div class="item">
+				<strong>Time</strong> &nbsp {{motion.timestamp}}
+			</div>
+		</div>
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="getAcceleration()">
+				Get Device Motion
+			</button>
+
+			<div class="button-bar">
+				<button class="button button-stable" ng-click="watchAcceleration()">
+					Watch
+				</button>
+
+				<button class="button button-assertive" ng-click="clearWatch()">
+					Clear
+				</button>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

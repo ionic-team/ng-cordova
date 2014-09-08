@@ -1,0 +1,24 @@
+<ion-view title="Camera">
+
+	<ion-nav-buttons side="right">
+		<button class="button button-primary button-clear icon-right ion-code" ng-click="showSource()"></button>
+	</ion-nav-buttons>
+
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Take a picture
+			</div>
+			<div class="item item-image">
+				<img class="item" ng-src="{{cameraimage}}" style="height: 350px;"/>
+			</div>
+		</div>
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="takePicture()">
+				Take Photo
+			</button>
+		</div>
+	</ion-content>
+</ion-view>
+

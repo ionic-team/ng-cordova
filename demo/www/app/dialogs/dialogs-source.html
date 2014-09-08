@@ -1,0 +1,53 @@
+<!-- Source Code Examples -->
+
+<ion-modal-view>
+	<ion-header-bar class="bar bar-dark">
+		<button class="button button-clear right-buttons" ng-click="closeModal()">Close</button>
+		<h1 class="title">Source</h1>
+	</ion-header-bar>
+	<ion-content padding="true">
+		<div class="card">
+			<div class="item item-divider">
+				.alert
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 35px;"
+					>$cordovaDialogs.alert('Wow!');</pre>
+		</div>
+
+		<div class="card">
+			<div class="item item-divider">
+				.confirm
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 35px;"
+					>$cordovaDialogs.confirm('Confirm?');</pre>
+		</div>
+		<div class="card">
+			<div class="item item-divider">
+				.prompt
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 35px;"
+					>$cordovaDialogs.prompt('Please Login');</pre>
+		</div>
+		<div class="card">
+			<div class="item item-divider">
+				.beep
+			</div>
+				<pre class="item item-body padding"
+				     ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+				     readonly="true"
+				     style="height: 35px;"
+					>$cordovaDialogs.beep(3);</pre>
+		</div>
+
+
+	</ion-content>
+</ion-modal-view>

@@ -1,0 +1,12 @@
+<ion-view title="Barcode">
+
+	<ion-nav-buttons side="right">
+		<button class="button button-primary button-clear icon-right ion-code" ng-click="showSource()"></button>
+	</ion-nav-buttons>
+
+	<ion-content scroll="false" padding="true">
+		<button ng-click="scan()" class="button button-block button-primary">Scan</button>
+		<div ng-bind="scanResult">
+		</div>
+	</ion-content>
+</ion-view>

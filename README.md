@@ -28,6 +28,7 @@ org.apache.cordova.network-information
 org.apache.cordova.splashscreen
 org.apache.cordova.statusbar
 org.apache.cordova.vibration
+org.apache.cordova.battery-status
 https://github.com/Paldom/PinDialog.git
 https://github.com/phonegap-build/PushPlugin.git
 https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git
@@ -41,5 +42,7 @@ https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin
 https://github.com/apache/cordova-plugin-media-capture
 https://github.com/ohh2ahh/AppAvailability
 https://github.com/dferrell/plugins-application-preferences
-https://github.com/SidneyS/cordova-plugin-nativeaudio
+https://github.com/shazron/KeychainPlugin.git
+https://github.com/katzer/cordova-plugin-printer
+https://github.com/aharris88/phonegap-sms-plugin
 ```

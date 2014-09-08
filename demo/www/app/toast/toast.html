@@ -1,0 +1,29 @@
+<ion-view title="Toast">
+	<ion-content>
+
+		<h1 class="text-center padding">Toast</h1>
+
+		<div class="list ">
+			<label class="item item-input">
+				<span class="input-label">Toast Message</span>
+				<input type="text" ng-model="toastMessage">
+			</label>
+		</div>
+
+
+		<div class="padding">
+			<button class="button button-block button-royal" ng-click="center(toastMessage)">
+				Center
+			</button>
+
+			<button class="button button-block button-positive" ng-click="top(toastMessage)">
+				Top
+			</button>
+
+			<button class="button button-block button-energized" ng-click="bottom(toastMessage)">
+				Bottom
+			</button>
+		</div>
+
+	</ion-content>
+</ion-view>

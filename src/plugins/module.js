@@ -30,5 +30,14 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.printer',
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.backgroundGeolocation',
-  'ngCordova.plugins.nativeAudio'
+  'ngCordova.plugins.facebookConnect',
+  'ngCordova.plugins.adMob',
+  'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.clipboard',
+  'ngCordova.plugins.nativeAudio',
+  'ngCordova.plugins.media',
+  'ngCordova.plugins.battery-status',
+  'ngCordova.plugins.keychain',
+  'ngCordova.plugins.progressIndicator',
+  'ngCordova.plugins.datePicker'
 ]);
