@@ -371,7 +371,7 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      readFileAbsolute: function () {
+      readFileAbsolute: function (filePath) {
         var q = $q.defer();
         window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
@@ -388,6 +388,8 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           }
         );
+
+        return q.promise;
       },
 
       readFileMetadataAbsolute: function (filePath) {
