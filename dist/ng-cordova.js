@@ -1802,8 +1802,8 @@ angular.module('ngCordova.plugins.localNotification', [])
       }
     }
   ]);
-// install   :
-// link      :
+// install   :      cordova plugin add org.apache.cordova.media
+// link      :      https://github.com/apache/cordova-plugin-media
 
 angular.module('ngCordova.plugins.media', [])
 
@@ -1891,6 +1891,7 @@ angular.module('ngCordova.plugins.media', [])
       }
     }
   }]);
+
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.camera',
