@@ -52,6 +52,24 @@ describe('Service: $cordovaToast', function() {
         expect(window.plugins.toast[fnName].calls[0].args[0]).toBe('some message');
       });
 
+      it('should call window\'s plugins.toast.' + fnName + ' errorCallback when recjected', function() {
+        var errorResult;
+
+        spyOn(window.plugins.toast, fnName)
+          .andCallFake(function (message, successCb, errorCb) {
+            errorCb('error response');
+          });
+
+        $cordovaToast[fnName]('some message')
+          .then(angular.noop, function (response) {
+            errorResult = response;
+          });
+
+        $rootScope.$digest();
+
+        expect(errorResult).toBe('error response');
+      });
+
     })(functionNames[i]);
   }
 
@@ -79,6 +97,24 @@ describe('Service: $cordovaToast', function() {
       jasmine.any(Function),
       jasmine.any(Function)
     );
+  });
+
+  it('should call window\'s plugins.toast.show errorCallback when recjected', function() {
+    var errorResult;
+
+    spyOn(window.plugins.toast, 'show')
+      .andCallFake(function (message, duration, position, successCb, errorCb) {
+        errorCb('error response');
+      });
+
+    $cordovaToast.show('some message')
+      .then(angular.noop, function (response) {
+        errorResult = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(errorResult).toBe('error response');
   });
 
 });
