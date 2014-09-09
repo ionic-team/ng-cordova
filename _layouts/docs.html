@@ -14,16 +14,11 @@
 
 	<title>{{page.title}} - by the Ionic Framework Team</title>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
 	<link href="/css/cover.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
 
-	<!-- Just for debugging purposes. Don't actually copy this line! -->
-	<!--[if lt IE 9]>
-	<script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="../../assets/js/ie8-responsive-file-warning.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -44,7 +39,7 @@
 				<div class="inner">
 					<a class="masthead-brand" href="http://ngcordova.com"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
 					<ul class="nav masthead-nav">
-						<li><a href="http://ngcordova.com">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="active"><a href="/docs/">Docs</a></li>
 						<li><a href="http://ionicframework.com/">Ionic</a></li>
 						<li><a href="https://github.com/driftyco/ng-cordova/">GitHub</a></li>
@@ -54,44 +49,49 @@
 			</div>
 
 			<div class="cover">
-
 				<div class="row">
-
 					<div class="col-md-3 col-sm-3 aside-menu">
 						<div class="menu-docked">
 							<ul class="nav left-menu active-menu">
 								<li><h5 class="menu-title">Plugins</h5></li>
 								<li><a href="#AdMob">AdMob</a></li>
-								<li><a href="#AppAvailability">AppAvailability</a></li>
-								<li><a href="#BatteryStatus">BatteryStatus</a></li>
-								<li><a href="#BarcodeScanner">BarcodeScanner</a></li>
+								<li><a href="#AppAvailability">App Availability</a></li>
+								<li><a href="#BackgroundGeolocation">BackgroundGeolocation</a></li>
+								<li><a href="#BatteryStatus">Battery Status</a></li>
+								<li><a href="#BarcodeScanner">Barcode Scanner</a></li>
 								<li><a href="#Camera">Camera</a></li>
 								<li><a href="#Capture">Capture</a></li>
 								<li><a href="#Clipboard">Clipboard</a></li>
 								<li><a href="#Contacts">Contacts</a></li>
+								<li><a href="#DatePicker">DatePicker</a></li>
 								<li><a href="#Device">Device</a></li>
-								<li><a href="#DeviceMotion">DeviceMotion</a></li>
-								<li><a href="#DeviceOrientation">DeviceOrientation</a></li>
+								<li><a href="#DeviceMotion">Device Motion</a></li>
+								<li><a href="#DeviceOrientation">Device Orientation</a></li>
 								<li><a href="#Dialogs">Dialogs</a></li>
 								<li><a href="#File">File</a></li>
+								<li><a href="#Flashlight">Flashlight</a></li>
 								<li><a href="#Geolocation">Geolocation</a></li>
 								<li><a href="#Globalization">Globalization</a></li>
+								<li><a href="#Keyboard">Keyboard</a></li>
 								<li><a href="#Keychain">Keychain</a></li>
+								<li><a href="#NativeAudio">NativeAudio</a></li>
+								<li><a href="#Media">Media</a></li>
+								<li><a href="#LocalNotification">Local Notification</a></li>
 								<li><a href="#Network">Network</a></li>
-								<li><a href="#PinDialog">PinDialog</a></li>
+								<li><a href="#PinDialog">Pin Dialog</a></li>
 								<li><a href="#Preferences">Preferences</a></li>
-								<li><a href="#Push">Push</a></li>
-								<li><a href="#SocialSharing">SocialSharing</a></li>
-								<li><a href="#SpinnerDialog">SpinnerDialog</a></li>
+								<li><a href="#Printer">Printer</a></li>
+								<li><a href="#ProgressIndicator">Progress Indicator</a></li>
+								<li><a href="#Push">Push Notifications</a></li>
+								<li><a href="#SocialSharing">Social Sharing</a></li>
+								<li><a href="#SpinnerDialog">Spinner Dialog</a></li>
 								<li><a href="#Splashscreen">Splashscreen</a></li>
 								<li><a href="#SQLite">SQLite</a></li>
 								<li><a href="#Statusbar">Statusbar</a></li>
 								<li><a href="#Toast">Toast</a></li>
 								<li><a href="#Vibration">Vibration</a></li>
 							</ul>
-
 						</div>
-
 					</div>
 					<div class="col-md-9">
 						{{content}}
@@ -100,28 +100,14 @@
 
 			</div>
 
-			<div class="mastfoot ">
-				<img class="footer-hr" src="/img/footer-divider.png" width="650" height="41">
-
-				<div class="inner">
-					<p>Built with &#60;3 by <a href="http://ionicframework.com" target="_blank">Ionic</a>, with help from <a href="https://github.com/driftyco/ng-cordova/graphs/contributors" target="_blank">these awesome
-						people</a>.</p>
-				</div>
-			</div>
-
+			{% include mastfoot.html %}
 		</div>
-
 	</div>
-
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="../js/main.js"></script>
+<script src="/lib/bootstrap/bootstrap.js"></script>
+<script src="/js/main.js"></script>
 
 {% include analytics.html %}
 </body>

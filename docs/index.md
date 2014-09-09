@@ -3,20 +3,35 @@ layout: docs
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
-## Examples and Docs
+## Overview & Installing
 
-To use any of the plugin wrappers below, all you need to do is link to the `ng-cordova.js` file in your app. Then, include `ngCordova` as a dependency in your angular module:
+To use any of the plugin wrappers below, all you need to do is link to the `ng-cordova.js` file in your app. 
 
-```javascript
-angular.module('myApp', ['ngCordova'])
+You can use bower to install ngCordova like so ***or*** [download the zip file here](https://github.com/driftyco/ng-cordova/archive/master.zip).
+
+
+``` bash
+$ bower install ngCordova
 ```
 
-**NOTE: Include `ng-cordova.js` in your `index.html` file before `cordova.js`**
+Include `ng-cordova.js` ***or*** `ng-cordova.min.js` in your `index.html` file **before** `cordova.js`
 
 ```html
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 <script src="cordova.js"></script>
 ```
+
+Then, include `ngCordova` as a dependency in your angular module:
+
+```javascript
+angular.module('myApp', ['ngCordova'])
+```
+
+Once ngCordova is setup, install a cordova plugin (`cordova plugin add [...]`) and use the ngCordova API like below.
+
+
+
+## Plugins
 
 <a class="anchor" name="AdMob"></a>
 ### [`$cordovaAdMob`](#AdMob)
@@ -91,7 +106,37 @@ module.controller('AppAvailCtrl', function($scope, $cordovaAppAvailability) {
 });
 ```
 
+<a class="anchor" name="BackgroundGeolocation"></a>
+### [`$cordovaBackgroundGeolocation`](#BackgroundGeolocation)
 
+Cross-platform background geolocation for Cordova / PhoneGap with battery-saving "circular region monitoring" and "stop detection".
+
+**[View Official Docs](https://github.com/christocracy/cordova-plugin-background-geolocation)**
+
+```
+cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
+```
+
+```javascript
+
+module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
+
+  var options = {
+    // https://github.com/christocracy/cordova-plugin-background-geolocation#config
+  };
+
+  // `configure` calls `start` internally
+  $cordovaBackgroundGeolocation.configure(options).then(function (location) {
+    console.log(location);
+  }, function (err) {
+    console.error(err);
+  });
+
+  $scope.stopBackgroundGeolocation = function () {
+    $cordovaBackgroundGeolocation.stop();
+  };
+});
+```
 
 <a class="anchor" name="BatteryStatus"></a>
 ### [`$cordovaBatteryStatus`](#BatteryStatus)
@@ -311,6 +356,27 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
   };
 
   // Many more features will be added shortly
+});
+```
+
+<a class="anchor" name="DatePicker"></a>
+
+### [`$cordovaDatePicker`](#DatePicker)
+
+Show a native date or time picker widget.
+
+```
+cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaDatePicker) {
+  $cordovaDatePicker.show(
+    {date: new Date(), mode: 'date'},
+    function(date){
+      alert(date);
+    };
+  );
 });
 ```
 
@@ -540,6 +606,35 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 });
 ```
 
+
+<a class="anchor" name="Flashlight"></a>
+
+### [`$cordovaFlashlight`](#Flashlight)
+
+Flashlight [View Official Docs](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
+
+```
+cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
+  
+  var isAvailable = $cordovaFlashlight.available()
+  
+  $cordovaFlashlight.switchOn()
+    .then(
+      function (success) { /* success */ },
+      function (error) { /* error */ });
+
+  $cordovaFlashlight.switchOff()
+    .then(
+      function (success) { /* success */ },
+      function (error) { /* error */ });
+});
+```
+
+
 <a class="anchor" name="Geolocation"></a>
 
 ### [`$cordovaGeolocation`](#Geolocation)
@@ -634,6 +729,33 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
 ```
 
 
+
+<a class="anchor" name="Keyboard"></a>
+### `$cordovaKeyboard`
+
+Accessing the Keyboard of iOS from cordova [View Official Docs](https://github.com/driftyco/ionic-plugins-keyboard)
+
+```
+cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
+```
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
+
+  $cordovaKeyboard.hideAccessoryBar(true)
+
+  $cordovaKeyboard.disableScroll(true)
+  
+  $cordovaKeyboard.close()
+  
+  var isVisible = $cordovaKeyboard.isVisible()
+
+});
+```
+
+
+
 <a class="anchor" name="Keychain"></a>
 ### `$cordovaKeychain`
 
@@ -657,6 +779,98 @@ module.controller('MyCtrl', function($scope, $cordovaKeychain) {
 });
 ```
 
+
+<a class="anchor" name="NativeAudio"></a>
+### [`$cordovaNativeAudio`](#NativeAudio)
+
+Cordova / PhoneGap 3.5+ extension for Native Audio playback, aimed at HTML5 gaming and audio applications which require minimum latency, polyphony and concurrency.
+[View Docs](https://github.com/SidneyS/cordova-plugin-nativeaudio)
+
+```
+cordova plugin add https://github.com/SidneyS/cordova-plugin-nativeaudio.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNativeAudio, $timeout) {
+
+  $scope.preloadSimple = function () {
+    $cordovaNativeAudio.preloadSimple('click', 'audio/click.mp3').then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+  };
+
+  $scope.preloadComplex = function () {
+    $cordovaNativeAudio.preloadComplex('music', 'audio/music.mp3', 1, 1).then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+  };
+
+  $scope.play = function () {
+    $cordovaNativeAudio.play('click');
+    $cordovaNativeAudio.loop('music');
+
+    // stop 'music' loop and unload
+    $timeout(function () {
+      $cordovaNativeAudio.stop('music');
+
+      $cordovaNativeAudio.unload('click');
+      $cordovaNativeAudio.unload('music');
+    }, 1000 * 60);
+  };
+
+});
+```
+
+
+<a class="anchor" name="Media"></a>
+### [`$cordovaMedia`](#Media)
+
+Media plugin
+[View Official Docs](https://github.com/apache/cordova-plugin-media/blob/master/doc/index.md)
+
+```
+cordova plugin add org.apache.cordova.media
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+  	var src = "/src/audio.mp3";
+  
+  	var mediaSource = $cordovaMedia.newMedia(src)
+  	var promise = mediaSource.promise
+  	var mediaStatus = mediaSource.mediaStatus
+  	var media = mediaSource.media
+  
+  	$cordovaMedia.play(media)
+  	
+  	$cordovaMedia.pause(media)
+  	
+  	$cordovaMedia.stop(media)
+  	
+  	$cordovaMedia.release(media)
+  	
+  	$cordovaMedia.getDuration(media)
+  	
+  	$cordovaMedia.seekTo(media, 5000000) // milliseconds
+  	
+  	$cordovaMedia.setVolume(media, 80)
+  	
+  	$cordovaMedia.startRecord(media)
+  	
+  	$cordovaMedia.stopRecord(media)
+  
+  	$cordovaMedia.getCurrentPosition(media).then(...)
+});
+```
+
+
+
+
+
 <a class="anchor" name="Network"></a>
 ### [`$cordovaNetwork`](#Network)
 
@@ -678,6 +892,79 @@ module.controller('MyCtrl', function($scope, $cordovaNetwork) {
 ```
 [View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
 
+
+<a class="anchor" name="LocalNotification"></a>
+### [`$cordovaLocalNotification`](#LocalNotification)
+
+The essential purpose of local notifications is to enable an application to inform its users that it has something for them — for example, a message or an upcoming appointment — when the application isn’t running in the foreground.
+They are scheduled by an application and delivered on the same device.
+[View Official Docs](https://github.com/katzer/cordova-plugin-local-notifications)
+
+```
+cordova plugin add de.appplant.cordova.plugin.local-notification
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaLocalNotification) {
+
+  $scope.addNotification = function () {
+    $cordovaLocalNotification.add({
+      id: 'some_notification_id'
+      // parameter documentation:
+      // https://github.com/katzer/cordova-plugin-local-notifications#further-informations-1
+    }).then(function () {
+      console.log('callback for adding background notification');
+    });
+  };
+
+  $scope.cancelNotification = function () {
+    $cordovaLocalNotification.cancel('some_notification_id').then(function () {
+      console.log('callback for cancellation background notification');
+    });
+  };
+
+  $scope.cancelAllNotification = function () {
+    $cordovaLocalNotification.cancelAll().then(function () {
+      console.log('callback for canceling all background notifications');
+    });
+  };
+
+  $scope.checkIfIsScheduled = function () {
+    $cordovaLocalNotification.isScheduled('some_notification_id').then(function (isScheduled) {
+      console.log(isScheduled);
+    });
+  };
+
+  $scope.getNotificationIds = function () {
+    $cordovaLocalNotification.getScheduledIds().then(function (scheduledIds) {
+      console.log(scheduledIds);
+    });
+  };
+
+  $scope.checkIfIsTriggered = function () {
+    $cordovaLocalNotification.isTriggered('some_notification_id').then(function (isTriggered) {
+      console.log(isTriggered);
+    });
+  };
+
+  $scope.getTriggeredIds = function () {
+    $cordovaLocalNotification.getTriggeredIds().then(function (triggeredIds) {
+      console.log(triggeredIds);
+    });
+  };
+
+  $scope.notificationDefaults = $cordovaLocalNotification.getDefaults();
+
+  $scope.setDefaultOptions = function () {
+    $cordovaLocalNotification.setDefaults({ autoCancel: true });
+  };
+
+  // event callbacks events `onadd`, `ontrigger`, `onclick` and `oncancel`
+  // can be assigned like this:
+  $cordovaLocalNotification.onadd = function (id, state, json) {};
+
+});
+```
 
 
 <a class="anchor" name="PinDialog"></a>
@@ -733,6 +1020,112 @@ module.controller('MyCtrl', function($scope, $cordovaPreferences) {
 });
 ```
 
+<a class="anchor" name="Printer"></a>
+### [`$cordovaPrinter`](#Printer)
+
+Printer plugin
+[View Official Docs](https://github.com/katzer/cordova-plugin-printer)
+
+```
+cordova plugin add https://github.com/katzer/cordova-plugin-printer.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaPrinter) {
+
+  var printerAvail = $cordovaPrinter.isAvailable()
+  
+  var doc = "<html> ... </html>";
+  $cordovaPrinter.print(doc)
+});
+```
+
+
+
+
+<a class="anchor" name="ProgressIndicator"></a>
+### [`$cordovaProgress`](#ProgressIndicator)
+
+Various Progress Dialogs for indicating loading or downloading.
+[View Official Docs](http://pbernasconi.github.io/cordova-progressIndicator/)
+
+
+<table class="table table-docs text-center" style="width: auto">
+    <thead >
+        <tr>
+            <th class="table-border-right"></th>
+            <th>Simple </th>
+            <th>Determin</th>
+            <th>Annular</th>
+            <th>Bar</th>
+            <th>Success</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="table-border-right">Example</td>
+            <td><img class="img-responsive" src="/img/progressIndicator/simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/determinate-simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/annular-simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/bar-simple.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/success.jpg"></td>
+            <td><img class="img-responsive" src="/img/progressIndicator/text-top.jpg"></td>
+        </tr>
+        <tr>
+												<td class="table-border-right">Requires hide</td>
+												<td>true</td>
+												<td>false</td>
+												<td>false</td>
+												<td>false</td>
+												<td>true</td>
+												<td>true</td>
+        </tr>
+
+    </tbody>
+</table>
+
+```
+cordova plugin add org.pbernasconi.progressindicator
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaProgress) {
+
+$cordovaProgress.showSimple(true)  // requires .hide()
+
+$cordovaProgress.showSimpleWithLabel(true, "Loading") // .hide()
+  
+$cordovaProgress.showSimpleWithLabelDetail(true, "Loading", "detail")
+    // requires .hide()
+    
+$cordovaProgress.hide()
+
+
+$cordovaProgress.showDeterminate(false, 100000)
+
+$cordovaProgress.showDeterminateWithLabel(true, 50000, "Loading")
+
+$cordovaProgress.showAnnular(true, 50000)
+
+$cordovaProgress.showAnnularWithLabel(false, 100000, "Loading")
+
+$cordovaProgress.showBar(true, 50000)
+
+$cordovaProgress.showBarWithLabel(false, 100000, "Loading")
+
+
+$cordovaProgress.showSuccess(true) // requires .hide()
+
+$cordovaProgress.showText(false, 100000, "Loading")
+
+});
+```
+
+
+
+
+>>>>>>> gh-pages
 <a class="anchor" name="Push"></a>
 
 ### [`$cordovaPush`](#Push)
@@ -791,7 +1184,7 @@ Share images, text, messages via Facebook, Twitter, Email, SMS, WhatsApp, etc us
 <table class="table table-docs text-center">
     <thead >
         <tr>
-            <th  class="table-border-right"></th>
+            <th class="table-border-right"></th>
             <th>FB iOS</th>
             <th>FB Android</th>
             <th>Twitter</th>
