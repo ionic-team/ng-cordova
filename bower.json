@@ -35,9 +35,6 @@
   ],
   "license": "MIT",
   "private": false,
-  "resolutions": {
-    "angular": "1.2.23"
-  },
   "devDependencies": {
     "angular": "~1.2.23",
     "angular-mocks": "~1.2.23",
