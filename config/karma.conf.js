@@ -3,9 +3,9 @@ var buildConfig = require('./build.config.js');
 module.exports = {
   files: [
     // Include jQuery only for testing convience (lots of DOM checking for unit tests on directives)
-    'http://codeorigin.jquery.com/jquery-1.10.2.min.js',
-    'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js',
-    'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-mocks.js'
+    'bower_components/angular/angular.min.js',
+    'bower_components/angular-mocks/angular-mocks.js',
+    'bower_components/jquery/jquery.js',
   ]
     .concat(buildConfig.pluginFiles)
     .concat('test/plugins/*.js')
