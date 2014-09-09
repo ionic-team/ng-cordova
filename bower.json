@@ -17,7 +17,9 @@
         "gulpfile.js",
         "test",
         "src",
-        "config"
+        "config",
+        "demo",
+        "CONTRIBUTING.md"
     ],
     "dependencies": {
         "angular": "1.2.0"
