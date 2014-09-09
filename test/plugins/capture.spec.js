@@ -47,6 +47,22 @@ describe('Service: $cordovaCapture', function() {
         expect(navigator.device.capture[fnName].calls[0].args[2]).toBe(options);
       });
 
+      it('navigator\'s device.capture.' + fnName + ' return `null` when device.capture is not set', function() {
+
+        var result;
+
+        navigator.device.capture = null;
+
+        $cordovaCapture[fnName]()
+          .then(function (response) {
+            result = response;
+          });
+
+        $rootScope.$digest();
+
+        expect(result).toBe(null);
+      });
+
       it('should call errorCb when in navigator\'s device.capture.' + fnName + ' a error orccurs', function() {
 
         var result;
