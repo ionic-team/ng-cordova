@@ -2525,19 +2525,15 @@ angular.module('ngCordova.plugins.statusbar', [])
         switch (style) {
           case 0:     // Default
             return StatusBar.styleDefault();
-            break;
 
           case 1:     // LightContent
             return StatusBar.styleLightContent();
-            break;
 
           case 2:     // BlackTranslucent
             return StatusBar.styleBlackTranslucent();
-            break;
 
           case 3:     // BlackOpaque
             return StatusBar.styleBlackOpaque();
-            break;
 
           default:  // Default
             return StatusBar.styleDefault();
