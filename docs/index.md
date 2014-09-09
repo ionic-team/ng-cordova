@@ -3,20 +3,35 @@ layout: docs
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
-## Examples and Docs
+## Overview & Installing
 
-To use any of the plugin wrappers below, all you need to do is link to the `ng-cordova.js` file in your app. Then, include `ngCordova` as a dependency in your angular module:
+To use any of the plugin wrappers below, all you need to do is link to the `ng-cordova.js` file in your app. 
 
-```javascript
-angular.module('myApp', ['ngCordova'])
+You can use bower to install ngCordova like so ***or*** [download the zip file here](https://github.com/driftyco/ng-cordova/archive/master.zip).
+
+
+``` bash
+$ bower install ngCordova
 ```
 
-**NOTE: Include `ng-cordova.js` in your `index.html` file before `cordova.js`**
+Include `ng-cordova.js` ***or*** `ng-cordova.min.js` in your `index.html` file **before** `cordova.js`
 
 ```html
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 <script src="cordova.js"></script>
 ```
+
+Then, include `ngCordova` as a dependency in your angular module:
+
+```javascript
+angular.module('myApp', ['ngCordova'])
+```
+
+Once ngCordova is setup, install a cordova plugin (`cordova plugin add [...]`) and use the ngCordova API like below.
+
+
+
+## Plugins
 
 <a class="anchor" name="AdMob"></a>
 ### [`$cordovaAdMob`](#AdMob)
