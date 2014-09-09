@@ -4,3 +4,5 @@ node_modules/
 demo/platforms/*
 demo/plugins/*
 _site
+bower_components
+coverage
