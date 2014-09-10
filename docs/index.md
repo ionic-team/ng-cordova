@@ -1309,20 +1309,24 @@ cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSQLite) {
 
-  var db = $cordovaSQLite.openDB({ name: "my.db" });
+  var db = $cordovaSQLite.openDB("my.db");
 
-  // for opening a background db:
-  var db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
+  // for opening a background db -  true: 1, false: 0
+  var db = $cordovaSQLite.openDB("my.db", 1});
 
-  $scope.execute = function() {
-    var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
-    $cordovaSQLite.execute(db, query, ["test", 100]).then(function(tx, res) {
-      console.log("insertId: " + res.insertId);
-    }, function (err) {
-      console.error(err);
-    });
-  };
-
+  var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
+  $cordovaSQLite.execute(db, query, ["test", 100]).then(function(tx, res) {
+    console.log("insertId: " + res.insertId);
+  }, function (err) {
+    console.error(err);
+  });
+  
+  $cordovaSQLite.deleteDB("my.db")
+    .then(function () {
+      // success
+    }, function () {
+      // error
+    }
 });
 ```
 
