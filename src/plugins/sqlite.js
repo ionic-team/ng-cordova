@@ -6,8 +6,8 @@ angular.module('ngCordova.plugins.sqlite', [])
   .factory('$cordovaSQLite', ['$q', function ($q) {
 
     return  {
-      openDB: function (dbObject) {
-        return  window.sqlitePlugin.openDatabase(dbObject);
+      openDB: function (dbName) {
+        return  window.sqlitePlugin.openDatabase({name: dbName});
       },
 
       execute: function (db, query, binding) {
