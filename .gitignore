@@ -5,3 +5,5 @@ _site/
 *~
 
 .idea
+bower_components
+coverage
