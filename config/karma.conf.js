@@ -15,7 +15,16 @@ module.exports = {
   ,
 
   frameworks: ['jasmine'],
-  reporters: ['progress'],
+  reporters: ['progress', 'coverage'],
+  preprocessors: {
+    'src/plugins/*.js': ['coverage']
+  },
+
+  coverageReporter: {
+    type : 'html',
+    dir : 'coverage/'
+  },
+
   port: 9876,
   colors: true,
   // possible values: 'OFF', 'ERROR', 'WARN', 'INFO', 'DEBUG'

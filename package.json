@@ -19,7 +19,8 @@
     "gulp-jshint": "^1.6.1",
     "gulp-uglify": "^0.2.1",
     "minimist": "^0.1.0",
-    "jshint-stylish": "^0.4.0"
+    "jshint-stylish": "^0.4.0",
+    "karma-coverage": "~0.2.6"
   },
   "licenses": [
     {
