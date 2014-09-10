@@ -466,11 +466,17 @@ angular.module('ngCordova.plugins.contacts', [])
 
 angular.module('ngCordova.plugins.datePicker', [])
 
-  .factory('$cordovaDatePicker', ['$window', function ($window) {
+  .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
 
     return {
-      show: function(options, fn) {
-        return $window.datePicker.show(options, fn);
+      show: function(options) {
+        var d = $q.defer();
+
+        $window.datePicker.show(options, function (date) {
+          d.resolve(date);
+        });
+
+        return d.promise;
       }
     }
 
