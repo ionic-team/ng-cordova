@@ -1,5 +1,5 @@
-// install   :
-// link      :
+// install   :      cordova plugin add org.apache.cordova.media
+// link      :      https://github.com/apache/cordova-plugin-media
 
 angular.module('ngCordova.plugins.media', [])
 

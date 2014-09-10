@@ -466,11 +466,17 @@ angular.module('ngCordova.plugins.contacts', [])
 
 angular.module('ngCordova.plugins.datePicker', [])
 
-  .factory('$cordovaDatePicker', ['$window', function ($window) {
+  .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
 
     return {
-      show: function(options, fn) {
-        return $window.datePicker.show(options, fn);
+      show: function(options) {
+        var d = $q.defer();
+
+        $window.datePicker.show(options, function (date) {
+          d.resolve(date);
+        });
+
+        return d.promise;
       }
     }
 
@@ -1884,8 +1890,8 @@ angular.module('ngCordova.plugins.localNotification', [])
       }
     }
   ]);
-// install   :
-// link      :
+// install   :      cordova plugin add org.apache.cordova.media
+// link      :      https://github.com/apache/cordova-plugin-media
 
 angular.module('ngCordova.plugins.media', [])
 
@@ -1973,6 +1979,7 @@ angular.module('ngCordova.plugins.media', [])
       }
     }
   }]);
+
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.camera',
@@ -2606,19 +2613,15 @@ angular.module('ngCordova.plugins.statusbar', [])
         switch (style) {
           case 0:     // Default
             return StatusBar.styleDefault();
-            break;
 
           case 1:     // LightContent
             return StatusBar.styleLightContent();
-            break;
 
           case 2:     // BlackTranslucent
             return StatusBar.styleBlackTranslucent();
-            break;
 
           case 3:     // BlackOpaque
             return StatusBar.styleBlackOpaque();
-            break;
 
           default:  // Default
             return StatusBar.styleDefault();

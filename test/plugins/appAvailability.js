@@ -34,4 +34,24 @@ describe('Service: $cordovaAppAvailability', function() {
     expect(window.appAvailability.check.calls[0].args[0]).toBe('twitter://');
   });
 
+  it('should call errorCb when in window\'s appAvailability.check a error orccurs', function() {
+
+    var result;
+    var errorObj = { someError: 1 };
+
+    spyOn(window.appAvailability, 'check')
+      .andCallFake(function (urlScheme, successCb, errorCb) {
+        errorCb(errorObj);
+      });
+
+    $cordovaAppAvailability.check()
+      .then(angular.noop, function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe(errorObj);
+  });
+
 });

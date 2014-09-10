@@ -10,11 +10,6 @@ angular.module('ngCordova.plugins.sqlite', [])
         return  window.sqlitePlugin.openDatabase({name: dbName});
       },
 
-
-      openDBBackground: function (dbName) {
-        return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
-      },
-
       execute: function (db, query, binding) {
         var q = $q.defer();
         db.transaction(function (tx) {
