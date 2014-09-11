@@ -714,16 +714,31 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
       // error
   });
   
+  $cordovaGlobalization.isDayLightSavingsTime(new Date()).then(
+    function(result) {
+      // result
+    }, 
+    function(error) {
+      // error
+  });
+
+  $cordovaGlobalization.getCurrencyPattern('GBP').then(
+    function(result) {
+      // result
+    }, 
+    function(error) {
+      // error
+  });
+
+
     // Soon implemented:
     // dateToString
     // stringToDate
     // getDatePattern
     // getDateNames
-    // isDayLightSavingsTime
     // numberToString
     // stringToNumber
     // getNumberPattern
-    // getCurrencyPattern
     
 });
 ```
@@ -979,7 +994,7 @@ cordova plugin add https://github.com/Paldom/PinDialog.git
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 
-  $cordovaPinDialog.prompt('Some message here').then(
+  $cordovaPinDialog.prompt('Some message here',
     function(result) {
       // result
     },
@@ -1142,6 +1157,30 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
   });
   
 });
+```
+
+<a class="anchor" name="Sms"></a>
+
+### [`$cordovaSms`](#Sms)
+
+Send SMS messages using this plugin.
+
+```
+cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaSms) {
+
+  $cordovaSms
+    .send(number, message, intent)
+    .then(function(res) {
+      // Success!
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+
+}); 
 ```
 
 <a class="anchor" name="SocialSharing"></a>
