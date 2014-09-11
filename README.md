@@ -52,6 +52,6 @@ ngCordova currently has support for the following plugins:
 - [StatusBar](https://github.com/apache/cordova-plugin-statusbar) *
 - [Toast](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
 - [Vibration](https://github.com/apache/cordova-plugin-vibration) *
-
+- [Zip](https://github.com/MobileChromeApps/zip)
 
 `* official Apache Cordova Plugin`

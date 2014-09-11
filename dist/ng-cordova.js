@@ -2470,13 +2470,9 @@ angular.module('ngCordova.plugins.sqlite', [])
   .factory('$cordovaSQLite', ['$q', function ($q) {
 
     return  {
-      openDB: function (dbName) {
-        return  window.sqlitePlugin.openDatabase({name: dbName});
-      },
-
-
-      openDBBackground: function (dbName) {
-        return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
+      openDB: function (dbName, background) {
+        background = (typeof background === "undefined") ? 0 : background;
+        return  window.sqlitePlugin.openDatabase({name: dbName, bgType: background});
       },
 
       execute: function (db, query, binding) {
@@ -2508,9 +2504,19 @@ angular.module('ngCordova.plugins.sqlite', [])
           });
 
         return q.promise;
-      }
+      },
 
-      // more methods here
+      deleteDB: function (dbName) {
+        var q = $q.defer();
+
+        window.sqlitePlugin.deleteDatabase(dbName, function (success) {
+          q.resolve(success);
+        }, function (error) {
+          q.reject(error)
+        });
+
+        return q.promise;
+      }
     }
   }]);
 
@@ -2670,5 +2676,31 @@ angular.module('ngCordova.plugins.vibration', [])
       }
     }
   }]);
+
+// install  :     cordova plugin add https://github.com/MobileChromeApps/zip.git
+// link     :     https://github.com/MobileChromeApps/zip
+
+angular.module('ngCordova.plugins.zip', [])
+
+.factory('$cordovaZip', ['$q', '$window', function ($q, $window) {
+
+  return {
+    unzip: function(source, destination) {
+      var q = $q.defer();
+
+      $window.zip.unzip(source, destination, function (isError) {
+        if(isError === 0) {
+          q.resolve();
+        } else {
+          q.reject();
+        }
+      }, function (progressEvent) {
+        q.notify(progressEvent);
+      });
+
+      return q.promise;
+    }
+  }
+}]);
 
 })();
