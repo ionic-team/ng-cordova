@@ -12,7 +12,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - **Docs** : [ngCordova.com/docs](http://ngcordova.com/docs)
 - **Requirements** : [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/)
 - **Install** : `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) and use `ng-cordova.js`
-- **Custom build** : [ngcordova.com/build]([http://ngcordova.com/build/])
+- **Custom build** : [ngcordova.com/build](http://ngcordova.com/build/)
 
 
 
