@@ -1,7 +1,7 @@
 [ngCordova](http://ngcordova.com/) - Cordova with Angular Goodness
 ==========
 
-<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />
+[<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
 
 [http://ngCordova.com](http://ngcordova.com/)
 
@@ -9,9 +9,17 @@ ngCordova gives you simple AngularJS wrappers for a massive amount of Cordova pl
 
 Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
 
-## Plugins
+## Requirements
 
-ngCordova currently has support for the following plugins:
+- [AngularJS](https://github.com/angular/angular.js)
+- [Cordova](http://cordova.apache.org/)
+
+
+## Docs
+
+Check out the docs at [ngCordova.com/docs](http://ngcordova.com/docs)
+
+## Plugins
 
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Prefences](https://github.com/dferrell/plugins-application-preferences)
