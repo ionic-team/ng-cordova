@@ -1,15 +1,15 @@
-ngCordova: Cordova with Angulary Goodness
+[ngCordova](http://ngcordova.com/) - Cordova with Angular Goodness
 ==========
 
 <img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />
 
 [http://ngCordova.com](http://ngcordova.com/)
 
-ngCordova gives you simple AngularJS wrappers for common Cordova plugins.
+ngCordova gives you simple AngularJS wrappers for a massive amount of Cordova plugins. Check out the list below for all of the available plugins, and create an issue for a new request.
 
 Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
 
-### Plugins
+## Plugins
 
 ngCordova currently has support for the following plugins:
 
@@ -55,3 +55,20 @@ ngCordova currently has support for the following plugins:
 - [Zip](https://github.com/MobileChromeApps/zip)
 
 `* official Apache Cordova Plugin`
+
+## Authors
+
+#### Max Lynch
+
+- https://twitter.com/maxlynch
+- https://github.com/mlynch
+
+#### Paolo Bernasconi
+
+- https://twitter.com/paolobernasconi
+- https://github.com/pbernasconi
+
+
+## LICENSE
+
+ngCordova is licensed under the MIT Open Source license. For more information, see the LICENSE file in this repository.
