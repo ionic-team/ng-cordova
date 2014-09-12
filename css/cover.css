@@ -475,13 +475,23 @@ a:hover {
     input.menu-search {
         border: solid 1px #5796FF;
         border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
         padding: 3px 3px 3px 10px;
         width: 200px;
+        transition: box-shadow linear 0.4s;
+        box-shadow: 0 0;
+        -moz-box-shadow: 0 0;
+        -webkit-box-shadow: 0 0 ;
     }
 
     input:focus {
         outline: none;
         border-color: #5796FF;
+        transition: box-shadow linear 0.4s;
+        box-shadow: 0 0 8px #8db4d4;
+        -moz-box-shadow: 0 0 8px #8db4d4;
+        -webkit-box-shadow: 0 0 8px #8db4d4;
     }
 
     .menu-docked a {
