@@ -3,21 +3,16 @@
 
 [<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
 
-[http://ngCordova.com](http://ngcordova.com/)
 
 ngCordova gives you simple AngularJS wrappers for a massive amount of Cordova plugins. Check out the list below for all of the available plugins, and create an issue for a new request.
 
+
+- **Website** : [ngCordova.com](http://ngcordova.com/)
+- **Docs** : [ngCordova.com/docs](http://ngcordova.com/docs)
+- **Requirements** : [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/)
+
 Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
 
-## Requirements
-
-- [AngularJS](https://github.com/angular/angular.js)
-- [Cordova](http://cordova.apache.org/)
-
-
-## Docs
-
-Check out the docs at [ngCordova.com/docs](http://ngcordova.com/docs)
 
 ## Plugins
 
