@@ -10,6 +10,7 @@ ngCordova gives you simple AngularJS wrappers for a massive amount of Cordova pl
 - **Website** : [ngCordova.com](http://ngcordova.com/)
 - **Docs** : [ngCordova.com/docs](http://ngcordova.com/docs)
 - **Requirements** : [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/)
+- **Install** : `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) and use `ng-cordova.js`
 
 Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
 
