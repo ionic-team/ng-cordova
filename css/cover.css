@@ -151,7 +151,7 @@ pre {
     line-height: 1.42857143;
     word-break: break-all;
     word-wrap: break-word;
-    color: #97A6BE;
+    color: #b4c5de;
     background-color: #1B1E24;
     border: 1px solid #0A0C0F;
     border-radius: 2px;
@@ -301,6 +301,12 @@ code {
 .left-menu a:hover {
     background-color: #474A50;
     border-radius: 3px;
+}
+
+.left-menu a.active {
+    background-color: #474A50;
+    border-radius: 3px;
+    color: white;
 }
 
 .left-menu li {

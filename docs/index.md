@@ -33,14 +33,14 @@ Once ngCordova is setup, install a cordova plugin (`cordova plugin add [...]`) a
 
 ## Plugins
 
-<a class="anchor" name="AdMob"></a>
+<a class="anchor" id="AdMob"></a>
 ### [`$cordovaAdMob`](#AdMob)
 
 The [AdMob](https://github.com/floatinghotpot/cordova-admob-pro) plugin presents AdMob Ads in Mobile App/Games natively from JavaScript.
 [View Official Docs](https://github.com/floatinghotpot/cordova-admob-pro#quick-start-example-code)
 
 
-```
+```bash
 cordova plugin add com.google.cordova.admob
 ```
 
@@ -53,7 +53,7 @@ module.controller('AdMobCtrl', function($scope, $cordovaAdMob) {
 });
 ```
 
-<a class="anchor" name="AppAvailability"></a>
+<a class="anchor" id="AppAvailability"></a>
 ### [`$cordovaAppAvailability`](#AppAvailability)
 
 The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows you to check if an app is installed on the user's device. It requires an URI Scheme (e.g. twitter://) on iOS or a Package Name (e.g com.twitter.android) on Android.
@@ -86,7 +86,7 @@ The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows 
 
 
 
-```
+```bash
 cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
 ```
 
@@ -106,14 +106,14 @@ module.controller('AppAvailCtrl', function($scope, $cordovaAppAvailability) {
 });
 ```
 
-<a class="anchor" name="BackgroundGeolocation"></a>
+<a class="anchor" id="BackgroundGeolocation"></a>
 ### [`$cordovaBackgroundGeolocation`](#BackgroundGeolocation)
 
 Cross-platform background geolocation for Cordova / PhoneGap with battery-saving "circular region monitoring" and "stop detection".
 
 **[View Official Docs](https://github.com/christocracy/cordova-plugin-background-geolocation)**
 
-```
+```bash
 cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
 ```
 
@@ -138,7 +138,7 @@ module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
 });
 ```
 
-<a class="anchor" name="BatteryStatus"></a>
+<a class="anchor" id="BatteryStatus"></a>
 ### [`$cordovaBatteryStatus`](#BatteryStatus)
 
 The [BatteryStatus](https://github.com/apache/cordova-plugin-battery-status) plugin provides an API for the current battery status.
@@ -146,7 +146,7 @@ The [BatteryStatus](https://github.com/apache/cordova-plugin-battery-status) plu
 [View Official Docs](https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md)
 
 
-```
+```bash
 cordova plugin add org.apache.cordova.battery-status
 ```
 
@@ -173,14 +173,14 @@ module.controller('BatteryCtrl', function($scope, $cordovaBatteryStatus) {
 
 ```
 
-<a class="anchor" name="BarcodeScanner"></a>
+<a class="anchor" id="BarcodeScanner"></a>
 ### [`$cordovaBarcodeScanner`](#BarcodeScanner)
 
 The [Barcode Scanner Plugin](https://github.com/wildabeast/BarcodeScanner/) opens a camera view and automagically scans a barcode, returning the data back to you.
 [View Official Docs](https://github.com/wildabeast/BarcodeScanner/#using-the-plugin)
 
 
-```
+```bash
 cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 ```
 
@@ -210,14 +210,14 @@ module.controller('BarcodeScannerCtrl', function($scope, $cordovaBarcodeScanner)
 });
 ```
 
-<a class="anchor" name="Camera"></a>
+<a class="anchor" id="Camera"></a>
 
 ### [`$cordovaCamera`](#Camera)
 
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
 from a device. [View Official Docs](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera)
 
-```
+```bash
 cordova plugin add org.apache.cordova.camera
 ```
 
@@ -250,14 +250,14 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 [View Camera Options](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
 
 
-<a class="anchor" name="Capture"></a>
+<a class="anchor" id="Capture"></a>
 ### [`$cordovaCapture`](#Capture)
 
 This plugin allows you to record sound, video and images throught the native capabilities of the device
 [View Official Docs](https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md)
 
-```
-cordova plugin add org.apache.cordova.media-capture
+```bash
+$ cordova plugin add org.apache.cordova.media-capture
 ```
 
 ```javascript
@@ -298,7 +298,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
 
 
-<a class="anchor" name="Clipboard"></a>
+<a class="anchor" id="Clipboard"></a>
 ### [`$cordovaClipboard`](#Clipboard)
 
 The [Clipboard](https://github.com/VersoSolutions/CordovaClipboard) plugin provides an API for the current battery status.
@@ -336,7 +336,7 @@ module.controller('ClipboardCtrl', function($scope, $cordovaClipboard) {
 ```
 
 
-<a class="anchor" name="Contacts"></a>
+<a class="anchor" id="Contacts"></a>
 ### [`$cordovaContacts`](#Contacts)
 
 A powerful way to create, remove, and search through contacts on the device.
@@ -359,7 +359,7 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 });
 ```
 
-<a class="anchor" name="DatePicker"></a>
+<a class="anchor" id="DatePicker"></a>
 
 ### [`$cordovaDatePicker`](#DatePicker)
 
@@ -380,7 +380,7 @@ module.controller('MyCtrl', function($scope, $cordovaDatePicker) {
 });
 ```
 
-<a class="anchor" name="Device"></a>
+<a class="anchor" id="Device"></a>
 
 ### [`$cordovaDevice`](#Device)
 
@@ -401,7 +401,7 @@ module.controller('MyCtrl', function($scope, $cordovaDevice) {
 });
 ```
 
-<a class="anchor" name="DeviceMotion"></a>
+<a class="anchor" id="DeviceMotion"></a>
 
 ### [`$cordovaDeviceMotion`](#DeviceMotion)
 
@@ -460,7 +460,7 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
 });
 ```
 
-<a class="anchor" name="DeviceOrientation"></a>
+<a class="anchor" id="DeviceOrientation"></a>
 
 ### [`$cordovaDeviceOrientation`](#DeviceOrientation)
 
@@ -499,7 +499,7 @@ module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrient
 });
 ```
 
-<a class="anchor" name="Dialogs"></a>
+<a class="anchor" id="Dialogs"></a>
 
 ### [`$cordovaDialogs`](#Dialogs)
 
@@ -524,7 +524,7 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
 });
 ```
 
-<a class="anchor" name="File"></a>
+<a class="anchor" id="File"></a>
 
 ### [`$cordovaFile`](#File)
 
@@ -589,25 +589,33 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
   });
   
   // parameters: source, filePath, trust all hosts (boolean), options
-  $cordovaFile.downloadFile(source, filePath, true, options).then(function(result) {
+  $cordovaFile
+    .downloadFile(source, filePath, true, options)
+    .then(function(result) {
       // Success! 
-  }, function(err) {
-      // An error occured. Show a message to the user
-  });
+    }, function(err) {
+      // Error
+    }, function (progress) {
+      // constant progress updates
+    });
   
   
   // parameters: source, filePath, options
-  $cordovaFile.uploadFile(server, filePath, options).then(function(result) {
+  $cordovaFile
+    .uploadFile(server, filePath, options)
+    .then(function(result) {
       // Success! 
-  }, function(err) {
-      // An error occured. Show a message to the user
-  });
+    }, function(err) {
+      // Error
+    }, function (progress) {
+      // constant progress updates
+    });
  
 });
 ```
 
 
-<a class="anchor" name="Flashlight"></a>
+<a class="anchor" id="Flashlight"></a>
 
 ### [`$cordovaFlashlight`](#Flashlight)
 
@@ -635,7 +643,7 @@ module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
 ```
 
 
-<a class="anchor" name="Geolocation"></a>
+<a class="anchor" id="Geolocation"></a>
 
 ### [`$cordovaGeolocation`](#Geolocation)
 
@@ -676,7 +684,7 @@ module.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
 });
 ```
 
-<a class="anchor" name="Globalization"></a>
+<a class="anchor" id="Globalization"></a>
 
 ### [`$cordovaGlobalization`](#Globalization)
 
@@ -730,7 +738,7 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
 
 
 
-<a class="anchor" name="Keyboard"></a>
+<a class="anchor" id="Keyboard"></a>
 ### `$cordovaKeyboard`
 
 Accessing the Keyboard of iOS from cordova [View Official Docs](https://github.com/driftyco/ionic-plugins-keyboard)
@@ -756,7 +764,7 @@ module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
 
 
 
-<a class="anchor" name="Keychain"></a>
+<a class="anchor" id="Keychain"></a>
 ### `$cordovaKeychain`
 
 Accessing the keychain of iOS from cordova [View Docs](https://github.com/shazron/KeychainPlugin)
@@ -780,7 +788,7 @@ module.controller('MyCtrl', function($scope, $cordovaKeychain) {
 ```
 
 
-<a class="anchor" name="NativeAudio"></a>
+<a class="anchor" id="NativeAudio"></a>
 ### [`$cordovaNativeAudio`](#NativeAudio)
 
 Cordova / PhoneGap 3.5+ extension for Native Audio playback, aimed at HTML5 gaming and audio applications which require minimum latency, polyphony and concurrency.
@@ -826,7 +834,7 @@ module.controller('MyCtrl', function($scope, $cordovaNativeAudio, $timeout) {
 ```
 
 
-<a class="anchor" name="Media"></a>
+<a class="anchor" id="Media"></a>
 ### [`$cordovaMedia`](#Media)
 
 Media plugin
@@ -871,7 +879,7 @@ module.controller('MyCtrl', function($scope, $cordovaNetwork) {
 
 
 
-<a class="anchor" name="Network"></a>
+<a class="anchor" id="Network"></a>
 ### [`$cordovaNetwork`](#Network)
 
 Check network connection types, and track offline and online status.
@@ -893,7 +901,7 @@ module.controller('MyCtrl', function($scope, $cordovaNetwork) {
 [View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
 
 
-<a class="anchor" name="LocalNotification"></a>
+<a class="anchor" id="LocalNotification"></a>
 ### [`$cordovaLocalNotification`](#LocalNotification)
 
 The essential purpose of local notifications is to enable an application to inform its users that it has something for them — for example, a message or an upcoming appointment — when the application isn’t running in the foreground.
@@ -967,7 +975,7 @@ module.controller('MyCtrl', function($scope, $cordovaLocalNotification) {
 ```
 
 
-<a class="anchor" name="PinDialog"></a>
+<a class="anchor" id="PinDialog"></a>
 ### [`$cordovaPinDialog`](#PinDialog)
 
 Numeric password dialog.
@@ -990,7 +998,7 @@ module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 ```
 
 
-<a class="anchor" name="Printer"></a>
+<a class="anchor" id="Printer"></a>
 ### [`$cordovaPrinter`](#Printer)
 
 Printer plugin
@@ -1013,7 +1021,7 @@ module.controller('MyCtrl', function($scope, $cordovaPrinter) {
 
 
 
-<a class="anchor" name="ProgressIndicator"></a>
+<a class="anchor" id="ProgressIndicator"></a>
 ### [`$cordovaProgress`](#ProgressIndicator)
 
 Various Progress Dialogs for indicating loading or downloading.
@@ -1095,7 +1103,7 @@ $cordovaProgress.showText(false, 100000, "Loading")
 
 
 
-<a class="anchor" name="Push"></a>
+<a class="anchor" id="Push"></a>
 
 ### [`$cordovaPush`](#Push)
 
@@ -1144,7 +1152,7 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
 });
 ```
 
-<a class="anchor" name="SocialSharing"></a>
+<a class="anchor" id="SocialSharing"></a>
 
 ### [`$cordovaSocialSharing`](#SocialSharing)
 
@@ -1256,7 +1264,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
 ```
 
 
-<a class="anchor" name="SpinnerDialog"></a>
+<a class="anchor" id="SpinnerDialog"></a>
 ### [`$cordovaSpinnerDialog`](#SpinnerDialog)
 
 A dialog with a spinner wheel.
@@ -1280,7 +1288,7 @@ module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
 
 
 
-<a class="anchor" name="Splashscreen"></a>
+<a class="anchor" id="Splashscreen"></a>
 ### [`$cordovaSplashscreen`](#Splashscreen)
 
 Show or hide the Splash Screen.
@@ -1297,7 +1305,7 @@ module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
 
 
 
-<a class="anchor" name="SQLite"></a>
+<a class="anchor" id="SQLite"></a>
 ### `$cordovaSQLite`
 
 Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
@@ -1324,7 +1332,7 @@ module.controller('MyCtrl', function($scope, $cordovaSQLite) {
 ```
 
 
-<a class="anchor" name="Statusbar"></a>
+<a class="anchor" id="Statusbar"></a>
 ### [`$cordovaStatusbar`](#Statusbar)
 
 Configure the device's StatusBar with colors and styles.
@@ -1355,7 +1363,7 @@ module.controller('MyCtrl', function($scope, $cordovaStatusbar) {
 });
 ```
 
-<a class="anchor" name="Toast"></a>
+<a class="anchor" id="Toast"></a>
 
 ### [`$cordovaToast`](#Toast)
 
@@ -1405,7 +1413,7 @@ module.controller('MyCtrl', function($scope, $cordovaToast) {
 });
 ```
 
-<a class="anchor" name="Vibration"></a>
+<a class="anchor" id="Vibration"></a>
 ### [`$cordovaVibration`](#Vibration)
 
 Vibrate the device programatically.
