@@ -3,11 +3,15 @@ layout: docs
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
-## Overview & Installing
+## Overview
 
-To use any of the plugin wrappers below, all you need to do is link to the `ng-cordova.js` file in your app. 
+[ngCordova](http://ngCordova.com) was built to help make app development faster and more efficient than ever before. 
+It gives you simple [AngularJS](https://angularjs.org/) wrappers for the most popular [Cordova](cordova.apache.org) and [PhoneGap](http://phonegap.com/) plugins available, 
+where you can take a picture, scan a barcode, upload a file, turn on your flashlight, get your current location, and much more with just a few lines of code.
 
-You can use bower to install ngCordova like so ***or*** [download the zip file here](https://github.com/driftyco/ng-cordova/archive/master.zip).
+## Install
+
+You can use `bower` to install ngCordova like so *or* **[download the zip file here](https://github.com/driftyco/ng-cordova/archive/master.zip)**, and locate the `.js` file in the dist folder
 
 
 ``` bash
@@ -27,7 +31,11 @@ Then, include `ngCordova` as a dependency in your angular module:
 angular.module('myApp', ['ngCordova'])
 ```
 
-Once ngCordova is setup, install a cordova plugin (`cordova plugin add [...]`) and use the ngCordova API like below.
+Now you can add plugins to your cordova project, and use the ngCordova API detailed below:
+
+```bash
+cordova plugin add ...
+```
 
 
 
