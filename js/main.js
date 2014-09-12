@@ -12,4 +12,10 @@
 
         }
     });
+
+    var options = {
+        valueNames: [ 'plugin']
+    };
+
+    var userList = new List('plugins', options);
 })();

@@ -104,29 +104,12 @@
                 </div>
 
             </div>
-
-            <script>
-                var options = {
-                    valueNames: [ 'plugin']
-                };
-
-                var userList = new List('plugins', options);
-
-            </script>
-
             {% include mastfoot.html %}
         </div>
     </div>
 </div>
 
-
-<script src="/lib/smoothscrolljs/bind-polyfill.min.js"></script>
-<script src="/lib/smoothscrolljs/smooth-scroll.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/lib/bootstrap/bootstrap.js"></script>
-
-<script src="/js/main.js"></script>
-
+{% include scripts.html %}
 {% include analytics.html %}
 </body>
 </html>
