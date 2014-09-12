@@ -6,13 +6,15 @@
 
 ngCordova gives you simple AngularJS wrappers for a massive amount of Cordova plugins. Check out the list below for all of the available plugins, and create an issue for a new request.
 
+Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
 
 - **Website** : [ngCordova.com](http://ngcordova.com/)
 - **Docs** : [ngCordova.com/docs](http://ngcordova.com/docs)
 - **Requirements** : [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/)
 - **Install** : `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) and use `ng-cordova.js`
+- **Custom build** : [ngcordova.com/build]([http://ngcordova.com/build/])
 
-Created by the [Ionic Framework](http://ionicframework.com/) team and the community.
+
 
 
 ## Plugins
