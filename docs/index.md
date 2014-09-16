@@ -309,7 +309,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 <a class="anchor" id="Clipboard"></a>
 ### [`$cordovaClipboard`](#Clipboard)
 
-The [Clipboard](https://github.com/VersoSolutions/CordovaClipboard) plugin provides an API for the current battery status.
+The [Clipboard](https://github.com/VersoSolutions/CordovaClipboard) plugin provides Clipboard management for Cordova/PhoneGap that supports iOS, Android, and Windows Phone 8.
 
 [View Official Docs](https://github.com/VersoSolutions/CordovaClipboard)
 
