@@ -1,5 +1,6 @@
 /*!
  * ngCordova
+ * v0.1.4-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -2471,8 +2472,15 @@ angular.module('ngCordova.plugins.sqlite', [])
 
     return  {
       openDB: function (dbName, background) {
-        background = (typeof background === "undefined") ? 0 : background;
-        return  window.sqlitePlugin.openDatabase({name: dbName, bgType: background});
+
+        if(typeof background === 'undefined') {
+          background = 0;
+        }
+
+        return window.sqlitePlugin.openDatabase({
+          name: dbName,
+          bgType: background
+        });
       },
 
       execute: function (db, query, binding) {
