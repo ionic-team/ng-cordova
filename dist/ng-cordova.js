@@ -638,7 +638,7 @@ angular.module('ngCordova.plugins.dialogs', [])
       prompt: function (message, title, buttonLabels, defaultText) {
         var d = $q.defer();
 
-        navigator.notification.confirm(message, function () {
+        navigator.notification.prompt(message, function () {
           d.resolve();
         }, title, buttonLabels, defaultText);
 
