@@ -767,7 +767,6 @@ angular.module('ngCordova.plugins.facebookConnect', [])
     };
   }]);
 
-'use strict';
 // install   :     cordova plugin add org.apache.cordova.file
 // link      :     https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
 
