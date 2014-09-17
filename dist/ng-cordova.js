@@ -794,7 +794,7 @@ angular.module('ngCordova.plugins.file', [])
       return _fileSystemSize;
     },
     set fileSystemSize(fileSystemSize) {
-      _fileSystemSize = fileSystemSize;
+      _fileSystemSize = fileSystemSize; 
     }
   };
 
@@ -856,7 +856,7 @@ angular.module('ngCordova.plugins.file', [])
         getFileEntry(filePath, {create: false})
         .then(function (fileEntry) {
           fileEntry.remove(q.resolve, q.reject);
-        }, q.resolve);
+        }, q.reject);
         return q.promise;
       },
 
@@ -1055,7 +1055,7 @@ angular.module('ngCordova.plugins.file', [])
       getFilesystem().then(
         function(filesystem) {
           filesystem.root.getDirectory(dir, options, q.resolve, q.resolve);
-        });
+        }, q.reject);
       return q.promise;
     }
 
