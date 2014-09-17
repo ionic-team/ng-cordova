@@ -1,9 +1,9 @@
 // install   :     cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
 // link      :     https://github.com/danwilson/google-analytics-plugin
 
-angular.module('ngCordova.plugins.ga', [])
+angular.module('ngCordova.plugins.googleAnalytics', [])
 
-  .factory('$cordovaGA', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaGoogleAnalytics', ['$q', '$window', function ($q, $window) {
 
     return {
       startTrackerWithId: function (id) {

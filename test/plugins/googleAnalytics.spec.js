@@ -1,11 +1,11 @@
-describe('Service: $cordovaGA', function() {
+describe('Service: $cordovaGoogleAnalytics', function() {
 
-  var $cordovaGA, $rootScope, $window;
+  var $cordovaGoogleAnalytics, $rootScope, $window;
 
-  beforeEach(module('ngCordova.plugins.ga'));
+  beforeEach(module('ngCordova.plugins.googleAnalytics'));
 
-  beforeEach(inject(function (_$cordovaGA_, _$window_, _$rootScope_) {
-    $cordovaGA = _$cordovaGA_;
+  beforeEach(inject(function (_$cordovaGoogleAnalytics_, _$window_, _$rootScope_) {
+    $cordovaGoogleAnalytics = _$cordovaGoogleAnalytics_;
     $window = _$window_;
     $rootScope = _$rootScope_;
 
@@ -30,7 +30,7 @@ describe('Service: $cordovaGA', function() {
         successCb('tracker started');
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .startTrackerWithId('UA-000000-01')
       .then(function (response) {
         result = response;
@@ -51,7 +51,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('tracker id is not valid');
       });
 
-    $cordovaGA.startTrackerWithId()
+    $cordovaGoogleAnalytics.startTrackerWithId()
       .then(angular.noop, function (response) {
         result = response;
       });
@@ -70,7 +70,7 @@ describe('Service: $cordovaGA', function() {
         successCb('Set user id: ' + id);
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .setUserId('USER_ID')
       .then(function (response) {
         result = response;
@@ -91,7 +91,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('Tracker not started');
       });
 
-    $cordovaGA.setUserId()
+    $cordovaGoogleAnalytics.setUserId()
       .then(angular.noop, function (response) {
         result = response;
       });
@@ -110,7 +110,7 @@ describe('Service: $cordovaGA', function() {
         successCb('debugMode enabled');
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .debugMode()
       .then(function (response) {
         result = response;
@@ -130,7 +130,7 @@ describe('Service: $cordovaGA', function() {
         errorCb();
       });
 
-    $cordovaGA.debugMode()
+    $cordovaGoogleAnalytics.debugMode()
       .then(angular.noop, function (response) {
         result = 'error orccurs';
       });
@@ -149,7 +149,7 @@ describe('Service: $cordovaGA', function() {
         successCb('Track Screen: ' + screenName);
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .trackView('Home Screen')
       .then(function (response) {
         result = response;
@@ -170,7 +170,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('Expected one non-empty string argument');
       });
 
-    $cordovaGA.trackView()
+    $cordovaGoogleAnalytics.trackView()
       .then(angular.noop, function (response) {
         result = response;
       });
@@ -189,7 +189,7 @@ describe('Service: $cordovaGA', function() {
         successCb();
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .addCustomDimension('dimension1', 'Level 1')
       .then(function (response) {
         result = 'success';
@@ -211,7 +211,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('Expected one non-empty string argument');
       });
 
-    $cordovaGA.addCustomDimension()
+    $cordovaGoogleAnalytics.addCustomDimension()
       .then(angular.noop, function (response) {
         result = response;
       });
@@ -230,7 +230,7 @@ describe('Service: $cordovaGA', function() {
         successCb('Track Event: ' + category);
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .trackEvent('Videos', 'Video Load Time', 'Gone With the Wind', 100)
       .then(function (response) {
         result = response;
@@ -255,7 +255,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('Tracker not started');
       });
 
-    $cordovaGA.trackEvent()
+    $cordovaGoogleAnalytics.trackEvent()
       .then(angular.noop, function (response) {
         result = response;
       });
@@ -274,7 +274,7 @@ describe('Service: $cordovaGA', function() {
         successCb('Add Transaction: ' + transactionId);
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .addTransaction('1234', 'Acme Clothing', '11.99', '5', '1.29', 'EUR')
       .then(function (response) {
         result = response;
@@ -299,7 +299,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('Tracker not started');
       });
 
-    $cordovaGA.addTransaction()
+    $cordovaGoogleAnalytics.addTransaction()
       .then(angular.noop, function (response) {
         result = response;
       });
@@ -318,7 +318,7 @@ describe('Service: $cordovaGA', function() {
         successCb('Add Transaction Item: ' + transactionId);
       });
 
-    $cordovaGA
+    $cordovaGoogleAnalytics
       .addTransactionItem('1234', 'Fluffy Pink Bunnies', 'DD23444', 'Party Toys', '11.99', '1', 'GBP')
       .then(function (response) {
         result = response;
@@ -343,7 +343,7 @@ describe('Service: $cordovaGA', function() {
         errorCb('Tracker not started');
       });
 
-    $cordovaGA.addTransactionItem()
+    $cordovaGoogleAnalytics.addTransactionItem()
       .then(angular.noop, function (response) {
         result = response;
       });
