@@ -1500,3 +1500,31 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 
 });
 ```
+
+<a class="anchor" name="Zip"></a>
+### [`$cordovaZip`](#Zip)
+
+Vibrate the device programatically.
+[View Docs](https://github.com/MobileChromeApps/zip)
+
+```
+cordova plugin add https://github.com/MobileChromeApps/zip.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaZip) {
+
+  $cordovaZip
+    .unzip(
+      src, // https://github.com/MobileChromeApps/zip/blob/master/tests/tests.js#L32
+      dest // https://github.com/MobileChromeApps/zip/blob/master/tests/tests.js#L45
+    ).then(function () {
+      console.log('success');
+    }, function () {
+      console.log('error');
+    }, function (progressEvent) {
+      // https://github.com/MobileChromeApps/zip#usage
+      console.log(progressEvent);
+    });
+});
+```
