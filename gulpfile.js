@@ -13,11 +13,11 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['build']);
 
-gulp.task('build', function() {
+gulp.task('build', function () {
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
     .pipe(header(buildConfig.closureStart))
-    .pipe(footer(buildConfig.closureEnd))    
+    .pipe(footer(buildConfig.closureEnd))
     .pipe(header(buildConfig.banner))
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(uglify())
@@ -39,7 +39,7 @@ gulp.task('build', function() {
     .pipe(gulp.dest(buildConfig.dist));
 });
 
-gulp.task('karma', function(done) {
+gulp.task('karma', function (done) {
   karmaConf.singleRun = true;
   argv.browsers && (karmaConf.browsers = argv.browsers.trim().split(','));
   argv.reporters && (karmaConf.reporters = argv.reporters.trim().split(','));
@@ -48,18 +48,18 @@ gulp.task('karma', function(done) {
   karma.start(karmaConf, done);
 });
 
-gulp.task('lint', function() {
-  return gulp.src('./lib/*.js')
+gulp.task('lint', function () {
+  return gulp.src('./src/plugins/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('YOUR_REPORTER_HERE'));
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('karma-watch', function(done) {
+gulp.task('karma-watch', function (done) {
   console.log(karmaConf);
   karmaConf.singleRun = false;
   karma.start(karmaConf, done);
 });
 
-gulp.task('watch', ['build'], function() {
+gulp.task('watch', ['build'], function () {
   gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build']);
 });

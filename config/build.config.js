@@ -2,9 +2,9 @@ var fs = require('fs');
 var pkg = require('../package.json');
 
 module.exports = {
-  banner:
-    '/*!\n' +
+  banner: '/*!\n' +
     ' * ngCordova\n' +
+    ' * v' + pkg.version +'\n' +
     ' * Copyright 2014 Drifty Co. http://drifty.com/\n' +
     ' * See LICENSE in this repository for license information\n' +
     ' */\n',
@@ -13,12 +13,12 @@ module.exports = {
   closureEnd: '\n})();',
 
   dist: 'dist',
-  pluginFiles: [ 
+  pluginFiles: [
     'src/module.js',
-    'src/plugins/*.js' 
+    'src/plugins/*.js'
   ],
 
-  mockFiles: [ 
+  mockFiles: [
     'src/module-mocks.js',
     'src/mocks/*.js'
   ],

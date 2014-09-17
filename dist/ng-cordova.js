@@ -1,5 +1,6 @@
 /*!
  * ngCordova
+ * v0.1.4-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -55,6 +56,7 @@ angular.module('ngCordova.plugins.appAvailability', [])
     }
   }
 }]);
+
 // install   :     cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
 // link      :     https://github.com/christocracy/cordova-plugin-background-geolocation
 
@@ -465,11 +467,17 @@ angular.module('ngCordova.plugins.contacts', [])
 
 angular.module('ngCordova.plugins.datePicker', [])
 
-  .factory('$cordovaDatePicker', ['$window', function ($window) {
+  .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
 
     return {
-      show: function(options, fn) {
-        return $window.datePicker.show(options, fn);
+      show: function(options) {
+        var d = $q.defer();
+
+        $window.datePicker.show(options, function (date) {
+          d.resolve(date);
+        });
+
+        return d.promise;
       }
     }
 
@@ -1801,8 +1809,8 @@ angular.module('ngCordova.plugins.localNotification', [])
       }
     }
   ]);
-// install   :
-// link      :
+// install   :      cordova plugin add org.apache.cordova.media
+// link      :      https://github.com/apache/cordova-plugin-media
 
 angular.module('ngCordova.plugins.media', [])
 
@@ -1890,6 +1898,7 @@ angular.module('ngCordova.plugins.media', [])
       }
     }
   }]);
+
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.camera',
@@ -1970,9 +1979,9 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         return q.promise;
       },
 
-      play: function (id) {
+      play: function (id, completeCallback) {
         var q = $q.defer();
-        window.plugins.NativeAudio.play(id,
+        window.plugins.NativeAudio.play(id, completeCallback,
           function (result) {
             q.resolve(result)
           },
@@ -2014,6 +2023,20 @@ angular.module('ngCordova.plugins.nativeAudio', [])
       unload: function (id) {
         var q = $q.defer();
         window.plugins.NativeAudio.unload(id,
+          function (result) {
+            q.resolve(result)
+          },
+          function (err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
+      },
+
+      setVolumeForComplexAsset: function (id, volume) {
+        var q = $q.defer();
+        window.plugins.NativeAudio.setVolumeForComplexAsset(id, volume,
           function (result) {
             q.resolve(result)
           },
@@ -2448,13 +2471,16 @@ angular.module('ngCordova.plugins.sqlite', [])
   .factory('$cordovaSQLite', ['$q', function ($q) {
 
     return  {
-      openDB: function (dbName) {
-        return  window.sqlitePlugin.openDatabase({name: dbName});
-      },
+      openDB: function (dbName, background) {
 
+        if(typeof background === 'undefined') {
+          background = 0;
+        }
 
-      openDBBackground: function (dbName) {
-        return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
+        return window.sqlitePlugin.openDatabase({
+          name: dbName,
+          bgType: background
+        });
       },
 
       execute: function (db, query, binding) {
@@ -2486,9 +2512,19 @@ angular.module('ngCordova.plugins.sqlite', [])
           });
 
         return q.promise;
-      }
+      },
 
-      // more methods here
+      deleteDB: function (dbName) {
+        var q = $q.defer();
+
+        window.sqlitePlugin.deleteDatabase(dbName, function (success) {
+          q.resolve(success);
+        }, function (error) {
+          q.reject(error)
+        });
+
+        return q.promise;
+      }
     }
   }]);
 
@@ -2509,19 +2545,15 @@ angular.module('ngCordova.plugins.statusbar', [])
         switch (style) {
           case 0:     // Default
             return StatusBar.styleDefault();
-            break;
 
           case 1:     // LightContent
             return StatusBar.styleLightContent();
-            break;
 
           case 2:     // BlackTranslucent
             return StatusBar.styleBlackTranslucent();
-            break;
 
           case 3:     // BlackOpaque
             return StatusBar.styleBlackOpaque();
-            break;
 
           default:  // Default
             return StatusBar.styleDefault();
@@ -2652,5 +2684,31 @@ angular.module('ngCordova.plugins.vibration', [])
       }
     }
   }]);
+
+// install  :     cordova plugin add https://github.com/MobileChromeApps/zip.git
+// link     :     https://github.com/MobileChromeApps/zip
+
+angular.module('ngCordova.plugins.zip', [])
+
+.factory('$cordovaZip', ['$q', '$window', function ($q, $window) {
+
+  return {
+    unzip: function(source, destination) {
+      var q = $q.defer();
+
+      $window.zip.unzip(source, destination, function (isError) {
+        if(isError === 0) {
+          q.resolve();
+        } else {
+          q.reject();
+        }
+      }, function (progressEvent) {
+        q.notify(progressEvent);
+      });
+
+      return q.promise;
+    }
+  }
+}]);
 
 })();
