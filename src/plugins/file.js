@@ -6,7 +6,6 @@
 // TODO: add abort() option to downloadFile and uploadFile methods.
 // TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
 // TODO: add support for onprogress property
-// TODO: refactor/extract common code for accessing file entities, readers and writes to avoid duplication.
 
 angular.module('ngCordova.plugins.file', [])
 
