@@ -1,69 +1,105 @@
-// install   :     cordova plugin add https://github.com/phonegap-build/GAPlugin.git
-// link      :     https://github.com/phonegap-build/GAPlugin
+// install   :     cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
+// link      :     https://github.com/danwilson/google-analytics-plugin
 
 angular.module('ngCordova.plugins.ga', [])
 
-  .factory('$cordovaGA', ['$q', function ($q) {
+  .factory('$cordovaGA', ['$q', '$window', function ($q, $window) {
 
     return {
-      init: function (id, mingap) {
-        var q = $q.defer();
-        mingap = (mingap >= 0) ? mingap : 10;
-        window.plugins.gaPlugin.init(function (result) {
-            q.resolve(result);
-          },
-          function (error) {
-            q.reject(error);
-          },
-          id, mingap);
-        return q.promise;
+      startTrackerWithId: function (id) {
+        var d = $q.defer();
+
+        $window.analytics.startTrackerWithId(id, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
       },
 
-      trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
-        var q = $q.defer();
-        window.plugins.gaPlugin.trackEvent(function (result) {
-            q.resolve(result);
-          },
-          function (error) {
-            q.reject(error);
-          },
-          category, eventAction, eventLabel, eventValue);
-        return q.promise;
+      setUserId: function (id) {
+        var d = $q.defer();
+
+        $window.analytics.setUserId(id, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
       },
 
-      trackPage: function (success, fail, pageURL) {
-        var q = $q.defer();
-        window.plugins.gaPlugin.trackPage(function (result) {
-            q.resolve(result);
-          },
-          function (error) {
-            q.reject(error);
-          },
-          pageURL);
-        return q.promise;
+      debugMode: function () {
+        var d = $q.defer();
+
+        $window.analytics.debugMode(function (response) {
+          d.resolve(response);
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
       },
 
-      setVariable: function (success, fail, index, value) {
-        var q = $q.defer();
-        window.plugins.gaPlugin.setVariable(function (result) {
-            q.resolve(result);
-          },
-          function (error) {
-            q.reject(error);
-          },
-          index, value);
-        return q.promise;
+      trackView: function (screenName) {
+        var d = $q.defer();
+
+        $window.analytics.trackView(screenName, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
       },
 
-      exit: function (success, fail) {
-        var q = $q.defer();
-        window.plugins.gaPlugin.exit(function (result) {
-            q.resolve(result);
-          },
-          function (error) {
-            q.reject(error);
-          });
-        return q.promise;
+      addCustomDimension: function (key, value) {
+        var d = $q.defer();
+
+        $window.analytics.addCustomDimension(key, value, function () {
+          d.resolve();
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      trackEvent: function (category, action, label, value) {
+        var d = $q.defer();
+
+        $window.analytics.trackEvent(category, action, label, value, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      addTransaction: function (transactionId, affiliation, revenue, tax, shipping, currencyCode) {
+        var d = $q.defer();
+
+        $window.analytics.addTransaction(transactionId, affiliation, revenue, tax, shipping, currencyCode, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      addTransactionItem: function (transactionId, name ,sku, category, price, quantity, currencyCode) {
+        var d = $q.defer();
+
+        $window.analytics.addTransactionItem(transactionId, name ,sku, category, price, quantity, currencyCode, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
       }
     };
   }]);
