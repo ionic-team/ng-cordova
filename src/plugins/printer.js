@@ -7,13 +7,13 @@ angular.module('ngCordova.plugins.printer', [])
 
     return {
       isAvailable: function () {
-        var d = $q.defer();
+        var q = $q.defer();
 
         window.plugin.printer.isServiceAvailable(function (isAvailable) {
-          d.resolve(isAvailable);
+          q.resolve(isAvailable);
         });
 
-        return d.promise;
+        return q.promise;
       },
 
       print: function (doc) {
