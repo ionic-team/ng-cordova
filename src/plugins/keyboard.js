@@ -1,11 +1,17 @@
 // install   :      cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
 // link      :      https://github.com/driftyco/ionic-plugins-keyboard
 
-//TODO: add support for native.keyboardshow + native.keyboardhide
-
 angular.module('ngCordova.plugins.keyboard', [])
 
-  .factory('$cordovaKeyboard', [function () {
+  .factory('$cordovaKeyboard', ['$window', '$rootScope', function($window, $rootScope) {
+
+    $window.addEventListener('native.keyboardshow', function(e) {
+      $rootScope.$broadcast(e.type, e.keyboardHeight);
+    });
+
+    $window.addEventListener('native.keyboardhide', function(e) {
+      $rootScope.$broadcast(e.type);
+    });
 
     return {
       hideAccessoryBar: function (bool) {
