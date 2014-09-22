@@ -23,11 +23,11 @@ angular.module('ngCordova.plugins.camera', [])
         return q.promise;
       },
 
-      cleanup: function (options) {
+      cleanup: function () {
         var q = $q.defer();
 
         navigator.camera.cleanup(function () {
-          q.resolve(arguments);
+          q.resolve();
         }, function (err) {
           q.reject(err);
         });

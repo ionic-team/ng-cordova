@@ -19,7 +19,6 @@ angular.module('ngCordova.plugins.prefs', [])
         return q.promise;
       },
 
-
       get: function (key) {
         var q = $q.defer();
 
@@ -31,6 +30,5 @@ angular.module('ngCordova.plugins.prefs', [])
 
         return q.promise;
       }
-
-    }
+    };
   }]);

@@ -4,7 +4,7 @@ describe('Service: $cordovaAppAvailability', function() {
 
   beforeEach(module('ngCordova.plugins.appAvailability'));
 
-  beforeEach(inject(function (_$cordovaAppAvailability_, _$q_, _$rootScope_) {
+  beforeEach(inject(function (_$cordovaAppAvailability_, _$rootScope_) {
     $cordovaAppAvailability = _$cordovaAppAvailability_;
     $rootScope = _$rootScope_;
 
