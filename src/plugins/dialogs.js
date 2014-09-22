@@ -19,8 +19,8 @@ angular.module('ngCordova.plugins.dialogs', [])
       confirm: function (message, title, buttonLabels) {
         var d = $q.defer();
 
-        navigator.notification.confirm(message, function () {
-          d.resolve();
+        navigator.notification.confirm(message, function (buttonIndex) {
+          d.resolve(buttonIndex);
         }, title, buttonLabels);
 
         return d.promise;
@@ -29,8 +29,8 @@ angular.module('ngCordova.plugins.dialogs', [])
       prompt: function (message, title, buttonLabels, defaultText) {
         var d = $q.defer();
 
-        navigator.notification.prompt(message, function () {
-          d.resolve();
+        navigator.notification.prompt(message, function (result) {
+          d.resolve(result);
         }, title, buttonLabels, defaultText);
 
         return d.promise;
