@@ -326,11 +326,11 @@ angular.module('ngCordova.plugins.camera', [])
         return q.promise;
       },
 
-      cleanup: function (options) {
+      cleanup: function () {
         var q = $q.defer();
 
         navigator.camera.cleanup(function () {
-          q.resolve(arguments);
+          q.resolve();
         }, function (err) {
           q.reject(err);
         });
@@ -673,8 +673,8 @@ angular.module('ngCordova.plugins.dialogs', [])
       confirm: function (message, title, buttonLabels) {
         var d = $q.defer();
 
-        navigator.notification.confirm(message, function () {
-          d.resolve();
+        navigator.notification.confirm(message, function (buttonIndex) {
+          d.resolve(buttonIndex);
         }, title, buttonLabels);
 
         return d.promise;
@@ -683,8 +683,8 @@ angular.module('ngCordova.plugins.dialogs', [])
       prompt: function (message, title, buttonLabels, defaultText) {
         var d = $q.defer();
 
-        navigator.notification.prompt(message, function () {
-          d.resolve();
+        navigator.notification.prompt(message, function (result) {
+          d.resolve(result);
         }, title, buttonLabels, defaultText);
 
         return d.promise;
@@ -2267,7 +2267,6 @@ angular.module('ngCordova.plugins.prefs', [])
         return q.promise;
       },
 
-
       get: function (key) {
         var q = $q.defer();
 
@@ -2279,8 +2278,7 @@ angular.module('ngCordova.plugins.prefs', [])
 
         return q.promise;
       }
-
-    }
+    };
   }]);
 
 // install   : cordova plugin add de.appplant.cordova.plugin.printer
@@ -2442,6 +2440,7 @@ angular.module('ngCordova.plugins.push', [])
       }
     };
   }]);
+
 // install   :      cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
 // link      :      https://github.com/aharris88/phonegap-sms-plugin
 
@@ -2699,28 +2698,32 @@ angular.module('ngCordova.plugins.statusbar', [])
         return StatusBar.overlaysWebView(true);
       },
 
-      // styles: Default, LightContent, BlackTranslucent, BlackOpaque
       style: function (style) {
         switch (style) {
-          case 0:     // Default
+          // Default
+          case 0:
             return StatusBar.styleDefault();
 
-          case 1:     // LightContent
+          // LightContent
+          case 1:
             return StatusBar.styleLightContent();
 
-          case 2:     // BlackTranslucent
+          // BlackTranslucent
+          case 2:
             return StatusBar.styleBlackTranslucent();
 
-          case 3:     // BlackOpaque
+          // BlackOpaque
+          case 3:
             return StatusBar.styleBlackOpaque();
 
-          default:  // Default
+          default:
             return StatusBar.styleDefault();
         }
       },
 
-
-      // supported names: black, darkGray, lightGray, white, gray, red, green, blue, cyan, yellow, magenta, orange, purple, brown
+      // supported names:
+      // black, darkGray, lightGray, white, gray, red, green,
+      // blue, cyan, yellow, magenta, orange, purple, brown
       styleColor: function (color) {
         return StatusBar.backgroundColorByName(color);
       },
