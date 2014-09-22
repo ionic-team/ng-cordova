@@ -32,6 +32,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.facebookConnect',
   'ngCordova.plugins.adMob',
+  'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.clipboard',
   'ngCordova.plugins.nativeAudio',

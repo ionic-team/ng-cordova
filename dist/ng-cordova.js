@@ -10,31 +10,76 @@ angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
 
-// install  :     cordova plugin add com.google.cordova.admob
-// link     :     https://github.com/floatinghotpot/cordova-admob-pro
+// install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-admob.git
+// link     :     https://github.com/floatinghotpot/cordova-plugin-admob
 
 angular.module('ngCordova.plugins.adMob', [])
 
-  .factory('$cordovaAdMob', [function () {
+  .factory('$cordovaAdMob', ['$q', function ($q) {
 
     return {
-      createBannerView: function (options, success, fail) {
-        return window.plugins.AdMob.createBannerView(options, success, fail);
+      createBannerView: function (options) {
+        var d = $q.defer();
+
+        window.plugins.AdMob.createBannerView(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
       },
-      createInterstitialView: function (options, success, fail) {
-        return window.plugins.AdMob.createInterstitialView(options, success, fail);
+
+      createInterstitialView: function (options) {
+        var d = $q.defer();
+
+        window.plugins.AdMob.createInterstitialView(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
       },
-      requestAd: function (options, success, fail) {
-        return window.plugins.AdMob.requestAd(options, success, fail);
+
+      requestAd: function (options) {
+        var d = $q.defer();
+
+        window.plugins.AdMob.requestAd(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
       },
-      showAd: function (options, success, fail) {
-        return window.plugins.AdMob.showAd(options, success, fail);
+
+      showAd: function (options) {
+        var d = $q.defer();
+
+        window.plugins.AdMob.showAd(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
       },
-      requestInterstitialAd: function (options, success, fail) {
-        return window.plugins.AdMob.requestInterstitialAd(options, success, fail);
+
+      requestInterstitialAd: function (options) {
+        var d = $q.defer();
+
+        window.plugins.AdMob.requestInterstitialAd(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
       }
     }
   }]);
+
 // install  :     cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
 // link     :     https://github.com/ohh2ahh/AppAvailability
 
@@ -2039,6 +2084,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.facebookConnect',
   'ngCordova.plugins.adMob',
+  'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.clipboard',
   'ngCordova.plugins.nativeAudio',
@@ -2185,15 +2231,21 @@ angular.module('ngCordova.plugins.network', [])
 
 angular.module('ngCordova.plugins.pinDialog', [])
 
-  .factory('$cordovaPinDialog', [function () {
+  .factory('$cordovaPinDialog', ['$q', function ($q) {
 
     return {
-      prompt: function (message, promptCallback, title, buttonLabels, defaultText) {
-        return window.plugins.pinDialog.prompt.apply(navigator.notification, arguments);
+      prompt: function (message, title, buttons) {
+        var q = $q.defer();
+
+        window.plugins.pinDialog.prompt(message, function (res) {
+          q.resolve(res);
+        }, title, buttons);
+
+        return q.promise;
       }
     }
-
   }]);
+
 // install   :
 // link      :
 
@@ -2240,13 +2292,13 @@ angular.module('ngCordova.plugins.printer', [])
 
     return {
       isAvailable: function () {
-        var d = $q.defer();
+        var q = $q.defer();
 
         window.plugin.printer.isServiceAvailable(function (isAvailable) {
-          d.resolve(isAvailable);
+          q.resolve(isAvailable);
         });
 
-        return d.promise;
+        return q.promise;
       },
 
       print: function (doc) {
@@ -2255,6 +2307,7 @@ angular.module('ngCordova.plugins.printer', [])
     }
   }
   ]);
+
 // install   :      cordova plugin add org.pbernasconi.progressindicator
 // link      :      http://pbernasconi.github.io/cordova-progressIndicator/
 
