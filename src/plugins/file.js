@@ -150,7 +150,9 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      writeFile: function (filePath, data) {
+      // options is a dict with possible keys :
+      // - append : true/false (if true, append data on EOF)
+      writeFile: function (filePath, data, options) {
         var q = $q.defer();
 
         getFilesystem().then(
@@ -159,6 +161,10 @@ angular.module('ngCordova.plugins.file', [])
               function (fileEntry) {
                 fileEntry.createWriter(
                   function (fileWriter) {
+                    if (options['append'] === true) {
+                      // Start write position at EOF.
+                      fileWriter.seek(fileWriter.length);
+                    }
                     fileWriter.onwriteend = function (evt) {
                       q.resolve(evt);
                     };
