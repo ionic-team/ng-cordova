@@ -161,22 +161,23 @@ cordova plugin add org.apache.cordova.battery-status
 
 ```javascript
 
-module.controller('BatteryCtrl', function($scope, $cordovaBatteryStatus) {
-  
-  $cordovaBatteryStatus.onBatteryStatus(function(result) {
+module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
+
+  $cordovaBatteryStatus.$on('batterystatus', function (result) {
     var batteryLevel = result.level;       // (0 - 100)
     var isPluggedIn  = result.isPlugged;   // bool
   });
-  
-  $cordovaBatteryStatus.onBatteryCritical(function(result) {
+
+  $cordovaBatteryStatus.$on('batterycritical', function (result) {
     var batteryLevel = result.level;       // (0 - 100)
     var isPluggedIn  = result.isPlugged;   // bool
   });
-    
-  $cordovaBatteryStatus.onBatteryLow(function(result) {
+
+  $cordovaBatteryStatus.$on('batterylow', function (result) {
     var batteryLevel = result.level;       // (0 - 100)
     var isPluggedIn  = result.isPlugged;   // bool
   });
+
 });
 
 ```
