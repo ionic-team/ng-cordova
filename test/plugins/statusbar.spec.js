@@ -31,8 +31,8 @@ describe('Service: $cordovaStatusbar', function() {
   }));
 
   it('should call window\'s StatusBar.overlaysWebView method', function() {
-    $cordovaStatusbar.overlaysWebView(true);
-    expect(window.StatusBar.overlaysWebView).toHaveBeenCalledWith(true);
+    $cordovaStatusbar.overlaysWebView(false);
+    expect(window.StatusBar.overlaysWebView).toHaveBeenCalledWith(false);
   });
 
   it('should call window\'s StatusBar.styleDefault method when style is called with 0', function() {
