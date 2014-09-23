@@ -3,11 +3,11 @@
 
 angular.module('ngCordova.plugins.push', [])
 
-  .factory('$cordovaPush', ['$q', function ($q) {
+  .factory('$cordovaPush', ['$q', '$window', function ($q, $window) {
     return {
       register: function (config) {
         var q = $q.defer();
-        window.plugins.pushNotification.register(
+        $window.plugins.pushNotification.register(
           function (result) {
             q.resolve(result);
           },
@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.push', [])
 
       unregister: function (options) {
         var q = $q.defer();
-        window.plugins.pushNotification.unregister(
+        $window.plugins.pushNotification.unregister(
           function (result) {
             q.resolve(result);
           },
@@ -36,7 +36,7 @@ angular.module('ngCordova.plugins.push', [])
       // iOS only
       setBadgeNumber: function (number) {
         var q = $q.defer();
-        window.plugins.pushNotification.setApplicationIconBadgeNumber(
+        $window.plugins.pushNotification.setApplicationIconBadgeNumber(
           function (result) {
             q.resolve(result);
           },

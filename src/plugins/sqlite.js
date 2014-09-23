@@ -3,16 +3,16 @@
 
 angular.module('ngCordova.plugins.sqlite', [])
 
-  .factory('$cordovaSQLite', ['$q', function ($q) {
+  .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
     return  {
       openDB: function (dbName, background) {
 
-        if(typeof background === 'undefined') {
+        if (typeof background === 'undefined') {
           background = 0;
         }
 
-        return window.sqlitePlugin.openDatabase({
+        return $window.sqlitePlugin.openDatabase({
           name: dbName,
           bgType: background
         });
@@ -52,7 +52,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       deleteDB: function (dbName) {
         var q = $q.defer();
 
-        window.sqlitePlugin.deleteDatabase(dbName, function (success) {
+        $window.sqlitePlugin.deleteDatabase(dbName, function (success) {
           q.resolve(success);
         }, function (error) {
           q.reject(error)

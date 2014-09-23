@@ -3,13 +3,13 @@
 
 angular.module('ngCordova.plugins.pinDialog', [])
 
-  .factory('$cordovaPinDialog', ['$q', function ($q) {
+  .factory('$cordovaPinDialog', ['$q', '$window', function ($q, $window) {
 
     return {
       prompt: function (message, title, buttons) {
         var q = $q.defer();
 
-        window.plugins.pinDialog.prompt(message, function (res) {
+        $window.plugins.pinDialog.prompt(message, function (res) {
           q.resolve(res);
         }, title, buttons);
 

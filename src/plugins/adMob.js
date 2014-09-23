@@ -3,13 +3,13 @@
 
 angular.module('ngCordova.plugins.adMob', [])
 
-  .factory('$cordovaAdMob', ['$q', function ($q) {
+  .factory('$cordovaAdMob', ['$q', '$window', function ($q, $window) {
 
     return {
       createBannerView: function (options) {
         var d = $q.defer();
 
-        window.plugins.AdMob.createBannerView(options, function () {
+        $window.plugins.AdMob.createBannerView(options, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.adMob', [])
       createInterstitialView: function (options) {
         var d = $q.defer();
 
-        window.plugins.AdMob.createInterstitialView(options, function () {
+        $window.plugins.AdMob.createInterstitialView(options, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -33,7 +33,7 @@ angular.module('ngCordova.plugins.adMob', [])
       requestAd: function (options) {
         var d = $q.defer();
 
-        window.plugins.AdMob.requestAd(options, function () {
+        $window.plugins.AdMob.requestAd(options, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -45,7 +45,7 @@ angular.module('ngCordova.plugins.adMob', [])
       showAd: function (options) {
         var d = $q.defer();
 
-        window.plugins.AdMob.showAd(options, function () {
+        $window.plugins.AdMob.showAd(options, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -57,7 +57,7 @@ angular.module('ngCordova.plugins.adMob', [])
       requestInterstitialAd: function (options) {
         var d = $q.defer();
 
-        window.plugins.AdMob.requestInterstitialAd(options, function () {
+        $window.plugins.AdMob.requestInterstitialAd(options, function () {
           d.resolve();
         }, function () {
           d.reject();

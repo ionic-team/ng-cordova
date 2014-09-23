@@ -11,7 +11,7 @@
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', function ($q) {
+  .factory('$cordovaFile', ['$q', '$window', function ($q, $window) {
 
     return {
       checkDir: function (dir) {
@@ -379,7 +379,7 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileAbsolute: function (filePath) {
         var q = $q.defer();
-        window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               var reader = new FileReader();
@@ -400,7 +400,7 @@ angular.module('ngCordova.plugins.file', [])
 
       readFileMetadataAbsolute: function (filePath) {
         var q = $q.defer();
-        window.resolveLocalFileSystemURI(filePath,
+        $window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
             fileEntry.file(function (file) {
               q.resolve(file);
@@ -465,7 +465,7 @@ angular.module('ngCordova.plugins.file', [])
     function getFilesystem() {
       var q = $q.defer();
 
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
+      $window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, function (filesystem) {
           q.resolve(filesystem);
         },
         function (err) {

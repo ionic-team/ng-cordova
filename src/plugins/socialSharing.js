@@ -8,12 +8,12 @@
 
 angular.module('ngCordova.plugins.socialSharing', [])
 
-  .factory('$cordovaSocialSharing', ['$q', function ($q) {
+  .factory('$cordovaSocialSharing', ['$q', '$window', function ($q, $window) {
 
     return {
       share: function (message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.share(message, subject, file, link,
+        $window.plugins.socialsharing.share(message, subject, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -25,7 +25,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaTwitter: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaTwitter(message, file, link,
+        $window.plugins.socialsharing.shareViaTwitter(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -37,7 +37,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaWhatsApp: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
+        $window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -49,7 +49,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaFacebook: function (message, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaFacebook(message, file, link,
+        $window.plugins.socialsharing.shareViaFacebook(message, file, link,
           function () {
             q.resolve(true); // success
           },
@@ -61,7 +61,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaSMS: function (message, commaSeparatedPhoneNumbers) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
+        $window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
           function () {
             q.resolve(true); // success
           },
@@ -73,7 +73,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaEmail: function (message, subject, toArr, ccArr, bccArr, fileArr) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
+        $window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
           function () {
             q.resolve(true); // success
           },
@@ -85,7 +85,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       canShareViaEmail: function () {
         var q = $q.defer();
-        window.plugins.socialsharing.canShareViaEmail(
+        $window.plugins.socialsharing.canShareViaEmail(
           function () {
             q.resolve(true); // success
           },
@@ -97,7 +97,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       canShareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
+        $window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
           function (success) {
             q.resolve(success); // success
           },
@@ -109,7 +109,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
-        window.plugins.socialsharing.shareVia(via, message, subject, file, link,
+        $window.plugins.socialsharing.shareVia(via, message, subject, file, link,
           function () {
             q.resolve(true); // success
           },

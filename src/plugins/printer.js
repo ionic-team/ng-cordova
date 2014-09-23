@@ -3,13 +3,13 @@
 
 angular.module('ngCordova.plugins.printer', [])
 
-  .factory('$cordovaPrinter', ['$q', function ($q) {
+  .factory('$cordovaPrinter', ['$q', '$window', function ($q, $window) {
 
     return {
       isAvailable: function () {
         var q = $q.defer();
 
-        window.plugin.printer.isServiceAvailable(function (isAvailable) {
+        $window.plugin.printer.isServiceAvailable(function (isAvailable) {
           q.resolve(isAvailable);
         });
 
@@ -17,7 +17,7 @@ angular.module('ngCordova.plugins.printer', [])
       },
 
       print: function (doc) {
-        window.plugin.printer.print(doc);
+        $window.plugin.printer.print(doc);
       }
     }
   }

@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
-  .factory('$cordovaBluetoothSerial', ['$q' , function ($q) {
+  .factory('$cordovaBluetoothSerial', ['$q', '$window', function ($q, $window) {
 
     var promise_f = function () {
       var q = $q.defer();
@@ -22,7 +22,7 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       args.push(success);
       args.push(failure);
 
-      window.bluetoothSerial[f_name].apply(this, args);
+      $window.bluetoothSerial[f_name].apply(this, args);
 
       return q.promise;
     };
