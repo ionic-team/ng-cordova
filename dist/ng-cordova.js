@@ -213,19 +213,25 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
 angular.module('ngCordova.plugins.battery-status', [])
 
-  .factory('$cordovaBatteryStatus', [function () {
-    return {
-      onBatteryStatus: function (handler) {
-        window.addEventListener('batterystatus', handler, false);
-      },
-      onBatteryCritical: function (handler) {
-        window.addEventListener('batterycritical', handler, false);
-      },
-      onBatteryLow: function (handler) {
-        window.addEventListener('batterylow', handler, false);
-      }
-    }
+  .factory('$cordovaBatteryStatus', ['$rootScope', function ($rootScope) {
+
+    var scope = $rootScope.$new();
+
+    window.addEventListener('batterystatus', function (event) {
+      scope.$emit('batterystatus', event.detail);
+    }, false);
+
+    window.addEventListener('batterycritical', function (event) {
+      scope.$emit('batterycritical', event.detail);
+    }, false);
+
+    window.addEventListener('batterylow', function (event) {
+      scope.$emit('batterylow', event.detail);
+    }, false);
+
+    return scope;
   }]);
+
 // install   :
 // link      :
 
@@ -964,7 +970,9 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      writeFile: function (filePath, data) {
+      // options is a dict with possible keys :
+      // - append : true/false (if true, append data on EOF)
+      writeFile: function (filePath, data, options) {
         var q = $q.defer();
 
         getFilesystem().then(
@@ -973,6 +981,10 @@ angular.module('ngCordova.plugins.file', [])
               function (fileEntry) {
                 fileEntry.createWriter(
                   function (fileWriter) {
+                    if (options['append'] === true) {
+                      // Start write position at EOF.
+                      fileWriter.seek(fileWriter.length);
+                    }
                     fileWriter.onwriteend = function (evt) {
                       q.resolve(evt);
                     };
@@ -1185,7 +1197,7 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      readFileAbsolute: function () {
+      readFileAbsolute: function (filePath) {
         var q = $q.defer();
         window.resolveLocalFileSystemURI(filePath,
           function (fileEntry) {
@@ -1202,6 +1214,8 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(error);
           }
         );
+
+        return q.promise;
       },
 
       readFileMetadataAbsolute: function (filePath) {
@@ -2695,7 +2709,7 @@ angular.module('ngCordova.plugins.statusbar', [])
 
     return {
       overlaysWebView: function (bool) {
-        return StatusBar.overlaysWebView(true);
+        return StatusBar.overlaysWebView(!!bool);
       },
 
       style: function (style) {
