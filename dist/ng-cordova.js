@@ -707,7 +707,7 @@ angular.module('ngCordova.plugins.dialogs', [])
 
 'use strict';
 angular.module('ngCordova.plugins.facebookConnect', [])
-  .provider('$cordova', [
+  .provider('$cordovaFacebookConnectProvider', [
 
     function () {
       this.FacebookAppId = undefined;
