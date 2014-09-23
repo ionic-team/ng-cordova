@@ -1536,7 +1536,7 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 <a class="anchor" name="Zip"></a>
 ### [`$cordovaZip`](#Zip)
 
-Vibrate the device programatically.
+Unzip a file.
 [View Docs](https://github.com/MobileChromeApps/zip)
 
 ```
