@@ -1,5 +1,9 @@
-[ngCordova](http://ngcordova.com/) - Cordova with Angular Goodness
+[ngCordova](http://ngcordova.com/)
 ==========
+
+### Cordova with AngularJS Goodness [![Version](http://img.shields.io/github/release/driftyco/ng-cordova.svg)](https://github.com/driftyco/ng-cordova/releases) [![Bower](http://img.shields.io/badge/bower-ngCordova-brightgreen.svg?style=flat)](http://bower.io/search/?q=ngCordova)
+
+
 
 [<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
 
