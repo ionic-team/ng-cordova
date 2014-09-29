@@ -28,6 +28,6 @@
     }
   ],
   "scripts": {
-    "test": "gulp karma --reporters=progress"
+    "test": "gulp karma --browsers=PhantomJS --reporters=progress"
   }
 }
