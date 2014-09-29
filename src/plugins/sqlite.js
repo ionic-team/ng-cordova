@@ -40,7 +40,7 @@ angular.module('ngCordova.plugins.sqlite', [])
             var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
             try {
               tx.executeSql(query, record, function(tx, result) {
-                if (coll.length == 0) {
+                if (coll.length === 0) {
                   q.resolve(result);
                 } else {
                   insertOne();
@@ -50,7 +50,7 @@ angular.module('ngCordova.plugins.sqlite', [])
                 return;
               });
             } catch (exception) {
-              q.reject(error);
+              q.reject(exception);
             }
           })();
         });
