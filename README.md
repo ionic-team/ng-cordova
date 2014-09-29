@@ -1,7 +1,7 @@
 [ngCordova](http://ngcordova.com/)
 ==========
 
-### Cordova with AngularJS Goodness [![Version](http://img.shields.io/github/release/driftyco/ng-cordova.svg)](https://github.com/driftyco/ng-cordova/releases) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
+### Cordova with AngularJS Goodness [![Travis](https://api.travis-ci.org/driftyco/ng-cordova.svg)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
 
 
 
