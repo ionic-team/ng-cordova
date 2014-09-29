@@ -26,5 +26,8 @@
     {
       "type": "MIT"
     }
-  ]
+  ],
+  "scripts": {
+    "test": "gulp karma --browsers=PhantomJS --reporters=progress"
+  }
 }
