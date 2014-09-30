@@ -19,8 +19,10 @@ describe('Service: $cordovaBatteryStatus', function() {
 
         var result = { 'isPlugged': true, 'level': 1 };
 
-        var event = new CustomEvent(eventName, { 'detail': result });
-        window.dispatchEvent(event);
+        var evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(eventName, false, false, result);
+
+        window.dispatchEvent(evt);
 
         expect($cordovaBatteryStatus.$emit).toHaveBeenCalledWith(eventName, result);
       });
