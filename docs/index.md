@@ -688,7 +688,7 @@ module.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
   });
   
   // clear watch
-  $cordovaGeolocation.clearWatch(watch.watchID)
+  $cordovaGeolocation.clearWatch(watch.watchId)
   
 });
 ```
