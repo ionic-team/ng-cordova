@@ -67,7 +67,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 			return mockIt.call(this,'There was an error removng the file.');	
 		},
 
-		writeFile: function(directory, file) {
+		writeFile: function(directory, file, options) {
 			return mockIt.call(this,'There was an error writing the file.');		
 		},
 
