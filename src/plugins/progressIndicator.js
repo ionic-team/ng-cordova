@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.progressIndicator', [])
 
-  .factory('$cordovaProgressIndicator', ['$q', function ($q) {
+  .factory('$cordovaProgress', ['$q', function ($q) {
 
     return {
       showSimple: function (_dim) {
