@@ -6,7 +6,7 @@
  * A service for testing dialogs
  * in an app build with ngCordova.
  */ 
-ngCordovaMocks.factory('$cordovaDialogs', function() {
+ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 	var dialogText = false;
 	var dialogTitle = '';
 	var defaultValue = '';
@@ -93,34 +93,47 @@ ngCordovaMocks.factory('$cordovaDialogs', function() {
 		**/
 		useHostAbilities: useHostAbilities,		
 
-		alert: function(message, callback, title, buttonName) {
+		alert: function(message, title, buttonName) {
+			var d = $q.defer();
+
 			if (this.useHostAbilities) {
 				// NOTE: The window.alert method doesn't support a title or callbacks.				
 				alert(message);
+				d.resolve();
 			} else {
 				this.dialogText = message;
 				this.dialogTitle = title;
 				this.buttonLabels.push(buttonName);				
+				d.resolve();
 			}
+			
+			return d.promise;
 		},
 
-		confirm: function(message, callback, title, buttonName) {
+		confirm: function(message, title, buttonName) {
+			var d = $q.defer();
+
 			if (this.useHostAbilities) {
 				// NOTE: The window.confirm method doesn't support a title or custom button naming.
 				var result = confirm(message);
-				callback(result);
+				d.resolve(result ? 2 : 1);
 			} else {
 				this.dialogText = message;
 				this.dialogTitle = title;
 				this.buttonLabels.push(buttonName);				
+				d.resolve(0);
 			}
+
+			return d.promise;
 		},
 
-		prompt: function(message, promptCallback, title, buttonLabels, defaultText) {
+		prompt: function(message, title, buttonLabels, defaultText) {
+			var d = $q.defer();
+
 			if (this.useHostAbilities) {
 				// NOTE: The window.prompt method doesn't support a title or custom button naming.
 				var result = prompt(message, defaultText);
-				promptCallback(result);				
+				d.resolve(result);
 			} else {
 				this.dialogText = message;
 				this.dialogTitle = title;
@@ -130,14 +143,14 @@ ngCordovaMocks.factory('$cordovaDialogs', function() {
 					this.buttonLabels.push(buttonLabels[i]);
 				}
 
-				if (promptCallback) {
-					promptCallback(this.promptResponse);
-				}
+				d.resolve(this.promptResponse);
 			}
+
+			return d.promise;
 		},
 
 		beep: function(times) {
 			this.beepCount = times;
 		}
 	};
-});
+}]);

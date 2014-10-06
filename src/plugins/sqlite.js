@@ -31,6 +31,32 @@ angular.module('ngCordova.plugins.sqlite', [])
         return q.promise;
       },
 
+      insertCollection: function (db, query, bindings) {
+        var q = $q.defer();
+        var coll = bindings.slice(0); // clone collection
+        
+        db.transaction(function (tx) {
+          (function insertOne() {
+            var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
+            try {
+              tx.executeSql(query, record, function(tx, result) {
+                if (coll.length === 0) {
+                  q.resolve(result);
+                } else {
+                  insertOne();
+                }
+              },function (transaction, error) {
+                q.reject(error);
+                return;
+              });
+            } catch (exception) {
+              q.reject(exception);
+            }
+          })();
+        });
+        return q.promise;
+      },
+      
       nestedExecute: function (db, query1, query2, binding1, binding2) {
         var q = $q.defer();
 
