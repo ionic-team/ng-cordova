@@ -1192,7 +1192,7 @@ $cordovaProgress.showBar(true, 50000)
 $cordovaProgress.showBarWithLabel(false, 100000, "Loading")
 
 
-$cordovaProgress.showSuccess(true) // requires .hide()
+$cordovaProgress.showSuccess(true, "Success!") // requires .hide()
 
 $cordovaProgress.showText(false, 100000, "Loading")
 
