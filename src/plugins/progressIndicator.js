@@ -64,9 +64,10 @@ angular.module('ngCordova.plugins.progressIndicator', [])
         return ProgressIndicator.showBarWithLabel(dim, timeout, label)
       },
 
-      showSuccess: function (_dim) {
+      showSuccess: function (_dim, _label) {
         var dim = _dim || false;
-        return ProgressIndicator.showSuccess(dim)
+        var label = _label || "Success";
+        return ProgressIndicator.showSuccess(dim, label)
       },
 
       showText: function (_dim, _text, _position) {
