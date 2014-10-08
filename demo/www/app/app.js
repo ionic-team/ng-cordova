@@ -23,6 +23,7 @@ angular.module('demo', [
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.network.ctrl',
+  'demo.media.ctrl',
   'demo.preferences.ctrl',
   'demo.statusbar.ctrl',
   'demo.toast.ctrl',
@@ -89,6 +90,12 @@ angular.module('demo', [
         url: '/googleAnalytics',
         templateUrl: 'app/googleAnalytics/googleAnalytics.html',
         controller: "GoogleAnalyticsCtrl"
+      })
+
+      .state('media', {
+        url: '/media',
+        templateUrl: 'app/media/media.html',
+        controller: "MediaCtrl"
       })
 
       .state('printer', {

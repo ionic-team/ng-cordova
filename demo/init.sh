@@ -17,6 +17,8 @@ ap file
 ap splashscreen
 ap statusbar
 ap vibration
+ap media
+
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard
 cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
 cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
