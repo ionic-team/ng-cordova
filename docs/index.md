@@ -1648,7 +1648,7 @@ module.controller('MyCtrl', function($scope, $cordovaToast) {
     // error
   });
 
-  $cordovaToast.showLongBotton('Here is a message').then(function(success) {
+  $cordovaToast.showLongBottom('Here is a message').then(function(success) {
     // success
   }, function (error) {
     // error
