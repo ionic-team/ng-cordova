@@ -665,9 +665,14 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
   
   $cordovaDialogs.alert('Wow!');
   
-  $cordovaDialogs.confirm('Are you sure?');
+  $cordovaDialogs.confirm('Are you sure?').then(function(buttonIndex) {
+      var btnIndex = buttonIndex; // 'OK' = 1 , 'Cancel' = 2 
+  });
 
-  $cordovaDialogs.prompt('Please Login');
+  $cordovaDialogs.prompt('Please Login').then(function(result) {
+      var input = result.input1;
+      var btnIndex = buttonIndex; // 'OK' = 1 , 'Cancel' = 2
+  });
 
   // beep 3 times
   $cordovaDialogs.beep(3);
