@@ -663,16 +663,23 @@ cordova plugin add org.apache.cordova.dialogs
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaDialogs) {
   
-  $cordovaDialogs.alert('Wow!');
+  $cordovaDialogs.alert('message', 'title', 'button name')
+    .then(function() {
+      // callback success
+    });
   
-  $cordovaDialogs.confirm('Are you sure?').then(function(buttonIndex) {
-      var btnIndex = buttonIndex; // 'OK' = 1 , 'Cancel' = 2 
-  });
+  $cordovaDialogs.confirm('message', 'title', ['button 1','button 2'])
+    .then(function(buttonIndex) {
+      // no button = 0, 'OK' = 1, 'Cancel' = 2 
+      var btnIndex = buttonIndex;
+    });
 
-  $cordovaDialogs.prompt('Please Login').then(function(result) {
+  $cordovaDialogs.prompt('msg', 'title', ['btn 1','btn 2'], 'default text')
+    .then(function(result) {
       var input = result.input1;
-      var btnIndex = buttonIndex; // 'OK' = 1 , 'Cancel' = 2
-  });
+      // no button = 0, 'OK' = 1, 'Cancel' = 2 
+      var btnIndex = buttonIndex;
+    });
 
   // beep 3 times
   $cordovaDialogs.beep(3);
