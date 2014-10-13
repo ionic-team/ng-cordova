@@ -11,14 +11,14 @@ angular.module('demo.dialogs.ctrl', [])
 
     $scope.confirm = function () {
       $scope.action = "Confirm";
-      $cordovaDialogs.confirm('Are you sure?').then(function (buttonIndex) {
+      $cordovaDialogs.confirm('Are you sure?', "Custom title").then(function (buttonIndex) {
         $cordovaDialogs.alert("Button index : " + buttonIndex);
       });
     };
 
     $scope.prompt = function () {
       $scope.action = "Prompt";
-      $cordovaDialogs.prompt('Please Login').then(function (result) {
+      $cordovaDialogs.prompt('Please Login', "Custom title").then(function (result) {
        $cordovaDialogs.alert("Input: " + result.input1 + "\n Button index : " + result.buttonIndex);
       });
     };

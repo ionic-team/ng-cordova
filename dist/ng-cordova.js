@@ -2389,6 +2389,10 @@ angular.module('ngCordova.plugins.network', [])
       isOffline: function () {
         var networkState = navigator.connection.type;
         return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
+      },
+
+      watchNetwork: function () {
+        // function for watching online / offline
       }
     }
   }]);

@@ -11,6 +11,7 @@ angular.module('demo', [
   // modules
   // 'demo.adMob.ctrl',  // not working???
   'demo.barcodeScanner.ctrl',
+  'demo.batteryStatus.ctrl',
   'demo.camera.ctrl',
   'demo.clipboard.ctrl',
   'demo.contacts.ctrl',
@@ -121,6 +122,12 @@ angular.module('demo', [
         url: '/barcodeScanner',
         templateUrl: 'app/barcodeScanner/barcodeScanner.html',
         controller: "BarcodeScannerCtrl"
+      })
+
+      .state('batteryStatus', {
+        url: '/batteryStatus',
+        templateUrl: 'app/batteryStatus/batteryStatus.html',
+        controller: "BatteryStatusCtrl"
       })
 
       .state('statusbar', {
