@@ -3,37 +3,63 @@
 
 angular.module('ngCordova.plugins.dialogs', [])
 
-  .factory('$cordovaDialogs', ['$q', function ($q) {
+  .factory('$cordovaDialogs', ['$q', '$window', function ($q, $window) {
 
     return {
       alert: function (message, title, buttonName) {
-        var d = $q.defer();
+        var q = $q.defer();
 
-        navigator.notification.alert(message, function () {
-          d.resolve();
-        }, title, buttonName);
+        if (!$window.navigator.notification) {
+          $window.alert(message);
+          q.resolve();
+        }
+        else {
+          navigator.notification.alert(message, function () {
+            q.resolve();
+          }, title, buttonName);
+        }
 
-        return d.promise;
+        return q.promise;
       },
 
       confirm: function (message, title, buttonLabels) {
-        var d = $q.defer();
+        var q = $q.defer();
 
-        navigator.notification.confirm(message, function (buttonIndex) {
-          d.resolve(buttonIndex);
-        }, title, buttonLabels);
+        if (!$window.navigator.notification) {
+          if ($window.confirm(message)) {
+            q.resolve(1);
+          }
+          else {
+            q.resolve(2);
+          }
+        }
+        else {
+          navigator.notification.confirm(message, function (buttonIndex) {
+            q.resolve(buttonIndex);
+          }, title, buttonLabels);
+        }
 
-        return d.promise;
+        return q.promise;
       },
 
       prompt: function (message, title, buttonLabels, defaultText) {
-        var d = $q.defer();
+        var q = $q.defer();
 
-        navigator.notification.prompt(message, function (result) {
-          d.resolve(result);
-        }, title, buttonLabels, defaultText);
-
-        return d.promise;
+        if (!$window.navigator.notification) {
+          var res = $window.prompt(message, defaultText);
+          if (res != null) {
+            q.resolve({input1 : res, buttonIndex : 1});
+          }
+          else {
+            q.resolve({input1 : res, buttonIndex : 2});
+          }
+        }
+        else {
+          navigator.notification.prompt(message, function (result) {
+            q.resolve(result);
+          }, title, buttonLabels, defaultText);
+        }
+        return q.promise;
       },
 
       beep: function (times) {
