@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.touchid', [])
 
-  .factory('$cordovaTouchid', ['$q', function ($q) {
+  .factory('$cordovaTouchID', ['$q', function ($q) {
 
     return {
       checkSupport: function() {

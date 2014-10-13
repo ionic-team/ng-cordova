@@ -27,7 +27,8 @@ angular.module('demo', [
   'demo.preferences.ctrl',
   'demo.statusbar.ctrl',
   'demo.toast.ctrl',
-  'demo.vibration.ctrl'
+  'demo.vibration.ctrl',
+  'demo.touchid.ctrl'
 ])
 
   .run(function ($ionicPlatform) {
@@ -204,6 +205,12 @@ angular.module('demo', [
         url: '/toast',
         templateUrl: 'app/toast/toast.html',
         controller: "ToastCtrl"
+      })
+
+      .state('touchid', {
+        url: '/touchid',
+        templateUrl: 'app/touchid/touchid.html',
+        controller: "TouchIDCtrl"
       })
 
       .state('about', {

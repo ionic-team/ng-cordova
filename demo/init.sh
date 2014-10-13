@@ -25,3 +25,4 @@ cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 cordova plugin add https://github.com/chrisekelley/AppPreferences
 cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+cordova plugin add uk.co.ilee.touchid
