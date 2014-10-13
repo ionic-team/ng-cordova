@@ -6,3 +6,4 @@ demo/plugins/*
 _site
 bower_components
 coverage
+Gemfile.lock
