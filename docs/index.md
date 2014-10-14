@@ -1598,7 +1598,7 @@ cordova plugin add org.apache.cordova.statusbar
 ```
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaStatusbar) {
+module.controller('MyCtrl', function($cordovaStatusbar) {
   $cordovaStatusbar.overlaysWebView(true);
   
   // styles: Default : 0, LightContent: 1, BlackTranslucent: 2, BlackOpaque: 3
@@ -1646,7 +1646,7 @@ You can also use any of these convenience methods:
 - showLongBottom(message)
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaToast) {
+module.controller('MyCtrl', function($cordovaToast) {
 
   $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
     // success
@@ -1668,6 +1668,37 @@ module.controller('MyCtrl', function($scope, $cordovaToast) {
 
 });
 ```
+
+<a class="anchor" id="TouchID"></a>
+
+### [`$cordovaTouchID`](#TouchID)
+
+Cordova Plugin to leverage the iOS local authentication framework to allow in-app user authentication using Touch ID.
+[View Official Docs](https://github.com/leecrossley/cordova-plugin-touchid)
+
+```
+cordova plugin add uk.co.ilee.touchid
+```
+
+```javascript
+module.controller('MyCtrl', function($cordovaTouchID) {
+
+  $cordovaTouchID.checkSupport().then(function() {
+    // success, supported
+  }, function (error) {
+    alert(error); // not supported
+  });
+  
+  $cordovaTouchID.authenticate("text").then(function() {
+    // success
+  }, function () {
+    // error
+  });
+
+});
+```
+
+
 
 <a class="anchor" id="Vibration"></a>
 ### [`$cordovaVibration`](#Vibration)
