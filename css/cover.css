@@ -482,7 +482,7 @@ a:hover {
         transition: box-shadow linear 0.4s;
         box-shadow: 0 0;
         -moz-box-shadow: 0 0;
-        -webkit-box-shadow: 0 0 ;
+        -webkit-box-shadow: 0 0;
     }
 
     input:focus {
@@ -509,6 +509,40 @@ a:hover {
     height: 60px; /*same height as header*/
     margin-top: -94px; /*same height as header*/
     visibility: hidden;
+}
+
+.anchor-title {
+    display: inline-block;
+    width: 100%;
+}
+
+.anchor-title > h3 {
+    float: left;
+}
+
+
+.anchor-title > div {
+    float: right; margin-top: 50px;
+}
+
+a.btn-anchor {
+    background: #ffffff;
+    border: 1px solid #5796FF;
+    color: #5796FF;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px;
+    transition: 0.2s linear;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+}
+
+a.btn-anchor:hover, a.btn-anchor:active {
+    background: rgba(87, 150, 255, 0.54);
+    color: #ffffff;
+    transition: 0.2s linear;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
 }
 
 /*

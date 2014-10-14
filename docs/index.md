@@ -42,10 +42,16 @@ cordova plugin add ...
 ## Plugins
 
 <a class="anchor" id="AdMob"></a>
-### [`$cordovaAdMob`](#AdMob)
+
+<div class="anchor-title">
+  <h3><a href="#AdMob"><code>$cordovaAdMob</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/adMob.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/floatinghotpot/cordova-admob-pro#quick-start-example-code">Official Docs</a>
+  </div>
+</div>
 
 The [AdMob](https://github.com/floatinghotpot/cordova-admob-pro) plugin presents AdMob Ads in Mobile App/Games natively from JavaScript.
-[View Official Docs](https://github.com/floatinghotpot/cordova-admob-pro#quick-start-example-code)
 
 
 ```bash
@@ -62,11 +68,16 @@ module.controller('AdMobCtrl', function($scope, $cordovaAdMob) {
 ```
 
 <a class="anchor" id="AppAvailability"></a>
-### [`$cordovaAppAvailability`](#AppAvailability)
+
+<div class="anchor-title">
+  <h3><a href="#AppAvailability"><code>$cordovaAppAvailability</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/appAvailability.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/ohh2ahh/AppAvailability">Official Docs</a>
+  </div>
+</div>
 
 The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows you to check if an app is installed on the user's device. It requires an URI Scheme (e.g. twitter://) on iOS or a Package Name (e.g com.twitter.android) on Android.
-
-**[View Official Docs](https://github.com/ohh2ahh/AppAvailability)**
 
 <table class="table">
     <thead>
@@ -93,7 +104,6 @@ The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows 
 </table>
 
 
-
 ```bash
 cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
 ```
@@ -115,11 +125,16 @@ module.controller('AppAvailCtrl', function($scope, $cordovaAppAvailability) {
 ```
 
 <a class="anchor" id="BackgroundGeolocation"></a>
-### [`$cordovaBackgroundGeolocation`](#BackgroundGeolocation)
+
+<div class="anchor-title">
+  <h3><a href="#BackgroundGeolocation"><code>$cordovaBackgroundGeolocation</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/backgroundGeolocation.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/christocracy/cordova-plugin-background-geolocation">Official Docs</a>
+  </div>
+</div>
 
 Cross-platform background geolocation for Cordova / PhoneGap with battery-saving "circular region monitoring" and "stop detection".
-
-**[View Official Docs](https://github.com/christocracy/cordova-plugin-background-geolocation)**
 
 ```bash
 cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
@@ -147,12 +162,16 @@ module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
 ```
 
 <a class="anchor" id="BatteryStatus"></a>
-### [`$cordovaBatteryStatus`](#BatteryStatus)
+
+<div class="anchor-title">
+  <h3><a href="#BatteryStatus"><code>$cordovaBatteryStatus</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/batteryStatus.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 The [BatteryStatus](https://github.com/apache/cordova-plugin-battery-status) plugin provides an API for the current battery status.
-
-[View Official Docs](https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md)
-
 
 ```bash
 cordova plugin add org.apache.cordova.battery-status
@@ -183,10 +202,16 @@ module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
 ```
 
 <a class="anchor" id="BarcodeScanner"></a>
-### [`$cordovaBarcodeScanner`](#BarcodeScanner)
+
+<div class="anchor-title">
+  <h3><a href="#BarcodeScanner"><code>$cordovaBarcodeScanner</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/barcodeScanner.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/wildabeast/BarcodeScanner/#using-the-plugin">Official Docs</a>
+  </div>
+</div>
 
 The [Barcode Scanner Plugin](https://github.com/wildabeast/BarcodeScanner/) opens a camera view and automagically scans a barcode, returning the data back to you.
-[View Official Docs](https://github.com/wildabeast/BarcodeScanner/#using-the-plugin)
 
 
 ```bash
@@ -197,33 +222,38 @@ cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 
 module.controller('BarcodeScannerCtrl', function($scope, $cordovaBarcodeScanner) {
 
-  $scope.scanBarcode = function() {
-    $cordovaBarcodeScanner.scan().then(function(imageData) {
+  $cordovaBarcodeScanner
+    .scan()
+    .then(function(imageData) {
       // Success! Barcode data is here
-
-    }, function(err) {
-      // An error occured. Show a message to the user
-
+    }, function(error) {
+      // An error occurred
     });
-  };
+  
   
   // NOTE: encoding not functioning yet
-  $scope.encodeData = function() {
-    $cordovaBarcodeScanner.encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com").then(function(success) {
+  $cordovaBarcodeScanner
+    .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
+    .then(function(success) {
       // Success! 
-    }, function(err) {
-      // An error occured. Show a message to the user
-
+    }, function(error) {
+      // An error occurred
     });      
-  }
+ 
 });
 ```
 
 <a class="anchor" id="Calendar"></a>
 
-### [`$cordovaCalendar`](#Calendar)
+<div class="anchor-title">
+  <h3><a href="#Calendar"><code>$cordovaCalendar</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/calendar.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/blob/master/README.md">Official Docs</a>
+  </div>
+</div>
 
-The [Calendar Plugin](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin) allows you to manage events in the devices native calendar. [View Official Docs](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/blob/master/README.md)
+The [Calendar Plugin](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin) allows you to manage events in the devices native calendar.
 
 ```bash
 cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
@@ -363,17 +393,22 @@ module.controller('CalendarCtrl', function ($scope, $cordovaCalendar) {
 
 <a class="anchor" id="Camera"></a>
 
-### [`$cordovaCamera`](#Camera)
+<div class="anchor-title">
+  <h3><a href="#Camera"><code>$cordovaCamera</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/camera.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera">Official Docs</a>
+  </div>
+</div>
 
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
-from a device. [View Official Docs](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera)
+from a device. 
 
 ```bash
 cordova plugin add org.apache.cordova.camera
 ```
 
 ```javascript
-
 module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
   $scope.takePicture = function() {
@@ -402,10 +437,16 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
 
 <a class="anchor" id="Capture"></a>
-### [`$cordovaCapture`](#Capture)
+
+<div class="anchor-title">
+  <h3><a href="#Capture"><code>$cordovaCapture</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/capture.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 This plugin allows you to record sound, video and images throught the native capabilities of the device
-[View Official Docs](https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md)
 
 ```bash
 $ cordova plugin add org.apache.cordova.media-capture
@@ -450,11 +491,16 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
 
 <a class="anchor" id="Clipboard"></a>
-### [`$cordovaClipboard`](#Clipboard)
+
+<div class="anchor-title">
+  <h3><a href="#Clipboard"><code>$cordovaClipboard</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/clipboard.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/VersoSolutions/CordovaClipboard">Official Docs</a>
+  </div>
+</div>
 
 The [Clipboard](https://github.com/VersoSolutions/CordovaClipboard) plugin provides Clipboard management for Cordova/PhoneGap that supports iOS, Android, and Windows Phone 8.
-
-[View Official Docs](https://github.com/VersoSolutions/CordovaClipboard)
 
 
 ```
@@ -488,7 +534,14 @@ module.controller('ClipboardCtrl', function($scope, $cordovaClipboard) {
 
 
 <a class="anchor" id="Contacts"></a>
-### [`$cordovaContacts`](#Contacts)
+
+<div class="anchor-title">
+  <h3><a href="#Contacts"><code>$cordovaContacts</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/contacts.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-contacts/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 A powerful way to create, remove, and search through contacts on the device.
 
@@ -512,12 +565,18 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
 
 <a class="anchor" id="DatePicker"></a>
 
-### [`$cordovaDatePicker`](#DatePicker)
+<div class="anchor-title">
+  <h3><a href="#DatePicker"><code>$cordovaDatePicker</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/datePicker.js">Source</a>
+    <a class="btn-anchor" href="http://github.com/VitaliiBlagodir/cordova-plugin-datepicker">Official Docs</a>
+  </div>
+</div>
 
 Show a native date or time picker widget.
 
 ```
-cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
+cordova plugin add http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
 ```
 
 ```javascript
@@ -533,7 +592,13 @@ module.controller('MyCtrl', function($scope, $cordovaDatePicker) {
 
 <a class="anchor" id="Device"></a>
 
-### [`$cordovaDevice`](#Device)
+<div class="anchor-title">
+  <h3><a href="#Device"><code>$cordovaDevice</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/device.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Grab device related information, such as platform, and device model.
 
@@ -554,10 +619,15 @@ module.controller('MyCtrl', function($scope, $cordovaDevice) {
 
 <a class="anchor" id="DeviceMotion"></a>
 
-### [`$cordovaDeviceMotion`](#DeviceMotion)
+<div class="anchor-title">
+  <h3><a href="#DeviceMotion"><code>$cordovaDeviceMotion</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/deviceMotion.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Get access to the device's accelerometer.
-[View Official Docs](https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.device-motion
@@ -589,34 +659,34 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
       function() {/* unused */},  
       function(err) {},
       function(acceleration) {
-        $cordovaDialogs.alert('Acceleration X: ' + acceleration.x + '\n' +
-           'Acceleration Y: ' + acceleration.y + '\n' +
-           'Acceleration Z: ' + acceleration.z + '\n' +
-           'Timestamp: '      + acceleration.timestamp + '\n');
+        var X = acceleration.x;
+        var Y = acceleration.y;
+        var Z = acceleration.z;
+        var timeStamp = acceleration.timestamp;
     });
   };
   
-  $scope.clearWatch = function() {
-  // use watchID from watchAccelaration()
-
-    if(!watch) { return; }
-
-    $cordovaDeviceMotion.clearWatch(watch.watchId).then(function(result) {
-      // Success! 
-    }, function(err) {
-      // An error occured. Show a message to the user
-
+  // use watchID from watchAcceleration()
+    $cordovaDeviceMotion.clearWatch(watch.watchId)
+      .then(function(result) {
+        // Success! 
+      }, function(err) {
+        // An error occured. Show a message to the user
     });
-  }
 });
 ```
 
 <a class="anchor" id="DeviceOrientation"></a>
 
-### [`$cordovaDeviceOrientation`](#DeviceOrientation)
+<div class="anchor-title">
+  <h3><a href="#DeviceOrientation"><code>$cordovaDeviceOrientation</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/deviceOrientation.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Get access to the device's compass.
-[View Official Docs](https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.device-orientation
@@ -628,7 +698,7 @@ module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrient
     $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
       // Success! 
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred
     });
   
     var options = { frequency: 1000 }; // Update every 1 second
@@ -636,23 +706,30 @@ module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrient
 
     watch.promise.then(function(result) { /* unused */ },
       function(err) {
-        // An error occured. Show a message to the user
+        // An error occurred
       }, function(position) {
         // Heading comes back in
         // position.magneticHeading
       });
   
-    $cordovaDeviceOrientation.clearWatch(watch.watchId).then(function(result) {
-      // Success! 
-    }, function(err) {
-      // An error occured. Show a message to the user
-    });
+    $cordovaDeviceOrientation.clearWatch(watch.watchId)
+      .then(function(result) {
+        // Success! 
+      }, function(err) {
+        // An error occurred
+      });
 });
 ```
 
 <a class="anchor" id="Dialogs"></a>
 
-### [`$cordovaDialogs`](#Dialogs)
+<div class="anchor-title">
+  <h3><a href="#Dialogs"><code>$cordovaDialogs</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/dialogs.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Trigger alert, confirm, and prompt windows, or send beeps (beep, beep!)
 
@@ -689,10 +766,15 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
 
 <a class="anchor" id="File"></a>
 
-### [`$cordovaFile`](#File)
+<div class="anchor-title">
+  <h3><a href="#File"><code>$cordovaFile</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/file.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 A Plugin to get access to the device's files and directories.
-[View Official Docs](https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.file
@@ -780,9 +862,15 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 
 <a class="anchor" id="Flashlight"></a>
 
-### [`$cordovaFlashlight`](#Flashlight)
+<div class="anchor-title">
+  <h3><a href="#Flashlight"><code>$cordovaFlashlight</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/flashlight.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin">Official Docs</a>
+  </div>
+</div>
 
-Flashlight [View Official Docs](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
+Flashlight Cordova plugin.
 
 ```
 cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
@@ -808,10 +896,15 @@ module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
 
 <a class="anchor" id="Geolocation"></a>
 
-### [`$cordovaGeolocation`](#Geolocation)
+<div class="anchor-title">
+  <h3><a href="#Geolocation"><code>$cordovaGeolocation</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/geolocation.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Grab the current location of the user, or grab continuous location changes:
-[View Official Docs](https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md)
 
 
 ```
@@ -819,7 +912,7 @@ cordova plugin add org.apache.cordova.geolocation
 ```
 
 ```javascript
-module.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
+module.controller('GeoCtrl', function($cordovaGeolocation) {
   
   $cordovaGeolocation
     .getCurrentPosition()
@@ -830,29 +923,38 @@ module.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
       // error
     });
 
-  // begin watching
-  var watch = $cordovaGeolocation.watchPosition({ frequency: 1000 });
-  watch.promise.then(function() { /* Not  used */ }, 
+  // begin a watch
+  var options = {
+    frequency : 1000,
+    timeout : 3000,
+    enableHighAccuracy: true
+  };
+  
+  var watch = $cordovaGeolocation.watchPosition(options);
+  watch.promise.then(function()  { /* Not  used */ }, 
     function(err) {
-      // An error occurred.
-    }, 
-    function(position) {
-      // Active updates of the position here
-      // position.coords.[ latitude / longitude]
+      // error
+    }, function(position) {
+      var lat  = position.coords.latitude
+      var long = position.coords.longitude
   });
   
   // clear watch
   $cordovaGeolocation.clearWatch(watch.watchId)
-  
 });
 ```
 
 <a class="anchor" id="Globalization"></a>
 
-### [`$cordovaGlobalization`](#Globalization)
+<div class="anchor-title">
+  <h3><a href="#Globalization"><code>$cordovaGlobalization</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/globalization.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-globalization/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Obtains information and performs operations specific to the user's locale and timezone.
-[View Official Docs](https://github.com/apache/cordova-plugin-globalization/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.globalization
@@ -860,7 +962,7 @@ cordova plugin add org.apache.cordova.globalization
 
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
+module.controller('MyCtrl', function($cordovaGlobalization) {
   $cordovaGlobalization.getPreferredLanguage().then(
     function(result) {
       // result
@@ -895,16 +997,20 @@ module.controller('MyCtrl', function($scope, $cordovaGlobalization) {
     // stringToNumber
     // getNumberPattern
     // getCurrencyPattern
-    
 });
 ```
 
 <a class="anchor" id="GoogleAnalytics"></a>
 
-### [`$cordovaGoogleAnalytics`](#GoogleAnalytics)
+<div class="anchor-title">
+  <h3><a href="#GoogleAnalytics"><code>$cordovaGoogleAnalytics</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/GA.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/danwilson/google-analytics-plugin">Official Docs</a>
+  </div>
+</div>
 
 A Plugin to connect to Google's native Universal Analytics SDK 3.0
-[View Docs](https://github.com/danwilson/google-analytics-plugin)
 
 ```
 cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
@@ -963,9 +1069,16 @@ module.controller('MyCtrl', function($scope, $cordovaGoogleAnalytics) {
 
 
 <a class="anchor" id="Keyboard"></a>
-### `$cordovaKeyboard`
 
-Accessing the Keyboard of iOS from cordova [View Official Docs](https://github.com/driftyco/ionic-plugins-keyboard)
+<div class="anchor-title">
+  <h3><a href="#Keyboard"><code>$cordovaKeyboard</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/keyboard.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/driftyco/ionic-plugins-keyboard">Official Docs</a>
+  </div>
+</div>
+
+Accessing the Keyboard of iOS from cordova 
 
 ```
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
@@ -989,9 +1102,16 @@ module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
 
 
 <a class="anchor" id="Keychain"></a>
-### `$cordovaKeychain`
 
-Accessing the keychain of iOS from cordova [View Docs](https://github.com/shazron/KeychainPlugin)
+<div class="anchor-title">
+  <h3><a href="#Keychain"><code>$cordovaKeychain</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/keychain.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/shazron/KeychainPlugin">Official Docs</a>
+  </div>
+</div>
+
+Accessing the keychain of iOS from cordova 
 
 ```
 cordova plugin add https://github.com/shazron/KeychainPlugin.git
@@ -1011,126 +1131,18 @@ module.controller('MyCtrl', function($scope, $cordovaKeychain) {
 });
 ```
 
-
-<a class="anchor" id="NativeAudio"></a>
-### [`$cordovaNativeAudio`](#NativeAudio)
-
-Cordova / PhoneGap 3.5+ extension for Native Audio playback, aimed at HTML5 gaming and audio applications which require minimum latency, polyphony and concurrency.
-[View Docs](https://github.com/SidneyS/cordova-plugin-nativeaudio)
-
-```
-cordova plugin add https://github.com/SidneyS/cordova-plugin-nativeaudio.git
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaNativeAudio, $timeout) {
-
-  $scope.preloadSimple = function () {
-    $cordovaNativeAudio.preloadSimple('click', 'audio/click.mp3').then(function (msg) {
-      console.log(msg);
-    }, function (error) {
-      console.error(error);
-    });
-  };
-
-  $scope.preloadComplex = function () {
-    $cordovaNativeAudio.preloadComplex('music', 'audio/music.mp3', 1, 1).then(function (msg) {
-      console.log(msg);
-    }, function (error) {
-      console.error(error);
-    });
-  };
-
-  $scope.play = function () {
-    $cordovaNativeAudio.play('click');
-    $cordovaNativeAudio.loop('music');
-
-    // stop 'music' loop and unload
-    $timeout(function () {
-      $cordovaNativeAudio.stop('music');
-
-      $cordovaNativeAudio.unload('click');
-      $cordovaNativeAudio.unload('music');
-    }, 1000 * 60);
-  };
-
-});
-```
-
-
-<a class="anchor" id="Media"></a>
-### [`$cordovaMedia`](#Media)
-
-Media plugin
-[View Official Docs](https://github.com/apache/cordova-plugin-media/blob/master/doc/index.md)
-
-```
-cordova plugin add org.apache.cordova.media
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaNetwork) {
-  	var src = "/src/audio.mp3";
-  
-  	var mediaSource = $cordovaMedia.newMedia(src)
-  	var promise = mediaSource.promise
-  	var mediaStatus = mediaSource.mediaStatus
-  	var media = mediaSource.media
-  
-  	$cordovaMedia.play(media)
-  	
-  	$cordovaMedia.pause(media)
-  	
-  	$cordovaMedia.stop(media)
-  	
-  	$cordovaMedia.release(media)
-  	
-  	$cordovaMedia.getDuration(media)
-  	
-  	$cordovaMedia.seekTo(media, 5000000) // milliseconds
-  	
-  	$cordovaMedia.setVolume(media, 80)
-  	
-  	$cordovaMedia.startRecord(media)
-  	
-  	$cordovaMedia.stopRecord(media)
-  
-  	$cordovaMedia.getCurrentPosition(media).then(...)
-});
-```
-
-
-
-
-
-<a class="anchor" id="Network"></a>
-### [`$cordovaNetwork`](#Network)
-
-Check network connection types, and track offline and online status.
-[View Official Docs](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md)
-
-```
-cordova plugin add org.apache.cordova.network-information
-```
-
-```javascript
-module.controller('MyCtrl', function($scope, $cordovaNetwork) {
-  var type = $cordovaNetwork.getNetwork();
-  
-  var isOnline = $cordovaNetwork.isOnline();
-  
-  var isOffline = $cordovaNetwork.isOffline();
-});
-```
-[View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
-
-
 <a class="anchor" id="LocalNotification"></a>
-### [`$cordovaLocalNotification`](#LocalNotification)
+
+<div class="anchor-title">
+  <h3><a href="#LocalNotification"><code>$cordovaLocalNotification</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/localNotification.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/katzer/cordova-plugin-local-notifications">Official Docs</a>
+  </div>
+</div>
 
 The essential purpose of local notifications is to enable an application to inform its users that it has something for them — for example, a message or an upcoming appointment — when the application isn’t running in the foreground.
 They are scheduled by an application and delivered on the same device.
-[View Official Docs](https://github.com/katzer/cordova-plugin-local-notifications)
 
 ```
 cordova plugin add de.appplant.cordova.plugin.local-notification
@@ -1199,8 +1211,143 @@ module.controller('MyCtrl', function($scope, $cordovaLocalNotification) {
 ```
 
 
+<a class="anchor" id="Media"></a>
+
+<div class="anchor-title">
+  <h3><a href="#Media"><code>$cordovaMedia</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/media.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-media/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
+
+Media plugin
+
+```
+cordova plugin add org.apache.cordova.media
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+  	var src = "/src/audio.mp3";
+  
+  	var mediaSource = $cordovaMedia.newMedia(src)
+  	var promise = mediaSource.promise
+  	var mediaStatus = mediaSource.mediaStatus
+  	var media = mediaSource.media
+  
+  	$cordovaMedia.play(media)
+  	
+  	$cordovaMedia.pause(media)
+  	
+  	$cordovaMedia.stop(media)
+  	
+  	$cordovaMedia.release(media)
+  	
+  	$cordovaMedia.getDuration(media)
+  	
+  	$cordovaMedia.seekTo(media, 5000000) // milliseconds
+  	
+  	$cordovaMedia.setVolume(media, 80)
+  	
+  	$cordovaMedia.startRecord(media)
+  	
+  	$cordovaMedia.stopRecord(media)
+  
+  	$cordovaMedia.getCurrentPosition(media).then(...)
+});
+```
+
+<a class="anchor" id="NativeAudio"></a>
+
+<div class="anchor-title">
+  <h3><a href="#NativeAudio"><code>$cordovaNativeAudio</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/nativeAudio.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/SidneyS/cordova-plugin-nativeaudio">Official Docs</a>
+  </div>
+</div>
+
+Cordova / PhoneGap 3.5+ extension for Native Audio playback, aimed at HTML5 gaming and audio applications which require minimum latency, polyphony and concurrency.
+
+```
+cordova plugin add https://github.com/SidneyS/cordova-plugin-nativeaudio.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNativeAudio, $timeout) {
+
+  $cordovaNativeAudio
+    .preloadSimple('click', 'audio/click.mp3')
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      alert(error);
+    });
+
+  $cordovaNativeAudio
+    .preloadComplex('music', 'audio/music.mp3', 1, 1)
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+
+  $scope.play = function () {
+    $cordovaNativeAudio.play('click');
+    $cordovaNativeAudio.loop('music');
+
+    // stop 'music' loop and unload
+    $timeout(function () {
+      $cordovaNativeAudio.stop('music');
+
+      $cordovaNativeAudio.unload('click');
+      $cordovaNativeAudio.unload('music');
+    }, 1000 * 60);
+  };
+
+});
+```
+
+<a class="anchor" id="Network"></a>
+
+<div class="anchor-title">
+  <h3><a href="#Network"><code>$cordovaNetwork</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/network.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
+
+Check network connection types, and track offline and online status.
+
+```
+cordova plugin add org.apache.cordova.network-information
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+  var type = $cordovaNetwork.getNetwork();
+  
+  var isOnline = $cordovaNetwork.isOnline();
+  
+  var isOffline = $cordovaNetwork.isOffline();
+});
+```
+[View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
+
+
+
+
 <a class="anchor" id="PinDialog"></a>
-### [`$cordovaPinDialog`](#PinDialog)
+
+<div class="anchor-title">
+  <h3><a href="#PinDialog"><code>$cordovaPinDialog</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/pinDialog.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/Paldom/PinDialog">Official Docs</a>
+  </div>
+</div>
 
 Numeric password dialog.
 
@@ -1209,7 +1356,7 @@ cordova plugin add https://github.com/Paldom/PinDialog.git
 ```
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
+module.controller('MyCtrl', function($cordovaPinDialog) {
 
   $cordovaPinDialog.prompt('Some message here').then(
     function(result) {
@@ -1222,12 +1369,16 @@ module.controller('MyCtrl', function($scope, $cordovaPinDialog) {
 ```
 
 <a class="anchor" name="Preferences"></a>
-### [`$cordovaPreferences`](#Preferences)
+
+<div class="anchor-title">
+  <h3><a href="#Preferences"><code>$cordovaPreferences</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/preferences.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/dferrell/plugins-application-preferences">Official Docs</a>
+  </div>
+</div>
 
 Accessing application preference with the [application-preferences](https://github.com/dferrell/plugins-application-preferences) plugin.
-
-[View Docs](https://github.com/dferrell/plugins-application-preferences)
-
 
 ```
 cordova plugin add https://github.com/dferrell/plugins-application-preferences.git
@@ -1252,10 +1403,16 @@ module.controller('MyCtrl', function($scope, $cordovaPreferences) {
 ```
 
 <a class="anchor" id="Printer"></a>
-### [`$cordovaPrinter`](#Printer)
+
+<div class="anchor-title">
+  <h3><a href="#Printer"><code>$cordovaPrinter</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/Printer.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/katzer/cordova-plugin-printer">Official Docs</a>
+  </div>
+</div>
 
 Printer plugin
-[View Official Docs](https://github.com/katzer/cordova-plugin-printer)
 
 ```
 cordova plugin add https://github.com/katzer/cordova-plugin-printer.git
@@ -1275,10 +1432,16 @@ module.controller('MyCtrl', function($scope, $cordovaPrinter) {
 
 
 <a class="anchor" id="ProgressIndicator"></a>
-### [`$cordovaProgress`](#ProgressIndicator)
+
+<div class="anchor-title">
+  <h3><a href="#ProgressIndicator"><code>$cordovaProgress</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/progressIndicator.js">Source</a>
+    <a class="btn-anchor" href="http://pbernasconi.github.io/cordova-progressIndicator/">Official Docs</a>
+  </div>
+</div>
 
 Various Progress Dialogs for indicating loading or downloading.
-[View Official Docs](http://pbernasconi.github.io/cordova-progressIndicator/)
 
 
 <table class="table table-docs text-center" style="width: auto">
@@ -1358,10 +1521,15 @@ $cordovaProgress.showText(false, 100000, "Loading")
 
 <a class="anchor" id="Push"></a>
 
-### [`$cordovaPush`](#Push)
+<div class="anchor-title">
+  <h3><a href="#Push"><code>$cordovaPush</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/push.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/phonegap-build/PushPlugin#-plugin-api">Official Docs</a>
+  </div>
+</div>
 
 Allows your application to receive push notifications
-[View Official Docs](https://github.com/phonegap-build/PushPlugin#-plugin-api)
 
 ```
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
@@ -1407,7 +1575,13 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
 
 <a class="anchor" id="SocialSharing"></a>
 
-### [`$cordovaSocialSharing`](#SocialSharing)
+<div class="anchor-title">
+  <h3><a href="#SocialSharing"><code>$cordovaSocialSharing</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/socialSharing.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin">Official Docs</a>
+  </div>
+</div>
 
 Share images, text, messages via Facebook, Twitter, Email, SMS, WhatsApp, etc using this plugin.
 
@@ -1493,7 +1667,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .then(function(result) {
       // Success! 
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
   
   // TO, CC, BCC must be an array, Files can be either null, string or array
@@ -1502,7 +1676,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .then(function(result) {
       // Success! 
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
   
   
@@ -1511,17 +1685,23 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .then(function(result) {
       // Success! 
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
 });
 ```
 
 
 <a class="anchor" id="SpinnerDialog"></a>
-### [`$cordovaSpinnerDialog`](#SpinnerDialog)
+
+<div class="anchor-title">
+  <h3><a href="#SpinnerDialog"><code>$cordovaSpinnerDialog</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/spinnerDialog.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/Paldom/SpinnerDialog">Official Docs</a>
+  </div>
+</div>
 
 A dialog with a spinner wheel.
-[View Official Docs](https://github.com/Paldom/SpinnerDialog)
 
 ```
 cordova plugin add https://github.com/Paldom/SpinnerDialog.git
@@ -1542,7 +1722,14 @@ module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
 
 
 <a class="anchor" id="Splashscreen"></a>
-### [`$cordovaSplashscreen`](#Splashscreen)
+
+<div class="anchor-title">
+  <h3><a href="#Splashscreen"><code>$cordovaSplashscreen</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/splashscreen.js">Source</a>
+    <a class="btn-anchor" href="">Official Docs</a>
+  </div>
+</div>
 
 Show or hide the Splash Screen.
 
@@ -1552,14 +1739,23 @@ cordova plugin add org.apache.cordova.splashscreen
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
+
   $cordovaSplashscreen.show();
+  
 });
 ```
 
 
 
 <a class="anchor" id="SQLite"></a>
-### `$cordovaSQLite`
+
+<div class="anchor-title">
+  <h3><a href="#SQLite"><code>$cordovaSQLite</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/SQLite.js">Source</a>
+    <a class="btn-anchor" href="">Official Docs</a>
+  </div>
+</div>
 
 Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
 
@@ -1589,7 +1785,14 @@ module.controller('MyCtrl', function($scope, $cordovaSQLite) {
 
 
 <a class="anchor" id="Statusbar"></a>
-### [`$cordovaStatusbar`](#Statusbar)
+
+<div class="anchor-title">
+  <h3><a href="#StatusbarLite"><code>$cordovaStatusbar</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/statusbar.js">Source</a>
+    <a class="btn-anchor" href="">Official Docs</a>
+  </div>
+</div>
 
 Configure the device's StatusBar with colors and styles.
 
@@ -1621,10 +1824,15 @@ module.controller('MyCtrl', function($cordovaStatusbar) {
 
 <a class="anchor" id="Toast"></a>
 
-### [`$cordovaToast`](#Toast)
+<div class="anchor-title">
+  <h3><a href="#Toast"><code>$cordovaToast</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/toast.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin">Official Docs</a>
+  </div>
+</div>
 
 This plugin allows you to show a native Toast (a little text popup) on iOS, Android and WP8. It's great for showing a non intrusive native notification which is guaranteed always in the viewport of the browser.
-[View Official Docs](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
 
 ```
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
@@ -1671,10 +1879,15 @@ module.controller('MyCtrl', function($cordovaToast) {
 
 <a class="anchor" id="TouchID"></a>
 
-### [`$cordovaTouchID`](#TouchID)
+<div class="anchor-title">
+  <h3><a href="#TouchID"><code>$cordovaTouchID</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/touchID.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/leecrossley/cordova-plugin-touchid">Official Docs</a>
+  </div>
+</div>
 
 Cordova Plugin to leverage the iOS local authentication framework to allow in-app user authentication using Touch ID.
-[View Official Docs](https://github.com/leecrossley/cordova-plugin-touchid)
 
 ```
 cordova plugin add uk.co.ilee.touchid
@@ -1701,10 +1914,16 @@ module.controller('MyCtrl', function($cordovaTouchID) {
 
 
 <a class="anchor" id="Vibration"></a>
-### [`$cordovaVibration`](#Vibration)
+
+<div class="anchor-title">
+  <h3><a href="#Vibration"><code>$cordovaVibration</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/vibration.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md">Official Docs</a>
+  </div>
+</div>
 
 Vibrate the device programatically.
-[View Official Docs](https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md)
 
 ```
 cordova plugin add org.apache.cordova.vibration
@@ -1720,10 +1939,17 @@ module.controller('MyCtrl', function($scope, $cordovaVibration) {
 ```
 
 <a class="anchor" name="Zip"></a>
-### [`$cordovaZip`](#Zip)
+
+<div class="anchor-title">
+  <h3><a href="#Zip"><code>$cordovaZip</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/zip.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/MobileChromeApps/zip">Official Docs</a>
+  </div>
+</div>
+
 
 Unzip a file.
-[View Docs](https://github.com/MobileChromeApps/zip)
 
 ```
 cordova plugin add https://github.com/MobileChromeApps/zip.git
