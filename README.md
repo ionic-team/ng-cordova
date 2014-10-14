@@ -61,6 +61,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - [SQLite](https://github.com/brodysoft/Cordova-SQLitePlugin)
 - [StatusBar](https://github.com/apache/cordova-plugin-statusbar) *
 - [Toast](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
+- [Touchid](https://github.com/leecrossley/cordova-plugin-touchid)
 - [Vibration](https://github.com/apache/cordova-plugin-vibration) *
 - [Zip](https://github.com/MobileChromeApps/zip)
 

@@ -958,37 +958,63 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
 
 angular.module('ngCordova.plugins.dialogs', [])
 
-  .factory('$cordovaDialogs', ['$q', function ($q) {
+  .factory('$cordovaDialogs', ['$q', '$window', function ($q, $window) {
 
     return {
       alert: function (message, title, buttonName) {
-        var d = $q.defer();
+        var q = $q.defer();
 
-        navigator.notification.alert(message, function () {
-          d.resolve();
-        }, title, buttonName);
+        if (!$window.navigator.notification) {
+          $window.alert(message);
+          q.resolve();
+        }
+        else {
+          navigator.notification.alert(message, function () {
+            q.resolve();
+          }, title, buttonName);
+        }
 
-        return d.promise;
+        return q.promise;
       },
 
       confirm: function (message, title, buttonLabels) {
-        var d = $q.defer();
+        var q = $q.defer();
 
-        navigator.notification.confirm(message, function (buttonIndex) {
-          d.resolve(buttonIndex);
-        }, title, buttonLabels);
+        if (!$window.navigator.notification) {
+          if ($window.confirm(message)) {
+            q.resolve(1);
+          }
+          else {
+            q.resolve(2);
+          }
+        }
+        else {
+          navigator.notification.confirm(message, function (buttonIndex) {
+            q.resolve(buttonIndex);
+          }, title, buttonLabels);
+        }
 
-        return d.promise;
+        return q.promise;
       },
 
       prompt: function (message, title, buttonLabels, defaultText) {
-        var d = $q.defer();
+        var q = $q.defer();
 
-        navigator.notification.prompt(message, function (result) {
-          d.resolve(result);
-        }, title, buttonLabels, defaultText);
-
-        return d.promise;
+        if (!$window.navigator.notification) {
+          var res = $window.prompt(message, defaultText);
+          if (res != null) {
+            q.resolve({input1 : res, buttonIndex : 1});
+          }
+          else {
+            q.resolve({input1 : res, buttonIndex : 2});
+          }
+        }
+        else {
+          navigator.notification.prompt(message, function (result) {
+            q.resolve(result);
+          }, title, buttonLabels, defaultText);
+        }
+        return q.promise;
       },
 
       beep: function (times) {
@@ -2231,7 +2257,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.keychain',
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.datePicker',
-  'ngCordova.plugins.calendar'
+  'ngCordova.plugins.calendar',
+  'ngCordova.plugins.touchid'
 ]);
 
 // install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
@@ -2362,6 +2389,10 @@ angular.module('ngCordova.plugins.network', [])
       isOffline: function () {
         var networkState = navigator.connection.type;
         return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
+      },
+
+      watchNetwork: function () {
+        // function for watching online / offline
       }
     }
   }]);
@@ -2995,6 +3026,46 @@ angular.module('ngCordova.plugins.toast', [])
       }
     }
 
+  }]);
+
+// install   :      cordova plugin add https://github.com/leecrossley/cordova-plugin-touchid.git
+// link      :      https://github.com/leecrossley/cordova-plugin-touchid
+
+angular.module('ngCordova.plugins.touchid', [])
+
+  .factory('$cordovaTouchID', ['$q', function ($q) {
+
+    return {
+      checkSupport: function() {
+        var defer = $q.defer();
+        if (!window.cordova) {
+          defer.reject("Not supported without cordova.js");
+        } else {
+          touchid.checkSupport(function(value) {
+            defer.resolve(value);
+          }, function(err) {
+            defer.reject(err);
+          });
+        }
+
+        return defer.promise;
+      },
+
+      authenticate: function(auth_reason_text) {
+        var defer = $q.defer();
+        if (!window.cordova) {
+          defer.reject("Not supported without cordova.js");
+        } else {
+          touchid.authenticate(function(value) {
+            defer.resolve(value);
+          }, function(err) {
+            defer.reject(err);
+          }, auth_reason_text);
+        }
+
+        return defer.promise;
+      }
+    }
   }]);
 
 // install   :      cordova plugin add org.apache.cordova.vibration

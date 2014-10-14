@@ -11,6 +11,7 @@ angular.module('demo', [
   // modules
   // 'demo.adMob.ctrl',  // not working???
   'demo.barcodeScanner.ctrl',
+  'demo.batteryStatus.ctrl',
   'demo.camera.ctrl',
   'demo.clipboard.ctrl',
   'demo.contacts.ctrl',
@@ -23,10 +24,12 @@ angular.module('demo', [
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.network.ctrl',
+  'demo.media.ctrl',
   'demo.preferences.ctrl',
   'demo.statusbar.ctrl',
   'demo.toast.ctrl',
-  'demo.vibration.ctrl'
+  'demo.vibration.ctrl',
+  'demo.touchid.ctrl'
 ])
 
   .run(function ($ionicPlatform) {
@@ -91,6 +94,12 @@ angular.module('demo', [
         controller: "GoogleAnalyticsCtrl"
       })
 
+      .state('media', {
+        url: '/media',
+        templateUrl: 'app/media/media.html',
+        controller: "MediaCtrl"
+      })
+
       .state('printer', {
         url: '/printer',
         templateUrl: 'app/printer/printer.html',
@@ -113,6 +122,12 @@ angular.module('demo', [
         url: '/barcodeScanner',
         templateUrl: 'app/barcodeScanner/barcodeScanner.html',
         controller: "BarcodeScannerCtrl"
+      })
+
+      .state('batteryStatus', {
+        url: '/batteryStatus',
+        templateUrl: 'app/batteryStatus/batteryStatus.html',
+        controller: "BatteryStatusCtrl"
       })
 
       .state('statusbar', {
@@ -197,6 +212,12 @@ angular.module('demo', [
         url: '/toast',
         templateUrl: 'app/toast/toast.html',
         controller: "ToastCtrl"
+      })
+
+      .state('touchid', {
+        url: '/touchid',
+        templateUrl: 'app/touchid/touchid.html',
+        controller: "TouchIDCtrl"
       })
 
       .state('about', {
