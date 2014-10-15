@@ -1228,7 +1228,7 @@ cordova plugin add org.apache.cordova.media
 ```
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+module.controller('MyCtrl', function($scope, $cordovaMedia) {
   	var src = "/src/audio.mp3";
   
   	var mediaSource = $cordovaMedia.newMedia(src)
