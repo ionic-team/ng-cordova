@@ -1023,12 +1023,12 @@ angular.module('ngCordova.plugins.dialogs', [])
     };
   }]);
 
-// install   :
-// link      :
+// install   :   cordova -d plugin add /Users/your/path/here/phonegap-facebook-plugin --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+// link      :   https://github.com/Wizcorp/phonegap-facebook-plugin
 
 'use strict';
-angular.module('ngCordova.plugins.facebookConnect', [])
-  .provider('$cordovaFacebookConnectProvider', [
+angular.module('ngCordova.plugins.facebook', [])
+  .provider('$cordovaFacebookProvider', [
 
     function () {
       this.FacebookAppId = undefined;
@@ -1048,7 +1048,7 @@ angular.module('ngCordova.plugins.facebookConnect', [])
         }];
     }
   ])
-  .factory('$cordovaFacebookConnect', ['$q', '$cordova', function ($q, $cordova) {
+  .factory('$cordovaFacebook', ['$q', '$cordovaFacebookProvider', function ($q, $cordovaFacebookProvider) {
 
     return {
       init: function (appId) {
@@ -1057,11 +1057,11 @@ angular.module('ngCordova.plugins.facebookConnect', [])
         }
       },
 
-      login: function (o) {
-        this.init($cordova.getFacebookAppId());
+      login: function (permissions) {
+        this.init($cordovaFacebookProvider.getFacebookAppId());
 
         var q = $q.defer();
-        facebookConnectPlugin.login(o,
+        facebookConnectPlugin.login(permissions,
           function (res) {
             q.resolve(res);
           }, function (res) {
@@ -1071,10 +1071,10 @@ angular.module('ngCordova.plugins.facebookConnect', [])
         return q.promise;
       },
 
-      showDialog: function (o) {
+      showDialog: function (permissions) {
 
         var q = $q.defer();
-        facebookConnectPlugin.showDialog(o,
+        facebookConnectPlugin.showDialog(permissions,
           function (res) {
             q.resolve(res);
           },
@@ -1085,10 +1085,10 @@ angular.module('ngCordova.plugins.facebookConnect', [])
         return q.promise;
       },
 
-      api: function (path, permission) {
-
+      api: function (path, permissions) {
         var q = $q.defer();
-        facebookConnectPlugin.api(path, permission,
+
+        facebookConnectPlugin.api(path, permissions,
           function (res) {
             q.resolve(res);
           },
@@ -1121,7 +1121,6 @@ angular.module('ngCordova.plugins.facebookConnect', [])
           });
 
         return q.promise;
-
       },
 
       logout: function () {
@@ -1134,7 +1133,6 @@ angular.module('ngCordova.plugins.facebookConnect', [])
           });
 
         return q.promise;
-
       }
     };
   }]);
@@ -1972,11 +1970,10 @@ angular.module('ngCordova.plugins.keychain', [])
 
   .factory('$cordovaKeychain', ['$q', function ($q) {
 
-    var kc = new Keychain();
-
     return {
       getForKey: function (key, serviceName) {
         var defer = $q.defer();
+        var kc = new Keychain();
 
         kc.getForKey(function (value) {
           defer.resolve(value);
@@ -1989,6 +1986,7 @@ angular.module('ngCordova.plugins.keychain', [])
 
       setForKey: function (key, serviceName, value) {
         var defer = $q.defer();
+        var kc = new Keychain();
 
         kc.setForKey(function () {
           defer.resolve();
@@ -2001,6 +1999,7 @@ angular.module('ngCordova.plugins.keychain', [])
 
       removeForKey: function (ey, serviceName) {
         var defer = $q.defer();
+        var kc = new Keychain();
 
         kc.removeForKey(function () {
           defer.resolve();
@@ -2012,6 +2011,7 @@ angular.module('ngCordova.plugins.keychain', [])
       }
     }
   }]);
+
 // install   :
 // link      :
 
@@ -2246,7 +2246,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.printer',
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.backgroundGeolocation',
-  'ngCordova.plugins.facebookConnect',
+  'ngCordova.plugins.facebook',
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
