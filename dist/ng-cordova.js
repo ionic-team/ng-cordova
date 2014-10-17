@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.4-alpha
+ * v0.1.5-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -1071,10 +1071,10 @@ angular.module('ngCordova.plugins.facebook', [])
         return q.promise;
       },
 
-      showDialog: function (permissions) {
+      showDialog: function (options) {
 
         var q = $q.defer();
-        facebookConnectPlugin.showDialog(permissions,
+        facebookConnectPlugin.showDialog(options,
           function (res) {
             q.resolve(res);
           },

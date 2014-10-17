@@ -6,7 +6,9 @@ describe('ngCordovaMocks', function() {
 	describe('cordovaContacts', function () {
 		var $rootScope = null;
 		var $cordovaContacts = null;
-		var findOptions = {fields:'*'};
+		var findOptions = {
+			fields:['*']
+		};
 
 		var createContact = function(id, firstName, lastName, nickname,
 			phoneNumbers, emailAddresses, mailingAddresses, ims, organizations, 
@@ -39,6 +41,10 @@ describe('ngCordovaMocks', function() {
 				[], [], [], [], [], '06/21/1952',
 				'', [], [], []);
 			$cordovaContacts.contacts.push(earl);
+			var billy = createContact('2', 'Billy', 'Idol', 'Billy',
+				[], [], [], [], [], '11/30/1955',
+				'', [], [], []);
+			$cordovaContacts.contacts.push(billy);
 		}));
 
 		it('should save a contact', function (done) {
@@ -140,10 +146,30 @@ describe('ngCordovaMocks', function() {
 			$rootScope.$digest();
 		});
 
-		it('should find an existing contact', function(done) {
+		it('should find all contact', function(done) {
 			$cordovaContacts.find(findOptions)
 				.then(
-					function() { expect(true).toBe(true); },
+					function(results) {
+						expect(results.length).toEqual($cordovaContacts.contacts.length);
+					},
+					function(error) { expect(false).toBe(true); }
+				)
+				.finally(function() { done(); })
+			;
+
+			$rootScope.$digest();
+		});
+
+		it('should find an existing contact', function(done) {
+			var findOptions2 = angular.extend({}, findOptions, {
+				filter: 'earl'
+			});
+			$cordovaContacts.find(findOptions2)
+				.then(
+					function(results) {
+						expect(results.length).toEqual(1);
+						expect(results[0].displayName).toEqual('Earl Baleep');
+					},
 					function(error) { expect(false).toBe(true); }
 				)
 				.finally(function() { done(); })
@@ -153,15 +179,20 @@ describe('ngCordovaMocks', function() {
 		});
 
 		it ('should not find a specific contact', function(done) {
-			$cordovaContacts.find(findOptions)
+			var findOptions2 = angular.extend({}, findOptions, {
+				filter: 'jimmy'
+			});
+			$cordovaContacts.find(findOptions2)
 				.then(
-					function() { expect(true).toBe(true); },
+					function(results) {
+						expect(results.length).toEqual(0);
+					},
 					function(error) { expect(false).toBe(true); }
 				)
 				.finally(function() { done(); })
 			;
 
-			$rootScope.$digest();			
+			$rootScope.$digest();
 		});
 
 		it('should throw an error while finding a contact.', function(done) {
@@ -174,7 +205,7 @@ describe('ngCordovaMocks', function() {
 				.finally(function() { done(); })
 			;
 
-			$rootScope.$digest();			
+			$rootScope.$digest();
 		});
 	});
 })
