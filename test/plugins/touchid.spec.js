@@ -1,11 +1,11 @@
-describe('Service: $cordovaTouchid', function() {
+describe('Service: $cordovaTouchID', function() {
 
-  var $cordovaTouchid, $rootScope;
+  var $cordovaTouchID, $rootScope;
 
   beforeEach(module('ngCordova.plugins.touchid'));
 
-  beforeEach(inject(function (_$cordovaTouchid_, _$q_, _$rootScope_) {
-    $cordovaTouchid = _$cordovaTouchid_;
+  beforeEach(inject(function (_$cordovaTouchID_, _$q_, _$rootScope_) {
+    $cordovaTouchID = _$cordovaTouchID_;
     $rootScope = _$rootScope_;
 
     window.touchid = {
@@ -22,7 +22,7 @@ describe('Service: $cordovaTouchid', function() {
         successCb();
       });
 
-    $cordovaTouchid.checkSupport()
+    $cordovaTouchID.checkSupport()
       .then(function() {
         result = true;
       });
@@ -42,7 +42,7 @@ describe('Service: $cordovaTouchid', function() {
         errCb("Not available in test");
       });
 
-    $cordovaTouchid.checkSupport()
+    $cordovaTouchID.checkSupport()
       .then(angular.noop,
             function(err) {
               errorResult = false;
@@ -57,7 +57,7 @@ describe('Service: $cordovaTouchid', function() {
     _cordova = window.cordova;
     window.cordova = null;
 
-    $cordovaTouchid.checkSupport()
+    $cordovaTouchID.checkSupport()
       .then(angular.noop,
             function(err) {
               errorResult = false;
@@ -66,7 +66,7 @@ describe('Service: $cordovaTouchid', function() {
     $rootScope.$digest();
     expect(errorResult).toBe(false);
 
-    window.cordova = _cordova 
+    window.cordova = _cordova
   });
 
   it("calls authenticate with auth_text_reason", function() {
@@ -78,7 +78,7 @@ describe('Service: $cordovaTouchid', function() {
         successCb();
       });
 
-    $cordovaTouchid.authenticate(auth_text_reason)
+    $cordovaTouchID.authenticate(auth_text_reason)
       .then(function() {
         result = true;
       });
@@ -96,7 +96,7 @@ describe('Service: $cordovaTouchid', function() {
     _cordova = window.cordova;
     window.cordova = null;
 
-    $cordovaTouchid.authenticate()
+    $cordovaTouchID.authenticate()
       .then(angular.noop,
             function(err) {
               errorResult = false;
@@ -104,6 +104,6 @@ describe('Service: $cordovaTouchid', function() {
       );
     $rootScope.$digest();
     expect(errorResult).toBe(false);
-    window.cordova = _cordova 
+    window.cordova = _cordova
   });
 });
