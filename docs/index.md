@@ -764,6 +764,102 @@ module.controller('MyCtrl', function($scope, $cordovaDialogs) {
 });
 ```
 
+
+<a class="anchor" id="Facebook"></a>
+
+<div class="anchor-title">
+  <h3><a href="#Facebook"><code>$cordovaFacebook</code></a></h3>
+  <div>
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/facebook.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/Wizcorp/phonegap-facebook-plugin">Official Docs</a>
+  </div>
+</div>
+
+The Facebook Connect plugin to obtain access to the native FB application on iOS and Android. This plugin is not simple to install so make sure to check out the official docs.
+
+#### iOS Install
+
+Download the repo from https://github.com/Wizcorp/phonegap-facebook-plugin. Then type in the following commands in your Terminal.
+
+```bash
+cordova platform add ios
+
+cordova -d plugin add /Users/your/path/here/phonegap-facebook-plugin --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+```
+
+**[Check out the more complete docs for iOS install](https://github.com/Wizcorp/phonegap-facebook-plugin/blob/master/platforms/ios/README.md)**
+
+#### Android Install
+
+**[Check out the detailed docs for Android](https://github.com/Wizcorp/phonegap-facebook-plugin/blob/master/platforms/android/README.md)**
+
+
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaFile) {
+
+  var permissions = ["public_profile", "email", "user_friends"];
+  $cordovaFacebook.login(permissions)
+    .then(function(success) {
+      /* returns
+        { id: "634565435",
+          lastName: "bob"
+          ... 
+        }  */
+    }, function (error) {
+      // error
+    });
+    
+    
+  var options = {
+    method: "feed",
+    link: "http://example.com",
+    caption: "Such caption, very feed." 
+  };
+  $cordovaFacebook.showDialog(options)
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
+    
+    
+  var path = "me";
+  var permissions = null  // to hide the FB dialog
+  $cordovaFacebook.api(path, permissions)
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
+    
+    
+  // check if user is currently logged in  
+  $cordovaFacebook.getLoginStatus()
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
+    
+  $cordovaFacebook.getAccessToken()
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
+
+  $cordovaFacebook.logout()
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
+ 
+});
+```
+
+
 <a class="anchor" id="File"></a>
 
 <div class="anchor-title">
