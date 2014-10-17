@@ -796,7 +796,7 @@ cordova -d plugin add /Users/your/path/here/phonegap-facebook-plugin --variable 
 
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaFile) {
+module.controller('MyCtrl', function($scope, $cordovaFacebook) {
 
   var permissions = ["public_profile", "email", "user_friends"];
   $cordovaFacebook.login(permissions)
