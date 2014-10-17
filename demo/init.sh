@@ -19,10 +19,11 @@ ap statusbar
 ap vibration
 ap media
 
-cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard
-cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
-cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
-cordova plugin add https://github.com/chrisekelley/AppPreferences
-cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
-cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
-cordova plugin add uk.co.ilee.touchid
+cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git     # facebook
+cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard          # keyboard
+cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git    # date-picker
+cordova plugin add https://github.com/wildabeast/BarcodeScanner.git     # barcode scanner
+cordova plugin add https://github.com/chrisekelley/AppPreferences       # app preferences
+cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git    # flashlight
+cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git         # toast
+cordova plugin add uk.co.ilee.touchid       # touchID

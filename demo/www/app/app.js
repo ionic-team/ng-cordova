@@ -21,6 +21,7 @@ angular.module('demo', [
   'demo.deviceOrientation.ctrl',
   'demo.dialogs.ctrl',
   'demo.flashlight.ctrl',
+  'demo.facebook.ctrl',
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.network.ctrl',
@@ -47,7 +48,9 @@ angular.module('demo', [
     })
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider) {
+
+    // $cordovaFacebookProvider.setFacebookAppId(632441883539035);
 
     $stateProvider
 
