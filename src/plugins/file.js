@@ -286,7 +286,7 @@ angular.module('ngCordova.plugins.file', [])
       var q = $q.defer();
       getFilesystem().then(
         function(filesystem) {
-          filesystem.root.getDirectory(dir, options, q.resolve, q.resolve);
+          filesystem.root.getDirectory(dir, options, q.resolve, q.reject);
         }, q.reject);
       return q.promise;
     }
@@ -298,7 +298,11 @@ angular.module('ngCordova.plugins.file', [])
      */
     function getFilesystem() {
       var q = $q.defer();
-      $window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
+      try {
+        $window.requestFileSystem($window.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
+      } catch (err) {
+        q.reject(err);
+      }
       return q.promise;
     }
   }]);
