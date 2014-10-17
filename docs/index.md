@@ -1327,30 +1327,30 @@ cordova plugin add org.apache.cordova.media
 module.controller('MyCtrl', function($scope, $cordovaMedia) {
   	var src = "/src/audio.mp3";
   
-  	var mediaSource = $cordovaMedia.newMedia(src)
-  	var promise = mediaSource.promise
-  	var mediaStatus = mediaSource.mediaStatus
-  	var media = mediaSource.media
+  	var mediaSource = $cordovaMedia.newMedia(src);
+  	var promise = mediaSource.promise;
+  	var mediaStatus = mediaSource.mediaStatus;
+  	var media = mediaSource.media;
   
-  	$cordovaMedia.play(media)
+  	$cordovaMedia.play(media);
   	
-  	$cordovaMedia.pause(media)
+  	$cordovaMedia.pause(media);
   	
-  	$cordovaMedia.stop(media)
+  	$cordovaMedia.stop(media);
   	
-  	$cordovaMedia.release(media)
+  	$cordovaMedia.release(media);
   	
-  	$cordovaMedia.getDuration(media)
+  	$cordovaMedia.getDuration(media);
   	
-  	$cordovaMedia.seekTo(media, 5000000) // milliseconds
+  	$cordovaMedia.seekTo(media, 5000000); // milliseconds
   	
-  	$cordovaMedia.setVolume(media, 80)
+  	$cordovaMedia.setVolume(media, 80);
   	
-  	$cordovaMedia.startRecord(media)
+  	$cordovaMedia.startRecord(media);
   	
-  	$cordovaMedia.stopRecord(media)
+  	$cordovaMedia.stopRecord(media);
   
-  	$cordovaMedia.getCurrentPosition(media).then(...)
+  	$cordovaMedia.getCurrentPosition(media).then(...);
 });
 ```
 
