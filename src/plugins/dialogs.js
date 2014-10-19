@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.dialogs', [])
 
-  .factory('$cordovaDialogs', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaDialogs', ['$q', '$window', '$cordova', function ($q, $window, $cordova) {
 
     return {
       alert: function (message, title, buttonName) {
@@ -14,9 +14,11 @@ angular.module('ngCordova.plugins.dialogs', [])
           q.resolve();
         }
         else {
-          navigator.notification.alert(message, function () {
-            q.resolve();
-          }, title, buttonName);
+          $cordova.ready().then(function () {
+            navigator.notification.alert(message, function () {
+              q.resolve();
+            }, title, buttonName);
+          });
         }
 
         return q.promise;
@@ -34,9 +36,11 @@ angular.module('ngCordova.plugins.dialogs', [])
           }
         }
         else {
-          navigator.notification.confirm(message, function (buttonIndex) {
-            q.resolve(buttonIndex);
-          }, title, buttonLabels);
+          $cordova.ready().then(function () {
+            navigator.notification.confirm(message, function (buttonIndex) {
+              q.resolve(buttonIndex);
+            }, title, buttonLabels);
+          })
         }
 
         return q.promise;
@@ -55,15 +59,19 @@ angular.module('ngCordova.plugins.dialogs', [])
           }
         }
         else {
-          navigator.notification.prompt(message, function (result) {
-            q.resolve(result);
-          }, title, buttonLabels, defaultText);
+          $cordova.ready().then(function () {
+            navigator.notification.prompt(message, function (result) {
+              q.resolve(result);
+            }, title, buttonLabels, defaultText);
+          })
         }
         return q.promise;
       },
 
       beep: function (times) {
-        return navigator.notification.beep(times);
+        $cordova.ready().then(function () {
+          return navigator.notification.beep(times);
+        })
       }
     };
   }]);
