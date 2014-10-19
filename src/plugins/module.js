@@ -43,4 +43,21 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.datePicker',
   'ngCordova.plugins.calendar',
   'ngCordova.plugins.touchid'
-]);
+])
+
+  .factory("$cordova", function ($rootScope, $document, $q) {
+
+    var q = $q.defer();
+
+    $document.bind('deviceready', function () {
+      $rootScope.$apply(q.resolve());
+    });
+
+    return {
+      ready: function () {
+        return q.promise
+      }
+    };
+  })
+  .run(function ($cordova) {
+  });

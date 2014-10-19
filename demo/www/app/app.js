@@ -48,7 +48,7 @@ angular.module('demo', [
     })
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider) {
+  .config(function ($stateProvider, $urlRouterProvider) {
 
     // $cordovaFacebookProvider.setFacebookAppId(632441883539035);
 
