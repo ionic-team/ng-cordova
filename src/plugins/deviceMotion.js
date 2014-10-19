@@ -3,32 +3,33 @@
 
 angular.module('ngCordova.plugins.deviceMotion', [])
 
-  .factory('$cordovaDeviceMotion', ['$q', function ($q) {
+  .factory('$cordovaDeviceMotion', ['$q', '$cordova', function ($q, $cordova) {
 
     return {
       getCurrentAcceleration: function () {
         var q = $q.defer();
 
-        navigator.accelerometer.getCurrentAcceleration(function (result) {
-          // Do any magic you need
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
+        $cordova.ready().then(function () {
+          navigator.accelerometer.getCurrentAcceleration(function (result) {
+            q.resolve(result);
+          }, function (err) {
+            q.reject(err);
+          });
         });
-
         return q.promise;
       },
 
       watchAcceleration: function (options) {
         var q = $q.defer();
 
-        var watchId = navigator.accelerometer.watchAcceleration(function (result) {
-          // Do any magic you need
-          //q.resolve(watchID);
-          q.notify(result);
-        }, function (err) {
-          q.reject(err);
-        }, options);
+        var watchId;
+        $cordova.ready().then(function () {
+          watchId = navigator.accelerometer.watchAcceleration(function (result) {
+            q.notify(result);
+          }, function (err) {
+            q.reject(err);
+          }, options);
+        });
 
         return {
           watchId: watchId,
@@ -37,7 +38,9 @@ angular.module('ngCordova.plugins.deviceMotion', [])
       },
 
       clearWatch: function (watchID) {
-        return navigator.accelerometer.clearWatch(watchID);
+        $cordova.ready().then(function () {
+          return navigator.accelerometer.clearWatch(watchID);
+        });
       }
     }
   }]);

@@ -3,17 +3,23 @@
 
 angular.module('ngCordova.plugins.vibration', [])
 
-  .factory('$cordovaVibration', [function () {
+  .factory('$cordovaVibration', ['$cordova', function ($cordova) {
 
     return {
       vibrate: function (times) {
-        return navigator.notification.vibrate(times);
+        $cordova.ready().then(function () {
+          return navigator.notification.vibrate(times);
+        });
       },
       vibrateWithPattern: function (pattern, repeat) {
-        return navigator.notification.vibrateWithPattern(pattern, repeat);
+        $cordova.ready().then(function () {
+          return navigator.notification.vibrateWithPattern(pattern, repeat);
+        });
       },
       cancelVibration: function () {
-        return navigator.notification.cancelVibration();
+        $cordova.ready().then(function () {
+          return navigator.notification.cancelVibration();
+        });
       }
     }
   }]);

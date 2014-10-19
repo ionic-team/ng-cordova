@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.capture', [])
 
-  .factory('$cordovaCapture', ['$q', function ($q) {
+  .factory('$cordovaCapture', ['$q', '$cordova', function ($q, $cordova) {
 
     return {
       captureAudio: function (options) {
@@ -14,11 +14,13 @@ angular.module('ngCordova.plugins.capture', [])
           return q.promise;
         }
 
-        navigator.device.capture.captureAudio(function (audioData) {
-          q.resolve(audioData);
-        }, function (err) {
-          q.reject(err);
-        }, options);
+        $cordova.ready().then(function () {
+          navigator.device.capture.captureAudio(function (audioData) {
+            q.resolve(audioData);
+          }, function (err) {
+            q.reject(err);
+          }, options);
+        });
 
         return q.promise;
       },
@@ -30,11 +32,13 @@ angular.module('ngCordova.plugins.capture', [])
           return q.promise;
         }
 
-        navigator.device.capture.captureImage(function (imageData) {
-          q.resolve(imageData);
-        }, function (err) {
-          q.reject(err);
-        }, options);
+        $cordova.ready().then(function () {
+          navigator.device.capture.captureImage(function (imageData) {
+            q.resolve(imageData);
+          }, function (err) {
+            q.reject(err);
+          }, options);
+        });
 
         return q.promise;
       },
@@ -45,12 +49,13 @@ angular.module('ngCordova.plugins.capture', [])
           q.resolve(null);
           return q.promise;
         }
-
-        navigator.device.capture.captureVideo(function (videoData) {
-          q.resolve(videoData);
-        }, function (err) {
-          q.reject(err);
-        }, options);
+        $cordova.ready().then(function () {
+          navigator.device.capture.captureVideo(function (videoData) {
+            q.resolve(videoData);
+          }, function (err) {
+            q.reject(err);
+          }, options);
+        });
 
         return q.promise;
       }

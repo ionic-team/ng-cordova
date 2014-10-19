@@ -5,23 +5,31 @@
 
 angular.module('ngCordova.plugins.keyboard', [])
 
-  .factory('$cordovaKeyboard', [function () {
+  .factory('$cordovaKeyboard', ['$cordova', function ($cordova) {
 
     return {
       hideAccessoryBar: function (bool) {
-        return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
+        $cordova.ready().then(function () {
+          return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
+        });
       },
 
       close: function () {
-        return cordova.plugins.Keyboard.close();
+        $cordova.ready().then(function () {
+          return cordova.plugins.Keyboard.close();
+        });
       },
 
       disableScroll: function (bool) {
-        return cordova.plugins.Keyboard.disableScroll(bool);
+        $cordova.ready().then(function () {
+          return cordova.plugins.Keyboard.disableScroll(bool);
+        });
       },
 
       isVisible: function () {
-        return cordova.plugins.Keyboard.isVisible
+        $cordova.ready().then(function () {
+          return cordova.plugins.Keyboard.isVisible;
+        });
       }
     }
   }]);

@@ -1,17 +1,17 @@
 angular.module('ngCordova.plugins.datePicker', [])
 
-  .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
+  .factory('$cordovaDatePicker', ['$window', '$q', '$cordova', function ($window, $q, $cordova) {
 
     return {
-      show: function(options) {
+      show: function (options) {
         var d = $q.defer();
 
-        $window.datePicker.show(options, function (date) {
-          d.resolve(date);
+        $cordova.ready().then(function () {
+          $window.datePicker.show(options, function (date) {
+            d.resolve(date);
+          });
         });
-
         return d.promise;
       }
     }
-
   }]);

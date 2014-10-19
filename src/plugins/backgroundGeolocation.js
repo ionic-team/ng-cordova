@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-  .factory('$cordovaBackgroundGeolocation', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaBackgroundGeolocation', ['$q', '$window', '$cordova', function ($q, $window, $cordova) {
 
     return {
 
@@ -18,14 +18,16 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
         this.init();
         var q = $q.defer();
 
-        $window.plugins.backgroundGeoLocation.configure(
-          function (result) {
-            q.resolve(result);
-            $window.plugins.backgroundGeoLocation.finish();
-          },
-          function (err) {
-            q.reject(err);
-          }, options);
+        $cordova.ready().then(function () {
+          $window.plugins.backgroundGeoLocation.configure(
+            function (result) {
+              q.resolve(result);
+              $window.plugins.backgroundGeoLocation.finish();
+            },
+            function (err) {
+              q.reject(err);
+            }, options);
+        });
 
         this.start();
 
@@ -35,13 +37,16 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
       start: function () {
         var q = $q.defer();
 
-        $window.plugins.backgroundGeoLocation.start(
-          function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
+        $cordova.ready().then(function () {
+
+          $window.plugins.backgroundGeoLocation.start(
+            function (result) {
+              q.resolve(result);
+            },
+            function (err) {
+              q.reject(err);
+            });
+        });
 
         return q.promise;
       },
@@ -49,16 +54,17 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
       stop: function () {
         var q = $q.defer();
 
-        $window.plugins.backgroundGeoLocation.stop(
-          function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
+        $cordova.ready().then(function () {
+          $window.plugins.backgroundGeoLocation.stop(
+            function (result) {
+              q.resolve(result);
+            },
+            function (err) {
+              q.reject(err);
+            });
+        });
 
         return q.promise;
       }
     };
-  }
-  ]);
+  }]);
