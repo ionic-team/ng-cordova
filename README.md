@@ -46,6 +46,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - [Google Analytics](https://github.com/phonegap-build/GAPlugin)
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
 - [Keychain](https://github.com/shazron/KeychainPlugin)
+- [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
 - [Media Capture](https://github.com/apache/cordova-plugin-media-capture)
 - [Media](https://github.com/apache/cordova-plugin-media) *
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
