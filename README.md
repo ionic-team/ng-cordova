@@ -27,6 +27,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - [App Prefences](https://github.com/dferrell/plugins-application-preferences)
 - [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
+- [Badge](https://github.com/katzer/cordova-plugin-badge)
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
 - [Bluetooth Serial](https://github.com/don/BluetoothSerial)
 - [Camera](https://github.com/apache/cordova-plugin-camera) *
