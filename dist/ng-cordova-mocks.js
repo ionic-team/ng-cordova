@@ -242,7 +242,7 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 
 				if (existingIndex === null) {
 					this.contacts.push(contact);
-					defer.resolve();					
+					defer.resolve();
 				} else {
 					defer.reject('Contact already exists.');
 				}
@@ -280,32 +280,42 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 			if (this.throwsError) {
 				defer.reject('There was an error finding the contact.');
 			} else {
-				var fields = options.fields || ['id', 'displayName'];
-				delete options.fields;				
-
-				if (!fields) {
-					defer.reject('ContactError.INVALID_ARGUMENT_ERROR');
+				if (this.contacts.length===0) {
+					defer.resolve([]);
 				} else {
-					if (fields === '*') {
-						defer.resolve(this.contacts);
+					fields = options.fields || ['id', 'displayName'];
+					if (!fields) {
+						defer.reject('ContactError.INVALID_ARGUMENT_ERROR');
 					} else {
 						// Implement a very rudimentary search approach for testing purposes.
 						// This is NOT exhaustive.
-						var results = [];
-						for (var i=0; i<this.contacts.length; i++) {
-							for(var key in this.contacts[i]) {
-								var propertyValue = this.contacts[i][key];
+						var results = [],
+							search = options.filter?options.filter.toLowerCase():null;
+						if (!search) {
+							defer.resolve(this.contacts);
+						} else {
+							// search in each string field
+							var searchFields = (fields.length === 1 && fields[0]==='*') ? Object.keys(this.contacts[0]) : fields;
+							for (var i=0; i<this.contacts.length; i++) {
+								var contact = this.contacts[i];
+								for(var key in searchFields) {
+									var propertyValue = contact[searchFields[key]];
+									if (propertyValue && typeof propertyValue === 'string' && propertyValue.toLowerCase().indexOf(search)>-1) {
+										results.push(contact);
+										break;
+									}
+								}
 							}
+							defer.resolve(results);
 						}
-						// TODO: Search by individual fields
-						defer.resolve(results);
 					}
 				}
 			}
-			return defer.promise;			
+			return defer.promise;
 		}
 	};
 }]);
+
 /**
  * @ngdoc service
  * @name ngCordovaMocks.cordovaDatePicker
