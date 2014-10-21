@@ -42,5 +42,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.datePicker',
   'ngCordova.plugins.calendar',
-  'ngCordova.plugins.touchid'
+  'ngCordova.plugins.touchid',
+  'ngCordova.plugins.badge'
 ]);
