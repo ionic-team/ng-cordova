@@ -27,6 +27,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - [App Prefences](https://github.com/dferrell/plugins-application-preferences)
 - [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
+- [Badge](https://github.com/katzer/cordova-plugin-badge)
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
 - [Bluetooth Serial](https://github.com/don/BluetoothSerial)
 - [Camera](https://github.com/apache/cordova-plugin-camera) *
@@ -46,6 +47,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - [Google Analytics](https://github.com/phonegap-build/GAPlugin)
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
 - [Keychain](https://github.com/shazron/KeychainPlugin)
+- [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
 - [Media Capture](https://github.com/apache/cordova-plugin-media-capture)
 - [Media](https://github.com/apache/cordova-plugin-media) *
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)

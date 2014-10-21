@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.4-alpha
+ * v0.1.5-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
