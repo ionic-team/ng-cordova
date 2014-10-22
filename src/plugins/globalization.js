@@ -9,14 +9,12 @@ angular.module('ngCordova.plugins.globalization', [])
       getPreferredLanguage: function () {
         var q = $q.defer();
 
-        $cordova.ready().then(function () {
           navigator.globalization.getPreferredLanguage(function (result) {
               q.resolve(result);
             },
             function (err) {
               q.reject(err);
             });
-        });
 
         return q.promise;
       },

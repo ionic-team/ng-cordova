@@ -174,6 +174,82 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
     };
   }]);
 
+// install  :     cordova plugin add de.appplant.cordova.plugin.badge
+// link     :     https://github.com/katzer/cordova-plugin-badge
+
+angular.module('ngCordova.plugins.badge', [])
+
+  .factory('$cordovaBadge', ['$q', function ($q) {
+
+    return {
+      hasPermission: function () {
+        var q = $q.defer();
+
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            q.resolve(true);
+          }
+          else {
+            q.reject("You do not have permission");
+          }
+        });
+
+        return q.promise;
+      },
+
+      promptForPermission: function () {
+        return cordova.plugins.notification.badge.promptForPermission();
+      },
+
+      set: function (number) {
+        var q = $q.defer();
+
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            q.resolve(cordova.plugins.notification.badge.set(number));
+          }
+          else {
+            q.reject("You do not have permission to set Badge");
+          }
+        });
+        return q.promise;
+      },
+
+      get: function () {
+        var q = $q.defer();
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            cordova.plugins.notification.badge.get(function (badge) {
+              q.resolve(badge);
+            });
+          } else {
+            q.reject("You do not have permission to get Badge");
+          }
+        });
+
+        return q.promise;
+      },
+
+      clear: function () {
+        var q = $q.defer();
+
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            q.resolve(cordova.plugins.notification.badge.clear());
+          }
+          else {
+            q.reject("You do not have permission to clear Badge");
+          }
+        });
+        return q.promise;
+      },
+
+      configure: function (config) {
+        return cordova.plugins.notification.badge.configure(config);
+      }
+    }
+  }]);
+
 // install  :    cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 // link     :    https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
 
@@ -856,8 +932,7 @@ angular.module('ngCordova.plugins.datePicker', [])
 // link      :     https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.device', [])
-
-  .factory('$cordovaDevice', [function () {
+  .factory('$cordovaDevice', [ '$cordova', function ($cordova) {
 
     return {
       getDevice: function () {
@@ -949,13 +1024,12 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       getCurrentHeading: function () {
         var q = $q.defer();
 
-        $cordova.ready().then(function () {
           navigator.compass.getCurrentHeading(function (heading) {
             q.resolve(heading);
           }, function (err) {
             q.reject(err);
           });
-        });
+
 
         return q.promise;
       },
@@ -1466,7 +1540,7 @@ angular.module('ngCordova.plugins.file', [])
       var q = $q.defer();
       getFilesystem().then(
         function(filesystem) {
-          filesystem.root.getDirectory(dir, options, q.resolve, q.resolve);
+          filesystem.root.getDirectory(dir, options, q.resolve, q.reject);
         }, q.reject);
       return q.promise;
     }
@@ -1478,7 +1552,11 @@ angular.module('ngCordova.plugins.file', [])
      */
     function getFilesystem() {
       var q = $q.defer();
-      $window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
+      try {
+        $window.requestFileSystem($window.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
+      } catch (err) {
+        q.reject(err);
+      }
       return q.promise;
     }
   }]);
@@ -1674,14 +1752,12 @@ angular.module('ngCordova.plugins.globalization', [])
       getPreferredLanguage: function () {
         var q = $q.defer();
 
-        $cordova.ready().then(function () {
           navigator.globalization.getPreferredLanguage(function (result) {
               q.resolve(result);
             },
             function (err) {
               q.reject(err);
             });
-        });
 
         return q.promise;
       },
