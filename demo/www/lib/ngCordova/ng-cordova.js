@@ -174,6 +174,82 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
     };
   }]);
 
+// install  :     cordova plugin add de.appplant.cordova.plugin.badge
+// link     :     https://github.com/katzer/cordova-plugin-badge
+
+angular.module('ngCordova.plugins.badge', [])
+
+  .factory('$cordovaBadge', ['$q', function ($q) {
+
+    return {
+      hasPermission: function () {
+        var q = $q.defer();
+
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            q.resolve(true);
+          }
+          else {
+            q.reject("You do not have permission");
+          }
+        });
+
+        return q.promise;
+      },
+
+      promptForPermission: function () {
+        return cordova.plugins.notification.badge.promptForPermission();
+      },
+
+      set: function (number) {
+        var q = $q.defer();
+
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            q.resolve(cordova.plugins.notification.badge.set(number));
+          }
+          else {
+            q.reject("You do not have permission to set Badge");
+          }
+        });
+        return q.promise;
+      },
+
+      get: function () {
+        var q = $q.defer();
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            cordova.plugins.notification.badge.get(function (badge) {
+              q.resolve(badge);
+            });
+          } else {
+            q.reject("You do not have permission to get Badge");
+          }
+        });
+
+        return q.promise;
+      },
+
+      clear: function () {
+        var q = $q.defer();
+
+        cordova.plugins.notification.badge.hasPermission(function (permission) {
+          if (permission) {
+            q.resolve(cordova.plugins.notification.badge.clear());
+          }
+          else {
+            q.reject("You do not have permission to clear Badge");
+          }
+        });
+        return q.promise;
+      },
+
+      configure: function (config) {
+        return cordova.plugins.notification.badge.configure(config);
+      }
+    }
+  }]);
+
 // install  :    cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 // link     :    https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
 
@@ -856,51 +932,36 @@ angular.module('ngCordova.plugins.datePicker', [])
 // link      :     https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.device', [])
-
-  .factory('$cordovaDevice', ['$cordova', function ($cordova) {
+  .factory('$cordovaDevice', [ '$cordova', function ($cordova) {
 
     return {
       getDevice: function () {
-        $cordova.ready().then(function () {
-          return device;
-        });
+        return device;
       },
 
       getCordova: function () {
-        $cordova.ready().then(function () {
-          return device.cordova;
-        });
+        return device.cordova;
       },
 
       getModel: function () {
-        $cordova.ready().then(function () {
-          return device.model;
-        });
+        return device.model;
       },
 
       // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
       getName: function () {
-        $cordova.ready().then(function () {
-          return device.name;
-        });
+        return device.name;
       },
 
       getPlatform: function () {
-        $cordova.ready().then(function () {
-          return device.platform;
-        });
+        return device.platform;
       },
 
       getUUID: function () {
-        $cordova.ready().then(function () {
-          return device.uuid;
-        });
+        return device.uuid;
       },
 
       getVersion: function () {
-        $cordova.ready().then(function () {
-          return device.version;
-        });
+        return device.version;
       }
     }
   }]);
@@ -963,13 +1024,12 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       getCurrentHeading: function () {
         var q = $q.defer();
 
-        $cordova.ready().then(function () {
           navigator.compass.getCurrentHeading(function (heading) {
             q.resolve(heading);
           }, function (err) {
             q.reject(err);
           });
-        });
+
 
         return q.promise;
       },
@@ -1480,7 +1540,7 @@ angular.module('ngCordova.plugins.file', [])
       var q = $q.defer();
       getFilesystem().then(
         function(filesystem) {
-          filesystem.root.getDirectory(dir, options, q.resolve, q.resolve);
+          filesystem.root.getDirectory(dir, options, q.resolve, q.reject);
         }, q.reject);
       return q.promise;
     }
@@ -1492,7 +1552,11 @@ angular.module('ngCordova.plugins.file', [])
      */
     function getFilesystem() {
       var q = $q.defer();
-      $window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
+      try {
+        $window.requestFileSystem($window.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
+      } catch (err) {
+        q.reject(err);
+      }
       return q.promise;
     }
   }]);
@@ -1688,14 +1752,12 @@ angular.module('ngCordova.plugins.globalization', [])
       getPreferredLanguage: function () {
         var q = $q.defer();
 
-        $cordova.ready().then(function () {
           navigator.globalization.getPreferredLanguage(function (result) {
               q.resolve(result);
             },
             function (err) {
               q.reject(err);
             });
-        });
 
         return q.promise;
       },
@@ -2677,31 +2739,42 @@ angular.module('ngCordova.plugins.printer', [])
 
 angular.module('ngCordova.plugins.progressIndicator', [])
 
-  .factory('$cordovaProgress', ['$q', function ($q) {
+  .factory('$cordovaProgress', ['$q', '$cordova', function ($cordova) {
 
     return {
       showSimple: function (_dim) {
         var dim = _dim || false;
-        return ProgressIndicator.showSimple(dim)
+
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showSimple(dim)
+        });
       },
 
       showSimpleWithLabel: function (_dim, _label) {
         var dim = _dim || false;
         var label = _label || "Loading...";
-        return ProgressIndicator.showSimpleWithLabel(dim, label);
+
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showSimpleWithLabel(dim, label);
+        });
       },
 
       showSimpleWithLabelDetail: function (_dim, _label, _detail) {
         var dim = _dim || false;
         var label = _label || "Loading...";
         var detail = _detail || "Please wait";
-        return ProgressIndicator.showSimpleWithLabelDetail(dim, label, detail);
+
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showSimpleWithLabelDetail(dim, label, detail);
+        });
       },
 
       showDeterminate: function (_dim, _timeout) {
         var dim = _dim || false;
         var timeout = _timeout || 50000;
-        return ProgressIndicator.showDeterminate(dim, timeout)
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showDeterminate(dim, timeout)
+        });
       },
 
       showDeterminateWithLabel: function (_dim, _timeout, _label) {
@@ -2709,50 +2782,68 @@ angular.module('ngCordova.plugins.progressIndicator', [])
         var timeout = _timeout || 50000;
         var label = _label || "Loading...";
 
-        return ProgressIndicator.showDeterminateWithLabel(dim, timeout, label)
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showDeterminateWithLabel(dim, timeout, label)
+        });
       },
 
       showAnnular: function (_dim, _timeout) {
         var dim = _dim || false;
         var timeout = _timeout || 50000;
-        return ProgressIndicator.showAnnular(dim, timeout)
+
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showAnnular(dim, timeout)
+        });
       },
 
       showAnnularWithLabel: function (_dim, _timeout, _label) {
         var dim = _dim || false;
         var timeout = _timeout || 50000;
         var label = _label || "Loading...";
-        return ProgressIndicator.showAnnularWithLabel(dim, timeout, label)
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showAnnularWithLabel(dim, timeout, label)
+        });
       },
 
       showBar: function (_dim, _timeout) {
         var dim = _dim || false;
         var timeout = _timeout || 50000;
-        return ProgressIndicator.showBar(dim, timeout)
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showBar(dim, timeout)
+        });
       },
 
       showBarWithLabel: function (_dim, _timeout, _label) {
         var dim = _dim || false;
         var timeout = _timeout || 50000;
         var label = _label || "Loading...";
-        return ProgressIndicator.showBarWithLabel(dim, timeout, label)
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showBarWithLabel(dim, timeout, label)
+        });
       },
 
       showSuccess: function (_dim, _label) {
         var dim = _dim || false;
         var label = _label || "Success";
-        return ProgressIndicator.showSuccess(dim, label)
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showSuccess(dim, label)
+        });
       },
 
       showText: function (_dim, _text, _position) {
         var dim = _dim || false;
         var text = _text || "Warning";
         var position = _position || "center";
-        return ProgressIndicator.showText(dim, text, position);
+        $cordova.ready().then(function () {
+          return ProgressIndicator.showText(dim, text, position);
+
+        });
       },
 
       hide: function () {
-        return ProgressIndicator.hide();
+        $cordova.ready().then(function () {
+          return ProgressIndicator.hide();
+        });
       }
     }
 
@@ -3315,17 +3406,23 @@ angular.module('ngCordova.plugins.touchid', [])
 
 angular.module('ngCordova.plugins.vibration', [])
 
-  .factory('$cordovaVibration', [function () {
+  .factory('$cordovaVibration', ['$cordova', function ($cordova) {
 
     return {
       vibrate: function (times) {
-        return navigator.notification.vibrate(times);
+        $cordova.ready().then(function () {
+          return navigator.notification.vibrate(times);
+        });
       },
       vibrateWithPattern: function (pattern, repeat) {
-        return navigator.notification.vibrateWithPattern(pattern, repeat);
+        $cordova.ready().then(function () {
+          return navigator.notification.vibrateWithPattern(pattern, repeat);
+        });
       },
       cancelVibration: function () {
-        return navigator.notification.cancelVibration();
+        $cordova.ready().then(function () {
+          return navigator.notification.cancelVibration();
+        });
       }
     }
   }]);
@@ -3335,20 +3432,22 @@ angular.module('ngCordova.plugins.vibration', [])
 
 angular.module('ngCordova.plugins.zip', [])
 
-  .factory('$cordovaZip', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaZip', ['$q', '$window', '$cordova', function ($q, $window, $cordova) {
 
     return {
       unzip: function (source, destination) {
         var q = $q.defer();
 
-        $window.zip.unzip(source, destination, function (isError) {
-          if (isError === 0) {
-            q.resolve();
-          } else {
-            q.reject();
-          }
-        }, function (progressEvent) {
-          q.notify(progressEvent);
+        $cordova.ready().then(function () {
+          $window.zip.unzip(source, destination, function (isError) {
+            if (isError === 0) {
+              q.resolve();
+            } else {
+              q.reject();
+            }
+          }, function (progressEvent) {
+            q.notify(progressEvent);
+          });
         });
 
         return q.promise;

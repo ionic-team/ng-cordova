@@ -2,8 +2,7 @@
 // link      :     https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.device', [])
-
-  .factory('$cordovaDevice', [function () {
+  .factory('$cordovaDevice', [ '$cordova', function ($cordova) {
 
     return {
       getDevice: function () {

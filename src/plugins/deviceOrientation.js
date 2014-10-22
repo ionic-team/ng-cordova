@@ -9,13 +9,12 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       getCurrentHeading: function () {
         var q = $q.defer();
 
-        $cordova.ready().then(function () {
           navigator.compass.getCurrentHeading(function (heading) {
             q.resolve(heading);
           }, function (err) {
             q.reject(err);
           });
-        });
+
 
         return q.promise;
       },

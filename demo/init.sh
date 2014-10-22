@@ -13,6 +13,7 @@ ap device-motion
 ap device-orientation
 ap network-information
 ap geolocation
+ap globalization
 ap file
 ap splashscreen
 ap statusbar
