@@ -6,17 +6,17 @@ angular.module('ngCordova.plugins.facebook', [])
   .provider('$cordovaFacebook', [
 
     function () {
-      var FacebookAppId = undefined;
+      var appId = undefined;
 
-      this.setFacebookAppId = function (id) {
-        FacebookAppId = id;
+      this.setAppId = function (id) {
+        appId = id;
       };
 
       this.$get = ['$q',
         function ($q) {
           return {
-            getFacebookAppId: function () {
-              return FacebookAppId;
+            getAppId: function () {
+              return appId;
             },
 
             init: function (appId) {
@@ -26,7 +26,7 @@ angular.module('ngCordova.plugins.facebook', [])
             },
 
             login: function (permissions) {
-              this.init(this.getFacebookAppId());
+              this.init(this.getAppId());
 
               var q = $q.defer();
               facebookConnectPlugin.login(permissions,
