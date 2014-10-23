@@ -3,111 +3,106 @@
 
 'use strict';
 angular.module('ngCordova.plugins.facebook', [])
-  .provider('$cordovaFacebookProvider', [
+  .provider('$cordovaFacebook', [
 
     function () {
-      this.FacebookAppId = undefined;
+      var FacebookAppId = undefined;
 
       this.setFacebookAppId = function (id) {
-        this.FacebookAppId = id;
+        FacebookAppId = id;
       };
 
-      this.$get = [
-        function () {
-          var FbAppId = this.FacebookAppId;
+      this.$get = ['$q',
+        function ($q) {
           return {
             getFacebookAppId: function () {
-              return FbAppId;
+              return FacebookAppId;
+            },
+
+            init: function (appId) {
+              if (!window.cordova) {
+                facebookConnectPlugin.browserInit(appId);
+              }
+            },
+
+            login: function (permissions) {
+              this.init(this.getFacebookAppId());
+
+              var q = $q.defer();
+              facebookConnectPlugin.login(permissions,
+                function (res) {
+                  q.resolve(res);
+                }, function (res) {
+                  q.reject(res);
+                });
+
+              return q.promise;
+            },
+
+            showDialog: function (options) {
+
+              var q = $q.defer();
+              facebookConnectPlugin.showDialog(options,
+                function (res) {
+                  q.resolve(res);
+                },
+                function (err) {
+                  q.reject(err);
+                });
+
+              return q.promise;
+            },
+
+            api: function (path, permissions) {
+              var q = $q.defer();
+
+              facebookConnectPlugin.api(path, permissions,
+                function (res) {
+                  q.resolve(res);
+                },
+                function (err) {
+                  q.reject(err);
+                });
+
+              return q.promise;
+            },
+
+            getAccessToken: function () {
+              var q = $q.defer();
+              facebookConnectPlugin.getAccessToken(function (res) {
+                  q.resolve(res);
+                },
+                function (err) {
+                  q.reject(err);
+                });
+
+              return q.promise;
+            },
+
+            getLoginStatus: function () {
+              var q = $q.defer();
+              facebookConnectPlugin.getLoginStatus(function (res) {
+                  q.resolve(res);
+                },
+                function (err) {
+                  q.reject(err);
+                });
+
+              return q.promise;
+            },
+
+            logout: function () {
+              var q = $q.defer();
+              facebookConnectPlugin.logout(function (res) {
+                  q.resolve(res);
+                },
+                function (err) {
+                  q.reject(err);
+                });
+
+              return q.promise;
             }
           };
         }];
     }
-  ])
-  .factory('$cordovaFacebook', ['$q', '$cordovaFacebookProvider', function ($q, $cordovaFacebookProvider) {
-
-    return {
-      init: function (appId) {
-        if (!window.cordova) {
-          facebookConnectPlugin.browserInit(appId);
-        }
-      },
-
-      login: function (permissions) {
-        this.init($cordovaFacebookProvider.getFacebookAppId());
-
-        var q = $q.defer();
-        facebookConnectPlugin.login(permissions,
-          function (res) {
-            q.resolve(res);
-          }, function (res) {
-            q.reject(res);
-          });
-
-        return q.promise;
-      },
-
-      showDialog: function (options) {
-
-        var q = $q.defer();
-        facebookConnectPlugin.showDialog(options,
-          function (res) {
-            q.resolve(res);
-          },
-          function (err) {
-            q.reject(err);
-          });
-
-        return q.promise;
-      },
-
-      api: function (path, permissions) {
-        var q = $q.defer();
-
-        facebookConnectPlugin.api(path, permissions,
-          function (res) {
-            q.resolve(res);
-          },
-          function (err) {
-            q.reject(err);
-          });
-
-        return q.promise;
-      },
-
-      getAccessToken: function () {
-        var q = $q.defer();
-        facebookConnectPlugin.getAccessToken(function (res) {
-            q.resolve(res);
-          },
-          function (err) {
-            q.reject(err);
-          });
-
-        return q.promise;
-      },
-
-      getLoginStatus: function () {
-        var q = $q.defer();
-        facebookConnectPlugin.getLoginStatus(function (res) {
-            q.resolve(res);
-          },
-          function (err) {
-            q.reject(err);
-          });
-
-        return q.promise;
-      },
-
-      logout: function () {
-        var q = $q.defer();
-        facebookConnectPlugin.logout(function (res) {
-            q.resolve(res);
-          },
-          function (err) {
-            q.reject(err);
-          });
-
-        return q.promise;
-      }
-    };
-  }]);
+  ]);
