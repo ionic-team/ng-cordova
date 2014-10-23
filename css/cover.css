@@ -520,9 +520,9 @@ a:hover {
     float: left;
 }
 
-
 .anchor-title > div {
-    float: right; margin-top: 50px;
+    float: right;
+    margin-top: 50px;
 }
 
 a.btn-anchor {
@@ -543,6 +543,13 @@ a.btn-anchor:hover, a.btn-anchor:active {
     transition: 0.2s linear;
     -webkit-transition: 0.2s linear;
     -moz-transition: 0.2s linear;
+}
+
+h4 {
+    padding-top: 15px;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: normal;
 }
 
 /*

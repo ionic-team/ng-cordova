@@ -1,15 +1,29 @@
-@font-face {font-family: 'AvenirNextLTPro-Regular';src: url('../fonts/28882F_0_0.eot');src: url('../fonts/28882F_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_0_0.woff') format('woff'),url('../fonts/28882F_0_0.ttf') format('truetype');}
-@font-face {font-family: 'AvenirNextLTPro-Medium';src: url('../fonts/28882F_1_0.eot');src: url('../fonts/28882F_1_0.eot?#iefix') format('embedded-opentype'),url('../fonts/28882F_1_0.woff') format('woff'),url('../fonts/28882F_1_0.ttf') format('truetype');}
-@font-face {font-family: 'AvenirNextLTPro-UltLt';src: url('../fonts/29CC36_0_0.eot');src: url('../fonts/29CC36_0_0.eot?#iefix') format('embedded-opentype'),url('../fonts/29CC36_0_0.woff') format('woff'),url('../fonts/29CC36_0_0.ttf') format('truetype');}
+@font-face {
+    font-family: 'AvenirNextLTPro-Regular';
+    src: url('../fonts/28882F_0_0.eot');
+    src: url('../fonts/28882F_0_0.eot?#iefix') format('embedded-opentype'), url('../fonts/28882F_0_0.woff') format('woff'), url('../fonts/28882F_0_0.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AvenirNextLTPro-Medium';
+    src: url('../fonts/28882F_1_0.eot');
+    src: url('../fonts/28882F_1_0.eot?#iefix') format('embedded-opentype'), url('../fonts/28882F_1_0.woff') format('woff'), url('../fonts/28882F_1_0.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AvenirNextLTPro-UltLt';
+    src: url('../fonts/29CC36_0_0.eot');
+    src: url('../fonts/29CC36_0_0.eot?#iefix') format('embedded-opentype'), url('../fonts/29CC36_0_0.woff') format('woff'), url('../fonts/29CC36_0_0.ttf') format('truetype');
+}
 
 body {
-    font-family: 'AvenirNextLTPro-Regular', 'helvetica','arial','sans-serif';
+    font-family: 'AvenirNextLTPro-Regular', 'helvetica', 'arial', 'sans-serif';
     border-top: 2px solid #4f8ef7;
     -webkit-font-smoothing: antialiased !important;
 }
 
-.logo{
-    margin:50px 0;
+.logo {
+    margin: 50px 0;
 }
 
 legend {
@@ -24,42 +38,43 @@ legend {
 }
 
 ul {
-    padding:0 0 20px;
+    padding: 0 0 20px;
 }
 
 li {
     list-style: none;
     border-bottom: 1px solid #dadee7;
 }
+
 input {
-    display:none;
+    display: none;
 }
 
 label {
-    color:#929BA8;
+    color: #929BA8;
     font-size: 16px;
     padding: 20px 20px 4px 20px;
-    margin:0;
+    margin: 0;
     font-family: 'AvenirNextLTPro-Regular';
     font-weight: normal;
     width: 100%;
 }
 
-input:checked+label,
-input:checked+label:before{
-    color:#4f8ef7;
+input:checked + label,
+input:checked + label:before {
+    color: #4f8ef7;
 }
 
 label:before {
-    font-family:'Ionicons';
+    font-family: 'Ionicons';
     content: "\f170";
-    font-size:32px;
-    color:#dadee7;
+    font-size: 32px;
+    color: #dadee7;
     margin: -12px 12px 0 0;
-    float:left;
+    float: left;
 }
 
-input:checked+label:before {
+input:checked + label:before {
     content: "\f16d";
 }
 
