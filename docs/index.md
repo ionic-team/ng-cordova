@@ -581,12 +581,12 @@ cordova plugin add http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaDatePicker) {
-  $cordovaDatePicker.show(
-    {date: new Date(), mode: 'date'},
-    function(date){
+  
+  var options = {date: new Date(), mode: 'date'};
+  //var options = {date: new Date(), mode: 'time'}; for time
+  $cordovaDatePicker.show(options).then(function(date){
       alert(date);
-    };
-  );
+  });
 });
 ```
 
