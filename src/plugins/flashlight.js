@@ -32,6 +32,16 @@ angular.module('ngCordova.plugins.flashlight', [])
           q.reject(error)
         });
         return q.promise;
+      },
+
+      toggle: function () {
+        var q = $q.defer();
+        $window.plugins.flashlight.toggle(function (response) {
+          q.resolve(response);
+        }, function (error) {
+          q.reject(error)
+        });
+        return q.promise;
       }
     }
   }]);
