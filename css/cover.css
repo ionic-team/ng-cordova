@@ -511,33 +511,48 @@ a:hover {
     visibility: hidden;
 }
 
-.anchor-title {
+.anchor-row {
     display: inline-block;
     width: 100%;
 }
 
-.anchor-title > h3 {
+.anchor-row > h3 {
     float: left;
 }
 
-.anchor-title > div {
+.anchor-row .icon-row {
     float: right;
-    margin-top: 50px;
+    margin-top: 49px;
 }
 
-a.btn-anchor {
+.anchor-row i {
+    padding-right: 4px;
+    font-size: 28px;
+    line-height: 1em;
+}
+
+.anchor-row i:last-child {
+    padding-right: 10px;
+}
+
+.anchor-row > .button-row {
+    float: right;
+    margin-top: 52px;
+}
+
+.anchor-row a.btn-anchor {
     background: #ffffff;
     border: 1px solid #5796FF;
     color: #5796FF;
     padding: 5px;
-    margin: 5px;
+    margin: 0 5px 5px;
     border-radius: 4px;
     transition: 0.2s linear;
     -webkit-transition: 0.2s linear;
     -moz-transition: 0.2s linear;
 }
 
-a.btn-anchor:hover, a.btn-anchor:active {
+.anchor-row a.btn-anchor:hover, a.btn-anchor:active {
     background: rgba(87, 150, 255, 0.54);
     color: #ffffff;
     transition: 0.2s linear;
