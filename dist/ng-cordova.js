@@ -1107,27 +1107,29 @@ angular.module('ngCordova.plugins.facebook', [])
   .provider('$cordovaFacebook', [
 
     function () {
-      var FacebookAppId = undefined;
+      var appID = undefined;
+      var appVersion = undefined;
 
-      this.setFacebookAppId = function (id) {
-        FacebookAppId = id;
+      this.setAppID = function (id, version) {
+        appID = id;
+        appVersion = version || "v2.0";
       };
 
       this.$get = ['$q',
         function ($q) {
           return {
-            getFacebookAppId: function () {
-              return FacebookAppId;
+            getAppID: function () {
+              return appID;
             },
 
-            init: function (appId) {
+            init: function (appID) {
               if (!window.cordova) {
-                facebookConnectPlugin.browserInit(appId);
+                facebookConnectPlugin.browserInit(appID, appVersion);
               }
             },
 
             login: function (permissions) {
-              this.init(this.getFacebookAppId());
+              this.init(this.getAppID());
 
               var q = $q.defer();
               facebookConnectPlugin.login(permissions,
@@ -1546,6 +1548,16 @@ angular.module('ngCordova.plugins.flashlight', [])
       switchOff: function () {
         var q = $q.defer();
         $window.plugins.flashlight.switchOff(function (response) {
+          q.resolve(response);
+        }, function (error) {
+          q.reject(error)
+        });
+        return q.promise;
+      },
+
+      toggle: function () {
+        var q = $q.defer();
+        $window.plugins.flashlight.toggle(function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error)
