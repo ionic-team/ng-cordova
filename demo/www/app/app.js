@@ -25,6 +25,7 @@ angular.module('demo', [
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.network.ctrl',
+  'demo.oauth.ctrl',
   'demo.media.ctrl',
   'demo.preferences.ctrl',
   'demo.statusbar.ctrl',
@@ -102,6 +103,12 @@ angular.module('demo', [
         templateUrl: 'app/media/media.html',
         controller: "MediaCtrl"
       })
+
+        .state('oauth', {
+          url: '/oauth',
+          templateUrl: 'app/oauth/oauth.html',
+          controller: "OauthCtrl"
+        })
 
       .state('printer', {
         url: '/printer',
