@@ -31,6 +31,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.facebook',
+  'ngCordova.plugins.oauth',
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
