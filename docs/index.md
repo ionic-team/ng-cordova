@@ -1023,7 +1023,8 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
   <h3><a href="#File"><code>$cordovaFile</code></a></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/file.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md">Official Docs</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md" title="org.apache.cordova.file">Official Docs</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md" title="org.apache.cordova.file-transfer">Official Docs</a>
   </div>
   <div class="icon-row">
     <i class="icon ion-social-apple"></i>
@@ -1036,6 +1037,7 @@ A Plugin to get access to the device's files and directories.
 
 ```
 cordova plugin add org.apache.cordova.file
+cordova plugin add org.apache.cordova.file-transfer
 ```
 
 ```javascript
