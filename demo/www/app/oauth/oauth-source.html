@@ -13,13 +13,89 @@
             <pre class="item item-body padding"
             ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
             readonly="true"
-            style="height: 150px;">
-$cordovaOauth.instagram(clientId, appScopes).then(function(result) {
+            style="height: 150px;">$cordovaOauth.instagram(clientId, appScopes).then(function(result) {
     // Success! Oauth data
 }, function(err) {
     // An error occured
-});
-            </pre>
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .facebook
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.facebook(clientId, appScopes).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .dropbox
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.dropbox(appId).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .google
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.google(clientId, clientSecret, appScopes).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .github
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.github(clientId, clientSecret, appScopes).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .linkedin
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.linkedin(clientId, clientSecret, appScopes, appState).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .digitalOcean
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.digitalOcean(clientId, clientSecret).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
         </div>
     </ion-content>
 </ion-modal-view>
