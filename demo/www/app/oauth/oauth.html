@@ -1,0 +1,19 @@
+<ion-view title="Oauth">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-primary button-clear icon-right ion-code" ng-click="showSource()"></button>
+    </ion-nav-buttons>
+
+    <ion-content scroll="false" padding="true">
+        <button ng-click="instagramLogin()" class="button button-block button-primary">Instagram</button>
+        <button ng-click="facebookLogin()" class="button button-block button-primary">Facebook</button>
+        <button ng-click="googleLogin()" class="button button-block button-primary">Google</button>
+        <button ng-click="linkedinLogin()" class="button button-block button-primary">LinkedIn</button>
+        <button ng-click="dropboxLogin()" class="button button-block button-primary">Dropbox</button>
+        <button ng-click="digitalOceanLogin()" class="button button-block button-primary">Digital Ocean</button>
+        <button ng-click="githubLogin()" class="button button-block button-primary">GitHub</button>
+        <div ng-bind="oauthResult">
+        </div>
+    </ion-content>
+
+</ion-view>
