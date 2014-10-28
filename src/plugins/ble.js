@@ -1,5 +1,5 @@
-//  install   :   cordova plugin add org.apache.cordova.battery-status
-//  link      :   https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md
+//  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
+//  link      :   https://github.com/don/cordova-plugin-ble-central
 
 angular.module('ngCordova.plugins.ble', [])
 
