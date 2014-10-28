@@ -102,6 +102,73 @@ angular.module('ngCordova.plugins.appAvailability', [])
   }
 }]);
 
+//  install   :   cordova plugin add org.apache.cordova.battery-status
+//  link      :   https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md
+
+angular.module('ngCordova.plugins.appRating', [])
+
+  .factory('$cordovaAppRating', ['$q', '$localStorage', function ($q, $localStorage) {
+
+    return {
+
+      init: function (config) {
+        if ($localStorage.specialOffers === undefined) {
+          $localStorage.specialOffers = {};
+        }
+        if ($localStorage.specialOffers[config.id] === undefined) {
+          $localStorage.specialOffers[config.id] = {};
+          $localStorage.specialOffers[config.id].enabled = true;
+          $localStorage.specialOffers[config.id].countOpens = 1;
+        }
+        var onAgree = function () {
+          $localStorage.specialOffers[config.id].enabled = false;
+          config.onAgree();
+        };
+        var onDecline = function () {
+          $localStorage.specialOffers[config.id].enabled = false;
+          config.onDecline();
+        };
+        var onRemindMeLater = function () {
+          $localStorage.specialOffers[config.id].countOpens = 1;
+          config.onRemindMeLater();
+        };
+        document.addEventListener("resume", function () {
+          if ($localStorage.specialOffers[config.id].countOpens >= config.showOnCount && $localStorage.specialOffers[config.id].enabled) {
+            var clickHandler = function (buttonIndex) {
+              switch (buttonIndex) {
+                case 3:
+                  onAgree();
+                  break;
+                case 2:
+                  onRemindMeLater();
+                  break;
+                case 1:
+                  onDecline();
+                  break;
+              }
+            };
+            var buttonLabels = [config.declineLabel, config.remindLabel, config.agreeLabel];
+            navigator.notification.confirm(config.text, clickHandler, config.title, buttonLabels);
+          } else if ($localStorage.specialOffers[config.id].enabled) {
+            $localStorage.specialOffers[config.id].countOpens++;
+          }
+        });
+      },
+
+      appStoreUrl: function (iosAppId) {
+        var reviewURL = '';
+        if (window.device && parseInt(window.device.version) >= 7) {
+          reviewURL = "itms-apps://itunes.apple.com/en/app/id" + iosAppId;
+        } else {
+          reviewURL = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=" + iosAppId + "&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
+        }
+        return reviewURL;
+      }
+
+    };
+
+  }]);
+
 // install   :     cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
 // link      :     https://github.com/christocracy/cordova-plugin-background-geolocation
 
@@ -306,6 +373,115 @@ angular.module('ngCordova.plugins.battery-status', [])
     }, false);
 
     return scope;
+  }]);
+
+//  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
+//  link      :   https://github.com/don/cordova-plugin-ble-central
+
+angular.module('ngCordova.plugins.ble', [])
+
+  .factory('$cordovaBLE', ['$q', '$window', function ($q, $window) {
+
+    return {
+      scan: function (services, seconds) {
+        var q = q.defer();
+        ble.scan(services, seconds, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      connect: function (deviceID) {
+        var q = q.defer();
+        ble.connect(deviceID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+      disconnect: function (deviceID) {
+        var q = q.defer();
+        ble.disconnect(deviceID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      read: function (deviceID, serviceUUID, characteristicUUID) {
+        var q = q.defer();
+        ble.read(deviceID, serviceUUID, characteristicUUID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      write: function (deviceID, serviceUUID, characteristicUUID, data) {
+        var q = q.defer();
+        ble.write(deviceID, serviceUUID, characteristicUUID, data, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
+        var q = q.defer();
+        ble.writeCommand(deviceID, serviceUUID, characteristicUUID, data, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      notify: function (deviceID, serviceUUID, characteristicUUID) {
+        var q = q.defer();
+        ble.notify(deviceID, serviceUUID, characteristicUUID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      indicate: function (deviceID, serviceUUID, characteristicUUID) {
+        var q = q.defer();
+        ble.indicate(deviceID, serviceUUID, characteristicUUID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      isConnected: function (deviceID) {
+        var q = q.defer();
+        ble.isConnected(deviceID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      isEnabled: function () {
+        var q = q.defer();
+        ble.isEnabled(function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      }
+    }
   }]);
 
 // install   :
@@ -1300,7 +1476,7 @@ angular.module('ngCordova.plugins.file', [])
             fileWriter.seek(fileWriter.length);
           }
           fileWriter.onwriteend = function (evt) {
-            if (this.error)
+            if (this.error) 
               q.reject(this.error);
             else
               q.resolve(evt);
@@ -1449,7 +1625,7 @@ angular.module('ngCordova.plugins.file', [])
       return q.promise;
     }
 
-    /*
+    /* 
      * Returns a promise that will either be resolved with a FileWriter bound to the file identified
      * in the provided path or rejected if an error occurs while attempting to initialize
      * the writer.
@@ -1478,7 +1654,7 @@ angular.module('ngCordova.plugins.file', [])
     }
 
     /*
-     * Returns a promise that will either be resolved with the File object associated with the requested
+     * Returns a promise that will either be resolved with the File object associated with the requested 
      * absolute path, or rejected if an error occurs while trying to initialize that File object.
      */
     function getAbsoluteFile(path) {
@@ -1491,7 +1667,7 @@ angular.module('ngCordova.plugins.file', [])
     }
 
     /*
-     * Returns a promise that will either be resolved with the Directory object associated with
+     * Returns a promise that will either be resolved with the Directory object associated with 
      * the requested directory or rejected if an error occurs while atempting to access that directory.
      */
     function getDirectory(dir, options) {
@@ -1511,7 +1687,7 @@ angular.module('ngCordova.plugins.file', [])
     function getFilesystem() {
       var q = $q.defer();
       try {
-        $window.requestFileSystem($window.PERSISTENT, 1024 * 1024, q.resolve, q.reject);
+        $window.requestFileSystem($window.PERSISTENT, 1024 * 1024, q.resolve, q.reject); 
       } catch (err) {
         q.reject(err);
       }
@@ -2302,51 +2478,54 @@ angular.module('ngCordova.plugins.media', [])
   }]);
 
 angular.module('ngCordova.plugins', [
-  'ngCordova.plugins.deviceMotion',
+  'ngCordova.plugins.adMob',
+  'ngCordova.plugins.appAvailability',
+  'ngCordova.plugins.appRating',
+  'ngCordova.plugins.backgroundGeolocation',
+  'ngCordova.plugins.badge',
+  'ngCordova.plugins.barcodeScanner',
+  'ngCordova.plugins.battery-status',
+  'ngCordova.plugins.ble',
+  'ngCordova.plugins.bluetoothSerial',
+  'ngCordova.plugins.calendar',
   'ngCordova.plugins.camera',
-  'ngCordova.plugins.geolocation',
+  'ngCordova.plugins.capture',
+  'ngCordova.plugins.clipboard',
+  'ngCordova.plugins.contacts',
+  'ngCordova.plugins.datePicker',
+  'ngCordova.plugins.device',
+  'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.deviceOrientation',
   'ngCordova.plugins.dialogs',
-  'ngCordova.plugins.vibration',
-  'ngCordova.plugins.network',
-  'ngCordova.plugins.device',
-  'ngCordova.plugins.barcodeScanner',
-  'ngCordova.plugins.splashscreen',
-  'ngCordova.plugins.keyboard',
-  'ngCordova.plugins.contacts',
-  'ngCordova.plugins.statusbar',
-  'ngCordova.plugins.file',
-  'ngCordova.plugins.socialSharing',
-  'ngCordova.plugins.globalization',
-  'ngCordova.plugins.sqlite',
-  'ngCordova.plugins.ga',
-  'ngCordova.plugins.push',
-  'ngCordova.plugins.spinnerDialog',
-  'ngCordova.plugins.sms',
-  'ngCordova.plugins.pinDialog',
-  'ngCordova.plugins.localNotification',
-  'ngCordova.plugins.toast',
-  'ngCordova.plugins.flashlight',
-  'ngCordova.plugins.capture',
-  'ngCordova.plugins.appAvailability',
-  'ngCordova.plugins.prefs',
-  'ngCordova.plugins.printer',
-  'ngCordova.plugins.bluetoothSerial',
-  'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.facebook',
-  'ngCordova.plugins.adMob',
+  'ngCordova.plugins.file',
+  'ngCordova.plugins.flashlight',
+  'ngCordova.plugins.ga',
+  'ngCordova.plugins.geolocation',
+  'ngCordova.plugins.globalization',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
-  'ngCordova.plugins.clipboard',
-  'ngCordova.plugins.nativeAudio',
-  'ngCordova.plugins.media',
-  'ngCordova.plugins.battery-status',
+  'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
+  'ngCordova.plugins.localNotification',
+  'ngCordova.plugins.media',
+  'ngCordova.plugins.nativeAudio',
+  'ngCordova.plugins.network',
+  'ngCordova.plugins.oauth',
+  'ngCordova.plugins.pinDialog',
+  'ngCordova.plugins.prefs',
+  'ngCordova.plugins.printer',
   'ngCordova.plugins.progressIndicator',
-  'ngCordova.plugins.datePicker',
-  'ngCordova.plugins.calendar',
+  'ngCordova.plugins.push',
+  'ngCordova.plugins.sms',
+  'ngCordova.plugins.socialSharing',
+  'ngCordova.plugins.spinnerDialog',
+  'ngCordova.plugins.splashscreen',
+  'ngCordova.plugins.sqlite',
+  'ngCordova.plugins.statusbar',
+  'ngCordova.plugins.toast',
   'ngCordova.plugins.touchid',
-  'ngCordova.plugins.badge'
+  'ngCordova.plugins.vibration'
 ]);
 
 // install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
@@ -2484,6 +2663,283 @@ angular.module('ngCordova.plugins.network', [])
       }
     }
   }]);
+
+/*
+ * Cordova AngularJS Oauth
+ *
+ * Created by Nic Raboy
+ * http://www.nraboy.com
+ *
+ *
+ *
+ * DESCRIPTION:
+ *
+ * Use Oauth sign in for various web services.
+ *
+ *
+ * REQUIRES:
+ *
+ *    Apache Cordova 3.5+
+ *    Apache InAppBrowser Plugin
+ *
+ *
+ * SUPPORTS:
+ *
+ *    Dropbox
+ *    Digital Ocean
+ *    Google
+ *    GitHub
+ *    Facebook
+ *    LinkedIn
+ *    Instagram
+ */
+
+angular.module("ngCordova.plugins.oauth", []).factory('$cordovaOauth', ['$q', '$http', function ($q, $http) {
+
+    return {
+
+        /*
+         * Sign into the Dropbox service
+         *
+         * @param    string appKey
+         * @return   promise
+         */
+        dropbox: function(appKey) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open("https://www.dropbox.com/1/oauth2/authorize?client_id=" + appKey + "&redirect_uri=http://localhost/callback" + "&response_type=token", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+                browserRef.addEventListener("loadstart", function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        var callbackResponse = (event.url).split("#")[1];
+                        var responseParameters = (callbackResponse).split("&");
+                        var parameterMap = [];
+                        for(var i = 0; i < responseParameters.length; i++) {
+                            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                        }
+                        if(parameterMap["access_token"] !== undefined && parameterMap["access_token"] !== null) {
+                            var promiseResponse = {
+                                access_token: parameterMap["access_token"],
+                                token_type: parameterMap["token_type"],
+                                uid: parameterMap["uid"]
+                            }
+                            deferred.resolve(promiseResponse);
+                        } else {
+                            deferred.reject("Problem authenticating");
+                        }
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the Digital Ocean service
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @return   promise
+         */
+        digitalOcean: function(clientId, clientSecret) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open("https://cloud.digitalocean.com/v1/oauth/authorize?client_id=" + clientId + "&redirect_uri=http://localhost/callback&response_type=code&scope=read%20write", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+                browserRef.addEventListener("loadstart", function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        var requestToken = (event.url).split("code=")[1];
+                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                        $http({method: "post", url: "https://cloud.digitalocean.com/v1/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            .success(function(data) {
+                                deferred.resolve(data);
+                            })
+                            .error(function(data, status) {
+                                deferred.reject("Problem authenticating");
+                            });
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the Google service
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @param    array appScope
+         * @return   promise
+         */
+        google: function(clientId, clientSecret, appScope) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        requestToken = (event.url).split("code=")[1];
+                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                        $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            .success(function(data) {
+                                deferred.resolve(data);
+                            })
+                            .error(function(data, status) {
+                                deferred.reject("Problem authenticating");
+                            });
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the GitHub service
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @param    array appScope
+         * @return   promise
+         */
+        github: function(clientId, clientSecret, appScope) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        requestToken = (event.url).split("code=")[1];
+                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                        $http.defaults.headers.post['Accept'] = 'application/json';
+                        $http({method: "post", url: "https://github.com/login/oauth/access_token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&code=" + requestToken })
+                            .success(function(data) {
+                                deferred.resolve(data);
+                            })
+                            .error(function(data, status) {
+                                deferred.reject("Problem authenticating");
+                            });
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the Facebook service
+         *
+         * @param    string clientId
+         * @param    array appScope
+         * @return   promise
+         */
+        facebook: function(clientId, appScope) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://www.facebook.com/dialog/oauth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        var callbackResponse = (event.url).split("#")[1];
+                        var responseParameters = (callbackResponse).split("&");
+                        var parameterMap = [];
+                        for(var i = 0; i < responseParameters.length; i++) {
+                            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                        }
+                        if(parameterMap["access_token"] !== undefined && parameterMap["access_token"] !== null) {
+                            var promiseResponse = {
+                                access_token: parameterMap["access_token"],
+                                expires_in: parameterMap["expires_in"]
+                            }
+                            deferred.resolve(promiseResponse);
+                        } else {
+                            deferred.reject("Problem authenticating");
+                        }
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the LinkedIn service
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @param    array appScope
+         * @param    string state
+         * @return   promise
+         */
+        linkedin: function(clientId, clientSecret, appScope, state) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&response_type=code&state=' + state, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        requestToken = (event.url).split("code=")[1];
+                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                        $http({method: "post", url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            .success(function(data) {
+                                deferred.resolve(data);
+                            })
+                            .error(function(data, status) {
+                                deferred.reject("Problem authenticating");
+                            });
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the Instagram service
+         *
+         * @param    string clientId
+         * @param    array appScope
+         * @return   promise
+         */
+        instagram: function(clientId, appScope) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://api.instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        var callbackResponse = (event.url).split("#")[1];
+                        var responseParameters = (callbackResponse).split("&");
+                        var parameterMap = [];
+                        for(var i = 0; i < responseParameters.length; i++) {
+                            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                        }
+                        if(parameterMap["access_token"] !== undefined && parameterMap["access_token"] !== null) {
+                            var promiseResponse = {
+                                access_token: parameterMap["access_token"]
+                            }
+                            deferred.resolve(promiseResponse);
+                        } else {
+                            deferred.reject("Problem authenticating");
+                        }
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        }
+
+    }
+
+}]);
 
 // install   :      cordova plugin add https://github.com/Paldom/PinDialog.git
 // link      :      https://github.com/Paldom/PinDialog
@@ -2919,7 +3375,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       insertCollection: function (db, query, bindings) {
         var q = $q.defer();
         var coll = bindings.slice(0); // clone collection
-
+        
         db.transaction(function (tx) {
           (function insertOne() {
             var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
@@ -2941,7 +3397,7 @@ angular.module('ngCordova.plugins.sqlite', [])
         });
         return q.promise;
       },
-
+      
       nestedExecute: function (db, query1, query2, binding1, binding2) {
         var q = $q.defer();
 
