@@ -7,6 +7,7 @@ angular.module('ngCordova.plugins.spinnerDialog', [])
 
     return {
       show: function (title, message, fixed) {
+        fixed = fixed || false;
         return $window.plugins.spinnerDialog.show(title, message, fixed);
       },
       hide: function () {

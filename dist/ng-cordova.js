@@ -2692,6 +2692,7 @@ angular.module('ngCordova.plugins.network', [])
  *    Facebook
  *    LinkedIn
  *    Instagram
+ *    Box
  */
 
 angular.module("ngCordova.plugins.oauth", []).factory('$cordovaOauth', ['$q', '$http', function ($q, $http) {
@@ -2770,25 +2771,31 @@ angular.module("ngCordova.plugins.oauth", []).factory('$cordovaOauth', ['$q', '$
          * Sign into the Google service
          *
          * @param    string clientId
-         * @param    string clientSecret
          * @param    array appScope
          * @return   promise
          */
-        google: function(clientId, clientSecret, appScope) {
+        google: function(clientId, appScope) {
             var deferred = $q.defer();
             if(window.cordova) {
-                var browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                browserRef.addEventListener('loadstart', function(event) {
+                var browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener("loadstart", function(event) {
                     if((event.url).indexOf("http://localhost/callback") == 0) {
-                        requestToken = (event.url).split("code=")[1];
-                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                        $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            });
+                        var callbackResponse = (event.url).split("#")[1];
+                        var responseParameters = (callbackResponse).split("&");
+                        var parameterMap = [];
+                        for(var i = 0; i < responseParameters.length; i++) {
+                            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                        }
+                        if(parameterMap["access_token"] !== undefined && parameterMap["access_token"] !== null) {
+                            var promiseResponse = {
+                                access_token: parameterMap["access_token"],
+                                token_type: parameterMap["token_type"],
+                                uid: parameterMap["uid"]
+                            }
+                            deferred.resolve({ access_token: parameterMap["access_token"], token_type: parameterMap["token_type"], expires_in: parameterMap["expires_in"] });
+                        } else {
+                            deferred.reject("Problem authenticating");
+                        }
                         browserRef.close();
                     }
                 });
@@ -2928,6 +2935,38 @@ angular.module("ngCordova.plugins.oauth", []).factory('$cordovaOauth', ['$q', '$
                         } else {
                             deferred.reject("Problem authenticating");
                         }
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the Box service
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @param    string appState
+         * @return   promise
+         */
+        box: function(clientId, clientSecret, appState) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://app.box.com/api/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&state=' + appState + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") == 0) {
+                        requestToken = (event.url).split("code=")[1];
+                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                        $http({method: "post", url: "https://app.box.com/api/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            .success(function(data) {
+                                deferred.resolve(data);
+                            })
+                            .error(function(data, status) {
+                                deferred.reject("Problem authenticating");
+                            });
                         browserRef.close();
                     }
                 });
@@ -3310,8 +3349,9 @@ angular.module('ngCordova.plugins.spinnerDialog', [])
   .factory('$cordovaSpinnerDialog', ['$window', function ($window) {
 
     return {
-      show: function (title, message) {
-        return $window.plugins.spinnerDialog.show(title, message);
+      show: function (title, message, fixed) {
+        fixed = fixed || false;
+        return $window.plugins.spinnerDialog.show(title, message, fixed);
       },
       hide: function () {
         return $window.plugins.spinnerDialog.hide();
