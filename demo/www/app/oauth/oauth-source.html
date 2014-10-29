@@ -52,7 +52,7 @@
             <pre class="item item-body padding"
             ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
             readonly="true"
-            style="height: 150px;">$cordovaOauth.google(clientId, clientSecret, appScopes).then(function(result) {
+            style="height: 150px;">$cordovaOauth.google(clientId, appScopes).then(function(result) {
     // Success! Oauth data
 }, function(err) {
     // An error occured
@@ -92,6 +92,19 @@
             ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
             readonly="true"
             style="height: 150px;">$cordovaOauth.digitalOcean(clientId, clientSecret).then(function(result) {
+    // Success! Oauth data
+}, function(err) {
+    // An error occured
+});</pre>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                .box
+            </div>
+            <pre class="item item-body padding"
+            ui-ace="{useWrapMode : true, showGutter: false, theme:'tomorrow', mode: 'javascript'}"
+            readonly="true"
+            style="height: 150px;">$cordovaOauth.box(clientId, clientSecret, appState).then(function(result) {
     // Success! Oauth data
 }, function(err) {
     // An error occured

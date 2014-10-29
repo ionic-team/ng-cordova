@@ -52,6 +52,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - [Media](https://github.com/apache/cordova-plugin-media) *
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
 - [Network Information](https://github.com/apache/cordova-plugin-network-information) *
+- [Oauth](https://github.com/nraboy/ng-cordova-oauth)
 - [Pin Dialog](https://github.com/Paldom/PinDialog)
 - [Printer](https://github.com/katzer/cordova-plugin-printer)
 - [Progress Indicator](https://github.com/pbernasconi/cordova-progressIndicator)

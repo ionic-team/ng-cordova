@@ -30,7 +30,7 @@ angular.module('demo.oauth.ctrl', [])
         }
 
         $scope.googleLogin = function() {
-            $cordovaOauth.google("CLIENT_ID_HERE", "CLIENT_SECRET_HERE", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+            $cordovaOauth.google("CLIENT_ID_HERE", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
                 $scope.oauthResult = result;
             }, function(error) {
                 $scope.oauthResult = "OAUTH ERROR (see console)";
@@ -58,6 +58,15 @@ angular.module('demo.oauth.ctrl', [])
 
         $scope.linkedinLogin = function() {
             $cordovaOauth.linkedin("CLIENT_ID_HERE", "CLIENT_SECRET_HERE", ["r_emailaddress"], "RANDOM_STATE_STRING_HERE").then(function(result) {
+                $scope.oauthResult = result;
+            }, function(error) {
+                $scope.oauthResult = "OAUTH ERROR (see console)";
+                console.log(error);
+            });
+        }
+
+        $scope.boxLogin = function() {
+            $cordovaOauth.box("CLIENT_ID_HERE", "CLIENT_SECRET_HERE", "RANDOM_STATE_STRING_HERE").then(function(result) {
                 $scope.oauthResult = result;
             }, function(error) {
                 $scope.oauthResult = "OAUTH ERROR (see console)";
