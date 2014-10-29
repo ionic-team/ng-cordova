@@ -13,8 +13,8 @@ describe('Service: $cordovaSpinnerDialog', function() {
   }));
 
   it('should call window.plugins\'s spinnerDialog.show', function() {
-    $cordovaSpinnerDialog.show('hi', 'nice hi message');
-    expect(window.plugins.spinnerDialog.show).toHaveBeenCalledWith('hi', 'nice hi message');
+    $cordovaSpinnerDialog.show('hi', 'nice hi message', true);
+    expect(window.plugins.spinnerDialog.show).toHaveBeenCalledWith('hi', 'nice hi message', true);
   });
 
   it('should call window.plugins\'s spinnerDialog.hide', function() {
