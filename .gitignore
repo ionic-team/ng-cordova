@@ -8,3 +8,4 @@ bower_components
 coverage
 Gemfile.lock
 .DS_Store*
+npm-debug.log

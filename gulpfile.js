@@ -67,6 +67,5 @@ gulp.task('watch', ['build'], function () {
 
 
 gulp.task('run-demo', ['watch'], shell.task([
-    'cd demo &&  ionic run ios -l -c --target="iPhone (Retina 4-inch)"'
-  ])
-);
+  'cd demo &&  ionic run ios -l -c --target="iPhone (Retina 4-inch)"'
+]));

@@ -13,13 +13,16 @@ ap device-motion
 ap device-orientation
 ap network-information
 ap geolocation
+ap globalization
 ap file
 ap splashscreen
 ap statusbar
 ap vibration
 ap media
 
-cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git     # facebook
+#read appID
+#read appName
+cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git  #--variable APP_ID="$appID" --variable APP_NAME="$appName"
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard          # keyboard
 cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git    # date-picker
 cordova plugin add https://github.com/wildabeast/BarcodeScanner.git     # barcode scanner
