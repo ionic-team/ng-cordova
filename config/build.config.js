@@ -13,6 +13,12 @@ module.exports = {
   closureEnd: '\n})();',
 
   dist: 'dist',
+  demo : {
+    ngCordova : 'demo/www/lib/ngCordova',
+    lib : 'demo/www/lib',
+    www : 'demo/www'
+  },
+
   pluginFiles: [
     'src/module.js',
     'src/plugins/*.js'

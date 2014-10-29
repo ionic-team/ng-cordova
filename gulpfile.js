@@ -8,7 +8,8 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   karma = require('karma').server,
   karmaConf = require('./config/karma.conf.js'),
-  rename = require('gulp-rename');
+  rename = require('gulp-rename'),
+  shell = require('gulp-shell');
 
 
 gulp.task('default', ['build']);
@@ -32,19 +33,19 @@ gulp.task('build', function () {
     .pipe(footer(buildConfig.closureEnd))
     .pipe(header(buildConfig.banner))
     .pipe(gulp.dest(buildConfig.dist))
+    .pipe(gulp.dest(buildConfig.demo.ngCordova))
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
     }))
-    .pipe(gulp.dest(buildConfig.dist));
+    .pipe(gulp.dest(buildConfig.dist))
+    .pipe(gulp.dest(buildConfig.demo.ngCordova));
 });
 
 gulp.task('karma', function (done) {
   karmaConf.singleRun = true;
   argv.browsers && (karmaConf.browsers = argv.browsers.trim().split(','));
   argv.reporters && (karmaConf.reporters = argv.reporters.trim().split(','));
-
-
   karma.start(karmaConf, done);
 });
 
@@ -63,3 +64,9 @@ gulp.task('karma-watch', function (done) {
 gulp.task('watch', ['build'], function () {
   gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build']);
 });
+
+
+gulp.task('run-demo', ['watch'], shell.task([
+    'cd demo &&  ionic run ios -l -c --target="iPhone (Retina 4-inch)"'
+  ])
+);
