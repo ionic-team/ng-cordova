@@ -7,3 +7,4 @@ _site
 bower_components
 coverage
 Gemfile.lock
+npm-debug.log
