@@ -180,5 +180,4 @@ if (!window.cordova) {
       document.getElementById('fb-root').appendChild(e);
     }
   }());
-
 }

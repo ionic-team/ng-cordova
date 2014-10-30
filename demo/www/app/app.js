@@ -51,9 +51,11 @@ angular.module('demo', [
 
   .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider) {
 
-    var appID = 1234567890;
-    var version = "v2.0"; // or leave blank and default is v2.0
-    $cordovaFacebookProvider.setAppID(appID, version);
+    if (!window.cordova) {
+      var appID = 1234567890;
+      var version = "v2.0"; // or leave blank and default is v2.0
+      $cordovaFacebookProvider.setAppID(appID, version);
+    }
 
     $stateProvider
 
@@ -106,11 +108,11 @@ angular.module('demo', [
         controller: "MediaCtrl"
       })
 
-        .state('oauth', {
-          url: '/oauth',
-          templateUrl: 'app/oauth/oauth.html',
-          controller: "OauthCtrl"
-        })
+      .state('oauth', {
+        url: '/oauth',
+        templateUrl: 'app/oauth/oauth.html',
+        controller: "OauthCtrl"
+      })
 
       .state('printer', {
         url: '/printer',
