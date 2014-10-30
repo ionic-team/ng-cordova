@@ -12,10 +12,10 @@ angular.module('ngCordova.plugins.push', [])
       register: function (config) {
         var q = $q.defer();
 
-        if (!config.ecb) {
+        if (config !== undefined && config.ecb === undefined) {
           config.ecb = "angular.element(document.querySelector('[ng-app]')).injector().get('$cordovaPush').onNotification";
         }
-        
+
         $window.plugins.pushNotification.register(
           function (result) {
             q.resolve(result);
