@@ -30,13 +30,8 @@ angular.module('demo.deviceOrientation.ctrl', [])
     };
 
     $scope.clearWatch = function () {
-      $cordovaDeviceOrientation
-        .clearWatch($scope.this_watch.watchId)
-        .then(function (result) {
-          // Success!
-        }, function (err) {
-          // An error occured. Show a message to the user
-        });
+      $cordovaDeviceOrientation.clearWatch($scope.this_watch.watchId)
+
     };
 
 
