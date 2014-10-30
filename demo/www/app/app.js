@@ -51,7 +51,9 @@ angular.module('demo', [
 
   .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider) {
 
-    // $cordovaFacebookProvider.setFacebookAppId(632441883539035);
+    var appID = 1234567890;
+    var version = "v2.0"; // or leave blank and default is v2.0
+    $cordovaFacebookProvider.setAppID(appID, version);
 
     $stateProvider
 
