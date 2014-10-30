@@ -3,10 +3,19 @@
 
 angular.module('ngCordova.plugins.push', [])
 
-  .factory('$cordovaPush', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaPush', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
     return {
+      onNotification: function(notification) {
+        $rootScope.$broadcast('pushNotificationReceived', notification);
+      },
+
       register: function (config) {
         var q = $q.defer();
+
+        if (!config.ecb) {
+          config.ecb = "angular.element(document.querySelector('[ng-app]')).injector().get('$cordovaPush').onNotification";
+        }
+        
         $window.plugins.pushNotification.register(
           function (result) {
             q.resolve(result);
