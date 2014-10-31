@@ -1023,7 +1023,8 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
   <h3><a href="#File"><code>$cordovaFile</code></a></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/file.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md">Official Docs</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md" title="org.apache.cordova.file">Official Docs</a>
+    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md" title="org.apache.cordova.file-transfer">Official Docs</a>
   </div>
   <div class="icon-row">
     <i class="icon ion-social-apple"></i>
@@ -1036,6 +1037,7 @@ A Plugin to get access to the device's files and directories.
 
 ```
 cordova plugin add org.apache.cordova.file
+cordova plugin add org.apache.cordova.file-transfer
 ```
 
 ```javascript
@@ -1858,7 +1860,7 @@ $cordovaProgress.showText(false, 100000, "Loading")
   </div>  
 </div>
 
-Allows your application to receive push notifications
+Allows your application to receive push notifications. To receive notifications in your controllers or services, listen for 'pushNotificationReceived' event.
 
 ```
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
@@ -1869,15 +1871,19 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
 
   var androidConfig = {
     "senderID":"replace_with_sender_id",
-    "ecb":"onNotification"
   };
   
   var iosConfig = {
     "badge":"true",
     "sound":"true",
     "alert":"true",
-    "ecb":"onNotificationAPN"
   };
+
+  // (optional) custom notification handler
+  // If you set "ecb" in the config object, the 'pushNotificationReceived' angular event will not be broadcast.
+  // You will be responsible for handling the notification and passing it to your contollers/services
+  androidConfig.ecb = "myCustomOnNotificationHandler"
+  iosConfig.ecb = "myCustomOnNotificationAPNHandler"
 
   $cordovaPush.register(config).then(function(result) {
       // Success! 
@@ -1885,13 +1891,19 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
       // An error occured. Show a message to the user
   });
   
-  
   $cordovaPush.unregister(options).then(function(result) {
       // Success! 
   }, function(err) {
       // An error occured. Show a message to the user
   });
   
+  // receive notification
+  myApp.controller('myCtrl', ['$scope', function($scope) {
+      $scope.$on('pushNotificationReceived', function(event, notification) {
+          // process notification
+      });
+  }]);
+
   // iOS only
   $cordovaPush.setBadgeNumber(2).then(function(result) {
       // Success! 
