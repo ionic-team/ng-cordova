@@ -34,7 +34,7 @@ angular.module('ngCordova.plugins.contacts', [])
 
       clone: function (contact) {
         var deviceContact = navigator.contacts.create(contact);
-        return deviceContact.clone(contact)
+        return deviceContact.clone(contact);
       },
 
       find: function (options) {
@@ -51,18 +51,22 @@ angular.module('ngCordova.plugins.contacts', [])
           options);
 
         return q.promise;
+      },
+
+      pickContact: function() {
+        var q = $q.defer();
+
+        navigator.contacts.pickContact(
+          function(contact) {
+            q.resolve(contact);
+          },
+          function(err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
       }
-
-      /*
-       getContact: function (contact) {
-       var q = $q.defer();
-
-       navigator.contacts.pickContact(function (contact) {
-
-       })
-
-       }
-       */
 
       // TODO: method to set / get ContactAddress
       // TODO: method to set / get ContactError
@@ -70,6 +74,6 @@ angular.module('ngCordova.plugins.contacts', [])
       // TODO: method to set / get ContactName
       // TODO: method to set / get ContactOrganization
 
-    }
+    };
 
   }]);
