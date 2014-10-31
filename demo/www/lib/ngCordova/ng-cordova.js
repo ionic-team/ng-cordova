@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.5-alpha
+ * v0.1.6-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -1040,18 +1040,22 @@ angular.module('ngCordova.plugins.contacts', [])
           options);
 
         return q.promise;
+      },
+
+      pickContact: function() {
+        var q = $q.defer();
+
+        navigator.contacts.pickContact(
+          function(contact) {
+            q.resolve(contact);
+          },
+          function(err) {
+            q.reject(err);
+          }
+        );
+
+        return q.promise;
       }
-
-      /*
-       getContact: function (contact) {
-       var q = $q.defer();
-
-       navigator.contacts.pickContact(function (contact) {
-
-       })
-
-       }
-       */
 
       // TODO: method to set / get ContactAddress
       // TODO: method to set / get ContactError
