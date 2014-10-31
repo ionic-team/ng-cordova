@@ -906,13 +906,13 @@ cordova -d plugin add https://github.com/phonegap/phonegap-facebook-plugin.git -
 
 android update project --subprojects --path "platforms/android" --target android-19 --library "CordovaLib"
 
-android update project --subprojects --path "platforms/android" --target android-19 --library "FacebookLib"
+android update project --subprojects --path "platforms/android" --target android-19 --library "com.phonegap.plugins.facebookconnect/FacebookLib"
 
 cd platforms/android/
 
 ant clean
 
-cd FacebookLib
+cd com.phonegap.plugins.facebookconnect/FacebookLib
 
 ant clean
 
@@ -923,7 +923,7 @@ open -e AndroidManifest.xml
 
 ant release
 
-cd ../../..
+cd ../../../..
 
 cordova build android
 ```
