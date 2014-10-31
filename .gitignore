@@ -3,7 +3,7 @@ node_modules/
 _site/
 *.md~
 *~
-.DS_Store*
+
 .idea
 bower_components
 coverage
