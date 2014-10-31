@@ -5,8 +5,8 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 ## Overview
 
-[ngCordova](http://ngCordova.com) was built to help make app development faster and more efficient than ever before. 
-It gives you simple [AngularJS](https://angularjs.org/) wrappers for the most popular [Cordova](cordova.apache.org) and [PhoneGap](http://phonegap.com/) plugins available, 
+[ngCordova](http://ngCordova.com) was built to help make app development faster and more efficient than ever before.
+It gives you simple [AngularJS](https://angularjs.org/) wrappers for the most popular [Cordova](cordova.apache.org) and [PhoneGap](http://phonegap.com/) plugins available,
 where you can take a picture, scan a barcode, upload a file, turn on your flashlight, get your current location, and much more with just a few lines of code.
 
 ## Install
@@ -119,7 +119,7 @@ The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows 
             <td>fb://</td>
             <td>com.facebook.katana</td>
         </tr>
-       
+
         <tr>
             <td>whatsapp://</td>
             <td>com.whatsapp</td>
@@ -267,17 +267,17 @@ module.controller('BarcodeScannerCtrl', function($scope, $cordovaBarcodeScanner)
     }, function(error) {
       // An error occurred
     });
-  
-  
+
+
   // NOTE: encoding not functioning yet
   $cordovaBarcodeScanner
     .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
     .then(function(success) {
-      // Success! 
+      // Success!
     }, function(error) {
       // An error occurred
-    });      
- 
+    });
+
 });
 ```
 
@@ -303,7 +303,7 @@ cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.gi
 
 ```javascript
 module.controller('CalendarCtrl', function ($scope, $cordovaCalendar) {
-  
+
   $cordovaCalendar.createCalendar({
     calendarName: 'Cordova Calendar',
     calendarColor: '#FF0000'
@@ -381,7 +381,7 @@ module.controller('CalendarCtrl', function ($scope, $cordovaCalendar) {
   });
 
   $cordovaCalendar.listEventsInRange(
-    new Date(2015, 0, 6, 0, 0, 0, 0, 0), 
+    new Date(2015, 0, 6, 0, 0, 0, 0, 0),
     new Date(2015, 1, 6, 0, 0, 0, 0, 0)
   ).then(function (result) {
     // success
@@ -449,7 +449,7 @@ module.controller('CalendarCtrl', function ($scope, $cordovaCalendar) {
 </div>
 
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
-from a device. 
+from a device.
 
 ```bash
 cordova plugin add org.apache.cordova.camera
@@ -459,10 +459,10 @@ cordova plugin add org.apache.cordova.camera
 module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
   $scope.takePicture = function() {
-    var options = { 
-        quality : 75, 
-        destinationType : Camera.DestinationType.DATA_URL, 
-        sourceType : Camera.PictureSourceType.CAMERA, 
+    var options = {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.CAMERA,
         allowEdit : true,
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 100,
@@ -470,7 +470,7 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: false
     };
-    
+
     $cordovaCamera.getPicture(options).then(function(imageData) {
       // Success! Image data is here
     }, function(err) {
@@ -509,7 +509,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
   $scope.captureAudio = function() {
     var options = { limit: 3, duration: 10 };
-    
+
     $cordovaCapture.captureAudio(options).then(function(audioData) {
       // Success! Audio data is here
     }, function(err) {
@@ -519,7 +519,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
   $scope.captureImage = function() {
     var options = { limit: 3 };
-    
+
     $cordovaCapture.captureImage(options).then(function(imageData) {
       // Success! Image data is here
     }, function(err) {
@@ -529,7 +529,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
   $scope.captureVideo = function() {
     var options = { limit: 3, duration: 15 };
-    
+
     $cordovaCapture.captureVideo(options).then(function(videoData) {
       // Success! Video data is here
     }, function(err) {
@@ -568,7 +568,7 @@ cordova plugin add https://github.com/VersoSolutions/CordovaClipboard
 ```javascript
 
 module.controller('ClipboardCtrl', function($scope, $cordovaClipboard) {
-  
+
   $cordovaClipboard
     .copy('text to copy')
     .then(function () {
@@ -576,7 +576,7 @@ module.controller('ClipboardCtrl', function($scope, $cordovaClipboard) {
     }, function () {
       // error
     });
-    
+
   $cordovaClipboard
     .paste()
     .then(function (result) {
@@ -584,7 +584,7 @@ module.controller('ClipboardCtrl', function($scope, $cordovaClipboard) {
     }, function () {
       // error
     });
-    
+
 });
 
 ```
@@ -647,7 +647,7 @@ cordova plugin add http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaDatePicker) {
-  
+
   var options = {date: new Date(), mode: 'date'};
   //var options = {date: new Date(), mode: 'time'}; for time
   $cordovaDatePicker.show(options).then(function(date){
@@ -715,17 +715,17 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
 
   $scope.getAcceleration = function () {
     $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occured. Show a message to the user
     });
   };
-  
+
   $scope.watchAcceleration = function () {
     // Update every 3 seconds for 1 minute
-    var options = { 
-      maximumAge: 3000, 
-      timeout: 60 * 1000, 
+    var options = {
+      maximumAge: 3000,
+      timeout: 60 * 1000,
       enableHighAccuracy: true
     };
 
@@ -741,11 +741,11 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
         var timeStamp = acceleration.timestamp;
     });
   };
-  
+
   // use watchID from watchAcceleration()
     $cordovaDeviceMotion.clearWatch(watch.watchId)
       .then(function(result) {
-        // Success! 
+        // Success!
       }, function(err) {
         // An error occured. Show a message to the user
     });
@@ -777,11 +777,11 @@ cordova plugin add org.apache.cordova.device-orientation
 module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrientation) {
 
     $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occurred
     });
-  
+
     var options = { frequency: 1000 }; // Update every 1 second
     var watch = $cordovaDeviceOrientation.watchHeading(options);
 
@@ -792,10 +792,10 @@ module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrient
         // Heading comes back in
         // position.magneticHeading
       });
-  
+
     $cordovaDeviceOrientation.clearWatch(watch.watchId)
       .then(function(result) {
-        // Success! 
+        // Success!
       }, function(err) {
         // An error occurred
       });
@@ -825,22 +825,22 @@ cordova plugin add org.apache.cordova.dialogs
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaDialogs) {
-  
+
   $cordovaDialogs.alert('message', 'title', 'button name')
     .then(function() {
       // callback success
     });
-  
+
   $cordovaDialogs.confirm('message', 'title', ['button 1','button 2'])
     .then(function(buttonIndex) {
-      // no button = 0, 'OK' = 1, 'Cancel' = 2 
+      // no button = 0, 'OK' = 1, 'Cancel' = 2
       var btnIndex = buttonIndex;
     });
 
   $cordovaDialogs.prompt('msg', 'title', ['btn 1','btn 2'], 'default text')
     .then(function(result) {
       var input = result.input1;
-      // no button = 0, 'OK' = 1, 'Cancel' = 2 
+      // no button = 0, 'OK' = 1, 'Cancel' = 2
       var btnIndex = buttonIndex;
     });
 
@@ -869,7 +869,7 @@ The Facebook Connect plugin to obtain access to the native FB application on iOS
 
 #### Pre-Install
 
-To use the FB plugin, you first have to create a new Facebook App inside of the Facebook developer portal at [https://developers.facebook.com](https://developers.facebook.com/). Retrieve the `App ID` and `App Name`, which will be required to setup your cordova app and for web-development. 
+To use the FB plugin, you first have to create a new Facebook App inside of the Facebook developer portal at [https://developers.facebook.com](https://developers.facebook.com/). Retrieve the `App ID` and `App Name`, which will be required to setup your cordova app and for web-development.
 
 
 #### iOS Install
@@ -886,7 +886,7 @@ cordova -d plugin add /Users/your/path/here/phonegap-facebook-plugin --variable 
 
 #### Android Install
 
-Installing the FB plugin requires a lot of pre-configuration. 
+Installing the FB plugin requires a lot of pre-configuration.
 
 Configure the project with your FB app id in the `res/values/facebookconnect.xml` file. For example:
 
@@ -916,7 +916,7 @@ cd FacebookLib
 
 ant clean
 
-open -e AndroidManifest.xml 
+open -e AndroidManifest.xml
 
 // change your minSdkVersion and your targetSdkVersion to your environment settings for me it was:
 // <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17" />
@@ -944,7 +944,7 @@ module.config(function($cordovaFacebookProvider) {
 });
 ```
 
-This will allow you to use Facebook in your application through the same API as the cordova plugin. 
+This will allow you to use Facebook in your application through the same API as the cordova plugin.
 
 To allow web-access through your app in the development stage, you may have to go into the Facebook Developer portal and set the `Site URL` to your localhost server (eg: `http://localhost:8100/`). The page to configure these settings can be found at at [https://developers.facebook.com/apps/{Your App ID}/settings/](https://developers.facebook.com/apps/{Your App ID}/settings/).
 
@@ -960,17 +960,17 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
       /* returns
         { id: "634565435",
           lastName: "bob"
-          ... 
+          ...
         }  */
     }, function (error) {
       // error
     });
-    
-    
+
+
   var options = {
     method: "feed",
     link: "http://example.com",
-    caption: "Such caption, very feed." 
+    caption: "Such caption, very feed."
   };
   $cordovaFacebook.showDialog(options)
     .then(function(success) {
@@ -978,19 +978,19 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
     }, function (error) {
       // error
     });
-    
-    
+
+
   var path = "me";
   var permissions = ["public_profile"];  
-  // var permissions = null to stop FB app from opening 
+  // var permissions = null to stop FB app from opening
   $cordovaFacebook.api(path, permissions)
     .then(function(success) {
       // success
     }, function (error) {
       // error
     });
-    
-    
+
+
   // check if user is currently logged in  
   $cordovaFacebook.getLoginStatus()
     .then(function(success) {
@@ -998,7 +998,7 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
     }, function (error) {
       // error
     });
-    
+
   $cordovaFacebook.getAccessToken()
     .then(function(success) {
       // success
@@ -1012,7 +1012,7 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
     }, function (error) {
       // error
     });
- 
+
 });
 ```
 
@@ -1040,80 +1040,80 @@ cordova plugin add org.apache.cordova.file
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaFile) {
-  
+
   $cordovaFile.checkDir(directory).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
-  
+
+
   // parameters: directory, replace (boolean)
   $cordovaFile.createDir(directory, false).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
-  
+
+
   $cordovaFile.checkFile(filePath).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
-  
+
+
   // parameters: filePath, replace (boolean)
   $cordovaFile.createFile(filePath, true).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
-  
+
+
   $cordovaFile.removeFile(filePath).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
-  
+
+
   $cordovaFile.writeFile(filePath).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
+
   // Reads a file as TEXT
   $cordovaFile.readFile(filePath).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
+
   // parameters: source, filePath, trust all hosts (boolean), options
   $cordovaFile
     .downloadFile(source, filePath, true, options)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // Error
     }, function (progress) {
       // constant progress updates
     });
-  
-  
+
+
   // parameters: source, filePath, options
   $cordovaFile
     .uploadFile(server, filePath, options)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // Error
     }, function (progress) {
       // constant progress updates
     });
- 
+
 });
 ```
 
@@ -1141,13 +1141,13 @@ cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
-  
+
   $cordovaFlashlight.available().then(function(availability) {
     var avail = availability; // is available
   }, function () {
     // unavailable
   });
-  
+
   $cordovaFlashlight.switchOn()
     .then(
       function (success) { /* success */ },
@@ -1157,7 +1157,7 @@ module.controller('MyCtrl', function($scope, $cordovaFlashlight) {
     .then(
       function (success) { /* success */ },
       function (error) { /* error */ });
-      
+
   $cordovaFlashlight.toggle()
     .then(function (success) { /* success */ },
       function (error) { /* error */ });
@@ -1189,7 +1189,7 @@ cordova plugin add org.apache.cordova.geolocation
 
 ```javascript
 module.controller('GeoCtrl', function($cordovaGeolocation) {
-  
+
   $cordovaGeolocation
     .getCurrentPosition()
     .then(function (position) {
@@ -1205,16 +1205,16 @@ module.controller('GeoCtrl', function($cordovaGeolocation) {
     timeout : 3000,
     enableHighAccuracy: true
   };
-  
+
   var watch = $cordovaGeolocation.watchPosition(options);
-  watch.promise.then(function()  { /* Not  used */ }, 
+  watch.promise.then(function()  { /* Not  used */ },
     function(err) {
       // error
     }, function(position) {
       var lat  = position.coords.latitude
       var long = position.coords.longitude
   });
-  
+
   // clear watch
   $cordovaGeolocation.clearWatch(watch.watchId)
 });
@@ -1247,27 +1247,27 @@ module.controller('MyCtrl', function($cordovaGlobalization) {
   $cordovaGlobalization.getPreferredLanguage().then(
     function(result) {
       // result
-    }, 
+    },
     function(error) {
       // error
   });
-    
+
   $cordovaGlobalization.getLocaleName().then(
     function(result) {
       // result
-    }, 
+    },
     function(error) {
       // error
   });
-  
+
   $cordovaGlobalization.getFirstDayOfWeek().then(
     function(result) {
       // result
-    }, 
+    },
     function(error) {
       // error
   });
-  
+
     // Soon implemented:
     // dateToString
     // stringToDate
@@ -1367,7 +1367,7 @@ module.controller('MyCtrl', function($scope, $cordovaGoogleAnalytics) {
   </div>  
 </div>
 
-Accessing the Keyboard of iOS from cordova 
+Accessing the Keyboard of iOS from cordova
 
 ```
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
@@ -1380,9 +1380,9 @@ module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
   $cordovaKeyboard.hideAccessoryBar(true)
 
   $cordovaKeyboard.disableScroll(true)
-  
+
   $cordovaKeyboard.close()
-  
+
   var isVisible = $cordovaKeyboard.isVisible()
 
 });
@@ -1403,7 +1403,7 @@ module.controller('MyCtrl', function($scope, $cordovaKeyboard) {
   </div>  
 </div>
 
-Accessing the keychain of iOS from cordova 
+Accessing the keychain of iOS from cordova
 
 ```
 cordova plugin add https://github.com/shazron/KeychainPlugin.git
@@ -1532,30 +1532,30 @@ cordova plugin add org.apache.cordova.media
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaMedia) {
     var src = "/src/audio.mp3";
-  
+
     var mediaSource = $cordovaMedia.newMedia(src);
     var promise = mediaSource.promise;
     var mediaStatus = mediaSource.mediaStatus;
     var media = mediaSource.media;
-  
+
     $cordovaMedia.play(media);
-    
+
     $cordovaMedia.pause(media);
-    
+
     $cordovaMedia.stop(media);
-    
+
     $cordovaMedia.release(media);
-    
+
     $cordovaMedia.getDuration(media);
-    
+
     $cordovaMedia.seekTo(media, 5000000); // milliseconds
-    
+
     $cordovaMedia.setVolume(media, 80);
-    
+
     $cordovaMedia.startRecord(media);
-    
+
     $cordovaMedia.stopRecord(media);
-  
+
     $cordovaMedia.getCurrentPosition(media).then(...);
 });
 ```
@@ -1639,15 +1639,55 @@ cordova plugin add org.apache.cordova.network-information
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaNetwork) {
   var type = $cordovaNetwork.getNetwork();
-  
+
   var isOnline = $cordovaNetwork.isOnline();
-  
+
   var isOffline = $cordovaNetwork.isOffline();
 });
 ```
 [View Network Types](https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md#connectiontype)
 
 
+<a class="anchor" id="Oauth"></a>
+
+<div class="anchor-row">
+  <h3><a href="#Oauth"><code>$cordovaOauth</code></a></h3>
+  <div class="button-row">
+    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/oauth.js">Source</a>
+    <a class="btn-anchor" href="https://github.com/nraboy/ng-cordova-oauth/blob/master/README.md">Official Docs</a>
+  </div>
+  <div class="icon-row">
+    <i class="icon ion-social-apple"></i>
+    <i class="icon ion-social-android"></i>
+    <i class="icon ion-social-windows"></i>
+  </div>  
+</div>
+
+Use browser login flow for various oauth providers
+
+```
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+```
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaOauth) {
+    $scope.facebookLogin = function() {
+        $cordovaOauth.facebook("CLIENT_ID_HERE", ["email"]).then(function(result) {
+            // results
+        }, function(error) {
+            // error
+        });
+    }
+
+    // $cordovaOauth.dropbox(string appKey);
+    // $cordovaOauth.digitalOcean(string clientId, string clientSecret);
+    // $cordovaOauth.google(string clientId, array appScope);
+    // $cordovaOauth.github(string clientId, string clientSecret, array appScope);
+    // $cordovaOauth.linkedin(string clientId, string clientSecret, array appScope, string state);
+    // $cordovaOauth.instagram(string clientId, array appScope);
+    // $cordovaOauth.box(string clientId, string clientSecret, string state);
+});
+```
 
 
 <a class="anchor" id="PinDialog"></a>
@@ -1744,7 +1784,7 @@ cordova plugin add https://github.com/katzer/cordova-plugin-printer.git
 module.controller('MyCtrl', function($scope, $cordovaPrinter) {
 
   var printerAvail = $cordovaPrinter.isAvailable()
-  
+
   var doc = "<html> ... </html>";
   $cordovaPrinter.print(doc)
 });
@@ -1815,10 +1855,10 @@ module.controller('MyCtrl', function($scope, $cordovaProgress) {
 $cordovaProgress.showSimple(true)  // requires .hide()
 
 $cordovaProgress.showSimpleWithLabel(true, "Loading") // .hide()
-  
+
 $cordovaProgress.showSimpleWithLabelDetail(true, "Loading", "detail")
     // requires .hide()
-    
+
 $cordovaProgress.hide()
 
 
@@ -1871,7 +1911,7 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
     "senderID":"replace_with_sender_id",
     "ecb":"onNotification"
   };
-  
+
   var iosConfig = {
     "badge":"true",
     "sound":"true",
@@ -1880,25 +1920,25 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
   };
 
   $cordovaPush.register(config).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
-  
+
+
   $cordovaPush.unregister(options).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
+
   // iOS only
   $cordovaPush.setBadgeNumber(2).then(function(result) {
-      // Success! 
+      // Success!
   }, function(err) {
       // An error occured. Show a message to the user
   });
-  
+
 });
 ```
 
@@ -1973,51 +2013,51 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
   $cordovaSocialSharing
     .shareViaTwitter(message, image, link)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occured. Show a message to the user
     });
-  
+
   $cordovaSocialSharing
     .shareViaWhatsApp(message, image, link)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occured. Show a message to the user
     });
-  
-  
+
+
   $cordovaSocialSharing
     .shareViaFacebook(message, image, link)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occured. Show a message to the user
     });
-  
+
   // access multiple numbers in a string like: '0612345678,0687654321'
   $cordovaSocialSharing
     .shareViaSMS(message, number)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occurred. Show a message to the user
     });
-  
+
   // TO, CC, BCC must be an array, Files can be either null, string or array
   $cordovaSocialSharing
     .shareViaEmail(message, subject, toArr, bccArr, file)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occurred. Show a message to the user
     });
-  
-  
+
+
   $cordovaSocialSharing
     .canShareVia(socialType, message, image, link)
     .then(function(result) {
-      // Success! 
+      // Success!
     }, function(err) {
       // An error occurred. Show a message to the user
     });
@@ -2048,7 +2088,7 @@ cordova plugin add https://github.com/Paldom/SpinnerDialog.git
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
-  
+
   // Show spinner dialog with message
   // Title and message only works on Android
   $cordovaSpinnerDialog.show("title","message");
@@ -2085,7 +2125,7 @@ cordova plugin add org.apache.cordova.splashscreen
 module.controller('MyCtrl', function($scope, $cordovaSplashscreen) {
 
   $cordovaSplashscreen.show();
-  
+
 });
 ```
 
@@ -2157,20 +2197,20 @@ cordova plugin add org.apache.cordova.statusbar
 ```javascript
 module.controller('MyCtrl', function($cordovaStatusbar) {
   $cordovaStatusbar.overlaysWebView(true);
-  
+
   // styles: Default : 0, LightContent: 1, BlackTranslucent: 2, BlackOpaque: 3
   $cordovaStatusbar.style(1);
-  
-  // supported names: black, darkGray, lightGray, white, gray, red, green, 
+
+  // supported names: black, darkGray, lightGray, white, gray, red, green,
   // blue, cyan, yellow, magenta, orange, purple, brown
   $cordovaStatusbar.styleColor('black');
-  
+
   $cordovaStatusbar.styleHex('#000');
 
   $cordovaStatusbar.hide();
 
   $cordovaStatusbar.show();
-  
+
   var isVisible = $cordovaStatusbar.isVisible();
 
 });
@@ -2263,7 +2303,7 @@ module.controller('MyCtrl', function($cordovaTouchID) {
   }, function (error) {
     alert(error); // not supported
   });
-  
+
   $cordovaTouchID.authenticate("text").then(function() {
     // success
   }, function () {
