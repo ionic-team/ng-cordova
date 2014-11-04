@@ -1023,7 +1023,7 @@ angular.module('ngCordova.plugins.contacts', [])
 
       clone: function (contact) {
         var deviceContact = navigator.contacts.create(contact);
-        return deviceContact.clone(contact)
+        return deviceContact.clone(contact);
       },
 
       find: function (options) {
@@ -1063,7 +1063,7 @@ angular.module('ngCordova.plugins.contacts', [])
       // TODO: method to set / get ContactName
       // TODO: method to set / get ContactOrganization
 
-    }
+    };
 
   }]);
 
@@ -3050,15 +3050,19 @@ angular.module('ngCordova.plugins.printer', [])
       isAvailable: function () {
         var q = $q.defer();
 
-        $window.plugin.printer.isServiceAvailable(function (isAvailable) {
+        $window.plugin.printer.isAvailable(function (isAvailable) {
           q.resolve(isAvailable);
         });
 
         return q.promise;
       },
 
-      print: function (doc) {
-        $window.plugin.printer.print(doc);
+      print: function (doc, options) {
+        var q = $q.defer();
+        $window.plugin.printer.print(doc, options, function () {
+          q.resolve();
+        });
+        return q.promise;
       }
     }
   }
