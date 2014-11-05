@@ -258,7 +258,7 @@ cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 
 ```javascript
 
-module.controller('BarcodeScannerCtrl', function($scope, $cordovaBarcodeScanner) {
+module.controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
 
   $cordovaBarcodeScanner
     .scan()
@@ -949,19 +949,58 @@ This will allow you to use Facebook in your application through the same API as 
 To allow web-access through your app in the development stage, you may have to go into the Facebook Developer portal and set the `Site URL` to your localhost server (eg: `http://localhost:8100/`). The page to configure these settings can be found at at [https://developers.facebook.com/apps/{Your App ID}/settings/](https://developers.facebook.com/apps/{Your App ID}/settings/).
 
 
-#### API
+
+#### Methods
+
+##### `login(permissions)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| permissions  | `String Array` | A string array of permissions your app will require. EG: `["public_profile", "email"]` |
+
+**Returns**  `Object` with user information, such as id, lastName 
+
+
+##### `showDialog(options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| options  | `Object` | A JSON object with 3 keys: `method`, `link`, `caption`. Each value is of `String` type |
+
+
+##### `api(path, permissions)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| path         | `String`       | The Facebook API path to query. EG: `me`, `me/photos`, `search?q={your-query}` |
+| permissions  | `String Array` | A string array of permissions your app will require. Set permissions to `null` to stop the Facebook App from opening again. |
+
+
+##### `getLoginStatus(message)`
+
+Check if the user is currently logged in. If they are already logged in, there is no need to login again, and the `api` method can be called.
+
+##### `getAccessToken(message)`
+
+Retrieves the Access Token of the current logged-in session.
+
+##### `logout(message)`
+
+Logout the user out of Facebook.
+
+
+#### Example 
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaFacebook) {
 
-  var permissions = ["public_profile", "email", "user_friends"];
-  $cordovaFacebook.login(permissions)
+  $cordovaFacebook.login(["public_profile", "email", "user_friends"])
     .then(function(success) {
-      /* returns
-        { id: "634565435",
-          lastName: "bob"
-          ...
-        }  */
+      /*  { id: "634565435",
+            lastName: "bob"
+            ...
+          }
+      */
     }, function (error) {
       // error
     });
@@ -980,10 +1019,7 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
     });
 
 
-  var path = "me";
-  var permissions = ["public_profile"];  
-  // var permissions = null to stop FB app from opening
-  $cordovaFacebook.api(path, permissions)
+  $cordovaFacebook.api("me", ["public_profile"])
     .then(function(success) {
       // success
     }, function (error) {
@@ -991,7 +1027,6 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
     });
 
 
-  // check if user is currently logged in  
   $cordovaFacebook.getLoginStatus()
     .then(function(success) {
       // success
@@ -2098,14 +2133,30 @@ A dialog with a spinner wheel.
 cordova plugin add https://github.com/Paldom/SpinnerDialog.git
 ```
 
+#### Methods
+
+##### `show(title, message, persistent)`
+
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| title        | `String`       | Title of the spinner dialog. Leave blank for no title |
+| message      | `String`       | Message of the spinner dialog. Leave blank for no message |
+| persistent   | `Boolean`      | `true` to stop the user from dismissing the dialog with touch. `false` to allow touch to dismiss dialog.|
+
+
+##### `hide()`
+
+Hides the spinner dialog, which is currently in the view.
+
+
+#### Example 
+
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
 
-  // Show spinner dialog with message
-  // Title and message only works on Android
-  $cordovaSpinnerDialog.show("title","message");
+  $cordovaSpinnerDialog.show("title","message", true);
 
-  // Hide spinner dialog
   $cordovaSpinnerDialog.hide();
 });
 ```
@@ -2249,29 +2300,44 @@ This plugin allows you to show a native Toast (a little text popup) on iOS, Andr
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 ```
 
-You have two choices to make when showing a Toast: where to show it and for how long.
+#### Methods
 
-- show(message, duration, position)
-  - duration: 'short', 'long'
-  - position: 'top', 'center', 'bottom'
+##### `show(message, duration, position)`
 
-You can also use any of these convenience methods:
 
-- showShortTop(message)
-- showShortCenter(message)
-- showShortBottom(message)
-- showLongTop(message)
-- showLongCenter(message)
-- showLongBottom(message)
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| message      | `String`       | Message of the spinner dialog. Leave blank for no message |
+| duration     | `String`       | Duration of time to display the toast. Options : `'short'`, `'long'` |
+| position     | `String`       | Location of the toast. Options : `'top'`, `'center'`, `'bottom'` |
+
+
+
+##### `showShortTop(message)`
+
+##### `showShortCenter(message)`
+
+##### `showShortBottom(message)`
+
+##### `showLongTop(message)`
+
+##### `showLongCenter(message)`
+
+##### `showLongBottom(message)`
+
+
+#### Example 
 
 ```javascript
 module.controller('MyCtrl', function($cordovaToast) {
 
-  $cordovaToast.show('Here is a message', 'long', 'center').then(function(success) {
-    // success
-  }, function (error) {
-    // error
-  });
+  $cordovaToast
+    .show('Here is a message', 'long', 'center')
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    });
 
   $cordovaToast.showShortTop('Here is a message').then(function(success) {
     // success
@@ -2311,9 +2377,9 @@ cordova plugin add uk.co.ilee.touchid
 module.controller('MyCtrl', function($cordovaTouchID) {
 
   $cordovaTouchID.checkSupport().then(function() {
-    // success, supported
+    // success, TouchID supported
   }, function (error) {
-    alert(error); // not supported
+    alert(error); // TouchID not supported
   });
 
   $cordovaTouchID.authenticate("text").then(function() {
@@ -2324,7 +2390,6 @@ module.controller('MyCtrl', function($cordovaTouchID) {
 
 });
 ```
-
 
 
 <a class="anchor" id="Vibration"></a>
