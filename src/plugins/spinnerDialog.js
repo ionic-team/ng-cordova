@@ -13,6 +13,6 @@ angular.module('ngCordova.plugins.spinnerDialog', [])
       hide: function () {
         return $window.plugins.spinnerDialog.hide();
       }
-    }
+    };
 
   }]);

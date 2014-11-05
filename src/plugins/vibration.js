@@ -15,5 +15,5 @@ angular.module('ngCordova.plugins.vibration', [])
       cancelVibration: function () {
         return navigator.notification.cancelVibration();
       }
-    }
+    };
   }]);

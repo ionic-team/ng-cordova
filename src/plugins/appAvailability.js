@@ -17,5 +17,5 @@ angular.module('ngCordova.plugins.appAvailability', [])
 
       return q.promise;
     }
-  }
+  };
 }]);

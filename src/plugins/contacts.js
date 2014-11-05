@@ -53,14 +53,14 @@ angular.module('ngCordova.plugins.contacts', [])
         return q.promise;
       },
 
-      pickContact: function() {
+      pickContact: function () {
         var q = $q.defer();
 
         navigator.contacts.pickContact(
-          function(contact) {
+          function (contact) {
             q.resolve(contact);
           },
-          function(err) {
+          function (err) {
             q.reject(err);
           }
         );

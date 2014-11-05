@@ -54,5 +54,5 @@ angular.module('ngCordova.plugins.capture', [])
 
         return q.promise;
       }
-    }
+    };
   }]);

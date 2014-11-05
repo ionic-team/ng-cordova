@@ -23,6 +23,5 @@ angular.module('ngCordova.plugins.printer', [])
         });
         return q.promise;
       }
-    }
-  }
-  ]);
+    };
+  }]);

@@ -1,5 +1,5 @@
-// install   :
-// link      :
+// install   :  cordova plugin add de.appplant.cordova.plugin.local-notification
+// link      :  https://github.com/katzer/cordova-plugin-local-notifications/
 
 angular.module('ngCordova.plugins.localNotification', [])
 
@@ -106,6 +106,5 @@ angular.module('ngCordova.plugins.localNotification', [])
       oncancel: function () {
         return $window.plugin.notification.local.oncancel;
       }
-    }
-  }
-  ]);
+    };
+  }]);

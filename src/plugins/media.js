@@ -23,7 +23,7 @@ angular.module('ngCordova.plugins.media', [])
           media: media,
           mediaStatus: mediaStatus,
           promise: q.promise
-        }
+        };
 
       },
 
@@ -85,5 +85,5 @@ angular.module('ngCordova.plugins.media', [])
 
         return source.stop();
       }
-    }
+    };
   }]);

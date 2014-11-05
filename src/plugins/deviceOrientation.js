@@ -30,11 +30,11 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
         return {
           watchId: watchId,
           promise: q.promise
-        }
+        };
       },
 
       clearWatch: function (watchID) {
         navigator.compass.clearWatch(watchID);
       }
-    }
+    };
   }]);

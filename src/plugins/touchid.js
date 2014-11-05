@@ -35,5 +35,5 @@ angular.module('ngCordova.plugins.touchid', [])
 
         return defer.promise;
       }
-    }
+    };
   }]);

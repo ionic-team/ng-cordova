@@ -21,5 +21,5 @@ angular.module('ngCordova.plugins.zip', [])
 
         return q.promise;
       }
-    }
+    };
   }]);

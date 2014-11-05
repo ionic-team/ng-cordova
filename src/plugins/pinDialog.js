@@ -15,5 +15,5 @@ angular.module('ngCordova.plugins.pinDialog', [])
 
         return q.promise;
       }
-    }
+    };
   }]);

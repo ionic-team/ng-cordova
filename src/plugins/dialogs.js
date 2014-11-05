@@ -47,11 +47,11 @@ angular.module('ngCordova.plugins.dialogs', [])
 
         if (!$window.navigator.notification) {
           var res = $window.prompt(message, defaultText);
-          if (res != null) {
-            q.resolve({input1 : res, buttonIndex : 1});
+          if (res !== null) {
+            q.resolve({input1: res, buttonIndex: 1});
           }
           else {
-            q.resolve({input1 : res, buttonIndex : 2});
+            q.resolve({input1: res, buttonIndex: 2});
           }
         }
         else {

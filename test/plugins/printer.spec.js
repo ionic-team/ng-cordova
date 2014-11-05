@@ -10,17 +10,17 @@ describe('Service: $cordovaPrinter', function() {
 
     window.plugin = {
       printer: {
-        isServiceAvailable: angular.noop,
+        isAvailable: angular.noop,
         print: jasmine.createSpy('print')
       }
     };
   }));
 
-  it('should return window\'s printer.isServiceAvailable', function() {
+  it('should return window\'s printer.isAvailable', function() {
 
     var result;
 
-    spyOn(window.plugin.printer, 'isServiceAvailable')
+    spyOn(window.plugin.printer, 'isAvailable')
       .andCallFake(function (successCb, errorCb) {
         successCb(false);
       });

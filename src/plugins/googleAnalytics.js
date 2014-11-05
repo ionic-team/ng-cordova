@@ -90,10 +90,10 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         return d.promise;
       },
 
-      addTransactionItem: function (transactionId, name ,sku, category, price, quantity, currencyCode) {
+      addTransactionItem: function (transactionId, name, sku, category, price, quantity, currencyCode) {
         var d = $q.defer();
 
-        $window.analytics.addTransactionItem(transactionId, name ,sku, category, price, quantity, currencyCode, function (response) {
+        $window.analytics.addTransactionItem(transactionId, name, sku, category, price, quantity, currencyCode, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);

@@ -49,11 +49,11 @@ angular.module('ngCordova.plugins.statusbar', [])
       },
 
       show: function () {
-        return StatusBar.show()
+        return StatusBar.show();
       },
 
       isVisible: function () {
         return StatusBar.isVisible();
       }
-    }
+    };
   }]);

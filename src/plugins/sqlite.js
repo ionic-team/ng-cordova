@@ -34,7 +34,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       insertCollection: function (db, query, bindings) {
         var q = $q.defer();
         var coll = bindings.slice(0); // clone collection
-        
+
         db.transaction(function (tx) {
           (function insertOne() {
             var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
@@ -56,7 +56,7 @@ angular.module('ngCordova.plugins.sqlite', [])
         });
         return q.promise;
       },
-      
+
       nestedExecute: function (db, query1, query2, binding1, binding2) {
         var q = $q.defer();
 
@@ -65,8 +65,8 @@ angular.module('ngCordova.plugins.sqlite', [])
               q.resolve(result);
               tx.executeSql(query2, binding2, function (tx, res) {
                 q.resolve(res);
-              })
-            })
+              });
+            });
           },
           function (transaction, error) {
             q.reject(error);
@@ -81,10 +81,10 @@ angular.module('ngCordova.plugins.sqlite', [])
         $window.sqlitePlugin.deleteDatabase(dbName, function (success) {
           q.resolve(success);
         }, function (error) {
-          q.reject(error)
+          q.reject(error);
         });
 
         return q.promise;
       }
-    }
+    };
   }]);

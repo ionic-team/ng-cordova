@@ -174,6 +174,5 @@ angular.module('ngCordova.plugins.globalization', [])
         return q.promise;
       }
 
-    }
-
+    };
   }]);

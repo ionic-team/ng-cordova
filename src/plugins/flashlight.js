@@ -19,7 +19,7 @@ angular.module('ngCordova.plugins.flashlight', [])
         $window.plugins.flashlight.switchOn(function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
+          q.reject(error);
         });
         return q.promise;
       },
@@ -29,7 +29,7 @@ angular.module('ngCordova.plugins.flashlight', [])
         $window.plugins.flashlight.switchOff(function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
+          q.reject(error);
         });
         return q.promise;
       },
@@ -39,9 +39,9 @@ angular.module('ngCordova.plugins.flashlight', [])
         $window.plugins.flashlight.toggle(function (response) {
           q.resolve(response);
         }, function (error) {
-          q.reject(error)
+          q.reject(error);
         });
         return q.promise;
       }
-    }
+    };
   }]);

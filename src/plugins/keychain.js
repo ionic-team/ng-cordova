@@ -44,5 +44,5 @@ angular.module('ngCordova.plugins.keychain', [])
 
         return defer.promise;
       }
-    }
+    };
   }]);

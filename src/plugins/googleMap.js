@@ -51,5 +51,5 @@ angular.module('ngCordova.plugins.googleMap', [])
         map = null;
         // delete map;
       }
-    }
+    };
   }]);

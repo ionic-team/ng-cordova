@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.keyboard', [])
       },
 
       isVisible: function () {
-        return cordova.plugins.Keyboard.isVisible
+        return cordova.plugins.Keyboard.isVisible;
       }
-    }
+    };
   }]);

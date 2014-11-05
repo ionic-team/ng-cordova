@@ -32,11 +32,11 @@ angular.module('ngCordova.plugins.geolocation', [])
         return {
           watchId: watchId,
           promise: q.promise
-        }
+        };
       },
 
       clearWatch: function (watchID) {
         return navigator.geolocation.clearWatch(watchID);
       }
-    }
+    };
   }]);

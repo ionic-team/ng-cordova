@@ -71,5 +71,5 @@ angular.module('ngCordova.plugins.badge', [])
       configure: function (config) {
         return cordova.plugins.notification.badge.configure(config);
       }
-    }
+    };
   }]);

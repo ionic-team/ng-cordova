@@ -34,5 +34,5 @@ angular.module('ngCordova.plugins.device', [])
       getVersion: function () {
         return device.version;
       }
-    }
+    };
   }]);

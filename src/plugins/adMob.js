@@ -65,5 +65,5 @@ angular.module('ngCordova.plugins.adMob', [])
 
         return d.promise;
       }
-    }
+    };
   }]);

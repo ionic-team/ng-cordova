@@ -30,5 +30,5 @@ angular.module('ngCordova.plugins.clipboard', [])
 
         return q.promise;
       }
-    }
+    };
   }]);

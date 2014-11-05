@@ -24,5 +24,5 @@ angular.module('ngCordova.plugins.network', [])
       watchNetwork: function () {
         // function for watching online / offline
       }
-    }
+    };
   }]);

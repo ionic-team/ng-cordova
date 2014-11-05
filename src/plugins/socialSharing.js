@@ -2,9 +2,7 @@
 // link      :      https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
 
 // NOTE: shareViaEmail -> if user cancels sharing email, success is still called
-// NOTE: shareViaEmail -> TO, CC, BCC must be an array, Files can be either null, string or array
 // TODO: add support for iPad
-// TODO: detailed docs for each social sharing types (each social platform has different requirements)
 
 angular.module('ngCordova.plugins.socialSharing', [])
 
@@ -15,10 +13,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.share(message, subject, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -27,10 +25,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.shareViaTwitter(message, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -39,10 +37,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.shareViaWhatsApp(message, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -51,10 +49,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.shareViaFacebook(message, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -63,10 +61,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -75,10 +73,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -87,10 +85,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.canShareViaEmail(
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       },
@@ -99,10 +97,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.canShareVia(via, message, subject, file, link,
           function (success) {
-            q.resolve(success); // success
+            q.resolve(success);
           },
           function (error) {
-            q.reject(error); // error
+            q.reject(error);
           });
         return q.promise;
       },
@@ -111,13 +109,13 @@ angular.module('ngCordova.plugins.socialSharing', [])
         var q = $q.defer();
         $window.plugins.socialsharing.shareVia(via, message, subject, file, link,
           function () {
-            q.resolve(true); // success
+            q.resolve(true);
           },
           function () {
-            q.reject(false); // error
+            q.reject(false);
           });
         return q.promise;
       }
 
-    }
+    };
   }]);
