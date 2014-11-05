@@ -1,4 +1,4 @@
-describe('Service: $cordovaPrinter', function() {
+describe('Service: $cordovaPrinter', function () {
 
   var $cordovaPrinter, $rootScope;
 
@@ -16,7 +16,7 @@ describe('Service: $cordovaPrinter', function() {
     };
   }));
 
-  it('should return window\'s printer.isAvailable', function() {
+  it('should return window\'s printer.isAvailable', function () {
 
     var result;
 
@@ -36,12 +36,18 @@ describe('Service: $cordovaPrinter', function() {
     expect(result).toBe(false);
   });
 
-  it('should call window\'s printer.print', function() {
+  it('should call window\'s printer.print', function () {
+    var result;
     var someDoc = 'someDocContent';
+    var options = {landscape: true};
 
-    $cordovaPrinter.print(someDoc);
+    $cordovaPrinter
+      .print(someDoc, options)
+      .then(function (response) {
+        result = response;
+      });
 
-    expect(window.plugin.printer.print).toHaveBeenCalledWith(someDoc);
+    expect(window.plugin.printer.print).toHaveBeenCalledWith(someDoc, options, jasmine.any(Function));
   });
 
 });
