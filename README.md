@@ -22,7 +22,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 
 
 ## Plugins
-
+- [AdMob](https://github.com/floatinghotpot/cordova-admob-pro)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Prefences](https://github.com/dferrell/plugins-application-preferences)
 - [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
