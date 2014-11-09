@@ -2502,6 +2502,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.nativeAudio',
   'ngCordova.plugins.network',
   'ngCordova.plugins.oauth',
+  'ngCordova.plugins.oauthUtility',
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
@@ -2638,7 +2639,7 @@ angular.module('ngCordova.plugins.network', [])
  *
  * DESCRIPTION: Use Oauth sign in for various web services.
  *
- * REQUIRES:  Apache Cordova 3.5+, Apache InAppBrowser Plugin
+ * REQUIRES:  Apache Cordova 3.5+, Apache InAppBrowser Plugin, jsSHA (Twitter only)
  *
  * SUPPORTS:
  *    Dropbox
@@ -2649,11 +2650,12 @@ angular.module('ngCordova.plugins.network', [])
  *    LinkedIn
  *    Instagram
  *    Box
+ *    Reddit
  */
 
-angular.module("ngCordova.plugins.oauth", [])
+angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
 
-  .factory('$cordovaOauth', ['$q', '$http', function ($q, $http) {
+  .factory('$cordovaOauth', ['$q', '$http', '$cordovaOauthUtility', function ($q, $http, $cordovaOauthUtility) {
 
     return {
 
@@ -2932,10 +2934,177 @@ angular.module("ngCordova.plugins.oauth", [])
           deferred.reject("Cannot authenticate via a web browser");
         }
         return deferred.promise;
-      }
+      },
+
+        /*
+         * Sign into the Reddit service
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @param    array appScope
+         * @return   promise
+         */
+        reddit: function(clientId, clientSecret, appScope) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var browserRef = window.open('https://ssl.reddit.com/api/v1/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&duration=permanent&state=ngcordovaoauth&scope=' + appScope.join(",") + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                browserRef.addEventListener('loadstart', function(event) {
+                    if((event.url).indexOf("http://localhost/callback") === 0) {
+                        requestToken = (event.url).split("code=")[1];
+                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                        $http.defaults.headers.post.Authorization = 'Basic ' + btoa(clientId + ":" + clientSecret);
+                        $http({method: "post", url: "https://ssl.reddit.com/api/v1/access_token", data: "redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            .success(function(data) {
+                                deferred.resolve(data);
+                            })
+                            .error(function(data, status) {
+                                deferred.reject("Problem authenticating");
+                            });
+                        browserRef.close();
+                    }
+                });
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        },
+
+        /*
+         * Sign into the Twitter service
+         * Note that this service requires jsSHA for generating HMAC-SHA1 Oauth 1.0 signatures
+         *
+         * @param    string clientId
+         * @param    string clientSecret
+         * @return   promise
+         */
+        twitter: function(clientId, clientSecret) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                if(typeof jsSHA !== "undefined") {
+                    var nonceObj = new jsSHA(Math.round((new Date()).getTime() / 1000.0), "TEXT");
+                    var oauthObject = {
+                        oauth_consumer_key: clientId,
+                        oauth_nonce: nonceObj.getHash("SHA-1", "HEX"),
+                        oauth_signature_method: "HMAC-SHA1",
+                        oauth_timestamp: Math.round((new Date()).getTime() / 1000.0),
+                        oauth_version: "1.0"
+                    };
+                    var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/request_token", oauthObject,  { oauth_callback: "http://localhost/callback" }, clientSecret);
+                    $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
+                    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                    $http({method: "post", url: "https://api.twitter.com/oauth/request_token", data: "oauth_callback=http://localhost/callback" })
+                        .success(function(requestTokenResult) {
+                            var requestTokenParameters = (requestTokenResult).split("&");
+                            var parameterMap = {};
+                            for(var i = 0; i < requestTokenParameters.length; i++) {
+                                parameterMap[requestTokenParameters[i].split("=")[0]] = requestTokenParameters[i].split("=")[1];
+                            }
+                            if(parameterMap.hasOwnProperty("oauth_token") === false) {
+                                deferred.reject("Oauth request token was not received");
+                            }
+                            var browserRef = window.open('https://api.twitter.com/oauth/authenticate?oauth_token=' + parameterMap.oauth_token, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                            browserRef.addEventListener('loadstart', function(event) {
+                                if((event.url).indexOf("http://localhost/callback") === 0) {
+                                    var callbackResponse = (event.url).split("?")[1];
+                                    var responseParameters = (callbackResponse).split("&");
+                                    var parameterMap = {};
+                                    for(var i = 0; i < responseParameters.length; i++) {
+                                        parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                                    }
+                                    if(parameterMap.hasOwnProperty("oauth_verifier") === false) {
+                                        deferred.reject("Browser authentication failed to complete.  No oauth_verifier was returned");
+                                    }
+                                    delete oauthObject.oauth_signature;
+                                    oauthObject.oauth_token = parameterMap.oauth_token;
+                                    var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/access_token", oauthObject,  { oauth_verifier: parameterMap.oauth_verifier }, clientSecret);
+                                    $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
+                                    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                                    $http({method: "post", url: "https://api.twitter.com/oauth/access_token", data: "oauth_verifier=" + parameterMap.oauth_verifier })
+                                        .success(function(result) {
+                                            var accessTokenParameters = result.split("&");
+                                            var parameterMap = {};
+                                            for(var i = 0; i < accessTokenParameters.length; i++) {
+                                                parameterMap[accessTokenParameters[i].split("=")[0]] = accessTokenParameters[i].split("=")[1];
+                                            }
+                                            if(parameterMap.hasOwnProperty("oauth_token_secret") === false) {
+                                                deferred.reject("Oauth access token was not received");
+                                            }
+                                            deferred.resolve(parameterMap);
+                                        })
+                                        .error(function(error) {
+                                            deferred.reject(error);
+                                        });
+                                    browserRef.close();
+                                }
+                            });
+                        })
+                        .error(function(error) {
+                            deferred.reject(error);
+                        });
+                } else {
+                    deferred.reject("Missing jsSHA JavaScript library");
+                }
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        }
 
     };
   }]);
+
+angular.module("ngCordova.plugins.oauthUtility", [])
+
+  .factory('$cordovaOauthUtility', ['$q', function ($q) {
+
+    return {
+
+        /*
+         * Sign an Oauth 1.0 request
+         *
+         * @param    string method
+         * @param    string endPoint
+         * @param    object headerParameters
+         * @param    object bodyParameters
+         * @param    string secretKey
+         * @return   object
+         */
+        createSignature: function(method, endPoint, headerParameters, bodyParameters, secretKey) {
+            if(typeof jsSHA !== "undefined") {
+                var headerAndBodyParameters = angular.copy(headerParameters);
+                var bodyParameterKeys = Object.keys(bodyParameters);
+                for(var i = 0; i < bodyParameterKeys.length; i++) {
+                    headerAndBodyParameters[bodyParameterKeys[i]] = encodeURIComponent(bodyParameters[bodyParameterKeys[i]]);
+                }
+                var signatureBaseString = method + "&" + encodeURIComponent(endPoint) + "&";
+                var headerAndBodyParameterKeys = (Object.keys(headerAndBodyParameters)).sort();
+                for(i = 0; i < headerAndBodyParameterKeys.length; i++) {
+                    if(i == headerAndBodyParameterKeys.length - 1) {
+                        signatureBaseString += encodeURIComponent(headerAndBodyParameterKeys[i] + "=" + headerAndBodyParameters[headerAndBodyParameterKeys[i]]);
+                    } else {
+                        signatureBaseString += encodeURIComponent(headerAndBodyParameterKeys[i] + "=" + headerAndBodyParameters[headerAndBodyParameterKeys[i]] + "&");
+                    }
+                }
+                var oauthSignatureObject = new jsSHA(signatureBaseString, "TEXT");
+                headerParameters.oauth_signature = encodeURIComponent(oauthSignatureObject.getHMAC(encodeURIComponent(secretKey) + "&", "TEXT", "SHA-1", "B64"));
+                var headerParameterKeys = Object.keys(headerParameters);
+                var authorizationHeader = 'OAuth ';
+                for(i = 0; i < headerParameterKeys.length; i++) {
+                    if(i == headerParameterKeys.length - 1) {
+                        authorizationHeader += headerParameterKeys[i] + '="' + headerParameters[headerParameterKeys[i]] + '"';
+                    } else {
+                        authorizationHeader += headerParameterKeys[i] + '="' + headerParameters[headerParameterKeys[i]] + '",';
+                    }
+                }
+                return { signature_base_string: signatureBaseString, authorization_header: authorizationHeader, signature: headerParameters.oauth_signature };
+            } else {
+                return "Missing jsSHA JavaScript library";
+            }
+        }
+
+    };
+
+}]);
 
 // install   :      cordova plugin add https://github.com/Paldom/PinDialog.git
 // link      :      https://github.com/Paldom/PinDialog
