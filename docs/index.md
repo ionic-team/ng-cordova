@@ -958,7 +958,7 @@ To allow web-access through your app in the development stage, you may have to g
 | ------------ |----------------| --------|
 | permissions  | `String Array` | A string array of permissions your app will require. EG: `["public_profile", "email"]` |
 
-**Returns**  `Object` with user information, such as id, lastName 
+**Returns**  `Object` with user information, such as id, lastName
 
 
 ##### `showDialog(options)`
@@ -989,7 +989,7 @@ Retrieves the Access Token of the current logged-in session.
 Logout the user out of Facebook.
 
 
-#### Example 
+#### Example
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaFacebook) {
@@ -1706,7 +1706,7 @@ Use browser login flow for various oauth providers
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
 ```
 
-```javascript
+``` javascript
 module.controller('MyCtrl', function($scope, $cordovaOauth) {
     $scope.facebookLogin = function() {
         $cordovaOauth.facebook("CLIENT_ID_HERE", ["email"]).then(function(result) {
@@ -1723,8 +1723,19 @@ module.controller('MyCtrl', function($scope, $cordovaOauth) {
     // $cordovaOauth.linkedin(string clientId, string clientSecret, array appScope, string state);
     // $cordovaOauth.instagram(string clientId, array appScope);
     // $cordovaOauth.box(string clientId, string clientSecret, string state);
+    // $cordovaOauth.reddit(string clientId, string clientSecret, array appScope);
+    // $cordovaOauth.twitter(string consumerKey, string consumerSecretKey);
 });
 ```
+
+To use Twitter in your project you must have the open source library, [jsSHA](https://github.com/Caligatio/jsSHA), included
+in your project.  This is because Twitter requires request signing using HMAC-SHA1, not natively found in JavaScript.
+
+``` html
+<script src="js/sha1.js"></script>
+```
+
+Add the above jsSHA library into your index.html file.
 
 
 <a class="anchor" id="PinDialog"></a>
@@ -2150,7 +2161,7 @@ cordova plugin add https://github.com/Paldom/SpinnerDialog.git
 Hides the spinner dialog, which is currently in the view.
 
 
-#### Example 
+#### Example
 
 ```javascript
 module.controller('MyCtrl', function($scope, $cordovaSpinnerDialog) {
@@ -2326,7 +2337,7 @@ cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 ##### `showLongBottom(message)`
 
 
-#### Example 
+#### Example
 
 ```javascript
 module.controller('MyCtrl', function($cordovaToast) {
