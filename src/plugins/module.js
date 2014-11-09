@@ -33,6 +33,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.nativeAudio',
   'ngCordova.plugins.network',
   'ngCordova.plugins.oauth',
+  'ngCordova.plugins.oauthUtility',
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',

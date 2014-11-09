@@ -74,6 +74,24 @@ angular.module('demo.oauth.ctrl', [])
             });
         }
 
+        $scope.redditLogin = function() {
+            $cordovaOauth.reddit("CLIENT_ID_HERE", "CLIENT_SECRET_HERE", ["edit"]).then(function(result) {
+                $scope.oauthResult = result;
+            }, function(error) {
+                $scope.oauthResult = "OAUTH ERROR (see console)";
+                console.log(error);
+            });
+        }
+
+        $scope.twitterLogin = function() {
+            $cordovaOauth.twitter("CONSUMER_ID_HERE", "CONSUMER_SECRET_HERE").then(function(result) {
+                $scope.oauthResult = result;
+            }, function(error) {
+                $scope.oauthResult = "OAUTH ERROR (see console)";
+                console.log(error);
+            });
+        }
+
 
         /*
         Ionic modal with source code
