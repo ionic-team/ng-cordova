@@ -19,7 +19,13 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 - **Custom build** : [ngcordova.com/build](http://ngcordova.com/build/)
 
 
+## Installation
 
+Install manually, or from bower:
+
+```bash
+$ bower install ngCordova
+```
 
 ## Plugins
 - [AdMob](https://github.com/floatinghotpot/cordova-admob-pro)
