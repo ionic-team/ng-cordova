@@ -35,4 +35,26 @@ describe('Service: $cordovaDatePicker', function() {
     expect(window.datePicker.show.calls[0].args[0]).toBe(options);
   });
 
+  it('should have default options if none are passed', function() {
+    var result;
+
+    spyOn(window.datePicker, 'show')
+      .andCallFake(function(date, successCb, errorCb) {
+        successCb(date);
+      });
+
+    $cordovaDatePicker
+      .show()
+      .then(function (response) {
+        result = response;
+      });
+
+      $rootScope.$digest();
+
+      console.log(result);
+
+      expect(result.date).not.toBe(undefined);
+      expect(result.mode).toBe('date');
+  });
+
 });
