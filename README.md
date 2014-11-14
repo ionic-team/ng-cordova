@@ -50,7 +50,7 @@ $ bower install ngCordova
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
 - [Globalization](https://github.com/apache/cordova-plugin-globalization) *
-- [Google Analytics](https://github.com/phonegap-build/GAPlugin)
+- [Google Analytics](https://github.com/danwilson/google-analytics-plugin)
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
 - [Keychain](https://github.com/shazron/KeychainPlugin)
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
