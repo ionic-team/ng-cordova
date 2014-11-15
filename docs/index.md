@@ -1706,6 +1706,10 @@ Use browser login flow for various oauth providers
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
 ```
 
+When registering your application with various service providers such as Facebook or Google, it is very important to use
+**http://localhost/callback** as the callback / redirect uri.  The Oauth module depends on this in order to complete the
+browser flow.
+
 ``` javascript
 module.controller('MyCtrl', function($scope, $cordovaOauth) {
     $scope.facebookLogin = function() {
