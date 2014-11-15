@@ -26,6 +26,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.globalization',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.inAppBrowser',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
   'ngCordova.plugins.localNotification',
