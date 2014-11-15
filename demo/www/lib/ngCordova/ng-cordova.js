@@ -1068,6 +1068,9 @@ angular.module('ngCordova.plugins.datePicker', [])
 
     return {
       show: function (options) {
+        options = options ||
+          {date: new Date(), mode: 'date'};
+          
         var d = $q.defer();
 
         $window.datePicker.show(options, function (date) {
@@ -2516,7 +2519,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.statusbar',
   'ngCordova.plugins.toast',
   'ngCordova.plugins.touchid',
-  'ngCordova.plugins.vibration'
+  'ngCordova.plugins.vibration',
+  'ngCordova.plugins.zip'
 ]);
 
 // install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
