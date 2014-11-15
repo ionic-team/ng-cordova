@@ -47,5 +47,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.statusbar',
   'ngCordova.plugins.toast',
   'ngCordova.plugins.touchid',
-  'ngCordova.plugins.vibration'
+  'ngCordova.plugins.vibration',
+  'ngCordova.plugins.zip'
 ]);
