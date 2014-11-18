@@ -28,7 +28,7 @@ $ bower install ngCordova
 ```
 
 ## Plugins
-- [AdMob](https://github.com/floatinghotpot/cordova-admob-pro)
+- [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Prefences](https://github.com/dferrell/plugins-application-preferences)
 - [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
@@ -46,17 +46,25 @@ $ bower install ngCordova
 - [Device](https://github.com/apache/cordova-plugin-device) *
 - [Dialogs](https://github.com/apache/cordova-plugin-dialogs) *
 - [Facebook Connect](https://github.com/Wizcorp/phonegap-facebook-plugin)
+- [Facebook Audience Network Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads)
 - [File](https://github.com/apache/cordova-plugin-file) *
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
+- [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurryads)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
 - [Globalization](https://github.com/apache/cordova-plugin-globalization) *
+- [Google Ads](https://github.com/floatinghotpot/cordova-admob-pro)
 - [Google Analytics](https://github.com/phonegap-build/GAPlugin)
+- [httpd (Web Server)](https://github.com/floatinghotpot/cordova-httpd)
+- [iAd](https://github.com/floatinghotpot/cordova-plugin-iad)
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
 - [Keychain](https://github.com/shazron/KeychainPlugin)
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
 - [Media Capture](https://github.com/apache/cordova-plugin-media-capture)
 - [Media](https://github.com/apache/cordova-plugin-media) *
+- [mMedia (Millennial Media) Ads](https://github.com/floatinghotpot/cordova-plugin-mmedia)
+- [MobFox Ads](https://github.com/floatinghotpot/cordova-mobfox-pro)
+- [MoPub Ads](https://github.com/floatinghotpot/cordova-plugin-mopub)
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
 - [Network Information](https://github.com/apache/cordova-plugin-network-information) *
 - [Oauth](https://github.com/nraboy/ng-cordova-oauth)
