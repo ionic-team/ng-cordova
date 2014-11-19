@@ -50,11 +50,11 @@ angular.module('ngCordova.plugins.localNotification', [])
         return q.promise;
       },
 
-      hasPermission: function (callback, scope) {
+      hasPermission: function (scope) {
         var q = $q.defer();
 
         $window.plugin.notification.local.hasPermission(
-          function (scope, badge) {
+          function (badge) {
             q.resolve(badge);
           }, scope);
 
