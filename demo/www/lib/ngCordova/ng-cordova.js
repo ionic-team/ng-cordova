@@ -2385,6 +2385,21 @@ angular.module('ngCordova.plugins.localNotification', [])
         return q.promise;
       },
 
+      hasPermission: function (callback, scope) {
+        var q = $q.defer();
+
+        $window.plugin.notification.local.hasPermission(
+          function (scope, badge) {
+            q.resolve(badge);
+          }, scope);
+
+        return q.promise;
+      },
+
+      promptForPermission: function () {
+        $window.plugin.notification.local.promptForPermission();
+      },
+
       getScheduledIds: function (scope) {
         var q = $q.defer();
 
