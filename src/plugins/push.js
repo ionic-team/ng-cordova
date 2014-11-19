@@ -6,7 +6,9 @@ angular.module('ngCordova.plugins.push', [])
   .factory('$cordovaPush', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
     return {
       onNotification: function(notification) {
-        $rootScope.$broadcast('pushNotificationReceived', notification);
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast('pushNotificationReceived', notification);
+        });
       },
 
       register: function (config) {
