@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.calendar', [])
 
-  .factory('$cordovaCalendar', [ '$q', '$window', function ($q, $window) {
+  .factory('$cordovaCalendar', ['$q', '$window', function ($q, $window) {
     return {
       createCalendar: function (options) {
         var d = $q.defer(),

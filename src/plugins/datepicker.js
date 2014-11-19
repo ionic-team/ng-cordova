@@ -4,9 +4,8 @@ angular.module('ngCordova.plugins.datePicker', [])
 
     return {
       show: function (options) {
-        options = options ||
-          {date: new Date(), mode: 'date'};
-          
+        options = options || {date: new Date(), mode: 'date'};
+
         var d = $q.defer();
 
         $window.datePicker.show(options, function (date) {

@@ -9,7 +9,7 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
     var scope = $rootScope.$new();
 
     return {
-      init: function(config) {
+      init: function (config) {
         if (angular.isObject(config)) {
           var opt = [];
           for (var i in config) {
@@ -49,11 +49,11 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
         return q.promise;
       },
 
-      close: function() {
+      close: function () {
         win.close();
       },
 
-      executeScript: function(details) {
+      executeScript: function (details) {
         var q = $q.defer();
 
         win.executeScript(details, function (result) {
@@ -63,7 +63,7 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
         return q.promise;
       },
 
-      insertCSS: function(details) {
+      insertCSS: function (details) {
         var q = $q.defer();
 
         win.insertCSS(details, function (result) {

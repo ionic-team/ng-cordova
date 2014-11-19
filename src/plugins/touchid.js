@@ -6,14 +6,14 @@ angular.module('ngCordova.plugins.touchid', [])
   .factory('$cordovaTouchID', ['$q', function ($q) {
 
     return {
-      checkSupport: function() {
+      checkSupport: function () {
         var defer = $q.defer();
         if (!window.cordova) {
           defer.reject("Not supported without cordova.js");
         } else {
-          touchid.checkSupport(function(value) {
+          touchid.checkSupport(function (value) {
             defer.resolve(value);
-          }, function(err) {
+          }, function (err) {
             defer.reject(err);
           });
         }
@@ -21,14 +21,14 @@ angular.module('ngCordova.plugins.touchid', [])
         return defer.promise;
       },
 
-      authenticate: function(auth_reason_text) {
+      authenticate: function (auth_reason_text) {
         var defer = $q.defer();
         if (!window.cordova) {
           defer.reject("Not supported without cordova.js");
         } else {
-          touchid.authenticate(function(value) {
+          touchid.authenticate(function (value) {
             defer.resolve(value);
-          }, function(err) {
+          }, function (err) {
             defer.reject(err);
           }, auth_reason_text);
         }

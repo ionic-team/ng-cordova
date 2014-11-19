@@ -5,7 +5,7 @@ angular.module('ngCordova.plugins.sqlite', [])
 
   .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
-    return  {
+    return {
       openDB: function (dbName, background) {
 
         if (typeof background === 'undefined') {
@@ -39,13 +39,13 @@ angular.module('ngCordova.plugins.sqlite', [])
           (function insertOne() {
             var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
             try {
-              tx.executeSql(query, record, function(tx, result) {
+              tx.executeSql(query, record, function (tx, result) {
                 if (coll.length === 0) {
                   q.resolve(result);
                 } else {
                   insertOne();
                 }
-              },function (transaction, error) {
+              }, function (transaction, error) {
                 q.reject(error);
                 return;
               });
