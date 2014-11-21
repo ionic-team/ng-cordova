@@ -2572,8 +2572,11 @@ angular.module('ngCordova.plugins.media', [])
         return source.getDuration();
       },
 
-      play: function (source) {
-        return source.play();
+      play: function (source, options) {
+        if(typeof options !== "object") {
+          options = {};
+        }
+        return source.play(options);
 
         // iOS quirks :
         // -  myMedia.play({ numberOfLoops: 2 }) -> looping
