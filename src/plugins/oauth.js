@@ -16,6 +16,7 @@
  *    Box
  *    Reddit
  *    Twitter
+ *    Meetup
  */
 
 angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
@@ -475,7 +476,44 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
           deferred.reject("Cannot authenticate via a web browser");
         }
         return deferred.promise;
-      }
+      },
+
+        /*
+        * Sign into the Meetup service
+        *
+        * @param    string clientId
+        * @return   promise
+        */
+        meetup: function(clientId) {
+            var deferred = $q.defer();
+            if(window.cordova) {
+                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+                    var browserRef = window.open('https://secure.meetup.com/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                    browserRef.addEventListener('loadstart', function(event) {
+                        if((event.url).indexOf("http://localhost/callback") === 0) {
+                            var callbackResponse = (event.url).split("#")[1];
+                            var responseParameters = (callbackResponse).split("&");
+                            var parameterMap = {};
+                            for(var i = 0; i < responseParameters.length; i++) {
+                                parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                            }
+                            if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                                deferred.resolve(parameterMap);
+                            } else {
+                                deferred.reject("Problem authenticating");
+                            }
+                            browserRef.close();
+                        }
+                    });
+                } else {
+                    deferred.reject("Could not find InAppBrowser plugin");
+                }
+            } else {
+                deferred.reject("Cannot authenticate via a web browser");
+            }
+            return deferred.promise;
+        }
 
     };
   }]);

@@ -92,6 +92,15 @@ angular.module('demo.oauth.ctrl', [])
             });
         }
 
+        $scope.meetupLogin = function() {
+            $cordovaOauth.meetup("CONSUMER_ID_HERE").then(function(result) {
+                $scope.oauthResult = result;
+            }, function(error) {
+                $scope.oauthResult = "OAUTH ERROR (see console)";
+                console.log(error);
+            });
+        }
+
 
         /*
         Ionic modal with source code
