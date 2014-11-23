@@ -1828,6 +1828,7 @@ module.controller('MyCtrl', function($scope, $cordovaOauth) {
     // $cordovaOauth.box(string clientId, string clientSecret, string state);
     // $cordovaOauth.reddit(string clientId, string clientSecret, array appScope);
     // $cordovaOauth.twitter(string consumerKey, string consumerSecretKey);
+    // $cordovaOauth.meetup(string consumerKey);
 });
 ```
 
