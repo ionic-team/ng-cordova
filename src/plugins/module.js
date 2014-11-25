@@ -49,5 +49,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.toast',
   'ngCordova.plugins.touchid',
   'ngCordova.plugins.vibration',
+  'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip'
 ]);
