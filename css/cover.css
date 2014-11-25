@@ -298,13 +298,9 @@ code {
     text-decoration: none;
 }
 
+.left-menu a.active,
 .left-menu a:hover {
-    background-color: #474A50;
-    border-radius: 3px;
-}
-
-.left-menu a.active {
-    background-color: #474A50;
+    background-color: #474A50 !important;
     border-radius: 3px;
     color: white;
 }
