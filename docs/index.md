@@ -288,13 +288,34 @@ The [Barcode Scanner Plugin](https://github.com/wildabeast/BarcodeScanner/) open
 cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 ```
 
+
+#### Methods
+
+##### `scan()`
+
+**Returns**  `Object` with user information, such as id, lastName
+
+##### `encode(type, text)`
+
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| type         | `Constant`     | Encoding type desired (eg:  BarcodeScanner.Encode.TEXT_TYPE) |
+| text         | `String`       | String of text to be encoded into desired format |
+
+
+**Returns**  `Object` with encoded text
+
+
+#### Example
+
 ```javascript
 
 module.controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
 
   $cordovaBarcodeScanner
     .scan()
-    .then(function(imageData) {
+    .then(function(barcodeData) {
       // Success! Barcode data is here
     }, function(error) {
       // An error occurred
@@ -487,28 +508,41 @@ from a device.
 cordova plugin add org.apache.cordova.camera
 ```
 
+#### Methods
+
+##### `getPicture(options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| options      | `Object`       | Camera options   - sds |
+
+
+**Returns**  `Object` with image data
+
+
+#### Example
+
 ```javascript
 module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
-  $scope.takePicture = function() {
-    var options = {
-        quality : 75,
-        destinationType : Camera.DestinationType.DATA_URL,
-        sourceType : Camera.PictureSourceType.CAMERA,
-        allowEdit : true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
-    };
+  var options = {
+    quality : 75,
+    destinationType : Camera.DestinationType.DATA_URL,
+    sourceType : Camera.PictureSourceType.CAMERA,
+    allowEdit : true,
+    encodingType: Camera.EncodingType.JPEG,
+    targetWidth: 100,
+    targetHeight: 100,
+    popoverOptions: CameraPopoverOptions,
+    saveToPhotoAlbum: false
+  };
 
-    $cordovaCamera.getPicture(options).then(function(imageData) {
-      // Success! Image data is here
-    }, function(err) {
-      // An error occured. Show a message to the user
-    });
-  }
+  $cordovaCamera.getPicture(options).then(function(imageData) {
+    // Success! Image data is here
+  }, function(err) {
+    // An error occurred. Show a message to the user
+  });
+  
 });
 ```
 
