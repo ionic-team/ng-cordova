@@ -1,4 +1,4 @@
-describe('Service: $cordovaZip', function() {
+describe('Service: $cordovaZip', function () {
 
   var $cordovaZip, $rootScope, $window, $timeout;
 
@@ -15,7 +15,7 @@ describe('Service: $cordovaZip', function() {
     };
   }));
 
-  it('should call $window\'s zip.unzip method of success', function() {
+  it('should call $window\'s zip.unzip method of success', function () {
 
     var result;
     var src = 'cordova-2.9.1-src.zip';
@@ -28,13 +28,12 @@ describe('Service: $cordovaZip', function() {
 
     $cordovaZip
       .unzip(src, dest)
-      .then(
-        function () {
-          result = 'success';
-        },
-        angular.noop,
-        angular.noop
-      );
+      .then(function () {
+        result = 'success';
+      },
+      angular.noop,
+      angular.noop
+    );
 
     $rootScope.$digest();
 
@@ -47,7 +46,7 @@ describe('Service: $cordovaZip', function() {
     );
   });
 
-  it('should call $window\'s zip.unzip method of error', function() {
+  it('should call $window\'s zip.unzip method of error', function () {
 
     var result;
     var src = 'cordova-2.9.1-src.zip';
@@ -61,19 +60,19 @@ describe('Service: $cordovaZip', function() {
     $cordovaZip
       .unzip(src, dest)
       .then(
-        angular.noop,
-        function () {
-          result = 'error';
-        },
-        angular.noop
-      );
+      angular.noop,
+      function () {
+        result = 'error';
+      },
+      angular.noop
+    );
 
     $rootScope.$digest();
 
     expect(result).toBe('error');
   });
 
-  it('should call $window\'s zip.unzip method of notify', function() {
+  it('should call $window\'s zip.unzip method of notify', function () {
 
     var result;
     var notifyResult = {
@@ -93,12 +92,12 @@ describe('Service: $cordovaZip', function() {
     $cordovaZip
       .unzip(src, dest)
       .then(
-        angular.noop,
-        angular.noop,
-        function (response) {
-          result = response;
-        }
-      );
+      angular.noop,
+      angular.noop,
+      function (response) {
+        result = response;
+      }
+    );
 
     $timeout.flush();
 

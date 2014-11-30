@@ -1,4 +1,4 @@
-describe('Service: $cordovaStatusbar', function() {
+describe('Service: $cordovaStatusbar', function () {
 
   var $cordovaStatusbar, $rootScope;
 
@@ -14,7 +14,7 @@ describe('Service: $cordovaStatusbar', function() {
     'backgroundColorByHexString',
     'hide',
     'show',
-    'isVisible',
+    'isVisible'
   ];
 
   beforeEach(module('ngCordova.plugins.statusbar'));
@@ -30,48 +30,48 @@ describe('Service: $cordovaStatusbar', function() {
     }
   }));
 
-  it('should call window\'s StatusBar.overlaysWebView method', function() {
+  it('should call window\'s StatusBar.overlaysWebView method', function () {
     $cordovaStatusbar.overlaysWebView(false);
     expect(window.StatusBar.overlaysWebView).toHaveBeenCalledWith(false);
   });
 
-  it('should call window\'s StatusBar.styleDefault method when style is called with 0', function() {
+  it('should call window\'s StatusBar.styleDefault method when style is called with 0', function () {
     $cordovaStatusbar.style(0);
     expect(window.StatusBar.styleDefault).toHaveBeenCalled();
   });
 
-  it('should call window\'s StatusBar.styleBlackTranslucent method when style is called with 1', function() {
+  it('should call window\'s StatusBar.styleBlackTranslucent method when style is called with 1', function () {
     $cordovaStatusbar.style(1);
     expect(window.StatusBar.styleLightContent).toHaveBeenCalled();
   });
 
-  it('should call window\'s StatusBar.styleBlackTranslucent method when style is called with 2', function() {
+  it('should call window\'s StatusBar.styleBlackTranslucent method when style is called with 2', function () {
     $cordovaStatusbar.style(2);
     expect(window.StatusBar.styleBlackTranslucent).toHaveBeenCalled();
   });
 
-  it('should call window\'s StatusBar.styleBlackOpaque method when style is called with 3', function() {
+  it('should call window\'s StatusBar.styleBlackOpaque method when style is called with 3', function () {
     $cordovaStatusbar.style(3);
     expect(window.StatusBar.styleBlackOpaque).toHaveBeenCalled();
   });
 
-  it('should call window\'s StatusBar.styleDefault method when style is called with no args', function() {
+  it('should call window\'s StatusBar.styleDefault method when style is called with no args', function () {
     $cordovaStatusbar.style();
     expect(window.StatusBar.styleDefault).toHaveBeenCalled();
   });
 
-  it('should call window\'s StatusBar.backgroundColorByName method', function() {
+  it('should call window\'s StatusBar.backgroundColorByName method', function () {
     $cordovaStatusbar.styleColor('black');
     expect(window.StatusBar.backgroundColorByName).toHaveBeenCalledWith('black');
   });
 
-  it('should call window\'s StatusBar.backgroundColorByHexString method', function() {
+  it('should call window\'s StatusBar.backgroundColorByHexString method', function () {
     $cordovaStatusbar.styleHex('#000');
     expect(window.StatusBar.backgroundColorByHexString).toHaveBeenCalledWith('#000');
   });
 
   angular.forEach(['show', 'hide', 'isVisible'], function (fnName) {
-    it('should call window\'s StatusBar.' + fnName + ' method', function() {
+    it('should call window\'s StatusBar.' + fnName + ' method', function () {
       $cordovaStatusbar[fnName]();
       expect(window.StatusBar[fnName]).toHaveBeenCalled();
     });
