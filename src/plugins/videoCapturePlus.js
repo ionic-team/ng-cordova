@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.videoCapturePlus', [])
 
-  .provider('$cordovaVideoCapturePlus', [function() {
+  .provider('$cordovaVideoCapturePlus', [function () {
 
     var defaultOptions = {};
 
@@ -79,7 +79,7 @@ angular.module('ngCordova.plugins.videoCapturePlus', [])
 
     this.$get = ['$q', '$window', function ($q, $window) {
       return {
-        captureVideo: function(options) {
+        captureVideo: function (options) {
           var q = $q.defer();
 
           if (!$window.plugins.videocaptureplus) {
@@ -92,6 +92,6 @@ angular.module('ngCordova.plugins.videoCapturePlus', [])
 
           return q.promise;
         }
-      }
+      };
     }];
   }]);

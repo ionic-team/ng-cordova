@@ -7,7 +7,7 @@ angular.module('ngCordova.plugins.push', [])
     return {
       onNotification: function (notification) {
         $rootScope.$apply(function () {
-          $rootScope.$broadcast('pushNotificationReceived', {notification : notification});
+          $rootScope.$broadcast('pushNotificationReceived', {notification: notification});
         });
       },
 

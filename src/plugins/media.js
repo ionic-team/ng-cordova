@@ -46,7 +46,7 @@ angular.module('ngCordova.plugins.media', [])
       },
 
       play: function (source, options) {
-        if(typeof options !== "object") {
+        if (typeof options !== "object") {
           options = {};
         }
         return source.play(options);
