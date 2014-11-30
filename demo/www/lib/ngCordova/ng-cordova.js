@@ -2244,6 +2244,64 @@ angular.module('ngCordova.plugins.googleMap', [])
     };
   }]);
 
+// install  :     cordova plugin add https://github.com/floatinghotpot/cordova-httpd.git
+// link     :     https://github.com/floatinghotpot/cordova-httpd
+
+angular.module('ngCordova.plugins.httpd', [])
+	.factory('$cordovaHttpd', [ '$q', '$window', function($q, $window) {
+
+	return {
+		startServer : function(options) {
+			var d = $q.defer();
+
+			cordova.plugins.CorHttpd.startServer(options, function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		stopServer : function() {
+			var d = $q.defer();
+
+			cordova.plugins.CorHttpd.stopServer(function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		getURL : function() {
+			var d = $q.defer();
+
+			cordova.plugins.CorHttpd.getURL(function(url) {
+				d.resolve(url);
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		getLocalPath : function() {
+			var d = $q.defer();
+
+			cordova.plugins.CorHttpd.getLocalPath(function(path) {
+				d.resolve(path);
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		}
+
+	};
+} ]);
+
 // install   :     cordova plugin add org.apache.cordova.inappbrowser
 // link      :     https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md
 
@@ -2357,42 +2415,29 @@ angular.module('ngCordova.plugins.keychain', [])
 
   .factory('$cordovaKeychain', ['$q', function ($q) {
 
+    var kc = new Keychain();
+
     return {
       getForKey: function (key, serviceName) {
         var defer = $q.defer();
-        var kc = new Keychain();
 
-        kc.getForKey(function (value) {
-          defer.resolve(value);
-        }, function (error) {
-          defer.reject(error);
-        }, key, serviceName);
+        kc.getForKey(defer.resolve, defer.reject, key, serviceName);
 
         return defer.promise;
       },
 
       setForKey: function (key, serviceName, value) {
         var defer = $q.defer();
-        var kc = new Keychain();
 
-        kc.setForKey(function () {
-          defer.resolve();
-        }, function (error) {
-          defer.reject(error);
-        }, key, serviceName, value);
+        kc.setForKey(defer.resolve, defer.reject, key, serviceName, value);
 
         return defer.promise;
       },
 
-      removeForKey: function (ey, serviceName) {
+      removeForKey: function (key, serviceName) {
         var defer = $q.defer();
-        var kc = new Keychain();
 
-        kc.removeForKey(function () {
-          defer.resolve();
-        }, function (error) {
-          defer.reject(error);
-        }, key, serviceName);
+        kc.removeForKey(defer.resolve, defer.reject, key, serviceName);
 
         return defer.promise;
       }
@@ -2646,6 +2691,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.globalization',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.httpd',
   'ngCordova.plugins.inAppBrowser',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
@@ -2669,6 +2715,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.toast',
   'ngCordova.plugins.touchid',
   'ngCordova.plugins.vibration',
+  'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip'
 ]);
 
@@ -4063,6 +4110,104 @@ angular.module('ngCordova.plugins.vibration', [])
         return navigator.notification.cancelVibration();
       }
     };
+  }]);
+
+// install   :    cordova plugin add https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin.git
+// link      :    https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin
+
+angular.module('ngCordova.plugins.videoCapturePlus', [])
+
+  .provider('$cordovaVideoCapturePlus', [function() {
+
+    var defaultOptions = {};
+
+
+    /**
+     * the nr of videos to record, default 1 (on iOS always 1)
+     *
+     * @param limit
+     */
+    this.setLimit = function setLimit(limit) {
+      defaultOptions.limit = limit;
+    };
+
+
+    /**
+     * max duration in seconds, default 0, which is 'forever'
+     *
+     * @param seconds
+     */
+    this.setMaxDuration = function setMaxDuration(seconds) {
+      defaultOptions.duration = seconds;
+    };
+
+
+    /**
+     * set to true to override the default low quality setting
+     *
+     * @param {Boolean} highquality
+     */
+    this.setHighQuality = function setHighQuality(highquality) {
+      defaultOptions.highquality = highquality;
+    };
+
+    /**
+     * you'll want to sniff the user-Agent/device and pass the best overlay based on that..
+     * set to true to override the default backfacing camera setting. iOS: works fine, Android: YMMV (#18)
+     *
+     * @param {Boolean} frontcamera
+     */
+    this.useFrontCamera = function useFrontCamera(frontcamera) {
+      defaultOptions.frontcamera = frontcamera;
+    };
+
+
+    /**
+     * put the png in your www folder
+     *
+     * @param {String} imageUrl
+     */
+    this.setPortraitOverlay = function setPortraitOverlay(imageUrl) {
+      defaultOptions.portraitOverlay = imageUrl;
+    };
+
+
+    /**
+     *
+     * @param {String} imageUrl
+     */
+    this.setLandscapeOverlay = function setLandscapeOverlay(imageUrl) {
+      defaultOptions.landscapeOverlay = imageUrl;
+    };
+
+
+    /**
+     * iOS only
+     *
+     * @param text
+     */
+    this.setOverlayText = function setOverlayText(text) {
+      defaultOptions.overlayText = text;
+    };
+
+
+    this.$get = ['$q', '$window', function ($q, $window) {
+      return {
+        captureVideo: function(options) {
+          var q = $q.defer();
+
+          if (!$window.plugins.videocaptureplus) {
+            q.resolve(null);
+            return q.promise;
+          }
+
+          $window.plugins.videocaptureplus.captureVideo(q.resolve, q.reject,
+            angular.extend({}, defaultOptions, options));
+
+          return q.promise;
+        }
+      }
+    }];
   }]);
 
 // install  :     cordova plugin add https://github.com/MobileChromeApps/zip.git
