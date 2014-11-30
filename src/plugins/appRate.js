@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.AppRate', [])
 
-  .factory('$cordovaAppRate', [ '$q', function ($q) {
+  .factory('$cordovaAppRate', ['$q', function ($q) {
     return {
       setAppUrl: function (device, url) {
-        var devices = [ 'ios', 'android', 'blackberry', 'windows8' ];
+        var devices = ['ios', 'android', 'blackberry', 'windows8'];
 
         if (devices.indexOf(device) !== -1) {
           AppRate.preferences.storeAppURL[device] = url;
@@ -15,7 +15,7 @@ angular.module('ngCordova.plugins.AppRate', [])
 
       promptForRating: function (immediate) {
         var d = $q.defer(),
-            prompt = AppRate.promptForRating(immediate);
+          prompt = AppRate.promptForRating(immediate);
 
         d.resolve(prompt);
 
@@ -38,12 +38,12 @@ angular.module('ngCordova.plugins.AppRate', [])
 
       customLocale: function (customLocale) {
         var strings = {
-              title: 'Rate %@',
-              message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
-              cancelButtonLabel: 'No, Thanks',
-              laterButtonLabel: 'Remind Me Later',
-              rateButtonLabel: 'Rate It Now',
-            };
+          title: 'Rate %@',
+          message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
+          cancelButtonLabel: 'No, Thanks',
+          laterButtonLabel: 'Remind Me Later',
+          rateButtonLabel: 'Rate It Now'
+        };
 
         strings = angular.extend(strings, customLocale);
 
