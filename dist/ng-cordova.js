@@ -2710,7 +2710,6 @@ angular.module('ngCordova.plugins.media', [])
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
-  'ngCordova.plugins.appRating',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
