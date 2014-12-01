@@ -483,77 +483,183 @@ angular.module('ngCordova.plugins.ble', [])
     };
   }]);
 
-// install   :
-// link      :
+// install   :     cordova plugin add com.megster.cordova.bluetoothserial
+// link      :     https://github.com/don/BluetoothSerial
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
   .factory('$cordovaBluetoothSerial', ['$q', '$window', function ($q, $window) {
 
-    var promise_f = function () {
-      var q = $q.defer();
-
-      // callbacks
-      var success = function (success) {
-        q.resolve(success);
-      };
-      var failure = function (failure) {
-        q.reject(failure);
-      };
-
-      // get func and set args
-      var f_name = arguments[0];
-      var args = Array.prototype.slice.call(arguments, 1, arguments.length);
-      args.push(success);
-      args.push(failure);
-
-      $window.bluetoothSerial[f_name].apply(this, args);
-
-      return q.promise;
-    };
-
     return {
-      connect: function (macAddress) {
-        return promise_f('connect', macAddress);
+      connect: function (address) {
+        var q = $q.defer();
+        $window.bluetoothSerial.connect(address, function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
-      connectInsecure: function (macAddress) {
-        return promise_f('connectInsecure', macAddress);
+
+      // not supported on iOS
+      connectInsecure: function (address) {
+        var q = $q.defer();
+        $window.bluetoothSerial.connectInsecure(address, function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+
       disconnect: function () {
-        return promise_f('disconnect');
+        var q = $q.defer();
+        $window.bluetoothSerial.disconnect(function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+
       list: function () {
-        return promise_f('list');
+        var q = $q.defer();
+        $window.bluetoothSerial.list(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
       isEnabled: function () {
-        return promise_f('isEnabled');
+        var q = $q.defer();
+        $window.bluetoothSerial.isEnabled(function () {
+          q.resolve();
+        }, function () {
+          q.reject();
+        });
+        return q.promise;
       },
+
+
       isConnected: function () {
-        return promise_f('isConnected');
+        var q = $q.defer();
+        $window.bluetoothSerial.isConnected(function () {
+          q.resolve();
+        }, function () {
+          q.reject();
+        });
+        return q.promise;
       },
+
+
       available: function () {
-        return promise_f('available');
+        var q = $q.defer();
+        $window.bluetoothSerial.available(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+
       read: function () {
-        return promise_f('read');
+        var q = $q.defer();
+        $window.bluetoothSerial.read(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
       readUntil: function (delimiter) {
-        return promise_f('readUntil', delimiter);
+        var q = $q.defer();
+        $window.bluetoothSerial.readUntil(delimiter, function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+
       write: function (data) {
-        return promise_f('write', data);
+        var q = $q.defer();
+        $window.bluetoothSerial.write(data, function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+
       subscribe: function (delimiter) {
-        return promise_f('subscribe', delimiter);
+        var q = $q.defer();
+        $window.bluetoothSerial.subscribe(delimiter, function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+      subscribeRawData: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.subscribeRawData(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+
       unsubscribe: function () {
-        return promise_f('unsubscribe');
+        var q = $q.defer();
+        $window.bluetoothSerial.unsubscribe(function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+      unsubscribeRawData: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.unsubscribeRawData(function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+
       clear: function () {
-        return promise_f('clear');
+        var q = $q.defer();
+        $window.bluetoothSerial.clear(function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       },
+
+
       readRSSI: function () {
-        return promise_f('readRSSI');
+        var q = $q.defer();
+        $window.bluetoothSerial.readRSSI(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
       }
     };
   }]);

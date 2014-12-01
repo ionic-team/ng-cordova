@@ -9,7 +9,8 @@ var gulp = require('gulp'),
   karma = require('karma').server,
   karmaConf = require('./config/karma.conf.js'),
   rename = require('gulp-rename'),
-  shell = require('gulp-shell');
+  shell = require('gulp-shell'),
+  prettify = require('gulp-prettify');
 
 
 gulp.task('default', ['build']);
@@ -35,9 +36,7 @@ gulp.task('build', function () {
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(gulp.dest(buildConfig.demo.ngCordova))
     .pipe(uglify())
-    .pipe(rename({
-      extname: '.min.js'
-    }))
+    .pipe(rename({extname: '.min.js'}))
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(gulp.dest(buildConfig.demo.ngCordova));
 });
