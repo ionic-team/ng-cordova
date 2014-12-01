@@ -6,7 +6,7 @@ angular.module('ngCordova.plugins.media', [])
   .factory('$cordovaMedia', ['$q', function ($q) {
 
     return {
-      newMedia: function (src) {
+      newMedia: function (src, mediaStatusCallback) {
         var q = $q.defer();
         var mediaStatus = null;
 
@@ -15,13 +15,10 @@ angular.module('ngCordova.plugins.media', [])
             q.resolve(success);
           }, function (error) {
             q.reject(error);
-          }, function (status) {
-            mediaStatus = status;
-          });
+          }, mediaStatusCallback);
 
         return {
           media: media,
-          mediaStatus: mediaStatus,
           promise: q.promise
         };
 
