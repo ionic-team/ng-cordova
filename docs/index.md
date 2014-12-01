@@ -579,7 +579,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
     $cordovaCapture.captureAudio(options).then(function(audioData) {
       // Success! Audio data is here
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
   }
 
@@ -589,7 +589,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
     $cordovaCapture.captureImage(options).then(function(imageData) {
       // Success! Image data is here
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
   }
 
@@ -599,7 +599,7 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
     $cordovaCapture.captureVideo(options).then(function(videoData) {
       // Success! Video data is here
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
   }
 
@@ -783,7 +783,7 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
     $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
       // Success!
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
   };
 
@@ -813,7 +813,7 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
       .then(function(result) {
         // Success!
       }, function(err) {
-        // An error occured. Show a message to the user
+        // An error occurred. Show a message to the user
     });
 });
 ```
@@ -1147,7 +1147,7 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
   $cordovaFile.checkDir(directory).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
 
@@ -1155,14 +1155,14 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
   $cordovaFile.createDir(directory, false).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
 
   $cordovaFile.checkFile(filePath).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
 
@@ -1170,28 +1170,28 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
   $cordovaFile.createFile(filePath, true).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
 
   $cordovaFile.removeFile(filePath).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
 
-  $cordovaFile.writeFile(filePath).then(function(result) {
+  $cordovaFile.writeFile(filePath, data, options).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
   // Reads a file as TEXT
   $cordovaFile.readFile(filePath).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
   // parameters: source, filePath, trust all hosts (boolean), options
@@ -2144,13 +2144,13 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
   $cordovaPush.register(config).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
   $cordovaPush.unregister(options).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
   // receive notification
@@ -2164,7 +2164,7 @@ module.controller('MyCtrl', function($scope, $cordovaPush) {
   $cordovaPush.setBadgeNumber(2).then(function(result) {
       // Success!
   }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
   });
 
 });
@@ -2243,7 +2243,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .then(function(result) {
       // Success!
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
 
   $cordovaSocialSharing
@@ -2251,7 +2251,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .then(function(result) {
       // Success!
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
 
 
@@ -2260,7 +2260,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .then(function(result) {
       // Success!
     }, function(err) {
-      // An error occured. Show a message to the user
+      // An error occurred. Show a message to the user
     });
 
   // access multiple numbers in a string like: '0612345678,0687654321'
