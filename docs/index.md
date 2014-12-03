@@ -1941,7 +1941,7 @@ module.controller('MyCtrl', function($cordovaPinDialog) {
 });
 ```
 
-<a class="anchor" name="Preferences"></a>
+<a class="anchor" id="Preferences"></a>
 
 <div class="anchor-row">
   <h3><a href="#Preferences"><code>$cordovaPreferences</code></a></h3>
