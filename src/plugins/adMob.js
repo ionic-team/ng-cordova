@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.adMob', [])
 
-  .factory('$cordovaAdMob', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaAdMob', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
-      createBannerView: function (options) {
+      createBannerView: cordovaReady(function (options) {
         var d = $q.defer();
 
         $window.plugins.AdMob.createBannerView(options, function () {
@@ -16,9 +16,9 @@ angular.module('ngCordova.plugins.adMob', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      createInterstitialView: function (options) {
+      createInterstitialView: cordovaReady(function (options) {
         var d = $q.defer();
 
         $window.plugins.AdMob.createInterstitialView(options, function () {
@@ -28,9 +28,9 @@ angular.module('ngCordova.plugins.adMob', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      requestAd: function (options) {
+      requestAd: cordovaReady(function (options) {
         var d = $q.defer();
 
         $window.plugins.AdMob.requestAd(options, function () {
@@ -40,9 +40,9 @@ angular.module('ngCordova.plugins.adMob', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      showAd: function (options) {
+      showAd: cordovaReady(function (options) {
         var d = $q.defer();
 
         $window.plugins.AdMob.showAd(options, function () {
@@ -52,9 +52,9 @@ angular.module('ngCordova.plugins.adMob', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      requestInterstitialAd: function (options) {
+      requestInterstitialAd: cordovaReady(function (options) {
         var d = $q.defer();
 
         $window.plugins.AdMob.requestInterstitialAd(options, function () {
@@ -64,6 +64,6 @@ angular.module('ngCordova.plugins.adMob', [])
         });
 
         return d.promise;
-      }
+      })
     };
   }]);

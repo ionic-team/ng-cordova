@@ -3,36 +3,36 @@
 
 angular.module('ngCordova.plugins.device', [])
 
-  .factory('$cordovaDevice', [function () {
+  .factory('$cordovaDevice', ['cordovaReady', function (cordovaReady) {
 
     return {
-      getDevice: function () {
+      getDevice: cordovaReady(function () {
         return device;
-      },
+      }),
 
-      getCordova: function () {
+      getCordova: cordovaReady(function () {
         return device.cordova;
-      },
+      }),
 
-      getModel: function () {
+      getModel: cordovaReady(function () {
         return device.model;
-      },
+      }),
 
       // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
-      getName: function () {
+      getName: cordovaReady(function () {
         return device.name;
-      },
+      }),
 
-      getPlatform: function () {
+      getPlatform: cordovaReady(function () {
         return device.platform;
-      },
+      }),
 
-      getUUID: function () {
+      getUUID: cordovaReady(function () {
         return device.uuid;
-      },
+      }),
 
-      getVersion: function () {
+      getVersion: cordovaReady(function () {
         return device.version;
-      }
+      })
     };
   }]);

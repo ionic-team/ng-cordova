@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.geolocation', [])
 
-  .factory('$cordovaGeolocation', ['$q', function ($q) {
+  .factory('$cordovaGeolocation', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      getCurrentPosition: function (options) {
+      getCurrentPosition: cordovaReady(function (options) {
         var q = $q.defer();
 
         navigator.geolocation.getCurrentPosition(function (result) {
@@ -17,8 +17,9 @@ angular.module('ngCordova.plugins.geolocation', [])
         }, options);
 
         return q.promise;
-      },
-      watchPosition: function (options) {
+      }),
+
+      watchPosition: cordovaReady(function (options) {
         var q = $q.defer();
 
         var watchId = navigator.geolocation.watchPosition(function (result) {
@@ -33,10 +34,10 @@ angular.module('ngCordova.plugins.geolocation', [])
           watchId: watchId,
           promise: q.promise
         };
-      },
+      }),
 
-      clearWatch: function (watchID) {
+      clearWatch: cordovaReady(function (watchID) {
         return navigator.geolocation.clearWatch(watchID);
-      }
+      })
     };
   }]);

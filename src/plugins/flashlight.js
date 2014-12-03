@@ -3,18 +3,18 @@
 
 angular.module('ngCordova.plugins.flashlight', [])
 
-  .factory('$cordovaFlashlight', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaFlashlight', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
-      available: function () {
+      available: cordovaReady(function () {
         var q = $q.defer();
         $window.plugins.flashlight.available(function (isAvailable) {
           q.resolve(isAvailable);
         });
         return q.promise;
-      },
+      }),
 
-      switchOn: function () {
+      switchOn: cordovaReady(function () {
         var q = $q.defer();
         $window.plugins.flashlight.switchOn(function (response) {
           q.resolve(response);
@@ -22,9 +22,9 @@ angular.module('ngCordova.plugins.flashlight', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      switchOff: function () {
+      switchOff: cordovaReady(function () {
         var q = $q.defer();
         $window.plugins.flashlight.switchOff(function (response) {
           q.resolve(response);
@@ -32,9 +32,9 @@ angular.module('ngCordova.plugins.flashlight', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      toggle: function () {
+      toggle: cordovaReady(function () {
         var q = $q.defer();
         $window.plugins.flashlight.toggle(function (response) {
           q.resolve(response);
@@ -42,6 +42,6 @@ angular.module('ngCordova.plugins.flashlight', [])
           q.reject(error);
         });
         return q.promise;
-      }
+      })
     };
   }]);

@@ -3,26 +3,26 @@
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', [function () {
+  .factory('$cordovaNetwork', ['cordovaReady', function (cordovaReady) {
 
     return {
 
-      getNetwork: function () {
+      getNetwork: cordovaReady(function () {
         return navigator.connection.type;
-      },
+      }),
 
-      isOnline: function () {
+      isOnline: cordovaReady(function () {
         var networkState = navigator.connection.type;
         return networkState !== Connection.UNKNOWN && networkState !== Connection.NONE;
-      },
+      }),
 
-      isOffline: function () {
+      isOffline:cordovaReady( function () {
         var networkState = navigator.connection.type;
         return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
-      },
+      }),
 
-      watchNetwork: function () {
+      watchNetwork: cordovaReady(function () {
         // function for watching online / offline
-      }
+      })
     };
   }]);

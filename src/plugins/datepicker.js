@@ -1,9 +1,9 @@
 angular.module('ngCordova.plugins.datePicker', [])
 
-  .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
+  .factory('$cordovaDatePicker', ['$window', '$q', 'cordovaReady', function ($window, $q, cordovaReady) {
 
     return {
-      show: function (options) {
+      show: cordovaReady(function (options) {
         options = options || {date: new Date(), mode: 'date'};
 
         var d = $q.defer();
@@ -13,6 +13,6 @@ angular.module('ngCordova.plugins.datePicker', [])
         });
 
         return d.promise;
-      }
+      })
     };
   }]);

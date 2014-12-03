@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.deviceMotion', [])
 
-  .factory('$cordovaDeviceMotion', ['$q', function ($q) {
+  .factory('$cordovaDeviceMotion', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      getCurrentAcceleration: function () {
+      getCurrentAcceleration: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.accelerometer.getCurrentAcceleration(function (result) {
@@ -16,9 +16,9 @@ angular.module('ngCordova.plugins.deviceMotion', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      watchAcceleration: function (options) {
+      watchAcceleration: cordovaReady(function (options) {
         var q = $q.defer();
 
         var watchId = navigator.accelerometer.watchAcceleration(function (result) {
@@ -32,10 +32,10 @@ angular.module('ngCordova.plugins.deviceMotion', [])
           watchId: watchId,
           promise: q.promise
         };
-      },
+      }),
 
-      clearWatch: function (watchID) {
+      clearWatch: cordovaReady(function (watchID) {
         return navigator.accelerometer.clearWatch(watchID);
-      }
+      })
     };
   }]);

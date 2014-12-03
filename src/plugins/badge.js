@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.badge', [])
 
-  .factory('$cordovaBadge', ['$q', function ($q) {
+  .factory('$cordovaBadge', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      hasPermission: function () {
+      hasPermission: cordovaReady(function () {
         var q = $q.defer();
 
         cordova.plugins.notification.badge.hasPermission(function (permission) {
@@ -19,13 +19,13 @@ angular.module('ngCordova.plugins.badge', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      promptForPermission: function () {
+      promptForPermission: cordovaReady(function () {
         return cordova.plugins.notification.badge.promptForPermission();
-      },
+      }),
 
-      set: function (number) {
+      set: cordovaReady(function (number) {
         var q = $q.defer();
 
         cordova.plugins.notification.badge.hasPermission(function (permission) {
@@ -37,9 +37,9 @@ angular.module('ngCordova.plugins.badge', [])
           }
         });
         return q.promise;
-      },
+      }),
 
-      get: function () {
+      get: cordovaReady(function () {
         var q = $q.defer();
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
@@ -52,9 +52,9 @@ angular.module('ngCordova.plugins.badge', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      clear: function () {
+      clear: cordovaReady(function () {
         var q = $q.defer();
 
         cordova.plugins.notification.badge.hasPermission(function (permission) {
@@ -66,10 +66,10 @@ angular.module('ngCordova.plugins.badge', [])
           }
         });
         return q.promise;
-      },
+      }),
 
-      configure: function (config) {
+      configure: cordovaReady(function (config) {
         return cordova.plugins.notification.badge.configure(config);
-      }
+      })
     };
   }]);

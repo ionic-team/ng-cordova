@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.globalization', [])
 
-  .factory('$cordovaGlobalization', ['$q', function ($q) {
+  .factory('$cordovaGlobalization', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      getPreferredLanguage: function () {
+      getPreferredLanguage: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.globalization.getPreferredLanguage(function (result) {
@@ -16,9 +16,9 @@ angular.module('ngCordova.plugins.globalization', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      getLocaleName: function () {
+      getLocaleName: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.globalization.getLocaleName(function (result) {
@@ -28,9 +28,9 @@ angular.module('ngCordova.plugins.globalization', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      getFirstDayOfWeek: function () {
+      getFirstDayOfWeek: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.globalization.getFirstDayOfWeek(function (result) {
@@ -40,10 +40,10 @@ angular.module('ngCordova.plugins.globalization', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
       // "date" parameter must be a JavaScript Date Object.
-      dateToString: function (date, options) {
+      dateToString: cordovaReady(function (date, options) {
         var q = $q.defer();
 
         navigator.globalization.dateToString(
@@ -56,9 +56,9 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
-      stringToDate: function (dateString, options) {
+      stringToDate: cordovaReady(function (dateString, options) {
         var q = $q.defer();
 
         navigator.globalization.stringToDate(
@@ -71,9 +71,9 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
-      getDatePattern: function (options) {
+      getDatePattern: cordovaReady(function (options) {
         var q = $q.defer();
 
         navigator.globalization.getDatePattern(
@@ -85,9 +85,9 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
-      getDateNames: function (options) {
+      getDateNames: cordovaReady(function (options) {
         var q = $q.defer();
 
         navigator.globalization.getDateNames(
@@ -99,10 +99,10 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
       // "date" parameter must be a JavaScript Date Object.
-      isDayLightSavingsTime: function (date) {
+      isDayLightSavingsTime: cordovaReady(function (date) {
         var q = $q.defer();
 
         navigator.globalization.isDayLightSavingsTime(
@@ -114,9 +114,9 @@ angular.module('ngCordova.plugins.globalization', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      numberToString: function (number, options) {
+      numberToString: cordovaReady(function (number, options) {
         var q = $q.defer();
 
         navigator.globalization.numberToString(
@@ -129,9 +129,9 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
-      stringToNumber: function (numberString, options) {
+      stringToNumber: cordovaReady(function (numberString, options) {
         var q = $q.defer();
 
         navigator.globalization.stringToNumber(
@@ -144,9 +144,9 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
-      getNumberPattern: function (options) {
+      getNumberPattern: cordovaReady(function (options) {
         var q = $q.defer();
 
         navigator.globalization.getNumberPattern(
@@ -158,9 +158,9 @@ angular.module('ngCordova.plugins.globalization', [])
           },
           options);
         return q.promise;
-      },
+      }),
 
-      getCurrencyPattern: function (currencyCode) {
+      getCurrencyPattern: cordovaReady(function (currencyCode) {
         var q = $q.defer();
 
         navigator.globalization.getCurrencyPattern(
@@ -172,7 +172,6 @@ angular.module('ngCordova.plugins.globalization', [])
             q.reject(err);
           });
         return q.promise;
-      }
-
+      })
     };
   }]);

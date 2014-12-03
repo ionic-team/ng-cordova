@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.appAvailability', [])
 
-  .factory('$cordovaAppAvailability', ['$q', function ($q) {
+  .factory('$cordovaAppAvailability', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      check: function (urlScheme) {
+      check: cordovaReady(function (urlScheme) {
         var q = $q.defer();
 
         appAvailability.check(urlScheme, function (result) {
@@ -16,6 +16,6 @@ angular.module('ngCordova.plugins.appAvailability', [])
         });
 
         return q.promise;
-      }
+      })
     };
   }]);

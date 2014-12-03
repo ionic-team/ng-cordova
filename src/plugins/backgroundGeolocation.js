@@ -3,17 +3,17 @@
 
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-  .factory('$cordovaBackgroundGeolocation', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaBackgroundGeolocation', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
 
-      init: function () {
+      init: cordovaReady(function () {
         $window.navigator.geolocation.getCurrentPosition(function (location) {
           return location;
         });
-      },
+      }),
 
-      configure: function (options) {
+      configure: cordovaReady(function (options) {
 
         this.init();
         var q = $q.defer();
@@ -30,9 +30,9 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
         this.start();
 
         return q.promise;
-      },
+      }),
 
-      start: function () {
+      start: cordovaReady(function () {
         var q = $q.defer();
 
         $window.plugins.backgroundGeoLocation.start(
@@ -44,9 +44,9 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
           });
 
         return q.promise;
-      },
+      }),
 
-      stop: function () {
+      stop: cordovaReady(function () {
         var q = $q.defer();
 
         $window.plugins.backgroundGeoLocation.stop(
@@ -58,7 +58,6 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
           });
 
         return q.promise;
-      }
+      })
     };
-  }
-  ]);
+  }]);
