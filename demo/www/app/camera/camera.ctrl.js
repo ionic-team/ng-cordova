@@ -12,7 +12,7 @@ angular.module('demo.camera.ctrl', [])
       $cordovaCamera.getPicture(options).then(function (imageData) {
         $scope.cameraimage = "data:image/jpeg;base64," + imageData;
       }, function (err) {
-        console.log('Failed because: ' + message);
+        console.log('Failed because: ' + err);
       });
     };
 

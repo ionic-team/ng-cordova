@@ -69,7 +69,6 @@ angular.module('ngCordova.plugins', [
         impl = fn;
       }
 
-
       document.addEventListener('deviceready', function () {
         queue.forEach(function (args) {
           fn.apply(this, args);
