@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.contacts', [])
 
-  .factory('$cordovaContacts', ['$q', function ($q) {
+  .factory('$cordovaContacts', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      save: function (contact) {
+      save: cordovaReady(function (contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
@@ -17,9 +17,9 @@ angular.module('ngCordova.plugins.contacts', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      remove: function (contact) {
+      remove: cordovaReady(function (contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
@@ -30,14 +30,14 @@ angular.module('ngCordova.plugins.contacts', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      clone: function (contact) {
+      clone: cordovaReady(function (contact) {
         var deviceContact = navigator.contacts.create(contact);
         return deviceContact.clone(contact);
-      },
+      }),
 
-      find: function (options) {
+      find: cordovaReady(function (options) {
         var q = $q.defer();
         var fields = options.fields || ['id', 'displayName'];
         delete options.fields;
@@ -51,9 +51,9 @@ angular.module('ngCordova.plugins.contacts', [])
           options);
 
         return q.promise;
-      },
+      }),
 
-      pickContact: function () {
+      pickContact: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.contacts.pickContact(
@@ -66,14 +66,12 @@ angular.module('ngCordova.plugins.contacts', [])
         );
 
         return q.promise;
-      }
+      })
 
       // TODO: method to set / get ContactAddress
       // TODO: method to set / get ContactError
       // TODO: method to set / get ContactField
       // TODO: method to set / get ContactName
       // TODO: method to set / get ContactOrganization
-
     };
-
   }]);

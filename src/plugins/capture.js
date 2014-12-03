@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.capture', [])
 
-  .factory('$cordovaCapture', ['$q', function ($q) {
+  .factory('$cordovaCapture', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      captureAudio: function (options) {
+      captureAudio: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -21,8 +21,9 @@ angular.module('ngCordova.plugins.capture', [])
         }, options);
 
         return q.promise;
-      },
-      captureImage: function (options) {
+      }),
+
+      captureImage: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -37,8 +38,9 @@ angular.module('ngCordova.plugins.capture', [])
         }, options);
 
         return q.promise;
-      },
-      captureVideo: function (options) {
+      }),
+
+      captureVideo: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -53,6 +55,6 @@ angular.module('ngCordova.plugins.capture', [])
         }, options);
 
         return q.promise;
-      }
+      })
     };
   }]);

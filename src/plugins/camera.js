@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.camera', [])
 
-  .factory('$cordovaCamera', ['$q', function ($q) {
+  .factory('$cordovaCamera', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      getPicture: function (options) {
+      getPicture: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.camera) {
@@ -21,9 +21,9 @@ angular.module('ngCordova.plugins.camera', [])
         }, options);
 
         return q.promise;
-      },
+      }),
 
-      cleanup: function () {
+      cleanup: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.camera.cleanup(function () {
@@ -33,6 +33,6 @@ angular.module('ngCordova.plugins.camera', [])
         });
 
         return q.promise;
-      }
+      })
     };
   }]);

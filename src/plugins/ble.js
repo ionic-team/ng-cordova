@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.ble', [])
 
-  .factory('$cordovaBLE', ['$q', function ($q) {
+  .factory('$cordovaBLE', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      scan: function (services, seconds) {
+      scan: cordovaReady(function (services, seconds) {
         var q = $q.defer();
         ble.scan(services, seconds, function (result) {
           q.resolve(result);
@@ -14,9 +14,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      connect: function (deviceID) {
+      connect: cordovaReady(function (deviceID) {
         var q = $q.defer();
         ble.connect(deviceID, function (result) {
           q.resolve(result);
@@ -24,9 +24,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      disconnect: function (deviceID) {
+      disconnect: cordovaReady(function (deviceID) {
         var q = $q.defer();
         ble.disconnect(deviceID, function (result) {
           q.resolve(result);
@@ -34,9 +34,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      read: function (deviceID, serviceUUID, characteristicUUID) {
+      read: cordovaReady(function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.read(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
@@ -44,9 +44,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      write: function (deviceID, serviceUUID, characteristicUUID, data) {
+      write: cordovaReady(function (deviceID, serviceUUID, characteristicUUID, data) {
         var q = $q.defer();
         ble.write(deviceID, serviceUUID, characteristicUUID, data, function (result) {
           q.resolve(result);
@@ -54,9 +54,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
+      writeCommand: cordovaReady(function (deviceID, serviceUUID, characteristicUUID, data) {
         var q = $q.defer();
         ble.writeCommand(deviceID, serviceUUID, characteristicUUID, data, function (result) {
           q.resolve(result);
@@ -64,9 +64,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      notify: function (deviceID, serviceUUID, characteristicUUID) {
+      notify: cordovaReady(function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.notify(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
@@ -74,9 +74,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      indicate: function (deviceID, serviceUUID, characteristicUUID) {
+      indicate: cordovaReady(function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.indicate(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
@@ -84,9 +84,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      isConnected: function (deviceID) {
+      isConnected: cordovaReady(function (deviceID) {
         var q = $q.defer();
         ble.isConnected(deviceID, function (result) {
           q.resolve(result);
@@ -94,9 +94,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      isEnabled: function () {
+      isEnabled: cordovaReady(function () {
         var q = $q.defer();
         ble.isEnabled(function (result) {
           q.resolve(result);
@@ -104,6 +104,6 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      }
+      })
     };
   }]);

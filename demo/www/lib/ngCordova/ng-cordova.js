@@ -317,10 +317,10 @@ angular.module('ngCordova.plugins.badge', [])
 
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-  .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
+  .factory('$cordovaBarcodeScanner', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      scan: function () {
+      scan: cordovaReady(function () {
         var q = $q.defer();
 
         cordova.plugins.barcodeScanner.scan(function (result) {
@@ -330,9 +330,9 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      encode: function (type, data) {
+      encode: cordovaReady(function (type, data) {
         var q = $q.defer();
         type = type || "TEXT_TYPE";
 
@@ -343,7 +343,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         });
 
         return q.promise;
-      }
+      })
     };
   }]);
 
@@ -376,10 +376,10 @@ angular.module('ngCordova.plugins.battery-status', [])
 
 angular.module('ngCordova.plugins.ble', [])
 
-  .factory('$cordovaBLE', ['$q', function ($q) {
+  .factory('$cordovaBLE', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      scan: function (services, seconds) {
+      scan: cordovaReady(function (services, seconds) {
         var q = $q.defer();
         ble.scan(services, seconds, function (result) {
           q.resolve(result);
@@ -387,9 +387,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      connect: function (deviceID) {
+      connect: cordovaReady(function (deviceID) {
         var q = $q.defer();
         ble.connect(deviceID, function (result) {
           q.resolve(result);
@@ -397,9 +397,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      disconnect: function (deviceID) {
+      disconnect: cordovaReady(function (deviceID) {
         var q = $q.defer();
         ble.disconnect(deviceID, function (result) {
           q.resolve(result);
@@ -407,9 +407,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      read: function (deviceID, serviceUUID, characteristicUUID) {
+      read: cordovaReady(function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.read(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
@@ -417,9 +417,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      write: function (deviceID, serviceUUID, characteristicUUID, data) {
+      write: cordovaReady(function (deviceID, serviceUUID, characteristicUUID, data) {
         var q = $q.defer();
         ble.write(deviceID, serviceUUID, characteristicUUID, data, function (result) {
           q.resolve(result);
@@ -427,9 +427,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
+      writeCommand: cordovaReady(function (deviceID, serviceUUID, characteristicUUID, data) {
         var q = $q.defer();
         ble.writeCommand(deviceID, serviceUUID, characteristicUUID, data, function (result) {
           q.resolve(result);
@@ -437,9 +437,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      notify: function (deviceID, serviceUUID, characteristicUUID) {
+      notify: cordovaReady(function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.notify(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
@@ -447,9 +447,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      indicate: function (deviceID, serviceUUID, characteristicUUID) {
+      indicate: cordovaReady(function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.indicate(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
@@ -457,9 +457,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      isConnected: function (deviceID) {
+      isConnected: cordovaReady(function (deviceID) {
         var q = $q.defer();
         ble.isConnected(deviceID, function (result) {
           q.resolve(result);
@@ -467,9 +467,9 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      isEnabled: function () {
+      isEnabled: cordovaReady(function () {
         var q = $q.defer();
         ble.isEnabled(function (result) {
           q.resolve(result);
@@ -477,7 +477,7 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
         return q.promise;
-      }
+      })
     };
   }]);
 
@@ -486,10 +486,10 @@ angular.module('ngCordova.plugins.ble', [])
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
-  .factory('$cordovaBluetoothSerial', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaBluetoothSerial', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
-      connect: function (address) {
+      connect: cordovaReady(function (address) {
         var q = $q.defer();
         $window.bluetoothSerial.connect(address, function () {
           q.resolve();
@@ -497,10 +497,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
       // not supported on iOS
-      connectInsecure: function (address) {
+      connectInsecure: cordovaReady(function (address) {
         var q = $q.defer();
         $window.bluetoothSerial.connectInsecure(address, function () {
           q.resolve();
@@ -508,10 +508,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-
-      disconnect: function () {
+      disconnect: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.disconnect(function () {
           q.resolve();
@@ -519,10 +518,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-
-      list: function () {
+      list: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.list(function (data) {
           q.resolve(data);
@@ -530,9 +528,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      isEnabled: function () {
+      isEnabled: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.isEnabled(function () {
           q.resolve();
@@ -540,10 +538,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject();
         });
         return q.promise;
-      },
+      }),
 
-
-      isConnected: function () {
+      isConnected: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.isConnected(function () {
           q.resolve();
@@ -551,10 +548,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject();
         });
         return q.promise;
-      },
+      }),
 
-
-      available: function () {
+      available: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.available(function (data) {
           q.resolve(data);
@@ -562,10 +558,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      read: function () {
+      read: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.read(function (data) {
           q.resolve(data);
@@ -573,9 +569,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      readUntil: function (delimiter) {
+      readUntil: cordovaReady(function (delimiter) {
         var q = $q.defer();
         $window.bluetoothSerial.readUntil(delimiter, function (data) {
           q.resolve(data);
@@ -583,10 +579,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      write: function (data) {
+      write: cordovaReady(function (data) {
         var q = $q.defer();
         $window.bluetoothSerial.write(data, function () {
           q.resolve();
@@ -594,10 +590,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      subscribe: function (delimiter) {
+      subscribe: cordovaReady(function (delimiter) {
         var q = $q.defer();
         $window.bluetoothSerial.subscribe(delimiter, function (data) {
           q.resolve(data);
@@ -605,9 +601,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      subscribeRawData: function () {
+      subscribeRawData: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.subscribeRawData(function (data) {
           q.resolve(data);
@@ -615,10 +611,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      unsubscribe: function () {
+      unsubscribe: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.unsubscribe(function () {
           q.resolve();
@@ -626,9 +622,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      unsubscribeRawData: function () {
+      unsubscribeRawData: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.unsubscribeRawData(function () {
           q.resolve();
@@ -636,10 +632,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      clear: function () {
+      clear: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.clear(function () {
           q.resolve();
@@ -647,10 +643,10 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      readRSSI: function () {
+      readRSSI: cordovaReady(function () {
         var q = $q.defer();
         $window.bluetoothSerial.readRSSI(function (data) {
           q.resolve(data);
@@ -658,7 +654,7 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
           q.reject(error);
         });
         return q.promise;
-      }
+      })
     };
   }]);
 
@@ -667,9 +663,9 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
 
 angular.module('ngCordova.plugins.calendar', [])
 
-  .factory('$cordovaCalendar', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaCalendar', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
     return {
-      createCalendar: function (options) {
+      createCalendar: cordovaReady(function (options) {
         var d = $q.defer(),
           createCalOptions = $window.plugins.calendar.getCreateCalendarOptions();
 
@@ -686,9 +682,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      deleteCalendar: function (calendarName) {
+      deleteCalendar: cordovaReady(function (calendarName) {
         var d = $q.defer();
 
         $window.plugins.calendar.deleteCalendar(calendarName, function (message) {
@@ -698,9 +694,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      createEvent: function (options) {
+      createEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -726,9 +722,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      createEventWithOptions: function (options) {
+      createEventWithOptions: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptionKeys = [],
           calOptions = window.plugins.calendar.getCalendarOptions(),
@@ -765,9 +761,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      createEventInteractively: function (options) {
+      createEventInteractively: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -793,9 +789,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      createEventInNamedCalendar: function (options) {
+      createEventInNamedCalendar: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -823,9 +819,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      findEvent: function (options) {
+      findEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -851,9 +847,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      listEventsInRange: function (startDate, endDate) {
+      listEventsInRange: cordovaReady(function (startDate, endDate) {
         var d = $q.defer();
 
         $window.plugins.calendar.listEventsInRange(startDate, endDate, function (events) {
@@ -863,9 +859,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      listCalendars: function () {
+      listCalendars: cordovaReady(function () {
         var d = $q.defer();
 
         $window.plugins.calendar.listCalendars(function (calendars) {
@@ -875,9 +871,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      findAllEventsInNamedCalendar: function (calendarName) {
+      findAllEventsInNamedCalendar: cordovaReady(function (calendarName) {
         var d = $q.defer();
 
         $window.plugins.calendar.findAllEventsInNamedCalendar(calendarName, function (events) {
@@ -887,9 +883,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      modifyEvent: function (options) {
+      modifyEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -925,9 +921,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      deleteEvent: function (options) {
+      deleteEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             newTitle: null,
@@ -953,7 +949,7 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      }
+      })
     };
   }]);
 
@@ -962,10 +958,10 @@ angular.module('ngCordova.plugins.calendar', [])
 
 angular.module('ngCordova.plugins.camera', [])
 
-  .factory('$cordovaCamera', ['$q', function ($q) {
+  .factory('$cordovaCamera', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      getPicture: function (options) {
+      getPicture: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.camera) {
@@ -980,9 +976,9 @@ angular.module('ngCordova.plugins.camera', [])
         }, options);
 
         return q.promise;
-      },
+      }),
 
-      cleanup: function () {
+      cleanup: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.camera.cleanup(function () {
@@ -992,7 +988,7 @@ angular.module('ngCordova.plugins.camera', [])
         });
 
         return q.promise;
-      }
+      })
     };
   }]);
 
@@ -1001,10 +997,10 @@ angular.module('ngCordova.plugins.camera', [])
 
 angular.module('ngCordova.plugins.capture', [])
 
-  .factory('$cordovaCapture', ['$q', function ($q) {
+  .factory('$cordovaCapture', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      captureAudio: function (options) {
+      captureAudio: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -1019,8 +1015,9 @@ angular.module('ngCordova.plugins.capture', [])
         }, options);
 
         return q.promise;
-      },
-      captureImage: function (options) {
+      }),
+
+      captureImage: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -1035,8 +1032,9 @@ angular.module('ngCordova.plugins.capture', [])
         }, options);
 
         return q.promise;
-      },
-      captureVideo: function (options) {
+      }),
+
+      captureVideo: cordovaReady(function (options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -1051,7 +1049,7 @@ angular.module('ngCordova.plugins.capture', [])
         }, options);
 
         return q.promise;
-      }
+      })
     };
   }]);
 
@@ -1060,10 +1058,10 @@ angular.module('ngCordova.plugins.capture', [])
 
 angular.module('ngCordova.plugins.clipboard', [])
 
-  .factory('$cordovaClipboard', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaClipboard', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
-      copy: function (text) {
+      copy: cordovaReady(function (text) {
         var q = $q.defer();
 
         $window.cordova.plugins.clipboard.copy(text,
@@ -1074,9 +1072,9 @@ angular.module('ngCordova.plugins.clipboard', [])
           });
 
         return q.promise;
-      },
+      }),
 
-      paste: function () {
+      paste: cordovaReady(function () {
         var q = $q.defer();
 
         $window.cordova.plugins.clipboard.paste(function (text) {
@@ -1086,7 +1084,7 @@ angular.module('ngCordova.plugins.clipboard', [])
         });
 
         return q.promise;
-      }
+      })
     };
   }]);
 
@@ -1095,10 +1093,10 @@ angular.module('ngCordova.plugins.clipboard', [])
 
 angular.module('ngCordova.plugins.contacts', [])
 
-  .factory('$cordovaContacts', ['$q', function ($q) {
+  .factory('$cordovaContacts', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      save: function (contact) {
+      save: cordovaReady(function (contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
@@ -1109,9 +1107,9 @@ angular.module('ngCordova.plugins.contacts', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      remove: function (contact) {
+      remove: cordovaReady(function (contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
@@ -1122,14 +1120,14 @@ angular.module('ngCordova.plugins.contacts', [])
             q.reject(err);
           });
         return q.promise;
-      },
+      }),
 
-      clone: function (contact) {
+      clone: cordovaReady(function (contact) {
         var deviceContact = navigator.contacts.create(contact);
         return deviceContact.clone(contact);
-      },
+      }),
 
-      find: function (options) {
+      find: cordovaReady(function (options) {
         var q = $q.defer();
         var fields = options.fields || ['id', 'displayName'];
         delete options.fields;
@@ -1143,9 +1141,9 @@ angular.module('ngCordova.plugins.contacts', [])
           options);
 
         return q.promise;
-      },
+      }),
 
-      pickContact: function () {
+      pickContact: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.contacts.pickContact(
@@ -1158,16 +1156,14 @@ angular.module('ngCordova.plugins.contacts', [])
         );
 
         return q.promise;
-      }
+      })
 
       // TODO: method to set / get ContactAddress
       // TODO: method to set / get ContactError
       // TODO: method to set / get ContactField
       // TODO: method to set / get ContactName
       // TODO: method to set / get ContactOrganization
-
     };
-
   }]);
 
 angular.module('ngCordova.plugins.datePicker', [])
@@ -1275,10 +1271,10 @@ angular.module('ngCordova.plugins.deviceMotion', [])
 
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
-  .factory('$cordovaDeviceOrientation', ['$q', function ($q) {
+  .factory('$cordovaDeviceOrientation', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      getCurrentHeading: function () {
+      getCurrentHeading: cordovaReady(function () {
         var q = $q.defer();
 
         navigator.compass.getCurrentHeading(function (heading) {
@@ -1288,9 +1284,9 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      watchHeading: function (options) {
+      watchHeading: cordovaReady(function (options) {
         var q = $q.defer();
 
         var watchId = navigator.compass.watchHeading(function (result) {
@@ -1303,11 +1299,11 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
           watchId: watchId,
           promise: q.promise
         };
-      },
+      }),
 
-      clearWatch: function (watchID) {
+      clearWatch: cordovaReady(function (watchID) {
         navigator.compass.clearWatch(watchID);
-      }
+      })
     };
   }]);
 
@@ -1500,18 +1496,18 @@ angular.module('ngCordova.plugins.facebook', [])
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', '$window', '$log', function ($q, $window, $log) {
+  .factory('$cordovaFile', ['$q', '$window', '$log', 'cordovaReady', function ($q, $window, $log, cordovaReady) {
 
     return {
-      checkDir: function (dir) {
+      checkDir: cordovaReady(function (dir) {
         return getDirectory(dir, {create: false});
-      },
+      }),
 
-      createDir: function (dir, replaceBOOL) {
+      createDir: cordovaReady(function (dir, replaceBOOL) {
         return getDirectory(dir, {create: true, exclusive: replaceBOOL});
-      },
+      }),
 
-      listDir: function (filePath) {
+      listDir: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         getDirectory(filePath, {create: false}).then(function (parent) {
@@ -1528,18 +1524,18 @@ angular.module('ngCordova.plugins.file', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      checkFile: function (filePath) {
+      checkFile: cordovaReady(function (filePath) {
         // Backward compatibility for previous function checkFile(dir, file)
         if (arguments.length == 2) {
           filePath = '/' + filePath + '/' + arguments[1];
         }
 
         return getFileEntry(filePath, {create: false});
-      },
+      }),
 
-      createFile: function (filePath, replaceBOOL) {
+      createFile: cordovaReady(function (filePath, replaceBOOL) {
         // Backward compatibility for previous function createFile(filepath replaceBOOL)
         if (arguments.length == 3) {
           filePath = '/' + filePath + '/' + arguments[1];
@@ -1547,9 +1543,9 @@ angular.module('ngCordova.plugins.file', [])
         }
 
         return getFileEntry(filePath, {create: true, exclusive: replaceBOOL});
-      },
+      }),
 
-      removeFile: function (filePath) {
+      removeFile: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function removeFile(dir, file)
@@ -1562,11 +1558,11 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
       // options is a dict with possible keys :
       // - append : true/false (if true, append data on EOF)
-      writeFile: function (filePath, data, options) {
+      writeFile: cordovaReady(function (filePath, data, options) {
         var q = $q.defer();
 
         getFileWriter(filePath, {create: true}).then(function (fileWriter) {
@@ -1584,14 +1580,14 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readFile: function (filePath) {  /// now deprecated in new ng-cordova version
+      readFile: cordovaReady(function (filePath) {  /// now deprecated in new ng-cordova version
         $log.log('readFile is now deprecated as of v0.1.4-alpha, use readAsText instead');
         return this.readAsText(filePath);
-      },
+      }),
 
-      readAsText: function (filePath) {
+      readAsText: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -1604,10 +1600,10 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
 
-      readAsDataURL: function (filePath) {
+      readAsDataURL: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -1620,9 +1616,9 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readAsBinaryString: function (filePath) {
+      readAsBinaryString: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -1635,9 +1631,9 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readAsArrayBuffer: function (filePath) {
+      readAsArrayBuffer: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -1650,25 +1646,25 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readFileMetadata: function (filePath) {
+      readFileMetadata: cordovaReady(function (filePath) {
         return getFile(filePath, {create: false});
-      },
+      }),
 
-      readFileAbsolute: function (filePath) {
+      readFileAbsolute: cordovaReady(function (filePath) {
         var q = $q.defer();
         getAbsoluteFile(filePath).then(function (file) {
           getPromisedFileReader(q).readAsText(file);
         }, q.reject);
         return q.promise;
-      },
+      }),
 
-      readFileMetadataAbsolute: function (filePath) {
+      readFileMetadataAbsolute: cordovaReady(function (filePath) {
         return getAbsoluteFile(filePath);
-      },
+      }),
 
-      downloadFile: function (source, filePath, trustAllHosts, options) {
+      downloadFile: cordovaReady(function (source, filePath, trustAllHosts, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(source);
@@ -1676,9 +1672,9 @@ angular.module('ngCordova.plugins.file', [])
         fileTransfer.onprogress = q.notify;
         fileTransfer.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
         return q.promise;
-      },
+      }),
 
-      uploadFile: function (server, filePath, options) {
+      uploadFile: cordovaReady(function (server, filePath, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
@@ -1686,8 +1682,7 @@ angular.module('ngCordova.plugins.file', [])
         fileTransfer.onprogress = q.notify;
         fileTransfer.upload(filePath, uri, q.resolve, q.reject, options);
         return q.promise;
-      }
-
+      })
     };
 
     /*
@@ -4038,10 +4033,10 @@ angular.module('ngCordova.plugins.statusbar', [])
 
 angular.module('ngCordova.plugins.toast', [])
 
-  .factory('$cordovaToast', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaToast', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
-      showShortTop: function (message) {
+      showShortTop: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showShortTop(message, function (response) {
           q.resolve(response);
@@ -4049,9 +4044,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showShortCenter: function (message) {
+      showShortCenter: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showShortCenter(message, function (response) {
           q.resolve(response);
@@ -4059,9 +4054,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showShortBottom: function (message) {
+      showShortBottom: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showShortBottom(message, function (response) {
           q.resolve(response);
@@ -4069,9 +4064,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showLongTop: function (message) {
+      showLongTop: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showLongTop(message, function (response) {
           q.resolve(response);
@@ -4079,9 +4074,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showLongCenter: function (message) {
+      showLongCenter: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showLongCenter(message, function (response) {
           q.resolve(response);
@@ -4089,9 +4084,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showLongBottom: function (message) {
+      showLongBottom: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showLongBottom(message, function (response) {
           q.resolve(response);
@@ -4099,10 +4094,10 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      show: function (message, duration, position) {
+      show: cordovaReady(function (message, duration, position) {
         var q = $q.defer();
         $window.plugins.toast.show(message, duration, position, function (response) {
           q.resolve(response);
@@ -4110,9 +4105,8 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      }
+      })
     };
-
   }]);
 
 // install   :      cordova plugin add https://github.com/leecrossley/cordova-plugin-touchid.git

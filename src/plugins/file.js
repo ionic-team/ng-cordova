@@ -10,18 +10,18 @@
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', '$window', '$log', function ($q, $window, $log) {
+  .factory('$cordovaFile', ['$q', '$window', '$log', 'cordovaReady', function ($q, $window, $log, cordovaReady) {
 
     return {
-      checkDir: function (dir) {
+      checkDir: cordovaReady(function (dir) {
         return getDirectory(dir, {create: false});
-      },
+      }),
 
-      createDir: function (dir, replaceBOOL) {
+      createDir: cordovaReady(function (dir, replaceBOOL) {
         return getDirectory(dir, {create: true, exclusive: replaceBOOL});
-      },
+      }),
 
-      listDir: function (filePath) {
+      listDir: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         getDirectory(filePath, {create: false}).then(function (parent) {
@@ -38,18 +38,18 @@ angular.module('ngCordova.plugins.file', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      checkFile: function (filePath) {
+      checkFile: cordovaReady(function (filePath) {
         // Backward compatibility for previous function checkFile(dir, file)
         if (arguments.length == 2) {
           filePath = '/' + filePath + '/' + arguments[1];
         }
 
         return getFileEntry(filePath, {create: false});
-      },
+      }),
 
-      createFile: function (filePath, replaceBOOL) {
+      createFile: cordovaReady(function (filePath, replaceBOOL) {
         // Backward compatibility for previous function createFile(filepath replaceBOOL)
         if (arguments.length == 3) {
           filePath = '/' + filePath + '/' + arguments[1];
@@ -57,9 +57,9 @@ angular.module('ngCordova.plugins.file', [])
         }
 
         return getFileEntry(filePath, {create: true, exclusive: replaceBOOL});
-      },
+      }),
 
-      removeFile: function (filePath) {
+      removeFile: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function removeFile(dir, file)
@@ -72,11 +72,11 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
       // options is a dict with possible keys :
       // - append : true/false (if true, append data on EOF)
-      writeFile: function (filePath, data, options) {
+      writeFile: cordovaReady(function (filePath, data, options) {
         var q = $q.defer();
 
         getFileWriter(filePath, {create: true}).then(function (fileWriter) {
@@ -94,14 +94,14 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readFile: function (filePath) {  /// now deprecated in new ng-cordova version
+      readFile: cordovaReady(function (filePath) {  /// now deprecated in new ng-cordova version
         $log.log('readFile is now deprecated as of v0.1.4-alpha, use readAsText instead');
         return this.readAsText(filePath);
-      },
+      }),
 
-      readAsText: function (filePath) {
+      readAsText: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -114,10 +114,10 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
 
-      readAsDataURL: function (filePath) {
+      readAsDataURL: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -130,9 +130,9 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readAsBinaryString: function (filePath) {
+      readAsBinaryString: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -145,9 +145,9 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readAsArrayBuffer: function (filePath) {
+      readAsArrayBuffer: cordovaReady(function (filePath) {
         var q = $q.defer();
 
         // Backward compatibility for previous function readFile(dir, file)
@@ -160,25 +160,25 @@ angular.module('ngCordova.plugins.file', [])
         }, q.reject);
 
         return q.promise;
-      },
+      }),
 
-      readFileMetadata: function (filePath) {
+      readFileMetadata: cordovaReady(function (filePath) {
         return getFile(filePath, {create: false});
-      },
+      }),
 
-      readFileAbsolute: function (filePath) {
+      readFileAbsolute: cordovaReady(function (filePath) {
         var q = $q.defer();
         getAbsoluteFile(filePath).then(function (file) {
           getPromisedFileReader(q).readAsText(file);
         }, q.reject);
         return q.promise;
-      },
+      }),
 
-      readFileMetadataAbsolute: function (filePath) {
+      readFileMetadataAbsolute: cordovaReady(function (filePath) {
         return getAbsoluteFile(filePath);
-      },
+      }),
 
-      downloadFile: function (source, filePath, trustAllHosts, options) {
+      downloadFile: cordovaReady(function (source, filePath, trustAllHosts, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(source);
@@ -186,9 +186,9 @@ angular.module('ngCordova.plugins.file', [])
         fileTransfer.onprogress = q.notify;
         fileTransfer.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
         return q.promise;
-      },
+      }),
 
-      uploadFile: function (server, filePath, options) {
+      uploadFile: cordovaReady(function (server, filePath, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
@@ -196,8 +196,7 @@ angular.module('ngCordova.plugins.file', [])
         fileTransfer.onprogress = q.notify;
         fileTransfer.upload(filePath, uri, q.resolve, q.reject, options);
         return q.promise;
-      }
-
+      })
     };
 
     /*

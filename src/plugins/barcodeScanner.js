@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-  .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
+  .factory('$cordovaBarcodeScanner', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      scan: function () {
+      scan: cordovaReady(function () {
         var q = $q.defer();
 
         cordova.plugins.barcodeScanner.scan(function (result) {
@@ -16,9 +16,9 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         });
 
         return q.promise;
-      },
+      }),
 
-      encode: function (type, data) {
+      encode: cordovaReady(function (type, data) {
         var q = $q.defer();
         type = type || "TEXT_TYPE";
 
@@ -29,6 +29,6 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         });
 
         return q.promise;
-      }
+      })
     };
   }]);

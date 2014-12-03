@@ -3,10 +3,10 @@
 
 angular.module('ngCordova.plugins.toast', [])
 
-  .factory('$cordovaToast', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaToast', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
 
     return {
-      showShortTop: function (message) {
+      showShortTop: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showShortTop(message, function (response) {
           q.resolve(response);
@@ -14,9 +14,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showShortCenter: function (message) {
+      showShortCenter: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showShortCenter(message, function (response) {
           q.resolve(response);
@@ -24,9 +24,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showShortBottom: function (message) {
+      showShortBottom: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showShortBottom(message, function (response) {
           q.resolve(response);
@@ -34,9 +34,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showLongTop: function (message) {
+      showLongTop: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showLongTop(message, function (response) {
           q.resolve(response);
@@ -44,9 +44,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showLongCenter: function (message) {
+      showLongCenter: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showLongCenter(message, function (response) {
           q.resolve(response);
@@ -54,9 +54,9 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
-      showLongBottom: function (message) {
+      showLongBottom: cordovaReady(function (message) {
         var q = $q.defer();
         $window.plugins.toast.showLongBottom(message, function (response) {
           q.resolve(response);
@@ -64,10 +64,10 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      },
+      }),
 
 
-      show: function (message, duration, position) {
+      show: cordovaReady(function (message, duration, position) {
         var q = $q.defer();
         $window.plugins.toast.show(message, duration, position, function (response) {
           q.resolve(response);
@@ -75,7 +75,6 @@ angular.module('ngCordova.plugins.toast', [])
           q.reject(error);
         });
         return q.promise;
-      }
+      })
     };
-
   }]);

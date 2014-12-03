@@ -3,9 +3,9 @@
 
 angular.module('ngCordova.plugins.calendar', [])
 
-  .factory('$cordovaCalendar', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaCalendar', ['$q', '$window', 'cordovaReady', function ($q, $window, cordovaReady) {
     return {
-      createCalendar: function (options) {
+      createCalendar: cordovaReady(function (options) {
         var d = $q.defer(),
           createCalOptions = $window.plugins.calendar.getCreateCalendarOptions();
 
@@ -22,9 +22,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      deleteCalendar: function (calendarName) {
+      deleteCalendar: cordovaReady(function (calendarName) {
         var d = $q.defer();
 
         $window.plugins.calendar.deleteCalendar(calendarName, function (message) {
@@ -34,9 +34,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      createEvent: function (options) {
+      createEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -62,9 +62,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      createEventWithOptions: function (options) {
+      createEventWithOptions: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptionKeys = [],
           calOptions = window.plugins.calendar.getCalendarOptions(),
@@ -101,9 +101,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      createEventInteractively: function (options) {
+      createEventInteractively: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -129,9 +129,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      createEventInNamedCalendar: function (options) {
+      createEventInNamedCalendar: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -159,9 +159,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      findEvent: function (options) {
+      findEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -187,9 +187,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      listEventsInRange: function (startDate, endDate) {
+      listEventsInRange: cordovaReady(function (startDate, endDate) {
         var d = $q.defer();
 
         $window.plugins.calendar.listEventsInRange(startDate, endDate, function (events) {
@@ -199,9 +199,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      listCalendars: function () {
+      listCalendars: cordovaReady(function () {
         var d = $q.defer();
 
         $window.plugins.calendar.listCalendars(function (calendars) {
@@ -211,9 +211,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      findAllEventsInNamedCalendar: function (calendarName) {
+      findAllEventsInNamedCalendar: cordovaReady(function (calendarName) {
         var d = $q.defer();
 
         $window.plugins.calendar.findAllEventsInNamedCalendar(calendarName, function (events) {
@@ -223,9 +223,9 @@ angular.module('ngCordova.plugins.calendar', [])
         });
 
         return d.promise;
-      },
+      }),
 
-      modifyEvent: function (options) {
+      modifyEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -261,9 +261,9 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      },
+      }),
 
-      deleteEvent: function (options) {
+      deleteEvent: cordovaReady(function (options) {
         var d = $q.defer(),
           defaultOptions = {
             newTitle: null,
@@ -289,6 +289,6 @@ angular.module('ngCordova.plugins.calendar', [])
         );
 
         return d.promise;
-      }
+      })
     };
   }]);
