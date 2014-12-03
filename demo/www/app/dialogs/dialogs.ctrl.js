@@ -19,7 +19,7 @@ angular.module('demo.dialogs.ctrl', [])
     $scope.prompt = function () {
       $scope.action = "Prompt";
       $cordovaDialogs.prompt('Please Login', "Custom title").then(function (result) {
-       $cordovaDialogs.alert("Input: " + result.input1 + "\n Button index : " + result.buttonIndex);
+        $cordovaDialogs.alert("Input: " + result.input1 + "\n Button index : " + result.buttonIndex);
       });
     };
 

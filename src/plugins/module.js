@@ -53,7 +53,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.zip'
 ])
 
-  .factory('cordovaReady', ['$window', '$timeout', function ($window, $timeout) {
+  .factory('cordovaReady', [function () {
     return function (fn) {
 
       var queue = [];
@@ -61,13 +61,6 @@ angular.module('ngCordova.plugins', [
       var impl = function () {
         queue.push(Array.prototype.slice.call(arguments));
       };
-
-      if (!!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
-        queue.forEach(function (args) {
-          fn.apply(this, args);
-        });
-        impl = fn;
-      }
 
       document.addEventListener('deviceready', function () {
         queue.forEach(function (args) {

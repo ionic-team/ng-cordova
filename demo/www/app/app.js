@@ -34,7 +34,7 @@ angular.module('demo', [
   'demo.touchid.ctrl'
 ])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($timeout, $ionicPlatform) {
 
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
