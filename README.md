@@ -30,7 +30,7 @@ $ bower install ngCordova
 ## Plugins
 - [AdMob](https://github.com/floatinghotpot/cordova-admob-pro)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
-- [App Prefences](https://github.com/dferrell/plugins-application-preferences)
+- [App Preferences](https://github.com/dferrell/plugins-application-preferences)
 - [App Rate](https://github.com/pushandplay/cordova-plugin-apprate)
 - [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
