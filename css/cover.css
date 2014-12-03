@@ -77,7 +77,7 @@ body {
 }
 
 body {
-    color: #aab5c7;
+    color: #b3bed1;
     text-align: center;
     text-shadow: none;
     box-shadow: none;
@@ -87,16 +87,6 @@ body.full {
     box-shadow: none;
 }
 
-/*
-#bg-pattern {
-  background: url(../img/bg.png) no-repeat;
-  position: fixed;
-  text-align: center;
-  width: 1088px;
-  height: 713px;
-  overflow: hidden;
-}  */
-
 h1 {
     font-size: 36px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -104,16 +94,16 @@ h1 {
     color: #eef4ff;
 }
 
-h2:first-child {
-    margin-top: 10px;
-}
-
 h2 {
     font-size: 30px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
     color: #eef4ff;
-    margin-top: 40px;
+    margin-top: 50px;
+}
+
+h2:first-child {
+    margin-top: 10px;
 }
 
 h3 {
@@ -121,12 +111,30 @@ h3 {
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
     color: #eef4ff;
-    margin-top: 50px;
+    margin-top: 55px;
+}
+
+
+h4 {
+    padding-top: 15px;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+h5 {
+    padding-top: 15px;
+}
+
+h5 > code {
+    font-size: 14px;
+    background-color: #383C42;
 }
 
 p {
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
+    font-size: 15px;
     letter-spacing: -0.01em;
 }
 
@@ -165,7 +173,7 @@ code {
     padding: 2px 2px;
     font-size: 90%;
     color: #5796FF;
-    background: none;
+    background: rgba(63, 68, 78, 0.59);
     white-space: nowrap;
     border-radius: 4px;
 }
@@ -271,17 +279,47 @@ code {
 }
 
 /*
- * Sidemenu
+ * LEFT MENU
  */
 
-.fixed-menu {
+.menu-docked {
+    display: none;
+    top: 135px;
     position: fixed;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.menu-search-div {
+    display: none;
+    position: fixed;
+}
+
+input.menu-search {
+    border: solid 1px #5796FF;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding: 3px 3px 3px 10px;
+    width: 200px;
+    transition: box-shadow linear 0.4s;
+    box-shadow: 0 0;
+    -moz-box-shadow: 0 0;
+    -webkit-box-shadow: 0 0;
+}
+
+input.menu-search:focus {
+    outline: none;
+    border-color: #5796FF;
+    transition: box-shadow linear 0.4s;
+    box-shadow: 0 0 8px #8db4d4;
+    -moz-box-shadow: 0 0 8px #8db4d4;
+    -webkit-box-shadow: 0 0 8px #8db4d4;
 }
 
 .left-menu {
+    background-color: #383c42;
+    border-radius: 4px;
     margin-top: 8px;
     padding-left: 0;
     list-style: none;
@@ -290,19 +328,6 @@ code {
 
 .left-menu:first-child {
     margin-top: 0;
-}
-
-.left-menu a {
-    display: block;
-    color: #4F8EF7;
-    text-decoration: none;
-}
-
-.left-menu a.active,
-.left-menu a:hover {
-    background-color: #474A50 !important;
-    border-radius: 3px;
-    color: white;
 }
 
 .left-menu li {
@@ -315,44 +340,57 @@ code {
     margin-top: 0;
 }
 
-.left-menu li ul {
-    display: none;
-    padding-left: 12px;
-}
-
-.left-menu .menu-title a {
-    color: #aaaaaa;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-    line-height: 20px;
-}
-
-.left-menu.nav li.active > a {
-    border-right: 2px solid #4F8EF7;
-    color: #4F8EF7;
-}
-
-.left-menu.nav li.active > ul {
-    display: block;
-}
-
-.left-menu.nav > li > a {
+.left-menu > li > a {
+    font-size: 14px;
+    line-height: 14px;
     padding: 7px 0 7px 10px;
     width: 200px;
 }
 
-.left-menu.nav > li > a:hover,
-.left-menu.nav > li > a:active {
-    background-color: #474A50;
-}
-
-.left-menu.active-menu .menu-title a {
-    color: #4F8EF7;
-}
-
-.left-menu.active-menu li {
+.left-menu li {
     display: block;
+}
+
+.left-menu a {
+    display: block;
+    color: #4F8EF7;
+    text-decoration: none;
+    border-left: 2px solid #383c42;
+}
+
+.left-menu a.active,
+.left-menu a:hover {
+    background-color: #474A50 !important;
+    color: white;
+    border-left: 2px solid #ffffff;
+}
+
+.left-menu li:first-child > a {
+    border-radius: 4px 4px 0 0;
+}
+
+.left-menu li:last-child > a {
+    border-radius: 0 0 4px 4px;
+}
+
+.left-menu li:first-child > a.active,
+.left-menu li:first-child > a:hover {
+    border-radius: 3px 4px 0 0;
+}
+
+.left-menu li:last-child > a.active,
+.left-menu li:last-child > a:hover {
+    border-radius: 0 0 3px 4px;
+}
+
+@media (min-width: 992px) {
+    .menu-docked {
+        display: block;
+    }
+
+    .menu-search-div {
+        display: block;
+    }
 }
 
 /*
@@ -432,71 +470,6 @@ a:hover {
 }
 
 /*
- Side-menu  (menu-docked)
-*/
-.menu-docked {
-    display: none;
-}
-
-.menu-search-div {
-    display: none;
-}
-
-@media (min-width: 992px) {
-    .menu-docked {
-        display: block;
-        top: 135px;
-        position: fixed;
-        overflow-y: scroll;
-        height: 80%;
-    }
-
-    .menu-docked .nav {
-        background-color: #383c42;
-        border-radius: 7px;
-    }
-
-    .menu-docked .menu-title {
-        color: #FFFFFF;
-        margin-left: 5px;
-        float: left;
-        margin-right: 10px;
-    }
-
-    .menu-search-div {
-        position: fixed;
-        display: block;
-    }
-
-    input.menu-search {
-        border: solid 1px #5796FF;
-        border-radius: 4px;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        padding: 3px 3px 3px 10px;
-        width: 200px;
-        transition: box-shadow linear 0.4s;
-        box-shadow: 0 0;
-        -moz-box-shadow: 0 0;
-        -webkit-box-shadow: 0 0;
-    }
-
-    input:focus {
-        outline: none;
-        border-color: #5796FF;
-        transition: box-shadow linear 0.4s;
-        box-shadow: 0 0 8px #8db4d4;
-        -moz-box-shadow: 0 0 8px #8db4d4;
-        -webkit-box-shadow: 0 0 8px #8db4d4;
-    }
-
-    .menu-docked a {
-        font-size: 14px;
-        line-height: 14px;
-    }
-}
-
-/*
  * Anchor fixing
  */
 
@@ -560,13 +533,6 @@ a:hover {
     -moz-transition: 0.2s linear;
 }
 
-h4 {
-    padding-top: 15px;
-    color: #FFFFFF;
-    font-size: 18px;
-    font-weight: normal;
-}
-
 /*
  * Table formatting
  */
@@ -621,14 +587,5 @@ table > tbody > tr > td {
 }
 
 table code {
-    background-color: #383C42;
-}
-
-h5 {
-    padding-top: 15px;
-}
-
-h5 > code {
-    font-size: 14px;
     background-color: #383C42;
 }
