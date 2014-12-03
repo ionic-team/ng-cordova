@@ -3482,7 +3482,7 @@ angular.module('ngCordova.plugins.prefs', [])
       set: function (key, value) {
         var q = $q.defer();
 
-        $window.applicationPreferences.set(key, value, function (result) {
+        $window.appgiraffe.plugins.applicationPreferences.set(key, value, function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
@@ -3494,7 +3494,7 @@ angular.module('ngCordova.plugins.prefs', [])
       get: function (key) {
         var q = $q.defer();
 
-        $window.applicationPreferences.get(key, function (value) {
+        $window.appgiraffe.plugins.applicationPreferences.get(key, function (value) {
           q.resolve(value);
         }, function (err) {
           q.reject(err);

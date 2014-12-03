@@ -9,17 +9,19 @@ describe('Service: $cordovaPreferences', function() {
     $rootScope = _$rootScope_;
     $window = _$window_;
 
-    $window.applicationPreferences = {
-      set: angular.noop,
-      get: angular.noop,
-    };
+    $window.appgiraffe = {
+      plugins: {
+        applicationPreferences: {
+          set: angular.noop,
+          get: angular.noop,
+    }}};  
   }));
 
-  it('should call $window\'s applicationPreferences.set method', function() {
+  it('should call $window\'s appgiraffe.plugins.applicationPreferences.set method', function() {
 
     var result;
 
-    spyOn($window.applicationPreferences, 'set')
+    spyOn($window.appgiraffe.plugins.applicationPreferences, 'set')
       .andCallFake(function (key, value, successCb, errorCb) {
         successCb(true);
       });
@@ -33,7 +35,7 @@ describe('Service: $cordovaPreferences', function() {
     $rootScope.$digest();
 
     expect(result).toBe(true);
-    expect($window.applicationPreferences.set).toHaveBeenCalledWith(
+    expect($window.appgiraffe.plugins.applicationPreferences.set).toHaveBeenCalledWith(
       'icon',
       5,
       jasmine.any(Function),
@@ -41,12 +43,12 @@ describe('Service: $cordovaPreferences', function() {
     );
   });
 
-  it('should call errorCb when in $window\'s applicationPreferences.set a error orccurs', function() {
+  it('should call errorCb when in $window\'s appgiraffe.plugins.applicationPreferences.set a error orccurs', function() {
 
     var result;
     var errorObj = { someError: 1 };
 
-    spyOn($window.applicationPreferences, 'set')
+    spyOn($window.appgiraffe.plugins.applicationPreferences, 'set')
       .andCallFake(function (key, value, successCb, errorCb) {
         errorCb(errorObj);
       });
@@ -61,12 +63,12 @@ describe('Service: $cordovaPreferences', function() {
     expect(result).toBe(errorObj);
   });
 
-  it('should call $window\'s applicationPreferences.get method', function() {
+  it('should call $window\'s appgiraffe.plugins.applicationPreferences.get method', function() {
 
     var result;
     var prefResult = 5;
 
-    spyOn($window.applicationPreferences, 'get')
+    spyOn($window.appgiraffe.plugins.applicationPreferences, 'get')
       .andCallFake(function (key, successCb, errorCb) {
         successCb(prefResult);
       });
@@ -80,19 +82,19 @@ describe('Service: $cordovaPreferences', function() {
     $rootScope.$digest();
 
     expect(result).toBe(prefResult);
-    expect($window.applicationPreferences.get).toHaveBeenCalledWith(
+    expect($window.appgiraffe.plugins.applicationPreferences.get).toHaveBeenCalledWith(
       'icon',
       jasmine.any(Function),
       jasmine.any(Function)
     );
   });
 
-  it('should call errorCb when in $window\'s applicationPreferences.get a error orccurs', function() {
+  it('should call errorCb when in $window\'s appgiraffe.plugins.applicationPreferences.get a error orccurs', function() {
 
     var result;
     var errorObj = { someError: 1 };
 
-    spyOn($window.applicationPreferences, 'get')
+    spyOn($window.appgiraffe.plugins.applicationPreferences, 'get')
       .andCallFake(function (key, successCb, errorCb) {
         errorCb(errorObj);
       });
