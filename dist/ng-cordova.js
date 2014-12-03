@@ -2755,7 +2755,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.zip'
 ])
 
-  .factory('cordovaReady', function () {
+  .factory('cordovaReady', ['$window', '$timeout', function ($window, $timeout) {
     return function (fn) {
 
       var queue = [];
@@ -2763,6 +2763,14 @@ angular.module('ngCordova.plugins', [
       var impl = function () {
         queue.push(Array.prototype.slice.call(arguments));
       };
+
+      if (!!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+        queue.forEach(function (args) {
+          fn.apply(this, args);
+        });
+        impl = fn;
+      }
+
 
       document.addEventListener('deviceready', function () {
         queue.forEach(function (args) {
@@ -2775,7 +2783,7 @@ angular.module('ngCordova.plugins', [
         return impl.apply(this, arguments);
       };
     };
-  });
+  }]);
 
 // install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
 // link      : https://github.com/sidneys/cordova-plugin-nativeaudio
@@ -4114,10 +4122,10 @@ angular.module('ngCordova.plugins.toast', [])
 
 angular.module('ngCordova.plugins.touchid', [])
 
-  .factory('$cordovaTouchID', ['$q', function ($q) {
+  .factory('$cordovaTouchID', ['$q', 'cordovaReady', function ($q, cordovaReady) {
 
     return {
-      checkSupport: function () {
+      checkSupport: cordovaReady(function () {
         var defer = $q.defer();
         if (!window.cordova) {
           defer.reject("Not supported without cordova.js");
@@ -4130,9 +4138,9 @@ angular.module('ngCordova.plugins.touchid', [])
         }
 
         return defer.promise;
-      },
+      }),
 
-      authenticate: function (auth_reason_text) {
+      authenticate: cordovaReady(function (auth_reason_text) {
         var defer = $q.defer();
         if (!window.cordova) {
           defer.reject("Not supported without cordova.js");
@@ -4145,7 +4153,7 @@ angular.module('ngCordova.plugins.touchid', [])
         }
 
         return defer.promise;
-      }
+      })
     };
   }]);
 
