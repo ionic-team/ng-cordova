@@ -602,7 +602,7 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       subscribe: function (delimiter) {
         var q = $q.defer();
         $window.bluetoothSerial.subscribe(delimiter, function (data) {
-          q.resolve(data);
+          q.notify(data);
         }, function (error) {
           q.reject(error);
         });
@@ -612,7 +612,7 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       subscribeRawData: function () {
         var q = $q.defer();
         $window.bluetoothSerial.subscribeRawData(function (data) {
-          q.resolve(data);
+          q.notify(data);
         }, function (error) {
           q.reject(error);
         });
