@@ -1572,7 +1572,7 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
 
         getFileWriter(filePath, {create: true}).then(function (fileWriter) {
-          if (options['append'] === true) {
+          if (options && options['append'] === true) {
             // Start write position at EOF.
             fileWriter.seek(fileWriter.length);
           }
