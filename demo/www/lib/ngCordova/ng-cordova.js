@@ -3628,7 +3628,7 @@ angular.module('ngCordova.plugins.push', [])
     return {
       onNotification: function (notification) {
         $rootScope.$apply(function () {
-          $rootScope.$broadcast('pushNotificationReceived', {notification: notification});
+          $rootScope.$broadcast('pushNotificationReceived', notification);
         });
       },
 
@@ -3640,8 +3640,8 @@ angular.module('ngCordova.plugins.push', [])
         }
 
         $window.plugins.pushNotification.register(
-          function (result) {
-            q.resolve(result);
+          function (token) {
+            q.resolve(token);
           },
           function (error) {
             q.reject(error);
