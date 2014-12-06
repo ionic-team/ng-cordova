@@ -19,8 +19,8 @@ angular.module('ngCordova.plugins.push', [])
         }
 
         $window.plugins.pushNotification.register(
-          function (result) {
-            q.resolve(result);
+          function (token) {
+            q.resolve(token);
           },
           function (error) {
             q.reject(error);
