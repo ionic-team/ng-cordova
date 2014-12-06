@@ -71,7 +71,6 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 
         checkDir: function(directory) {
             if(this.shouldMockFiles){
-
                 var defer = $q.defer();
                 if(this.files[directory] && !this.files[directory].isFile){
                     defer.resolve();
@@ -92,7 +91,6 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
                 defer.resolve();
                 return defer.promise;
             }
-
             return mockIt.call(this, 'There was an error creating the directory.');
         },
 

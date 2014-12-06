@@ -21,8 +21,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(true); },
 					function() { expect(false).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
@@ -34,7 +33,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(false); },
 					function() { expect(true).toBe(true); }
 				)
-				.finally(function() { done(); })
+				.finally(done);
 			;
 
 			$rootScope.$digest();
@@ -46,8 +45,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(true); },
 					function() { expect(false).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
@@ -59,8 +57,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(false); },
 					function() { expect(true).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});	
@@ -71,8 +68,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(true); },
 					function() { expect(false).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
@@ -84,8 +80,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(false); },
 					function() { expect(true).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
