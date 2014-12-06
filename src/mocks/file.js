@@ -134,7 +134,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 		},
 
         writeFile: function(filePath,data,options) {
-            if(filePath && data){
+            if(this.shouldMockFiles && filePath && data){
                 this.files[filePath] = {
                     isFile : true,
                     fileContent : data
