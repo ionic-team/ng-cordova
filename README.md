@@ -36,6 +36,7 @@ $ bower install ngCordova
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
 - [Badge](https://github.com/katzer/cordova-plugin-badge)
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
+- [Bluetooth Low Energy](https://github.com/evothings/cordova-ble)
 - [Bluetooth Serial](https://github.com/don/BluetoothSerial)
 - [Camera](https://github.com/apache/cordova-plugin-camera) *
 - [Clipboard](https://github.com/VersoSolutions/CordovaClipboard)
