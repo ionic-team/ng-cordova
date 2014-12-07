@@ -53,7 +53,7 @@ $ bower install ngCordova
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
 - [Globalization](https://github.com/apache/cordova-plugin-globalization) *
 - [Google Ads](https://github.com/floatinghotpot/cordova-admob-pro)
-- [Google Analytics](https://github.com/phonegap-build/GAPlugin)
+- [Google Analytics](https://github.com/danwilson/google-analytics-plugin)
 - [Httpd (Web Server)](https://github.com/floatinghotpot/cordova-httpd)
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
