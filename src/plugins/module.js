@@ -23,6 +23,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.ga',
   'ngCordova.plugins.geolocation',
   'ngCordova.plugins.globalization',
+  'ngCordova.plugins.googleAds',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.httpd',

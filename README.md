@@ -28,7 +28,7 @@ $ bower install ngCordova
 ```
 
 ## Plugins
-- [AdMob](https://github.com/floatinghotpot/cordova-admob-pro)
+- [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Preferences](https://github.com/dferrell/plugins-application-preferences)
 - [App Rate](https://github.com/pushandplay/cordova-plugin-apprate)
@@ -52,6 +52,7 @@ $ bower install ngCordova
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
 - [Globalization](https://github.com/apache/cordova-plugin-globalization) *
+- [Google Ads](https://github.com/floatinghotpot/cordova-admob-pro)
 - [Google Analytics](https://github.com/phonegap-build/GAPlugin)
 - [Httpd (Web Server)](https://github.com/floatinghotpot/cordova-httpd)
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
