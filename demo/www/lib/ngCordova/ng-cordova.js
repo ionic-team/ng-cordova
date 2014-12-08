@@ -1199,31 +1199,64 @@ angular.module('ngCordova.plugins.device', [])
   .factory('$cordovaDevice', [function () {
 
     return {
+      /**
+       * Returns the whole device object.
+       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
+       * @returns {Object} The device object.
+       */
       getDevice: function () {
         return device;
       },
 
+      /**
+       * Returns the Cordova version.
+       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicecordova
+       * @returns {String} The Cordova version.
+       */
       getCordova: function () {
         return device.cordova;
       },
 
+      /**
+       * Returns the name of the device's model or product.
+       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicemodel
+       * @returns {String} The name of the device's model or product.
+       */
       getModel: function () {
         return device.model;
       },
 
-      // Warning: device.name is deprecated as of version 2.3.0. Use device.model instead.
+      /**
+       * @deprecated device.name is deprecated as of version 2.3.0. Use device.model instead.
+       * @returns {String}
+       */
       getName: function () {
         return device.name;
       },
 
+      /**
+       * Returns the device's operating system name.
+       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceplatform
+       * @returns {String} The device's operating system name.
+       */
       getPlatform: function () {
         return device.platform;
       },
 
+      /**
+       * Returns the device's Universally Unique Identifier.
+       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceuuid
+       * @returns {String} The device's Universally Unique Identifier
+       */
       getUUID: function () {
         return device.uuid;
       },
 
+      /**
+       * Returns the operating system version.
+       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceversion
+       * @returns {String}
+       */
       getVersion: function () {
         return device.version;
       }
@@ -1502,7 +1535,7 @@ angular.module('ngCordova.plugins.facebook', [])
 angular.module('ngCordova.plugins.file', [])
 
 //Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
-  .factory('$cordovaFile', ['$q', '$window', '$log', function ($q, $window, $log) {
+  .factory('$cordovaFile', ['$q', '$window', '$log', '$timeout', function ($q, $window, $log, $timeout) {
 
     return {
       checkDir: function (dir) {
@@ -1684,6 +1717,13 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
+        
+        if(options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function() {
+            fileTransfer.abort();
+          }, options.timeout);
+          options.timeout = null;
+        }
 
         fileTransfer.onprogress = q.notify;
         fileTransfer.upload(filePath, uri, q.resolve, q.reject, options);
@@ -2125,6 +2165,111 @@ angular.module('ngCordova.plugins.globalization', [])
 
     };
   }]);
+
+// install  :     cordova plugin add https://github.com/floatinghotpot/cordova-admob-pro.git
+// link     :     https://github.com/floatinghotpot/cordova-admob-pro
+
+angular.module('ngCordova.plugins.googleAds', [])
+	.factory('$cordovaGoogleAds', [ '$q', '$window', function($q, $window) {
+
+	return {
+		setOptions : function(options) {
+			var d = $q.defer();
+
+			$window.AdMob.setOptions(options, function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		createBanner : function(options) {
+			var d = $q.defer();
+
+			$window.AdMob.createBanner(options, function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		removeBanner : function() {
+			var d = $q.defer();
+
+			$window.AdMob.removeBanner(function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		showBanner : function(position) {
+			var d = $q.defer();
+
+			$window.AdMob.showBanner(position, function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		showBannerAtXY : function(x, y) {
+			var d = $q.defer();
+
+			$window.AdMob.showBannerAtXY(x, y, function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		hideBanner : function() {
+			var d = $q.defer();
+
+			$window.AdMob.hideBanner(function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		prepareInterstitial : function(options) {
+			var d = $q.defer();
+
+			$window.AdMob.prepareInterstitial(options, function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		},
+
+		showInterstitial : function() {
+			var d = $q.defer();
+
+			$window.AdMob.showInterstitial(function() {
+				d.resolve();
+			}, function() {
+				d.reject();
+			});
+
+			return d.promise;
+		}
+	};
+} ]);
 
 // install   :     cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
 // link      :     https://github.com/danwilson/google-analytics-plugin
@@ -2732,6 +2877,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.ga',
   'ngCordova.plugins.geolocation',
   'ngCordova.plugins.globalization',
+  'ngCordova.plugins.googleAds',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.httpd',
