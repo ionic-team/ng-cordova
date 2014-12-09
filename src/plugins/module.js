@@ -4,6 +4,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
+  'ngCordova.plugins.brightness',
   'ngCordova.plugins.battery-status',
   'ngCordova.plugins.ble',
   'ngCordova.plugins.bluetoothSerial',
