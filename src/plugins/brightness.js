@@ -1,4 +1,4 @@
-// install  :    cordova plugin add https://github.com/krizroring/phonegap-plugin-brightness.git
+// install  :    cordova plugin add https://github.com/fiscal-cliff/phonegap-plugin-brightness.git
 // link     :    https://github.com/fiscal-cliff/phonegap-plugin-brightness
 
 angular.module('ngCordova.plugins.brightness', [])
@@ -29,7 +29,10 @@ angular.module('ngCordova.plugins.brightness', [])
 
         return q.promise;
       },
-      keepScreenOn: function (bool) {
+
+      setKeepScreenOn: function (bool) {
+        var q = $q.defer();
+
         $window.cordova.plugins.brightness.setKeepScreenOn(bool, function (result) {
           q.resolve(result);
         }, function (err) {
