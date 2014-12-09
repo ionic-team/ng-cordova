@@ -29,35 +29,26 @@
 
 <body>
 
-<div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
-                    <ul class="nav masthead-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="/docs/">Docs</a></li>
-                        <li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
-                        <li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
-                        <li><a href="/build">Custom Build</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="inner cover">
-
-                {{ content }}
-
-            </div>
-
-            {% include mastfoot.html %}
-
-        </div>
+<nav class="navbar">
+    <div class="container">
+        <a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
+        <ul class="nav masthead-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/docs/">Docs</a></li>
+            <li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+            <li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+            <li><a href="/build">Custom Build</a></li>
+        </ul>
     </div>
+</nav>
+
+<div class="container home-container">
+    {{ content }}
+</div>
+
+
+<div class="container">
+    {% include mastfoot.html %}
 </div>
 
 <script src="/lib/jquery/jquery.min.js"></script>

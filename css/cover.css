@@ -27,57 +27,23 @@ a:hover {
     color: #fff;
 }
 
-/* Custom default button */
-.btn-default {
-    font-size: 28px;
-    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal !important;
-    color: #eef5ff;
-    text-shadow: none; /* Prevent inheritence from `body` */
-    background: none;
-    border: 2px solid #eef5ff;
-    border-radius: 80px;
-    padding: 10px 32px !important;
-    box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.5), inset 0px 0px 6px rgba(83, 149, 255, 0.5);
-    -moz-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.5), inset 0px 0px 6px rgba(83, 149, 255, 0.5);
-    -webkit-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.5), inset 0px 0px 6px rgba(83, 149, 255, 0.5);
-    text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.8);
-    -moz-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.8);
-    -webkit-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.8);
-    margin-top: 20px;
-}
-
-.btn-default:hover,
-.btn-default:focus {
-    color: #fff;
-    text-shadow: none; /* Prevent inheritence from `body` */
-    background: none;
-    border: 2px solid #fff;
-    box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.7), inset 0px 0px 6px rgba(83, 149, 255, 0.7);
-    -moz-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.7), inset 0px 0px 6px rgba(83, 149, 255, 0.7);
-    -webkit-box-shadow: 0px 0px 8px rgba(83, 149, 255, 0.7), inset 0px 0px 6px rgba(83, 149, 255, 0.7);
-    text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.9);
-    -moz-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.9);
-    -webkit-text-shadow: 0px 0px 6px rgba(83, 149, 255, 0.9);
-}
-
 /*
  * Base structure
  */
 
 html,
 body {
-    background-image: url("../img/bg.png");
+    /*background-image: url("../img/bg.png"); */
     background-size: 1099px 713px;
     background-position: center;
     background-repeat: no-repeat;
     height: 100%;
-    background-color: #2d3036;
+    background-color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
 }
 
 body {
-    color: #b3bed1;
+    color: #2d3036; /* #2d3036*/
     text-align: center;
     text-shadow: none;
     box-shadow: none;
@@ -91,7 +57,6 @@ h1 {
     font-size: 36px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
-    color: #eef4ff;
 }
 
 h2 {
@@ -114,7 +79,6 @@ h3 {
     margin-top: 55px;
 }
 
-
 h4 {
     padding-top: 15px;
     color: #FFFFFF;
@@ -136,15 +100,6 @@ p {
     font-weight: normal;
     font-size: 15px;
     letter-spacing: -0.01em;
-}
-
-.lead {
-    font-size: 20px;
-    font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    letter-spacing: -0.04em;
-    color: #AAB5C7;
-    margin-top: 20px;
 }
 
 .highlight {
@@ -178,7 +133,86 @@ code {
     border-radius: 4px;
 }
 
+/*
+ * HOME PAGE
+ */
+
+.home-container {
+    padding-top: 50px;
+}
+
+.home-container .lead {
+    font-size: 20px;
+    font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: -0.04em;
+    margin-top: 20px;
+}
+
+.link-cordova {
+    color: #374754;
+}
+
+.link-cordova:hover,
+.link-cordova:active {
+    color: #374754;
+    text-decoration: underline;
+}
+
+.link-angularjs {
+    color: #DC1B16;
+}
+
+.link-angularjs:hover,
+.link-angularjs:active {
+    color: #DC1B16;
+    text-decoration: underline;
+}
+
+.home-container .cover-image {
+    max-width: 45%;
+    padding: 20px;
+}
+
+.home-container .button-row {
+    margin-top: 40px;
+}
+
+.btn-download {
+    background-color: #1B1E24;
+    color: #FFFFFF;
+    transition: 0.4s;
+
+}
+
+.btn-docs {
+    background-color: #4F8EF7;
+    border: 1px solid #4F8EF7;
+    color: #FFFFFF;
+    transition: 0.4s;
+}
+
+.btn-docs:hover,
+.btn-docs:active {
+    background-color: #FFFFFF;
+    border: 1px solid #4F8EF7;
+    color: #4F8EF7;
+}
+
 /* Extra markup and styles for table-esque vertical and horizontal centering */
+.navbar {
+    min-height: 90px;
+    padding-top: 20px;
+    background: #2D3036;
+    border-radius: 0;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}
+
 .site-wrapper {
     display: table;
     width: 100%;
@@ -589,7 +623,6 @@ table > tbody > tr > td {
 table code {
     background-color: #383C42;
 }
-
 
 blockquote {
     font-size: 14px !important;
