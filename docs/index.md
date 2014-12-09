@@ -2122,51 +2122,81 @@ Allows your application to receive push notifications. To receive notifications 
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 ```
 
+#### Methods
+
+##### `register(options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| options      | `Object`       | JSON Object which sets booleans for badge, sound, and alert.  |
+
+
+
+> ##### iOS options 
+> |              |              |                         |
+> | ------------ | ------------ |-------------------------|
+> | badge        | `String`     | Allow badge if `"true"` |
+> | sound        | `String`     | Allow sound if `"true"` |
+> | alert        | `String`     | Allow alert if `"true"` |
+
+> ##### Android options
+> |              |              |                  |
+> | ------------ |--------------| -----------------|
+> | senderID     | `String`     | Google sender id |
+
+
+##### `unregister(options)`
+
+You will typically call this when your app is exiting, to cleanup any used resources. Its not strictly necessary to call it, and indeed it may be desireable to NOT call it if you are debugging your intermediarry push server. When you call unregister(), the current token for a particular device will get invalidated, and the next call to register() will return a new token. If you do NOT call unregister(), the last token will remain in effect until it is invalidated for some reason at the GCM/ADM side. Since such invalidations are beyond your control, its recommended that, in a production environment, that you have a matching unregister() call, for every call to register(), and that your server updates the devices' records each time.
+
+
+##### `setBadgeNumber(number)`  ***iOS only***
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| number       | `Integer`      | Sets the number on the app badge (outside the app) |
+
+
+
+#### Example
+
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaPush) {
+module.run(function($scope, $cordovaPush) {
 
   var androidConfig = {
-    "senderID":"replace_with_sender_id",
+    "senderID": "replace_with_sender_id"
   };
 
   var iosConfig = {
     "badge":"true",
     "sound":"true",
-    "alert":"true",
+    "alert":"true"
   };
 
-  // (optional) custom notification handler
-  // If you set "ecb" in the config object, the 'pushNotificationReceived' angular event will not be broadcast.
-  // You will be responsible for handling the notification and passing it to your contollers/services
-  androidConfig.ecb = "myCustomOnNotificationHandler"
-  iosConfig.ecb = "myCustomOnNotificationAPNHandler"
-
-  $cordovaPush.register(config).then(function(result) {
-      // Success!
+  $cordovaPush.register(iosConfig / androidConfig).then(function(token) {
+    // send token to server and save
   }, function(err) {
       // An error occurred. Show a message to the user
   });
-
-  $cordovaPush.unregister(options).then(function(result) {
-      // Success!
-  }, function(err) {
-      // An error occurred. Show a message to the user
+  
+  // receive a notification
+  $rootScope.$on('pushNotificationReceived', function(event, notification) {
+    if (notification.alert) {
+      alert(notification.alert);
+    }
+  
+    // iOS only
+    if (notification.badge) {
+      $cordovaPush.setBadgeNumber(notification.badge);
+    }
   });
-
-  // receive notification
-  myApp.controller('myCtrl', ['$scope', function($scope) {
-      $scope.$on('pushNotificationReceived', function(event, notification) {
-          // process notification
-      });
-  }]);
-
-  // iOS only
-  $cordovaPush.setBadgeNumber(2).then(function(result) {
-      // Success!
+  
+  
+  $cordovaPush.unregister({}).then(function(success) {
+    // success
   }, function(err) {
-      // An error occurred. Show a message to the user
+    // An error occurred. Show a message to the user
   });
-
 });
 ```
 
