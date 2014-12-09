@@ -20,13 +20,6 @@
     src: url('../fonts/29CC36_0_0.eot?#iefix') format('embedded-opentype'), url('../fonts/29CC36_0_0.woff') format('woff'), url('../fonts/29CC36_0_0.ttf') format('truetype');
 }
 
-/* Links */
-a,
-a:focus,
-a:hover {
-    color: #fff;
-}
-
 /*
  * Base structure
  */
@@ -40,17 +33,8 @@ body {
     height: 100%;
     background-color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
-}
-
-body {
+    text-align: left;
     color: #2d3036; /* #2d3036*/
-    text-align: center;
-    text-shadow: none;
-    box-shadow: none;
-}
-
-body.full {
-    box-shadow: none;
 }
 
 h1 {
@@ -63,7 +47,6 @@ h2 {
     font-size: 30px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
-    color: #eef4ff;
     margin-top: 50px;
 }
 
@@ -93,6 +76,12 @@ h5 {
 h5 > code {
     font-size: 14px;
     background-color: #383C42;
+}
+
+a,
+a:focus,
+a:hover {
+    color: #383C42;
 }
 
 p {
@@ -139,6 +128,7 @@ code {
 
 .home-container {
     padding-top: 50px;
+    text-align: center;
 }
 
 .home-container .lead {
@@ -182,7 +172,6 @@ code {
     background-color: #1B1E24;
     color: #FFFFFF;
     transition: 0.4s;
-
 }
 
 .btn-docs {
@@ -213,43 +202,9 @@ code {
     }
 }
 
-.site-wrapper {
-    display: table;
-    width: 100%;
-    height: 100%; /* For at least Firefox */
-    min-height: 100%;
-}
-
-.site-wrapper-inner {
-    display: table-cell;
-    vertical-align: top;
-}
-
-.site-wrapper-flow {
-    padding-top: 100px;
-    text-align: left;
-}
-
-.site-wrapper-flow .mastfoot {
+.mastfoot {
     position: static;
     margin-top: 50px;
-}
-
-.cover-container {
-    margin-right: auto;
-    margin-left: auto;
-}
-
-@media (max-width: 767px) {
-    .site-wrapper-flow {
-        padding-top: 0;
-        text-align: left;
-    }
-}
-
-/* Padding for spacing */
-.inner {
-    padding: 30px;
 }
 
 /*
@@ -318,7 +273,7 @@ code {
 
 .menu-docked {
     display: none;
-    top: 135px;
+    top: 145px;
     position: fixed;
     overflow-y: scroll;
     height: 80%;
@@ -428,19 +383,6 @@ input.menu-search:focus {
 }
 
 /*
- * Cover
- */
-
-.cover {
-    padding: 0 20px;
-}
-
-.cover .btn-lg {
-    padding: 10px 20px;
-    font-weight: bold;
-}
-
-/*
  * Footer
  */
 
@@ -475,31 +417,6 @@ a:hover {
     .masthead {
         position: fixed;
         top: 0;
-    }
-
-    .mastfoot {
-        position: fixed;
-        bottom: 0;
-    }
-
-    /* Start the vertical centering */
-    .site-wrapper-inner {
-        vertical-align: middle;
-    }
-
-    /* Handle the widths */
-    .masthead,
-    .mastfoot,
-    .cover-container {
-        width: 100%; /* Must be percentage or pixels for horizontal alignment */
-    }
-}
-
-@media (min-width: 992px) {
-    .masthead,
-    .mastfoot,
-    .cover-container {
-        width: 900px;
     }
 }
 
@@ -614,10 +531,7 @@ table > tbody > tr:last-child {
 }
 
 table > tbody > tr > td {
-    padding-right: 20px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
+    padding: 3px 20px 3px 5px;
 }
 
 table code {
