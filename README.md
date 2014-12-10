@@ -53,7 +53,7 @@ $ bower install ngCordova
 - [Facebook Connect](https://github.com/Wizcorp/phonegap-facebook-plugin)
 - [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads)
 - [File](https://github.com/apache/cordova-plugin-file) *
-- [File](https://github.com/apache/cordova-plugin-file-transfer) *
+- [File Transfer](https://github.com/apache/cordova-plugin-file-transfer) *
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
 - [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurry)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
