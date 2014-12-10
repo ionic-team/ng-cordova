@@ -3,7 +3,7 @@ layout: docs-common-issues
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
-## Common Issues
+## Common Issues with Cordova
 
 Cordova plugins don't always install correctly, leading to an `undefined` plugin, or other errors which are hard if not impossible to debug and understand. Here are a few steps you can take to overcome these common pitfalls:
 
