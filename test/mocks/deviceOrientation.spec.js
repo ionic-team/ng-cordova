@@ -42,12 +42,12 @@ describe('ngCordovaMocks', function() {
 				.finally(function() { done(); })
 			;
 
-			$rootScope.$digest();			
+			$rootScope.$digest();
 		});
 
 		it('should track five readings over an interval', function() {
 			var watch = $cordovaDeviceOrientation.watchHeading(orientationServiceOptions);
-			watch.promise.then(
+			watch.then(
 				function() { },
 				function(err) { expect(false).toBe(true); },
 				function(result) {
@@ -63,7 +63,7 @@ describe('ngCordovaMocks', function() {
 
 		it('should clear a created watch', function() {
 			var watch = $cordovaDeviceOrientation.watchHeading(orientationServiceOptions);
-			watch.promise.then(
+			watch.then(
 				function() { },
 				function(err) { expect(false).toBe(true); },
 				function(result) {
@@ -72,10 +72,28 @@ describe('ngCordovaMocks', function() {
 			);
 
 			$interval.flush(5000);
-			$cordovaDeviceOrientation.clearWatch(watch.watchId);
+			$cordovaDeviceOrientation.clearWatch(watch.watchID);
 			$rootScope.$digest();
 
 			expect(count).toBe(5);
 		});
+
+		it('should cancel a created watch', function() {
+			var watch = $cordovaDeviceOrientation.watchHeading(orientationServiceOptions);
+			watch.then(
+				function() { },
+				function(err) { expect(false).toBe(true); },
+				function(result) {
+					count = count + 1;
+				}
+			);
+
+			$interval.flush(5000);
+			watch.cancel();
+			$rootScope.$digest();
+
+			expect(count).toBe(5);
+		});
+
 	});
 })
