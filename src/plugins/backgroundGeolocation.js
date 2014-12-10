@@ -20,7 +20,7 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
         $window.plugins.backgroundGeoLocation.configure(
           function (result) {
-            q.resolve(result);
+            q.notify(result);
             $window.plugins.backgroundGeoLocation.finish();
           },
           function (err) {
