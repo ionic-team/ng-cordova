@@ -1,8 +1,9 @@
 [ngCordova](http://ngcordova.com/)
 ==========
 
-### Cordova with AngularJS Goodness [![Travis](http://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
+[![Travis](http://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
 
+### Cordova with AngularJS Goodness 
 
 
 [<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
@@ -17,8 +18,8 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 | **Website** | [ngCordova.com](http://ngcordova.com/) |
 | **Docs** | [ngCordova.com/docs](http://ngcordova.com/docs) |
 | **Requirements** | [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/) |
-| **Install** | `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) and use `ng-cordova.js` |
-| **Custom build** | [ngcordova.com/build](http://ngcordova.com/build/) |
+| **Install** | `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) |
+| **Custom build** | [ngCordova.com/build](http://ngcordova.com/build/) |
 
 
 ## Installation
