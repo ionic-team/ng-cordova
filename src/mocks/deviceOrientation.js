@@ -3,14 +3,14 @@
  * @name ngCordovaMocks.cordovaDeviceOrientation
  *
  * @description
- * A service for testing compass fetures 
+ * A service for testing compass fetures
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function ($interval, $q) {
 	var currentHeading = null;
 	var throwsError = false;
 	var readings = [];
-	var watchIntervals = [];	
+	var watchIntervals = [];
 
 	return {
 		/**
@@ -19,9 +19,9 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
 		 * @propertyOf ngCordovaMocks.cordovaDeviceOrientation
 		 *
 		 * @description
-		 * The current heading. 
+		 * The current heading.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		currentHeading: currentHeading,
 
         /**
@@ -43,7 +43,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
 		 * @description
 		 * The collection of compass 'readings' that have been logged.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		readings: readings,
 
         /**
@@ -54,11 +54,11 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
 		 * @description
 		 * The collection of watchers that are currently active.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		watchIntervals: watchIntervals,
 
 		getCurrentHeading: function () {
-			var defer = $q.defer();			
+			var defer = $q.defer();
 			if (this.throwsError) {
 				defer.reject('There was an error getting the current heading.');
 			} else {
@@ -69,21 +69,21 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
 
 		watchHeading: function (options) {
 			var defer = $q.defer();
-			var watchId = Math.floor((Math.random() * 1000000) + 1);
+			var watchID = Math.floor((Math.random() * 1000000) + 1);
+			var self = this;
 
-			this.readings = [];
-			self = this;
+			self.readings = [];
 
-			if (this.throwsError) {
+			if (self.throwsError) {
 				defer.reject('There was an error getting the compass heading.');
 			} else {
 				var delay = 100;		// The default based on https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md
 				if (options && options.frequency) {
 					delay = options.frequency;
-				}				
+				}
 
-				this.watchIntervals.push({
-					watchId: watchId,
+				self.watchIntervals.push({
+					watchID: watchID,
 					interval: $interval(
 						function() {
 							if (self.throwsError) {
@@ -97,21 +97,43 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
 							var result = { magneticHeading: magneticHeading, trueHeading: trueHeading, headingAccuracy:headingAccuracy, timestamp:Date.now() };
 
 							self.readings.push(result);
-							defer.notify(result);	
-						}, 
+							defer.notify(result);
+						},
 						delay
 					)
 				});
 			}
 
-			return {
-				watchId: watchId,
-				promise: defer.promise
-			};						
+			var cancel = function(id) {
+				var removed = -1;
+				for (var i=0; i<self.watchIntervals.length; i++) {
+					if (self.watchIntervals[i].watchID === id) {
+						$interval.cancel(watchIntervals[i].interval);
+						removed = i;
+						break;
+					}
+				}
+
+				if (removed !== -1) {
+					self.watchIntervals.splice(removed, 1);
+				}
+			};
+
+      defer.promise.cancel = function() {
+      	cancel(watchID);
+      };
+
+      defer.promise.clearWatch = function(id) {
+      	cancel(id || watchID);
+      };
+
+      defer.promise.watchID = watchID;
+
+      return defer.promise;
 		},
 
 		clearWatch: function (watchId) {
-			var defer = $q.defer();			
+			var defer = $q.defer();
 			if (watchId) {
 				if (this.throwsError) {
 					defer.reject('Unable to clear watch.');
