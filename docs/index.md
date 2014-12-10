@@ -1310,16 +1310,23 @@ module.controller('GeoCtrl', function($cordovaGeolocation) {
   };
 
   var watch = $cordovaGeolocation.watchPosition(options);
-  watch.promise.then(function()  { /* Not  used */ },
-    function(err) {
+  watch.then(
+    function()  { // success callback
+      /* Not  used */ 
+    },
+    function(err) { // error callback
       // error
-    }, function(position) {
+    }, 
+    function(position) { // notify callback
       var lat  = position.coords.latitude
       var long = position.coords.longitude
-  });
+    }
+  );
 
   // clear watch
-  $cordovaGeolocation.clearWatch(watch.watchId)
+  watch.clear();
+  // or clear with watchID
+  $cordovaGeolocation.clearWatch(watch.watchID);
 });
 ```
 
