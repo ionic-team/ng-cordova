@@ -39,5 +39,6 @@ angular.module('demo.geolocation.ctrl', [])
 
     $scope.showSource = function () {
       $scope.modal.show();
-    }
+    };
+
   });

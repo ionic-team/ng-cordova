@@ -18,20 +18,24 @@ angular.module('demo.deviceOrientation.ctrl', [])
     $scope.watchHeading = function () {
       $scope.this_watch = $cordovaDeviceOrientation.watchHeading(options);
 
-      $scope.this_watch.promise.then(function () { /* unused */
+      $scope.this_watch.then(
+        function () {
+          /* unused */
         },
         function (err) {
-          $scope.msg = err.message
-        }, function (position) {
+          $scope.msg = err.message;
+        },
+        function (position) {
           $timeout(function () {
             $scope.heading = position;
-          })
-        });
+          });
+        }
+      );
+
     };
 
     $scope.clearWatch = function () {
-      $cordovaDeviceOrientation.clearWatch($scope.this_watch.watchId)
-
+      $cordovaDeviceOrientation.clearWatch($scope.this_watch.watchID);
     };
 
 
@@ -56,5 +60,6 @@ angular.module('demo.deviceOrientation.ctrl', [])
 
     $scope.showSource = function () {
       $scope.modal.show();
-    }
+    };
+
   });

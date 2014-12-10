@@ -5,7 +5,7 @@ describe('ngCordovaMocks', function() {
 
 	describe('cordovaGeolocation', function () {
 		var count = 0;
-		var $interval = null;		
+		var $interval = null;
 		var $rootScope = null;
 		var $cordovaGeolocation = null;
 		var gpsOptions = {};
@@ -43,14 +43,14 @@ describe('ngCordovaMocks', function() {
 				.finally(function() { done(); })
 			;
 
-			$rootScope.$digest();			
+			$rootScope.$digest();
 		});
 
 		it('should track five locations over an interval', function() {
 			$cordovaGeolocation.useHostAbilities = false;
 
 			var watch = $cordovaGeolocation.watchPosition(gpsOptions);
-			watch.promise.then(
+			watch.then(
 				function() { },
 				function(err) { expect(false).toBe(true); },
 				function(result) {
@@ -68,7 +68,7 @@ describe('ngCordovaMocks', function() {
 			$cordovaGeolocation.useHostAbilities = false;
 
 			var watch = $cordovaGeolocation.watchPosition(gpsOptions);
-			watch.promise.then(
+			watch.then(
 				function() { },
 				function(err) { expect(false).toBe(true); },
 				function(result) {
@@ -77,10 +77,31 @@ describe('ngCordovaMocks', function() {
 			);
 
 			$interval.flush(5000);
-			$cordovaGeolocation.clearWatch(watch.watchId);
+			$cordovaGeolocation.clearWatch(watch.watchID);
 			$rootScope.$digest();
 
 			expect(count).toBe(5);
-		});		
+		});
+
+		it('should cancel a created watch', function() {
+			$cordovaGeolocation.useHostAbilities = false;
+
+			var watch = $cordovaGeolocation.watchPosition(gpsOptions);
+			watch.then(
+				function() { },
+				function(err) { expect(false).toBe(true); },
+				function(result) {
+					count = count + 1;
+				}
+			);
+
+			$interval.flush(5000);
+			watch.cancel();
+			$rootScope.$digest();
+
+			expect(count).toBe(5);
+		});
+
 	});
-})
+
+});
