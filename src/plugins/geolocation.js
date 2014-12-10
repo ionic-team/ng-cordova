@@ -10,7 +10,6 @@ angular.module('ngCordova.plugins.geolocation', [])
         var q = $q.defer();
 
         navigator.geolocation.getCurrentPosition(function (result) {
-          // Do any magic you need
           q.resolve(result);
         }, function (err) {
           q.reject(err);
@@ -18,22 +17,21 @@ angular.module('ngCordova.plugins.geolocation', [])
 
         return q.promise;
       },
+
       watchPosition: function (options) {
         var q = $q.defer();
 
         var watchID = navigator.geolocation.watchPosition(function (result) {
-          // Do any magic you need
           q.notify(result);
-
         }, function (err) {
           q.reject(err);
         }, options);
 
-        q.promise.cancel = function() {
+        q.promise.cancel = function () {
           navigator.geolocation.clearWatch(watchID);
         };
 
-        q.promise.clearWatch = function(id) {
+        q.promise.clearWatch = function (id) {
           navigator.geolocation.clearWatch(id || watchID);
         };
 

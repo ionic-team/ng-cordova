@@ -2,103 +2,103 @@
 // link     :     https://github.com/floatinghotpot/cordova-plugin-facebookads
 
 angular.module('ngCordova.plugins.facebookAds', [])
-	.factory('$cordovaFacebookAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaFacebookAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.FacebookAds.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.FacebookAds.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.FacebookAds.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.FacebookAds.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.FacebookAds.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.FacebookAds.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.FacebookAds.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.FacebookAds.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);

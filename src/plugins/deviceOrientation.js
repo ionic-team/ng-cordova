@@ -9,8 +9,8 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       getCurrentHeading: function () {
         var q = $q.defer();
 
-        navigator.compass.getCurrentHeading(function (heading) {
-          q.resolve(heading);
+        navigator.compass.getCurrentHeading(function (result) {
+          q.resolve(result);
         }, function (err) {
           q.reject(err);
         });
@@ -21,20 +21,27 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       watchHeading: function (options) {
         var q = $q.defer();
 
-        var watchId = navigator.compass.watchHeading(function (result) {
+        var watchID = navigator.compass.watchHeading(function (result) {
           q.notify(result);
         }, function (err) {
           q.reject(err);
         }, options);
 
-        return {
-          watchId: watchId,
-          promise: q.promise
+        q.promise.cancel = function () {
+          navigator.compass.clearWatch(watchID);
         };
+
+        q.promise.clearWatch = function (id) {
+          navigator.compass.clearWatch(id || watchID);
+        };
+
+        q.promise.watchID = watchID;
+
+        return q.promise;
       },
 
       clearWatch: function (watchID) {
-        navigator.compass.clearWatch(watchID);
+        return navigator.compass.clearWatch(watchID);
       }
     };
   }]);

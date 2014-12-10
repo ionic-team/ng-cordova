@@ -192,9 +192,9 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
-        
-        if(options.timeout !== undefined && options.timeout !== null) {
-          $timeout(function() {
+
+        if (options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function () {
             fileTransfer.abort();
           }, options.timeout);
           options.timeout = null;
