@@ -777,7 +777,6 @@ cordova plugin add org.apache.cordova.device-motion
 
 ```javascript
 module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
-  var watch;
 
   $scope.getAcceleration = function () {
     $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
@@ -787,30 +786,29 @@ module.controller('DeviceMotionCtrl', function($scope, $cordovaDeviceMotion) {
     });
   };
 
-  $scope.watchAcceleration = function () {
-    // Update every 3 seconds for 1 minute
-    var options = {
-      maximumAge: 3000,
-      timeout: 60 * 1000,
-      enableHighAccuracy: true
-    };
+  // Update every 3 seconds for 1 minute
+  var options = {
+    maximumAge: 3000,
+    timeout: 60 * 1000,
+    enableHighAccuracy: true
+  }
+  var watch = $cordovaDeviceMotion.watchAcceleration(options)
+  watch.then(
+    function() {/* unused */},
+    function(err) {},
+    function(acceleration) {
+      var X = acceleration.x;
+      var Y = acceleration.y;
+      var Z = acceleration.z;
+      var timeStamp = acceleration.timestamp;
+  });
 
-    watch = $cordovaDeviceMotion.watchAcceleration(options);
+  // clear watch
+  watch.clear();
 
-    watch.promise.then(
-      function() {/* unused */},  
-      function(err) {},
-      function(acceleration) {
-        var X = acceleration.x;
-        var Y = acceleration.y;
-        var Z = acceleration.z;
-        var timeStamp = acceleration.timestamp;
-    });
-  };
-
-  // use watchID from watchAcceleration()
-    $cordovaDeviceMotion.clearWatch(watch.watchId)
-      .then(function(result) {
+  // or clear with watchID
+  $cordovaGeolocation.clearWatch(watch);
+    .then(function(result) {
         // Success!
       }, function(err) {
         // An error occurred. Show a message to the user
@@ -842,29 +840,32 @@ cordova plugin add org.apache.cordova.device-orientation
 ```javascript
 module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrientation) {
 
-    $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
-      // Success!
-    }, function(err) {
+  $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
+    // Success!
+  }, function(err) {
+    // An error occurred
+  })
+
+  var options = { frequency: 1000 }; // Update every 1 second
+  var watch = $cordovaDeviceOrientation.watchHeading(options)
+  watch.then(function(result) { /* unused */ },
+    function(err) {
       // An error occurred
-    });
+    }, function(position) {
+      // Heading comes back in
+      // position.magneticHeading
+    })
 
-    var options = { frequency: 1000 }; // Update every 1 second
-    var watch = $cordovaDeviceOrientation.watchHeading(options);
+  // clear watch
+    watch.clear();
 
-    watch.promise.then(function(result) { /* unused */ },
-      function(err) {
-        // An error occurred
-      }, function(position) {
-        // Heading comes back in
-        // position.magneticHeading
-      });
-
-    $cordovaDeviceOrientation.clearWatch(watch.watchId)
-      .then(function(result) {
+  // or clear with watchID
+  $cordovaDeviceOrientation.clearWatch(watch);
+    .then(function(result) {
         // Success!
       }, function(err) {
-        // An error occurred
-      });
+        // An error occurred. Show a message to the user
+    });
 });
 ```
 
