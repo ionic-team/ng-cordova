@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.geolocation', [])
       watchPosition: function (options) {
         var q = $q.defer();
 
-        var watchId = navigator.geolocation.watchPosition(function (result) {
+        var watchID = navigator.geolocation.watchPosition(function (result) {
           // Do any magic you need
           q.notify(result);
 
@@ -29,10 +29,17 @@ angular.module('ngCordova.plugins.geolocation', [])
           q.reject(err);
         }, options);
 
-        return {
-          watchId: watchId,
-          promise: q.promise
+        q.promise.cancel = function() {
+          navigator.geolocation.clearWatch(watchID);
         };
+
+        q.promise.clearWatch = function(id) {
+          navigator.geolocation.clearWatch(id || watchID);
+        };
+
+        q.promise.watchID = watchID;
+
+        return q.promise;
       },
 
       clearWatch: function (watchID) {
