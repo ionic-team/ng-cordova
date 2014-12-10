@@ -1286,17 +1286,23 @@ angular.module('ngCordova.plugins.deviceMotion', [])
       watchAcceleration: function (options) {
         var q = $q.defer();
 
-        var watchId = navigator.accelerometer.watchAcceleration(function (result) {
-          //q.resolve(watchID);
+        var watchID = navigator.accelerometer.watchAcceleration(function (result) {
           q.notify(result);
         }, function (err) {
           q.reject(err);
         }, options);
 
-        return {
-          watchId: watchId,
-          promise: q.promise
+        q.promise.cancel = function () {
+          navigator.accelerometer.clearWatch(watchID);
         };
+
+        q.promise.clearWatch = function (id) {
+          navigator.accelerometer.clearWatch(id || watchID);
+        };
+
+        q.promise.watchID = watchID;
+
+        return q.promise;
       },
 
       clearWatch: function (watchID) {
@@ -1316,8 +1322,8 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       getCurrentHeading: function () {
         var q = $q.defer();
 
-        navigator.compass.getCurrentHeading(function (heading) {
-          q.resolve(heading);
+        navigator.compass.getCurrentHeading(function (result) {
+          q.resolve(result);
         }, function (err) {
           q.reject(err);
         });
@@ -1328,20 +1334,27 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       watchHeading: function (options) {
         var q = $q.defer();
 
-        var watchId = navigator.compass.watchHeading(function (result) {
+        var watchID = navigator.compass.watchHeading(function (result) {
           q.notify(result);
         }, function (err) {
           q.reject(err);
         }, options);
 
-        return {
-          watchId: watchId,
-          promise: q.promise
+        q.promise.cancel = function () {
+          navigator.compass.clearWatch(watchID);
         };
+
+        q.promise.clearWatch = function (id) {
+          navigator.compass.clearWatch(id || watchID);
+        };
+
+        q.promise.watchID = watchID;
+
+        return q.promise;
       },
 
       clearWatch: function (watchID) {
-        navigator.compass.clearWatch(watchID);
+        return navigator.compass.clearWatch(watchID);
       }
     };
   }]);
@@ -1527,106 +1540,106 @@ angular.module('ngCordova.plugins.facebook', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-facebookads
 
 angular.module('ngCordova.plugins.facebookAds', [])
-	.factory('$cordovaFacebookAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaFacebookAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.FacebookAds.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.FacebookAds.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.FacebookAds.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.FacebookAds.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.FacebookAds.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.FacebookAds.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.FacebookAds.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.FacebookAds.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FacebookAds.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 // install   :     cordova plugin add org.apache.cordova.file
 // link      :     https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
@@ -1822,9 +1835,9 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
-        
-        if(options.timeout !== undefined && options.timeout !== null) {
-          $timeout(function() {
+
+        if (options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function () {
             fileTransfer.abort();
           }, options.timeout);
           options.timeout = null;
@@ -1983,106 +1996,106 @@ angular.module('ngCordova.plugins.flashlight', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-flurry
 
 angular.module('ngCordova.plugins.flurryAds', [])
-	.factory('$cordovaFlurryAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaFlurryAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.FlurryAds.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.FlurryAds.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.FlurryAds.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.FlurryAds.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.FlurryAds.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.FlurryAds.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.FlurryAds.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.FlurryAds.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.FlurryAds.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 // install   :     cordova plugin add https://github.com/phonegap-build/GAPlugin.git
 // link      :     https://github.com/phonegap-build/GAPlugin
@@ -2166,7 +2179,6 @@ angular.module('ngCordova.plugins.geolocation', [])
         var q = $q.defer();
 
         navigator.geolocation.getCurrentPosition(function (result) {
-          // Do any magic you need
           q.resolve(result);
         }, function (err) {
           q.reject(err);
@@ -2174,22 +2186,21 @@ angular.module('ngCordova.plugins.geolocation', [])
 
         return q.promise;
       },
+
       watchPosition: function (options) {
         var q = $q.defer();
 
         var watchID = navigator.geolocation.watchPosition(function (result) {
-          // Do any magic you need
           q.notify(result);
-
         }, function (err) {
           q.reject(err);
         }, options);
 
-        q.promise.cancel = function() {
+        q.promise.cancel = function () {
           navigator.geolocation.clearWatch(watchID);
         };
 
-        q.promise.clearWatch = function(id) {
+        q.promise.clearWatch = function (id) {
           navigator.geolocation.clearWatch(id || watchID);
         };
 
@@ -2387,106 +2398,106 @@ angular.module('ngCordova.plugins.globalization', [])
 // link     :     https://github.com/floatinghotpot/cordova-admob-pro
 
 angular.module('ngCordova.plugins.googleAds', [])
-	.factory('$cordovaGoogleAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaGoogleAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.AdMob.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.AdMob.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.AdMob.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.AdMob.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.AdMob.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.AdMob.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.AdMob.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.AdMob.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.AdMob.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 // install   :     cordova plugin add https://github.com/danwilson/google-analytics-plugin.git
 // link      :     https://github.com/danwilson/google-analytics-plugin
@@ -2712,106 +2723,106 @@ angular.module('ngCordova.plugins.httpd', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-iad
 
 angular.module('ngCordova.plugins.iAd', [])
-	.factory('$cordovaiAd', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaiAd', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.iAd.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.iAd.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.iAd.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.iAd.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.iAd.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.iAd.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.iAd.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.iAd.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.iAd.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 // install   :     cordova plugin add org.apache.cordova.inappbrowser
 // link      :     https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md
@@ -3085,106 +3096,106 @@ angular.module('ngCordova.plugins.localNotification', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-mmedia
 
 angular.module('ngCordova.plugins.mMediaAds', [])
-	.factory('$cordovaMMediaAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaMMediaAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.mMedia.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.mMedia.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.mMedia.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.mMedia.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.mMedia.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.mMedia.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.mMedia.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.mMedia.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.mMedia.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 // install   :      cordova plugin add org.apache.cordova.media
 // link      :      https://github.com/apache/cordova-plugin-media
@@ -3283,106 +3294,106 @@ angular.module('ngCordova.plugins.media', [])
 // link     :     https://github.com/floatinghotpot/cordova-mobfox-pro
 
 angular.module('ngCordova.plugins.mobfoxAds', [])
-	.factory('$cordovaMobFoxAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaMobFoxAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.MobFox.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.MobFox.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.MobFox.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.MobFox.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.MobFox.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.MobFox.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.MobFox.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.MobFox.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
@@ -3450,106 +3461,106 @@ angular.module('ngCordova.plugins', [
 // link     :     https://github.com/floatinghotpot/cordova-plugin-mopub
 
 angular.module('ngCordova.plugins.mopubAds', [])
-	.factory('$cordovaMoPubAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaMoPubAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.MoPub.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.MoPub.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.MoPub.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.MoPub.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.MoPub.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.MoPub.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.MoPub.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.MoPub.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MoPub.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);
 
 // install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
 // link      : https://github.com/sidneys/cordova-plugin-nativeaudio
