@@ -2312,7 +2312,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
 
   // TO, CC, BCC must be an array, Files can be either null, string or array
   $cordovaSocialSharing
-    .shareViaEmail(message, subject, toArr, bccArr, file)
+    .shareViaEmail(message, subject, toArr, ccArr, bccArr, file)
     .then(function(result) {
       // Success!
     }, function(err) {
