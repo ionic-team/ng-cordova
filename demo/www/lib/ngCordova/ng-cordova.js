@@ -3398,6 +3398,7 @@ angular.module('ngCordova.plugins.mobfoxAds', [])
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
+  'ngCordova.plugins.AppRate',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
