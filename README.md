@@ -3,7 +3,7 @@
 
 [![Travis](http://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
 
-### Cordova with AngularJS Goodness 
+### Cordova with AngularJS Goodness
 
 
 [<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
@@ -53,6 +53,7 @@ $ bower install ngCordova
 - [Facebook Connect](https://github.com/Wizcorp/phonegap-facebook-plugin)
 - [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads)
 - [File](https://github.com/apache/cordova-plugin-file) *
+- [File Transfer](https://github.com/apache/cordova-plugin-file-transfer) *
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
 - [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurry)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *

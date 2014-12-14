@@ -1824,7 +1824,7 @@ angular.module('ngCordova.plugins.file', [])
       downloadFile: function (source, filePath, trustAllHosts, options) {
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
-        var uri = encodeURI(source);
+        var uri = source;
 
         fileTransfer.onprogress = q.notify;
         fileTransfer.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
