@@ -30,3 +30,4 @@ cordova plugin add https://github.com/chrisekelley/AppPreferences       # app pr
 cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git    # flashlight
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git         # toast
 cordova plugin add uk.co.ilee.touchid       # touchID
+cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git    # AppRate
