@@ -10,6 +10,7 @@ angular.module('demo', [
 
   // modules
   // 'demo.adMob.ctrl',  // not working???
+  'demo.appRate.ctrl',
   'demo.barcodeScanner.ctrl',
   'demo.batteryStatus.ctrl',
   'demo.camera.ctrl',
@@ -232,6 +233,12 @@ angular.module('demo', [
         url: '/touchid',
         templateUrl: 'app/touchid/touchid.html',
         controller: "TouchIDCtrl"
+      })
+
+      .state('appRate', {
+          url: '/appRate',
+          templateUrl: 'app/appRate/appRate.html',
+          controller: "AppRateCtrl"
       })
 
       .state('about', {
