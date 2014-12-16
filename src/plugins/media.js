@@ -6,25 +6,9 @@ angular.module('ngCordova.plugins.media', [])
   .factory('$cordovaMedia', ['$q', function ($q) {
 
     return {
-      newMedia: function (src) {
-        var q = $q.defer();
-        var mediaStatus = null;
-
-        var media = new Media(src,
-          function (success) {
-            q.resolve(success);
-          }, function (error) {
-            q.reject(error);
-          }, function (status) {
-            mediaStatus = status;
-          });
-
-        return {
-          media: media,
-          mediaStatus: mediaStatus,
-          promise: q.promise
-        };
-
+      newMedia: function (src,success,error,status) {
+        var media = new Media(src,success,error,status);
+        return media;
       },
 
       getCurrentPosition: function (source) {
