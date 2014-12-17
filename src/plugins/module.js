@@ -2,6 +2,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.appRate',
+  'ngCordova.plugins.appVersion',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',

@@ -1,9 +1,9 @@
 // install   :     cordova plugin add https://github.com/whiteoctober/cordova-plugin-app-version.git
 // link      :     https://github.com/whiteoctober/cordova-plugin-app-version
 
-angular.module('ngCordova.plugins.device', [])
+angular.module('ngCordova.plugins.appVersion', [])
 
-  .factory('$cordovaDevice', ['$q', function ($q) {
+  .factory('$cordovaAppVersion', ['$q', function ($q) {
 
     return {
       getAppVersion: function () {
