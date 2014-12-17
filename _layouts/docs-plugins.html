@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="ionic,html5,cordova,phonegap,angularjs,ionic framework,geolocation">
+	<meta name="description" content="ngCordova - Simple and powerful AngularJS Services for Cordova and Phonegap">
+	<meta name="author" content="Ionic Framework">
+	<meta property="og:title" content="ngCordova - Cordova Plugins with AngularJS Magic"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
+	<link rel="shortcut icon" href="/img/favicon.ico">
+
+	<title>{{page.title}} - by the Ionic Framework Team</title>
+
+	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
+	<link href="/css/cover.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+
+	<script src="/lib/listjs/list.min.js"></script>
+
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<div class="wrapper">
+
+	<nav class="navbar">
+		<div class="container">
+			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
+			<ul class="nav masthead-nav">
+				<li><a href="/">Home</a></li>
+				<li class="active"><a href="/docs/">Docs</a></li>
+				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li><a href="/build">Custom Build</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-3">
+				<div class="docked-menu">
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/">Overview</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/install/">Install</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/common-issues/">Common Issues</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu active-menu">
+						<li class="menu-title">
+							<a href="/docs/plugins/">Plugins</a>
+						</li>
+						<ul>
+							<li><a href="/docs/plugins/AdMob/">AdMob</a></li>
+							<li><a href="/docs/plugins/appAvailability/">App Availability</a></li>
+							<li><a href="/docs/plugins/backgroundGeolocation/">Background Geoloc</a></li>
+							<li><a href="/docs/plugins/batteryStatus/">Battery Status</a></li>
+							<li><a href="/docs/plugins/barcodeScanner/">Barcode Scanner</a></li>
+							<li><a href="/docs/plugins/calendar/">Calendar</a></li>
+							<li><a href="/docs/plugins/camera/">Camera</a></li>
+							<li><a href="/docs/plugins/capture/">Capture</a></li>
+							<li><a href="/docs/plugins/clipboard/">Clipboard</a></li>
+							<li><a href="/docs/plugins/contacts/">Contacts</a></li>
+							<li><a href="/docs/plugins/datePicker/">Date Picker</a></li>
+							<li><a href="/docs/plugins/device/">Device</a></li>
+							<li><a href="/docs/plugins/deviceMotion/">Device Motion</a></li>
+							<li><a href="/docs/plugins/deviceOrientation/">Device Orientation</a></li>
+							<li><a href="/docs/plugins/dialogs/">Dialogs</a></li>
+							<li><a href="/docs/plugins/facebook/">Facebook</a></li>
+							<li><a href="/docs/plugins/file/">File</a></li>
+							<li><a href="/docs/plugins/flashlight/">Flashlight</a></li>
+							<li><a href="/docs/plugins/geolocation/">Geolocation</a></li>
+							<li><a href="/docs/plugins/globalization/">Globalization</a></li>
+							<li><a href="/docs/plugins/googleAnalytics/">Google Analytics</a></li>
+							<li><a href="/docs/plugins/inAppBrowser/">In App Browser</a></li>
+							<li><a href="/docs/plugins/keyboard/">Keyboard</a></li>
+							<li><a href="/docs/plugins/keychain/">Keychain</a></li>
+							<li><a href="/docs/plugins/localNotification/">Local Notification</a></li>
+							<li><a href="/docs/plugins/media/">Media</a></li>
+							<li><a href="/docs/plugins/nativeAudio/">Native Audio</a></li>
+							<li><a href="/docs/plugins/network/">Network</a></li>
+							<li><a href="/docs/plugins/oauth/">OAuth</a></li>
+							<li><a href="/docs/plugins/pinDialog/">Pin Dialog</a></li>
+							<li><a href="/docs/plugins/preferences/">Preferences</a></li>
+							<li><a href="/docs/plugins/progressIndicator/">Progress Indicator</a></li>
+							<li><a href="/docs/plugins/pushNotifications/">Push Notifications</a></li>
+							<li><a href="/docs/plugins/socialSharing/">Social Sharing</a></li>
+							<li><a href="/docs/plugins/spinnerDialog/">Spinner Dialog</a></li>
+							<li><a href="/docs/plugins/splashscreen/">Splashscreen</a></li>
+							<li><a href="/docs/plugins/statusbar/">StatusBar</a></li>
+							<li><a href="/docs/plugins/touchID/">TouchID</a></li>
+							<li><a href="/docs/plugins/vibration/">Vibration</a></li>
+							<li><a href="/docs/plugins/zip/">ZIP</a></li>
+						</ul>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-9 docs-content">
+				{{content}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include mastfoot.html %}
+
+{% include scripts.html %}
+{% include analytics.html %}
+</body>
+</html>

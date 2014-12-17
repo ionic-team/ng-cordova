@@ -14,12 +14,11 @@
 
 	<title>{{page.title}} - by the Ionic Framework Team</title>
 
-	<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
-	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
+	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" >
 	<link href="/css/cover.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
 
-	<script src="../../assets/js/ie8-responsive-file-warning.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -30,14 +29,14 @@
 
 <body>
 
-<div class="wrapper">
 
+<div class="wrapper">
 	<nav class="navbar">
 		<div class="container">
-			<a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
+			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
 			<ul class="nav masthead-nav">
-				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/docs/">Docs</a></li>
+				<li><a href="/">Home</a></li>
+				<li class="active"><a href="/docs/">Docs</a></li>
 				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
 				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
 				<li><a href="/build">Custom Build</a></li>
@@ -45,20 +44,44 @@
 		</div>
 	</nav>
 
-	<div class="container home-container">
-		{{ content }}
-	</div>
 
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-3">
+				<div class="docked-menu">
+					<ul class="nav left-menu active-menu">
+						<li class="menu-title">
+							<a href="/docs/">Overview</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu ">
+						<li class="menu-title">
+							<a href="/docs/install/">Install</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/common-issues/">Common Issues</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/plugins/">Plugins</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-9 docs-content">
+				{{content}}
+			</div>
+		</div>
+	</div>
 
 </div>
 
 {% include mastfoot.html %}
 
-
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/bootstrap/bootstrap.js"></script>
-
+{% include scripts.html %}
 {% include analytics.html %}
 </body>
 </html>
-
