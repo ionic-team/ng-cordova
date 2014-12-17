@@ -493,3 +493,13 @@ img[alt = "fb-getstarted-3"] {
     margin-right: auto;
     margin-bottom: 30px;
 }
+
+img[alt ="dialogs-alert"],
+img[alt ="dialogs-confirm"],
+img[alt ="dialogs-prompt"] {
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
