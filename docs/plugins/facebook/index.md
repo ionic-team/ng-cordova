@@ -91,7 +91,7 @@ To use the FB plugin during your browser development, set the `$cordovaFacebookP
 module.config(function($cordovaFacebookProvider) {
   var appID = 123456789;
   var version = "v2.0"; // or leave blank and default is v2.0
-  $cordovaFacebookProvider.setAppID(appID, version);
+  $cordovaFacebookProvider.browserInit(appID, version);
 });
 ```
 
