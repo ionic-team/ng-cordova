@@ -176,9 +176,9 @@ angular.module('ngCordova.plugins.appRate', [])
 // install   :     cordova plugin add https://github.com/whiteoctober/cordova-plugin-app-version.git
 // link      :     https://github.com/whiteoctober/cordova-plugin-app-version
 
-angular.module('ngCordova.plugins.device', [])
+angular.module('ngCordova.plugins.appVersion', [])
 
-  .factory('$cordovaDevice', ['$q', function ($q) {
+  .factory('$cordovaAppVersion', ['$q', function ($q) {
 
     return {
       getAppVersion: function () {
@@ -3408,6 +3408,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
   'ngCordova.plugins.appRate',
+  'ngCordova.plugins.appVersion',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
