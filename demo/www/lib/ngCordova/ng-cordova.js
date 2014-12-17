@@ -1435,29 +1435,19 @@ angular.module('ngCordova.plugins.dialogs', [])
 angular.module('ngCordova.plugins.facebook', [])
 
   .provider('$cordovaFacebook', [function () {
-    var appID;
-    var appVersion;
 
-    this.setAppID = function (id, version) {
-      appID = id;
-      appVersion = version || "v2.0";
+    this.browserInit = function (id, version) {
+      this.appID = id;
+      this.appVersion = version || "v2.0";
+      if (!this.appID) {
+        facebookConnectPlugin.browserInit(this.appID, this.appVersion);
+      }
     };
 
-    this.$get = ['$q', '$window', function ($q, $window) {
+    this.$get = ['$q', function ($q) {
+
       return {
-        getAppID: function () {
-          return appID;
-        },
-
-        init: function (appID) {
-          if (!$window.cordova) {
-            facebookConnectPlugin.browserInit(appID, appVersion);
-          }
-        },
-
         login: function (permissions) {
-          this.init(this.getAppID());
-
           var q = $q.defer();
           facebookConnectPlugin.login(permissions,
             function (res) {
