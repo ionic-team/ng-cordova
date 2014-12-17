@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
 <div class="anchor-row">
-  <h3><a href="#Printer"><code>$cordovaPrinter</code></a></h3>
+  <h3><code>$cordovaPrinter</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/Printer.js">Source</a>
     <a class="btn-anchor" href="https://github.com/katzer/cordova-plugin-printer">Official Docs</a>

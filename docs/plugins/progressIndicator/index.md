@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
 <div class="anchor-row">
-  <h3><a href="#ProgressIndicator"><code>$cordovaProgress</code></a></h3>
+  <h3><code>$cordovaProgress</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/progressIndicator.js">Source</a>
     <a class="btn-anchor" href="http://pbernasconi.github.io/cordova-progressIndicator/">Official Docs</a>

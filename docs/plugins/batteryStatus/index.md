@@ -3,10 +3,8 @@ layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
-<a class="anchor" id="BatteryStatus"></a>
-
 <div class="anchor-row">
-  <h3><a href="#BatteryStatus"><code>$cordovaBatteryStatus</code></a></h3>
+  <h3><code>$cordovaBatteryStatus</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/batteryStatus.js">Source</a>
     <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md">Official Docs</a>

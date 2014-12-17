@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
 <div class="anchor-row">
-  <h3><a href="#Keychain"><code>$cordovaKeychain</code></a></h3>
+  <h3><code>$cordovaKeychain</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/keychain.js">Source</a>
     <a class="btn-anchor" href="https://github.com/shazron/KeychainPlugin">Official Docs</a>

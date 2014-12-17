@@ -5,7 +5,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 
 <div class="anchor-row">
-  <h3><a href="#Calendar"><code>$cordovaCalendar</code></a></h3>
+  <h3><code>$cordovaCalendar</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/calendar.js">Source</a>
     <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/blob/master/README.md">Official Docs</a>

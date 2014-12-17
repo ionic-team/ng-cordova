@@ -9,23 +9,23 @@ Cordova plugins don't always install correctly, leading to an `undefined` plugin
 
 #### Make sure you are using the latest version of the Cordova CLI:
 
-```
-npm install -g cordova
+```bash
+$ npm install -g cordova
 ```
 
 #### Refresh the `ios.json` / `android.json` file (inside the `/plugin` folder):
 
-```
-cordova platform rm [ios/android]
-cordova platform add [ios/android]
+```bash
+$ cordova platform rm [ios/android]
+$ cordova platform add [ios/android]
 ```
 
 #### Update your project to the latest version of Cordova:
 
 This command updates the `cordova.js` and other Cordova-dependent files to the latest version of Cordova.
 
-```
-cordova platform update [ios/android]
+```bash
+$ cordova platform update [ios/android]
 ```
 
 

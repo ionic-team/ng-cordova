@@ -5,7 +5,7 @@ title: DOCS | ngCordova
 
 
 <div class="anchor-row">
-  <h3><a href="#Camera"><code>$cordovaCamera</code></a></h3>
+  <h3><code>$cordovaCamera</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/camera.js">Source</a>
     <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera">Official Docs</a>

@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
 <div class="anchor-row">
-  <h3><a href="#DatePicker"><code>$cordovaDatePicker</code></a></h3>
+  <h3><code>$cordovaDatePicker</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/datepicker.js">Source</a>
     <a class="btn-anchor" href="http://github.com/VitaliiBlagodir/cordova-plugin-datepicker">Official Docs</a>

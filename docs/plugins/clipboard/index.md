@@ -4,7 +4,7 @@ title: DOCS | ngCordova
 ---
 
 <div class="anchor-row">
-  <h3><a href="#Clipboard"><code>$cordovaClipboard</code></a></h3>
+  <h3><code>$cordovaClipboard</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/clipboard.js">Source</a>
     <a class="btn-anchor" href="https://github.com/VersoSolutions/CordovaClipboard">Official Docs</a>

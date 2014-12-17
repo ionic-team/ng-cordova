@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="ionic,html5,cordova,phonegap,angularjs,ionic framework,geolocation">
-    <meta name="description" content="ngCordova - Simple and powerful AngularJS Services for Cordova and Phonegap">
-    <meta name="author" content="Ionic Framework">
-    <meta property="og:title" content="ngCordova - Cordova Plugins with AngularJS Magic"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="ionic,html5,cordova,phonegap,angularjs,ionic framework,geolocation">
+	<meta name="description" content="ngCordova - Simple and powerful AngularJS Services for Cordova and Phonegap">
+	<meta name="author" content="Ionic Framework">
+	<meta property="og:title" content="ngCordova - Cordova Plugins with AngularJS Magic"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
+	<link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>{{page.title}} - by the Ionic Framework Team</title>
+	<title>{{page.title}} - by the Ionic Framework Team</title>
 
-    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
-    <link href="/css/cover.css" rel="stylesheet">
-    <link href="/css/syntax.css" rel="stylesheet">
+	<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
+	<link href="/css/cover.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
 
-    <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
+	<script src="../../assets/js/ie8-responsive-file-warning.js"></script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
 
 <body>
 
-<nav class="navbar">
-    <div class="container">
-        <a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
-        <ul class="nav masthead-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/docs/">Docs</a></li>
-            <li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
-            <li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
-            <li><a href="/build">Custom Build</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="wrapper">
 
-<div class="container home-container">
-    {{ content }}
+	<nav class="navbar">
+		<div class="container">
+			<a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
+			<ul class="nav masthead-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/docs/">Docs</a></li>
+				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li><a href="/build">Custom Build</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container home-container">
+		{{ content }}
+	</div>
+
+
 </div>
 
+{% include mastfoot.html %}
 
-<div class="container">
-    {% include mastfoot.html %}
-</div>
 
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/lib/bootstrap/bootstrap.js"></script>

@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 ---
 
 <div class="anchor-row">
-  <h3><a href="#DeviceOrientation"><code>$cordovaDeviceOrientation</code></a></h3>
+  <h3><code>$cordovaDeviceOrientation</code></h3>
   <div class="button-row">
     <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/deviceOrientation.js">Source</a>
     <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md">Official Docs</a>

@@ -15,7 +15,7 @@
 	<title>{{page.title}} - by the Ionic Framework Team</title>
 
 	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" >
 	<link href="/css/cover.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
 
@@ -29,60 +29,57 @@
 	<![endif]-->
 </head>
 
-<body class="full">
+<body>
 
+<div class="wrapper">
 
-<nav class="navbar">
+	<nav class="navbar">
+		<div class="container">
+			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
+			<ul class="nav masthead-nav">
+				<li><a href="/">Home</a></li>
+				<li class="active"><a href="/docs/">Docs</a></li>
+				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li><a href="/build">Custom Build</a></li>
+			</ul>
+		</div>
+	</nav>
+
 	<div class="container">
-		<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
-		<ul class="nav masthead-nav">
-			<li><a href="/">Home</a></li>
-			<li class="active"><a href="/docs/">Docs</a></li>
-			<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
-			<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
-			<li><a href="/build">Custom Build</a></li>
-		</ul>
-	</div>
-</nav>
-
-
-<div class="container">
-	<div class="row">
-		<div class="col-md-3">
-			<div class="docked-menu">
-				<ul class="nav left-menu">
-					<li class="menu-title">
-						<a href="/docs/">Overview</a>
-					</li>
-				</ul>
-				<ul class="nav left-menu active-menu">
-					<li class="menu-title">
-						<a href="/docs/install/">Install</a>
-					</li>
-				</ul>
-				<ul class="nav left-menu">
-					<li class="menu-title">
-						<a href="/docs/common-issues/">Common Issues</a>
-					</li>
-				</ul>
-				<ul class="nav left-menu">
-					<li class="menu-title">
-						<a href="/docs/plugins/">Plugins</a>
-					</li>
-				</ul>
+		<div class="row">
+			<div class="col-md-2 col-sm-3">
+				<div class="docked-menu">
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/">Overview</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu active-menu">
+						<li class="menu-title">
+							<a href="/docs/install/">Install</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/common-issues/">Common Issues</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/plugins/">Plugins</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-9 docs-content">
+				{{content}}
 			</div>
 		</div>
-		<div class="col-md-9">
-			{{content}}
-		</div>
 	</div>
 </div>
 
-
-<div class="container">
-	{% include mastfoot.html %}
-</div>
-
+{% include mastfoot.html %}
 
 {% include scripts.html %}
 {% include analytics.html %}
