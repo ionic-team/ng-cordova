@@ -26,6 +26,7 @@ To use the FB plugin, you first have to create a new Facebook App inside of the 
 
 Download the repo from [https://github.com/Wizcorp/phonegap-facebook-plugin](https://github.com/Wizcorp/phonegap-facebook-plugin). Then type in the following commands in your Terminal.
 
+
 ```bash
 cordova platform add ios
 
