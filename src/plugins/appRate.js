@@ -11,6 +11,47 @@ angular.module('ngCordova.plugins.appRate', [])
       if (devices.indexOf(device) !== -1) {
         AppRate.preferences.storeAppURL[device] = url;
       }
+      else {
+        alert("wrong device type");
+      }
+    };
+
+    this.useLanguage = function (language) {
+      AppRate.preferences.useLanguage = language;
+    };
+
+    this.displayAppName = function (name) {
+      AppRate.preferences.displayAppName = name;
+    };
+
+    this.promptAgainForEachNewVersion = function (boolean) {
+      AppRate.preferences.promptAgainForEachNewVersion = boolean;
+    };
+
+    this.usesUntilPrompt = function (number) {
+      AppRate.preferences.usesUntilPrompt = number;
+    };
+
+    this.openStoreInApp = function (boolean) {
+      AppRate.preferences.openStoreInApp = boolean;
+    };
+
+    this.useCustomRateDialog = function (boolean) {
+      AppRate.preferences.useCustomRateDialog = boolean;
+    };
+
+    this.customLocale = function (customObj) {
+      var strings = {
+        title: 'Rate %@',
+        message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
+        cancelButtonLabel: 'No, Thanks',
+        laterButtonLabel: 'Remind Me Later',
+        rateButtonLabel: 'Rate It Now'
+      };
+
+      strings = angular.extend(strings, customObj);
+
+      AppRate.preferences.customLocale = strings;
     };
 
     this.$get = ['$q', function ($q) {
@@ -18,7 +59,6 @@ angular.module('ngCordova.plugins.appRate', [])
         promptForRating: function (immediate) {
           var q = $q.defer();
           var prompt = AppRate.promptForRating(immediate);
-
           q.resolve(prompt);
 
           return q.promise;
@@ -32,39 +72,7 @@ angular.module('ngCordova.plugins.appRate', [])
 
         onRateDialogShow: function (cb) {
           AppRate.onRateDialogShow = cb();
-        },
-
-        useLanguage: function (lang) {
-          AppRate.preferences.useLanguage = lang;
-        },
-
-        customLocale: function (customLocale) {
-          var strings = {
-            title: 'Rate %@',
-            message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
-            cancelButtonLabel: 'No, Thanks',
-            laterButtonLabel: 'Remind Me Later',
-            rateButtonLabel: 'Rate It Now'
-          };
-
-          strings = angular.extend(strings, customLocale);
-
-          AppRate.preferences.customLocale = strings;
-        },
-
-        appName: function (name) {
-          AppRate.preferences.displayAppName = name;
-        },
-
-        usesUntilPrompt: function (uses) {
-          AppRate.preferences.usesUntilPrompt = uses;
-        },
-
-        promptForEveryVersion: function (prompt) {
-          AppRate.preferences.promptAgainForEachNewVersion = prompt;
         }
       };
-
     }];
-
   }]);
