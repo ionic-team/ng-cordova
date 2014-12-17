@@ -105,7 +105,7 @@ angular.module('ngCordova.plugins.appAvailability', [])
 // install  :     cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git
 // link     :     https://github.com/pushandplay/cordova-plugin-apprate
 
-angular.module('ngCordova.plugins.AppRate', [])
+angular.module('ngCordova.plugins.appRate', [])
 
   .provider("$cordovaAppRate", [function () {
 
@@ -3398,7 +3398,7 @@ angular.module('ngCordova.plugins.mobfoxAds', [])
 angular.module('ngCordova.plugins', [
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
-  'ngCordova.plugins.AppRate',
+  'ngCordova.plugins.appRate',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
