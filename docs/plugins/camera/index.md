@@ -1,10 +1,8 @@
 ---
 layout: docs-plugins
-title: ngCordova - Document and Examples - by the Ionic Framework Team
+title: DOCS | ngCordova
 ---
 
-
-<a class="anchor" id="Camera"></a>
 
 <div class="anchor-row">
   <h3><a href="#Camera"><code>$cordovaCamera</code></a></h3>

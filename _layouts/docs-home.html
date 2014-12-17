@@ -1,149 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="ionic,html5,cordova,phonegap,angularjs,ionic framework,geolocation">
-    <meta name="description" content="ngCordova - Simple and powerful AngularJS Services for Cordova and Phonegap">
-    <meta name="author" content="Ionic Framework">
-    <meta property="og:title" content="ngCordova - Cordova Plugins with AngularJS Magic"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="ionic,html5,cordova,phonegap,angularjs,ionic framework,geolocation">
+	<meta name="description" content="ngCordova - Simple and powerful AngularJS Services for Cordova and Phonegap">
+	<meta name="author" content="Ionic Framework">
+	<meta property="og:title" content="ngCordova - Cordova Plugins with AngularJS Magic"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
+	<link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>{{page.title}} - by the Ionic Framework Team</title>
+	<title>{{page.title}} - by the Ionic Framework Team</title>
 
-    <link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/syntax.css" rel="stylesheet">
+	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+	<link href="/css/cover.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
 
-    <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
-    <script src="/lib/listjs/list.min.js"></script>
+	<script src="../../assets/js/ie8-responsive-file-warning.js"></script>
+	<script src="/lib/listjs/list.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
 
 <body class="full">
 
-<div class="site-wrapper">
 
-    <div class="site-wrapper-flow">
-
-        <div class="container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <a class="masthead-brand" href="http://ngcordova.com"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
-                    <ul class="nav masthead-nav">
-                        <li><a href="/">Home</a></li>
-                        <li class="active"><a href="/docs/">Docs</a></li>
-                        <li><a href="http://ionicframework.com/">Ionic</a></li>
-                        <li><a href="https://github.com/driftyco/ng-cordova/">GitHub</a></li>
-                        <li><a href="/build">Custom Build</a></li>
-                    </ul>
-                </div>
-            </div>
+<nav class="navbar">
+	<div class="container">
+		<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
+		<ul class="nav masthead-nav">
+			<li><a href="/">Home</a></li>
+			<li class="active"><a href="/docs/">Docs</a></li>
+			<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+			<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+			<li><a href="/build">Custom Build</a></li>
+		</ul>
+	</div>
+</nav>
 
 
-            <div class="cover">
-
-                <div class="container">
-                    <div class="row">
-                        <!--<div class="col-md-3 col-sm-3 aside-menu" id="plugins">
-							<div class="menu-search-div">
-								<input class="search menu-search" placeholder="Search Plugins"/>
-							</div>
-							<div class="menu-docked">
-								<ul class="nav left-menu active-menu list">
-									<li><a class="plugin" data-scroll href="#AdMob">AdMob</a></li>
-									<li><a class="plugin" data-scroll href="#AppAvailability">App Availability</a></li>
-									<li><a class="plugin" data-scroll href="#BackgroundGeolocation">BackgroundGeolocation</a></li>
-									<li><a class="plugin" data-scroll href="#BatteryStatus">Battery Status</a></li>
-									<li><a class="plugin" data-scroll href="#BarcodeScanner">Barcode Scanner</a></li>
-									<li><a class="plugin" data-scroll href="#Calendar">Calendar</a></li>
-									<li><a class="plugin" data-scroll href="#Camera">Camera</a></li>
-									<li><a class="plugin" data-scroll href="#Capture">Capture</a></li>
-									<li><a class="plugin" data-scroll href="#Clipboard">Clipboard</a></li>
-									<li><a class="plugin" data-scroll href="#Contacts">Contacts</a></li>
-									<li><a class="plugin" data-scroll href="#DatePicker">DatePicker</a></li>
-									<li><a class="plugin" data-scroll href="#Device">Device</a></li>
-									<li><a class="plugin" data-scroll href="#DeviceMotion">Device Motion</a></li>
-									<li><a class="plugin" data-scroll href="#DeviceOrientation">Device Orientation</a></li>
-									<li><a class="plugin" data-scroll href="#Dialogs">Dialogs</a></li>
-									<li><a class="plugin" data-scroll href="#Facebook">Facebook</a></li>
-									<li><a class="plugin" data-scroll href="#File">File</a></li>
-									<li><a class="plugin" data-scroll href="#Flashlight">Flashlight</a></li>
-									<li><a class="plugin" data-scroll href="#Geolocation">Geolocation</a></li>
-									<li><a class="plugin" data-scroll href="#Globalization">Globalization</a></li>
-									<li><a class="plugin" data-scroll href="#GoogleAnalytics">GoogleAnalytics</a></li>
-									<li><a class="plugin" data-scroll href="#InAppBrowser">InAppBrowser</a></li>
-									<li><a class="plugin" data-scroll href="#Keyboard">Keyboard</a></li>
-									<li><a class="plugin" data-scroll href="#Keychain">Keychain</a></li>
-									<li><a class="plugin" data-scroll href="#LocalNotification">Local Notification</a></li>
-									<li><a class="plugin" data-scroll href="#Media">Media</a></li>
-									<li><a class="plugin" data-scroll href="#NativeAudio">NativeAudio</a></li>
-									<li><a class="plugin" data-scroll href="#Network">Network</a></li>
-									<li><a class="plugin" data-scroll href="#Oauth">Oauth</a></li>
-									<li><a class="plugin" data-scroll href="#PinDialog">Pin Dialog</a></li>
-									<li><a class="plugin" data-scroll href="#Preferences">Preferences</a></li>
-									<li><a class="plugin" data-scroll href="#Printer">Printer</a></li>
-									<li><a class="plugin" data-scroll href="#ProgressIndicator">Progress Indicator</a></li>
-									<li><a class="plugin" data-scroll href="#Push">Push Notifications</a></li>
-									<li><a class="plugin" data-scroll href="#SocialSharing">Social Sharing</a></li>
-									<li><a class="plugin" data-scroll href="#SpinnerDialog">Spinner Dialog</a></li>
-									<li><a class="plugin" data-scroll href="#Splashscreen">Splashscreen</a></li>
-									<li><a class="plugin" data-scroll href="#SQLite">SQLite</a></li>
-									<li><a class="plugin" data-scroll href="#Statusbar">Statusbar</a></li>
-									<li><a class="plugin" data-scroll href="#Toast">Toast</a></li>
-									<li><a class="plugin" data-scroll href="#TouchID">TouchID</a></li>
-									<li><a class="plugin" data-scroll href="#Vibration">Vibration</a></li>
-									<li><a class="plugin" data-scroll href="#Zip">Zip</a></li>
-								</ul>
-							</div>
-						</div>-->
-
-                        <div class="col-md-3 col-sm-2">
-                            <div class="aside-menu">
-                                <ul class="nav left-menu active-menu">
-                                    <li class="menu-title">
-                                        <a href="/docs_new/">Overview</a>
-                                    </li>
-                                </ul>
-                                <ul class="nav left-menu">
-                                    <li class="menu-title">
-                                        <a href="/docs_new/install/">Install</a>
-                                    </li>
-                                </ul>
-                                <ul class="nav left-menu">
-                                    <li class="menu-title">
-                                        <a href="/docs_new/common-issues/">Common Issues</a>
-                                    </li>
-                                </ul>
-                                <ul class="nav left-menu">
-                                    <li class="menu-title">
-                                        <a href="/docs_new/plugins/">Plugins</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            {{content}}
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            {% include mastfoot.html %}
-        </div>
-    </div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="docked-menu">
+				<ul class="nav left-menu active-menu">
+					<li class="menu-title">
+						<a href="/docs/">Overview</a>
+					</li>
+				</ul>
+				<ul class="nav left-menu ">
+					<li class="menu-title">
+						<a href="/docs/install/">Install</a>
+					</li>
+				</ul>
+				<ul class="nav left-menu">
+					<li class="menu-title">
+						<a href="/docs/common-issues/">Common Issues</a>
+					</li>
+				</ul>
+				<ul class="nav left-menu">
+					<li class="menu-title">
+						<a href="/docs/plugins/">Plugins</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-9">
+			{{content}}
+		</div>
+	</div>
 </div>
+
+
+<div class="container">
+	{% include mastfoot.html %}
+</div>
+
 
 {% include scripts.html %}
 {% include analytics.html %}
