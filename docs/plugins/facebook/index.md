@@ -19,7 +19,13 @@ The Facebook Connect plugin to obtain access to the native FB application on iOS
 
 #### Pre-Install
 
-To use the FB plugin, you first have to create a new Facebook App inside of the Facebook developer portal at [https://developers.facebook.com](https://developers.facebook.com/). Retrieve the `App ID` and `App Name`, which will be required to setup your cordova app and for web-development.
+To use the FB plugin, you first have to create a new Facebook App inside of the Facebook developer portal at [https://developers.facebook.com](https://developers.facebook.com/).
+
+[![fb-getstarted-1](getStarted-1.png)](http://developers.facebook.com/)
+
+Retrieve the `App ID` and `App Name`, which will be required to setup your cordova app and for web-development.
+
+[![fb-getstarted-2](getStarted-2.png)](https://developers.facebook.com/apps/)
 
 
 #### iOS Install
@@ -99,6 +105,7 @@ This will allow you to use Facebook in your application through the same API as 
 
 To allow web-access through your app in the development stage, you may have to go into the Facebook Developer portal and set the `Site URL` to your localhost server (eg: `http://localhost:8100/`). The page to configure these settings can be found at at [https://developers.facebook.com/apps/{Your App ID}/settings/](https://developers.facebook.com/apps/{Your App ID}/settings/).
 
+[![fb-getstarted-3](getStarted-3.png)](https://developers.facebook.com/apps/{Your App ID}/settings/)
 
 
 #### Methods

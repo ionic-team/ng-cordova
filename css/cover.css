@@ -479,3 +479,17 @@ blockquote {
 .mastfoot > .inner i {
     color: red;
 }
+
+/*
+ * OTHER
+ */
+
+img[alt = "fb-getstarted-1"],
+img[alt = "fb-getstarted-2"],
+img[alt = "fb-getstarted-3"] {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
