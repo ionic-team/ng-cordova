@@ -26,6 +26,7 @@ cordova plugin add org.apache.cordova.geolocation
 ```javascript
 module.controller('GeoCtrl', function($cordovaGeolocation) {
 
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition()
     .then(function (position) {
@@ -35,23 +36,32 @@ module.controller('GeoCtrl', function($cordovaGeolocation) {
       // error
     });
 
-  // begin a watch
-  var options = {
+
+  var watchOptions = {
     frequency : 1000,
     timeout : 3000,
-    enableHighAccuracy: true
+    enableHighAccuracy: false // may cause errors if true
   };
 
-  var watch = $cordovaGeolocation.watchPosition(options);
-  watch.promise.then(function()  { /* Not  used */ },
+  var watch = $cordovaGeolocation.watchPosition(watchOptions);
+  watch.then(
+    null,
     function(err) {
       // error
-    }, function(position) {
+    },
+    function(position) {
       var lat  = position.coords.latitude
       var long = position.coords.longitude
   });
 
-  // clear watch
-  $cordovaGeolocation.clearWatch(watch.watchId)
+
+  watch.clearWatch();
+  // OR
+  $cordovaGeolocation.clearWatch(watch)
+    .then(function(result) {
+      // success
+      }, function (error) {
+      // error
+    });
 });
 ```

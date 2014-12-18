@@ -23,30 +23,38 @@ cordova plugin add org.apache.cordova.device-orientation
 ```
 
 ```javascript
-module.controller('DeviceOrientationCtrl', function($scope, $cordovaDeviceOrientation) {
+module.controller('ThisCtrl', function($cordovaDeviceOrientation) {
 
-    $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
+  $cordovaDeviceOrientation.getCurrentHeading().then(function(result) {
+    // Success!
+  }, function(err) {
+    // An error occurred
+  });
+
+
+  var options = { frequency: 1000 }; // Update every 1 second
+
+  var watch = $cordovaDeviceOrientation.watchHeading(options)
+  watch.then(
+    null,
+    function(error) {
+      // An error occurred
+    },
+    function(position) { // updates constantly (depending on frequency value)
+      var magneticHeading = position.magneticHeading;
+      var trueHeading = position.trueHeading;
+      var accuracy = position.headingAccuracy;
+      var timeStamp = position.timestamp;
+    });
+
+
+  watch.clearWatch();
+  // OR
+  $cordovaDeviceOrientation.clearWatch(watch)
+    .then(function(result) {
       // Success!
     }, function(err) {
       // An error occurred
     });
-
-    var options = { frequency: 1000 }; // Update every 1 second
-    var watch = $cordovaDeviceOrientation.watchHeading(options);
-
-    watch.promise.then(function(result) { /* unused */ },
-      function(err) {
-        // An error occurred
-      }, function(position) {
-        // Heading comes back in
-        // position.magneticHeading
-      });
-
-    $cordovaDeviceOrientation.clearWatch(watch.watchId)
-      .then(function(result) {
-        // Success!
-      }, function(err) {
-        // An error occurred
-      });
 });
 ```
