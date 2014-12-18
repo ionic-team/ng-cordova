@@ -85,6 +85,10 @@ h5 > code {
     font-size: 14px;
 }
 
+h5 > em {
+    font-size: 13px;
+}
+
 a,
 a:focus,
 a:hover {
