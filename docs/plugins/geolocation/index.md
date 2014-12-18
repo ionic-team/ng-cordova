@@ -23,12 +23,53 @@ Grab the current location of the user, or grab continuous location changes:
 cordova plugin add org.apache.cordova.geolocation
 ```
 
+#### Methods
+
+##### `getCurrentPosition(options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| options       | `Object`      | Options to configure getting position |
+
+> | Options       | Type           | Detail  |
+> | ------------  |----------------| --------|
+> | timeout       | `Number`       | Maximum length of time (milliseconds) that is allowed to pass |
+> | maximumAge    | `Number`       | Accept a cached position whose age is no greater than the specified time in milliseconds |
+> | enableHighAccuracy | `Boolean`  | Provides a hint that the application needs the best possible results |
+
+**Returns** `Object` with user information, such as id, lastName
+
+
+##### `watchPosition(options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| options       | `Object`      | Options to configure getting position |
+
+> | Options       | Type           | Detail  |
+> | ------------  |----------------| --------|
+> | timeout       | `Number`       | Maximum length of time (milliseconds) that is allowed to pass |
+> | maximumAge    | `Number`       | Accept a cached position whose age is no greater than the specified time in milliseconds |
+> | enableHighAccuracy | `Boolean`  | Provides a hint that the application needs the best possible results |
+
+
+**Returns** `Object` - watchID which is used to clear watch later on.
+
+##### `clearWatch(watchID)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| watchID       | `Object`      | Uses the `watchID` returned from `watchPosition()` |
+
+
+#### Example
+
 ```javascript
 module.controller('GeoCtrl', function($cordovaGeolocation) {
 
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
-    .getCurrentPosition()
+    .getCurrentPosition(posOptions)
     .then(function (position) {
       var lat  = position.coords.latitude
       var long = position.coords.longitude
