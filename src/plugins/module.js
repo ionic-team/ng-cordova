@@ -32,6 +32,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',
+  'ngCordova.plugins.imagePicker',
   'ngCordova.plugins.inAppBrowser',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',

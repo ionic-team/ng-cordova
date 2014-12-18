@@ -2841,6 +2841,28 @@ angular.module('ngCordova.plugins.iAd', [])
     };
   }]);
 
+// install  :     cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
+// link     :     https://github.com/wymsee/cordova-imagePicker
+
+angular.module('ngCordova.plugins.imagePicker', [])
+
+  .factory('$cordovaImagePicker', ['$q', '$window', function ($q, $window) {
+
+    return {
+      getPictures: function (options) {
+        var q = $q.defer();
+
+        $window.imagePicker.getPictures(function (results) {
+          q.resolve(results);
+        }, function (error) {
+          q.reject(error);
+        }, options);
+
+        return q.promise;
+      }
+    };
+  }]);
+
 // install   :     cordova plugin add org.apache.cordova.inappbrowser
 // link      :     https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md
 
@@ -3429,6 +3451,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',
+  'ngCordova.plugins.imagePicker',
   'ngCordova.plugins.inAppBrowser',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
