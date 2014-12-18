@@ -30,12 +30,7 @@ cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 | ------------ |----------------| --------|
 | config       | `Object`       | Configuration object for setting default values |
 
-
-> |Returns|||
-> | ------------ |----------------| --------|
-> | config       | `Object`       | Configuration object for setting default values |
-
-`Object` with user information, such as id, lastName
+> **Returns** `Object` with user information, such as id, lastName
 
 
 ##### `unregister(options)`
