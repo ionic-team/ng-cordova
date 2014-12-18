@@ -240,7 +240,20 @@ code {
 
 .masthead-brand {
     margin-top: -18px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
+}
+
+.logo-badge {
+    position: relative;
+    top: -25px;
+    left: -125px;
+    padding: 2px 5px;
+    border-radius: 100px;
+    background-color: red;
+    -webkit-background-clip: padding-box;
+    font: bold 15px/19px "Helvetica Neue", sans-serif;
+    color: white;
+    text-decoration: none;
 }
 
 .masthead-nav > li {
