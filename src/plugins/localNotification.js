@@ -19,7 +19,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.cancel: function (id, scope) {
+    cordovaLocalNotification.cancel = function (id, scope) {
       var q = $q.defer();
       $window.plugin.notification.local.cancel(
         id, function (result) {
@@ -29,7 +29,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.cancelAll: function (scope) {
+    cordovaLocalNotification.cancelAll = function (scope) {
       var q = $q.defer();
 
       $window.plugin.notification.local.cancelAll(
@@ -40,7 +40,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.isScheduled: function (id, scope) {
+    cordovaLocalNotification.isScheduled = function (id, scope) {
       var q = $q.defer();
 
       $window.plugin.notification.local.isScheduled(
@@ -52,7 +52,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.hasPermission: function (scope) {
+    cordovaLocalNotification.hasPermission = function (scope) {
       var q = $q.defer();
 
       $window.plugin.notification.local.hasPermission(
@@ -63,11 +63,11 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.promptForPermission: function () {
+    cordovaLocalNotification.promptForPermission = function () {
       $window.plugin.notification.local.promptForPermission();
     };
 
-    cordovaLocalNotification.getScheduledIds: function (scope) {
+    cordovaLocalNotification.getScheduledIds = function (scope) {
       var q = $q.defer();
 
       $window.plugin.notification.local.getScheduledIds(
@@ -78,7 +78,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.isTriggered: function (id, scope) {
+    cordovaLocalNotification.isTriggered = function (id, scope) {
       var q = $q.defer();
 
       $window.plugin.notification.local.isTriggered(
@@ -89,7 +89,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.getTriggeredIds: function (scope) {
+    cordovaLocalNotification.getTriggeredIds = function (scope) {
       var q = $q.defer();
 
       $window.plugin.notification.local.getTriggeredIds(
@@ -100,30 +100,30 @@ angular.module('ngCordova.plugins.localNotification', [])
       return q.promise;
     };
 
-    cordovaLocalNotification.getDefaults: function () {
+    cordovaLocalNotification.getDefaults = function () {
       return $window.plugin.notification.local.getDefaults();
     };
 
-    cordovaLocalNotification.setDefaults: function (Object) {
+    cordovaLocalNotification.setDefaults = function (Object) {
       $window.plugin.notification.local.setDefaults(Object);
     };
 
-    cordovaLocalNotification.onadd: function (fn) {
+    cordovaLocalNotification.onadd = function (fn) {
       $window.plugin.notification.local.onadd = fn;
       return cordovaLocalNotification;
     };
 
-    cordovaLocalNotification.ontrigger: function (fn) {
+    cordovaLocalNotification.ontrigger = function (fn) {
       $window.plugin.notification.local.ontrigger = fn;
       return cordovaLocalNotification;
     };
 
-    cordovaLocalNotification.onclick: function (fn) {
+    cordovaLocalNotification.onclick = function (fn) {
       $window.plugin.notification.local.onclick = fn;
       return cordovaLocalNotification;
     };
 
-    cordovaLocalNotification.oncancel: function (fn) {
+    cordovaLocalNotification.oncancel = function (fn) {
       $window.plugin.notification.local.oncancel = fn;
       return cordovaLocalNotification;
     };
