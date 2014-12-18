@@ -176,6 +176,19 @@ code {
     margin-top: 40px;
 }
 
+.plugin-count {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+.plugin-count-number {
+    color: #DC1B16;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
 .btn-download {
     background-color: #1B1E24;
     color: #FFFFFF;
