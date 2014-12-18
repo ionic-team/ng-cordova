@@ -116,7 +116,7 @@ To allow web-access through your app in the development stage, you may have to g
 | ------------ |----------------| --------|
 | permissions  | `String Array` | A string array of permissions your app will require. EG: `["public_profile", "email"]` |
 
-**Returns**  `Object` with user information, such as id, lastName
+> **Returns**  `Object` with user information, such as id, lastName
 
 
 ##### `showDialog(options)`
@@ -154,11 +154,10 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
 
   $cordovaFacebook.login(["public_profile", "email", "user_friends"])
     .then(function(success) {
-      /*  { id: "634565435",
-            lastName: "bob"
-            ...
-          }
-      */
+      // { id: "634565435",
+      //   lastName: "bob"
+      //   ...
+      // }
     }, function (error) {
       // error
     });
@@ -187,7 +186,17 @@ module.controller('MyCtrl', function($scope, $cordovaFacebook) {
 
   $cordovaFacebook.getLoginStatus()
     .then(function(success) {
-      // success
+      /*
+      { authResponse: {
+          userID: "12345678912345",
+          accessToken: "kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn",
+          session_Key: true,
+          expiresIn: "5183738",
+          sig: "..."
+        },
+        status: "connected"
+      }
+      */
     }, function (error) {
       // error
     });
