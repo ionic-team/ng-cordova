@@ -313,20 +313,26 @@ code {
     padding-top: 2px;
     padding-bottom: 2px;
     color: #50535b;
+    background-color: transparent !important;
 }
 
-.docked-menu > .left-menu > ul > li > a {
+.docked-menu > .left-menu > ul > li > a,
+.docked-menu > .left-menu > ul > li > a:active,
+.docked-menu > .left-menu > ul > li > a:focus,
+.docked-menu > .left-menu > ul > li > a:hover {
     padding-left: 10px;
     margin-left: 10px;
     text-decoration: none;
     display: block;
     color: inherit;
+    background-color: transparent !important;
 }
 
 .docked-menu > .active-menu > ul > .active,
 .docked-menu > .active-menu > ul > li:hover {
     border-right: solid 2px #4685dd;
     color: #4685dd;
+    background-color: transparent !important;
 }
 
 /*
