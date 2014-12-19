@@ -30,7 +30,7 @@ body {
     background-color: #FFFFFF;
     -webkit-font-smoothing: antialiased;
     text-align: left;
-    color: #2d3036;
+    color: #53565D;
     font-weight: normal;
 }
 
@@ -131,7 +131,7 @@ code {
  */
 
 .navbar {
-    min-height: 90px;
+    min-height: 80px;
     padding-top: 20px;
     background: #2D3036;
     border-radius: 0;
@@ -144,16 +144,17 @@ code {
 }
 
 .masthead-brand {
-    margin-top: -18px;
+    margin-top: -15px;
     margin-bottom: 0;
 }
 
 .masthead-brand > img {
-    width: 181px;
-    height: 83px;
+    width: 151px;
+    height: 70px;
 }
 
 .logo-badge {
+    display: none;
     position: relative;
     top: -25px;
     left: -125px;
@@ -211,10 +212,6 @@ code {
     float: right;
 }
 
-@media (min-width: 768px) {
-
-}
-
 /*
  * HOME PAGE
  */
@@ -227,16 +224,23 @@ code {
 .home-container h1.cover-heading {
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
+    font-size: 38px;
     font-weight: 900;
+    color: #000000;
 }
 
 .home-container p.lead {
-    font-size: 18px;
+    font-size: 16px;
     font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     letter-spacing: -0.05em;
     margin-top: 20px;
-    padding: 0 50px;
+}
+
+@media (min-width: 950px) {
+    .home-container p.lead {
+        padding: 0 140px;
+    }
 }
 
 span.link-ngCordova {
@@ -274,8 +278,11 @@ span.plugin-count-number {
     text-decoration: underline;
 }
 
-.home-container .button-row {
-    margin-top: 40px;
+.home-container .button-container {
+    background-color: #FAFBFD;
+    margin-top: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .btn-download {
@@ -383,6 +390,10 @@ span.plugin-count-number {
 /*
  * DOCS - Main Content
  */
+
+.docs-container {
+    margin-top: 25px;
+}
 
 .docs-content {
     padding-top: 10px;
