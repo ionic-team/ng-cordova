@@ -30,7 +30,7 @@ cordova plugin add org.apache.cordova.camera
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
-| options      | `Object`       | Camera options   - sds |
+| options      | `Object`       | Camera options |
 
 
 **Returns**  `Object` with image data

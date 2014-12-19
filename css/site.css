@@ -542,7 +542,7 @@ blockquote {
 }
 
 blockquote > table {
-    margin-bottom: 0;
+    margin-bottom: 15px;
 }
 
 /*
@@ -577,6 +577,20 @@ blockquote > table {
 /*
  * OTHER
  */
+
+
+img[alt = "actionSheet-ios"] {
+    width: 30%;
+    margin-left: 20%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+img[alt = "actionSheet-android"] {
+    width: 30%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 
 img[alt = "fb-getstarted-1"],
 img[alt = "fb-getstarted-2"],

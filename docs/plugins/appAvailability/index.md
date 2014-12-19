@@ -17,47 +17,43 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows you to check if an app is installed on the user's device. It requires an URI Scheme (e.g. twitter://) on iOS or a Package Name (e.g com.twitter.android) on Android.
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>iOS Schemes</th>
-            <th>Android Schemes</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>twitter://</td>
-            <td>com.twitter.android</td>
-        </tr>
-        <tr>
-            <td>fb://</td>
-            <td>com.facebook.katana</td>
-        </tr>
-
-        <tr>
-            <td>whatsapp://</td>
-            <td>com.whatsapp</td>
-        </tr>
-    </tbody>
-</table>
-
-
 ```bash
 cordova plugin add https://github.com/ohh2ahh/AppAvailability.git
 ```
 
+#### Methods
+
+##### `check(method)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| method       | `String`       | URI scheme to test as described below |
+
+
+#### Schemes
+
+An extensive list of [iOS schemes can be found at this link](http://wiki.akosma.com/IPhone_URL_Schemes). 
+
+| iOS Schemes     | Android Scheme |
+| --------------- |----------------|
+| `twitter://`    | `com.twitter.android` |
+| `fb://`         | `com.facebook.katana` |
+| `whatsapp://`   | `com.whatsapp` |
+
+
+
+#### Example
 
 ```javascript
-
-module.controller('AppAvailCtrl', function($scope, $cordovaAppAvailability) {
+module.controller('AppAvailCtrl', function($cordovaAppAvailability) {
 
   $cordovaAppAvailability
     .check('twitter://')
-    .then(function(success) {
-      // success
+    .then(function() {
+      // is available
     },
-    function (error) {
-      // error
+    function () {
+      // not available
     });
 });
 ```
