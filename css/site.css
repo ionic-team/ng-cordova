@@ -31,6 +31,7 @@ body {
     -webkit-font-smoothing: antialiased;
     text-align: left;
     color: #2d3036;
+    font-weight: normal;
 }
 
 @media (min-width: 1200px) {
@@ -48,27 +49,23 @@ body {
 h1 {
     font-size: 36px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
 }
 
 h2 {
     font-size: 30px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
     margin-top: 10px;
 }
 
 h3 {
     font-size: 26px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
     margin-top: 55px;
 }
 
 h4 {
     font-size: 20px;
     margin-top: 35px;
-    font-weight: normal;
 }
 
 h5:first-of-type {
@@ -77,7 +74,6 @@ h5:first-of-type {
 
 h5 {
     font-size: 18px;
-    font-weight: normal;
     margin-top: 30px;
 }
 
@@ -131,98 +127,6 @@ code {
 }
 
 /*
- * HOME PAGE
- */
-
-.home-container {
-    padding-top: 50px;
-    text-align: center;
-}
-
-.home-container .lead {
-    font-size: 20px;
-    font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    letter-spacing: -0.04em;
-    margin-top: 20px;
-}
-
-.link-cordova {
-    color: #374754;
-}
-
-.link-cordova:hover,
-.link-cordova:active {
-    color: #374754;
-    text-decoration: underline;
-}
-
-.link-angularjs {
-    color: #DC1B16;
-}
-
-.link-angularjs:hover,
-.link-angularjs:active {
-    color: #DC1B16;
-    text-decoration: underline;
-}
-
-.home-container .cover-image {
-    max-width: 45%;
-    padding: 20px;
-}
-
-.home-container .button-row {
-    margin-top: 40px;
-}
-
-.plugin-count {
-    font-size: 18px;
-    font-weight: 400;
-    padding: 10px;
-}
-
-.plugin-count-number {
-    color: #DC1B16;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-.btn-download {
-    background-color: #1B1E24;
-    color: #FFFFFF;
-    transition: 0.4s;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.btn-download:hover,
-.btn-download:active {
-    background-color: #FFFFFF;
-    border: 1px solid #1B1E24;
-    color: #1B1E24;
-}
-
-.btn-docs {
-    background-color: #4685dd;
-    border: 1px solid #4685dd;
-    color: #FFFFFF;
-    transition: 0.4s;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.btn-docs:hover,
-.btn-docs:active {
-    background-color: #FFFFFF;
-    border: 1px solid #4685dd;
-    color: #4685dd;
-}
-
-/* Extra markup and styles for table-esque vertical and horizontal centering */
-
-/*
  * Header
  */
 
@@ -231,6 +135,7 @@ code {
     padding-top: 20px;
     background: #2D3036;
     border-radius: 0;
+    margin-bottom: 0;
 }
 
 .masthead {
@@ -241,6 +146,11 @@ code {
 .masthead-brand {
     margin-top: -18px;
     margin-bottom: 0;
+}
+
+.masthead-brand > img {
+    width: 181px;
+    height: 83px;
 }
 
 .logo-badge {
@@ -257,8 +167,6 @@ code {
 }
 
 .masthead-nav > li {
-    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
     display: inline-block;
 }
 
@@ -267,15 +175,18 @@ code {
 }
 
 .masthead-nav > li > a {
+    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-right: 0;
     padding-left: 0;
-    font-size: 16px;
-    font-weight: normal;
-    color: #aab5c7; /* IE8 proofing */
+    font-size: 15px;
+    font-weight: 900 !important;
+    letter-spacing: normal;
+    color: #aab5c7;
     border-bottom: 2px solid transparent;
     transition: 0.1s linear;
     -webkit-transition: 0.1s linear;
     -moz-transition: 0.1s linear;
+    text-transform: uppercase;
 }
 
 .masthead-nav > li > a:hover,
@@ -292,15 +203,119 @@ code {
     border-bottom-color: #eef4ff;
 }
 
-@media (min-width: 768px) {
-    .masthead-brand {
-        float: left;
-    }
-
-    .masthead-nav {
-        float: right;
-    }
+.masthead-brand {
+    float: left;
 }
+
+.masthead-nav {
+    float: right;
+}
+
+@media (min-width: 768px) {
+
+}
+
+/*
+ * HOME PAGE
+ */
+
+.home-container {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.home-container h1.cover-heading {
+    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.home-container p.lead {
+    font-size: 18px;
+    font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+    margin-top: 20px;
+    padding: 0 50px;
+}
+
+span.link-ngCordova {
+    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 900 !important;
+}
+
+span.plugin-count-number {
+    color: #DC1B16;
+    font-weight: 600;
+}
+
+.home-container .cover-image {
+    max-width: 70%;
+    padding: 20px;
+}
+
+.link-cordova {
+    color: #475C71;
+}
+
+.link-cordova:hover,
+.link-cordova:active {
+    color: #475C71;
+    text-decoration: underline;
+}
+
+.link-angularjs {
+    color: #DC1B16;
+}
+
+.link-angularjs:hover,
+.link-angularjs:active {
+    color: #DC1B16;
+    text-decoration: underline;
+}
+
+.home-container .button-row {
+    margin-top: 40px;
+}
+
+.btn-download {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #1B1E24;
+    color: #FFFFFF;
+    transition: 0.3s;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    border-radius: 0;
+}
+
+.btn-download:hover,
+.btn-download:active {
+    background-color: #FFFFFF;
+    border: 1px solid #1B1E24;
+    color: #1B1E24;
+}
+
+.btn-docs {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #4685dd;
+    border: 1px solid #4685dd;
+    color: #FFFFFF;
+    transition: 0.3s;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    border-radius: 0;
+}
+
+.btn-docs:hover,
+.btn-docs:active {
+    background-color: #FFFFFF;
+    border: 1px solid #4685dd;
+    color: #4685dd;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
 
 /*
  * Docked-menu
