@@ -172,17 +172,17 @@ code {
 }
 
 .masthead-nav > li + li {
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .masthead-nav > li > a {
-    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "AvenirNextLTPro-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-right: 0;
     padding-left: 0;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 900 !important;
-    letter-spacing: normal;
-    color: #aab5c7;
+    letter-spacing: 0.04em;
+    color: #aeb9cb;
     border-bottom: 2px solid transparent;
     transition: 0.1s linear;
     -webkit-transition: 0.1s linear;
@@ -217,15 +217,15 @@ code {
  */
 
 .home-container {
-    padding-top: 50px;
+    padding-top: 40px;
     text-align: center;
 }
 
 .home-container h1.cover-heading {
-    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "AvenirNextLTPro-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    font-size: 38px;
-    font-weight: 900;
+    letter-spacing: 0.05em;
+    font-weight: bold;
     color: #000000;
 }
 
@@ -246,11 +246,13 @@ code {
 span.link-ngCordova {
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 900 !important;
+    color: #000000;
 }
 
 span.plugin-count-number {
     color: #DC1B16;
-    font-weight: 600;
+    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 800;
 }
 
 .home-container .cover-image {
@@ -280,7 +282,7 @@ span.plugin-count-number {
 
 .home-container .button-container {
     background-color: #FAFBFD;
-    margin-top: 10px;
+    margin-top: 20px;
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -320,6 +322,21 @@ span.plugin-count-number {
     background-color: #FFFFFF;
     border: 1px solid #4685dd;
     color: #4685dd;
+}
+
+@media (max-width: 776px) {
+    .btn-download {
+        margin-bottom: 20px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 300px;
+    }
+
+    .btn-docs {
+        margin-right: auto;
+        margin-left: auto;
+        width: 300px;
+    }
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
