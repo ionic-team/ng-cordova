@@ -30,7 +30,9 @@ Install manually, or from bower:
 $ bower install ngCordova
 ```
 
-## Plugins
+## Plugins `(61+)`
+
+- [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
 - [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Preferences](https://github.com/dferrell/plugins-application-preferences)
