@@ -325,6 +325,12 @@ span.plugin-count-number {
 }
 
 @media (max-width: 776px) {
+
+    .home-container .cover-image {
+        max-width: 100%;
+        padding: 20px 0;
+    }
+
     .btn-download {
         margin-bottom: 20px;
         margin-right: auto;
@@ -553,9 +559,10 @@ blockquote > table {
     letter-spacing: -0.04em;
     color: #50535b;
     text-align: center;
+    width: 100%;
 }
 
-.mastfoot > .footer-hr {
+.mastfoot > img.footer-hr {
     margin-bottom: -10px;
 }
 
