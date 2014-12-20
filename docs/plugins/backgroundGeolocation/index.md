@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaBackgroundGeolocation</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/backgroundGeolocation.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/christocracy/cordova-plugin-background-geolocation">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaBackgroundGeolocation
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/backgroundGeolocation.js
+official-docs: https://github.com/christocracy/cordova-plugin-background-geolocation
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 Cross-platform background geolocation for Cordova / PhoneGap with battery-saving "circular region monitoring" and "stop detection".
 

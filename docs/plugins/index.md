@@ -1,6 +1,8 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
+
+hide-header: true
 ---
 
 ## Plugins Overview

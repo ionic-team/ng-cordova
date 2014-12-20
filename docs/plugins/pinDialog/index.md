@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaPinDialog</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/pinDialog.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/Paldom/PinDialog">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaPinDialog
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/pinDialog.js
+official-docs: https://github.com/Paldom/PinDialog
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 Numeric password dialog.
 

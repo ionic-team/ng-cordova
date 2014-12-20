@@ -32,8 +32,8 @@
 <div class="wrapper">
 
 	<nav class="navbar">
-		<div class="container">
-			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" alt="ngCordova"><span class="logo-badge">60</span></a>
+		<div class="container nav-container">
+			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" alt="ngCordova"></a>
 			<ul class="nav masthead-nav">
 				<li class="active"><a href="/docs/">Docs</a></li>
 				<li><a href="/build">Custom Build</a></li>
@@ -43,10 +43,9 @@
 		</div>
 	</nav>
 
-
 	<div class="container docs-container">
 		<div class="row">
-			<div class="col-md-2 col-sm-3">
+			<div class="col-sm-3">
 				<div class="docked-menu">
 					<ul class="nav left-menu">
 						<li class="menu-title">
@@ -108,7 +107,9 @@
 							<li><a href="/docs/plugins/socialSharing/">Social Sharing</a></li>
 							<li><a href="/docs/plugins/spinnerDialog/">Spinner Dialog</a></li>
 							<li><a href="/docs/plugins/splashscreen/">Splashscreen</a></li>
+							<li><a href="/docs/plugins/sqlite/">SQLite</a></li>
 							<li><a href="/docs/plugins/statusbar/">StatusBar</a></li>
+							<li><a href="/docs/plugins/toast/">Toast</a></li>
 							<li><a href="/docs/plugins/touchID/">TouchID</a></li>
 							<li><a href="/docs/plugins/vibration/">Vibration</a></li>
 							<li><a href="/docs/plugins/zip/">ZIP</a></li>
@@ -116,8 +117,28 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-10 col-sm-9 docs-content">
-				{{content}}
+			<div class="col-sm-9">
+				{% if page.hide-header == null %}
+
+				<div class="anchor-row">
+					<h3><code>{{page.plugin-name}}</code></h3>
+
+					<div class="button-row">
+						<a class="btn-anchor" href="{{page.source}}">Source</a>
+						<a class="btn-anchor" href="{{page.official-docs}}">Official Docs</a>
+					</div>
+					<div class="icon-row">
+						{% if page.icon-apple == true %}<i class="icon ion-social-apple"></i>{% endif %}
+						{% if page.icon-android == true %}<i class="icon ion-social-android"></i>{% endif %}
+						{% if page.icon-windows == true %}<i class="icon ion-social-windows"></i>{% endif %}
+					</div>
+				</div>
+				{% endif %}
+
+
+				<div class="plugin-content">
+					{{content}}
+				</div>
 			</div>
 		</div>
 	</div>

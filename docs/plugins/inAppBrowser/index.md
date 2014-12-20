@@ -1,20 +1,15 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
+
+plugin-name: $cordovaInAppBrowser
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/inappbrowser.js
+official-docs: https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md
+icon-apple: true
+icon-android: true
+icon-windows: true
 ---
 
-<div class="anchor-row">
-  <h3><code>$cordovaInAppBrowser</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/inappbrowser.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
 
 Provides a web browser view. It could be used to open images, access web pages, and open PDF files.
 

@@ -1,21 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
+
+plugin-name: $cordovaLocalNotification
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/localNotification.js
+official-docs: https://github.com/katzer/cordova-plugin-local-notifications
+icon-apple: true
+icon-android: true
+icon-windows: true
 ---
-
-
-<div class="anchor-row">
-  <h3><code>$cordovaLocalNotification</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/localNotification.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/katzer/cordova-plugin-local-notifications">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
 
 The essential purpose of local notifications is to enable an application to inform its users that it has something for them — for example, a message or an upcoming appointment — when the application isn’t running in the foreground.
 They are scheduled by an application and delivered on the same device.

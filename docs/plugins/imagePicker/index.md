@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaImagePicker</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/imagePicker.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/wymsee/cordova-imagePicker">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaImagePicker
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/imagePicker.js
+official-docs: https://github.com/wymsee/cordova-imagePicker
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 
 Cordova Plugin For Multiple Image Selection - implemented for iOS and Android 4.0 and above.

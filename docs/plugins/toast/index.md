@@ -1,20 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaToast</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/toast.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
+plugin-name: $cordovaToast
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/toast.js
+official-docs: https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
+icon-apple: true
+icon-android: true
+icon-windows: true
+---
 
 This plugin allows you to show a native Toast (a little text popup) on iOS, Android and WP8. It's great for showing a non intrusive native notification which is guaranteed always in the viewport of the browser.
 

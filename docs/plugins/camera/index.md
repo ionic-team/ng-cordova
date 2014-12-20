@@ -1,21 +1,14 @@
 ---
 layout: docs-plugins
 title: DOCS | ngCordova
+
+plugin-name: $cordovaCamera
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/camera.js
+official-docs: https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera
+icon-apple: true
+icon-android: true
+icon-windows: true
 ---
-
-
-<div class="anchor-row">
-  <h3><code>$cordovaCamera</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/camera.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>  
-</div>
 
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
 from a device.

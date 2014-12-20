@@ -15,7 +15,7 @@
 	<title>{{page.title}} - by the Ionic Framework Team</title>
 
 	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" >
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
 	<link href="/css/site.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
 
@@ -32,14 +32,13 @@
 
 <div class="wrapper">
 	<nav class="navbar">
-		<div class="container">
-			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" alt="ngCordova"><span class="logo-badge">60</span></a>
+		<div class="container nav-container">
+			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" alt="ngCordova"></a>
 			<ul class="nav masthead-nav">
 				<li class="active"><a href="/docs/">Docs</a></li>
 				<li><a href="/build">Custom Build</a></li>
 				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
 				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
-
 			</ul>
 		</div>
 	</nav>
@@ -47,7 +46,7 @@
 
 	<div class="container docs-container">
 		<div class="row">
-			<div class="col-md-2 col-sm-3">
+			<div class="col-sm-3">
 				<div class="docked-menu">
 					<ul class="nav left-menu active-menu">
 						<li class="menu-title">
@@ -71,8 +70,10 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-10 col-sm-9 docs-content">
-				{{content}}
+			<div class="col-sm-9 ">
+				<div class="docs-content">
+					{{content}}
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,21 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaFile</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/file.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md" title="org.apache.cordova.file">Official Docs</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md" title="org.apache.cordova.file-transfer">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
+plugin-name: $cordovaFile
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/file.js
+official-docs:  https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
+icon-apple: true
+icon-android: true
+icon-windows: true
+---
 
 A Plugin to get access to the device's files and directories.
 

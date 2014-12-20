@@ -1,20 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaStatusbar</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/statusbar.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
+plugin-name: $cordovaStatusbar
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/statusbar.js
+official-docs: https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md
+icon-apple: true
+icon-android: true
+icon-windows: true
+---
 
 Configure the device's StatusBar with colors and styles.
 

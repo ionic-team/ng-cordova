@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaDatePicker</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/datepicker.js">Source</a>
-    <a class="btn-anchor" href="http://github.com/VitaliiBlagodir/cordova-plugin-datepicker">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaDatePicker
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/datepicker.js
+official-docs: http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 Show a native date or time picker widget.
 

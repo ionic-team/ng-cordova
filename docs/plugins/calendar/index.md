@@ -1,20 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
+
+plugin-name: $cordovaCalendar
+source:  https://github.com/driftyco/ng-cordova/blob/master/src/plugins/calendar.js
+official-docs:  https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/blob/master/README.md
+icon-apple: true
+icon-android: true
+icon-windows: false
 ---
-
-
-<div class="anchor-row">
-  <h3><code>$cordovaCalendar</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/calendar.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/blob/master/README.md">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
 
 The [Calendar Plugin](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin) allows you to manage events in the devices native calendar.
 

@@ -22,12 +22,11 @@
 
 html,
 body {
-    /*background-image: url("../img/bg.png"); */
-    background-size: 1099px 713px;
-    background-position: center;
-    background-repeat: no-repeat;
     height: 100%;
-    background-color: #FFFFFF;
+    background: -webkit-linear-gradient(left, #f7f9fd, #f5f4f9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #f7f9fd, #f5f4f9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #f7f9fd, #f5f4f9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #f7f9fd, #f5f4f9); /* Standard syntax */
     -webkit-font-smoothing: antialiased;
     text-align: left;
     color: #53565D;
@@ -36,7 +35,7 @@ body {
 
 @media (min-width: 1200px) {
     .container {
-        width: 1100px;
+        width: 1000px;
     }
 }
 
@@ -58,7 +57,7 @@ h2 {
 }
 
 h3 {
-    font-size: 26px;
+    font-size: 24px;
     font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-top: 55px;
 }
@@ -110,9 +109,9 @@ pre {
     font-size: 13px;
     line-height: 1.42857143;
     word-break: keep-all;
-    color: #FFFFFF;
-    background-color: #2D3036;
-    border: 1px solid #2D3036;
+    color: #4A4A4C;
+    background-color: #F6F7FB;
+    border: 1px solid #E5E9F2;
     border-radius: 2px;
 }
 
@@ -127,81 +126,53 @@ code {
 }
 
 /*
- * Header
+ * NAVIGATION BAR
  */
 
 .navbar {
-    min-height: 80px;
-    padding-top: 20px;
+    min-height: 60px;
     background: #2D3036;
     border-radius: 0;
     margin-bottom: 0;
 }
 
-.masthead {
-    background-color: #2d3036;
-    z-index: 99;
+.nav-container {
+    line-height: 40px;
 }
 
 .masthead-brand {
-    margin-top: -15px;
+    margin-top: 5px;
     margin-bottom: 0;
 }
 
 .masthead-brand > img {
-    width: 151px;
-    height: 70px;
-}
-
-.logo-badge {
-    display: none;
-    position: relative;
-    top: -25px;
-    left: -125px;
-    padding: 2px 5px;
-    border-radius: 100px;
-    background-color: red;
-    -webkit-background-clip: padding-box;
-    font: bold 15px/19px "Helvetica Neue", sans-serif;
-    color: white;
-    text-decoration: none;
+    height: 45px;
 }
 
 .masthead-nav > li {
     display: inline-block;
-}
 
-.masthead-nav > li + li {
-    margin-left: 30px;
 }
 
 .masthead-nav > li > a {
     font-family: "AvenirNextLTPro-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding-right: 0;
-    padding-left: 0;
-    font-size: 14px;
-    font-weight: 900 !important;
-    letter-spacing: 0.04em;
+    padding-right: 30px !important;
+    padding-left: 30px !important;
+    margin-right: -5px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
     color: #aeb9cb;
-    border-bottom: 2px solid transparent;
-    transition: 0.1s linear;
-    -webkit-transition: 0.1s linear;
-    -moz-transition: 0.1s linear;
     text-transform: uppercase;
 }
 
 .masthead-nav > li > a:hover,
-.masthead-nav > li > a:focus {
-    background-color: transparent;
-    color: #eef4ff;
-    border-bottom-color: #eef4ff;
-}
-
+.masthead-nav > li > a:focus,
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
+    background-color: #1C1D21;
     color: #eef4ff;
-    border-bottom-color: #eef4ff;
 }
 
 .masthead-brand {
@@ -210,6 +181,14 @@ code {
 
 .masthead-nav {
     float: right;
+}
+
+@media (max-width: 776px) {
+
+    .masthead-nav > li > a {
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+    }
 }
 
 /*
@@ -230,7 +209,7 @@ code {
 }
 
 .home-container p.lead {
-    font-size: 16px;
+    font-size: 18px;
     font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     letter-spacing: -0.05em;
@@ -256,7 +235,7 @@ span.plugin-count-number {
 }
 
 .home-container .cover-image {
-    max-width: 70%;
+    max-width: 60%;
     padding: 20px;
 }
 
@@ -281,8 +260,11 @@ span.plugin-count-number {
 }
 
 .home-container .button-container {
-    background-color: #FAFBFD;
-    margin-top: 20px;
+    background: -webkit-linear-gradient(left, #E0E7F0, #E1E4ED); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #E0E7F0, #E1E4ED); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #E0E7F0, #E1E4ED); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #E0E7F0, #E1E4ED); /* Standard syntax */
+    margin-top: 40px;
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -345,31 +327,40 @@ span.plugin-count-number {
     }
 }
 
-/* Extra markup and styles for table-esque vertical and horizontal centering */
-
 /*
  * Docked-menu
  */
 
 .docked-menu {
-    padding-top: 15px;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
 }
 
 .docked-menu > .left-menu > .menu-title > a {
+    font-family: "AvenirNextLTPro-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.15em;
     border-right: solid 2px transparent;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding: 3px 5px 3px 10px;
-    color: #50535b;
+    padding: 10px 15px 10px 15px;
+    color: #717882;
+}
+
+.docked-menu > ul:first-of-type {
+    padding-top: 5px;
+}
+
+.docked-menu > ul:last-of-type {
+    padding-bottom: 5px;
 }
 
 .docked-menu > .active-menu > .menu-title > a,
 .docked-menu > .left-menu > .menu-title > a:hover {
-    color: #4685dd;
+    color: #000000;
     background-color: transparent;
 }
 
@@ -383,11 +374,7 @@ span.plugin-count-number {
 .docked-menu > .left-menu > ul > li {
     border-right: solid 2px transparent;
     display: block;
-    margin-top: 1px;
-    margin-bottom: 1px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    color: #50535b;
+    color: #717882;
     background-color: transparent !important;
 }
 
@@ -395,8 +382,10 @@ span.plugin-count-number {
 .docked-menu > .left-menu > ul > li > a:active,
 .docked-menu > .left-menu > ul > li > a:focus,
 .docked-menu > .left-menu > ul > li > a:hover {
-    padding-left: 10px;
-    margin-left: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 20px;
+
     text-decoration: none;
     display: block;
     color: inherit;
@@ -407,20 +396,42 @@ span.plugin-count-number {
 .docked-menu > .active-menu > ul > li:hover {
     border-right: solid 2px #4685dd;
     color: #4685dd;
-    background-color: transparent !important;
+    background-color: #F5F8FF !important;
+    font-weight: 700;
+    transition: 0.05s linear;
+    -webkit-transition: 0.05s linear;
+    -moz-transition: 0.05s linear;
 }
 
 /*
  * DOCS - Main Content
  */
 
+.col-sm-3,
+.col-sm-9 {
+    padding-right: 0 !important; /* fix spacing between fixed sidemenu and content */
+}
+
 .docs-container {
     margin-top: 25px;
 }
 
 .docs-content {
-    padding-top: 10px;
-    padding-left: 40px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+}
+
+.plugin-content {
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
 }
 
 /*
@@ -430,7 +441,13 @@ span.plugin-count-number {
 .anchor-row {
     display: inline-block;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    padding: 5px 15px 5px 20px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
 }
 
 .anchor-row > h3 {
@@ -566,18 +583,31 @@ blockquote > table {
     margin-bottom: -10px;
 }
 
-.mastfoot > .inner {
-    margin-top: 30px;
+.mastfoot > .footer-links {
+    position: relative;
+    margin-top: 40px;
+    clear: both;
+    display: block;
 }
 
-.mastfoot > .inner i {
+.mastfoot > .footer-links ul {
+    list-style: none;
+}
+
+.mastfoot > .footer-links ul > li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+.mastfoot > .footer-text i {
     color: red;
 }
 
 /*
  * OTHER
  */
-
 
 img[alt = "actionSheet-ios"] {
     width: 30%;

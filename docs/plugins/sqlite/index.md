@@ -1,20 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaSQLite</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/SQLite.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/brodysoft/Cordova-SQLitePlugin">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
+plugin-name: $cordovaSQLite
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/SQLite.js
+official-docs: https://github.com/brodysoft/Cordova-SQLitePlugin
+icon-apple: true
+icon-android: true
+icon-windows: true
+---
 
 Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
 

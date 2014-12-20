@@ -1,18 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaTouchID</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/touchID.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/leecrossley/cordova-plugin-touchid">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-  </div>
-</div>
+plugin-name: $cordovaTouchID
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/touchID.js
+official-docs: https://github.com/leecrossley/cordova-plugin-touchid"
+icon-apple: true
+icon-android: false
+icon-windows: false
+---
 
 Cordova Plugin to leverage the iOS local authentication framework to allow in-app user authentication using Touch ID.
 

@@ -1,18 +1,15 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
+
+plugin-name: $cordovaPreferences
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/preferences.js
+official-docs: https://github.com/dferrell/plugins-application-preferences
+icon-apple: true
+icon-android: false
+icon-windows: false
 ---
 
-<div class="anchor-row">
-  <h3><code>$cordovaPreferences</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/preferences.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/dferrell/plugins-application-preferences">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-  </div>
-</div>
 
 Accessing application preference with the [application-preferences](https://github.com/dferrell/plugins-application-preferences) plugin.
 

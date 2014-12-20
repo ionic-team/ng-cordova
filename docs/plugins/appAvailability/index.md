@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaAppAvailability</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/appAvailability.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/ohh2ahh/AppAvailability">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaAppAvailability
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/appAvailability.js
+official-docs: https://github.com/ohh2ahh/AppAvailability
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 The [AppAvailability](https://github.com/ohh2ahh/AppAvailability) plugin allows you to check if an app is installed on the user's device. It requires an URI Scheme (e.g. twitter://) on iOS or a Package Name (e.g com.twitter.android) on Android.
 

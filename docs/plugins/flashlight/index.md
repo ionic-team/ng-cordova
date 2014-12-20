@@ -1,20 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaFlashlight</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/flashlight.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-    <i class="icon ion-social-windows"></i>
-  </div>
-</div>
+plugin-name: $cordovaFlashlight
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/flashlight.js
+official-docs: https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin
+icon-apple: true
+icon-android: true
+icon-windows: true
+---
 
 Flashlight Cordova plugin.
 

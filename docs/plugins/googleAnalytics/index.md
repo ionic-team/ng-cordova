@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaGoogleAnalytics</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/GA.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/danwilson/google-analytics-plugin">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaGoogleAnalytics
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/GA.js
+official-docs: https://github.com/danwilson/google-analytics-plugin
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 A Plugin to connect to Google's native Universal Analytics SDK 3.0
 

@@ -1,18 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaKeychain</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/keychain.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/shazron/KeychainPlugin">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-  </div>
-</div>
+plugin-name: $cordovaKeychain
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/keychain.js
+official-docs: https://github.com/shazron/KeychainPlugin
+icon-apple: true
+icon-android: false
+icon-windows: false
+---
 
 Accessing the keychain of iOS from cordova
 

@@ -1,19 +1,14 @@
 ---
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
----
 
-<div class="anchor-row">
-  <h3><code>$cordovaNativeAudio</code></h3>
-  <div class="button-row">
-    <a class="btn-anchor" href="https://github.com/driftyco/ng-cordova/blob/master/src/plugins/nativeAudio.js">Source</a>
-    <a class="btn-anchor" href="https://github.com/SidneyS/cordova-plugin-nativeaudio">Official Docs</a>
-  </div>
-  <div class="icon-row">
-    <i class="icon ion-social-apple"></i>
-    <i class="icon ion-social-android"></i>
-  </div>
-</div>
+plugin-name: $cordovaNativeAudio
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/nativeAudio.js
+official-docs: https://github.com/SidneyS/cordova-plugin-nativeaudio
+icon-apple: true
+icon-android: true
+icon-windows: false
+---
 
 Cordova / PhoneGap 3.5+ extension for Native Audio playback, aimed at HTML5 gaming and audio applications which require minimum latency, polyphony and concurrency.
 
