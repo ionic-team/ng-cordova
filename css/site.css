@@ -39,10 +39,16 @@ body {
     }
 }
 
+.home-wrapper {
+    min-height: 100%;
+    height: auto;
+    padding-bottom: 240px;
+    background-color: #FFFFFF;
+}
 .wrapper {
     min-height: 100%;
     height: auto;
-    padding-bottom: 150px;
+    padding-bottom: 240px;
 }
 
 h1 {
@@ -141,7 +147,7 @@ code {
 }
 
 .masthead-brand {
-    margin-top: 5px;
+    margin-top: 7px;
     margin-bottom: 0;
 }
 
@@ -198,6 +204,10 @@ code {
 .home-container {
     padding-top: 40px;
     text-align: center;
+    background: -webkit-linear-gradient(left, #f7f9fd, #f5f4f9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #f7f9fd, #f5f4f9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #f7f9fd, #f5f4f9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #f7f9fd, #f5f4f9); /* Standard syntax */
 }
 
 .home-container h1.cover-heading {
@@ -325,6 +335,10 @@ span.plugin-count-number {
         margin-left: auto;
         width: 300px;
     }
+}
+
+.expose-container {
+    background-color: #FFFFFF;
 }
 
 /*
@@ -569,8 +583,8 @@ blockquote > table {
 .mastfoot {
     position: relative;
     clear: both;
-    height: 100px;
-    margin-top: -100px;
+    height: 220px;
+    margin-top: -220px;
     font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     letter-spacing: -0.04em;
@@ -580,12 +594,12 @@ blockquote > table {
 }
 
 .mastfoot > img.footer-hr {
-    margin-bottom: -10px;
+    margin-bottom: -140px;
 }
 
 .mastfoot > .footer-links {
     position: relative;
-    margin-top: 40px;
+    margin-top: 110px;
     clear: both;
     display: block;
 }
@@ -600,7 +614,9 @@ blockquote > table {
     margin-left: 10px;
 }
 
-
+.mastfoot > .footer-text {
+    margin-top: 10px;
+}
 .mastfoot > .footer-text i {
     color: red;
 }
