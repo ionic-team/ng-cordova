@@ -1,5 +1,6 @@
 {
   "name": "ngCordova",
+  "version": "0.1.9-alpha",
   "homepage": "http://ngCordova.com/",
   "authors": [
     "Max Lynch <max@drifty.com>",
@@ -24,6 +25,9 @@
   },
   "keywords": [
     "ngCordova",
+    "ng-cordova",
+    "ngcordova",
+    "ng cordova",
     "cordova",
     "phonegap",
     "angular",
@@ -38,14 +42,13 @@
     "angular-mocks": ">= 1.2.23",
     "jquery": "~2.1.1"
   },
-  "_release": "b5fa8ef874",
+  "_release": "0.1.9-alpha",
   "_resolution": {
-    "type": "branch",
-    "branch": "FIX-angular-1.3.x",
-    "commit": "b5fa8ef874505aefb0266363265cb1139e2f15ba"
+    "type": "version",
+    "tag": "v0.1.9-alpha",
+    "commit": "df1240558924bb48a13c50530832f49e7869ba44"
   },
   "_source": "git://github.com/driftyco/ng-cordova.git",
-  "_target": "FIX-angular-1.3.x",
-  "_originalSource": "ngCordova",
-  "_direct": true
+  "_target": "~0.1.9-alpha",
+  "_originalSource": "ngCordova"
 }
