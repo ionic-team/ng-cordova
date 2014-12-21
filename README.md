@@ -3,7 +3,7 @@
 
 [![Travis](http://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
 
-### Cordova with AngularJS Goodness 
+### Cordova with AngularJS Goodness
 
 
 [<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
@@ -30,7 +30,7 @@ Install manually, or from bower:
 $ bower install ngCordova
 ```
 
-## Plugins `(61+)`
+## Plugins `(63+)`
 
 - [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
 - [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
@@ -44,6 +44,7 @@ $ bower install ngCordova
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
 - [Bluetooth Low Energy](https://github.com/evothings/cordova-ble)
 - [Bluetooth Serial](https://github.com/don/BluetoothSerial)
+- [Brightness](https://github.com/fiscal-cliff/phonegap-plugin-brightness)
 - [Calendar](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin)
 - [Camera](https://github.com/apache/cordova-plugin-camera) *
 - [Clipboard](https://github.com/VersoSolutions/CordovaClipboard)
