@@ -91,6 +91,10 @@ h5 > em {
     font-size: 13px;
 }
 
+h6 {
+    font-size: 13px;
+}
+
 a,
 a:focus,
 a:hover {
