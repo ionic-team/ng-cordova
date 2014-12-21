@@ -10,6 +10,30 @@ angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
 
+// install  :     cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git
+// link     :     https://github.com/EddyVerbruggen/cordova-plugin-actionsheet
+
+angular.module('ngCordova.plugins.actionSheet', [])
+
+  .factory('$cordovaActionSheet', ['$q', '$window', function ($q, $window) {
+
+    return {
+      show: function (options) {
+        var q = $q.defer();
+
+        $window.plugins.actionsheet.show(options, function (result) {
+          q.resolve(result);
+        });
+
+        return q.promise;
+      },
+
+      hide: function () {
+        return $window.plugins.actionsheet.hide();
+      }
+    };
+  }]);
+
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-admob.git
 // link     :     https://github.com/floatinghotpot/cordova-plugin-admob
 
@@ -105,7 +129,7 @@ angular.module('ngCordova.plugins.appAvailability', [])
 // install  :     cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git
 // link     :     https://github.com/pushandplay/cordova-plugin-apprate
 
-angular.module('ngCordova.plugins.AppRate', [])
+angular.module('ngCordova.plugins.appRate', [])
 
   .provider("$cordovaAppRate", [function () {
 
@@ -115,6 +139,47 @@ angular.module('ngCordova.plugins.AppRate', [])
       if (devices.indexOf(device) !== -1) {
         AppRate.preferences.storeAppURL[device] = url;
       }
+      else {
+        alert("wrong device type");
+      }
+    };
+
+    this.useLanguage = function (language) {
+      AppRate.preferences.useLanguage = language;
+    };
+
+    this.displayAppName = function (name) {
+      AppRate.preferences.displayAppName = name;
+    };
+
+    this.promptAgainForEachNewVersion = function (boolean) {
+      AppRate.preferences.promptAgainForEachNewVersion = boolean;
+    };
+
+    this.usesUntilPrompt = function (number) {
+      AppRate.preferences.usesUntilPrompt = number;
+    };
+
+    this.openStoreInApp = function (boolean) {
+      AppRate.preferences.openStoreInApp = boolean;
+    };
+
+    this.useCustomRateDialog = function (boolean) {
+      AppRate.preferences.useCustomRateDialog = boolean;
+    };
+
+    this.customLocale = function (customObj) {
+      var strings = {
+        title: 'Rate %@',
+        message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
+        cancelButtonLabel: 'No, Thanks',
+        laterButtonLabel: 'Remind Me Later',
+        rateButtonLabel: 'Rate It Now'
+      };
+
+      strings = angular.extend(strings, customObj);
+
+      AppRate.preferences.customLocale = strings;
     };
 
     this.$get = ['$q', function ($q) {
@@ -122,7 +187,6 @@ angular.module('ngCordova.plugins.AppRate', [])
         promptForRating: function (immediate) {
           var q = $q.defer();
           var prompt = AppRate.promptForRating(immediate);
-
           q.resolve(prompt);
 
           return q.promise;
@@ -136,41 +200,28 @@ angular.module('ngCordova.plugins.AppRate', [])
 
         onRateDialogShow: function (cb) {
           AppRate.onRateDialogShow = cb();
-        },
-
-        useLanguage: function (lang) {
-          AppRate.preferences.useLanguage = lang;
-        },
-
-        customLocale: function (customLocale) {
-          var strings = {
-            title: 'Rate %@',
-            message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
-            cancelButtonLabel: 'No, Thanks',
-            laterButtonLabel: 'Remind Me Later',
-            rateButtonLabel: 'Rate It Now'
-          };
-
-          strings = angular.extend(strings, customLocale);
-
-          AppRate.preferences.customLocale = strings;
-        },
-
-        appName: function (name) {
-          AppRate.preferences.displayAppName = name;
-        },
-
-        usesUntilPrompt: function (uses) {
-          AppRate.preferences.usesUntilPrompt = uses;
-        },
-
-        promptForEveryVersion: function (prompt) {
-          AppRate.preferences.promptAgainForEachNewVersion = prompt;
         }
       };
-
     }];
+  }]);
 
+// install   :     cordova plugin add https://github.com/whiteoctober/cordova-plugin-app-version.git
+// link      :     https://github.com/whiteoctober/cordova-plugin-app-version
+
+angular.module('ngCordova.plugins.appVersion', [])
+
+  .factory('$cordovaAppVersion', ['$q', function ($q) {
+
+    return {
+      getAppVersion: function () {
+        var q = $q.defer();
+        cordova.getAppVersion(function (version) {
+          q.resolve(version);
+        });
+
+        return q.promise;
+      }
+    };
   }]);
 
 // install   :     cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
@@ -663,6 +714,55 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       }
     };
   }]);
+
+// install  :    cordova plugin add https://github.com/fiscal-cliff/phonegap-plugin-brightness.git
+// link     :    https://github.com/fiscal-cliff/phonegap-plugin-brightness
+
+angular.module('ngCordova.plugins.brightness', [])
+
+  .factory('$cordovaBrightness', ['$q', '$window', function ($q, $window) {
+
+    return {
+      get: function () {
+        var q = $q.defer();
+
+        $window.cordova.plugins.brightness.getBrightness(function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      set: function (data) {
+        var q = $q.defer();
+
+        $window.cordova.plugins.brightness.setBrightness(data, function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      setKeepScreenOn: function (bool) {
+        var q = $q.defer();
+
+        $window.cordova.plugins.brightness.setKeepScreenOn(bool, function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      }
+    };
+  }]);
+
+
+
 
 // install  :     cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
 // link     :     https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin
@@ -1429,35 +1529,59 @@ angular.module('ngCordova.plugins.dialogs', [])
     };
   }]);
 
+// install  :     cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git@0.8.2
+// link     :     https://github.com/katzer/cordova-plugin-email-composer
+
+angular.module('ngCordova.plugins.emailComposer', [])
+
+  .factory('$cordovaEmailComposer', ['$q', function ($q) {
+
+    return {
+      isAvailable: function () {
+        var q = $q.defer();
+
+        cordova.plugins.email.isAvailable(function (isAvailable) {
+          isAvailable ? q.resolve() : q.reject();
+        });
+
+        return q.promise;
+      },
+
+      open: function (properties) {
+        var q = $q.defer();
+
+        cordova.plugins.email.open(properties, function () {
+          q.reject(); // user closed email composer
+        });
+
+        return q.promise;
+      },
+
+      addAlias: function (app, schema) {
+        cordova.plugins.email.addAlias(app, schema);
+      }
+    };
+  }]);
+
 // install   :   cordova -d plugin add /Users/your/path/here/phonegap-facebook-plugin --variable APP_ID="123456789" --variable APP_NAME="myApplication"
 // link      :   https://github.com/Wizcorp/phonegap-facebook-plugin
 
 angular.module('ngCordova.plugins.facebook', [])
 
   .provider('$cordovaFacebook', [function () {
-    var appID;
-    var appVersion;
 
-    this.setAppID = function (id, version) {
-      appID = id;
-      appVersion = version || "v2.0";
+    this.browserInit = function (id, version) {
+      this.appID = id;
+      this.appVersion = version || "v2.0";
+      if (!this.appID) {
+        facebookConnectPlugin.browserInit(this.appID, this.appVersion);
+      }
     };
 
-    this.$get = ['$q', '$window', function ($q, $window) {
+    this.$get = ['$q', function ($q) {
+
       return {
-        getAppID: function () {
-          return appID;
-        },
-
-        init: function (appID) {
-          if (!$window.cordova) {
-            facebookConnectPlugin.browserInit(appID, appVersion);
-          }
-        },
-
         login: function (permissions) {
-          this.init(this.getAppID());
-
           var q = $q.defer();
           facebookConnectPlugin.login(permissions,
             function (res) {
@@ -2824,6 +2948,28 @@ angular.module('ngCordova.plugins.iAd', [])
     };
   }]);
 
+// install  :     cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
+// link     :     https://github.com/wymsee/cordova-imagePicker
+
+angular.module('ngCordova.plugins.imagePicker', [])
+
+  .factory('$cordovaImagePicker', ['$q', '$window', function ($q, $window) {
+
+    return {
+      getPictures: function (options) {
+        var q = $q.defer();
+
+        $window.imagePicker.getPictures(function (results) {
+          q.resolve(results);
+        }, function (error) {
+          q.reject(error);
+        }, options);
+
+        return q.promise;
+      }
+    };
+  }]);
+
 // install   :     cordova plugin add org.apache.cordova.inappbrowser
 // link      :     https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md
 
@@ -3208,8 +3354,9 @@ angular.module('ngCordova.plugins.media', [])
       newMedia: function (src) {
         var q = $q.defer();
         var mediaStatus = null;
+        var media;
 
-        var media = new Media(src,
+        media = new Media(src,
           function (success) {
             q.resolve(success);
           }, function (error) {
@@ -3218,74 +3365,56 @@ angular.module('ngCordova.plugins.media', [])
             mediaStatus = status;
           });
 
-        return {
-          media: media,
-          mediaStatus: mediaStatus,
-          promise: q.promise
+        // getCurrentPosition NOT WOKRING!
+        q.promise.getCurrentPosition = function () {
+          media.getCurrentPosition(function (success) {
+          }, function (error) {
+          })
         };
 
-      },
-
-      getCurrentPosition: function (source) {
-        var q = $q.defer();
-
-        source.getCurrentPosition(function (success) {
-          q.resolve(success);
-
-        }, function (error) {
-          q.reject(error);
-        });
-
-        return q.promise;
-      },
-
-      getDuration: function (source) {
-
-        return source.getDuration();
-      },
-
-      play: function (source, options) {
-        if (typeof options !== "object") {
-          options = {};
-        }
-        return source.play(options);
+        q.promise.getDuration = function () {
+           media.getDuration();
+        };
 
         // iOS quirks :
         // -  myMedia.play({ numberOfLoops: 2 }) -> looping
         // -  myMedia.play({ playAudioWhenScreenIsLocked : false })
-      },
+        q.promise.play = function (options) {
+          if (typeof options !== "object") {
+            options = {};
+          }
+          media.play(options);
+        };
 
-      pause: function (source) {
-        return source.pause();
-      },
+        q.promise.pause = function () {
+          media.pause();
+        };
 
-      release: function (source) {
-        return source.release();
-      },
+        q.promise.stop = function () {
+          media.stop();
+        };
 
+        q.promise.release = function () {
+          media.release();
+        };
 
-      seekTo: function (source, milliseconds) {
+        q.promise.seekTo = function (timing) {
+          media.seekTo(timing);
+        };
 
-        return source.seekTo(milliseconds);
-      },
+        q.promise.setVolume = function (volume) {
+          media.setVolume(volume);
+        };
 
-      setVolume: function (source, volume) {
-        return source.setVolume(volume);
-      },
+        q.promise.startRecord = function () {
+          media.startRecord();
+        };
 
-      startRecord: function (source) {
+        q.promise.stopRecord = function () {
+          media.stopRecord();
+        };
 
-        return source.startRecord();
-      },
-
-      stopRecord: function (source) {
-
-        return source.stopRecord();
-      },
-
-      stop: function (source) {
-
-        return source.stop();
+        return q.promise;
       }
     };
   }]);
@@ -3396,11 +3525,15 @@ angular.module('ngCordova.plugins.mobfoxAds', [])
   }]);
 
 angular.module('ngCordova.plugins', [
+  'ngCordova.plugins.actionSheet',
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
+  'ngCordova.plugins.appRate',
+  'ngCordova.plugins.appVersion',
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
+  'ngCordova.plugins.brightness',
   'ngCordova.plugins.battery-status',
   'ngCordova.plugins.ble',
   'ngCordova.plugins.bluetoothSerial',
@@ -3414,6 +3547,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.deviceOrientation',
   'ngCordova.plugins.dialogs',
+  'ngCordova.plugins.emailComposer',
   'ngCordova.plugins.facebook',
   'ngCordova.plugins.facebookAds',
   'ngCordova.plugins.file',
@@ -3427,6 +3561,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',
+  'ngCordova.plugins.imagePicker',
   'ngCordova.plugins.inAppBrowser',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
@@ -4849,7 +4984,7 @@ angular.module('ngCordova.plugins.statusbar', [])
       },
 
       isVisible: function () {
-        return StatusBar.isVisible();
+        return StatusBar.isVisible;
       }
     };
   }]);

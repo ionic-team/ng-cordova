@@ -21,7 +21,7 @@
     "CONTRIBUTING.md"
   ],
   "dependencies": {
-    "angular": "~1.2.23"
+    "angular": ">= 1.2.23"
   },
   "keywords": [
     "ngCordova",
@@ -35,8 +35,8 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "angular": "~1.2.23",
-    "angular-mocks": "~1.2.23",
+    "angular": ">= 1.2.23",
+    "angular-mocks": ">= 1.2.23",
     "jquery": "~2.1.1"
   }
 }
