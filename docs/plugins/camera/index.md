@@ -21,6 +21,9 @@ cordova plugin add org.apache.cordova.camera
 
 ##### `getPicture(options)`
 
+[View Camera Options](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
+
+
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
 | options      | `Object`       | Camera options |
@@ -88,8 +91,10 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
     // error
   });
 
+
+  $cordovaCamera.cleanup().then(...); // only for FILE_URI
+
 });
 ```
 
 
-[View Camera Options](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
