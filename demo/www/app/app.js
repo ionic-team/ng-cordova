@@ -1,12 +1,6 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 angular.module('demo', [
   'ionic',
   'ngCordova',
-  'ui.ace',
 
   // modules
   // 'demo.adMob.ctrl',  // not working???
@@ -22,6 +16,7 @@ angular.module('demo', [
   'demo.deviceOrientation.ctrl',
   'demo.dialogs.ctrl',
   'demo.flashlight.ctrl',
+  'demo.file.ctrl',
   'demo.facebook.ctrl',
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
@@ -38,9 +33,6 @@ angular.module('demo', [
   .run(function ($ionicPlatform) {
 
     $ionicPlatform.ready(function () {
-
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       }
@@ -217,12 +209,6 @@ angular.module('demo', [
         controller: "DeviceOrientationCtrl"
       })
 
-      .state('capture', {
-        url: '/capture',
-        templateUrl: 'app/capture/capture.html',
-        controller: "CaptureCtrl"
-      })
-
       .state('toast', {
         url: '/toast',
         templateUrl: 'app/toast/toast.html',
@@ -236,17 +222,10 @@ angular.module('demo', [
       })
 
       .state('appRate', {
-          url: '/appRate',
-          templateUrl: 'app/appRate/appRate.html',
-          controller: "AppRateCtrl"
-      })
-
-      .state('about', {
-        url: '/about',
-        templateUrl: 'template/about.html',
-        controller: "AboutCtrl"
+        url: '/appRate',
+        templateUrl: 'app/appRate/appRate.html',
+        controller: "AppRateCtrl"
       });
 
-    // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/menu');
   });

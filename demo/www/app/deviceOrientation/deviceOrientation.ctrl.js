@@ -1,8 +1,8 @@
 angular.module('demo.deviceOrientation.ctrl', [])
 
-  .controller('DeviceOrientationCtrl', function ($scope, $timeout, $cordovaDeviceOrientation, $ionicModal) {
+  .controller('DeviceOrientationCtrl', function ($scope, $timeout, $cordovaDeviceOrientation) {
 
-    var options = { frequency: 1000 }; // Update every 1 seconds
+    var options = {frequency: 1000}; // Update every 1 seconds
 
     $scope.getHeading = function () {
       $cordovaDeviceOrientation
@@ -36,30 +36,6 @@ angular.module('demo.deviceOrientation.ctrl', [])
 
     $scope.clearWatch = function () {
       $cordovaDeviceOrientation.clearWatch($scope.this_watch.watchID);
-    };
-
-
-    /*
-     Ionic modal with source code
-     */
-
-    $ionicModal.fromTemplateUrl('app/deviceOrientation/deviceOrientation-source.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modal = modal;
-    });
-
-    $scope.closeModal = function () {
-      $scope.modal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function () {
-      $scope.modal.remove();
-    });
-
-    $scope.showSource = function () {
-      $scope.modal.show();
     };
 
   });
