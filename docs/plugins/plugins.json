@@ -1,186 +1,278 @@
 [
   {
     "link": "/docs/plugins/actionSheet/",
-    "title": "Action Sheet"
+    "title": "Action Sheet",
+    "keywords": "",
+    "short-title": "ActionSheet"
   },
   {
     "link": "/docs/plugins/adMob/",
-    "title": "AdMob"
+    "title": "AdMob",
+    "keywords": "ads advertisement",
+    "short-title": "AdMob"
   },
   {
     "link": "/docs/plugins/appAvailability/",
-    "title": "App Availability"
+    "title": "App Availability",
+    "keywords": "",
+    "short-title": "AppAvailability"
   },
   {
     "link": "/docs/plugins/appRate/",
-    "title": "App Rate"
+    "title": "App Rate",
+    "keywords": "rating stars",
+    "short-title": "AppRate"
   },
   {
     "link": "/docs/plugins/appVersion/",
-    "title": "App Version"
+    "title": "App Version",
+    "keywords": "",
+    "short-title": "AppVersion"
   },
   {
     "link": "/docs/plugins/backgroundGeolocation/",
-    "title": "Background Geoloc"
+    "title": "Background Geolocation",
+    "keywords": "bg",
+    "short-title": "BackgroundGeolocation"
   },
   {
     "link": "/docs/plugins/batteryStatus/",
-    "title": "Battery Status"
+    "title": "Battery Status",
+    "keywords": "bettery life",
+    "short-title": "BatteryStatus"
   },
   {
     "link": "/docs/plugins/barcodeScanner/",
-    "title": "Barcode Scanner"
+    "title": "Barcode Scanner",
+    "keywords": "qr code barcode",
+    "short-title": "BarcodeScanner"
   },
   {
     "link": "/docs/plugins/calendar/",
-    "title": "Calendar"
+    "title": "Calendar",
+    "keywords": "date time",
+    "short-title": "Calendar"
   },
   {
     "link": "/docs/plugins/camera/",
-    "title": "Camera"
+    "title": "Camera",
+    "keywords": "picture image",
+    "short-title": "Camera"
   },
   {
     "link": "/docs/plugins/capture/",
-    "title": "Capture"
+    "title": "Capture",
+    "keywords": "",
+    "short-title": "Capture"
   },
   {
     "link": "/docs/plugins/clipboard/",
-    "title": "Clipboard"
+    "title": "Clipboard",
+    "keywords": "",
+    "short-title": "Clipboard"
   },
   {
     "link": "/docs/plugins/contacts/",
-    "title": "Contacts"
+    "title": "Contacts",
+    "keywords": "",
+    "short-title": "Contacts"
   },
   {
     "link": "/docs/plugins/datePicker/",
-    "title": "Date Picker"
+    "title": "Date Picker",
+    "keywords": "",
+    "short-title": "DatePicker"
   },
   {
     "link": "/docs/plugins/device/",
-    "title": "Device"
+    "title": "Device",
+    "keywords": "",
+    "short-title": "Device"
   },
   {
     "link": "/docs/plugins/deviceMotion/",
-    "title": "Device Motion"
+    "title": "Device Motion",
+    "keywords": "",
+    "short-title": "DeviceMotion"
   },
   {
     "link": "/docs/plugins/deviceOrientation/",
-    "title": "Device Orientation"
+    "title": "Device Orientation",
+    "keywords": "",
+    "short-title": "DeviceOrientation"
   },
   {
     "link": "/docs/plugins/dialogs/",
-    "title": "Dialogs"
+    "title": "Dialogs",
+    "keywords": "",
+    "short-title": "Dialogs"
   },
   {
     "link": "/docs/plugins/facebook/",
-    "title": "Facebook"
+    "title": "Facebook",
+    "keywords": "",
+    "short-title": "Facebook"
   },
   {
     "link": "/docs/plugins/file/",
-    "title": "File"
+    "title": "File",
+    "keywords": "",
+    "short-title": "File"
   },
   {
     "link": "/docs/plugins/flashlight/",
-    "title": "Flashlight"
+    "title": "Flashlight",
+    "keywords": "",
+    "short-title": "Flashlight"
   },
   {
     "link": "/docs/plugins/geolocation/",
-    "title": "Geolocation"
+    "title": "Geolocation",
+    "keywords": "",
+    "short-title": "Geolocation"
   },
   {
     "link": "/docs/plugins/globalization/",
-    "title": "Globalization"
+    "title": "Globalization",
+    "keywords": "",
+    "short-title": "Globalization"
   },
   {
     "link": "/docs/plugins/googleAnalytics/",
-    "title": "Google Analytics"
+    "title": "Google Analytics",
+    "keywords": "GA",
+    "short-title": "GoogleAnalytics"
   },
   {
     "link": "/docs/plugins/imagePicker/",
-    "title": "Image Picker"
+    "title": "Image Picker",
+    "keywords": "picture",
+    "short-title": "ImagePicker"
   },
   {
     "link": "/docs/plugins/inAppBrowser/",
-    "title": "In App Browser"
+    "title": "In App Browser",
+    "keywords": "",
+    "short-title": "InAppBrowser"
   },
   {
     "link": "/docs/plugins/keyboard/",
-    "title": "Keyboard"
+    "title": "Keyboard",
+    "keywords": "",
+    "short-title": "Keyboard"
   },
   {
     "link": "/docs/plugins/keychain/",
-    "title": "Keychain"
+    "title": "Keychain",
+    "keywords": "",
+    "short-title": "Keychain"
   },
   {
     "link": "/docs/plugins/localNotification/",
-    "title": "Local Notification"
+    "title": "Local Notification",
+    "keywords": "",
+    "short-title": "LocalNotification"
   },
   {
     "link": "/docs/plugins/media/",
-    "title": "Media"
+    "title": "Media",
+    "keywords": "",
+    "short-title": "Media"
   },
   {
     "link": "/docs/plugins/nativeAudio/",
-    "title": "Native Audio"
+    "title": "Native Audio",
+    "keywords": "",
+    "short-title": "NativeAudio"
   },
   {
     "link": "/docs/plugins/network/",
-    "title": "Network"
+    "title": "Network",
+    "keywords": "wifi 3G",
+    "short-title": "Network"
   },
   {
     "link": "/docs/plugins/oauth/",
-    "title": "OAuth"
+    "title": "OAuth",
+    "keywords": "authentication",
+    "short-title": "OAuth"
   },
   {
     "link": "/docs/plugins/pinDialog/",
-    "title": "Pin Dialog"
+    "title": "Pin Dialog",
+    "keywords": "",
+    "short-title": "PinDialog"
   },
   {
     "link": "/docs/plugins/preferences/",
-    "title": "Preferences"
+    "title": "Preferences",
+    "keywords": "",
+    "short-title": "Preferences"
   },
   {
     "link": "/docs/plugins/progressIndicator/",
-    "title": "Progress Indicator"
+    "title": "Progress Indicator",
+    "keywords": "",
+    "short-title": "ProgressIndicator"
   },
   {
     "link": "/docs/plugins/pushNotifications/",
-    "title": "Push Notifications"
+    "title": "Push Notifications",
+    "keywords": "",
+    "short-title": "PushNotifications"
   },
   {
     "link": "/docs/plugins/socialSharing/",
-    "title": "Social Sharing"
+    "title": "Social Sharing",
+    "keywords": "email twitter facebook SMS",
+    "short-title": "SocialSharing"
   },
   {
     "link": "/docs/plugins/spinnerDialog/",
-    "title": "Spinner Dialog"
+    "title": "Spinner Dialog",
+    "keywords": "",
+    "short-title": "SpinnerDialog"
   },
   {
     "link": "/docs/plugins/splashscreen/",
-    "title": "Splashscreen"
+    "title": "Splashscreen",
+    "keywords": "",
+    "short-title": "Splashscreen"
   },
   {
     "link": "/docs/plugins/sqlite/",
-    "title": "SQLite"
+    "title": "SQLite",
+    "keywords": "",
+    "short-title": "SQLite"
   },
   {
     "link": "/docs/plugins/statusbar/",
-    "title": "StatusBar"
+    "title": "StatusBar",
+    "keywords": "",
+    "short-title": "StatusBar"
   },
   {
     "link": "/docs/plugins/toast/",
-    "title": "Toast"
+    "title": "Toast",
+    "keywords": "notification notify",
+    "short-title": "Toast"
   },
   {
     "link": "/docs/plugins/touchID/",
-    "title": "TouchID"
+    "title": "TouchID",
+    "keywords": "auth authentication",
+    "short-title": "TouchID"
   },
   {
     "link": "/docs/plugins/vibration/",
-    "title": "Vibration"
+    "title": "Vibration",
+    "keywords": "",
+    "short-title": "Vibration"
   },
   {
     "link": "/docs/plugins/zip/",
-    "title": "ZIP"
+    "title": "ZIP",
+    "keywords": "file compress",
+    "short-title": "ZIP"
   }
 ]

@@ -68,7 +68,7 @@
 										searchResults.show();
 										FilterJS(data, '#searchResults', {
 												template: '#template',
-												search: {ele: '#searchInput'},
+												search: {ele: '#searchInput', fields: ["title", "keywords", "short-title"]},
 												callbacks: {
 														afterFilter: function (result) {
 																if (!result.length) {
