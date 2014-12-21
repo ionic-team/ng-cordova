@@ -21,6 +21,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.deviceOrientation',
   'ngCordova.plugins.dialogs',
+  'ngCordova.plugins.emailComposer',
   'ngCordova.plugins.facebook',
   'ngCordova.plugins.facebookAds',
   'ngCordova.plugins.file',

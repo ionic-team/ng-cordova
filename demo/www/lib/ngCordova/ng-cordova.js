@@ -715,6 +715,55 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
     };
   }]);
 
+// install  :    cordova plugin add https://github.com/fiscal-cliff/phonegap-plugin-brightness.git
+// link     :    https://github.com/fiscal-cliff/phonegap-plugin-brightness
+
+angular.module('ngCordova.plugins.brightness', [])
+
+  .factory('$cordovaBrightness', ['$q', '$window', function ($q, $window) {
+
+    return {
+      get: function () {
+        var q = $q.defer();
+
+        $window.cordova.plugins.brightness.getBrightness(function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      set: function (data) {
+        var q = $q.defer();
+
+        $window.cordova.plugins.brightness.setBrightness(data, function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      setKeepScreenOn: function (bool) {
+        var q = $q.defer();
+
+        $window.cordova.plugins.brightness.setKeepScreenOn(bool, function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      }
+    };
+  }]);
+
+
+
+
 // install  :     cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
 // link     :     https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin
 
@@ -1476,6 +1525,40 @@ angular.module('ngCordova.plugins.dialogs', [])
 
       beep: function (times) {
         return navigator.notification.beep(times);
+      }
+    };
+  }]);
+
+// install  :     cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git@0.8.2
+// link     :     https://github.com/katzer/cordova-plugin-email-composer
+
+angular.module('ngCordova.plugins.emailComposer', [])
+
+  .factory('$cordovaEmailComposer', ['$q', function ($q) {
+
+    return {
+      isAvailable: function () {
+        var q = $q.defer();
+
+        cordova.plugins.email.isAvailable(function (isAvailable) {
+          isAvailable ? q.resolve() : q.reject();
+        });
+
+        return q.promise;
+      },
+
+      open: function (properties) {
+        var q = $q.defer();
+
+        cordova.plugins.email.open(properties, function () {
+          q.reject(); // user closed email composer
+        });
+
+        return q.promise;
+      },
+
+      addAlias: function (app, schema) {
+        cordova.plugins.email.addAlias(app, schema);
       }
     };
   }]);
@@ -3450,6 +3533,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.backgroundGeolocation',
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
+  'ngCordova.plugins.brightness',
   'ngCordova.plugins.battery-status',
   'ngCordova.plugins.ble',
   'ngCordova.plugins.bluetoothSerial',
@@ -3463,6 +3547,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.deviceMotion',
   'ngCordova.plugins.deviceOrientation',
   'ngCordova.plugins.dialogs',
+  'ngCordova.plugins.emailComposer',
   'ngCordova.plugins.facebook',
   'ngCordova.plugins.facebookAds',
   'ngCordova.plugins.file',
