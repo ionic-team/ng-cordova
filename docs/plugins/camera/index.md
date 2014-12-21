@@ -13,6 +13,8 @@ icon-windows: true
 This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
 from a device.
 
+> **NOTE**: The camera API only works on a real device, and not in the emulator.
+
 ```bash
 cordova plugin add org.apache.cordova.camera
 ```
