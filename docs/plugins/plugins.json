@@ -1,0 +1,186 @@
+[
+  {
+    "link": "/docs/plugins/actionSheet/",
+    "title": "Action Sheet"
+  },
+  {
+    "link": "/docs/plugins/adMob/",
+    "title": "AdMob"
+  },
+  {
+    "link": "/docs/plugins/appAvailability/",
+    "title": "App Availability"
+  },
+  {
+    "link": "/docs/plugins/appRate/",
+    "title": "App Rate"
+  },
+  {
+    "link": "/docs/plugins/appVersion/",
+    "title": "App Version"
+  },
+  {
+    "link": "/docs/plugins/backgroundGeolocation/",
+    "title": "Background Geoloc"
+  },
+  {
+    "link": "/docs/plugins/batteryStatus/",
+    "title": "Battery Status"
+  },
+  {
+    "link": "/docs/plugins/barcodeScanner/",
+    "title": "Barcode Scanner"
+  },
+  {
+    "link": "/docs/plugins/calendar/",
+    "title": "Calendar"
+  },
+  {
+    "link": "/docs/plugins/camera/",
+    "title": "Camera"
+  },
+  {
+    "link": "/docs/plugins/capture/",
+    "title": "Capture"
+  },
+  {
+    "link": "/docs/plugins/clipboard/",
+    "title": "Clipboard"
+  },
+  {
+    "link": "/docs/plugins/contacts/",
+    "title": "Contacts"
+  },
+  {
+    "link": "/docs/plugins/datePicker/",
+    "title": "Date Picker"
+  },
+  {
+    "link": "/docs/plugins/device/",
+    "title": "Device"
+  },
+  {
+    "link": "/docs/plugins/deviceMotion/",
+    "title": "Device Motion"
+  },
+  {
+    "link": "/docs/plugins/deviceOrientation/",
+    "title": "Device Orientation"
+  },
+  {
+    "link": "/docs/plugins/dialogs/",
+    "title": "Dialogs"
+  },
+  {
+    "link": "/docs/plugins/facebook/",
+    "title": "Facebook"
+  },
+  {
+    "link": "/docs/plugins/file/",
+    "title": "File"
+  },
+  {
+    "link": "/docs/plugins/flashlight/",
+    "title": "Flashlight"
+  },
+  {
+    "link": "/docs/plugins/geolocation/",
+    "title": "Geolocation"
+  },
+  {
+    "link": "/docs/plugins/globalization/",
+    "title": "Globalization"
+  },
+  {
+    "link": "/docs/plugins/googleAnalytics/",
+    "title": "Google Analytics"
+  },
+  {
+    "link": "/docs/plugins/imagePicker/",
+    "title": "Image Picker"
+  },
+  {
+    "link": "/docs/plugins/inAppBrowser/",
+    "title": "In App Browser"
+  },
+  {
+    "link": "/docs/plugins/keyboard/",
+    "title": "Keyboard"
+  },
+  {
+    "link": "/docs/plugins/keychain/",
+    "title": "Keychain"
+  },
+  {
+    "link": "/docs/plugins/localNotification/",
+    "title": "Local Notification"
+  },
+  {
+    "link": "/docs/plugins/media/",
+    "title": "Media"
+  },
+  {
+    "link": "/docs/plugins/nativeAudio/",
+    "title": "Native Audio"
+  },
+  {
+    "link": "/docs/plugins/network/",
+    "title": "Network"
+  },
+  {
+    "link": "/docs/plugins/oauth/",
+    "title": "OAuth"
+  },
+  {
+    "link": "/docs/plugins/pinDialog/",
+    "title": "Pin Dialog"
+  },
+  {
+    "link": "/docs/plugins/preferences/",
+    "title": "Preferences"
+  },
+  {
+    "link": "/docs/plugins/progressIndicator/",
+    "title": "Progress Indicator"
+  },
+  {
+    "link": "/docs/plugins/pushNotifications/",
+    "title": "Push Notifications"
+  },
+  {
+    "link": "/docs/plugins/socialSharing/",
+    "title": "Social Sharing"
+  },
+  {
+    "link": "/docs/plugins/spinnerDialog/",
+    "title": "Spinner Dialog"
+  },
+  {
+    "link": "/docs/plugins/splashscreen/",
+    "title": "Splashscreen"
+  },
+  {
+    "link": "/docs/plugins/sqlite/",
+    "title": "SQLite"
+  },
+  {
+    "link": "/docs/plugins/statusbar/",
+    "title": "StatusBar"
+  },
+  {
+    "link": "/docs/plugins/toast/",
+    "title": "Toast"
+  },
+  {
+    "link": "/docs/plugins/touchID/",
+    "title": "TouchID"
+  },
+  {
+    "link": "/docs/plugins/vibration/",
+    "title": "Vibration"
+  },
+  {
+    "link": "/docs/plugins/zip/",
+    "title": "ZIP"
+  }
+]

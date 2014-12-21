@@ -15,11 +15,9 @@
 	<title>{{page.title}} - by the Ionic Framework Team</title>
 
 	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
 	<link href="/css/site.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
-
-	<script src="/lib/listjs/list.min.js"></script>
 
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -39,6 +37,17 @@
 				<li><a href="/build">Custom Build</a></li>
 				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
 				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li class="nav-search-bar">
+					<input class="nav-input" type="text" placeholder="Search docs" id="searchInput"><i class="ion-ios-search"></i>
+					<ul class="results-dropdown" id="searchResults">
+						<script id="template" type="text/html">
+							<li><a href="<%= link %>"><%= title %></a></li>
+						</script>
+					</ul>
+					<ul class="no-results-dropdown" id="noSearchResults">
+						<li>No results found</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -66,7 +75,7 @@
 						<li class="menu-title">
 							<a href="/docs/plugins/">Plugins</a>
 						</li>
-						<ul>
+						<ul id="pluginsList">
 							<li><a href="/docs/plugins/actionSheet/">Action Sheet</a></li>
 							<li><a href="/docs/plugins/adMob/">AdMob</a></li>
 							<li><a href="/docs/plugins/appAvailability/">App Availability</a></li>

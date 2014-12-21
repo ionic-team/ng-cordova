@@ -39,6 +39,17 @@
 				<li><a href="/build">Custom Build</a></li>
 				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
 				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li class="nav-search-bar">
+					<input class="nav-input" type="text" placeholder="Search docs" id="searchInput"><i class="ion-ios-search"></i>
+					<ul class="results-dropdown" id="searchResults">
+						<script id="template" type="text/html">
+							<li><a href="<%= link %>"><%= title %></a></li>
+						</script>
+					</ul>
+					<ul class="no-results-dropdown" id="noSearchResults">
+						<li>No results found</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</nav>
