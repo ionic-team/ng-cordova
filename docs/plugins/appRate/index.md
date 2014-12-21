@@ -10,7 +10,7 @@ icon-android: true
 icon-windows: false
 ---
 
-The [AdMob](https://github.com/floatinghotpot/cordova-admob-pro) plugin presents AdMob Ads in Mobile App/Games natively from JavaScript.
+The [AppRate](https://github.com/pushandplay/cordova-plugin-apprate) plugin makes it easy to prompt the user to rate your app, either no or later, or never.
 
 
 ```bash
