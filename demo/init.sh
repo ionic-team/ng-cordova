@@ -19,6 +19,7 @@ ap splashscreen
 ap statusbar
 ap vibration
 ap media
+ap inappbrowser
 
 #read appID
 #read appName
