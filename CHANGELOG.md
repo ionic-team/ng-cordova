@@ -18,7 +18,6 @@ A new release to reflect a few changes made to the docs and code respectively. M
 - **Media** plugin: reduce promisifcation
 - **StatusBar** : `isVisible` is not a method, but a value
 - **Bower** -- update dependency to `>= 1.2.23`
-- 
 
 
 # 0.1.8-alpha (12-11-2014)
