@@ -403,22 +403,22 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 //  install   :   cordova plugin add org.apache.cordova.battery-status
 //  link      :   https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md
 
-angular.module('ngCordova.plugins.battery-status', [])
+angular.module('ngCordova.plugins.batteryStatus', [])
 
   .factory('$cordovaBatteryStatus', ['$rootScope', '$window', function ($rootScope, $window) {
 
     var scope = $rootScope.$new();
 
-    $window.addEventListener('batterystatus', function (event) {
-      scope.$broadcast('batterystatus', event);
+    $window.addEventListener('batterystatus', function (status) {
+      scope.$broadcast('batterystatus', status);
     }, false);
 
-    $window.addEventListener('batterycritical', function (event) {
-      scope.$broadcast('batterycritical', event);
+    $window.addEventListener('batterycritical', function (status) {
+      scope.$broadcast('batterycritical', status);
     }, false);
 
-    $window.addEventListener('batterylow', function (event) {
-      scope.$broadcast('batterylow', event);
+    $window.addEventListener('batterylow', function (status) {
+      scope.$broadcast('batterylow', status);
     }, false);
 
     return scope;
@@ -3534,7 +3534,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
   'ngCordova.plugins.brightness',
-  'ngCordova.plugins.battery-status',
+  'ngCordova.plugins.batteryStatus',
   'ngCordova.plugins.ble',
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.calendar',

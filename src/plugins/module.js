@@ -8,7 +8,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
   'ngCordova.plugins.brightness',
-  'ngCordova.plugins.battery-status',
+  'ngCordova.plugins.batteryStatus',
   'ngCordova.plugins.ble',
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.calendar',
