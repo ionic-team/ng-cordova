@@ -30,7 +30,7 @@ angular.module('demo', [
   'demo.touchid.ctrl'
 ])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($rootScope, $ionicPlatform, $cordovaNetwork) {
 
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -39,6 +39,19 @@ angular.module('demo', [
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+
+      $cordovaNetwork.watchOffline();
+      $cordovaNetwork.watchOnline();
+
+
+      $rootScope.$on("networkOffline", function () {
+        alert("Device is now Offline!");
+      });
+
+
+      $rootScope.$on("networkOnline", function () {
+        alert("Device is Online!");
+      })
     })
   })
 

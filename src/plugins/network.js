@@ -3,10 +3,9 @@
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', [function () {
+  .factory('$cordovaNetwork', ['$rootScope', function ($rootScope) {
 
     return {
-
       getNetwork: function () {
         return navigator.connection.type;
       },
@@ -21,8 +20,34 @@ angular.module('ngCordova.plugins.network', [])
         return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
       },
 
-      watchNetwork: function () {
-        // function for watching online / offline
+      watchOffline: function () {
+        document.addEventListener("offline", function () {
+          var networkState = navigator.connection.type;
+          $rootScope.$apply(function () {
+            $rootScope.$broadcast('networkOffline', networkState);
+          });
+        }, false);
+      },
+
+      watchOnline: function () {
+        document.addEventListener("online", function () {
+          var networkState = navigator.connection.type;
+          $rootScope.$apply(function () {
+            $rootScope.$broadcast('networkOnline', networkState);
+          });
+        }, false);
+      },
+
+      clearOfflineWatch: function () {
+        document.removeEventListener("offline", function () {
+          $rootScope.$$listeners.networkOffline = []; // not clearing watch --broken clear
+        }, false)
+      },
+
+      clearOnlineWatch: function () {
+        document.removeEventListener("online", function () {
+          $rootScope.$$listeners.networkOnline = []; // not clearing watch --broken clear
+        }, false)
       }
     };
   }]);

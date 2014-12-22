@@ -14,7 +14,7 @@ module.exports = {
 
   dist: 'dist',
   demo : {
-    ngCordova : 'demo/www/lib/ngCordova',
+    ngCordova : 'demo/www/lib/ngCordova/dist',
     lib : 'demo/www/lib',
     www : 'demo/www'
   },
