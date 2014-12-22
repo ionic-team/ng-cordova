@@ -101,5 +101,32 @@ angular.module('demo.oauth.ctrl', [])
       });
     };
 
+    $scope.foursquareLogin = function () {
+        $cordovaOauth.foursquare("CLIENT_ID_HERE").then(function (result) {
+            $scope.oauthResult = result;
+        }, function (error) {
+            $scope.oauthResult = "OAUTH ERROR (see console)";
+            console.log(error);
+        });
+    };
+
+    $scope.salesforceLogin = function () {
+        $cordovaOauth.salesforce("LOGIN_URL_HERE", "CLIENT_ID_HERE").then(function (result) {
+            $scope.oauthResult = result;
+        }, function (error) {
+            $scope.oauthResult = "OAUTH ERROR (see console)";
+            console.log(error);
+        });
+    };
+
+    $scope.stravaLogin = function () {
+        $cordovaOauth.strava("CLIENT_ID_HERE", "CLIENT_SECRET_HERE", ["SCOPE1", "SCOPE2"]).then(function (result) {
+            $scope.oauthResult = result;
+        }, function (error) {
+            $scope.oauthResult = "OAUTH ERROR (see console)";
+            console.log(error);
+        });
+    };
+
 
   });
