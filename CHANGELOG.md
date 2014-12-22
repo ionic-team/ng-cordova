@@ -1,9 +1,158 @@
 
+# 0.1.9-alpha (12-22-2014)
+
+A new release to reflect a few changes made to the docs and code respectively. Mainly `v0.1.9-alpha` has been released to fix the AngularJS dependency issue, which now resolves to anything higher than `v1.2.23`.
+
+### NEW
+
+- **MAJOR docs refractor**
+- **Brightness** plugin
+- **App Version** plugin
+- **ActionSheet** plugin
+- **Email Composer** plugin
+- **Image Picker** plugin
+
+
+### Fix
+- **App** Rate plugin: add dep injection
+- **Media** plugin: reduce promisifcation
+- **StatusBar** : `isVisible` is not a method, but a value
+- **Bower** -- update dependency to `>= 1.2.23`
+
+
+# 0.1.8-alpha (12-11-2014)
+
+### NEW
+- **App Rate** plugin
+- **In App Browser** plugin
+- **HTTPd** plugin 
+- **Video Capture Plus** plugin
+- **GoogleAds** plugin
+- **FacebookAds** plugin
+- **FlurryAds** plugin
+- **iAd** plugin
+- **mMediaAds** plugin
+- **mobfoxAds** plugin
+- **mopubAds** plugin
+- **0Auth** - twitter, reddit, foresquare support
+- **Date Picker** - Insert default options on datePicker 
+
+### FIXES
+- **Module** - add zip plugin injection dependency
+- **Push Notification** - 	wrapping $broadcast in an $apply() statement to bring notification into scope 
+- **Local Notification** -  Updated localNotification wrapper with hasPermission and promptForPermission methods
+- **Bluetooth Serial** - fix callback from `resolve` to `notify` for constant updates
+- **File** - add timeout option to upload
+
+### Breaking Changes
+
+Changes were made to the promisification of `geolocation`, `deviceOrientation` and `deviceMotion` plugin `watch` methods.
+
+**Before**:
+```
+watch = $cordovaDeviceMotion.watchAcceleration(options);
+
+watch.promise.then(
+     function() {/* unused */},  
+     function(err) {},
+     function(acceleration) {
+});
+
+$cordovaDeviceMotion.clearWatch(watch.watchID);
+```
+
+**Now**:
+```
+watch = $cordovaDeviceMotion.watchAcceleration(options).then(
+     function() {/* unused */},  
+     function(err) {},
+     function(acceleration) {
+});
+
+watch.clear();
+// or 
+$cordovaDeviceMotion.clearWatch(watch);
+```
+
+The same goes for `geolocation` and `DeviceOrientation`.
+
+
+
+
+
+
+# 0.1.7-alpha (11-05-2014)
+
+This is a micro-release to fix the issue with `bower` installing `v0.1.5-alpha`, resolving #418.
+
+### New
+- **Demo** - FB web-dev api is now working ec053ad  71d3961
+- **PushNotifications** - 	Angular event broadcast for push notifications  da0ef69
+- **Contact* - new `pickContact` method 01319b853da56eeb7893abc93fb1ebbb2bb9fbe7
+
+### Fixes
+- **Printer** - fix `isAvailable` method + promise for `print` method  ef452ed
+
+
+
+
+# 0.1.6-alpha (10-30-2014)
+
+This is a small release to reflect a few fixes in the **Facebook plugin**. The docs at [ngcordova.com/docs](http://ngcordova.com/docs) are now aligned with the fixes made. 
+
+### New
+
+- [Bluetooth Low Energy plugin]() 7540bf2
+- [Badge plugin](https://github.com/katzer/cordova-plugin-badge) 69fe14f
+- AuthO plugin (web based) c775650
+- AppRating plugin (still in development) 9aead73
+
+
+### Fixes
+
+- **Facebook** - refractor appID 48cb327
+- **Facebook** - add version parameter to setAppID method	 0e6f7b1
+- **Flashlight** - add toggle method 0e24273
+- **Spinner Dialog** -  add `fixed` parameter to stop touch from removing spinner dialog d1a01df
+
+
+# 0.1.5-alpha (10-17-2014)
+
+The Facebook Plugin is now supported with many new plugins added and bugs fixed!
+
+### Highlights
+
+**FB plugin** - The highly demanded Facebook plugin now has docs and a working example in the demo file of ngCordova.
+
+**TouchID** - Add iOS TouchID authentication to your apps easily with the touchid plugin. See the demo app for a working example.
+
+**Travis CI testing** - We've integrated ngCordova into TravisCI, and have builds tested on each commit.
+
+### New
+
+- [TouchID plugin](https://github.com/leecrossley/cordova-plugin-touchid)
+- [ZIP plugin](https://github.com/MobileChromeApps/zip)
+- [Calendar plugin](https://github.com/apache/cordova-plugin-contacts)
+- [Google Analytics plugin](https://github.com/phonegap-build/GAPlugin)
+- Date Picker now has promises
+- PinDialog now has promises
+- Replacing javascript `window` with angular `$window`
+- Testing for many plugins (check the /test folder)
+
+### Fix
+
+- Dialogs plugin : fixed prompt and confirm methods to return button index and input (if exists)
+- Keychain : fix issue where keychain is not initialized properly
+- StatusBar : fix the method overlaysWebView to honour the boolean param
+- Remove ngCordova.min.js from bower for better grunt integration
+- Fixes to the File Plugin (more fixes coming soon)
+
+
+
+
 # 0.1.4-alpha (09-08-2014)
 
-### Plugins
-
-#### New
+### New
 
 - [Progress Indicator plugin](http://pbernasconi.github.io/cordova-progressIndicator/)  d70f387
 - [Clipboard plugin](https://github.com/VersoSolutions/CordovaClipboard) f54bdc8
@@ -21,7 +170,7 @@
 
 
 
-#### Fixes
+### Fixes
 
 - **Dialogs** - Adding promise support
 - **Device Orientation** - Fixed compass.clearWatch missing the watchID parameter 9367bcf
@@ -40,12 +189,7 @@
 -  **Social Sharing** - Fixed `canShareVia` (subject was missing)
 -  **Social Sharing** - Removed some now obsolete TODO's/notes
 
-
-
-### Docs
-
-
-#### New
+### New
 
 - A new side-menu for quick navigation
 
@@ -61,10 +205,7 @@
 - Contributing guidelines
 - CHANGELOG.md
 
-
-
 ### Demo
-
 - **Completely new demos** with many new plugins 49d991f
 - Quick-view the source code in the app
 - Flashlight plugin
@@ -72,9 +213,7 @@
 - Preferences plugin
 - Barcode Scanner plugin
 
-
 ### Other
-
 - **ng-cordova-mocks** - Mock are now in ngCordova! Documentation is **coming soon**, with examples in the demo too
 - Adding js-lint testing in gulp 72e513b
 - Adding .editorconfig for better contributing
@@ -85,7 +224,6 @@
 # 0.1.3-alpha (06-11-2014)
 
 ### NEW
-
  - API Change for Geolocation, DeviceMotion, and DeviceOrientation plugins. They now return an object of the form:
 ```javascript
 {
