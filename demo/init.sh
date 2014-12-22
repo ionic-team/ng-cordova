@@ -33,3 +33,4 @@ cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git         # toast
 cordova plugin add uk.co.ilee.touchid       # touchID
 cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git    # AppRate
+cordova plugin add https://github.com/katzer/cordova-plugin-local-notifications.git
