@@ -3,7 +3,7 @@
 
 A new release to reflect a few changes made to the docs and code respectively. Mainly `v0.1.9-alpha` has been released to fix the AngularJS dependency issue, which now resolves to anything higher than `v1.2.23`.
 
-## NEW
+### NEW
 
 - **MAJOR docs refractor**
 - **Brightness** plugin
@@ -13,7 +13,7 @@ A new release to reflect a few changes made to the docs and code respectively. M
 - **Image Picker** plugin
 
 
-## Fix
+### Fix
 - **App** Rate plugin: add dep injection
 - **Media** plugin: reduce promisifcation
 - **StatusBar** : `isVisible` is not a method, but a value
@@ -23,7 +23,7 @@ A new release to reflect a few changes made to the docs and code respectively. M
 
 # 0.1.8-alpha (12-11-2014)
 
-## NEW
+### NEW
 - **App Rate** plugin
 - **In App Browser** plugin
 - **HTTPd** plugin 
@@ -38,14 +38,14 @@ A new release to reflect a few changes made to the docs and code respectively. M
 - **0Auth** - twitter, reddit, foresquare support
 - **Date Picker** - Insert default options on datePicker 
 
-## FIXES
+### FIXES
 - **Module** - add zip plugin injection dependency
 - **Push Notification** - 	wrapping $broadcast in an $apply() statement to bring notification into scope 
 - **Local Notification** -  Updated localNotification wrapper with hasPermission and promptForPermission methods
 - **Bluetooth Serial** - fix callback from `resolve` to `notify` for constant updates
 - **File** - add timeout option to upload
 
-## Breaking Changes
+### Breaking Changes
 
 Changes were made to the promisification of `geolocation`, `deviceOrientation` and `deviceMotion` plugin `watch` methods.
 
@@ -86,12 +86,12 @@ The same goes for `geolocation` and `DeviceOrientation`.
 
 This is a micro-release to fix the issue with `bower` installing `v0.1.5-alpha`, resolving #418.
 
-## New
+### New
 - **Demo** - FB web-dev api is now working ec053ad  71d3961
 - **PushNotifications** - 	Angular event broadcast for push notifications  da0ef69
 - **Contact* - new `pickContact` method 01319b853da56eeb7893abc93fb1ebbb2bb9fbe7
 
-## Fixes
+### Fixes
 - **Printer** - fix `isAvailable` method + promise for `print` method  ef452ed
 
 
@@ -101,7 +101,7 @@ This is a micro-release to fix the issue with `bower` installing `v0.1.5-alpha`,
 
 This is a small release to reflect a few fixes in the **Facebook plugin**. The docs at [ngcordova.com/docs](http://ngcordova.com/docs) are now aligned with the fixes made. 
 
-## New
+### New
 
 - [Bluetooth Low Energy plugin]() 7540bf2
 - [Badge plugin](https://github.com/katzer/cordova-plugin-badge) 69fe14f
@@ -109,7 +109,7 @@ This is a small release to reflect a few fixes in the **Facebook plugin**. The d
 - AppRating plugin (still in development) 9aead73
 
 
-## Fixes
+### Fixes
 
 - **Facebook** - refractor appID 48cb327
 - **Facebook** - add version parameter to setAppID method	 0e6f7b1
@@ -121,7 +121,7 @@ This is a small release to reflect a few fixes in the **Facebook plugin**. The d
 
 The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 
-## Highlights
+### Highlights
 
 **FB plugin** - The highly demanded Facebook plugin now has docs and a working example in the demo file of ngCordova.
 
@@ -129,7 +129,7 @@ The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 
 **Travis CI testing** - We've integrated ngCordova into TravisCI, and have builds tested on each commit.
 
-## New
+### New
 
 - [TouchID plugin](https://github.com/leecrossley/cordova-plugin-touchid)
 - [ZIP plugin](https://github.com/MobileChromeApps/zip)
@@ -152,8 +152,6 @@ The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 
 
 # 0.1.4-alpha (09-08-2014)
-
-## Plugins
 
 ### New
 
@@ -192,11 +190,7 @@ The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 -  **Social Sharing** - Fixed `canShareVia` (subject was missing)
 -  **Social Sharing** - Removed some now obsolete TODO's/notes
 
-
-
-
-
-## New
+### New
 
 - A new side-menu for quick navigation
 
@@ -212,10 +206,7 @@ The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 - Contributing guidelines
 - CHANGELOG.md
 
-
-
-## Demo
-
+### Demo
 - **Completely new demos** with many new plugins 49d991f
 - Quick-view the source code in the app
 - Flashlight plugin
@@ -223,9 +214,7 @@ The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 - Preferences plugin
 - Barcode Scanner plugin
 
-
-## Other
-
+### Other
 - **ng-cordova-mocks** - Mock are now in ngCordova! Documentation is **coming soon**, with examples in the demo too
 - Adding js-lint testing in gulp 72e513b
 - Adding .editorconfig for better contributing
@@ -235,8 +224,7 @@ The Facebook Plugin is now supported with many new plugins added and bugs fixed!
 
 # 0.1.3-alpha (06-11-2014)
 
-## NEW
-
+### NEW
  - API Change for Geolocation, DeviceMotion, and DeviceOrientation plugins. They now return an object of the form:
 ```javascript
 {
@@ -258,7 +246,7 @@ And lots of fixes!
 
 # 0.1.2-alpha (06-11-2014)
 
-## NEW
+### NEW
 
 - Bower support
 - File Plugin
@@ -273,7 +261,7 @@ And lots of fixes!
 - Toast Plugin
 
 
-## FEATURES
+### FEATURES
 
 - Progress event to **File Plugin** `upload()` + `download()`
 - More commands in **Push Notification plugin**
@@ -281,7 +269,7 @@ And lots of fixes!
 - Use `notify` not `resolve` with `watchHeading`
 
 
-## FIXES
+### FIXES
 
 - Remove options in **BarcodeScanner** : `scan()`
 - Remove options in **Device Motion** : `getCurrentAcceleration()`
@@ -291,10 +279,10 @@ And lots of fixes!
  
 # 0.1.1-alpha (06-03-2014)
 
-## NEW
+### NEW
 - StatusBar
 
-## FIXES
+### FIXES
 - Renamed Accelerometer and Compass to deviceMotion and deviceOrientation, respectively
 
 
