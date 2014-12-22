@@ -410,15 +410,15 @@ angular.module('ngCordova.plugins.battery-status', [])
     var scope = $rootScope.$new();
 
     $window.addEventListener('batterystatus', function (event) {
-      scope.$emit('batterystatus', event.detail);
+      scope.$broadcast('batterystatus', event);
     }, false);
 
     $window.addEventListener('batterycritical', function (event) {
-      scope.$emit('batterycritical', event.detail);
+      scope.$broadcast('batterycritical', event);
     }, false);
 
     $window.addEventListener('batterylow', function (event) {
-      scope.$emit('batterylow', event.detail);
+      scope.$broadcast('batterylow', event);
     }, false);
 
     return scope;
@@ -3788,7 +3788,7 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', ['$rootScope', function ($rootScope) {
+  .factory('$cordovaNetwork', ['$rootScope', '$document', function ($rootScope, $document) {
 
     return {
       getNetwork: function () {
@@ -3806,7 +3806,7 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       watchOffline: function () {
-        document.addEventListener("offline", function () {
+        $document.addEventListener("offline", function () {
           var networkState = navigator.connection.type;
           $rootScope.$apply(function () {
             $rootScope.$broadcast('networkOffline', networkState);
@@ -3815,7 +3815,7 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       watchOnline: function () {
-        document.addEventListener("online", function () {
+        $document.addEventListener("online", function () {
           var networkState = navigator.connection.type;
           $rootScope.$apply(function () {
             $rootScope.$broadcast('networkOnline', networkState);
@@ -3824,13 +3824,13 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       clearOfflineWatch: function () {
-        document.removeEventListener("offline", function () {
+        $document.removeEventListener("offline", function () {
           $rootScope.$$listeners.networkOffline = []; // not clearing watch --broken clear
         }, false)
       },
 
       clearOnlineWatch: function () {
-        document.removeEventListener("online", function () {
+        $document.removeEventListener("online", function () {
           $rootScope.$$listeners.networkOnline = []; // not clearing watch --broken clear
         }, false)
       }
