@@ -1,4 +1,3 @@
-
 # 0.1.9-alpha (12-22-2014)
 
 A new release to reflect a few changes made to the docs and code respectively. Mainly `v0.1.9-alpha` has been released to fix the AngularJS dependency issue, which now resolves to anything higher than `v1.2.23`.
@@ -25,7 +24,7 @@ A new release to reflect a few changes made to the docs and code respectively. M
 ### NEW
 - **App Rate** plugin
 - **In App Browser** plugin
-- **HTTPd** plugin 
+- **HTTPd** plugin
 - **Video Capture Plus** plugin
 - **GoogleAds** plugin
 - **FacebookAds** plugin
@@ -35,11 +34,11 @@ A new release to reflect a few changes made to the docs and code respectively. M
 - **mobfoxAds** plugin
 - **mopubAds** plugin
 - **0Auth** - twitter, reddit, foresquare support
-- **Date Picker** - Insert default options on datePicker 
+- **Date Picker** - Insert default options on datePicker
 
 ### FIXES
 - **Module** - add zip plugin injection dependency
-- **Push Notification** - 	wrapping $broadcast in an $apply() statement to bring notification into scope 
+- **Push Notification** - 	wrapping $broadcast in an $apply() statement to bring notification into scope
 - **Local Notification** -  Updated localNotification wrapper with hasPermission and promptForPermission methods
 - **Bluetooth Serial** - fix callback from `resolve` to `notify` for constant updates
 - **File** - add timeout option to upload
@@ -53,7 +52,7 @@ Changes were made to the promisification of `geolocation`, `deviceOrientation` a
 watch = $cordovaDeviceMotion.watchAcceleration(options);
 
 watch.promise.then(
-     function() {/* unused */},  
+     function() {/* unused */},
      function(err) {},
      function(acceleration) {
 });
@@ -64,13 +63,13 @@ $cordovaDeviceMotion.clearWatch(watch.watchID);
 **Now**:
 ```
 watch = $cordovaDeviceMotion.watchAcceleration(options).then(
-     function() {/* unused */},  
+     function() {/* unused */},
      function(err) {},
      function(acceleration) {
 });
 
 watch.clear();
-// or 
+// or
 $cordovaDeviceMotion.clearWatch(watch);
 ```
 
@@ -98,7 +97,7 @@ This is a micro-release to fix the issue with `bower` installing `v0.1.5-alpha`,
 
 # 0.1.6-alpha (10-30-2014)
 
-This is a small release to reflect a few fixes in the **Facebook plugin**. The docs at [ngcordova.com/docs](http://ngcordova.com/docs) are now aligned with the fixes made. 
+This is a small release to reflect a few fixes in the **Facebook plugin**. The docs at [ngcordova.com/docs](http://ngcordova.com/docs) are now aligned with the fixes made.
 
 ### New
 
@@ -275,7 +274,7 @@ And lots of fixes!
 
 
 
- 
+
 # 0.1.1-alpha (06-03-2014)
 
 ### NEW
@@ -305,4 +304,4 @@ ngCordova is ready for some bleeding edge testing. So far we support the followi
 - https://github.com/wildabeast/BarcodeScanner
 
 
-Give it a try, and please report lots of issues and contribute PRs. :icecream: 
+Give it a try, and please report lots of issues and contribute PRs. :icecream:

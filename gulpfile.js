@@ -10,8 +10,10 @@ var gulp = require('gulp'),
   karmaConf = require('./config/karma.conf.js'),
   rename = require('gulp-rename'),
   shell = require('gulp-shell'),
-  prettify = require('gulp-prettify');
-
+  prettify = require('gulp-prettify'),
+  changelog = require('conventional-changelog'),
+  q = require('q'),
+  fs = require('fs');
 
 gulp.task('default', ['build']);
 
@@ -40,6 +42,28 @@ gulp.task('build', function () {
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(gulp.dest(buildConfig.demo.ngCordova));
 });
+
+gulp.task('changelog', function () {
+  var version = buildConfig.versionData.version;
+  var dest = 'CHANGELOG.md';
+  return makeChangelog(version).then(function (log) {
+    fs.writeFileSync(dest, log);
+  });
+});
+
+function makeChangelog(version) {
+  var file = __dirname + '/CHANGELOG.md';
+  var deferred = q.defer();
+  changelog({
+    repository: 'https://github.com/driftyco/ng-cordova',
+    version: version,
+    file: file
+  }, function (err, log) {
+    if (err) deferred.reject(err);
+    else deferred.resolve(log);
+  });
+  return deferred.promise;
+}
 
 gulp.task('karma', function (done) {
   karmaConf.singleRun = true;
