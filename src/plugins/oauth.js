@@ -61,6 +61,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 browserRef.close();
               }
             });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
+            });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
           }
@@ -100,6 +103,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                   });
                 browserRef.close();
               }
+            });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
             });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
@@ -144,6 +150,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 browserRef.close();
               }
             });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
+            });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
           }
@@ -181,6 +190,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                   });
                 browserRef.close();
               }
+            });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
             });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
@@ -224,6 +236,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 browserRef.close();
               }
             });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
+            });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
           }
@@ -266,6 +281,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 browserRef.close();
               }
             });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
+            });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
           }
@@ -306,6 +324,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 }
                 browserRef.close();
               }
+            });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
             });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
@@ -348,6 +369,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 browserRef.close();
               }
             });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
+            });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
           }
@@ -385,6 +409,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                   });
                 browserRef.close();
               }
+            });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
             });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
@@ -464,6 +491,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                       browserRef.close();
                     }
                   });
+                  browserRef.addEventListener('exit', function(event) {
+                      deferred.reject("The sign in flow was canceled");
+                  });
                 })
                 .error(function (error) {
                   deferred.reject(error);
@@ -508,6 +538,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 browserRef.close();
               }
             });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
+            });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
           }
@@ -548,6 +581,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                 }
                 browserRef.close();
               }
+            });
+            browserRef.addEventListener('exit', function(event) {
+                deferred.reject("The sign in flow was canceled");
             });
           } else {
             deferred.reject("Could not find InAppBrowser plugin");
@@ -606,6 +642,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                             browserRef.close();
                         }
                     });
+                    browserRef.addEventListener('exit', function(event) {
+                        deferred.reject("The sign in flow was canceled");
+                    });
                 } else {
                     deferred.reject("Could not find InAppBrowser plugin");
                 }
@@ -642,6 +681,9 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                             });
                             browserRef.close();
                         }
+                    });
+                    browserRef.addEventListener('exit', function(event) {
+                        deferred.reject("The sign in flow was canceled");
                     });
                 } else {
                     deferred.reject("Could not find InAppBrowser plugin");
