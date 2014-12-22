@@ -20,6 +20,7 @@ ap statusbar
 ap vibration
 ap media
 ap inappbrowser
+ap battery-status
 
 #read appID
 #read appName

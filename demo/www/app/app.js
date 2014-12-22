@@ -37,7 +37,7 @@ angular.module('demo', [
   'demo.vibration.ctrl'
 ])
 
-  .run(function ($rootScope, $ionicPlatform, $cordovaNetwork) {
+  .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus) {
 
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -58,6 +58,10 @@ angular.module('demo', [
 
       $rootScope.$on("networkOnline", function () {
         alert("Device is Online!");
+      });
+
+      $cordovaBatteryStatus.$on("batterystatus", function (status) {
+        alert("status :" + status);
       })
     })
   })
