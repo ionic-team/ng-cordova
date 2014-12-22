@@ -4,6 +4,7 @@ angular.module('demo', [
 
   // modules
   // 'demo.adMob.ctrl',  // not working???
+  'demo.appAvailability.ctrl',
   'demo.appRate.ctrl',
   'demo.barcodeScanner.ctrl',
   'demo.batteryStatus.ctrl',
@@ -15,19 +16,25 @@ angular.module('demo', [
   'demo.deviceMotion.ctrl',
   'demo.deviceOrientation.ctrl',
   'demo.dialogs.ctrl',
-  'demo.flashlight.ctrl',
-  'demo.file.ctrl',
   'demo.facebook.ctrl',
+  'demo.file.ctrl',
+  'demo.flashlight.ctrl',
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
+  'demo.googleAnalytics.ctrl',
+  'demo.localNotification.ctrl',
+  'demo.media.ctrl',
   'demo.network.ctrl',
   'demo.oauth.ctrl',
-  'demo.media.ctrl',
   'demo.preferences.ctrl',
+  'demo.printer.ctrl',
+  'demo.pushNotifications.ctrl',
+  'demo.socialSharing.ctrl',
+  'demo.sqlite.ctrl',
   'demo.statusbar.ctrl',
   'demo.toast.ctrl',
-  'demo.vibration.ctrl',
-  'demo.touchid.ctrl'
+  'demo.touchid.ctrl',
+  'demo.vibration.ctrl'
 ])
 
   .run(function ($rootScope, $ionicPlatform, $cordovaNetwork) {
@@ -70,6 +77,36 @@ angular.module('demo', [
         templateUrl: "app/menu.html"
       })
 
+      .state('appAvailability', {
+        url: '/appAvailability',
+        templateUrl: 'app/appAvailability/appAvailability.html',
+        controller: "AppAvailabilityCtrl"
+      })
+
+      .state('appRate', {
+        url: '/appRate',
+        templateUrl: 'app/appRate/appRate.html',
+        controller: "AppRateCtrl"
+      })
+
+
+      .state('barcodeScanner', {
+        url: '/barcodeScanner',
+        templateUrl: 'app/barcodeScanner/barcodeScanner.html',
+        controller: "BarcodeScannerCtrl"
+      })
+
+      .state('batteryStatus', {
+        url: '/batteryStatus',
+        templateUrl: 'app/batteryStatus/batteryStatus.html',
+        controller: "BatteryStatusCtrl"
+      })
+
+      .state('camera', {
+        url: '/camera',
+        templateUrl: 'app/camera/camera.html',
+        controller: "CameraCtrl"
+      })
 
       .state('clipboard', {
         url: '/clipboard',
@@ -77,10 +114,42 @@ angular.module('demo', [
         controller: "ClipboardCtrl"
       })
 
+      .state('contacts', {
+        url: '/contacts',
+        templateUrl: 'app/contacts/contacts.html',
+        controller: "ContactsCtrl"
+      })
+
+
       .state('datePicker', {
         url: '/datePicker',
         templateUrl: 'app/datePicker/datePicker.html',
         controller: "DatePickerCtrl"
+      })
+
+      .state('device', {
+        url: '/device',
+        templateUrl: 'app/device/device.html',
+        controller: "DeviceCtrl"
+      })
+
+      .state('deviceMotion', {
+        url: '/deviceMotion',
+        templateUrl: 'app/deviceMotion/deviceMotion.html',
+        controller: "DeviceMotionCtrl"
+      })
+
+
+      .state('deviceOrientation', {
+        url: '/deviceOrientation',
+        templateUrl: 'app/deviceOrientation/deviceOrientation.html',
+        controller: "DeviceOrientationCtrl"
+      })
+
+      .state('dialogs', {
+        url: '/dialogs',
+        templateUrl: 'app/dialogs/dialogs.html',
+        controller: "DialogsCtrl"
       })
 
       .state('facebook', {
@@ -89,17 +158,28 @@ angular.module('demo', [
         controller: "FacebookCtrl"
       })
 
-
-      .state('contacts', {
-        url: '/contacts',
-        templateUrl: 'app/contacts/contacts.html',
-        controller: "ContactsCtrl"
-      })
-
       .state('file', {
         url: '/file',
         templateUrl: 'app/file/file.html',
         controller: "FileCtrl"
+      })
+
+      .state('flashlight', {
+        url: '/flashlight',
+        templateUrl: 'app/flashlight/flashlight.html',
+        controller: "FlashlightCtrl"
+      })
+
+      .state('geolocation', {
+        url: '/geolocation',
+        templateUrl: 'app/geolocation/geolocation.html',
+        controller: "GeolocationCtrl"
+      })
+
+      .state('globalization', {
+        url: '/global',
+        templateUrl: 'app/globalization/globalization.html',
+        controller: "GlobalizationCtrl"
       })
 
       .state('googleAnalytics', {
@@ -108,10 +188,22 @@ angular.module('demo', [
         controller: "GoogleAnalyticsCtrl"
       })
 
+      .state('localNotification', {
+        url: '/localNotification',
+        templateUrl: 'app/localNotification/localNotification.html',
+        controller: "LocalNotificationCtrl"
+      })
+
       .state('media', {
         url: '/media',
         templateUrl: 'app/media/media.html',
         controller: "MediaCtrl"
+      })
+
+      .state('network', {
+        url: '/network',
+        templateUrl: 'app/network/network.html',
+        controller: "NetworkCtrl"
       })
 
       .state('oauth', {
@@ -120,10 +212,22 @@ angular.module('demo', [
         controller: "OauthCtrl"
       })
 
+      .state('preferences', {
+        url: '/preferences',
+        templateUrl: 'app/preferences/preferences.html',
+        controller: "PreferencesCtrl"
+      })
+
       .state('printer', {
         url: '/printer',
         templateUrl: 'app/printer/printer.html',
         controller: "PrinterCtrl"
+      })
+
+      .state('pushNotifications', {
+        url: '/pushNotifications',
+        templateUrl: 'app/pushNotifications/pushNotifications.html',
+        controller: "PushNotificationsCtrl"
       })
 
       .state('socialSharing', {
@@ -138,17 +242,6 @@ angular.module('demo', [
         controller: "SqliteCtrl"
       })
 
-      .state('barcodeScanner', {
-        url: '/barcodeScanner',
-        templateUrl: 'app/barcodeScanner/barcodeScanner.html',
-        controller: "BarcodeScannerCtrl"
-      })
-
-      .state('batteryStatus', {
-        url: '/batteryStatus',
-        templateUrl: 'app/batteryStatus/batteryStatus.html',
-        controller: "BatteryStatusCtrl"
-      })
 
       .state('statusbar', {
         url: '/statusbar',
@@ -156,71 +249,6 @@ angular.module('demo', [
         controller: "StatusbarCtrl"
       })
 
-      .state('preferences', {
-        url: '/preferences',
-        templateUrl: 'app/preferences/preferences.html',
-        controller: "PreferencesCtrl"
-      })
-
-
-      .state('flashlight', {
-        url: '/flashlight',
-        templateUrl: 'app/flashlight/flashlight.html',
-        controller: "FlashlightCtrl"
-      })
-
-      .state('deviceMotion', {
-        url: '/deviceMotion',
-        templateUrl: 'app/deviceMotion/deviceMotion.html',
-        controller: "DeviceMotionCtrl"
-      })
-
-      .state('network', {
-        url: '/network',
-        templateUrl: 'app/network/network.html',
-        controller: "NetworkCtrl"
-      })
-
-      .state('dialogs', {
-        url: '/dialogs',
-        templateUrl: 'app/dialogs/dialogs.html',
-        controller: "DialogsCtrl"
-      })
-
-      .state('device', {
-        url: '/device',
-        templateUrl: 'app/device/device.html',
-        controller: "DeviceCtrl"
-      })
-
-      .state('geolocation', {
-        url: '/geolocation',
-        templateUrl: 'app/geolocation/geolocation.html',
-        controller: "GeolocationCtrl"
-      })
-
-      .state('globalization', {
-        url: '/global',
-        templateUrl: 'app/globalization/globalization.html',
-        controller: "GlobalizationCtrl"
-      })
-      .state('camera', {
-        url: '/camera',
-        templateUrl: 'app/camera/camera.html',
-        controller: "CameraCtrl"
-      })
-
-      .state('vibration', {
-        url: '/vibration',
-        templateUrl: 'app/vibration/vibration.html',
-        controller: "VibrationCtrl"
-      })
-
-      .state('deviceOrientation', {
-        url: '/deviceOrientation',
-        templateUrl: 'app/deviceOrientation/deviceOrientation.html',
-        controller: "DeviceOrientationCtrl"
-      })
 
       .state('toast', {
         url: '/toast',
@@ -234,11 +262,12 @@ angular.module('demo', [
         controller: "TouchIDCtrl"
       })
 
-      .state('appRate', {
-        url: '/appRate',
-        templateUrl: 'app/appRate/appRate.html',
-        controller: "AppRateCtrl"
+      .state('vibration', {
+        url: '/vibration',
+        templateUrl: 'app/vibration/vibration.html',
+        controller: "VibrationCtrl"
       });
+
 
     $urlRouterProvider.otherwise('/menu');
   });
