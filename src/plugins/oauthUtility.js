@@ -45,7 +45,22 @@ angular.module("ngCordova.plugins.oauthUtility", [])
         } else {
           return "Missing jsSHA JavaScript library";
         }
-      }
+      },
+
+    /*
+    * Create Random String Nonce
+    *
+    * @param    integer length
+    * @return   string
+    */
+    createNonce: function(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for(var i = 0; i < length; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
 
     };
 
