@@ -106,20 +106,20 @@ angular.module('ngCordova.plugins.localNotification', [])
         $window.plugin.notification.local.setDefaults(Object);
       },
 
-      onadd: function () {
-        return $window.plugin.notification.local.onadd;
+      onAdd: function (callback) {
+        $window.plugin.notification.local.onadd = callback;
       },
 
-      ontrigger: function () {
-        return $window.plugin.notification.local.ontrigger;
+      onTrigger: function (callback) {
+        $window.plugin.notification.local.ontrigger = callback;
       },
 
-      onclick: function () {
-        return $window.plugin.notification.local.onclick;
+      onClick: function (callback) {
+        $window.plugin.notification.local.onclick = callback;
       },
 
-      oncancel: function () {
-        return $window.plugin.notification.local.oncancel;
+      onCancel: function (callback) {
+        $window.plugin.notification.local.oncancel = callback;
       }
     };
   }]);
