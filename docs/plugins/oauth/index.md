@@ -40,6 +40,9 @@ module.controller('MyCtrl', function($scope, $cordovaOauth) {
     // $cordovaOauth.reddit(string clientId, string clientSecret, array appScope);
     // $cordovaOauth.twitter(string consumerKey, string consumerSecretKey);
     // $cordovaOauth.meetup(string consumerKey);
+    // $cordovaOauth.foursquare(string clientId);
+    // $cordovaOauth.salesforce(string loginUrl, string clientId);
+    // $cordovaOauth.strava(string clientId, string clientSecret, array appScope);
 });
 ```
 
