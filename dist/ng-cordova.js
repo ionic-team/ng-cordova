@@ -3122,44 +3122,43 @@ angular.module('ngCordova.plugins.localNotification', [])
     return {
       add: function (options, scope) {
         var q = $q.defer();
-        $window.plugin.notification.local.add(
-          options,
-          function (result) {
-            q.resolve(result);
-          },
-          scope);
+        scope = scope || this;
+
+        $window.plugin.notification.local.add(options, function (result) {
+          q.resolve(result);
+        }, scope);
         return q.promise;
       },
 
       cancel: function (id, scope) {
         var q = $q.defer();
-        $window.plugin.notification.local.cancel(
-          id, function (result) {
-            q.resolve(result);
-          }, scope);
+        scope = scope || this;
+
+        $window.plugin.notification.local.cancel(id, function (result) {
+          q.resolve(result);
+        }, scope);
 
         return q.promise;
       },
 
       cancelAll: function (scope) {
         var q = $q.defer();
+        scope = scope || this;
 
-        $window.plugin.notification.local.cancelAll(
-          function (result) {
-            q.resolve(result);
-          }, scope);
+        $window.plugin.notification.local.cancelAll(function (result) {
+          q.resolve(result);
+        }, scope);
 
         return q.promise;
       },
 
       isScheduled: function (id, scope) {
         var q = $q.defer();
+        scope = scope || this;
 
-        $window.plugin.notification.local.isScheduled(
-          id,
-          function (result) {
-            q.resolve(result);
-          }, scope);
+        $window.plugin.notification.local.isScheduled(id, function (result) {
+          q.resolve(result);
+        }, scope);
 
         return q.promise;
       },
@@ -3167,10 +3166,9 @@ angular.module('ngCordova.plugins.localNotification', [])
       hasPermission: function (scope) {
         var q = $q.defer();
 
-        $window.plugin.notification.local.hasPermission(
-          function (badge) {
-            q.resolve(badge);
-          }, scope);
+        $window.plugin.notification.local.hasPermission(function (badge) {
+          q.resolve(badge);
+        }, scope);
 
         return q.promise;
       },
@@ -3182,10 +3180,9 @@ angular.module('ngCordova.plugins.localNotification', [])
       getScheduledIds: function (scope) {
         var q = $q.defer();
 
-        $window.plugin.notification.local.getScheduledIds(
-          function (result) {
-            q.resolve(result);
-          }, scope);
+        $window.plugin.notification.local.getScheduledIds(function (result) {
+          q.resolve(result);
+        }, scope);
 
         return q.promise;
       },
