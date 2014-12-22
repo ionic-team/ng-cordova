@@ -12,7 +12,7 @@ You can use `bower` to install ngCordova like so *or* **[download the zip file h
 $ bower install ngCordova
 ```
 
-Include `ng-cordova.js` ***or*** `ng-cordova.min.js` in your `index.html` file **before** `cordova.js` and **after** your AngularJS or Ionic file (since ngCordova depends on AngularJS).
+Include `ng-cordova.js` ***or*** `ng-cordova.min.js` in your `index.html` file **before** `cordova.js` and **after** your AngularJS / Ionic file (since ngCordova depends on AngularJS).
 
 ```html
 <script src="lib/ngCordova/dist/ng-cordova.js"></script>
