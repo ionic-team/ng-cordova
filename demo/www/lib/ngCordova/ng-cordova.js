@@ -2624,20 +2624,11 @@ angular.module('ngCordova.plugins.media', [])
     return {
       newMedia: function (src) {
         var q = $q.defer();
-        var mediaStatus = null;
 
-        var media = new Media(src,
-          function (success) {
-            q.resolve(success);
-          }, function (error) {
-            q.reject(error);
-          }, function (status) {
-            mediaStatus = status;
-          });
+        var media = new Media(src, q.resolve, q.reject, q.notify);
 
         return {
           media: media,
-          mediaStatus: mediaStatus,
           promise: q.promise
         };
 
