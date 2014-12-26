@@ -890,3 +890,9 @@ img[alt ="dialogs-prompt"] {
     margin-right: auto;
     margin-bottom: 10px;
 }
+
+
+.plugin-overview-row {
+    margin-top: 50px;
+    text-align: center;
+}
