@@ -43,4 +43,10 @@ ngCordova comes with over 63 native Cordova plugins that you can easily add to y
 		<p class="expose-detail">Track location once, or repeatedly</p>
 		<a class="expose-link" href="/docs/plugins/geolocation">Learn More <i class="icon ion-ios-arrow-right"></i></a>
 	</div>
+	<div class="col-sm-4">
+ 		<img class="img-responsive expose-image" src="../../img/feature-progress.png">
+ 		<h3 class="expose-title">Progress Indicator</h3>
+ 		<p class="expose-detail">Indicate loading or downloading</p>
+ 		<a class="expose-link" href="/docs/plugins/progressIndicator">Learn More <i class="icon ion-ios-arrow-right"></i></a>
+ 	</div>
 </div>
