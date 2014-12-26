@@ -6,6 +6,9 @@ describe('ngCordovaMocks', function() {
 	describe('cordovaFile', function () {
 		var $cordovaFile = null;
 		var $rootScope = null;
+        var testFileName = "test.txt";
+        var testData = "My data object";
+        var testFolder ="testfolder";
 
 		beforeEach(inject(function (_$cordovaFile_, _$rootScope_) {
 			$cordovaFile = _$cordovaFile_;
@@ -18,8 +21,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(true); },
 					function() { expect(false).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
@@ -31,7 +33,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(false); },
 					function() { expect(true).toBe(true); }
 				)
-				.finally(function() { done(); })
+				.finally(done);
 			;
 
 			$rootScope.$digest();
@@ -43,8 +45,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(true); },
 					function() { expect(false).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
@@ -56,8 +57,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(false); },
 					function() { expect(true).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});	
@@ -68,8 +68,7 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(true); },
 					function() { expect(false).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
 		});
@@ -81,11 +80,86 @@ describe('ngCordovaMocks', function() {
 					function() { expect(true).toBe(false); },
 					function() { expect(true).toBe(true); }
 				)
-				.finally(function() { done(); })
-			;
+				.finally(done);
 
 			$rootScope.$digest();
-		});			
+		});
+
+        describe('tests with mockfFiles flag enabled',function(){
+            beforeEach(function(){
+                $cordovaFile.shouldMockFiles = true;
+            });
+
+            describe('file tests',function(){
+                beforeEach(function(){
+                    $cordovaFile.writeFile(testFileName, testData);
+                    $rootScope.$digest();
+                });
+
+                it('should resolve if file exists',function(done){
+                    $cordovaFile.checkFile(testFileName).then(function(){
+                        expect(true).toEqual(true);
+                    },function(){
+                        expect(false).toEqual(true);
+                    }).finally(done);
+                    $rootScope.$digest();
+                });
+
+                it('should reject if file do not exists',function(done){
+                    $cordovaFile.checkFile('nonExistingFile.txt').then(function(){
+                        expect(false).toEqual(true);
+                    },function(){
+                        expect(true).toEqual(true);
+                    }).finally(done);
+                    $rootScope.$digest();
+                });
+
+                it('should return file content if file exists',function(done){
+                    $cordovaFile.readFile(testFileName).then(function(data){
+                        expect(testData).toEqual(data);
+                    },function(){
+                        expect(false).toEqual(true);
+                    }).finally(done);
+                    $rootScope.$digest();
+                });
+
+                it('shold be rejected if file does not exists',function(done){
+                    $cordovaFile.readFile('NotValidFile').then(function(data){
+                        expect(false).toEqual(true);
+                    },function(){
+                        expect(true).toEqual(true);
+                    }).finally(done);
+                    $rootScope.$digest();
+                });
+            });
+
+            describe('directory tests',function(){
+                beforeEach(function(){
+                    $cordovaFile.createDir(testFolder, true);
+                    $rootScope.$digest();
+                });
+
+                it('should resolve test directory which was created in setup',function(done){
+                    $cordovaFile.checkDir(testFolder).then(function(){
+                        expect(true).toEqual(true);
+                    },function(){
+                        expect(false).toEqual(true);
+                    }).finally(done);
+                    $rootScope.$digest();
+                });
+
+                it('should not return test directory as file',function(done){
+                    $cordovaFile.readFile(testFolder).then(function(){
+                        expect(false).toEqual(true);
+                    },function(){
+                        expect(true).toEqual(true);
+                    }).finally(done);
+                    $rootScope.$digest();
+                });
+
+            });
+        });
+
 	});
 
 	// TODO: ping the fileSystem property to detect if
@@ -93,4 +167,4 @@ describe('ngCordovaMocks', function() {
 	// - overwrite works on the createDir function
 
 
-})
+});
