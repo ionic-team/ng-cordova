@@ -98,6 +98,7 @@ h6 {
 a,
 a:focus,
 a:hover {
+    outline: 0;
     color: #4685dd;
     text-decoration: none;
 }
@@ -202,6 +203,7 @@ code {
     border-radius: 2px;
     border: none;
     color: #737986;
+    height: 30px;
     background-color: #17181C;
 }
 
@@ -213,6 +215,12 @@ code {
 }
 
 *:-moz-placeholder {
+    color: #737986;
+    font-size: 13px;
+}
+
+*::-moz-placeholder {
+    margin-left: 10px;
     color: #737986;
     font-size: 13px;
 }
@@ -265,9 +273,13 @@ ul.results-dropdown {
     padding: 0;
     border-radius: 2px;
     z-index: 1000;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    /*
     -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    */
 }
 
 ul.results-dropdown > li {
@@ -301,9 +313,13 @@ ul.no-results-dropdown {
     padding: 0;
     border-radius: 2px;
     z-index: 1000;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    /*
     -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    */
 }
 
 ul.no-results-dropdown > li {
@@ -353,7 +369,7 @@ ul.no-results-dropdown > li {
     margin-top: 20px;
 }
 
-@media (min-width: 950px) {
+@media (min-width: 992px) {
     .home-container p.lead {
         padding: 0 140px;
     }
@@ -404,12 +420,21 @@ span.plugin-count-number {
     margin-top: 40px;
     padding-top: 40px;
     padding-bottom: 40px;
+
+}
+
+.button-row {
+    text-align: center;
+    display: inline-block;
 }
 
 .btn-download {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #1B1E24;
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #34373E;
     color: #FFFFFF;
     transition: 0.3s;
     font-weight: 400;
@@ -420,15 +445,19 @@ span.plugin-count-number {
 .btn-download:hover,
 .btn-download:active {
     background-color: #FFFFFF;
-    border: 1px solid #1B1E24;
-    color: #1B1E24;
+    border: 1px solid #34373E;
+    color: #34373E;
 }
 
 .btn-docs {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #4685dd;
-    border: 1px solid #4685dd;
+    margin-left: 10px;
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #4380F2;
+    border: 1px solid #4380F2;
     color: #FFFFFF;
     transition: 0.3s;
     font-weight: 400;
@@ -439,16 +468,80 @@ span.plugin-count-number {
 .btn-docs:hover,
 .btn-docs:active {
     background-color: #FFFFFF;
-    border: 1px solid #4685dd;
-    color: #4685dd;
+    border: 1px solid #4380F2;
+    color: #4380F2;
 }
 
-@media (max-width: 776px) {
+.btn-block + .btn-block {
+    margin-top: 0;
+}
 
+.expose-container {
+    background-color: #FFFFFF;
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+
+.expose-container > div {
+    padding-right: 70px;
+    padding-left: 70px;
+}
+
+.expose-image {
+    max-width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expose-title {
+    font-family: "AvenirNextLTPro-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    color: #000000;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.expose-detail {
+    font-size: 12px;
+    color: #848B95;
+}
+
+.expose-link {
+    padding-top: 5px;
+    text-transform: uppercase;
+    color: #4380F3;
+}
+
+.expose-link > i {
+    padding-left: 5px;
+}
+
+@media (max-width: 992px) {
     .home-container .cover-image {
-        max-width: 100%;
+        max-width: 80%;
         padding: 20px 0;
     }
+}
+
+@media (max-width: 768px) {
+
+    .expose-container > div {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .expose-container .col-sm-4 + .col-sm-4 {
+        margin-top: 20px;
+    }
+
+    .expose-container .col-sm-4 + .col-sm-4 + .col-sm-4 {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 633px) {
 
     .btn-download {
         margin-bottom: 20px;
@@ -462,10 +555,7 @@ span.plugin-count-number {
         margin-left: auto;
         width: 300px;
     }
-}
 
-.expose-container {
-    background-color: #FFFFFF;
 }
 
 /*
@@ -475,9 +565,13 @@ span.plugin-count-number {
 .docked-menu {
     background-color: #FFFFFF;
     border-radius: 1px;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    /*
     -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    */
 }
 
 .docked-menu > .left-menu > .menu-title > a {
@@ -560,18 +654,26 @@ span.plugin-count-number {
     padding: 20px;
     background-color: #FFFFFF;
     border-radius: 1px;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    /*
     -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    */
 }
 
 .plugin-content {
     padding: 20px;
     background-color: #FFFFFF;
     border-radius: 1px;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    /*
     -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    */
 }
 
 /*
@@ -585,9 +687,13 @@ span.plugin-count-number {
     background-color: #FFFFFF;
     border-radius: 1px;
     padding: 5px 15px 5px 20px;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    /*
     -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
     box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
+    */
 }
 
 .anchor-row > h3 {

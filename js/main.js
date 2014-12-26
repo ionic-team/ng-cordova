@@ -97,7 +97,7 @@
 								searchInput.val('');
 								searchResults.hide();
 								noSearchResults.hide();
-						}, 50);
+						}, 100);
 				})
 
 		});
