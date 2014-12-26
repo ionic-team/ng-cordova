@@ -108,6 +108,12 @@
     "short-title": "Dialogs"
   },
   {
+    "link": "/docs/plugins/emailComposer/",
+    "title": "Email Composer",
+    "keywords": "email message mail",
+    "short-title": "EmailComposer"
+  },
+  {
     "link": "/docs/plugins/facebook/",
     "title": "Facebook",
     "keywords": "",
