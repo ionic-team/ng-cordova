@@ -55,6 +55,7 @@ $ bower install ngCordova
 - [Device Orientation](https://github.com/apache/cordova-plugin-device-orientation) *
 - [Device](https://github.com/apache/cordova-plugin-device) *
 - [Dialogs](https://github.com/apache/cordova-plugin-dialogs) *
+- [Email Composer](https://github.com/katzer/cordova-plugin-email-composer)
 - [Facebook Connect](https://github.com/Wizcorp/phonegap-facebook-plugin)
 - [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads)
 - [File](https://github.com/apache/cordova-plugin-file) *
