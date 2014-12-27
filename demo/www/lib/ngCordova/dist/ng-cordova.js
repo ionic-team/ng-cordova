@@ -3081,9 +3081,11 @@ angular.module('ngCordova.plugins.keyboard', [])
 
 angular.module('ngCordova.plugins.keychain', [])
 
-  .factory('$cordovaKeychain', ['$q', function ($q) {
+  .factory('$cordovaKeychain', ['$q', '$window', function ($q, $window) {
 
-    var kc = new Keychain();
+    if ('Keychain' in $window) {
+      var kc = new Keychain();
+    }
 
     return {
       getForKey: function (key, serviceName) {
@@ -4720,6 +4722,11 @@ angular.module('ngCordova.plugins.progressIndicator', [])
   .factory('$cordovaProgress', ['$q', function ($q) {
 
     return {
+      show: function(_message) {
+        var message = _message || "Please wait...";
+        return ProgressIndicator.show(message);
+      },
+
       showSimple: function (_dim) {
         var dim = _dim || false;
         return ProgressIndicator.showSimple(dim);
