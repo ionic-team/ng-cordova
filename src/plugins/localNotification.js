@@ -4,51 +4,51 @@
 angular.module('ngCordova.plugins.localNotification', [])
 
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
-
-    $window.plugin.notification.local.oncancel = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+    if($window.plugin &&  $window.plugin.notification) {
+      $window.plugin.notification.local.oncancel = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:canceled", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:canceled", notification)
-      })
-    };
-
-    $window.plugin.notification.local.onclick = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+  
+      $window.plugin.notification.local.onclick = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:clicked", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:clicked", notification)
-      })
-    };
-
-    $window.plugin.notification.local.ontrigger = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+  
+      $window.plugin.notification.local.ontrigger = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:triggered", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:triggered", notification)
-      })
-    };
-
-    $window.plugin.notification.local.onadd = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+  
+      $window.plugin.notification.local.onadd = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:added", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:added", notification)
-      })
-    };
-
+    }
     return {
       add: function (options, scope) {
         var q = $q.defer();
