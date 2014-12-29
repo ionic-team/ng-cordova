@@ -19,7 +19,7 @@ ngCordova comes with over 63 native Cordova plugins that you can easily add to y
 	<div class="col-sm-4">
 		<img class="img-responsive expose-image" src="../../img/feature-touchid.png">
 		<h3 class="expose-title">Touch ID</h3>
-		<p class="expose-detail">Leverage the iOS local thumbprint authentication</p>
+		<p class="expose-detail">Leverage iOS TouchID authentication</p>
 		<a class="expose-link" href="/docs/plugins/touchID">Learn More <i class="icon ion-ios-arrow-right"></i></a>
 	</div>
 	<div class="col-sm-4">
@@ -34,7 +34,7 @@ ngCordova comes with over 63 native Cordova plugins that you can easily add to y
 	<div class="col-sm-4 ">
 		<img class="img-responsive expose-image" src="../../img/feature-push.png">
 		<h3 class="expose-title">Push Notifications</h3>
-		<p class="expose-detail">The centerpiece of the remote notifications</p>
+		<p class="expose-detail">Easily handle remote push notifications</p>
 		<a class="expose-link" href="/docs/plugins/pushNotifications">Learn More <i class="icon ion-ios-arrow-right"></i></a>
 	</div>
 	<div class="col-sm-4">
