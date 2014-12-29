@@ -1573,9 +1573,7 @@ angular.module('ngCordova.plugins.facebook', [])
     this.browserInit = function (id, version) {
       this.appID = id;
       this.appVersion = version || "v2.0";
-      if (!this.appID) {
-        facebookConnectPlugin.browserInit(this.appID, this.appVersion);
-      }
+      facebookConnectPlugin.browserInit(this.appID, this.appVersion);
     };
 
     this.$get = ['$q', function ($q) {
@@ -3081,9 +3079,11 @@ angular.module('ngCordova.plugins.keyboard', [])
 
 angular.module('ngCordova.plugins.keychain', [])
 
-  .factory('$cordovaKeychain', ['$q', function ($q) {
+  .factory('$cordovaKeychain', ['$q', '$window', function ($q, $window) {
 
-    var kc = new Keychain();
+    if ('Keychain' in $window) {
+      var kc = new Keychain();
+    }
 
     return {
       getForKey: function (key, serviceName) {
