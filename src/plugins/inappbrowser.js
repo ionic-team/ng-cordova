@@ -29,6 +29,7 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
         win = $window.open(url, target, options);
 
         win.addEventListener('loadstart', function (event) {
+          q.notify('loadstart');
           scope.$emit('loadstart', event);
         }, false);
 
@@ -43,6 +44,7 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
         }, false);
 
         win.addEventListener('exit', function (event) {
+          q.notify('exit');
           scope.$emit('exit', event);
         }, false);
 
@@ -50,9 +52,17 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
       },
 
       close: function () {
-        win.close();
+        if(angular.isDefined(win)) {
+          win.close();
+        }
       },
-
+      
+      show: function () {
+        if(angular.isDefined(win)) {
+          win.show();
+        }
+      },
+      
       executeScript: function (details) {
         var q = $q.defer();
 
