@@ -3,7 +3,7 @@ layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaAppRate
-source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/adMob.js
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/appRate.js
 official-docs: https://github.com/pushandplay/cordova-plugin-apprate
 icon-apple: true
 icon-android: true
