@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.9-alpha
+ * v0.1.10-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -1573,9 +1573,7 @@ angular.module('ngCordova.plugins.facebook', [])
     this.browserInit = function (id, version) {
       this.appID = id;
       this.appVersion = version || "v2.0";
-      if (!this.appID) {
-        facebookConnectPlugin.browserInit(this.appID, this.appVersion);
-      }
+      facebookConnectPlugin.browserInit(this.appID, this.appVersion);
     };
 
     this.$get = ['$q', function ($q) {
@@ -3120,51 +3118,51 @@ angular.module('ngCordova.plugins.keychain', [])
 angular.module('ngCordova.plugins.localNotification', [])
 
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
-
-    $window.plugin.notification.local.oncancel = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+    if($window.plugin &&  $window.plugin.notification) {
+      $window.plugin.notification.local.oncancel = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:canceled", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:canceled", notification)
-      })
-    };
-
-    $window.plugin.notification.local.onclick = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+  
+      $window.plugin.notification.local.onclick = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:clicked", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:clicked", notification)
-      })
-    };
-
-    $window.plugin.notification.local.ontrigger = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+  
+      $window.plugin.notification.local.ontrigger = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:triggered", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:triggered", notification)
-      })
-    };
-
-    $window.plugin.notification.local.onadd = function (id, state, json) {
-      var notification = {
-        id: id,
-        state: state,
-        json: json
+  
+      $window.plugin.notification.local.onadd = function (id, state, json) {
+        var notification = {
+          id: id,
+          state: state,
+          json: json
+        };
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast("localNotification:added", notification)
+        })
       };
-      $rootScope.$apply(function () {
-        $rootScope.$broadcast("localNotification:added", notification)
-      })
-    };
-
+    }
     return {
       add: function (options, scope) {
         var q = $q.defer();
@@ -4722,11 +4720,6 @@ angular.module('ngCordova.plugins.progressIndicator', [])
   .factory('$cordovaProgress', ['$q', function ($q) {
 
     return {
-      show: function(_message) {
-        var message = _message || "Please wait...";
-        return ProgressIndicator.show(message);
-      },
-
       showSimple: function (_dim) {
         var dim = _dim || false;
         return ProgressIndicator.showSimple(dim);
