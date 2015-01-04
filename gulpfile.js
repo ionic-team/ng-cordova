@@ -25,6 +25,7 @@ gulp.task('build', function () {
     .pipe(header(buildConfig.banner))
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(uglify())
+    .pipe(header(buildConfig.banner))
     .pipe(rename({
       extname: '.min.js'
     }))
@@ -38,6 +39,7 @@ gulp.task('build', function () {
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(gulp.dest(buildConfig.demo.ngCordova))
     .pipe(uglify())
+    .pipe(header(buildConfig.banner))
     .pipe(rename({extname: '.min.js'}))
     .pipe(gulp.dest(buildConfig.dist))
     .pipe(gulp.dest(buildConfig.demo.ngCordova));

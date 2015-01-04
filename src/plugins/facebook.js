@@ -8,9 +8,7 @@ angular.module('ngCordova.plugins.facebook', [])
     this.browserInit = function (id, version) {
       this.appID = id;
       this.appVersion = version || "v2.0";
-      if (!this.appID) {
-        facebookConnectPlugin.browserInit(this.appID, this.appVersion);
-      }
+      facebookConnectPlugin.browserInit(this.appID, this.appVersion);
     };
 
     this.$get = ['$q', function ($q) {
