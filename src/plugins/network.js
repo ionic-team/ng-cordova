@@ -41,13 +41,13 @@ angular.module('ngCordova.plugins.network', [])
       clearOfflineWatch: function () {
         document.removeEventListener("offline", function () {
           $rootScope.$$listeners.networkOffline = []; // not clearing watch --broken clear
-        }, false)
+        }, false);
       },
 
       clearOnlineWatch: function () {
         document.removeEventListener("online", function () {
           $rootScope.$$listeners.networkOnline = []; // not clearing watch --broken clear
-        }, false)
+        }, false);
       }
     };
   }]);

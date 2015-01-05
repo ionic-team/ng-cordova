@@ -12,10 +12,10 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:canceled", notification)
-        })
+          $rootScope.$broadcast("localNotification:canceled", notification);
+        });
       };
-  
+
       $window.plugin.notification.local.onclick = function (id, state, json) {
         var notification = {
           id: id,
@@ -23,10 +23,10 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:clicked", notification)
-        })
+          $rootScope.$broadcast("localNotification:clicked", notification);
+        });
       };
-  
+
       $window.plugin.notification.local.ontrigger = function (id, state, json) {
         var notification = {
           id: id,
@@ -34,10 +34,10 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:triggered", notification)
-        })
+          $rootScope.$broadcast("localNotification:triggered", notification);
+        });
       };
-  
+
       $window.plugin.notification.local.onadd = function (id, state, json) {
         var notification = {
           id: id,
@@ -45,8 +45,8 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:added", notification)
-        })
+          $rootScope.$broadcast("localNotification:added", notification);
+        });
       };
     }
     return {
@@ -146,5 +146,5 @@ angular.module('ngCordova.plugins.localNotification', [])
       setDefaults: function (Object) {
         $window.plugin.notification.local.setDefaults(Object);
       }
-    }
+    };
   }]);

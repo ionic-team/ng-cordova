@@ -20,15 +20,15 @@ angular.module('ngCordova.plugins.media', [])
             mediaStatus = status;
           });
 
-        // getCurrentPosition NOT WOKRING!
+        // getCurrentPosition NOT WORKING!
         q.promise.getCurrentPosition = function () {
           media.getCurrentPosition(function (success) {
           }, function (error) {
-          })
+          });
         };
 
         q.promise.getDuration = function () {
-           media.getDuration();
+          media.getDuration();
         };
 
         // iOS quirks :

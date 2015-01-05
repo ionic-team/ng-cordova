@@ -3126,10 +3126,10 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:canceled", notification)
-        })
+          $rootScope.$broadcast("localNotification:canceled", notification);
+        });
       };
-  
+
       $window.plugin.notification.local.onclick = function (id, state, json) {
         var notification = {
           id: id,
@@ -3137,10 +3137,10 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:clicked", notification)
-        })
+          $rootScope.$broadcast("localNotification:clicked", notification);
+        });
       };
-  
+
       $window.plugin.notification.local.ontrigger = function (id, state, json) {
         var notification = {
           id: id,
@@ -3148,10 +3148,10 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:triggered", notification)
-        })
+          $rootScope.$broadcast("localNotification:triggered", notification);
+        });
       };
-  
+
       $window.plugin.notification.local.onadd = function (id, state, json) {
         var notification = {
           id: id,
@@ -3159,8 +3159,8 @@ angular.module('ngCordova.plugins.localNotification', [])
           json: json
         };
         $rootScope.$apply(function () {
-          $rootScope.$broadcast("localNotification:added", notification)
-        })
+          $rootScope.$broadcast("localNotification:added", notification);
+        });
       };
     }
     return {
@@ -3260,7 +3260,7 @@ angular.module('ngCordova.plugins.localNotification', [])
       setDefaults: function (Object) {
         $window.plugin.notification.local.setDefaults(Object);
       }
-    }
+    };
   }]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mmedia.git
@@ -3390,15 +3390,15 @@ angular.module('ngCordova.plugins.media', [])
             mediaStatus = status;
           });
 
-        // getCurrentPosition NOT WOKRING!
+        // getCurrentPosition NOT WORKING!
         q.promise.getCurrentPosition = function () {
           media.getCurrentPosition(function (success) {
           }, function (error) {
-          })
+          });
         };
 
         q.promise.getDuration = function () {
-           media.getDuration();
+          media.getDuration();
         };
 
         // iOS quirks :
@@ -3851,13 +3851,13 @@ angular.module('ngCordova.plugins.network', [])
       clearOfflineWatch: function () {
         document.removeEventListener("offline", function () {
           $rootScope.$$listeners.networkOffline = []; // not clearing watch --broken clear
-        }, false)
+        }, false);
       },
 
       clearOnlineWatch: function () {
         document.removeEventListener("online", function () {
           $rootScope.$$listeners.networkOnline = []; // not clearing watch --broken clear
-        }, false)
+        }, false);
       }
     };
   }]);
