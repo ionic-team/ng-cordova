@@ -650,6 +650,20 @@ span.plugin-count-number {
     margin-top: 25px;
 }
 
+.docs-cover-img {
+    padding: 20px 30px 0 30px;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    margin-bottom: 10px;
+}
+
+.docs-cover-img > img {
+    height: auto;
+    width: 100%;
+}
+
 .docs-content {
     padding: 20px;
     background-color: #FFFFFF;
@@ -890,7 +904,6 @@ img[alt ="dialogs-prompt"] {
     margin-right: auto;
     margin-bottom: 10px;
 }
-
 
 .plugin-overview-row {
     margin-top: 50px;
