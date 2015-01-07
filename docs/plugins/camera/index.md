@@ -54,25 +54,28 @@ cordova plugin add org.apache.cordova.camera
 ```javascript
 module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
-  var options = {
-    quality: 50,
-    destinationType: Camera.DestinationType.DATA_URL,
-    sourceType: Camera.PictureSourceType.CAMERA,
-    allowEdit: true,
-    encodingType: Camera.EncodingType.JPEG,
-    targetWidth: 100,
-    targetHeight: 100,
-    popoverOptions: CameraPopoverOptions,
-    saveToPhotoAlbum: false
-  };
+  document.addEventListener("deviceready", function () {
 
-  $cordovaCamera.getPicture(options).then(function(imageData) {
-    var image = document.getElementById('myImage');
-    image.src = "data:image/jpeg;base64," + imageData;
-  }, function(err) {
-    // error
-  });
-  
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 100,
+      targetHeight: 100,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+      var image = document.getElementById('myImage');
+      image.src = "data:image/jpeg;base64," + imageData;
+    }, function(err) {
+      // error
+    });
+
+  }, false);
 });
 ```
 
@@ -81,21 +84,24 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 ```javascript
 module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
-  var options = {
-    destinationType: Camera.DestinationType.FILE_URI,
-    sourceType: Camera.PictureSourceType.CAMERA,
-  };
+  document.addEventListener("deviceready", function () {
 
-  $cordovaCamera.getPicture(options).then(function(imageURI) {
-    var image = document.getElementById('myImage');
-    image.src = imageURI;
-  }, function(err) {
-    // error
-  });
+    var options = {
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.CAMERA,
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageURI) {
+      var image = document.getElementById('myImage');
+      image.src = imageURI;
+    }, function(err) {
+      // error
+    });
 
 
-  $cordovaCamera.cleanup().then(...); // only for FILE_URI
-
+    $cordovaCamera.cleanup().then(...); // only for FILE_URI
+    
+  }, false);
 });
 ```
 

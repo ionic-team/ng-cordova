@@ -24,15 +24,25 @@ module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
     // https://github.com/christocracy/cordova-plugin-background-geolocation#config
   };
 
-  // `configure` calls `start` internally
-  $cordovaBackgroundGeolocation.configure(options).then(function (location) {
-    console.log(location);
-  }, function (err) {
-    console.error(err);
-  });
+  document.addEventListener("deviceready", function () {
 
-  $scope.stopBackgroundGeolocation = function () {
-    $cordovaBackgroundGeolocation.stop();
-  };
+    // `configure` calls `start` internally
+    $cordovaBackgroundGeolocation.configure(options).then(function (location) {
+      console.log(location);
+    }, function (err) {
+      console.error(err);
+    });
+
+    $cordovaActionSheet
+      .show(options)
+      .then(function(btnIndex) {
+        var index = btnIndex;
+      });
+
+    $scope.stopBackgroundGeolocation = function () {
+      $cordovaBackgroundGeolocation.stop();
+    };
+
+  }, false);
 });
 ```

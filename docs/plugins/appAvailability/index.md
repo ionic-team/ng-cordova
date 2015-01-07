@@ -42,13 +42,14 @@ An extensive list of [iOS schemes can be found at this link](http://wiki.akosma.
 ```javascript
 module.controller('AppAvailCtrl', function($cordovaAppAvailability) {
 
-  $cordovaAppAvailability
-    .check('twitter://')
-    .then(function() {
-      // is available
-    },
-    function () {
-      // not available
-    });
+  document.addEventListener("deviceready", function () {
+
+    $cordovaAppAvailability.check('twitter://')
+      .then(function() {
+        // is available
+      }, function () {
+        // not available
+      });
+  }, false);
 });
 ```

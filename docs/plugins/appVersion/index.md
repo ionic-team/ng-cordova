@@ -28,11 +28,13 @@ Get the version of the current app running.
 #### Example
 
 ```javascript
-
 module.controller('myCtrl', function($scope, $cordovaAppVersion) {
 
-  $cordovaAppVersion.getAppVersion().then(function (version) {
-    var appVersion = version;
-  });
+  document.addEventListener("deviceready", function () {
+
+    $cordovaAppVersion.getAppVersion().then(function (version) {
+        var appVersion = version;
+      });
+  }, false);
 });
 ```

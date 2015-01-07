@@ -43,23 +43,26 @@ cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 
 module.controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner) {
 
-  $cordovaBarcodeScanner
-    .scan()
-    .then(function(barcodeData) {
-      // Success! Barcode data is here
-    }, function(error) {
-      // An error occurred
-    });
+  document.addEventListener("deviceready", function () {
+
+    $cordovaBarcodeScanner
+      .scan()
+      .then(function(barcodeData) {
+        // Success! Barcode data is here
+      }, function(error) {
+        // An error occurred
+      });
 
 
-  // NOTE: encoding not functioning yet
-  $cordovaBarcodeScanner
-    .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
-    .then(function(success) {
-      // Success!
-    }, function(error) {
-      // An error occurred
-    });
+    // NOTE: encoding not functioning yet
+    $cordovaBarcodeScanner
+      .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
+      .then(function(success) {
+        // Success!
+      }, function(error) {
+        // An error occurred
+      });
 
+  }, false);
 });
 ```

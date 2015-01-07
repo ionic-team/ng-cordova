@@ -21,21 +21,24 @@ cordova plugin add org.apache.cordova.battery-status
 
 module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
 
-  $cordovaBatteryStatus.$on('batterystatus', function (result) {
-    var batteryLevel = result.level;       // (0 - 100)
-    var isPluggedIn  = result.isPlugged;   // bool
-  });
+  document.addEventListener("deviceready", function () {
 
-  $cordovaBatteryStatus.$on('batterycritical', function (result) {
-    var batteryLevel = result.level;       // (0 - 100)
-    var isPluggedIn  = result.isPlugged;   // bool
-  });
+    $cordovaBatteryStatus.$on('batterystatus', function (result) {
+      var batteryLevel = result.level;       // (0 - 100)
+      var isPluggedIn  = result.isPlugged;   // bool
+    });
 
-  $cordovaBatteryStatus.$on('batterylow', function (result) {
-    var batteryLevel = result.level;       // (0 - 100)
-    var isPluggedIn  = result.isPlugged;   // bool
-  });
+    $cordovaBatteryStatus.$on('batterycritical', function (result) {
+      var batteryLevel = result.level;       // (0 - 100)
+      var isPluggedIn  = result.isPlugged;   // bool
+    });
 
+    $cordovaBatteryStatus.$on('batterylow', function (result) {
+      var batteryLevel = result.level;       // (0 - 100)
+      var isPluggedIn  = result.isPlugged;   // bool
+    });
+
+  }, false);
 });
 
 ```

@@ -22,8 +22,11 @@ cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git
 
 module.controller('MyCtrl', function($scope, $cordovaAppRate) {
 
-  $cordovaAppRate.promptForRating(true).then(function (result) {
-    // success
-  });
+  document.addEventListener("deviceready", function () {
+
+    $cordovaAppRate.promptForRating(true).then(function (result) {
+        // success
+    });
+  }, false);
 });
 ```

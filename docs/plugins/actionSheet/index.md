@@ -44,19 +44,24 @@ cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.
 ```javascript
 
 module.controller('ThisCtrl', function($cordovaActionSheet) {
-   var options = {
-     title: 'What do you want with this image?',
-     buttonLabels: ['Share via Facebook', 'Share via Twitter'],
-     addCancelButtonWithLabel: 'Cancel',
-     androidEnableCancelButton : true,
-     winphoneEnableCancelButton : true,
-     addDestructiveButtonWithLabel : 'Delete it'
-   };
 
-   $cordovaActionSheet
-     .show(options)
-     .then(function(btnIndex) {
-       var index = btnIndex;
-     });
+  var options = {
+    title: 'What do you want with this image?',
+    buttonLabels: ['Share via Facebook', 'Share via Twitter'],
+    addCancelButtonWithLabel: 'Cancel',
+    androidEnableCancelButton : true,
+    winphoneEnableCancelButton : true,
+    addDestructiveButtonWithLabel : 'Delete it'
+  };
+
+
+  document.addEventListener("deviceready", function () {
+
+    $cordovaActionSheet.show(options)
+      .then(function(btnIndex) {
+        var index = btnIndex;
+      });
+  }, false);
+
 });
 ```
