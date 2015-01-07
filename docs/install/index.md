@@ -20,7 +20,7 @@ Include `ng-cordova.js` ***or*** `ng-cordova.min.js` in your `index.html` file *
 <script src="cordova.js"></script>
 ```
 
-#### Inject as a Angular dependency
+#### Inject as an Angular dependency
 
 Then, include `ngCordova` as a dependency in your angular module:
 
@@ -28,7 +28,7 @@ Then, include `ngCordova` as a dependency in your angular module:
 angular.module('myApp', ['ngCordova'])
 ```
 
-#### Wrap each plugin call with `deviceready` event *-* *important !*
+#### Wrap each plugin call with the `deviceready` event *-* *important !*
 
 Before each plugin you must check if your device has fully loaded, and if the plugins are available using a native cordova event called `deviceready`. Implement it like so:
 
