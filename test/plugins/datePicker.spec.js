@@ -19,7 +19,7 @@ describe('Service: $cordovaDatePicker', function() {
     var options = { mode: 'date', date: new Date() };
 
     spyOn(window.datePicker, 'show')
-      .andCallFake(function (date, successCb, errorCb) {
+      .andCallFake(function (options, successCb, errorCb) {
         successCb(options.date);
       });
 
@@ -39,8 +39,8 @@ describe('Service: $cordovaDatePicker', function() {
     var result;
 
     spyOn(window.datePicker, 'show')
-      .andCallFake(function(date, successCb, errorCb) {
-        successCb(date);
+      .andCallFake(function(options, successCb, errorCb) {
+        successCb(options.date);
       });
 
     $cordovaDatePicker
@@ -53,8 +53,7 @@ describe('Service: $cordovaDatePicker', function() {
 
       console.log(result);
 
-      expect(result.date).not.toBe(undefined);
-      expect(result.mode).toBe('date');
+      expect(result instanceof Date).toBeTruthy();
   });
 
 });
