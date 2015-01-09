@@ -1,6 +1,7 @@
 angular.module('demo', [
   'ionic',
   'ngCordova',
+  'ngCordova.plugins.fileOpener2',
 
   // modules
   // 'demo.adMob.ctrl',  // not working???
@@ -18,6 +19,7 @@ angular.module('demo', [
   'demo.dialogs.ctrl',
   'demo.facebook.ctrl',
   'demo.file.ctrl',
+  'demo.fileOpener2.ctrl',
   'demo.flashlight.ctrl',
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
@@ -166,6 +168,12 @@ angular.module('demo', [
         url: '/file',
         templateUrl: 'app/file/file.html',
         controller: "FileCtrl"
+      })
+
+      .state('fileOpener2', {
+        url: '/fileOpener2',
+        templateUrl: 'app/fileOpener2/fileOpener2.html',
+        controller: "FileOpener2Ctrl"
       })
 
       .state('flashlight', {
