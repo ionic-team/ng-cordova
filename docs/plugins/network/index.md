@@ -22,7 +22,7 @@ cordova plugin add org.apache.cordova.network-information
 
 This property offers a fast way to determine the device's network connection state, and type of connection.
 
-**Returns** `Connection` Object:
+> **Returns** `Connection` Object:
 
 > | Connection Type     | Description  |
 > | ------------------- | ------------ |
@@ -50,29 +50,54 @@ Check if the phone network is Offline
 **Returns** `true` - if Offline
 
 
-##### `$rootScope.$on('networkOnline', function(networkState));`
+##### `$rootScope.$on('networkOnline', function(event, networkState){})`
 
-| Returns      | Type       | Detail  |
-| ------------ |------------| --------|
-| networkState | `Object`   | Date Picker options |
+Listens on the `'networkOnline'` event, which is fired when the phone goes Online.
+
+> **Returns**
+
+> | Parameter    | Type       | Detail  |
+> | ------------ |------------| --------|
+> | event        | `Object`   | Angular event from `$broadcast` - see [AngularJS docs](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on) |
+> | networkState | `Object`   | Type of network connection - see `getNetwork()` return object |
 
 
-##### `$rootScope.$on('networkOffline', function(networkState));`
+##### `$rootScope.$on('networkOffline', function(event, networkState){})`
+
+Listens on the `'networkOffline'` event, which is fired when the phone goes Offline.
+
+> **Returns**
+
+> | Parameter    | Type       | Detail  |
+> | ------------ |------------| --------|
+> | event        | `Object`   | Angular event from `$broadcast` - see [AngularJS docs](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on) |
+> | networkState | `Object`   | Type of network connection - see `getNetwork()` return object |
 
 
 #### Examples
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaNetwork) {
+module.controller('MyCtrl', function($scope, $rootScope, $cordovaNetwork) {
 
   document.addEventListener("deviceready", function () {
 
-    var type = $cordovaNetwork.getNetwork();
+    var type = $cordovaNetwork.getNetwork()
 
-    var isOnline = $cordovaNetwork.isOnline();
+    var isOnline = $cordovaNetwork.isOnline()
 
-    var isOffline = $cordovaNetwork.isOffline();
+    var isOffline = $cordovaNetwork.isOffline()
 
+
+    // listen for Online event
+    $rootScope.$on('networkOffline', function(event, networkState){
+      var onlineState = networkState;
+    })
+
+    // listen for Offline event
+    $rootScope.$on('networkOffline', function(event, networkState){
+      var offlineState = networkState;
+    })
+    
   }, false);
 });
 ```
