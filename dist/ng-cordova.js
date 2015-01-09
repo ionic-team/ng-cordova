@@ -1272,21 +1272,19 @@ angular.module('ngCordova.plugins.contacts', [])
 
   }]);
 
+// install   :      cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
+// link      :      https://github.com/VitaliiBlagodir/cordova-plugin-datepicker
+
 angular.module('ngCordova.plugins.datePicker', [])
-
   .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
-
     return {
       show: function (options) {
+        var q = $q.defer();
         options = options || {date: new Date(), mode: 'date'};
-
-        var d = $q.defer();
-
         $window.datePicker.show(options, function (date) {
-          d.resolve(date);
+          q.resolve(date);
         });
-
-        return d.promise;
+        return q.promise;
       }
     };
   }]);
@@ -3813,7 +3811,25 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', ['$rootScope', '$document', function ($rootScope, $document) {
+  .factory('$cordovaNetwork', ['$rootScope', function ($rootScope) {
+
+
+    var offlineEvent = function () {
+      var networkState = navigator.connection.type;
+      $rootScope.$apply(function () {
+        $rootScope.$broadcast('networkOffline', networkState);
+      });
+    };
+
+    var onlineEvent = function () {
+      var networkState = navigator.connection.type;
+      $rootScope.$apply(function () {
+        $rootScope.$broadcast('networkOnline', networkState);
+      });
+    };
+
+    document.addEventListener("offline", offlineEvent, false);
+    document.addEventListener("online", onlineEvent, false);
 
     return {
       getNetwork: function () {
@@ -3830,34 +3846,14 @@ angular.module('ngCordova.plugins.network', [])
         return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
       },
 
-      watchOffline: function () {
-        document.addEventListener("offline", function () {
-          var networkState = navigator.connection.type;
-          $rootScope.$apply(function () {
-            $rootScope.$broadcast('networkOffline', networkState);
-          });
-        }, false);
-      },
-
-      watchOnline: function () {
-        document.addEventListener("online", function () {
-          var networkState = navigator.connection.type;
-          $rootScope.$apply(function () {
-            $rootScope.$broadcast('networkOnline', networkState);
-          });
-        }, false);
-      },
-
       clearOfflineWatch: function () {
-        document.removeEventListener("offline", function () {
-          $rootScope.$$listeners.networkOffline = []; // not clearing watch --broken clear
-        }, false);
+        document.removeEventListener("offline", offlineEvent);
+        $rootScope.$$listeners["networkOffline"] = [];
       },
 
       clearOnlineWatch: function () {
-        document.removeEventListener("online", function () {
-          $rootScope.$$listeners.networkOnline = []; // not clearing watch --broken clear
-        }, false);
+        document.removeEventListener("online", offlineEvent);
+        $rootScope.$$listeners["networkOnline"] = [];
       }
     };
   }]);
