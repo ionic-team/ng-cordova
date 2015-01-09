@@ -8,10 +8,10 @@
  */ 
 ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 	var throwsError = false;
-    var languages = (navigator.languages) ?  navigator.languages : ["en-US", "en"];
-	var preferredLanguage = {value: languages[0]};
+    var language = (navigator.language) ?  navigator.language : "en-US";
+	var preferredLanguage = {value: language};
 	var firstDayOfWeek = 'Sunday';
-	var localeName = {value: languages[0]};
+	var localeName = {value: language};
 
 	return {
         /**
