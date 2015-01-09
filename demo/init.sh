@@ -24,7 +24,7 @@ ap battery-status
 
 #read appID
 #read appName
-cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git  #--variable APP_ID="$appID" --variable APP_NAME="$appName"
+cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="12345678" --variable APP_NAME="Name"
 cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard          # keyboard
 cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git    # date-picker
 cordova plugin add https://github.com/wildabeast/BarcodeScanner.git     # barcode scanner
