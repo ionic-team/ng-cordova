@@ -74,6 +74,16 @@ Listens on the `'networkOffline'` event, which is fired when the phone goes Offl
 > | networkState | `Object`   | Type of network connection - see `getNetwork()` return object |
 
 
+
+##### `clearOnlineWatch()`
+
+Coming soon ...
+
+
+##### `clearOfflineWatch()`
+
+Coming soon ...
+
 #### Examples
 
 ```javascript
@@ -97,7 +107,7 @@ module.controller('MyCtrl', function($scope, $rootScope, $cordovaNetwork) {
     $rootScope.$on('networkOffline', function(event, networkState){
       var offlineState = networkState;
     })
-    
+
   }, false);
 });
 ```
