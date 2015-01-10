@@ -4,7 +4,7 @@ angular.module('demo.media.ctrl', [])
     var thisMedia;
 
     $ionicPlatform.ready(function () {
-      thisMedia = $cordovaMedia('/sample.mp3');
+      thisMedia = $cordovaMedia.newMedia('/sample.mp3');
     });
 
 

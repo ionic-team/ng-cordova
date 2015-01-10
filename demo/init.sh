@@ -34,3 +34,4 @@ cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git  
 cordova plugin add uk.co.ilee.touchid       # touchID
 cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git    # AppRate
 cordova plugin add https://github.com/katzer/cordova-plugin-local-notifications.git
+cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git

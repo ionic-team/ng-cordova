@@ -16,6 +16,7 @@ angular.module('demo', [
   'demo.deviceMotion.ctrl',
   'demo.deviceOrientation.ctrl',
   'demo.dialogs.ctrl',
+  'demo.emailComposer.ctrl',
   'demo.facebook.ctrl',
   'demo.file.ctrl',
   'demo.fileOpener2.ctrl',
@@ -49,9 +50,9 @@ angular.module('demo', [
       }
 
       $cordovaLocalNotification.registerPermission().then(function () {
-        alert("registered");
+        //alert("registered");
       }, function () {
-        alert("denied registration");
+        //alert("denied registration");
       });
 
       $rootScope.$on("$cordovaNetwork:offline", function () {
@@ -82,6 +83,11 @@ angular.module('demo', [
       .state('menu', {
         url: "/menu",
         templateUrl: "app/menu.html"
+      })
+
+      .state('about', {
+        url: "/about",
+        templateUrl: "app/about.html"
       })
 
       .state('appAvailability', {
@@ -157,6 +163,12 @@ angular.module('demo', [
         url: '/dialogs',
         templateUrl: 'app/dialogs/dialogs.html',
         controller: "DialogsCtrl"
+      })
+
+      .state('emailComposer', {
+        url: '/emailComposer',
+        templateUrl: 'app/emailComposer/emailComposer.html',
+        controller: "EmailComposerCtrl"
       })
 
       .state('facebook', {
