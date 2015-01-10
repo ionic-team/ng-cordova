@@ -1,10 +1,9 @@
 angular.module('demo', [
   'ionic',
   'ngCordova',
-  'ngCordova.plugins.fileOpener2',
 
   // modules
-  // 'demo.adMob.ctrl',  // not working???
+  // 'demo.adMob.ctrl',  -- not functioning right now
   'demo.appAvailability.ctrl',
   'demo.appRate.ctrl',
   'demo.barcodeScanner.ctrl',
@@ -39,7 +38,7 @@ angular.module('demo', [
   'demo.vibration.ctrl'
 ])
 
-  .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus) {
+  .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus, $cordovaLocalNotification) {
 
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -49,20 +48,22 @@ angular.module('demo', [
         StatusBar.styleDefault();
       }
 
-      $cordovaNetwork.watchOffline();
-      $cordovaNetwork.watchOnline();
+      $cordovaLocalNotification.registerPermission().then(function () {
+        alert("registered");
+      }, function () {
+        alert("denied registration");
+      });
 
-
-      $rootScope.$on("networkOffline", function () {
+      $rootScope.$on("$cordovaNetwork:offline", function () {
         alert("Device is now Offline!");
       });
 
 
-      $rootScope.$on("networkOnline", function () {
+      $rootScope.$on("$cordovaNetwork:online", function () {
         alert("Device is Online!");
       });
 
-      $cordovaBatteryStatus.$on("batterystatus", function (status) {
+      $cordovaBatteryStatus.$on("$cordovaBatteryStatus:status", function (status) {
         alert("status :" + status);
       })
     })
