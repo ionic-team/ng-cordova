@@ -8,15 +8,15 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     var scope = $rootScope.$new();
 
     $window.addEventListener('batterystatus', function (status) {
-      scope.$broadcast('batterystatus', status);
+      scope.$broadcast('$cordovaBatteryStatus:status', status);
     }, false);
 
     $window.addEventListener('batterycritical', function (status) {
-      scope.$broadcast('batterycritical', status);
+      scope.$broadcast('$cordovaBatteryStatus:critical', status);
     }, false);
 
     $window.addEventListener('batterylow', function (status) {
-      scope.$broadcast('batterylow', status);
+      scope.$broadcast('$cordovaBatteryStatus:low', status);
     }, false);
 
     return scope;
