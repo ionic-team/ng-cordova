@@ -27,11 +27,15 @@ module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
   document.addEventListener("deviceready", function () {
 
     // `configure` calls `start` internally
-    $cordovaBackgroundGeolocation.configure(options).then(function (location) {
-      console.log(location);
-    }, function (err) {
-      console.error(err);
-    });
+    $cordovaBackgroundGeolocation.configure(options)
+    .then(
+      null, // Background never resolves
+      function (err) { // error callback
+        console.error(err);
+      },
+      function (location) { // notify callback
+        console.log(location);
+      });
 
     $cordovaActionSheet
       .show(options)
