@@ -3908,7 +3908,9 @@ angular.module('ngCordova.plugins.network', [])
         $rootScope.$$listeners["$cordovaNetwork:online"] = [];
       }
     };
-  }]);
+  }])
+  .run(function ($cordovaNetwork) {
+  });
 
 /* Created by Nic Raboy
  * http://www.nraboy.com
