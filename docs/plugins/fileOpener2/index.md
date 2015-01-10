@@ -4,10 +4,10 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaFileOpener2
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/fileOpener2.js
-official-docs:  https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
+official-docs:  https://github.com/pwlin/cordova-plugin-file-opener2
 icon-apple: true
 icon-android: true
-icon-windows: true
+icon-windows: false
 ---
 
 This plugin will open a file on your device file system with its default application.
