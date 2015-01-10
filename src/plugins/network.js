@@ -9,14 +9,14 @@ angular.module('ngCordova.plugins.network', [])
     var offlineEvent = function () {
       var networkState = navigator.connection.type;
       $rootScope.$apply(function () {
-        $rootScope.$broadcast('networkOffline', networkState);
+        $rootScope.$broadcast('$cordovaNetwork:offline', networkState);
       });
     };
 
     var onlineEvent = function () {
       var networkState = navigator.connection.type;
       $rootScope.$apply(function () {
-        $rootScope.$broadcast('networkOnline', networkState);
+        $rootScope.$broadcast('$cordovaNetwork:online', networkState);
       });
     };
 
@@ -40,12 +40,12 @@ angular.module('ngCordova.plugins.network', [])
 
       clearOfflineWatch: function () {
         document.removeEventListener("offline", offlineEvent);
-        $rootScope.$$listeners["networkOffline"] = [];
+        $rootScope.$$listeners["$cordovaNetwork:offline"] = [];
       },
 
       clearOnlineWatch: function () {
         document.removeEventListener("online", offlineEvent);
-        $rootScope.$$listeners["networkOnline"] = [];
+        $rootScope.$$listeners["$cordovaNetwork:online"] = [];
       }
     };
   }]);
