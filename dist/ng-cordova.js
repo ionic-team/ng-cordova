@@ -1205,11 +1205,10 @@ angular.module('ngCordova.plugins.contacts', [])
         var deviceContact = navigator.contacts.create(contact);
 
         deviceContact.save(function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
         return q.promise;
       },
 
@@ -1218,11 +1217,10 @@ angular.module('ngCordova.plugins.contacts', [])
         var deviceContact = navigator.contacts.create(contact);
 
         deviceContact.remove(function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
         return q.promise;
       },
 
@@ -1237,12 +1235,10 @@ angular.module('ngCordova.plugins.contacts', [])
         delete options.fields;
 
         navigator.contacts.find(fields, function (results) {
-            q.resolve(results);
-          },
-          function (err) {
-            q.reject(err);
-          },
-          options);
+          q.resolve(results);
+        }, function (err) {
+          q.reject(err);
+        }, options);
 
         return q.promise;
       },
@@ -1250,14 +1246,11 @@ angular.module('ngCordova.plugins.contacts', [])
       pickContact: function () {
         var q = $q.defer();
 
-        navigator.contacts.pickContact(
-          function (contact) {
-            q.resolve(contact);
-          },
-          function (err) {
-            q.reject(err);
-          }
-        );
+        navigator.contacts.pickContact(function (contact) {
+          q.resolve(contact);
+        }, function (err) {
+          q.reject(err);
+        });
 
         return q.promise;
       }
@@ -1267,9 +1260,7 @@ angular.module('ngCordova.plugins.contacts', [])
       // TODO: method to set / get ContactField
       // TODO: method to set / get ContactName
       // TODO: method to set / get ContactOrganization
-
     };
-
   }]);
 
 // install   :      cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
@@ -2062,6 +2053,61 @@ angular.module('ngCordova.plugins.file', [])
       }
       return q.promise;
     }
+  }]);
+
+// install   :      cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
+// link      :      https://github.com/pwlin/cordova-plugin-file-opener2
+
+angular.module('ngCordova.plugins.fileOpener2', [])
+
+  .factory('$cordovaFileOpener2', ['$q', function ($q) {
+
+    return {
+
+      open: function(file, type) {
+
+        var q = $q.defer();
+        cordova.plugins.fileOpener2.open(file, type, {
+          error: function(e) {
+            q.reject(e);
+          },
+          success: function() {
+            q.resolve();
+          }
+        });
+        return q.promise;
+
+      },
+
+      uninstall: function(pack) {
+
+        var q = $q.defer();
+        cordova.plugins.fileOpener2.uninstall(pack, {
+          error: function(e) {
+            q.reject(e);
+          },
+          success: function() {
+            q.resolve();
+          }
+        });
+        return q.promise;
+
+      },
+
+      appIsInstalled: function(pack) {
+
+        var q = $q.defer();
+        cordova.plugins.fileOpener2.appIsInstalled(pack, {
+          success : function(res) {
+            q.resolve(res);
+          }
+        });
+        return q.promise;
+
+      }
+
+    };
+
   }]);
 
 // install   :     cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git

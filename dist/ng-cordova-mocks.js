@@ -314,10 +314,13 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
  * A service for testing datepicker features
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDatePicker', function () {
+ngCordovaMocks.factory('$cordovaDatePicker', function ($q) {
   return {
-    show: function (options, fn) {
-      return options.date;
+    show: function (options) {
+      var q = $q.defer();
+      options = options || {date: new Date(), mode: 'date'};
+      q.resolve(options.date);
+      return q.promise;
     }
   };
 });
@@ -1078,6 +1081,87 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 }]);
 /**
  * @ngdoc service
+ * @name ngCordovaMocks.cordovaFileOpener2
+ *
+ * @description
+ * A service for testing fileOpener2
+ * in an app build with ngCordova.
+ */
+ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
+
+  var throwsError = false;
+
+  return {
+
+    /**
+     * @ngdoc property
+     * @name throwsError
+     * @propertyOf ngCordovaMocks.cordovaFileOpener2
+     *
+     * @description
+     * A flag that signals whether a promise should be rejected or not.
+     * This property should only be used in automated tests.
+     **/
+    throwsError: throwsError,
+
+    open: function (file, type) {
+
+      var defer = $q.defer();
+
+      if(this.throwError) {
+        defer.reject({
+          status: 0,
+          message: 'There was an error capturing the file.'
+        });
+      } else {
+        defer.resolve();
+      }
+
+      return defer.promise;
+
+    },
+
+    uninstall: function (pack) {
+
+      var defer = $q.defer();
+
+      if(this.throwError) {
+        defer.reject({
+          status: 0,
+          message: 'There was an error capturing the packageId.'
+        });
+      } else {
+        defer.resolve();
+      }
+
+      return defer.promise;
+
+    },
+
+    appIsInstalled: function (pack) {
+
+      var defer = $q.defer();
+
+      if(this.throwError) {
+        defer.reject({
+          status: 0,
+          message: 'There was an error capturing the packageId.'
+        });
+      } else {
+        defer.resolve();
+      }
+
+      return defer.promise;
+
+    }
+
+  };
+
+}]);
+
+
+/**
+ * @ngdoc service
  * @name ngCordovaMocks.cordovaGeolocation
  *
  * @description
@@ -1325,9 +1409,10 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
  */ 
 ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 	var throwsError = false;
-	var preferredLanguage = 'en';
+    var language = (navigator.language) ?  navigator.language : "en-US";
+	var preferredLanguage = {value: language};
 	var firstDayOfWeek = 'Sunday';
-	var localeName = '';
+	var localeName = {value: language};
 
 	return {
         /**
