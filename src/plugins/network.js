@@ -5,7 +5,6 @@ angular.module('ngCordova.plugins.network', [])
 
   .factory('$cordovaNetwork', ['$rootScope', function ($rootScope) {
 
-
     var offlineEvent = function () {
       var networkState = navigator.connection.type;
       $rootScope.$apply(function () {
@@ -20,8 +19,12 @@ angular.module('ngCordova.plugins.network', [])
       });
     };
 
-    document.addEventListener("offline", offlineEvent, false);
-    document.addEventListener("online", onlineEvent, false);
+    document.addEventListener("deviceready", function () {
+      if (navigator.connection) {
+        document.addEventListener("offline", offlineEvent, false);
+        document.addEventListener("online", onlineEvent, false);
+      }
+    });
 
     return {
       getNetwork: function () {
