@@ -29,21 +29,21 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
         win = $window.open(url, target, options);
 
         win.addEventListener('loadstart', function (event) {
-          scope.$emit('loadstart', event);
+          scope.$broadcast('$cordovaInAppBrowser:loadstart', event);
         }, false);
 
         win.addEventListener('loadstop', function (event) {
           q.resolve(event);
-          scope.$emit('loadstop', event);
+          scope.$broadcast('$cordovaInAppBrowser:loadstop', event);
         }, false);
 
         win.addEventListener('loaderror', function (event) {
           q.reject(event);
-          scope.$emit('loaderror', event);
+          scope.$broadcast('$cordovaInAppBrowser:loaderror', event);
         }, false);
 
         win.addEventListener('exit', function (event) {
-          scope.$emit('exit', event);
+          scope.$broadcast('$cordovaInAppBrowser:exit', event);
         }, false);
 
         return q.promise;
