@@ -43,11 +43,11 @@ cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 | notification | `Object`       | Notification received from server |
 
 
-##### `unregister(options)`
+##### `setBadgeNumber(number)` * - iOS only*
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
-| options      | `Object`       | Options for unregistering push-notifications (not generally needed) |
+| number       | `Integer`      | Set the badge count visible when the app is not running |
 
 
 #### Example - iOS
@@ -58,52 +58,47 @@ Setup Push Notifications when the App is first opened:
 module.run(function($http, $cordovaPush) {
 
   var iosConfig = {
-    "badge": "true",
-    "sound": "true",
-    "alert": "true",
+    "badge": true,
+    "sound": true,
+    "alert": true,
   };
 
-  $cordovaPush.register(config).then(function(result) {
-    // Success -- send deviceToken to server, and store for future use
-    console.log("result: " + result);
-    $http.post("http://server.com/tokens", {user: "Bob", tokenID : result.deviceToken);
-  }, function(err) {
-    // Error
-  });
-
-  // WARNING: dangerous to unregister (results in loss of tokenID)
-  $cordovaPush.unregister(options).then(function(result) {
-    // Success!
-  }, function(err) {
-    // Error
-  });
-```
-
-**iOS** : Receiving a notification:
-
-```javascript
-myApp.controller('MyCtrl', function($rootScope) {
-
-  $rootScope.$on('pushNotificationReceived', function(event, notification) {
-    if (notification.alert)
-      navigator.notification.alert(notification.alert)
-
-    if (notification.sound)
-      var snd = new Media(event.sound);
-      snd.play();
-
-    if (notification.badge) {
-      $cordovaPush.setBadgeNumber(notification.badge)
-        .then(function(result) {
+  document.addEventListener("deviceready", function(){
+    $cordovaPush.register(config).then(function(result) {
+      // Success -- send deviceToken to server, and store for future use
+      console.log("result: " + result)
+      $http.post("http://server.co/", {user: "Bob", tokenID: result.deviceToken})
+    }, function(err) {
+      alert("Registration error: " + err)
+    });
+    
+    
+    $rootScope.$on('pushNotificationReceived', function(event, notification) {
+      if (notification.alert)
+        navigator.notification.alert(notification.alert)
+  
+      if (notification.sound)
+        var snd = new Media(event.sound)
+        snd.play()
+  
+      if (notification.badge) {
+        $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
           // Success!
         }, function(err) {
           // An error occurred. Show a message to the user
         });
-    }
-  });
-});
+      }
+    });
+  
+    // WARNING! dangerous to unregister (results in loss of tokenID)
+    $cordovaPush.unregister(options).then(function(result) {
+      // Success!
+    }, function(err) {
+      // Error
+    });
+    
+  }, false);
 ```
-
 
 #### Example - Android
 
@@ -116,47 +111,45 @@ module.run(function($cordovaPush) {
     "senderID": "replace_with_sender_id",
   };
 
-  $cordovaPush.register(config).then(function(result) {
-    // Success
-  }, function(err) {
-    // Error
-  });
-
-  // WARNING: dangerous to unregister (results in loss of tokenID)
-  $cordovaPush.unregister(options).then(function(result) {
-    // Success!
-  }, function(err) {
-    // Error
-  });
-```
-
-**Android** : Receiving a notification:
-
-```javascript
-myApp.controller('MyCtrl', function($rootScope) {
-
-  $rootScope.$on('pushNotificationReceived', function(event, notification) {
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          alert('registration ID = ' + notification.regid);
-        }
-        break;
-
-      case 'message':
-        // this is the actual push notification. its format depends on the data model from the push server
-        alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-        break;
-
-      case 'error':
-        alert('GCM error = ' + notification.msg);
-        break;
-
-      default:
-        alert('An unknown GCM event has occurred');
-        break;
-    }
-  });
+  document.addEventListener("deviceready", function(){
+    $cordovaPush.register(config).then(function(result) {
+      // Success
+    }, function(err) {
+      // Error
+    })
+  
+    $rootScope.$on('pushNotificationReceived', function(event, notification) {
+      switch(notification.event) {
+        case 'registered':
+          if (notification.regid.length > 0 ) {
+            alert('registration ID = ' + notification.regid);
+          }
+          break;
+  
+        case 'message':
+          // this is the actual push notification. its format depends on the data model from the push server
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+  
+        case 'error':
+          alert('GCM error = ' + notification.msg);
+          break;
+  
+        default:
+          alert('An unknown GCM event has occurred');
+          break;
+      }
+    });
+    
+    
+    // WARNING: dangerous to unregister (results in loss of tokenID)
+    $cordovaPush.unregister(options).then(function(result) {
+      // Success!
+    }, function(err) {
+      // Error
+    })
+    
+  }, false);
 });
 ```
 
