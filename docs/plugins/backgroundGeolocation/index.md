@@ -37,11 +37,6 @@ module.controller('MyCtrl', function($scope, $cordovaBackgroundGeolocation) {
         console.log(location);
       });
 
-    $cordovaActionSheet
-      .show(options)
-      .then(function(btnIndex) {
-        var index = btnIndex;
-      });
 
     $scope.stopBackgroundGeolocation = function () {
       $cordovaBackgroundGeolocation.stop();
