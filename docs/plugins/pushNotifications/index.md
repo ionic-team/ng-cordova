@@ -43,7 +43,7 @@ cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 | notification | `Object`       | Notification received from server |
 
 
-##### `setBadgeNumber(number)` * - iOS only*
+##### `setBadgeNumber(number)` *- iOS only*
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
