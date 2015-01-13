@@ -28,7 +28,7 @@ module.controller('MyCtrl', function($scope, $cordovaPreferences) {
   };
 
   $scope.setName = function () {
-    $cordovaPreferences.get('name_identifier', 'homer').then(function () {
+    $cordovaPreferences.set('name_identifier', 'homer').then(function () {
       console.log('successfully saved!');
     })
   };
