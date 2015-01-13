@@ -5,19 +5,21 @@ angular.module('ngCordova.plugins.batteryStatus', [])
 
   .factory('$cordovaBatteryStatus', ['$rootScope', '$window', function ($rootScope, $window) {
 
-    var scope = $rootScope.$new();
+    document.addEventListener("deviceready", function () {
+      if (navigator.battery) {
+        $window.addEventListener('batterystatus', function (status) {
+          $rootScope.$broadcast('$cordovaBatteryStatus:status', status);
+        }, false);
 
-    $window.addEventListener('batterystatus', function (status) {
-      scope.$broadcast('$cordovaBatteryStatus:status', status);
+        $window.addEventListener('batterycritical', function (status) {
+          $rootScope.$broadcast('$cordovaBatteryStatus:critical', status);
+        }, false);
+
+        $window.addEventListener('batterylow', function (status) {
+          $rootScope.$broadcast('$cordovaBatteryStatus:low', status);
+        }, false);
+      }
     }, false);
-
-    $window.addEventListener('batterycritical', function (status) {
-      scope.$broadcast('$cordovaBatteryStatus:critical', status);
-    }, false);
-
-    $window.addEventListener('batterylow', function (status) {
-      scope.$broadcast('$cordovaBatteryStatus:low', status);
-    }, false);
-
-    return scope;
-  }]);
+  }])
+  .run(function ($cordovaBatteryStatus) {
+  });
