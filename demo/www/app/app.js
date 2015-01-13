@@ -24,6 +24,7 @@ angular.module('demo', [
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.googleAnalytics.ctrl',
+  'demo.inAppBrowser.ctrl',
   'demo.localNotification.ctrl',
   'demo.media.ctrl',
   'demo.network.ctrl',
@@ -61,52 +62,58 @@ angular.module('demo', [
         "alert": true
       };
       $cordovaPush.register(iosConfig).then(function (result) {
-        alert("device token: " + result.deviceToken);
+        //alert("device token: " + result.deviceToken);
       }, function (error) {
-        alert("error " + error);
+        //alert("error " + error);
       });
 
       $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
-        if (notification.alert)
+        if (notification.alert) {
           navigator.notification.alert(notification.alert);
-
-        if (notification.sound)
+        }
+        if (notification.sound) {
           var snd = new Media(event.sound);
-        snd.play();
-
+          snd.play();
+        }
         if (notification.badge) {
-          $cordovaPush.setBadgeNumber(notification.badge)
-            .then(function (result) {
-              // Success!
-            }, function (err) {
-              // An error occurred. Show a message to the user
-            });
+          $cordovaPush.setBadgeNumber(notification.badge).then(function (result) {
+            // Success!
+          }, function (err) {
+            // An error occurred. Show a message to the user
+          });
         }
       });
 
 
-      $rootScope.$on("$cordovaNetwork:offline", function () {
+      $rootScope.$on("$cordovaNetwork:offline", function (event, result) {
         alert("Device is now Offline!");
       });
 
 
-      $rootScope.$on("$cordovaNetwork:online", function () {
+      $rootScope.$on("$cordovaNetwork:online", function (event, result) {
         alert("Device is Online!");
       });
 
-      $cordovaBatteryStatus.$on("$cordovaBatteryStatus:status", function (status) {
-        alert("status :" + status);
+      $rootScope.$on("$cordovaBatteryStatus:status", function (event, status) {
+        //alert("status: " + status);
       })
     })
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $cordovaInAppBrowserProvider) {
 
     if (!window.cordova) {
       var appID = 1234567890;
       var version = "v2.0"; // or leave blank and default is v2.0
       $cordovaFacebookProvider.browserInit(appID, version);
     }
+
+    var browserOptions = {
+      location: "yes",
+      toolbar: "yes"
+    };
+
+    $cordovaInAppBrowserProvider.setDefaultOptions(browserOptions);
 
     $stateProvider
 
@@ -241,6 +248,12 @@ angular.module('demo', [
         url: '/googleAnalytics',
         templateUrl: 'app/googleAnalytics/googleAnalytics.html',
         controller: "GoogleAnalyticsCtrl"
+      })
+
+      .state('inAppBrowser', {
+        url: '/inAppBrowser',
+        templateUrl: 'app/inAppBrowser/inAppBrowser.html',
+        controller: "InAppBrowserCtrl"
       })
 
       .state('localNotification', {

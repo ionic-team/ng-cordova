@@ -3,75 +3,90 @@
 
 angular.module('ngCordova.plugins.inAppBrowser', [])
 
-  .factory('$cordovaInAppBrowser', ['$rootScope', '$q', '$window', function ($rootScope, $q, $window) {
+  .provider('$cordovaInAppBrowser', [function ($rootScope, $q, $window, $timeout) {
 
-    var win, options;
-    var scope = $rootScope.$new();
+    var ref;
+    var defaultOptions = this.defaultOptions = {};
 
-    return {
-      init: function (config) {
-        if (angular.isObject(config)) {
-          var opt = [];
-          for (var i in config) {
-            opt.push([i + '=' + config[i]]);
-          }
-          options = opt.join();
-        } else {
-          options = config;
-        }
-
-        return scope;
-      },
-
-      open: function (url, target) {
-        var q = $q.defer();
-
-        win = $window.open(url, target, options);
-
-        win.addEventListener('loadstart', function (event) {
-          scope.$broadcast('$cordovaInAppBrowser:loadstart', event);
-        }, false);
-
-        win.addEventListener('loadstop', function (event) {
-          q.resolve(event);
-          scope.$broadcast('$cordovaInAppBrowser:loadstop', event);
-        }, false);
-
-        win.addEventListener('loaderror', function (event) {
-          q.reject(event);
-          scope.$broadcast('$cordovaInAppBrowser:loaderror', event);
-        }, false);
-
-        win.addEventListener('exit', function (event) {
-          scope.$broadcast('$cordovaInAppBrowser:exit', event);
-        }, false);
-
-        return q.promise;
-      },
-
-      close: function () {
-        win.close();
-      },
-
-      executeScript: function (details) {
-        var q = $q.defer();
-
-        win.executeScript(details, function (result) {
-          q.resolve(result);
-        });
-
-        return q.promise;
-      },
-
-      insertCSS: function (details) {
-        var q = $q.defer();
-
-        win.insertCSS(details, function (result) {
-          q.resolve(result);
-        });
-
-        return q.promise;
-      }
+    this.setDefaultOptions = function (config) {
+      defaultOptions = angular.extend(this.defaultOptions, config);
     };
 
+    this.$get = ['$rootScope', '$q', '$window', '$timeout', function ($rootScope, $q, $window, $timeout) {
+      return {
+        open: function (url, target, requestOptions) {
+          var q = $q.defer();
+
+          if (!angular.isObject(requestOptions)) {
+            q.reject("options must be an object");
+            return q.promise;
+          }
+          var overrideOptions = angular.extend(defaultOptions, requestOptions);
+          var opt = [];
+          angular.forEach(overrideOptions, function (value, key) {
+            opt.push(key + '=' + value);
+          });
+          var optionsString = opt.join();
+
+          ref = $window.open(url, target, optionsString);
+
+          ref.addEventListener('loadstart', function (event) {
+            $timeout(function () {
+              $rootScope.$broadcast('$cordovaInAppBrowser:loadstart', event);
+            });
+          }, false);
+
+          ref.addEventListener('loadstop', function (event) {
+            q.resolve(event);
+            $timeout(function () {
+              $rootScope.$broadcast('$cordovaInAppBrowser:loadstop', event);
+            });
+          }, false);
+
+          ref.addEventListener('loaderror', function (event) {
+            q.reject(event);
+            $timeout(function () {
+              $rootScope.$broadcast('$cordovaInAppBrowser:loaderror', event);
+            });
+          }, false);
+
+          ref.addEventListener('exit', function (event) {
+            $timeout(function () {
+              $rootScope.$broadcast('$cordovaInAppBrowser:exit', event);
+            });
+          }, false);
+
+          return q.promise;
+        },
+
+        close: function () {
+          ref.close();
+        },
+
+        show: function () {
+          ref.show();
+        },
+
+
+        executeScript: function (details) {
+          var q = $q.defer();
+
+          ref.executeScript(details, function (result) {
+            q.resolve(result);
+          });
+
+          return q.promise;
+        },
+
+        insertCSS: function (details) {
+          var q = $q.defer();
+
+          ref.insertCSS(details, function (result) {
+            q.resolve(result);
+          });
+
+          return q.promise;
+        }
+      };
+    }];
   }]);

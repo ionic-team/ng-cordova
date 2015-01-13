@@ -10,7 +10,7 @@
   <author email="paolo.enrico.bernasconi@gmail.com" href="http://paolobernasconi.com">
     Paolo Bernasconi
   </author>
-  <content src="index.html"/>
+  <content src="http://140.233.187.163:8100" original-src="index.html"/>
   <access origin="*"/>
   <preference name="fullscreen" value="true"/>
   <preference name="webviewbounce" value="false"/>

@@ -8,19 +8,19 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     var batteryStatus = function (status) {
       $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:status', status);
-      })
+      });
     };
 
     var batteryCritical = function (status) {
       $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:critical', status);
-      })
+      });
     };
 
     var batteryLow = function (status) {
       $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:low', status);
-      })
+      });
     };
 
     document.addEventListener("deviceready", function () {
@@ -28,8 +28,10 @@ angular.module('ngCordova.plugins.batteryStatus', [])
         $window.addEventListener('batterystatus', batteryStatus, false);
         $window.addEventListener('batterycritical', batteryCritical, false);
         $window.addEventListener('batterylow', batteryLow, false);
+
       }
     }, false);
+    return true;
   }])
   .run(function ($cordovaBatteryStatus) {
   });
