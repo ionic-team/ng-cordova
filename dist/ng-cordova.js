@@ -299,7 +299,6 @@ angular.module('ngCordova.plugins.badge', [])
     return {
       hasPermission: function () {
         var q = $q.defer();
-
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
             q.resolve(true);
@@ -3195,7 +3194,6 @@ angular.module('ngCordova.plugins.localNotification', [])
       add: function (options, scope) {
         var q = $q.defer();
         scope = scope || null;
-
         $window.plugin.notification.local.add(options, function (result) {
           q.resolve(result);
         }, scope);
@@ -3205,29 +3203,24 @@ angular.module('ngCordova.plugins.localNotification', [])
       cancel: function (id, scope) {
         var q = $q.defer();
         scope = scope || null;
-
         $window.plugin.notification.local.cancel(id, function (result) {
           q.resolve(result);
         }, scope);
-
         return q.promise;
       },
 
       cancelAll: function (scope) {
         var q = $q.defer();
         scope = scope || null;
-
         $window.plugin.notification.local.cancelAll(function (result) {
           q.resolve(result);
         }, scope);
-
         return q.promise;
       },
 
       isScheduled: function (id, scope) {
         var q = $q.defer();
-        scope = scope || this;
-
+        scope = scope || null;
         $window.plugin.notification.local.isScheduled(id, function (result) {
           q.resolve(result);
         }, scope);
@@ -3257,33 +3250,25 @@ angular.module('ngCordova.plugins.localNotification', [])
 
       getScheduledIds: function (scope) {
         var q = $q.defer();
-
         $window.plugin.notification.local.getScheduledIds(function (result) {
           q.resolve(result);
         }, scope);
-
         return q.promise;
       },
 
       isTriggered: function (id, scope) {
         var q = $q.defer();
-
-        $window.plugin.notification.local.isTriggered(
-          id, function (result) {
-            q.resolve(result);
-          }, scope);
-
+        $window.plugin.notification.local.isTriggered(id, function (result) {
+          q.resolve(result);
+        }, scope);
         return q.promise;
       },
 
       getTriggeredIds: function (scope) {
         var q = $q.defer();
-
-        $window.plugin.notification.local.getTriggeredIds(
-          function (result) {
-            q.resolve(result);
-          }, scope);
-
+        $window.plugin.notification.local.getTriggeredIds(function (result) {
+          q.resolve(result);
+        }, scope);
         return q.promise;
       },
 

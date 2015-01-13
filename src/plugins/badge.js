@@ -8,7 +8,6 @@ angular.module('ngCordova.plugins.badge', [])
     return {
       hasPermission: function () {
         var q = $q.defer();
-
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
             q.resolve(true);
