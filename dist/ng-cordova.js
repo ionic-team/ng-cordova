@@ -1566,81 +1566,65 @@ angular.module('ngCordova.plugins.facebook', [])
     };
 
     this.$get = ['$q', function ($q) {
-
       return {
         login: function (permissions) {
           var q = $q.defer();
-          facebookConnectPlugin.login(permissions,
-            function (res) {
-              q.resolve(res);
-            }, function (res) {
-              q.reject(res);
-            });
+          facebookConnectPlugin.login(permissions, function (res) {
+            q.resolve(res);
+          }, function (res) {
+            q.reject(res);
+          });
 
           return q.promise;
         },
 
         showDialog: function (options) {
-
           var q = $q.defer();
-          facebookConnectPlugin.showDialog(options,
-            function (res) {
-              q.resolve(res);
-            },
-            function (err) {
-              q.reject(err);
-            });
-
+          facebookConnectPlugin.showDialog(options, function (res) {
+            q.resolve(res);
+          }, function (err) {
+            q.reject(err);
+          });
           return q.promise;
         },
 
         api: function (path, permissions) {
           var q = $q.defer();
-
-          facebookConnectPlugin.api(path, permissions,
-            function (res) {
-              q.resolve(res);
-            },
-            function (err) {
-              q.reject(err);
-            });
-
+          facebookConnectPlugin.api(path, permissions, function (res) {
+            q.resolve(res);
+          }, function (err) {
+            q.reject(err);
+          });
           return q.promise;
         },
 
         getAccessToken: function () {
           var q = $q.defer();
           facebookConnectPlugin.getAccessToken(function (res) {
-              q.resolve(res);
-            },
-            function (err) {
-              q.reject(err);
-            });
-
+            q.resolve(res);
+          }, function (err) {
+            q.reject(err);
+          });
           return q.promise;
         },
 
         getLoginStatus: function () {
           var q = $q.defer();
           facebookConnectPlugin.getLoginStatus(function (res) {
-              q.resolve(res);
-            },
-            function (err) {
-              q.reject(err);
-            });
-
+            q.resolve(res);
+          }, function (err) {
+            q.reject(err);
+          });
           return q.promise;
         },
 
         logout: function () {
           var q = $q.defer();
           facebookConnectPlugin.logout(function (res) {
-              q.resolve(res);
-            },
-            function (err) {
-              q.reject(err);
-            });
-
+            q.resolve(res);
+          }, function (err) {
+            q.reject(err);
+          });
           return q.promise;
         }
       };
@@ -3043,21 +3027,21 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
         win = $window.open(url, target, options);
 
         win.addEventListener('loadstart', function (event) {
-          scope.$emit('loadstart', event);
+          scope.$broadcast('$cordovaInAppBrowser:loadstart', event);
         }, false);
 
         win.addEventListener('loadstop', function (event) {
           q.resolve(event);
-          scope.$emit('loadstop', event);
+          scope.$broadcast('$cordovaInAppBrowser:loadstop', event);
         }, false);
 
         win.addEventListener('loaderror', function (event) {
           q.reject(event);
-          scope.$emit('loaderror', event);
+          scope.$broadcast('$cordovaInAppBrowser:loaderror', event);
         }, false);
 
         win.addEventListener('exit', function (event) {
-          scope.$emit('exit', event);
+          scope.$broadcast('$cordovaInAppBrowser:exit', event);
         }, false);
 
         return q.promise;
@@ -3161,7 +3145,7 @@ angular.module('ngCordova.plugins.keychain', [])
 
 angular.module('ngCordova.plugins.localNotification', [])
 
-  .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
+  .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
     if ($window.plugin && $window.plugin.notification) {
       $window.plugin.notification.local.oncancel = function (id, state, json) {
         var notification = {
@@ -3169,7 +3153,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
         });
       };
@@ -3180,7 +3164,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
         });
       };
@@ -3191,7 +3175,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
         });
       };
@@ -3202,7 +3186,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
         });
       };
@@ -3863,18 +3847,18 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', ['$rootScope', function ($rootScope) {
+  .factory('$cordovaNetwork', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
     var offlineEvent = function () {
       var networkState = navigator.connection.type;
-      $rootScope.$apply(function () {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaNetwork:offline', networkState);
       });
     };
 
     var onlineEvent = function () {
       var networkState = navigator.connection.type;
-      $rootScope.$apply(function () {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaNetwork:online', networkState);
       });
     };
