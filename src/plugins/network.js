@@ -3,18 +3,18 @@
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', ['$rootScope', function ($rootScope) {
+  .factory('$cordovaNetwork', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
     var offlineEvent = function () {
       var networkState = navigator.connection.type;
-      $rootScope.$apply(function () {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaNetwork:offline', networkState);
       });
     };
 
     var onlineEvent = function () {
       var networkState = navigator.connection.type;
-      $rootScope.$apply(function () {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaNetwork:online', networkState);
       });
     };
