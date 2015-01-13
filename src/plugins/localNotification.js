@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.localNotification', [])
 
-  .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', function ($q, $window, $rootScope) {
+  .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
     if ($window.plugin && $window.plugin.notification) {
       $window.plugin.notification.local.oncancel = function (id, state, json) {
         var notification = {
@@ -11,7 +11,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
         });
       };
@@ -22,7 +22,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
         });
       };
@@ -33,7 +33,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
         });
       };
@@ -44,7 +44,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           state: state,
           json: json
         };
-        $rootScope.$apply(function () {
+        $timeout(function () {
           $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
         });
       };
