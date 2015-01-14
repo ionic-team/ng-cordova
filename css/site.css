@@ -315,11 +315,6 @@ ul.no-results-dropdown {
     z-index: 1000;
     box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
     -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    /*
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    */
 }
 
 ul.no-results-dropdown > li {
@@ -359,6 +354,7 @@ ul.no-results-dropdown > li {
     letter-spacing: 0.05em;
     font-weight: bold;
     color: #000000;
+    margin-top: 30px;
 }
 
 .home-container p.lead {
@@ -366,12 +362,13 @@ ul.no-results-dropdown > li {
     font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     letter-spacing: -0.05em;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 @media (min-width: 992px) {
     .home-container p.lead {
-        padding: 0 140px;
+        padding: 0 100px;
     }
 }
 
@@ -388,7 +385,8 @@ span.plugin-count-number {
 }
 
 .home-container .cover-image {
-    max-width: 60%;
+    max-width: 70%;
+    margin: 20px 0 30px 0;
     padding: 20px;
 }
 
@@ -418,9 +416,8 @@ span.plugin-count-number {
     background: -moz-linear-gradient(right, #E0E7F0, #E1E4ED); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #E0E7F0, #E1E4ED); /* Standard syntax */
     margin-top: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-
+    padding-top: 45px;
+    padding-bottom: 45px;
 }
 
 .button-row {
@@ -439,7 +436,7 @@ span.plugin-count-number {
     transition: 0.3s;
     font-weight: 400;
     letter-spacing: 0.2em;
-    border-radius: 0;
+    border-radius: 1px;
 }
 
 .btn-download:hover,
@@ -452,7 +449,7 @@ span.plugin-count-number {
 .btn-docs {
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: 10px;
+    margin-left: 30px;
     width: 200px;
     display: inline-block;
     vertical-align: middle;
@@ -462,7 +459,7 @@ span.plugin-count-number {
     transition: 0.3s;
     font-weight: 400;
     letter-spacing: 0.2em;
-    border-radius: 0;
+    border-radius: 1px;
 }
 
 .btn-docs:hover,
@@ -478,7 +475,7 @@ span.plugin-count-number {
 
 .expose-container {
     background-color: #FFFFFF;
-    padding-top: 60px;
+    padding-top: 80px;
     padding-bottom: 10px;
 }
 
@@ -911,6 +908,6 @@ img[alt ="dialogs-prompt"] {
 }
 
 .sronly {
-	position: absolute;
-	top: -999px;
+    position: absolute;
+    top: -999px;
 }
