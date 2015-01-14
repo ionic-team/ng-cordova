@@ -16,17 +16,20 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
       return {
         open: function (url, target, requestOptions) {
           var q = $q.defer();
+          var optionsString = "";
 
-          if (!angular.isObject(requestOptions)) {
+          if (requestOptions && angular.isObject(requestOptions)) {
+            var overrideOptions = angular.extend(defaultOptions, requestOptions);
+            var opt = [];
+            angular.forEach(overrideOptions, function (value, key) {
+              opt.push(key + '=' + value);
+            });
+            optionsString = opt.join();
+          }
+          else if (requestOptions && !angular.isObject(requestOptions)) {
             q.reject("options must be an object");
             return q.promise;
           }
-          var overrideOptions = angular.extend(defaultOptions, requestOptions);
-          var opt = [];
-          angular.forEach(overrideOptions, function (value, key) {
-            opt.push(key + '=' + value);
-          });
-          var optionsString = opt.join();
 
           ref = $window.open(url, target, optionsString);
 
