@@ -2122,7 +2122,7 @@ angular.module('ngCordova.plugins.fileTransfer', [])
       download: function (source, filePath, options, trustAllHosts) {
         var q = $q.defer();
         var ft = new FileTransfer();
-        var uri = encodeURI(source);
+        var uri = options.encodeURI === false ? source : encodeURI(source);
 
         if (options && options.timeout !== undefined && options.timeout !== null) {
           $timeout(function () {
@@ -2142,7 +2142,7 @@ angular.module('ngCordova.plugins.fileTransfer', [])
       upload: function (server, filePath, options, trustAllHosts) {
         var q = $q.defer();
         var ft = new FileTransfer();
-        var uri = encodeURI(server);
+        var uri = options.encodeURI === false ? server : encodeURI(server);
 
         if (options && options.timeout !== undefined && options.timeout !== null) {
           $timeout(function () {
