@@ -21,6 +21,13 @@ angular.module('demo.inAppBrowser.ctrl', [])
 
       $rootScope.$on("$cordovaInAppBrowser:exit", function (event, result) {
         alert("Exited Browser");
+        console.log(JSON.stringify(result));
+      });
+
+
+      $rootScope.$on("$cordovaInAppBrowser:loadstop", function (event, result) {
+        alert("Load Stop event");
+        console.log(JSON.stringify(result));
       })
     }, false);
 
