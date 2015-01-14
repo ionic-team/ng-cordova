@@ -178,33 +178,49 @@ angular.module('ngCordova.plugins.file', [])
         return getAbsoluteFile(filePath);
       },
 
-      downloadFile: function (source, filePath, trustAllHosts, options) {
+      download: function (source, filePath, options, trustAllHosts) {
         var q = $q.defer();
-        var fileTransfer = new FileTransfer();
+        var ft = new FileTransfer();
         var uri = encodeURI(source);
 
-        fileTransfer.onprogress = q.notify;
-        fileTransfer.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
-        return q.promise;
-      },
-
-      uploadFile: function (server, filePath, options) {
-        var q = $q.defer();
-        var fileTransfer = new FileTransfer();
-        var uri = encodeURI(server);
-
-        if (options.timeout !== undefined && options.timeout !== null) {
+        if (options && options.timeout !== undefined && options.timeout !== null) {
           $timeout(function () {
-            fileTransfer.abort();
+            ft.abort();
           }, options.timeout);
           options.timeout = null;
         }
 
-        fileTransfer.onprogress = q.notify;
-        fileTransfer.upload(filePath, uri, q.resolve, q.reject, options);
+        ft.onprogress = function (progress) {
+          q.notify(progress);
+        };
+
+        ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
+        return q.promise;
+      },
+
+      upload: function (server, filePath, options, trustAllHosts) {
+        var q = $q.defer();
+        var ft = new FileTransfer();
+        var uri = encodeURI(server);
+
+        if (options && options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function () {
+            ft.abort();
+          }, options.timeout);
+          options.timeout = null;
+        }
+
+        ft.onprogress = function (progress) {
+          q.notify(progress);
+        };
+
+        q.promise.abort = function () {
+          ft.abort();
+        };
+
+        ft.upload(filePath, uri, q.resolve, q.reject, options, trustAllHosts);
         return q.promise;
       }
-
     };
 
     /*

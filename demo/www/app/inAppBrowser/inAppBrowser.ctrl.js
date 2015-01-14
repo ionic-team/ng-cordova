@@ -8,7 +8,11 @@ angular.module('demo.inAppBrowser.ctrl', [])
           location: "no"
         };
 
-        $cordovaInAppBrowser.open('http://ngcordova.com', '_blank', options);
+        $cordovaInAppBrowser.open('http://ngcordova.com', '_blank', options).then(function () {
+          console.log("InAppBrowser opened http://ngcordova.com successfully");
+        }, function (error) {
+          console.log("Error: " + error);
+        });
 
       }, false);
     };

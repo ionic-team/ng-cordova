@@ -20,6 +20,7 @@ angular.module('demo', [
   'demo.facebook.ctrl',
   'demo.file.ctrl',
   'demo.fileOpener2.ctrl',
+  'demo.fileTransfer.ctrl',
   'demo.flashlight.ctrl',
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
@@ -218,6 +219,12 @@ angular.module('demo', [
         url: '/file',
         templateUrl: 'app/file/file.html',
         controller: "FileCtrl"
+      })
+
+      .state('fileTransfer', {
+        url: '/fileTransfer',
+        templateUrl: 'app/fileTransfer/fileTransfer.html',
+        controller: "FileTransferCtrl"
       })
 
       .state('fileOpener2', {

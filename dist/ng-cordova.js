@@ -1929,33 +1929,49 @@ angular.module('ngCordova.plugins.file', [])
         return getAbsoluteFile(filePath);
       },
 
-      downloadFile: function (source, filePath, trustAllHosts, options) {
+      download: function (source, filePath, options, trustAllHosts) {
         var q = $q.defer();
-        var fileTransfer = new FileTransfer();
+        var ft = new FileTransfer();
         var uri = encodeURI(source);
 
-        fileTransfer.onprogress = q.notify;
-        fileTransfer.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
-        return q.promise;
-      },
-
-      uploadFile: function (server, filePath, options) {
-        var q = $q.defer();
-        var fileTransfer = new FileTransfer();
-        var uri = encodeURI(server);
-
-        if (options.timeout !== undefined && options.timeout !== null) {
+        if (options && options.timeout !== undefined && options.timeout !== null) {
           $timeout(function () {
-            fileTransfer.abort();
+            ft.abort();
           }, options.timeout);
           options.timeout = null;
         }
 
-        fileTransfer.onprogress = q.notify;
-        fileTransfer.upload(filePath, uri, q.resolve, q.reject, options);
+        ft.onprogress = function (progress) {
+          q.notify(progress);
+        };
+
+        ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
+        return q.promise;
+      },
+
+      upload: function (server, filePath, options, trustAllHosts) {
+        var q = $q.defer();
+        var ft = new FileTransfer();
+        var uri = encodeURI(server);
+
+        if (options && options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function () {
+            ft.abort();
+          }, options.timeout);
+          options.timeout = null;
+        }
+
+        ft.onprogress = function (progress) {
+          q.notify(progress);
+        };
+
+        q.promise.abort = function () {
+          ft.abort();
+        };
+
+        ft.upload(filePath, uri, q.resolve, q.reject, options, trustAllHosts);
         return q.promise;
       }
-
     };
 
     /*
@@ -2060,51 +2076,93 @@ angular.module('ngCordova.plugins.fileOpener2', [])
   .factory('$cordovaFileOpener2', ['$q', function ($q) {
 
     return {
-
-      open: function(file, type) {
-
+      open: function (file, type) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.open(file, type, {
-          error: function(e) {
+          error: function (e) {
             q.reject(e);
-          },
-          success: function() {
+          }, success: function () {
             q.resolve();
           }
         });
         return q.promise;
-
       },
 
-      uninstall: function(pack) {
-
+      uninstall: function (pack) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.uninstall(pack, {
-          error: function(e) {
+          error: function (e) {
             q.reject(e);
-          },
-          success: function() {
+          }, success: function () {
             q.resolve();
           }
         });
         return q.promise;
-
       },
 
-      appIsInstalled: function(pack) {
-
+      appIsInstalled: function (pack) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.appIsInstalled(pack, {
-          success : function(res) {
+          success: function (res) {
             q.resolve(res);
           }
         });
         return q.promise;
-
       }
-
     };
+  }]);
 
+// install   :     cordova plugin add org.apache.cordova.file-transfer
+// link      :     https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md
+
+angular.module('ngCordova.plugins.fileTransfer', [])
+
+  .factory('$cordovaFileTransfer', ['$q', '$timeout', function ($q, $timeout) {
+    return {
+      download: function (source, filePath, options, trustAllHosts) {
+        var q = $q.defer();
+        var ft = new FileTransfer();
+        var uri = encodeURI(source);
+
+        if (options && options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function () {
+            ft.abort();
+          }, options.timeout);
+          options.timeout = null;
+        }
+
+        ft.onprogress = function (progress) {
+          q.notify(progress);
+        };
+
+        ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
+        return q.promise;
+      },
+
+      upload: function (server, filePath, options, trustAllHosts) {
+        var q = $q.defer();
+        var ft = new FileTransfer();
+        var uri = encodeURI(server);
+
+        if (options && options.timeout !== undefined && options.timeout !== null) {
+          $timeout(function () {
+            ft.abort();
+          }, options.timeout);
+          options.timeout = null;
+        }
+
+        ft.onprogress = function (progress) {
+          q.notify(progress);
+        };
+
+        q.promise.abort = function () {
+          ft.abort();
+        };
+
+        ft.upload(filePath, uri, q.resolve, q.reject, options, trustAllHosts);
+        return q.promise;
+      }
+    };
   }]);
 
 // install   :     cordova plugin add https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin.git
@@ -3627,6 +3685,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.facebook',
   'ngCordova.plugins.facebookAds',
   'ngCordova.plugins.file',
+  'ngCordova.plugins.fileTransfer',
+  'ngCordova.plugins.fileOpener2',
   'ngCordova.plugins.flashlight',
   'ngCordova.plugins.flurryAds',
   'ngCordova.plugins.ga',
