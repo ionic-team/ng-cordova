@@ -15,6 +15,7 @@ ap network-information
 ap geolocation
 ap globalization
 ap file
+ap file-transfer
 ap splashscreen
 ap statusbar
 ap vibration
