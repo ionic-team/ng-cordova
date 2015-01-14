@@ -2,7 +2,7 @@
   {
     "link": "/docs/plugins/actionSheet/",
     "title": "Action Sheet",
-    "keywords": "",
+    "keywords": "popup",
     "short-title": "ActionSheet"
   },
   {
@@ -14,7 +14,7 @@
   {
     "link": "/docs/plugins/appAvailability/",
     "title": "App Availability",
-    "keywords": "",
+    "keywords": "available",
     "short-title": "AppAvailability"
   },
   {
@@ -26,20 +26,14 @@
   {
     "link": "/docs/plugins/appVersion/",
     "title": "App Version",
-    "keywords": "",
+    "keywords": "version OS ",
     "short-title": "AppVersion"
   },
   {
     "link": "/docs/plugins/backgroundGeolocation/",
     "title": "Background Geolocation",
-    "keywords": "bg",
+    "keywords": "bg location",
     "short-title": "BackgroundGeolocation"
-  },
-  {
-    "link": "/docs/plugins/batteryStatus/",
-    "title": "Battery Status",
-    "keywords": "bettery life",
-    "short-title": "BatteryStatus"
   },
   {
     "link": "/docs/plugins/barcodeScanner/",
@@ -48,9 +42,15 @@
     "short-title": "BarcodeScanner"
   },
   {
+    "link": "/docs/plugins/batteryStatus/",
+    "title": "Battery Status",
+    "keywords": "battery life status",
+    "short-title": "BatteryStatus"
+  },
+  {
     "link": "/docs/plugins/calendar/",
     "title": "Calendar",
-    "keywords": "date time",
+    "keywords": "date time reminder",
     "short-title": "Calendar"
   },
   {
@@ -62,49 +62,49 @@
   {
     "link": "/docs/plugins/capture/",
     "title": "Capture",
-    "keywords": "",
+    "keywords": "record sound music video image",
     "short-title": "Capture"
   },
   {
     "link": "/docs/plugins/clipboard/",
     "title": "Clipboard",
-    "keywords": "",
+    "keywords": "copy paste",
     "short-title": "Clipboard"
   },
   {
     "link": "/docs/plugins/contacts/",
     "title": "Contacts",
-    "keywords": "",
+    "keywords": "contact user ",
     "short-title": "Contacts"
   },
   {
     "link": "/docs/plugins/datePicker/",
     "title": "Date Picker",
-    "keywords": "",
+    "keywords": "date time",
     "short-title": "DatePicker"
   },
   {
     "link": "/docs/plugins/device/",
     "title": "Device",
-    "keywords": "",
+    "keywords": "iPhone Android iPad type",
     "short-title": "Device"
   },
   {
     "link": "/docs/plugins/deviceMotion/",
     "title": "Device Motion",
-    "keywords": "",
+    "keywords": "accelerometer acceleration",
     "short-title": "DeviceMotion"
   },
   {
     "link": "/docs/plugins/deviceOrientation/",
     "title": "Device Orientation",
-    "keywords": "",
+    "keywords": "compass orientation",
     "short-title": "DeviceOrientation"
   },
   {
     "link": "/docs/plugins/dialogs/",
     "title": "Dialogs",
-    "keywords": "",
+    "keywords": "alert confirm prompt beep",
     "short-title": "Dialogs"
   },
   {
@@ -116,31 +116,43 @@
   {
     "link": "/docs/plugins/facebook/",
     "title": "Facebook",
-    "keywords": "",
+    "keywords": "facebook login oauth",
     "short-title": "Facebook"
   },
   {
     "link": "/docs/plugins/file/",
     "title": "File",
-    "keywords": "",
+    "keywords": "file absolute path location",
     "short-title": "File"
+  },
+  {
+    "link": "/docs/plugins/fileTransfer/",
+    "title": "File Transfer",
+    "keywords": "file transfer upload download ",
+    "short-title": "FileTransfer"
+  },
+  {
+    "link": "/docs/plugins/fileOpener2/",
+    "title": "FileOpener2",
+    "keywords": "",
+    "short-title": "FileOpener2"
   },
   {
     "link": "/docs/plugins/flashlight/",
     "title": "Flashlight",
-    "keywords": "",
+    "keywords": "light flash",
     "short-title": "Flashlight"
   },
   {
     "link": "/docs/plugins/geolocation/",
     "title": "Geolocation",
-    "keywords": "",
+    "keywords": "location",
     "short-title": "Geolocation"
   },
   {
     "link": "/docs/plugins/globalization/",
     "title": "Globalization",
-    "keywords": "",
+    "keywords": "language preferences",
     "short-title": "Globalization"
   },
   {
@@ -152,7 +164,7 @@
   {
     "link": "/docs/plugins/imagePicker/",
     "title": "Image Picker",
-    "keywords": "picture",
+    "keywords": "picture image cameraroll",
     "short-title": "ImagePicker"
   },
   {
@@ -194,19 +206,19 @@
   {
     "link": "/docs/plugins/network/",
     "title": "Network",
-    "keywords": "wifi 3G",
+    "keywords": "wifi 3G 4G LTE",
     "short-title": "Network"
   },
   {
     "link": "/docs/plugins/oauth/",
     "title": "OAuth",
-    "keywords": "authentication",
+    "keywords": "authentication 0auth",
     "short-title": "OAuth"
   },
   {
     "link": "/docs/plugins/pinDialog/",
     "title": "Pin Dialog",
-    "keywords": "",
+    "keywords": "prompt",
     "short-title": "PinDialog"
   },
   {
@@ -218,13 +230,13 @@
   {
     "link": "/docs/plugins/progressIndicator/",
     "title": "Progress Indicator",
-    "keywords": "",
+    "keywords": "activity",
     "short-title": "ProgressIndicator"
   },
   {
     "link": "/docs/plugins/pushNotifications/",
     "title": "Push Notifications",
-    "keywords": "",
+    "keywords": "APN GCM",
     "short-title": "PushNotifications"
   },
   {
@@ -248,7 +260,7 @@
   {
     "link": "/docs/plugins/sqlite/",
     "title": "SQLite",
-    "keywords": "",
+    "keywords": "db database storage",
     "short-title": "SQLite"
   },
   {
@@ -272,7 +284,7 @@
   {
     "link": "/docs/plugins/vibration/",
     "title": "Vibration",
-    "keywords": "",
+    "keywords": "beep",
     "short-title": "Vibration"
   },
   {
