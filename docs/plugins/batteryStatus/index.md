@@ -18,27 +18,25 @@ cordova plugin add org.apache.cordova.battery-status
 
 
 ```javascript
-
-module.controller('MyCtrl', function($scope, $cordovaBatteryStatus) {
+module.run(function($rootScope, $cordovaBatteryStatus) {
 
   document.addEventListener("deviceready", function () {
 
-    $cordovaBatteryStatus.$on('batterystatus', function (result) {
+    $rootScope.$on('$cordovaBatteryStatus:status', function (result) {
       var batteryLevel = result.level;       // (0 - 100)
       var isPluggedIn  = result.isPlugged;   // bool
     });
 
-    $cordovaBatteryStatus.$on('batterycritical', function (result) {
+    $rootScope.$on('$cordovaBatteryStatus:critical', function (result) {
       var batteryLevel = result.level;       // (0 - 100)
       var isPluggedIn  = result.isPlugged;   // bool
     });
 
-    $cordovaBatteryStatus.$on('batterylow', function (result) {
+    $rootScope.$on('$cordovaBatteryStatus:low', function (result) {
       var batteryLevel = result.level;       // (0 - 100)
       var isPluggedIn  = result.isPlugged;   // bool
     });
 
   }, false);
 });
-
 ```

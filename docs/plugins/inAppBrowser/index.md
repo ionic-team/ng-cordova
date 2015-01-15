@@ -10,85 +10,120 @@ icon-android: true
 icon-windows: true
 ---
 
-
 Provides a web browser view. It could be used to open images, access web pages, and open PDF files.
 
 ```
 cordova plugin add org.apache.cordova.inappbrowser
 ```
 
+#### Methods
+
+##### `$cordovaInAppBrowserProvider.setDefaultOptions(options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| options      | `Object`       | Set global, default options for all inAppBrowsers |
+
+
+##### `open(URL, target, options)`
+
+| Param        | Type           | Detail  |
+| ------------ |----------------| --------|
+| URL          | `String`       | Configuration object for setting default values |
+| target       | `String`       | The target in which to load the URL (`_self`, `_blank`, `_system`) |
+| options      | `Object`       | Optionally override default options |
+
+
+##### `close()`
+
+Closes the InAppBrowser window.
+
+##### `$rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event));`
+
+Listen for the `loadstart` event, called when the In App Browser starts loading a page (only after `open()` is called).
+
+##### `$rootScope.$on('$cordovaInAppBrowser:loadstop', function(e, event));`
+
+Listen for the `loadstop` event, which fires after the Browser has finished loading (only after `open()` is called).
+
+##### `$rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event));`
+
+Listen for the `loaderror` event, which fires when the In App Browser encounters an error when loading a URL (only after `open()` is called).
+
+##### `$rootScope.$on('$cordovaInAppBrowser:exit', function(e, event));`
+
+Listen for the `exit` event, which fires when the InAppBrowser window is closed (only after `open()` is called).
+
+
+#### Example
+
+**Set Default Options**
 
 ```javascript
-module.controller('FooCtrl', function($cordovaInAppBrowser) {
+module.config(function($cordovaInAppBrowserProvider) {
 
-  // Using the plugin with default options
-  $cordovaInAppBrowser
-    .open('http://ngcordova.com', '_blank')
-    .then(function(event) {
-      // success
-    }, function(event) {
-      // error
-    });
-
-});
-
-module.controller('BarCtrl', function($cordovaInAppBrowser) {
-
-  // Configuring the plugin, options could be `String` or `Object`
-  $cordovaInAppBrowser.init('location=no,clearcache=yes');
-
-  $cordovaInAppBrowser
-    .open('http://ngcordova.com', '_blank')
-    .then(function(event) {
-      // success
-    })
-    .catch(function(event) {
-      // error
-    });
-
-});
-
-module.controller('BazCtrl', function($scope, $cordovaInAppBrowser) {
-
-  // More advanced usage
-  var inApp = $cordovaInAppBrowser.init({
+  var defaultOptions = {
     location: 'no',
-    clearcache: 'yes'
+    clearcache: 'no',
+    toolbar: 'no'
+  };
+
+  document.addEventListener(function () {
+
+    $cordovaInAppBrowserProvider.setDefaultOptions(options)
+
+  }, false);
+});
+```
+
+**Open a new browser**
+
+```javascript
+module.controller('ThisCtrl', function($cordovaInAppBrowser) {
+
+  var options = {
+      location: 'yes',
+      clearcache: 'yes',
+      toolbar: 'no'
+    };
+
+  document.addEventListener(function () {
+    $cordovaInAppBrowser.open('http://ngcordova.com', '_blank', options)
+      .then(function(event) {
+        // success
+      })
+      .catch(function(event) {
+        // error
+      });
+
+
+    $cordovaInAppBrowser.close();
+
+  }, false);
+
+  $rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event){
+
   });
 
-  $cordovaInAppBrowser.open('http://ngcordova.com', '_blank');
-
-  // fires when the InAppBrowser starts to load a URL
-  inApp.$on('loadstart', function(event) {
-
-  });
-
-  // fires when the InAppBrowser finishes loading a URL
-  inApp.$on('loadstop', function(event) {
-    // Inject css
+  $rootScope.$on('$cordovaInAppBrowser:loadstop', function(e, event){
+    // insert CSS via code / file
     $cordovaInAppBrowser.insertCSS({
       code: 'body {background-color:blue;}'
     });
 
-    // Execute javascript
+    // insert Javascript via code / file
     $cordovaInAppBrowser.executeScript({
       file: 'script.js'
     });
   });
 
-  // fires when the InAppBrowser encounters an error when loading a URL
-  inApp.$on('loaderror', function(event) {
+  $rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event){
 
   });
 
-  // fires when the InAppBrowser window is closed
-  inApp.$on('exit', function(event) {
+  $rootScope.$on('$cordovaInAppBrowser:exit', function(e, event){
 
   });
-
-  $scope.onClose = function() {
-    $cordovaInAppBrowser.close();
-  };
 
 });
 ```

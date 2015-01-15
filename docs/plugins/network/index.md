@@ -50,9 +50,9 @@ Check if the phone network is Offline
 **Returns** `true` - if Offline
 
 
-##### `$rootScope.$on('networkOnline', function(event, networkState){})`
+##### `$rootScope.$on('$cordovaNetwork:online', function(event, networkState){})`
 
-Listens on the `'networkOnline'` event, which is fired when the phone goes Online.
+Listens on the `'$cordovaNetwork:online'` event, which is fired when the phone goes Online.
 
 > **Returns**
 
@@ -62,9 +62,9 @@ Listens on the `'networkOnline'` event, which is fired when the phone goes Onlin
 > | networkState | `Object`   | Type of network connection - see `getNetwork()` return object |
 
 
-##### `$rootScope.$on('networkOffline', function(event, networkState){})`
+##### `$rootScope.$on('$cordovaNetwork:offline', function(event, networkState){})`
 
-Listens on the `'networkOffline'` event, which is fired when the phone goes Offline.
+Listens on the `'$cordovaNetwork:offline'` event, which is fired when the phone goes Offline.
 
 > **Returns**
 

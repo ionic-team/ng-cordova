@@ -35,7 +35,7 @@ cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 | options      | `Object`       | Options for unregistering push-notifications (not generally needed) |
 
 
-##### `$rootScope.$on('pushNotificationReceived', func(event, notification))`
+##### `$rootScope.$on('$cordovaPush:notificationReceived', func(event, notification))`
 
 | Returns      | Type           | Detail  |
 | ------------ |----------------| --------|
@@ -118,7 +118,7 @@ module.run(function($cordovaPush) {
       // Error
     })
   
-    $rootScope.$on('pushNotificationReceived', function(event, notification) {
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {

@@ -72,9 +72,18 @@ module.controller('MyCtrl', function($scope, $cordovaLocalNotification) {
     $cordovaLocalNotification.setDefaults({ autoCancel: true });
   };
 
-  // event callbacks events `onadd`, `ontrigger`, `onclick` and `oncancel`
-  // can be assigned like this:
-  $cordovaLocalNotification.onadd = function (id, state, json) {};
+
+  $rootScope.$on("$cordovaLocalNotification:canceled", function(e,notification) {
+  });
+
+  $rootScope.$on("$cordovaLocalNotification:clicked", function(e,notification) {
+  });
+
+  $rootScope.$on("$cordovaLocalNotification:triggered", function(e,notification) {
+  });
+
+  $rootScope.$on("$cordovaLocalNotification:added", function(e,notification) {
+  });
 
 });
 ```
