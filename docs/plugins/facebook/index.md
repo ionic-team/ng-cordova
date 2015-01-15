@@ -29,9 +29,7 @@ Download the repo from [https://github.com/Wizcorp/phonegap-facebook-plugin](htt
 
 
 ```bash
-cordova platform add ios
-
-cordova -d plugin add /Users/your/path/here/phonegap-facebook-plugin --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="123456789" --variable APP_NAME="myApplication"
 ```
 
 **[Check out the more complete docs for iOS install](https://github.com/Wizcorp/phonegap-facebook-plugin/blob/master/platforms/ios/README.md)**
