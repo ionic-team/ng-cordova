@@ -3130,12 +3130,12 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
 
         close: function () {
           ref.close();
+          ref = null;
         },
 
         show: function () {
           ref.show();
         },
-
 
         executeScript: function (details) {
           var q = $q.defer();
