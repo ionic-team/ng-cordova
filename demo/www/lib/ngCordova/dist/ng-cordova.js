@@ -1754,13 +1754,9 @@ angular.module('ngCordova.plugins.facebookAds', [])
 
 // TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
 // TODO: add documentation for FileError types
-// TODO: add abort() option to downloadFile and uploadFile methods.
-// TODO: add support for downloadFile and uploadFile options. (or detailed documentation) -> for fileKey, fileName, mimeType, headers
-// TODO: add support for onprogress property
 
 angular.module('ngCordova.plugins.file', [])
 
-//Filesystem (checkDir, createDir, checkFile, creatFile, removeFile, writeFile, readFile)
   .factory('$cordovaFile', ['$q', '$window', '$log', '$timeout', function ($q, $window, $log, $timeout) {
 
     return {
@@ -1929,7 +1925,8 @@ angular.module('ngCordova.plugins.file', [])
         return getAbsoluteFile(filePath);
       },
 
-      download: function (source, filePath, options, trustAllHosts) {
+      downloadFile: function (source, filePath, options, trustAllHosts) {
+        console.warn("This method is deprecated as of v0.1.11-alpha, please refer to $cordovaFileTransfer");
         var q = $q.defer();
         var ft = new FileTransfer();
         var uri = encodeURI(source);
@@ -1949,7 +1946,8 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       },
 
-      upload: function (server, filePath, options, trustAllHosts) {
+      uploadFile: function (server, filePath, options, trustAllHosts) {
+        console.warn("This method is deprecated as of v0.1.11-alpha, please refer to $cordovaFileTransfer");
         var q = $q.defer();
         var ft = new FileTransfer();
         var uri = encodeURI(server);
