@@ -1,3 +1,174 @@
+# 0.1.11-alpha (01-15-2014)
+
+### New
+- **NPM** - deploy new versions using Travis 081a23f
+- **FileOpener2 plugin** - created module and factory for fileOpener2 plugin 08970d0
+- **inAppBrowser plugin** - refractor into a provider to set default options + override default options in `open()` method daeedd1 8d9e7fb
+- **File Transfer plugin** - refractor out FileTransfer plugin from **File plugin** into its own module 11717fc
+- **Local Notification** - added ` registerPermission()` method for iOS 8 742d961cfd91a19998029aa51d25602387cb4e29
+- **OAuth** -Magento, ADFS, Vkontakte support   8bb4198
+
+
+### Fix
+- **ProgressIndicator** - add the `show()` method that exists for android. show expects one parameter which is the indicator message 67f5f0d f5b220f
+- **OAuth** - fix promise resolve #544 e0b2457
+- **OAuth** -  `close()` browser only after login promise is complete 8bb4198
+- **Push Notification** - `onNotification` check + replace `$rootscope.$apply()` with `$timeout` to avoid '$digest already in progress' error 1cb428a
+- **Network** -  improve eventListener auto initialized the eventListeners for `offline`, `online`. 8272f28 0c8c0fd 579c18f
+- **Network** -  replace `$apply()` with `$timeout()` for online and offline events d0028aa
+- **Social Sharing** -add `shareViaFacebookWithPasteMessageHint` method a5df9db
+- **localNotification** - replace `$rootscope.$apply()` with `$timeout()` to avoid $digest error for events 743ce58
+- **Battery Status** - remove isolated `$rootScope.$new()` and replace with DI injection + check if plugin is installed. If installed, start EventListeners 0c6de57
+- **Battery Status** - refractor out anonymous functions for better memory management + wrap `$broadcast` calls in a `$timeout` function to ensure `$rootscope.$apply()` occurs 600b30e
+
+
+### Demo
+- **Facebook** - FB variables to init.sh d0575a7
+- **Contacts** - add contacts da92644
+- **localNotification** - add detailed localNotification  da92644
+
+
+### Breaking Changes
+- **Network** - standardise $broadcast naming 3566b7b
+- **Push Notification** - standardise $broadcast naming dda9e80
+- **Battery Status** - standardise $broadcast naming 6b6739f
+- **Local Notifications** -standardize $broadcast naming 742d961
+- **InAppBrowser** - rename `loadstart`, `loadstop`, `loaderror`, `exit` to `$cordovaInAppBrowser:[event]` for standardisation + refractor to `$rootScope.$broadcast()` to avoid new isolated scope dea2b8e
+- **InAppBrowser** - remove `init()` function - refractor into `$cordovaInAppBrowserProvider.setDefaultOptions(options)` dea2b8e
+
+##### Network
+Before
+```javascript
+$rootScope.$on('networkOffline', function(e,state));
+$rootScope.$on('networkOnline', function(e,state));
+```
+
+Now
+```javascript
+$rootScope.$on('$cordovaNetwork:offline', function(e,state));
+$rootScope.$on('$cordovaNetwork:online', function(e,state));
+```
+
+
+##### Push Notifications
+Before
+```javascript
+$rootScope.$on('pushNotificationReceived', function(e,state));
+```
+
+Now
+```javascript
+$rootScope.$on('$cordovaPush:notificationReceived', function(e,notification));
+```
+
+##### Battery Status
+Before
+```javascript
+$cordovaBatteryStatus.$on('batterystatus', function(e,status));
+$cordovaBatteryStatus.$on('batterycritical', function(e,status));
+$cordovaBatteryStatus.$on('batterylow', function(e,status));
+```
+
+Now
+```javascript
+$rootScope.$on('$cordovaBatteryStatus:status', function(e,status));
+$rootScope.$on('$cordovaBatteryStatus:critical', function(e,status));
+$rootScope.$on('$cordovaBatteryStatus:low', function(e,status));
+```
+
+##### Local Notification
+Before
+```javascript
+$rootScope.$on("localNotification:canceled", function(e,notification));
+$rootScope.$on("localNotification:clicked", function(e,notification));
+$rootScope.$on("localNotification:triggered", function(e,notification));
+$rootScope.$on("localNotification:added", function(e,notification));
+```
+
+Now
+```javascript
+$rootScope.$on("$cordovaLocalNotification:canceled", function(e,notification));
+$rootScope.$on("$cordovaLocalNotification:clicked", function(e,notification));
+$rootScope.$on("$cordovaLocalNotification:triggered", function(e,notification));
+$rootScope.$on("$cordovaLocalNotification:added", function(e,notification));
+```
+
+##### In App Browser
+Before
+```javascript
+inApp.$on('loadstart', function(e, event));
+inApp.$on('loadstop', function(e, event));
+inApp.$on('loaderror', function(e, event));
+inApp.$on('exit', function(e, event));
+
+$cordovaInAppBrowser.init(options);
+```
+
+Now
+```javascript
+$rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event));
+$rootScope.$on('$cordovaInAppBrowser:loadstop', function(e, event));
+$rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event));
+$rootScope.$on('$cordovaInAppBrowser:exit', function(e, event));
+
+$cordovaInAppBrowserProvider.setDefaultOptions(options);
+```
+
+##### File Plugin
+Before
+```javascript
+$cordovaFile.uploadFile(...)
+$cordovaFile.downloadFile(...)
+```
+
+Now
+```javascript
+$cordovaFileTransfer.upload(...)
+$cordovaFileTransfer.download(...)
+```
+
+
+# 0.1.10-alpha (01-4-2014)
+
+This is a relatively small release to reflect more changes to the **FB plugin**. Important additions were made the **network plugin**, which now provides the ability to watch for `online` and `offline` events.
+
+> NOTE: **ngCordova** is arriving at a very stable level and we hope to release the first **BETA** version in the next few weeks, after we complete some important fixes to the **file plugin**, **push notifications** and **local notifications** plugins. Expect 1 - 2 more **ALPHA** releases with changes made to these plugins, and send me an email  @ paolo.enrico.bernasconi@gmail.com if you would like to help test these plugins.
+
+### NEW
+
+- **Network Plugin** : adding `$on('online')`, `$on('offline')` events 3cccfe409b44710e9677a3d9434b3efe346e6379
+- **0Auth** : salesforce + strava support e0795ce 
+- **Facebook** : make more compliant with original plugin and remove unnecessary `init()` from login method. 64b5aa8036d23dd768a2b47c21e760871feb94dd  2218c4d
+- **mocks** : better file plugin 2404142 78e9410  8bac9eb
+- **docs**: ability to search plugins
+
+### Fix
+- **0Auth** : add code to handle cancel / exit events in the oauth browser flow  4d93e12
+- **Keychain** : check if keychain exists before instantiating  7684643
+
+
+### Breaking Changes
+
+**Facebook Plugin:** (only relevant for browser testing)
+
+**Before**
+```
+.config(function () {
+  $cordovaFacebookProvider.setAppID(appID, version);
+});
+
+```
+
+**After**
+```
+.config(function () {
+  $cordovaFacebookProvider. browserInit(12345678, "v2.0")
+});
+```
+
+
+
+
 # 0.1.9-alpha (12-22-2014)
 
 A new release to reflect a few changes made to the docs and code respectively. Mainly `v0.1.9-alpha` has been released to fix the AngularJS dependency issue, which now resolves to anything higher than `v1.2.23`.
