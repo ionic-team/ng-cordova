@@ -87,7 +87,7 @@ Coming soon ...
 #### Examples
 
 ```javascript
-module.controller('MyCtrl', function($scope, $rootScope, $cordovaNetwork) {
+module.controller('MyCtrl', function($rootScope, $cordovaNetwork) {
 
   document.addEventListener("deviceready", function () {
 
@@ -99,12 +99,12 @@ module.controller('MyCtrl', function($scope, $rootScope, $cordovaNetwork) {
 
 
     // listen for Online event
-    $rootScope.$on('networkOffline', function(event, networkState){
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
       var onlineState = networkState;
     })
 
     // listen for Offline event
-    $rootScope.$on('networkOffline', function(event, networkState){
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
       var offlineState = networkState;
     })
 
