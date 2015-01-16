@@ -64,6 +64,14 @@ cordova plugin add https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plug
 module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
 
   $cordovaSocialSharing
+    .share(message, subject, file, link) // Share via native share sheet
+    .then(function(result) {
+      // Success!
+    }, funtion(err) {
+      // An error occured. Show a message to the user
+    });
+
+  $cordovaSocialSharing
     .shareViaTwitter(message, image, link)
     .then(function(result) {
       // Success!
