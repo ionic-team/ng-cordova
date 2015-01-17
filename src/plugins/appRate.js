@@ -5,42 +5,26 @@ angular.module('ngCordova.plugins.appRate', [])
 
   .provider("$cordovaAppRate", [function () {
 
-    this.setAppUrl = function (device, url) {
-      var devices = ['ios', 'android', 'blackberry', 'windows8'];
 
-      if (devices.indexOf(device) !== -1) {
-        AppRate.preferences.storeAppURL[device] = url;
+    this.setPreferences = function (defaults) {
+      if (!defaults || !angular.isObject(defaults)) {
+        return;
       }
-      else {
-        alert("wrong device type");
-      }
+
+      AppRate.preferences.useLanguage = defaults.language || null;
+      AppRate.preferences.displayAppName = defaults.appName || "";
+      AppRate.preferences.promptAgainForEachNewVersion = defaults.promptAgainForEachNewVersion || true;
+      AppRate.preferences.openStoreInApp = defaults.openStoreInApp || false;
+      AppRate.preferences.usesUntilPrompt = defaults.usesUntilPrompt || 3;
+      AppRate.preferences.useCustomRateDialog = defaults.useCustomRateDialog || false;
+      AppRate.preferences.storeAppURL.ios = defaults.iosURL || null;
+      AppRate.preferences.storeAppURL.android = defaults.androidURL || null;
+      AppRate.preferences.storeAppURL.blackberry = defaults.blackberryURL || null;
+      AppRate.preferences.storeAppURL.windows8 = defaults.windows8URL || null;
     };
 
-    this.useLanguage = function (language) {
-      AppRate.preferences.useLanguage = language;
-    };
 
-    this.displayAppName = function (name) {
-      AppRate.preferences.displayAppName = name;
-    };
-
-    this.promptAgainForEachNewVersion = function (boolean) {
-      AppRate.preferences.promptAgainForEachNewVersion = boolean;
-    };
-
-    this.usesUntilPrompt = function (number) {
-      AppRate.preferences.usesUntilPrompt = number;
-    };
-
-    this.openStoreInApp = function (boolean) {
-      AppRate.preferences.openStoreInApp = boolean;
-    };
-
-    this.useCustomRateDialog = function (boolean) {
-      AppRate.preferences.useCustomRateDialog = boolean;
-    };
-
-    this.customLocale = function (customObj) {
+    this.setCustomLocale = function (customObj) {
       var strings = {
         title: 'Rate %@',
         message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',

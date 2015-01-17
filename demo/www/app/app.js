@@ -116,7 +116,12 @@ angular.module('demo', [
 
 
     document.addEventListener("deviceready", function () {
-      $cordovaAppRateProvider.displayAppName("APP NAME");
+      var preferences = {
+        iosURL: "some URL",
+        appName: 'APP NAME',
+        language: 'fr'
+      };
+      $cordovaAppRateProvider.setPreferences(preferences);
     }, false);
 
     $cordovaInAppBrowserProvider.setDefaultOptions(browserOptions);
