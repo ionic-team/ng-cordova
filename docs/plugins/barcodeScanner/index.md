@@ -25,14 +25,13 @@ cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
 
 **Returns**  `Object` with user information, such as id, lastName
 
-##### `encode(type, text)`
 
+##### `encode(type, text)`
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
 | type         | `Constant`     | Encoding type desired (eg:  BarcodeScanner.Encode.TEXT_TYPE) |
 | text         | `String`       | String of text to be encoded into desired format |
-
 
 **Returns**  `Object` with encoded text
 
