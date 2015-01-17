@@ -20,28 +20,29 @@ cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git
 
 #### Methods
 
-##### `promptForRating(when)`
+##### `promptForRating(immediate)`
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
-| when         | `Boolean`      | If `true` shows the app-rate dialog immediately |
+| immediate    | `Boolean`      | If `true` shows the app-rate dialog immediately |
 
 
-#### Configure with `$cordovaAppRateProvider` *- in `config()` only*
 
-##### `setPreferences(preferences)`
+##### `$cordovaAppRateProvider.setPreferences(preferences)` *- only in `config()`*
 
-| Preferences  | Type           | Detail  |
-| ------------ |----------------| --------|
-| language     | `String`       | Possible values: `'ios'`, `'android'`, `'windows8'` |
-| appName      | `String`       | URL of your application id |
-| openStoreInApp      | `Boolean`       | URL of your application id |
-| usesUntilPrompt | `Integer`       | URL of your application id |
-| promptAgainForEachNewVersion | `Boolean`       | URL of your application id |
-| useCustomRateDialog      | `String`       | URL of your application id |
-| iosURL          | `String`       | URL of your application id |
-| androidURL      | `String`       | URL of your application id |
-| windowsURL      | `String`       | URL of your application id |
+The `preferences` parameter is an `Object` with the following key possibilities:
+
+| Preferences         | Type      | Detail   |
+| ------------------- |---------- | -------- |
+| language            | `String`  | Language of Dialog - eg `'en'`, `'fr'`, `'it'` |
+| appName             | `String`  | Custom application title |
+| openStoreInApp      | `Boolean` | Leave app or not  |
+| usesUntilPrompt     | `Integer` | Number of runs of app before dialog is displayed |
+| promptForNewVersion | `Boolean` | Show dialog again if new app version |
+| useCustomRateDialog | `String`  | Use custom view for rate dialog |
+| iosURL              | `String`  | Application id in AppStore |
+| androidURL          | `String`  | Application URL in GooglePlay |
+| windowsURL          | `String`  | Application URL in WindowsStore |
 
 
 #### Example
@@ -55,9 +56,10 @@ module.config(function ($cordovaAppRateProvider) {
 
    var prefs = {
      language: 'en',
-     appName : 'MY APP',
-     iosURL : 'ios url link',
-     androidURL : 'android url link'
+     appName: 'MY APP',
+     iosURL: '<my_app_id>',
+     androidURL: 'market://details?id=<package_name>',
+     windowsURL: 'ms-windows-store:Review?name=<...>'
    };
 
    $cordovaAppRateProvider.setPreferences(prefs)
