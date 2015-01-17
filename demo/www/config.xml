@@ -5,11 +5,7 @@
 		versionCode=""
 		version   = "">
 		<name>ngCordovaDemo</name>
-		<description>
-Demo app for ngCordova plugins		</description>
-		<author href="www.spieleware.com" email="phaggood@spieleware.com">
-Patrick Haggood
-		</author>
+		<description>Demo app for ngCordova plugins		</description>
 		<preference name="phonegap-version" value="3.4.0" />
 		<preference name="orientation" value="default" />
 		<preference name="fullscreen" value="false" />

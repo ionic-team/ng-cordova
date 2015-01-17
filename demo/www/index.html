@@ -10,20 +10,6 @@
   <script src="lib/ionic/js/ionic.bundle.js"></script>
   <div id="fb-root"></div>
 
-  <!-- Facebook Plugin for web-development -->
-  <script>
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
   <!-- Facebook Plugin copy pasted from the plugin/facebookplugin/js/... for web-dev -->
   <script src="lib/facebookConnectPlugin.js"></script>
 
@@ -76,7 +62,6 @@
 <body ng-app="demo" animation="slide-left-right-ios7">
 <ion-nav-bar class="bar-positive nav-title-slide-ios7">
   <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">
-    Back
   </ion-nav-back-button>
 </ion-nav-bar>
 <ion-nav-view>

@@ -101,7 +101,7 @@ angular.module('demo', [
     })
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $cordovaInAppBrowserProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $cordovaAppRateProvider, $cordovaInAppBrowserProvider) {
 
     if (!window.cordova) {
       var appID = 1234567890;
@@ -113,6 +113,11 @@ angular.module('demo', [
       location: "yes",
       toolbar: "yes"
     };
+
+
+    document.addEventListener("deviceready", function () {
+      $cordovaAppRateProvider.displayAppName("APP NAME");
+    }, false);
 
     $cordovaInAppBrowserProvider.setDefaultOptions(browserOptions);
 
