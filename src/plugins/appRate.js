@@ -13,7 +13,7 @@ angular.module('ngCordova.plugins.appRate', [])
 
       AppRate.preferences.useLanguage = defaults.language || null;
       AppRate.preferences.displayAppName = defaults.appName || "";
-      AppRate.preferences.promptAgainForEachNewVersion = defaults.promptAgainForEachNewVersion || true;
+      AppRate.preferences.promptAgainForEachNewVersion = defaults.promptForNewVersion || true;
       AppRate.preferences.openStoreInApp = defaults.openStoreInApp || false;
       AppRate.preferences.usesUntilPrompt = defaults.usesUntilPrompt || 3;
       AppRate.preferences.useCustomRateDialog = defaults.useCustomRateDialog || false;
