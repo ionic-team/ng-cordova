@@ -33,5 +33,5 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     }, false);
     return true;
   }])
-  .run(function ($cordovaBatteryStatus) {
-  });
+  .run(['$cordovaBatteryStatus', function ($cordovaBatteryStatus) {
+  }]);

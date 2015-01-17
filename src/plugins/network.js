@@ -52,5 +52,5 @@ angular.module('ngCordova.plugins.network', [])
       }
     };
   }])
-  .run(function ($cordovaNetwork) {
-  });
+  .run(['$cordovaNetwork', function ($cordovaNetwork) {
+  }]);
