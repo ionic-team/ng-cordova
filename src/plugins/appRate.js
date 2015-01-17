@@ -20,7 +20,7 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.storeAppURL.ios = defaults.iosURL || null;
       AppRate.preferences.storeAppURL.android = defaults.androidURL || null;
       AppRate.preferences.storeAppURL.blackberry = defaults.blackberryURL || null;
-      AppRate.preferences.storeAppURL.windows8 = defaults.windows8URL || null;
+      AppRate.preferences.storeAppURL.windows8 = defaults.windowsURL || null;
     };
 
 
