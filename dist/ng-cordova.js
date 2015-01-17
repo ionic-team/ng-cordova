@@ -434,8 +434,8 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     }, false);
     return true;
   }])
-  .run(function ($cordovaBatteryStatus) {
-  });
+  .run(['$cordovaBatteryStatus', function ($cordovaBatteryStatus) {
+  }]);
 
 //  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
 //  link      :   https://github.com/don/cordova-plugin-ble-central
@@ -3970,8 +3970,8 @@ angular.module('ngCordova.plugins.network', [])
       }
     };
   }])
-  .run(function ($cordovaNetwork) {
-  });
+  .run(['$cordovaNetwork', function ($cordovaNetwork) {
+  }]);
 
 /* Created by Nic Raboy
  * http://www.nraboy.com
