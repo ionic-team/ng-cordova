@@ -2,103 +2,103 @@
 // link     :     https://github.com/floatinghotpot/cordova-mobfox-pro
 
 angular.module('ngCordova.plugins.mobfoxAds', [])
-	.factory('$cordovaMobFoxAds', [ '$q', '$window', function($q, $window) {
+  .factory('$cordovaMobFoxAds', ['$q', '$window', function ($q, $window) {
 
-	return {
-		setOptions : function(options) {
-			var d = $q.defer();
+    return {
+      setOptions: function (options) {
+        var d = $q.defer();
 
-			$window.MobFox.setOptions(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		createBanner : function(options) {
-			var d = $q.defer();
+      createBanner: function (options) {
+        var d = $q.defer();
 
-			$window.MobFox.createBanner(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.createBanner(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		removeBanner : function() {
-			var d = $q.defer();
+      removeBanner: function () {
+        var d = $q.defer();
 
-			$window.MobFox.removeBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBanner : function(position) {
-			var d = $q.defer();
+      showBanner: function (position) {
+        var d = $q.defer();
 
-			$window.MobFox.showBanner(position, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showBannerAtXY : function(x, y) {
-			var d = $q.defer();
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
 
-			$window.MobFox.showBannerAtXY(x, y, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		hideBanner : function() {
-			var d = $q.defer();
+      hideBanner: function () {
+        var d = $q.defer();
 
-			$window.MobFox.hideBanner(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		prepareInterstitial : function(options) {
-			var d = $q.defer();
+      prepareInterstitial: function (options) {
+        var d = $q.defer();
 
-			$window.MobFox.prepareInterstitial(options, function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.prepareInterstitial(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		},
+        return d.promise;
+      },
 
-		showInterstitial : function() {
-			var d = $q.defer();
+      showInterstitial: function () {
+        var d = $q.defer();
 
-			$window.MobFox.showInterstitial(function() {
-				d.resolve();
-			}, function() {
-				d.reject();
-			});
+        $window.MobFox.showInterstitial(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
 
-			return d.promise;
-		}
-	};
-} ]);
+        return d.promise;
+      }
+    };
+  }]);

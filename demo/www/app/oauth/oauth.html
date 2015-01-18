@@ -1,9 +1,5 @@
 <ion-view title="Oauth">
 
-    <ion-nav-buttons side="right">
-        <button class="button button-primary button-clear icon-right ion-code" ng-click="showSource()"></button>
-    </ion-nav-buttons>
-
     <ion-content scroll="false" padding="true">
         <button ng-click="instagramLogin()" class="button button-block button-primary">Instagram</button>
         <button ng-click="facebookLogin()" class="button button-block button-primary">Facebook</button>
@@ -16,6 +12,9 @@
         <button ng-click="redditLogin()" class="button button-block button-primary">Reddit</button>
         <button ng-click="twitterLogin()" class="button button-block button-primary">Twitter</button>
         <button ng-click="meetupLogin()" class="button button-block button-primary">Meetup</button>
+        <button ng-click="foursquareLogin()" class="button button-block button-primary">Foursquare</button>
+        <button ng-click="salesforceLogin()" class="button button-block button-primary">Salesforce</button>
+        <button ng-click="stravaLogin()" class="button button-block button-primary">Strava</button>
         <div ng-bind="oauthResult">
         </div>
     </ion-content>

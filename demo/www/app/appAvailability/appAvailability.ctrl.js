@@ -1,5 +1,5 @@
 angular.module('demo.appAvailability.ctrl', [])
 
-  .controller('appAvailabilityCtrl', function ($scope, $log, $cordovaPreferences) {
+  .controller('AppAvailabilityCtrl', function ($scope, $log, $cordovaPreferences) {
 
   });

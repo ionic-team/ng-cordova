@@ -1,0 +1,19 @@
+<ion-view title="FileOpener2">
+  <ion-content padding="true">
+
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="packageID" ng-model="packageId">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="type" ng-model="type">
+      </label>
+      <button class="button button-block button-positive" ng-click="open()">
+        Open
+      </button>
+    </div>
+
+    {{ logs }}
+
+  </ion-content>
+</ion-view>

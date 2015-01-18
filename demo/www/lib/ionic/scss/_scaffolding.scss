@@ -65,6 +65,9 @@ body.grade-c {
   // Hide the top border if any
   margin-top: -1px;
 
+  // Prevents any distortion of lines
+  padding-top:1px;
+
   width: auto;
   height: auto;
 }
@@ -134,17 +137,19 @@ body.grade-c {
   border-radius: 4px;
   background: rgba(0,0,0,0.3);
   opacity: 1;
-
+  @include transition(opacity .3s linear);
 
   &.scroll-bar-fade-out {
-    @include transition(opacity 0.3s linear);
     opacity: 0;
   }
+}
+.platform-android .scroll-bar-indicator {
+  // android doesn't have rounded ends on scrollbar
+  border-radius: 0;
 }
 .grade-b .scroll-bar-indicator,
 .grade-c .scroll-bar-indicator {
   // disable rgba background and border radius for low end devices
-  border-radius: 0;
   background: #aaa;
 
   &.scroll-bar-fade-out {
@@ -154,21 +159,21 @@ body.grade-c {
 
 @keyframes refresh-spin {
   0% { transform: translate3d(0,0,0) rotate(0); }
-  100% { transform: translate3d(0,0,0) rotate(-180deg); }
+  100% { transform: translate3d(0,0,0) rotate(180deg); }
 }
 
 @-webkit-keyframes refresh-spin {
   0% {-webkit-transform: translate3d(0,0,0) rotate(0); }
-  100% {-webkit-transform: translate3d(0,0,0) rotate(-180deg); }
+  100% {-webkit-transform: translate3d(0,0,0) rotate(180deg); }
 }
 
 @keyframes refresh-spin-back {
-  0% { transform: translate3d(0,0,0) rotate(-180deg); }
+  0% { transform: translate3d(0,0,0) rotate(180deg); }
   100% { transform: translate3d(0,0,0) rotate(0); }
 }
 
 @-webkit-keyframes refresh-spin-back {
-  0% {-webkit-transform: translate3d(0,0,0) rotate(-180deg); }
+  0% {-webkit-transform: translate3d(0,0,0) rotate(180deg); }
   100% {-webkit-transform: translate3d(0,0,0) rotate(0); }
 }
 
@@ -227,12 +232,16 @@ body.grade-c {
   }
 
   &.active {
-    .icon-pulling {
+    .icon-pulling:not(.pulling-rotation-disabled) {
       @include animation-name(refresh-spin);
       -webkit-transform: translate3d(0,0,0) rotate(-180deg);
       transform: translate3d(0,0,0) rotate(-180deg);
     }
     &.refreshing {
+      @include transition(transform .2s);
+      @include transition(-webkit-transform .2s);
+      -webkit-transform: scale(1,1);
+      transform: scale(1,1);
       .icon-pulling,
       .text-pulling {
         display: none;
@@ -240,6 +249,10 @@ body.grade-c {
       .icon-refreshing,
       .text-refreshing {
         display: block;
+      }
+      &.refreshing-tail{
+        -webkit-transform: scale(0,0);
+        transform: scale(0,0);
       }
     }
   }
@@ -272,6 +285,11 @@ ion-infinite-scroll {
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
 
   .scroll {
     position: static;
@@ -293,20 +311,20 @@ ion-infinite-scroll {
 }
 
 .has-subheader {
-  top: $bar-height * 2;
+  top: $bar-height + $bar-subheader-height;
 }
 .has-tabs-top {
   top: $bar-height + $tabs-height;
 }
 .has-header.has-subheader.has-tabs-top {
-  top: 2 * $bar-height + $tabs-height;
+  top: $bar-height + $bar-subheader-height + $tabs-height;
 }
 
 .has-footer {
-  bottom: $bar-height;
+  bottom: $bar-footer-height;
 }
 .has-subfooter {
-  bottom: $bar-height * 2;
+  bottom: $bar-footer-height + $bar-subfooter-height;
 }
 
 .has-tabs,
@@ -315,12 +333,13 @@ ion-infinite-scroll {
 }
 
 .has-footer.has-tabs {
-  bottom: $tabs-height + $bar-height;
+  bottom: $tabs-height + $bar-footer-height;
 }
 
 // A full screen section with a solid background
 .pane {
   @include translate3d(0,0,0);
+  @include transition-duration(0);
   z-index: $z-index-pane;
 }
 .view {
@@ -337,4 +356,10 @@ ion-infinite-scroll {
   height: 100%;
   background-color: $base-background-color;
   overflow: hidden;
+}
+.view-container {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
 }

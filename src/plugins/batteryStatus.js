@@ -1,23 +1,37 @@
 //  install   :   cordova plugin add org.apache.cordova.battery-status
 //  link      :   https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md
 
-angular.module('ngCordova.plugins.battery-status', [])
+angular.module('ngCordova.plugins.batteryStatus', [])
 
-  .factory('$cordovaBatteryStatus', ['$rootScope', '$window', function ($rootScope, $window) {
+  .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
 
-    var scope = $rootScope.$new();
+    var batteryStatus = function (status) {
+      $timeout(function () {
+        $rootScope.$broadcast('$cordovaBatteryStatus:status', status);
+      });
+    };
 
-    $window.addEventListener('batterystatus', function (event) {
-      scope.$emit('batterystatus', event.detail);
+    var batteryCritical = function (status) {
+      $timeout(function () {
+        $rootScope.$broadcast('$cordovaBatteryStatus:critical', status);
+      });
+    };
+
+    var batteryLow = function (status) {
+      $timeout(function () {
+        $rootScope.$broadcast('$cordovaBatteryStatus:low', status);
+      });
+    };
+
+    document.addEventListener("deviceready", function () {
+      if (navigator.battery) {
+        $window.addEventListener('batterystatus', batteryStatus, false);
+        $window.addEventListener('batterycritical', batteryCritical, false);
+        $window.addEventListener('batterylow', batteryLow, false);
+
+      }
     }, false);
-
-    $window.addEventListener('batterycritical', function (event) {
-      scope.$emit('batterycritical', event.detail);
-    }, false);
-
-    $window.addEventListener('batterylow', function (event) {
-      scope.$emit('batterylow', event.detail);
-    }, false);
-
-    return scope;
+    return true;
+  }])
+  .run(['$cordovaBatteryStatus', function ($cordovaBatteryStatus) {
   }]);

@@ -18,8 +18,9 @@
   font-size: $item-font-size;
 
   h2 {
-    margin: 0 0 4px 0;
+    margin: 0 0 2px 0;
     font-size: 16px;
+    font-weight: normal;
   }
   h3 {
     margin: 0 0 4px 0;
@@ -36,6 +37,7 @@
   p {
     color: #666;
     font-size: 14px;
+    margin-bottom: 2px;
   }
 
   h1:last-child,
@@ -98,6 +100,11 @@
     cursor: pointer;
   }
 
+}
+
+.list-borderless .item,
+.item-borderless {
+  border-width: 0;
 }
 
 // Link and Button Active States
@@ -494,6 +501,7 @@ button.item.item-button-right {
 
 .item-thumbnail-left,
 .item-thumbnail-left .item-content {
+  padding-top: $item-padding / 2;
   padding-left: $item-thumbnail-width + $item-thumbnail-margin + $item-padding;
   min-height: $item-thumbnail-height + ($item-thumbnail-margin * 2);
 
@@ -510,11 +518,13 @@ button.item.item-button-right {
 .item-avatar.item-complex,
 .item-avatar-left.item-complex,
 .item-thumbnail-left.item-complex {
+  padding-top: 0;
   padding-left: 0;
 }
 
 .item-thumbnail-right,
 .item-thumbnail-right .item-content {
+  padding-top: $item-padding / 2;
   padding-right: $item-thumbnail-width + $item-thumbnail-margin + $item-padding;
   min-height: $item-thumbnail-height + ($item-thumbnail-margin * 2);
 
@@ -530,6 +540,7 @@ button.item.item-button-right {
 }
 .item-avatar-right.item-complex,
 .item-thumbnail-right.item-complex {
+  padding-top: 0;
   padding-right: 0;
 }
 
@@ -573,7 +584,23 @@ button.item.item-button-right {
   min-height: 30px;
   background-color: $item-divider-bg;
   color: $item-divider-color;
-  font-weight: bold;
+  font-weight: 500;
+}
+
+.platform-ios .item-divider-platform,
+.item-divider-ios {
+  padding-top: 26px;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 13px;
+  background-color: #efeff4;
+  color: #555;
+}
+
+.platform-android .item-divider-platform,
+.item-divider-android {
+  font-weight: 300;
+  font-size: 13px;
 }
 
 
@@ -611,6 +638,36 @@ button.item.item-button-right {
   // actively editing the left side of the item
   @include translate3d(-$item-right-edit-open-width, 0, 0);
 }
+
+.item-remove-animate {
+  &.ng-leave {
+    @include transition-duration( $item-remove-transition-duration );
+  }
+  &.ng-leave .item-content,
+  &.ng-leave:last-of-type {
+    @include transition-duration( $item-remove-transition-duration );
+    @include transition-timing-function( $item-remove-transition-function );
+    @include transition-property( all );
+  }
+
+  &.ng-leave.ng-leave-active .item-content {
+    opacity:0;
+    -webkit-transform: translate3d(-100%, 0, 0) !important;
+    transform: translate3d(-100%, 0, 0) !important;
+  }
+  &.ng-leave.ng-leave-active:last-of-type {
+    opacity: 0;
+  }
+
+  &.ng-leave.ng-leave-active ~ ion-item:not(.ng-leave) {
+    -webkit-transform: translate3d(0, unquote('-webkit-calc(-100% + 1px)'), 0);
+    transform: translate3d(0, calc(-100% + 1px), 0);
+    @include transition-duration( $item-remove-transition-duration );
+    @include transition-timing-function( $item-remove-descendents-transition-function );
+    @include transition-property( all );
+  }
+}
+
 
 
 // Item Left Edit Button
@@ -754,5 +811,11 @@ button.item.item-button-right {
     height: 100%;
     border: none;
     border-radius: 0;
+    @include display-inline-flex();
+    @include align-items(center);
+
+    &:before{
+      margin: 0 auto;
+    }
   }
 }

@@ -13,8 +13,7 @@ describe('Service: $cordovaStatusbar', function () {
     'backgroundColorByName',
     'backgroundColorByHexString',
     'hide',
-    'show',
-    'isVisible'
+    'show'
   ];
 
   beforeEach(module('ngCordova.plugins.statusbar'));
@@ -70,7 +69,7 @@ describe('Service: $cordovaStatusbar', function () {
     expect(window.StatusBar.backgroundColorByHexString).toHaveBeenCalledWith('#000');
   });
 
-  angular.forEach(['show', 'hide', 'isVisible'], function (fnName) {
+  angular.forEach(['show', 'hide'], function (fnName) {
     it('should call window\'s StatusBar.' + fnName + ' method', function () {
       $cordovaStatusbar[fnName]();
       expect(window.StatusBar[fnName]).toHaveBeenCalled();

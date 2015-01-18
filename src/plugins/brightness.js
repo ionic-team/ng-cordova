@@ -29,7 +29,10 @@ angular.module('ngCordova.plugins.brightness', [])
 
         return q.promise;
       },
-      keepScreenOn: function (bool) {
+
+      setKeepScreenOn: function (bool) {
+        var q = $q.defer();
+
         $window.cordova.plugins.brightness.setKeepScreenOn(bool, function (result) {
           q.resolve(result);
         }, function (err) {

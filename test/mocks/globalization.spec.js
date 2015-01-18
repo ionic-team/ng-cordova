@@ -13,12 +13,14 @@ describe('ngCordovaMocks', function() {
 		}));
 
 		it('should get the preferred language', function (done) {
-			var expected = 'English';
-			$cordovaGlobalization.preferredLanguage = expected;
-
 			$cordovaGlobalization.getPreferredLanguage()
 				.then(
-					function(actual) { expect(actual).toBe(expected); },
+					function(actual) {
+                        expect(typeof actual).toBe('object');
+                        expect(actual.value).toBeDefined();
+                        expect(typeof actual.value).toBe('string');
+                        expect(actual.value.length > 0).toBe(true);
+                    },
 					function() { expect(false).toBe(true); }
 				)
 				.finally(function() { done(); })
@@ -41,12 +43,15 @@ describe('ngCordovaMocks', function() {
 		});
 
 		it('should get the locale', function (done) {
-			var expected = 'EN';
-			$cordovaGlobalization.localeName = expected;
-
 			$cordovaGlobalization.getLocaleName()
 				.then(
-					function(actual) { expect(actual).toBe(expected); },
+					function(actual) {
+                        expect(actual).toBeDefined();
+                        expect(typeof actual).toBe('object');
+                        expect(actual.value).toBeDefined();
+                        expect(typeof actual.value).toBe('string');
+                        expect(actual.value.length > 0).toBe(true);
+                    },
 					function() { expect(false).toBe(true); }
 				)
 				.finally(function() { done(); })

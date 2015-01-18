@@ -4,25 +4,19 @@ angular.module('demo.network.ctrl', [])
     $scope.networkType = null;
     $scope.connectionType = null;
 
-    var init = function () {
-      console.log("Checking network status");
+    document.addEventListener("deviceready", function () {
       $scope.networkType = $cordovaNetwork.getNetwork();
 
-      if ($cordovaNetwork.isOnline() == true) {
+      if ($cordovaNetwork.isOnline()) {
         $scope.connectionType = 'Online';
       }
-      else if ($cordovaNetwork.isOffline() == true) {
+      else if ($cordovaNetwork.isOffline()) {
         $scope.connectionType = 'Offline';
       }
       else {
         $scope.errorMsg = 'Error getting isOffline / isOnline methods';
       }
+    }, false);
 
-    };
 
-    $scope.refresh = function () {
-      init();
-    };
-
-    init();
   });

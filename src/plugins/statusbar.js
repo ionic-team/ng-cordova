@@ -53,7 +53,7 @@ angular.module('ngCordova.plugins.statusbar', [])
       },
 
       isVisible: function () {
-        return StatusBar.isVisible();
+        return StatusBar.isVisible;
       }
     };
   }]);
