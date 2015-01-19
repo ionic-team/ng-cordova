@@ -15,54 +15,52 @@ var ngCordovaMocks = angular.module('ngCordovaMocks', []);
  * in an app build with ngCordova.
 **/ 
 
-ng-cordova-mocks
-
 ngCordovaMocks.factory('$cordovaToast', ['$q', function($q) {
-var throwsError = false;
-return {
-throwsError: throwsError,
-show: function(message,lenght,position) {
-var defer = $q.defer();
-if (this.throwsError) {
-defer.reject('There was an error scanning.');
-} else {
-alert(message);
-defer.resolve();
-}
-return defer.promise;
-}
-};
+	var throwsError = false;
+	return {
+		throwsError: throwsError,
+		show: function(message,lenght,position) {
+			var defer = $q.defer();
+			if (this.throwsError) {
+				defer.reject('There was an error scanning.');
+			} else {
+				alert(message);
+				defer.resolve();
+			}
+			return defer.promise;
+		}
+	};
 }]);
 
 ngCordovaMocks.factory('$cordovaFacebook', ['$q', function($q) {
-var throwsError = false;
-return {
-throwsError: throwsError,
-login: function(message,lenght,position) {
-var defer = $q.defer();
-if (this.throwsError) {
-defer.reject('There was an error scanning.');
-} else {
-defer.resolve();
-}
-return defer.promise;
-}
-};
+	var throwsError = false;
+	return {
+		throwsError: throwsError,
+		login: function(message,lenght,position) {
+			var defer = $q.defer();
+			if (this.throwsError) {
+				defer.reject('There was an error scanning.');
+			} else {
+				defer.resolve();
+			}
+			return defer.promise;
+		}
+	};
 }]);
 ngCordovaMocks.factory('$cordovaActionSheet', ['$q', function($q) {
-var throwsError = false;
-return {
-throwsError: throwsError,
-show: function(message,lenght,position) {
-var defer = $q.defer();
-if (this.throwsError) {
-defer.reject('There was an error scanning.');
-} else {
-defer.resolve();
-}
-return defer.promise;
-}
-};
+	var throwsError = false;
+	return {
+		throwsError: throwsError,
+		show: function(message,lenght,position) {
+			var defer = $q.defer();
+			if (this.throwsError) {
+				defer.reject('There was an error scanning.');
+			} else {
+				defer.resolve();
+			}
+			return defer.promise;
+		}
+	};
 }]);
 
 
