@@ -12,6 +12,21 @@ Cordova plugins don't always install correctly, leading to an `undefined` plugin
 
 Cordova plugins **do not** work while developing in your browser, because each plugin accesses a specific API (such as camera, microphone, accelerometer) which is not available in your browser. Additionally, **some plugins don't work in the emulator**, such as the Camera plugin, so development on your physical device is required.
 
+#### Wrap Plugin calls with the `deviceready` event
+
+Before each plugin you must check if your device has fully loaded, and if the plugins are available using a native cordova event called deviceready. Implement it like so:
+
+```javascript
+document.addEventListener("deviceready", function () {
+  $cordovaPlugin.someFunction().then(success, error);
+}, false);
+
+// OR with IONIC
+
+$ionicPlatform.ready(function() {
+  $cordovaPlugin.someFunction().then(success, error);
+});
+```
 
 #### Make sure you are using the latest version of the Cordova CLI:
 
