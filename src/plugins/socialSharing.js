@@ -11,6 +11,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
     return {
       share: function (message, subject, file, link) {
         var q = $q.defer();
+        subject = subject || null;
+        file = file || null;
+        link = link || null;
         $window.plugins.socialsharing.share(message, subject, file, link, function () {
           q.resolve(true);
         }, function () {
@@ -21,6 +24,8 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaTwitter: function (message, file, link) {
         var q = $q.defer();
+        file = file || null;
+        link = link || null;
         $window.plugins.socialsharing.shareViaTwitter(message, file, link, function () {
           q.resolve(true);
         }, function () {
@@ -31,6 +36,8 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaWhatsApp: function (message, file, link) {
         var q = $q.defer();
+        file = file || null;
+        link = link || null;
         $window.plugins.socialsharing.shareViaWhatsApp(message, file, link, function () {
           q.resolve(true);
         }, function () {
@@ -41,6 +48,9 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaFacebook: function (message, file, link) {
         var q = $q.defer();
+        message = message || null;
+        file = file || null;
+        link = link || null;
         $window.plugins.socialsharing.shareViaFacebook(message, file, link, function () {
           q.resolve(true);
         }, function () {
@@ -49,9 +59,11 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
-      shareViaFacebookWithPasteMessageHint: function (message, file, url, pasteMessageHint) {
+      shareViaFacebookWithPasteMessageHint: function (message, file, link, pasteMessageHint) {
         var q = $q.defer();
-        $window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(message, file, url, pasteMessageHint, function () {
+        file = file || null;
+        link = link || null;
+        $window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(message, file, link, pasteMessageHint, function () {
           q.resolve(true);
         }, function () {
           q.reject(false);
@@ -71,6 +83,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareViaEmail: function (message, subject, toArr, ccArr, bccArr, fileArr) {
         var q = $q.defer();
+        toArr = toArr || null;
+        ccArr = ccArr || null;
+        bccArr = bccArr || null;
+        fileArr = fileArr || null;
         $window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr, function () {
           q.resolve(true);
         }, function () {
@@ -81,6 +97,10 @@ angular.module('ngCordova.plugins.socialSharing', [])
 
       shareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
+        message = message || null;
+        subject = subject || null;
+        file = file || null;
+        link = link || null;
         $window.plugins.socialsharing.shareVia(via, message, subject, file, link, function () {
           q.resolve(true);
         }, function () {
@@ -107,6 +127,18 @@ angular.module('ngCordova.plugins.socialSharing', [])
           q.reject(error);
         });
         return q.promise;
+      },
+
+      available: function () {
+        var q = $q.defer();
+        window.plugins.socialsharing.available(function (isAvailable) {
+          if (isAvailable) {
+            q.resolve();
+          }
+          else {
+            q.reject();
+          }
+        });
       }
     };
   }]);
