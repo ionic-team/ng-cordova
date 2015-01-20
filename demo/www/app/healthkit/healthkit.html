@@ -1,0 +1,13 @@
+<ion-view title="HealthKit (iOS Only)">
+	<ion-content>
+		<h1 class="text-center">HealthKit</h1>
+    <p>
+    Authorization: <b ng-if="granted">Granted</b><b ng-if="!granted">Not granted</b>
+    </p>
+    <button class="button button-assertive" ng-click="request()">Request Authorization</button>
+    <button class="button button-assertive" ng-click="readDOB()">DOB</button>
+    <button class="button button-assertive" ng-click="readGender()">Gender</button>
+    <button class="button button-assertive" ng-click="readWeight()">Weight</button>
+    <button class="button button-assertive" ng-click="readHeight()">Height</button>
+	</ion-content>
+</ion-view>

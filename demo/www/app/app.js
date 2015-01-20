@@ -25,6 +25,7 @@ angular.module('demo', [
   'demo.geolocation.ctrl',
   'demo.globalization.ctrl',
   'demo.googleAnalytics.ctrl',
+  'demo.healthkit.ctrl',
   'demo.inAppBrowser.ctrl',
   'demo.localNotification.ctrl',
   'demo.media.ctrl',
@@ -265,6 +266,12 @@ angular.module('demo', [
         url: '/googleAnalytics',
         templateUrl: 'app/googleAnalytics/googleAnalytics.html',
         controller: "GoogleAnalyticsCtrl"
+      })
+
+      .state('healthkit', {
+        url: '/healthkit',
+        templateUrl: 'app/healthkit/healthkit.html',
+        controller: "HealthKitCtrl"
       })
 
       .state('inAppBrowser', {

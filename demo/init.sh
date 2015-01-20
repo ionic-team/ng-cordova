@@ -36,4 +36,5 @@ cordova plugin add https://github.com/katzer/cordova-plugin-local-notifications.
 cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git
+cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
 cordova plugin add de.appplant.cordova.plugin.badge
