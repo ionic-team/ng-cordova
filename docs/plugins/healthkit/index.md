@@ -4,7 +4,7 @@ title: ngCordova - Documentation and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaHealthKit
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/healthKit.js
-official-docs: https://github.com/Telerik-Verified-Plugins/HealthKit
+official-docs: http://plugins.telerik.com/plugin/healthkit
 icon-apple: true
 icon-android: false
 icon-windows: false
