@@ -14,6 +14,10 @@ icon-windows: false
 
 Cordova Plugin For accessing and modifying HealthKit data in iOS apps (iOS only).
 
+**Note: make sure to enable HealthKit entitlement through X Code in the Capabilities settings for your app.**
+
+<img src="/img/plugins/healthkit/entitlement.png" style="max-width: 100%">
+
 ```bash
 cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
 ```
