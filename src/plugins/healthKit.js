@@ -109,7 +109,7 @@ angular.module('ngCordova.plugins.healthKit', [])
       saveHeight: function(value, units, date) {
         var q = $q.defer();
         window.plugins.healthkit.saveHeight({
-            'unit': units || 'ft',
+            'unit': units || 'in',
             'amount': value,
             'date': date || new Date()
           },
