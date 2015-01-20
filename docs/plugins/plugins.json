@@ -162,6 +162,12 @@
     "short-title": "GoogleAnalytics"
   },
   {
+    "link": "/docs/plugins/healthkit/",
+    "title": "HealthKit",
+    "keywords": "health kit fitness",
+    "short-title": "HealthKit"
+  },
+  {
     "link": "/docs/plugins/imagePicker/",
     "title": "Image Picker",
     "keywords": "picture image cameraroll",
