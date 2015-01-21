@@ -5332,7 +5332,7 @@ angular.module('ngCordova.plugins.push', [])
         var q = $q.defer();
         var injector;
         if (config !== undefined && config.ecb === undefined) {
-          if (angular.element(document.querySelector('[ng-app]')) == null) {
+          if (document.querySelector('[ng-app]') == null) {
             injector = "document.body";
           }
           else {
