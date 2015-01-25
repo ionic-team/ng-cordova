@@ -42,7 +42,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 		 * @description
 		 * A fake, in-memory file system. This is incomplete at this time.
 		 * This property should only be used in automated tests.
-		 **/		
+		 **/
 		fileSystem: fileSystem,
 
         /**
@@ -128,7 +128,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         },
 
 		removeFile: function(directory, file) {
-			return mockIt.call(this,'There was an error removng the file.');	
+			return mockIt.call(this,'There was an error removing the file.');
 		},
 
         writeFile: function(filePath,data,options) {
@@ -179,16 +179,32 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 			return mockIt.call(this, 'There was an error reading the file from the absolute path');
 		},
 
+    readAbsoluteAsText: function (filePath) {
+      return mockIt.call(this, 'There was an error reading the file as a text from the absolute path');
+    },
+
+    readAbsoluteAsDataURL: function (filePath) {
+      return mockIt.call(this, 'There was an error reading the file as a data url from the absolute path');
+    },
+
+    readAbsoluteAsBinaryString: function (filePath) {
+      return mockIt.call(this, 'There was an error reading the file as a binary string from the absolute path');
+    },
+
+    readAbsoluteAsArrayBuffer: function (filePath) {
+      return mockIt.call(this, 'There was an error reading the file as an array buffer from the absolute path');
+    },
+
 		readFileMetadataAbsolute: function (filePath) {
 			return mockIt.call(this, 'There was an error reading the file metadta from the absolute path');
 		},
 
 		downloadFile: function(source, filePath, trust, options) {
-			return mockIt.call(this, 'There was an error downloading the file.');	
+			return mockIt.call(this, 'There was an error downloading the file.');
 		},
 
 		uploadFile: function(server, filePath, options) {
-			return mockIt.call(this, 'There was an error uploading the file.');	
-		}		
+			return mockIt.call(this, 'There was an error uploading the file.');
+		}
 	};
 }]);

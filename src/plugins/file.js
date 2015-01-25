@@ -162,10 +162,39 @@ angular.module('ngCordova.plugins.file', [])
         return getFile(filePath, {create: false});
       },
 
-      readFileAbsolute: function (filePath) {
+      readFileAbsolute: function (filePath) {  /// now deprecated in new ng-cordova version
+        $log.log('readFileAbsolute is now deprecated, use readAbsoluteAsText instead');
+        return this.readAbsoluteAsText(filePath);
+      },
+
+      readAbsoluteAsText: function (filePath) {
         var q = $q.defer();
         getAbsoluteFile(filePath).then(function (file) {
           getPromisedFileReader(q).readAsText(file);
+        }, q.reject);
+        return q.promise;
+      },
+
+      readAbsoluteAsDataURL: function (filePath) {
+        var q = $q.defer();
+        getAbsoluteFile(filePath).then(function (file) {
+          getPromisedFileReader(q).readAsDataURL(file);
+        }, q.reject);
+        return q.promise;
+      },
+
+      readAbsoluteAsBinaryString: function (filePath) {
+        var q = $q.defer();
+        getAbsoluteFile(filePath).then(function (file) {
+          getPromisedFileReader(q).readAsBinaryString(file);
+        }, q.reject);
+        return q.promise;
+      },
+
+      readAbsoluteAsArrayBuffer: function (filePath) {
+        var q = $q.defer();
+        getAbsoluteFile(filePath).then(function (file) {
+          getPromisedFileReader(q).readAsArrayBuffer(file);
         }, q.reject);
         return q.promise;
       },
