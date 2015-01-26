@@ -74,12 +74,14 @@ module.run(function($http, $cordovaPush) {
     
     
     $rootScope.$on('pushNotificationReceived', function(event, notification) {
-      if (notification.alert)
-        navigator.notification.alert(notification.alert)
+      if (notification.alert) {
+        navigator.notification.alert(notification.alert);
+      }
   
-      if (notification.sound)
-        var snd = new Media(event.sound)
-        snd.play()
+      if (notification.sound) {
+        var snd = new Media(event.sound);
+        snd.play();
+      }
   
       if (notification.badge) {
         $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
