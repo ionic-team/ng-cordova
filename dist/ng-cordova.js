@@ -1926,6 +1926,10 @@ angular.module('ngCordova.plugins.file', [])
           q.notify(progress);
         };
 
+        q.promise.abort = function () {
+          ft.abort();
+        };
+
         ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
         return q.promise;
       },
@@ -2115,6 +2119,10 @@ angular.module('ngCordova.plugins.fileTransfer', [])
 
         ft.onprogress = function (progress) {
           q.notify(progress);
+        };
+
+        q.promise.abort = function () {
+          ft.abort();
         };
 
         ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
