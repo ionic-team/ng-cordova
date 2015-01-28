@@ -30,6 +30,12 @@
     "short-title": "AppVersion"
   },
   {
+    "link": "/docs/plugins/badge/",
+    "title": "Badge",
+    "keywords": "badge",
+    "short-title": "Badge"
+  },
+  {
     "link": "/docs/plugins/backgroundGeolocation/",
     "title": "Background Geolocation",
     "keywords": "bg location",
