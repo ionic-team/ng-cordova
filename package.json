@@ -2,7 +2,7 @@
   "name": "ng-cordova",
   "private": false,
   "main": "dist/ng-cordova",
-  "version": "0.1.11-alpha",
+  "version": "0.1.12-alpha",
   "repository": {
     "url": "git://github.com/driftyco/ng-cordova.git"
   },

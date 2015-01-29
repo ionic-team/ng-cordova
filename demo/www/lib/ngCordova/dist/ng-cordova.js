@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.11-alpha
+ * v0.1.12-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -1736,7 +1736,6 @@ angular.module('ngCordova.plugins.facebookAds', [])
 // install   :     cordova plugin add org.apache.cordova.file
 // link      :     https://github.com/apache/cordova-plugin-file/blob/master/doc/index.md
 
-// TODO: add functionality to define storage size in the getFilesystem() -> requestFileSystem() method
 // TODO: add documentation for FileError types
 
 angular.module('ngCordova.plugins.file', [])
@@ -1933,6 +1932,10 @@ angular.module('ngCordova.plugins.file', [])
             q.notify(progress);
           };
 
+        q.promise.abort = function () {
+          ft.abort();
+        };
+
           ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
           return q.promise;
         },
@@ -2123,6 +2126,10 @@ angular.module('ngCordova.plugins.fileTransfer', [])
 
         ft.onprogress = function (progress) {
           q.notify(progress);
+        };
+
+        q.promise.abort = function () {
+          ft.abort();
         };
 
         ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
@@ -3517,19 +3524,23 @@ angular.module('ngCordova.plugins.localNotification', [])
       hasPermission: function (scope) {
         var q = $q.defer();
         $window.plugin.notification.local.hasPermission(function (result) {
-          result ? q.resolve() : q.reject();
+          result ? q.resolve(result) : q.reject(result);
         }, scope);
         return q.promise;
       },
 
       promptForPermission: function () {
-        $window.plugin.notification.local.promptForPermission();
+        var q = $q.defer();
+        $window.plugin.notification.local.promptForPermission(function (result) {
+          result ? q.resolve(result) : q.reject(result);
+        });
+        return q.promise;
       },
 
       registerPermission: function () {
         var q = $q.defer();
         $window.plugin.notification.local.registerPermission(function (result) {
-          result ? q.resolve() : q.reject();
+          result ? q.resolve(result) : q.reject(result);
         });
         return q.promise;
       },
@@ -5051,7 +5062,7 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                                     parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
                                 }
                                 if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                    deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in });
+                                    deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in, user_id: parameterMap.user_id });
                                 } else {
                                     deferred.reject("Problem authenticating");
                                 }
