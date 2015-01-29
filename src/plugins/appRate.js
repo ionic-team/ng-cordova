@@ -48,6 +48,14 @@ angular.module('ngCordova.plugins.appRate', [])
           return q.promise;
         },
 
+        navigateToAppStore: function () {
+          var q = $q.defer();
+          var navigate = AppRate.navigateToAppStore();
+          q.resolve(navigate);
+
+          return q.promise;
+        },
+
         onButtonClicked: function (cb) {
           AppRate.onButtonClicked = function (buttonIndex) {
             cb.call(this, buttonIndex);
