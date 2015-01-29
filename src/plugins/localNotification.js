@@ -90,19 +90,23 @@ angular.module('ngCordova.plugins.localNotification', [])
       hasPermission: function (scope) {
         var q = $q.defer();
         $window.plugin.notification.local.hasPermission(function (result) {
-          result ? q.resolve() : q.reject();
+          result ? q.resolve(result) : q.reject(result);
         }, scope);
         return q.promise;
       },
 
       promptForPermission: function () {
-        $window.plugin.notification.local.promptForPermission();
+        var q = $q.defer();
+        $window.plugin.notification.local.promptForPermission(function (result) {
+          result ? q.resolve(result) : q.reject(result);
+        });
+        return q.promise;
       },
 
       registerPermission: function () {
         var q = $q.defer();
         $window.plugin.notification.local.registerPermission(function (result) {
-          result ? q.resolve() : q.reject();
+          result ? q.resolve(result) : q.reject(result);
         });
         return q.promise;
       },
