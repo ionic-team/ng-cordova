@@ -81,3 +81,17 @@ module.controller('MyCtrl', function($scope, $cordovaAppRate) {
   }, false);
 });
 ```
+
+**Navigate to the App store in a controller, bypassing the dialog box**
+
+```javascript
+module.controller('MyCtrl', function($scope, $cordovaAppRate) {
+
+  document.addEventListener("deviceready", function () {
+
+    $cordovaAppRate.navigateToAppStore().then(function (result) {
+        // success
+    });
+  }, false);
+});
+```
