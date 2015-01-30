@@ -73,7 +73,7 @@ module.run(function($http, $cordovaPush) {
     });
     
     
-    $rootScope.$on('pushNotificationReceived', function(event, notification) {
+    $rootScope.$on('$cordovaPush:pushNotificationReceived', function(event, notification) {
       if (notification.alert) {
         navigator.notification.alert(notification.alert);
       }
