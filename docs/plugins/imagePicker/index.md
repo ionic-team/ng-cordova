@@ -23,7 +23,7 @@ cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
 
 ##### `getPictures(options)`
 
-Start or resume playing an audio file. Options are only available for iOS devices.
+Get a list of pictures, with options to limit number, quality, and size of images.
 
 | Param        | Type           |
 | ------------ |----------------|
