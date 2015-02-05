@@ -1,6 +1,9 @@
 <ion-view title="File">
   <ion-content padding="false">
 
+
+    <button class="button button-full button-assertive" ng-click="test()">test</button>
+
     <div class="card">
       <div class="item item-divider-ios">
         Check Directory
@@ -34,6 +37,24 @@
       </div>
       <div class="item" ng-if="checkFileResult">
         {{checkFileResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Create Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.createDirectory">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="createDirectory()">
+          Create
+        </button>
+      </div>
+      <div class="item" ng-if="createDirectoryResult">
+        {{createDirectoryResult}}
       </div>
     </div>
 

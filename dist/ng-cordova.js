@@ -1747,9 +1747,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
 // TODO: add documentation for FileError types
 
 angular.module('ngCordova.plugins.file', [])
-
   .provider('$cordovaFile', [function () {
-
 
     var defaults = this.defaults = {
       fileSystem: {
@@ -1763,9 +1761,57 @@ angular.module('ngCordova.plugins.file', [])
 
 
     this.$get = ['$q', '$window', '$log', '$timeout', function ($q, $window, $log, $timeout) {
+
       return {
-        checkDir: function (dir) {
-          return getDirectory(dir, {create: false});
+
+        checkDir: function (path, dir) {
+          var q = $q.defer();
+
+          if ((/^\//.test(dir))) {
+            q.reject("directory cannot start with \/")
+          }
+
+          try {
+            var directory = path + dir;
+            $window.resolveLocalFileSystemURL(directory, function (result) {
+              if (result.isDirectory === true) {
+                q.resolve(result);
+              } else {
+                q.reject(result);
+              }
+            }, function (error) {
+              q.reject(error);
+            });
+
+          } catch (err) {
+            q.reject(err);
+          }
+          return q.promise;
+        },
+
+        checkFile: function (path, file) {
+          var q = $q.defer();
+
+          if ((/^\//.test(file))) {
+            q.reject("directory cannot start with \/")
+          }
+
+          try {
+            var directory = path + file;
+            $window.resolveLocalFileSystemURL(directory, function (result) {
+              if (result.isFile === true) {
+                q.resolve(result);
+              } else {
+                q.reject(result);
+              }
+            }, function (error) {
+              q.reject(error);
+            });
+
+          } catch (err) {
+            q.reject(err);
+          }
+          return q.promise;
         },
 
         createDir: function (dir, replaceBOOL) {
@@ -1789,15 +1835,6 @@ angular.module('ngCordova.plugins.file', [])
           });
 
           return q.promise;
-        },
-
-        checkFile: function (filePath) {
-          // Backward compatibility for previous function checkFile(dir, file)
-          if (arguments.length == 2) {
-            filePath = '/' + filePath + '/' + arguments[1];
-          }
-
-          return getFileEntry(filePath, {create: false});
         },
 
         createFile: function (filePath, replaceBOOL) {

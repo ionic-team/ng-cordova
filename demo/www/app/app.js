@@ -107,7 +107,7 @@ angular.module('demo', [
     if (!window.cordova) {
       var appID = 1234567890;
       var version = "v2.0"; // or leave blank and default is v2.0
-      $cordovaFacebookProvider.browserInit(appID, version);
+      //$cordovaFacebookProvider.browserInit(appID, version);
     }
 
     var browserOptions = {
