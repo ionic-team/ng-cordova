@@ -1,35 +1,61 @@
 angular.module('demo.file.ctrl', [])
 
-  .controller('FileCtrl', function ($scope, $log, $cordovaFile, $window) {
+  .controller('FileCtrl', function ($scope, $log, $cordovaFile, $window, $q) {
 
     $scope.inputs = {
-      checkDir: "test_file",
-      checkFile: "my_file.txt"
+      checkDir: "test_directory",
+      checkFile: "test_file.txt",
+      createDirectory: "test_directory",
+      createFile: "test_file.txt"
     };
-
 
     $scope.test = function () {
       document.addEventListener('deviceready', function () {
 
-        $window.resolveLocalFileSystemURL(cordova.file.dataDirectory + "my_file.txt", function (result) {
+        var q = $q.defer();
 
-          if (result.isDirectory === true) {
-            console.log("resolve: \n" + JSON.stringify(result));
-          }
-          else {
-            console.log("reject: \n" + JSON.stringify(result));
-          }
+        var options = {
+          create: true
+        };
 
-        }, function (error) {
-          console.log("reject: \n" + JSON.stringify(error));
-        });
+        var defaults = {
+          create: true,
+          exclusive: true
+        };
 
+        options = angular.extend(defaults, options);
+
+        var path = cordova.file.dataDirectory;
+        var fileName = "some_file.txt";
+
+        try {
+          $window.resolveLocalFileSystemURL(path, function (result) {
+
+            console.log(JSON.stringify(result.filesystem));
+
+
+            result.getFile(fileName, options, function (result) {
+              console.log("success : getDIR: " + JSON.stringify(result));
+            }, function (er) {
+              console.log("er : getDIR: " + JSON.stringify(er));
+            })
+
+          }, function (error) {
+            //q.reject(error);
+          });
+
+        } catch (err) {
+         // q.reject(err);
+        }
+
+        return q.promise;
       });
     };
 
 
     $scope.checkDir = function () {
       document.addEventListener('deviceready', function () {
+        // path, directory
         $cordovaFile.checkDir(cordova.file.dataDirectory, $scope.inputs.checkDir).then(function (success) {
           console.log('success ' + JSON.stringify(success));
           $scope.checkDirResult = success;
@@ -45,6 +71,7 @@ angular.module('demo.file.ctrl', [])
 
     $scope.checkFile = function () {
       document.addEventListener('deviceready', function () {
+        // path, file
         $cordovaFile.checkFile(cordova.file.dataDirectory, $scope.inputs.checkFile).then(function (success) {
           console.log('success ' + JSON.stringify(success));
           $scope.checkFileResult = success;
@@ -56,18 +83,36 @@ angular.module('demo.file.ctrl', [])
     };
 
 
-
     $scope.createDirectory = function () {
       document.addEventListener('deviceready', function () {
-        $cordovaFile.createDirectory(cordova.file.dataDirectory, $scope.inputs.checkFile).then(function (success) {
+
+        var options = {};
+        // path, dirName, options
+        $cordovaFile.createDir(cordova.file.dataDirectory, $scope.inputs.createDirectory, options).then(function (success) {
           console.log('success ' + JSON.stringify(success));
-          $scope.checkFileResult = success;
+          $scope.createDirectoryResult = success;
         }, function (error) {
           console.log('error ' + JSON.stringify(error));
-          $scope.checkFileResult = error;
+          $scope.createDirectoryResult = error;
         });
       });
-    }
+    };
+
+
+    $scope.createFile = function () {
+      document.addEventListener('deviceready', function () {
+
+        var options = {};
+        // path, fileName, options
+        $cordovaFile.createFile(cordova.file.dataDirectory, $scope.inputs.createFile, options).then(function (success) {
+          console.log('success ' + JSON.stringify(success));
+          $scope.createFileResult = success;
+        }, function (error) {
+          console.log('error ' + JSON.stringify(error));
+          $scope.createFileResult = error;
+        });
+      });
+    };
 
 
   });

@@ -1814,9 +1814,73 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        createDir: function (dir, replaceBOOL) {
-          return getDirectory(dir, {create: true, exclusive: replaceBOOL});
+        createDir: function (path, dirName, options) {
+          var q = $q.defer();
+
+          if ((/^\//.test(dirName))) {
+            q.reject("directory cannot start with \/")
+          }
+
+          var defaults = {
+            create: true,
+            exclusive: false
+          };
+
+          options = angular.extend(defaults, options);
+
+          try {
+            $window.resolveLocalFileSystemURL(path, function (result) {
+              result.getDirectory(dirName, options, function (result) {
+                q.resolve(result);
+              }, function (er) {
+                q.resolve(er);
+              })
+
+            }, function (error) {
+              q.reject(error);
+            });
+
+          } catch (err) {
+            q.reject(err);
+          }
+
+          return q.promise;
         },
+
+
+        createFile: function (path, fileName, options) {
+          var q = $q.defer();
+
+          if ((/^\//.test(fileName))) {
+            q.reject("file-name cannot start with \/")
+          }
+
+          var defaults = {
+            create: true,
+            exclusive: false
+          };
+
+          options = angular.extend(defaults, options);
+
+          try {
+            $window.resolveLocalFileSystemURL(path, function (result) {
+              result.getDirectory(fileName, options, function (result) {
+                q.resolve(result);
+              }, function (er) {
+                q.resolve(er);
+              })
+
+            }, function (error) {
+              q.reject(error);
+            });
+
+          } catch (err) {
+            q.reject(err);
+          }
+
+          return q.promise;
+        },
+
 
         listDir: function (filePath) {
           var q = $q.defer();
@@ -1835,16 +1899,6 @@ angular.module('ngCordova.plugins.file', [])
           });
 
           return q.promise;
-        },
-
-        createFile: function (filePath, replaceBOOL) {
-          // Backward compatibility for previous function createFile(filepath replaceBOOL)
-          if (arguments.length == 3) {
-            filePath = '/' + filePath + '/' + arguments[1];
-            replaceBOOL = arguments[2];
-          }
-
-          return getFileEntry(filePath, {create: true, exclusive: replaceBOOL});
         },
 
         removeFile: function (filePath) {

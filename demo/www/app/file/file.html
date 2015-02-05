@@ -14,7 +14,7 @@
           <input type="text" placeholder="Directory" ng-model="inputs.checkDir">
         </label>
         <button class="button button-small button-positive button-outline" ng-click="checkDir()">
-          Check
+          Check Directory
         </button>
       </div>
       <div class="item" ng-if="checkDirResult">
@@ -32,7 +32,7 @@
           <input type="text" placeholder="File" ng-model="inputs.checkFile">
         </label>
         <button class="button button-small button-positive button-outline" ng-click="checkFile()">
-          Check
+          Check File
         </button>
       </div>
       <div class="item" ng-if="checkFileResult">
@@ -50,11 +50,29 @@
           <input type="text" placeholder="File" ng-model="inputs.createDirectory">
         </label>
         <button class="button button-small button-positive button-outline" ng-click="createDirectory()">
-          Create
+          Create Directory
         </button>
       </div>
       <div class="item" ng-if="createDirectoryResult">
         {{createDirectoryResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Create File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.createFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="createFile()">
+          Create File
+        </button>
+      </div>
+      <div class="item" ng-if="createFileResult">
+        {{createFileResult}}
       </div>
     </div>
 
