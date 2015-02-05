@@ -1,5 +1,42 @@
 <ion-view title="File">
-	<ion-content padding="true">
-		
-	</ion-content>
+  <ion-content padding="false">
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Check Directory
+      </div>
+
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Directory" ng-model="inputs.checkDir">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="checkDir()">
+          Check
+        </button>
+      </div>
+      <div class="item" ng-if="checkDirResult">
+        {{checkDirResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Check File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.checkFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="checkFile()">
+          Check
+        </button>
+      </div>
+      <div class="item" ng-if="checkFileResult">
+        {{checkFileResult}}
+      </div>
+    </div>
+
+
+  </ion-content>
 </ion-view>

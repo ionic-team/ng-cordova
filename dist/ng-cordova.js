@@ -176,6 +176,14 @@ angular.module('ngCordova.plugins.appRate', [])
           return q.promise;
         },
 
+        navigateToAppStore: function () {
+          var q = $q.defer();
+          var navigate = AppRate.navigateToAppStore();
+          q.resolve(navigate);
+
+          return q.promise;
+        },
+
         onButtonClicked: function (cb) {
           AppRate.onButtonClicked = function (buttonIndex) {
             cb.call(this, buttonIndex);
@@ -1740,13 +1748,19 @@ angular.module('ngCordova.plugins.facebookAds', [])
 
 angular.module('ngCordova.plugins.file', [])
 
-  .provider('$cordovaFile', function cordovaFileProfider(){
+  .provider('$cordovaFile', [function () {
+
+
     var defaults = this.defaults = {
-      fileSystem : {
+      fileSystem: {
         size: 1024 * 1024
       }
     };
-  
+
+    this.setFileSystemSize = function (size) {
+      this.defaults.fileSystem.size = size;
+    };
+
 
     this.$get = ['$q', '$window', '$log', '$timeout', function ($q, $window, $log, $timeout) {
       return {
@@ -1932,9 +1946,9 @@ angular.module('ngCordova.plugins.file', [])
             q.notify(progress);
           };
 
-        q.promise.abort = function () {
-          ft.abort();
-        };
+          q.promise.abort = function () {
+            ft.abort();
+          };
 
           ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
           return q.promise;
@@ -2051,6 +2065,8 @@ angular.module('ngCordova.plugins.file', [])
        */
       function getFilesystem() {
         var q = $q.defer();
+
+        $window.requestFileSystem = $window.requestFileSystem || $window.webkitRequestFileSystem;
         try {
           $window.requestFileSystem($window.PERSISTENT, defaults.fileSystem.size, q.resolve, q.reject);
         } catch (err) {
@@ -2059,7 +2075,7 @@ angular.module('ngCordova.plugins.file', [])
         return q.promise;
       }
     }];
-  });
+  }]);
 
 // install   :      cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
 // link      :      https://github.com/pwlin/cordova-plugin-file-opener2
