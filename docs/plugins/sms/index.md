@@ -20,7 +20,7 @@ cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
 #### Example
 
 ```javascript
-module.controller('ThisCtrl', function($cordovaSMS) {
+module.controller('ThisCtrl', function($cordovaSms) {
 
 
 });
