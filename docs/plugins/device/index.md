@@ -74,5 +74,5 @@ module.controller('MyCtrl', function($scope, $cordovaDevice) {
     var version = $cordovaDevice.getVersion();
 
   }, false);
-});
+})
 ```

@@ -273,13 +273,8 @@ ul.results-dropdown {
     padding: 0;
     border-radius: 2px;
     z-index: 1000;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    /*
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    */
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
 }
 
 ul.results-dropdown > li {
@@ -313,8 +308,8 @@ ul.no-results-dropdown {
     padding: 0;
     border-radius: 2px;
     z-index: 1000;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
 }
 
 ul.no-results-dropdown > li {
@@ -349,19 +344,18 @@ ul.no-results-dropdown > li {
 }
 
 .home-container h1.cover-heading {
-    font-family: "AvenirNextLTPro-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "AvenirNextLTPro-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: bold;
+    letter-spacing: 0.08em;
+    font-weight: 600;
     color: #000000;
     margin-top: 30px;
 }
 
 .home-container p.lead {
     font-size: 18px;
-    font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    letter-spacing: -0.05em;
+    font-family: "AvenirNextLTPro-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
     margin-top: 30px;
     margin-bottom: 40px;
 }
@@ -385,7 +379,7 @@ span.plugin-count-number {
 }
 
 .home-container .cover-image {
-    max-width: 70%;
+    max-width: 80%;
     margin: 20px 0 30px 0;
     padding: 20px;
 }
@@ -416,8 +410,8 @@ span.plugin-count-number {
     background: -moz-linear-gradient(right, #E0E7F0, #E1E4ED); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #E0E7F0, #E1E4ED); /* Standard syntax */
     margin-top: 40px;
-    padding-top: 45px;
-    padding-bottom: 45px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .button-row {
@@ -425,18 +419,22 @@ span.plugin-count-number {
     display: inline-block;
 }
 
-.btn-download {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 200px;
+.btn-home {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 240px;
     display: inline-block;
     vertical-align: middle;
-    background-color: #34373E;
-    color: #FFFFFF;
     transition: 0.3s;
     font-weight: 400;
+    font-size: 18px;
     letter-spacing: 0.2em;
     border-radius: 1px;
+}
+
+.btn-download {
+    background-color: #34373E;
+    color: #FFFFFF;
 }
 
 .btn-download:hover,
@@ -447,19 +445,10 @@ span.plugin-count-number {
 }
 
 .btn-docs {
-    padding-top: 10px;
-    padding-bottom: 10px;
     margin-left: 30px;
-    width: 200px;
-    display: inline-block;
-    vertical-align: middle;
     background-color: #4380F2;
     border: 1px solid #4380F2;
     color: #FFFFFF;
-    transition: 0.3s;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    border-radius: 1px;
 }
 
 .btn-docs:hover,
@@ -552,7 +541,6 @@ span.plugin-count-number {
         margin-left: auto;
         width: 300px;
     }
-
 }
 
 /*
@@ -562,13 +550,8 @@ span.plugin-count-number {
 .docked-menu {
     background-color: #FFFFFF;
     border-radius: 1px;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    /*
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    */
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
 }
 
 .docked-menu > .left-menu > .menu-title > a {
@@ -578,7 +561,7 @@ span.plugin-count-number {
     font-size: 12px;
     letter-spacing: 0.15em;
     border-right: solid 2px transparent;
-    padding: 10px 15px 10px 15px;
+    padding: 12px 16px 12px 18px;
     color: #717882;
 }
 
@@ -616,7 +599,7 @@ span.plugin-count-number {
 .docked-menu > .left-menu > ul > li > a:hover {
     padding-top: 6px;
     padding-bottom: 6px;
-    padding-left: 20px;
+    padding-left: 24px;
     text-decoration: none;
     display: block;
     color: inherit;
@@ -628,7 +611,6 @@ span.plugin-count-number {
     border-right: solid 2px #4685dd;
     color: #4685dd;
     background-color: #F5F8FF !important;
-    font-weight: 700;
     transition: 0.05s linear;
     -webkit-transition: 0.05s linear;
     -moz-transition: 0.05s linear;
@@ -651,8 +633,8 @@ span.plugin-count-number {
     padding: 20px 30px 0 30px;
     background-color: #FFFFFF;
     border-radius: 1px;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
     margin-bottom: 10px;
 }
 
@@ -662,29 +644,19 @@ span.plugin-count-number {
 }
 
 .docs-content {
-    padding: 20px;
+    padding: 26px;
     background-color: #FFFFFF;
     border-radius: 1px;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    /*
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    */
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
 }
 
 .plugin-content {
-    padding: 20px;
+    padding: 26px;
     background-color: #FFFFFF;
     border-radius: 1px;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    /*
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    */
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
 }
 
 /*
@@ -698,13 +670,8 @@ span.plugin-count-number {
     background-color: #FFFFFF;
     border-radius: 1px;
     padding: 5px 15px 5px 20px;
-    box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    -webkit-box-shadow: rgb(202, 208, 230) 0px 1px 1px 0px;
-    /*
-    -webkit-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    -moz-box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    box-shadow: 0px 1px 2px 0px rgba(205, 206, 209, 1);
-    */
+    box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
+    -webkit-box-shadow: rgb(202, 208, 230) 0 1px 1px 0;
 }
 
 .anchor-row > h3 {
@@ -783,7 +750,10 @@ span.plugin-count-number {
 }
 
 table {
+    display: block;
     width: 100%;
+    overflow: auto;
+    word-break: normal;
     margin-bottom: 10px;
 }
 
