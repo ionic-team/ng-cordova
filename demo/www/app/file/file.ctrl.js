@@ -11,7 +11,8 @@ angular.module('demo.file.ctrl', [])
       removeFile: "test_file.txt",
       writeText: "THIS TEXT IS WRITTEN TO THIS FILE",
       writeFile: "test_file.txt",
-      readFile: "test_file.txt"
+      readFile: "test_file.txt",
+      moveFile: "test_file.txt"
     };
 
     $scope.test = function () {
@@ -156,6 +157,18 @@ angular.module('demo.file.ctrl', [])
           $scope.readFileResult = 'success ' + JSON.stringify(success);
         }, function (error) {
           $scope.readFileResult = 'error ' + JSON.stringify(error);
+        });
+      });
+    };
+
+
+    $scope.moveFile = function () {
+      document.addEventListener('deviceready', function () {
+        // path, fileName, options
+        $cordovaFile.moveFile(cordova.file.dataDirectory, $scope.inputs.moveFile, cordova.file.tempDirectory).then(function (success) {
+          $scope.moveFileResult = 'success ' + JSON.stringify(success);
+        }, function (error) {
+          $scope.moveFileResult = 'error ' + JSON.stringify(error);
         });
       });
     };

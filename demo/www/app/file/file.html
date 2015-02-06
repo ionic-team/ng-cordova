@@ -153,5 +153,23 @@
       </div>
     </div>
 
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Move File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.moveFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="moveFile()">
+          Move File
+        </button>
+      </div>
+      <div class="item" ng-if="moveFileResult">
+        {{moveFileResult}}
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
