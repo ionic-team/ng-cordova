@@ -4,51 +4,53 @@
 angular.module('ngCordova.plugins.localNotification', [])
 
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
-    if ($window.plugin && $window.plugin.notification) {
-      $window.plugin.notification.local.oncancel = function (id, state, json) {
-        var notification = {
-          id: id,
-          state: state,
-          json: json
+    document.addEventListener("deviceready", function () {
+      if ($window.plugin && $window.plugin.notification) {
+        $window.plugin.notification.local.oncancel = function (id, state, json) {
+          var notification = {
+            id: id,
+            state: state,
+            json: json
+          };
+          $timeout(function () {
+            $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
+          });
         };
-        $timeout(function () {
-          $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
-        });
-      };
 
-      $window.plugin.notification.local.onclick = function (id, state, json) {
-        var notification = {
-          id: id,
-          state: state,
-          json: json
+        $window.plugin.notification.local.onclick = function (id, state, json) {
+          var notification = {
+            id: id,
+            state: state,
+            json: json
+          };
+          $timeout(function () {
+            $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
+          });
         };
-        $timeout(function () {
-          $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
-        });
-      };
 
-      $window.plugin.notification.local.ontrigger = function (id, state, json) {
-        var notification = {
-          id: id,
-          state: state,
-          json: json
+        $window.plugin.notification.local.ontrigger = function (id, state, json) {
+          var notification = {
+            id: id,
+            state: state,
+            json: json
+          };
+          $timeout(function () {
+            $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
+          });
         };
-        $timeout(function () {
-          $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
-        });
-      };
 
-      $window.plugin.notification.local.onadd = function (id, state, json) {
-        var notification = {
-          id: id,
-          state: state,
-          json: json
+        $window.plugin.notification.local.onadd = function (id, state, json) {
+          var notification = {
+            id: id,
+            state: state,
+            json: json
+          };
+          $timeout(function () {
+            $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
+          });
         };
-        $timeout(function () {
-          $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
-        });
-      };
-    }
+      }
+    }, false);
     return {
       add: function (options, scope) {
         var q = $q.defer();
