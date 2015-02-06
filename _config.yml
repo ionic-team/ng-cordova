@@ -2,5 +2,5 @@ name: ngCordova
 markdown: redcarpet
 redcarpet:
  extensions: ["tables"]
-highlighter: true
+pygments: true
 exclude: ['node_modules']
