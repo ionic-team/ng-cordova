@@ -49,7 +49,7 @@
         <label class="item-input-wrapper">
           <input type="text" placeholder="File" ng-model="inputs.createDirectory">
         </label>
-        <button class="button button-small button-positive button-outline" ng-click="createDirectory()">
+        <button class="button button-small button-balanced button-outline" ng-click="createDirectory()">
           Create Directory
         </button>
       </div>
@@ -67,8 +67,8 @@
         <label class="item-input-wrapper">
           <input type="text" placeholder="File" ng-model="inputs.createFile">
         </label>
-        <button class="button button-small button-positive button-outline" ng-click="createFile()">
-          Create File
+        <button class="button button-small button-balanced button-outline" ng-click="createFile()">
+          Create Directory
         </button>
       </div>
       <div class="item" ng-if="createFileResult">
@@ -76,6 +76,82 @@
       </div>
     </div>
 
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Remove File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.removeFile">
+        </label>
+        <button class="button button-small button-assertive button-outline" ng-click="removeFile()">
+          Remove File
+        </button>
+      </div>
+      <div class="item" ng-if="removeFileResult">
+        {{removeFileResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Remove Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.removeDirectory">
+        </label>
+        <button class="button button-small button-assertive button-outline" ng-click="removeDirectory()">
+          Remove Directory
+        </button>
+      </div>
+      <div class="item" ng-if="removeDirectoryResult">
+        {{removeDirectoryResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Write File
+      </div>
+      <div class="item">
+        <label class="item item-input">
+          <input type="text" placeholder="text" ng-model="inputs.writeText">
+        </label>
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.writeFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="writeFile()">
+          Write File
+        </button>
+      </div>
+      <div class="item" ng-if="writeFileResult">
+        {{writeFileResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Read File As Text
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.readFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="readFileAsText()">
+          Read File
+        </button>
+      </div>
+      <div class="item" ng-if="readFileResult">
+        {{readFileResult}}
+      </div>
+    </div>
 
   </ion-content>
 </ion-view>

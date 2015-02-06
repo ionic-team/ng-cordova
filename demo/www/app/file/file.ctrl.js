@@ -6,7 +6,12 @@ angular.module('demo.file.ctrl', [])
       checkDir: "test_directory",
       checkFile: "test_file.txt",
       createDirectory: "test_directory",
-      createFile: "test_file.txt"
+      createFile: "test_file.txt",
+      removeDirectory: "test_directory",
+      removeFile: "test_file.txt",
+      writeText: "THIS TEXT IS WRITTEN TO THIS FILE",
+      writeFile: "test_file.txt",
+      readFile: "test_file.txt"
     };
 
     $scope.test = function () {
@@ -15,12 +20,12 @@ angular.module('demo.file.ctrl', [])
         var q = $q.defer();
 
         var options = {
-          create: true
+          create: false
         };
 
         var defaults = {
-          create: true,
-          exclusive: true
+          create: false,
+          exclusive: false
         };
 
         options = angular.extend(defaults, options);
@@ -29,13 +34,16 @@ angular.module('demo.file.ctrl', [])
         var fileName = "some_file.txt";
 
         try {
-          $window.resolveLocalFileSystemURL(path, function (result) {
+          $window.resolveLocalFileSystemURL(path, function (fileSystem) {
 
-            console.log(JSON.stringify(result.filesystem));
+            fileSystem.getFile(fileName, options, function (fileEntry) {
 
+              fileEntry.remove(function (result) {
+                q.resolve(result);
+              }, function (e) {
+                q.reject(e)
+              });
 
-            result.getFile(fileName, options, function (result) {
-              console.log("success : getDIR: " + JSON.stringify(result));
             }, function (er) {
               console.log("er : getDIR: " + JSON.stringify(er));
             })
@@ -45,7 +53,7 @@ angular.module('demo.file.ctrl', [])
           });
 
         } catch (err) {
-         // q.reject(err);
+          // q.reject(err);
         }
 
         return q.promise;
@@ -57,15 +65,11 @@ angular.module('demo.file.ctrl', [])
       document.addEventListener('deviceready', function () {
         // path, directory
         $cordovaFile.checkDir(cordova.file.dataDirectory, $scope.inputs.checkDir).then(function (success) {
-          console.log('success ' + JSON.stringify(success));
-          $scope.checkDirResult = success;
+          $scope.checkDirResult = 'success ' + JSON.stringify(success);
         }, function (error) {
-          console.log('error ' + JSON.stringify(error));
-          $scope.checkDirResult = error;
+          $scope.checkDirResult = 'error ' + JSON.stringify(error);
         });
-
       });
-
     };
 
 
@@ -73,11 +77,9 @@ angular.module('demo.file.ctrl', [])
       document.addEventListener('deviceready', function () {
         // path, file
         $cordovaFile.checkFile(cordova.file.dataDirectory, $scope.inputs.checkFile).then(function (success) {
-          console.log('success ' + JSON.stringify(success));
-          $scope.checkFileResult = success;
+          $scope.checkFileResult = 'success ' + JSON.stringify(success);
         }, function (error) {
-          console.log('error ' + JSON.stringify(error));
-          $scope.checkFileResult = error;
+          $scope.checkFileResult = 'error ' + JSON.stringify(error);
         });
       });
     };
@@ -85,15 +87,12 @@ angular.module('demo.file.ctrl', [])
 
     $scope.createDirectory = function () {
       document.addEventListener('deviceready', function () {
-
         var options = {};
         // path, dirName, options
         $cordovaFile.createDir(cordova.file.dataDirectory, $scope.inputs.createDirectory, options).then(function (success) {
-          console.log('success ' + JSON.stringify(success));
-          $scope.createDirectoryResult = success;
+          $scope.createDirectoryResult = 'success ' + JSON.stringify(success);
         }, function (error) {
-          console.log('error ' + JSON.stringify(error));
-          $scope.createDirectoryResult = error;
+          $scope.createDirectoryResult = 'error ' + JSON.stringify(error);
         });
       });
     };
@@ -101,18 +100,64 @@ angular.module('demo.file.ctrl', [])
 
     $scope.createFile = function () {
       document.addEventListener('deviceready', function () {
-
         var options = {};
         // path, fileName, options
         $cordovaFile.createFile(cordova.file.dataDirectory, $scope.inputs.createFile, options).then(function (success) {
-          console.log('success ' + JSON.stringify(success));
-          $scope.createFileResult = success;
+          $scope.createFileResult = 'success ' + JSON.stringify(success);
         }, function (error) {
-          console.log('error ' + JSON.stringify(error));
-          $scope.createFileResult = error;
+          $scope.createFileResult = 'error ' + JSON.stringify(error);
         });
       });
     };
 
+
+    $scope.removeFile = function () {
+      document.addEventListener('deviceready', function () {
+        // path, fileName
+        $cordovaFile.removeFile(cordova.file.dataDirectory, $scope.inputs.removeFile).then(function (success) {
+          $scope.removeFileResult = 'success ' + JSON.stringify(success);
+        }, function (error) {
+          $scope.removeFileResult = 'error ' + JSON.stringify(error);
+        });
+      });
+    };
+
+
+    $scope.removeDirectory = function () {
+      document.addEventListener('deviceready', function () {
+        // path, dirName
+        $cordovaFile.removeDir(cordova.file.dataDirectory, $scope.inputs.removeDirectory).then(function (success) {
+          $scope.removeDirectoryResult = 'success ' + JSON.stringify(success);
+        }, function (error) {
+          $scope.removeDirectoryResult = 'error ' + JSON.stringify(error);
+        });
+      });
+    };
+
+
+    $scope.writeFile = function () {
+      document.addEventListener('deviceready', function () {
+        // path, fileName, text, options
+        var options = {};
+        $cordovaFile.writeFile(cordova.file.dataDirectory, $scope.inputs.writeFile, $scope.inputs.writeText, options).then(function (success) {
+          $scope.writeFileResult = 'success ' + JSON.stringify(success);
+        }, function (error) {
+          $scope.writeFileResult = 'error ' + JSON.stringify(error);
+        });
+      });
+    };
+
+
+    $scope.readFileAsText = function () {
+      document.addEventListener('deviceready', function () {
+        // path, fileName, options
+        var options = {};
+        $cordovaFile.readAsText(cordova.file.dataDirectory, $scope.inputs.readFile, options).then(function (success) {
+          $scope.readFileResult = 'success ' + JSON.stringify(success);
+        }, function (error) {
+          $scope.readFileResult = 'error ' + JSON.stringify(error);
+        });
+      });
+    };
 
   });
