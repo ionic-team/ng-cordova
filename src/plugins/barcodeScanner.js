@@ -9,11 +9,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
       scan: function () {
         var q = $q.defer();
 
-        cordova.plugins.barcodeScanner.scan(function (result) {
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
-        });
+        cordova.plugins.barcodeScanner.scan(q.resolve, q.reject);
 
         return q.promise;
       },
@@ -22,11 +18,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
         var q = $q.defer();
         type = type || "TEXT_TYPE";
 
-        cordova.plugins.barcodeScanner.encode(type, data, function (result) {
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
-        });
+        cordova.plugins.barcodeScanner.encode(type, data, q.resolve, q.reject);
 
         return q.promise;
       }
