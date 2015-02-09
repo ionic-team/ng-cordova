@@ -49,8 +49,16 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener("loadstart", function(event) {
                         if((event.url).indexOf('http://localhost/callback') === 0) {
                             var requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: adfsServer + "/adfs/oauth2/token", data: "client_id=" + clientId + "&code=" + requestToken + "&redirect_uri=http://localhost/callback&grant_type=authorization_code"  })
+                            $http({
+                              method: "post",
+                              url: adfsServer + "/adfs/oauth2/token",
+                              params: {
+                                "client_id": clientId,
+                                "code": requestToken,
+                                "redirect_uri": "http://localhost/callback",
+                                "grant_type": "authorization_code"
+                              }
+                            })
                             .success(function(data) {
                                 deferred.resolve(data);
                             })
@@ -134,8 +142,17 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener("loadstart", function(event) {
                         if((event.url).indexOf("http://localhost/callback") === 0) {
                             var requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: "https://cloud.digitalocean.com/v1/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            $http({
+                              method: "post",
+                              url: "https://cloud.digitalocean.com/v1/oauth/token",
+                              params: {
+                                "client_id": clientId,
+                                "client_secret": clientSecret,
+                                "redirect_uri": "http://localhost/callback",
+                                "grant_type": "authorization_code",
+                                "code": requestToken
+                              }
+                            })
                             .success(function(data) {
                                 deferred.resolve(data);
                             })
@@ -221,9 +238,17 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener('loadstart', function(event) {
                         if((event.url).indexOf("http://localhost/callback") === 0) {
                             requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
                             $http.defaults.headers.post.accept = 'application/json';
-                            $http({method: "post", url: "https://github.com/login/oauth/access_token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&code=" + requestToken })
+                            $http({
+                              method: "post",
+                              url: "https://github.com/login/oauth/access_token",
+                              params: {
+                                "client_id": clientId,
+                                "client_secret": clientSecret,
+                                "redirect_uri": "http://localhost/callback",
+                                "code": requestToken
+                              }
+                            })
                             .success(function(data) {
                                 deferred.resolve(data);
                             })
@@ -310,8 +335,17 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener('loadstart', function(event) {
                         if((event.url).indexOf("http://localhost/callback") === 0) {
                             requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            $http({
+                              method: "post",
+                              url: "https://www.linkedin.com/uas/oauth2/accessToken",
+                              params: {
+                                "client_id": clientId,
+                                "client_secret": clientSecret,
+                                "redirect_uri": "http://localhost/callback",
+                                "grant_type": "authorization_code",
+                                "code": requestToken
+                              }
+                            })
                             .success(function(data) {
                                 deferred.resolve(data);
                             })
@@ -397,8 +431,17 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener('loadstart', function(event) {
                         if((event.url).indexOf("http://localhost/callback") === 0) {
                             requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: "https://app.box.com/api/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            $http({
+                              method: "post",
+                              url: "https://app.box.com/api/oauth2/token",
+                              params: {
+                                "client_id": clientId,
+                                "client_secret": clientSecret,
+                                "redirect_uri": "http://localhost/callback",
+                                "grant_type": "authorization_code",
+                                "code": requestToken
+                              }
+                            })
                             .success(function(data) {
                                 deferred.resolve(data);
                             })
@@ -441,9 +484,16 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener('loadstart', function(event) {
                         if((event.url).indexOf("http://localhost/callback") === 0) {
                             requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
                             $http.defaults.headers.post.Authorization = 'Basic ' + btoa(clientId + ":" + clientSecret);
-                            $http({method: "post", url: "https://ssl.reddit.com/api/v1/access_token", data: "redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                            $http({
+                              method: "post",
+                              url: "https://ssl.reddit.com/api/v1/access_token",
+                              params: {
+                                "redirect_uri": "http://localhost/callback",
+                                "grant_type": "authorization_code",
+                                "code": requestToken
+                              }
+                            })
                             .success(function(data) {
                                 deferred.resolve(data);
                             })
@@ -492,8 +542,13 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                         };
                         var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/request_token", oauthObject,  { oauth_callback: "http://localhost/callback" }, clientSecret);
                         $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
-                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                        $http({method: "post", url: "https://api.twitter.com/oauth/request_token", data: "oauth_callback=http://localhost/callback" })
+                        $http({
+                          method: "post",
+                          url: "https://api.twitter.com/oauth/request_token",
+                          params: {
+                            "oauth_callback": "http://localhost/callback"
+                          }
+                        })
                         .success(function(requestTokenResult) {
                             var requestTokenParameters = (requestTokenResult).split("&");
                             var parameterMap = {};
@@ -519,8 +574,13 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                                     oauthObject.oauth_token = parameterMap.oauth_token;
                                     var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/access_token", oauthObject,  { oauth_verifier: parameterMap.oauth_verifier }, clientSecret);
                                     $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
-                                    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                                    $http({method: "post", url: "https://api.twitter.com/oauth/access_token", data: "oauth_verifier=" + parameterMap.oauth_verifier })
+                                    $http({
+                                      method: "post",
+                                      url: "https://api.twitter.com/oauth/access_token",
+                                      params: {
+                                        "oauth_verifier": parameterMap.oauth_verifier
+                                      }
+                                    })
                                     .success(function(result) {
                                         var accessTokenParameters = result.split("&");
                                         var parameterMap = {};
@@ -682,8 +742,15 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                         browserRef.addEventListener('loadstart', function(event) {
                             if((event.url).indexOf("http://localhost/callback") === 0) {
                                 requestToken = (event.url).split("code=")[1];
-                                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                                $http({method: "post", url: "https://www.strava.com/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&code=" + requestToken })
+                                $http({
+                                  method: "post",
+                                  url: "https://www.strava.com/oauth/token",
+                                  params: {
+                                    "client_id": clientId,
+                                    "client_secret": clientSecret,
+                                    "code": requestToken
+                                  }
+                                })
                                 .success(function(data) {
                                     deferred.resolve(data);
                                 })
@@ -780,8 +847,13 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                             };
                             var signatureObj = $cordovaOauthUtility.createSignature("POST", baseUrl + "/oauth/initiate", oauthObject,  { oauth_callback: "http://localhost/callback" }, clientSecret);
                             $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: baseUrl + "/oauth/initiate", data: "oauth_callback=http://localhost/callback" })
+                            $http({
+                              method: "post",
+                              url: baseUrl + "/oauth/initiate",
+                              params: {
+                                "oauth_callback": "http://localhost/callback"
+                              }
+                            })
                             .success(function(requestTokenResult) {
                                 var requestTokenParameters = (requestTokenResult).split("&");
                                 var parameterMap = {};
@@ -811,7 +883,6 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                                         oauthObject.oauth_verifier = parameterMap.oauth_verifier;
                                         var signatureObj = $cordovaOauthUtility.createSignature("POST", baseUrl + "/oauth/token", oauthObject,  {}, clientSecret, tokenSecret);
                                         $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
-                                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
                                         $http({method: "post", url: baseUrl + "/oauth/token" })
                                         .success(function(result) {
                                             var accessTokenParameters = result.split("&");
