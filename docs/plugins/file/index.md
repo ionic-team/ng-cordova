@@ -124,7 +124,7 @@ Check if a file exists in a certain path, directory.
 
 ##### `createDir(path, directory, replace)`
 
-Check if a file exists in a certain path, directory.
+Creates a new directory in the specific path. The `replace` boolean value determines whether to replace an existing directory with the same name. If an existing directory exists and the `replace` value is `false`, the promise will fail and return an error.
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
@@ -137,7 +137,7 @@ Check if a file exists in a certain path, directory.
 
 ##### `createFile(path, file, replace)`
 
-Check if a file exists in a certain path, directory.
+Creates a new file in the specific path. The `replace` boolean value determines whether to replace an existing file with the same name. If an existing file exists and the `replace` value is `false`, the promise will fail and return an error.
 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
