@@ -335,6 +335,7 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                     browserRef.addEventListener('loadstart', function(event) {
                         if((event.url).indexOf("http://localhost/callback") === 0) {
                             requestToken = (event.url).split("code=")[1];
+                            requestToken = requestToken.split("&")[0];
                             $http({
                               method: "post",
                               url: "https://www.linkedin.com/uas/oauth2/accessToken",
