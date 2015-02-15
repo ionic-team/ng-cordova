@@ -13,6 +13,13 @@ icon-windows: true
 
 This plugin provides the ability to record and play back audio files on a device.
 
+**A note on iOS capabilities**
+
+
+*An app that plays or records audio continuously (even while the app is running in the background) can register to perform those tasks in the background. You enable audio support from the Background modes section of the Capabilities tab in your Xcode project. (You can also enable this support by including the UIBackgroundModes key with the audio value in your app’s Info.plist file.) Apps that play audio content in the background must play audible content and not silence.*
+
+
+[Apple reference "Playing and Recording Background Audio"](https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html)
 
 ```
 cordova plugin add org.apache.cordova.media
