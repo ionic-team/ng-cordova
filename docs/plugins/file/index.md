@@ -216,7 +216,7 @@ Write to an existing file.
 
 
 ##### `readAsText(path, file)`
-##### `readAsDataUrl(path, file)`
+##### `readAsDataURL(path, file)`
 ##### `readAsBinaryString(path, file)`
 ##### `readAsArrayBuffer(path, file)`
 
