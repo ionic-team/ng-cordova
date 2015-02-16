@@ -11,7 +11,7 @@ icon-windows: true
 ---
 
 
-Allows your application to receive push notifications. To receive notifications in your controllers or services, listen for `pushNotificationReceived` event.
+Allows your application to receive push notifications. To receive notifications in your controllers or services, listen for `$cordovaPush:notificationReceived` event.
 
 ```
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
@@ -73,7 +73,7 @@ module.run(function($http, $cordovaPush) {
     });
     
     
-    $rootScope.$on('$cordovaPush:pushNotificationReceived', function(event, notification) {
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       if (notification.alert) {
         navigator.notification.alert(notification.alert);
       }
