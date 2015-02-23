@@ -38,6 +38,15 @@ describe('Service: $cordovaSQLite', function() {
       bgType: bgType
     });
   });
+  
+  it('should call window\'s sqliteplugin.open method with options object', function(){
+  
+	var options = { name: 'someDbName', background: 1 };
+	spyOn(window.sqlitePlugin, 'openDatabase');
+    $cordovaSQLite.openDBOptions(options);
+
+    expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith(options);
+  });
 
   it('should call window\'s sqlitePlugin.deleteDB method', function() {
 
