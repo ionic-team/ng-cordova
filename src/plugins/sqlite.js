@@ -17,6 +17,10 @@ angular.module('ngCordova.plugins.sqlite', [])
           bgType: background
         });
       },
+	  
+	  openDBOptions: function(options) {
+		return $window.sqlitePlugin.openDatabase(options);
+	  },
 
       execute: function (db, query, binding) {
         var q = $q.defer();
