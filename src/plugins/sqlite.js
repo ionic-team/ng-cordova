@@ -12,17 +12,18 @@ angular.module('ngCordova.plugins.sqlite', [])
           background = 0;
         }
 
+        if(angular.isObject(dbName) && !angular.isString(dbName)){
+          if(!dbName.bgType) dbName.bgType = background;
+          return $window.sqlitePlugin.openDatabase(dbName);
+        }
+
         return $window.sqlitePlugin.openDatabase({
           name: dbName,
           bgType: background
         });
       },
-	  
-	  openDBOptions: function(options) {
-		return $window.sqlitePlugin.openDatabase(options);
-	  },
 
-      execute: function (db, query, binding) {
+	    execute: function (db, query, binding) {
         var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
