@@ -69,6 +69,8 @@ angular.module('ngCordova.plugins.media', [])
           media.stopRecord();
         };
 
+        q.promise.media = media;
+
         return q.promise;
       }
     };
