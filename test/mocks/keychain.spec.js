@@ -4,9 +4,11 @@ describe('ngCordovaMocks', function() {
   });
 
   describe('keychain', function() {
+    var $rootScope = null;
     var $cordovaKeychain = null;
 
-    beforeEach(inject(function(_$cordovaKeychain_) {
+    beforeEach(inject(function(_$rootScope_, _$cordovaKeychain_) {
+      $rootScope = _$rootScope_;
       $cordovaKeychain = _$cordovaKeychain_;
     }));
 
@@ -17,6 +19,8 @@ describe('ngCordovaMocks', function() {
           function(value) { expect(value).toEqual('testValue'); },
           function() { expect(false).toBe(true); }
         );
+
+      $rootScope.$apply();
     });
 
     it('should not get values that are not stored', function() {
@@ -25,6 +29,8 @@ describe('ngCordovaMocks', function() {
           function() { expect(false).toBe(true); },
           function() { expect(true).toBe(true); }
         );
+
+      $rootScope.$apply();
     });
 
     it('should store values', function() {
@@ -38,6 +44,8 @@ describe('ngCordovaMocks', function() {
             expect($cordovaKeychain.keychains['testService']).toEqual({ 'testKey' : 'testValue'});
           }
         );
+
+      $rootScope.$apply();
     });
 
     it('should remove values', function() {
@@ -52,6 +60,8 @@ describe('ngCordovaMocks', function() {
             expect($cordovaKeychain.keychains['testService']['testKey']).toBeUndefined();
           }
         );
+
+      $rootScope.$apply();
     });
   });
 });
