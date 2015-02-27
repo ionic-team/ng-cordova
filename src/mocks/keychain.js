@@ -5,58 +5,58 @@
  * @description
  * A service for testing Keychain features
  * in an app built with ngCordova.
-**/
+ **/
 ngCordovaMocks.factory('$cordovaKeychain', ['$q', function($q) {
-	var keychains = {};
+  var keychains = {};
 
-	return {
-	/**
-		* @ngdoc property
-		* @name keychains
-		* @propertyOf ngCordovaMocks.cordovaKeychain
-		*
-		* @description
-		* The collection of 'keychains' that have been saved.
-		* This property should only be used in automated tests.
-		**/
-		keychains: keychains,
+  return {
+    /**
+     * @ngdoc property
+     * @name keychains
+     * @propertyOf ngCordovaMocks.cordovaKeychain
+     *
+     * @description
+     * The collection of 'keychains' that have been saved.
+     * This property should only be used in automated tests.
+     **/
+    keychains: keychains,
 
-		getForKey: function (key, serviceName) {
-			var defer = $q.defer();
+    getForKey: function (key, serviceName) {
+      var defer = $q.defer();
 
-			if (this.keychains[serviceName]) {
-				defer.resolve(this.keychains[serviceName][key]);
-			} else {
-				defer.reject();
-			}
+      if (this.keychains[serviceName]) {
+        defer.resolve(this.keychains[serviceName][key]);
+      } else {
+        defer.reject();
+      }
 
-			return defer.promise;
-		},
+      return defer.promise;
+    },
 
-		setForKey: function (key, serviceName, value) {
-			var defer = $q.defer();
+    setForKey: function (key, serviceName, value) {
+      var defer = $q.defer();
 
-			if (!this.keychains[serviceName]) {
-				this.keychains[serviceName] = {};
-			}
+      if (!this.keychains[serviceName]) {
+        this.keychains[serviceName] = {};
+      }
 
-			this.keychains[serviceName][key] = value;
+      this.keychains[serviceName][key] = value;
 
-			defer.resolve();
+      defer.resolve();
 
-			return defer.promise;
-		},
+      return defer.promise;
+    },
 
-		removeForKey: function (key, serviceName) {
-			var defer = $q.defer();
+    removeForKey: function (key, serviceName) {
+      var defer = $q.defer();
 
-			if (this.keychains[serviceName]) {
-				this.keychains[serviceName][key] = undefined;
-			}
+      if (this.keychains[serviceName]) {
+        delete this.keychains[serviceName][key];
+      }
 
-			defer.resolve();
+      defer.resolve();
 
-			return defer.promise;
-		}
-	};
+      return defer.promise;
+    }
+  };
 }]);
