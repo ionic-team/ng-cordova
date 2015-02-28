@@ -23,6 +23,17 @@ angular.module('ngCordova.plugins.file', [])
     this.$get = ['$q', '$window', '$cordovaFileError', function ($q, $window, $cordovaFileError) {
 
       return {
+
+        getFreeDiskSpace: function() {
+            var q = $q.defer();
+            cordova.exec(function(result) {
+                q.resolve(result);
+            }, function(error) {
+                q.reject(error);
+            }, "File", "getFreeDiskSpace", []);
+            return q.promise;
+        },
+
         checkDir: function (path, dir) {
           var q = $q.defer();
 
