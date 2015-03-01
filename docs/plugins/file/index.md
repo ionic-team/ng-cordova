@@ -98,6 +98,13 @@ When an error is thrown, one of the following codes will be used.
 
 ### Methods
 
+##### `getFreeDiskSpace()`
+
+Get the total free disk space on the device.
+
+> **Returns**  `String`
+
+
 ##### `checkDir(path, directory)`
 
 Check if a file exists in a certain path, directory.
@@ -297,6 +304,14 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 
   document.addEventListener('deviceready', function () {
 
+    $cordovaFile.getFreeDiskSpace()
+      .then(function (success) {
+         // success in kilobytes
+      }, function (error) {
+          // error
+      });
+      
+
     // CHECK
     $cordovaFile.checkDir(cordova.file.dataDirectory, "dir/other_dir")
       .then(function (success) {
@@ -414,4 +429,3 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
 
 });
 ```
-
