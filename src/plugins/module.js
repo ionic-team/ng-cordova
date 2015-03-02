@@ -66,5 +66,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.touchid',
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.videoCapturePlus',
-  'ngCordova.plugins.zip'
+  'ngCordova.plugins.zip',
+  'ngCordova.plugins.insomnia'
 ]);
