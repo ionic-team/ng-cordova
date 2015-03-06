@@ -6,7 +6,7 @@
  * A service for testing datepicker features
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDatePicker', function ($q) {
+ngCordovaMocks.factory('$cordovaDatePicker', ['$q', function ($q) {
   return {
     show: function (options) {
       var q = $q.defer();
@@ -15,4 +15,4 @@ ngCordovaMocks.factory('$cordovaDatePicker', function ($q) {
       return q.promise;
     }
   };
-});
+}]);
