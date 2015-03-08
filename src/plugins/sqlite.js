@@ -6,16 +6,19 @@ angular.module('ngCordova.plugins.sqlite', [])
   .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
     return {
-      openDB: function (dbName, background) {
+      openDB: function (dbName, background, opt) {
+        opt = opt || {};
 
-        if (typeof background === 'undefined') {
-          background = 0;
+        if (typeof dbName === 'object'){
+          opt = dbName;
+        }
+        else {
+          opt.name = dbName;
         }
 
-        return $window.sqlitePlugin.openDatabase({
-          name: dbName,
-          bgType: background
-        });
+        opt.bgType = background || 0;
+
+        return $window.sqlitePlugin.openDatabase(opt);
       },
 
       execute: function (db, query, binding) {
