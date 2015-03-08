@@ -26,6 +26,20 @@ describe('Service: $cordovaSQLite', function() {
     });
   });
 
+  it('should call window\'s sqlitePlugin.open method with an options Object', function(){
+    var dbName = 'some-test-db';
+
+    spyOn(window.sqlitePlugin, 'openDatabase');
+    $cordovaSQLite.openDB({
+      name: 'some-test-db'
+    });
+
+    expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
+      name: dbName,
+      bgType: 0
+    });
+  });
+
   it('should call window\'s sqlitePlugin.open method with background', function() {
 
     var dbName = 'someDbName';
