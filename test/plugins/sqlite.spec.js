@@ -31,7 +31,7 @@ describe('Service: $cordovaSQLite', function() {
 
     spyOn(window.sqlitePlugin, 'openDatabase');
     $cordovaSQLite.openDB({
-      name: 'some-test-db'
+      name: dbName
     });
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
