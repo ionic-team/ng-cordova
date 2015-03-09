@@ -3269,6 +3269,80 @@ angular.module('ngCordova.plugins.googleMap', [])
     };
   }]);
 
+// install  :     cordova plugin add nl.x-services.plugins.googleplus
+// link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
+
+  angular.module('ngCordova.plugins.googleplus', [])
+
+  .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
+
+    return {
+      login: function(iosKey){
+          if(iosKey === undefined){
+            iosKey = {};
+          }
+          var q = $q.defer();
+          $window.plugins.googleplus.login(
+          {
+            'iOSApiKey': iosKey
+            // there is no API key for Android; you app is wired to the Google+ API by 
+            //listing your package name in the google dev console and signing your apk
+          },
+          function (response) {
+            q.resolve(response)
+          },
+          function (error) {
+           q.reject(error)
+          }
+        );
+
+        return q.promise;
+      },
+
+      silentLogin: function(iosKey){
+
+        if(iosKey === undefined){
+            iosKey = {};
+          }
+          var q = $q.defer();
+          $window.plugins.googleplus.trySilentLogin(
+          {
+            'iOSApiKey': iosKey
+            // there is no API key for Android; you app is wired to the Google+ API by 
+            //listing your package name in the google dev console and signing your apk
+          },
+          function (response) {
+            q.resolve(response)
+          },
+          function (error) {
+           q.reject(error)
+          }
+        );
+
+        return q.promise;
+      },
+
+      logout: function(){
+        var q = $q.defer();
+        $window.plugins.googleplus.logout(
+          function (response) {
+            q.resolve(response);
+          }
+        );
+      },
+
+      disconnect: function(){
+        var q = $q.defer();
+        $window.plugins.googleplus.disconnect(
+          function (response) {
+            q.resolve(response);
+          }
+        );
+      }
+    };
+
+  }]);
+
 // install   :      cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
 // link      :      https://github.com/Telerik-Verified-Plugins/HealthKit
 
@@ -3756,6 +3830,22 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
     }];
   }]);
 
+// install  :     cordova plugin add https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
+// link     :     https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin
+angular.module('ngCordova.plugins.insomnia', [])
+
+  .factory('$cordovaInsomnia', ['$window', function ($window) {
+
+    return {
+      keepAwake: function () {
+        return $window.plugins.insomnia.keepAwake();
+      },
+      allowSleepAgain: function () {
+        return $window.plugins.insomnia.allowSleepAgain();
+      }
+    }
+
+  }]);
 // install   :      cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
 // link      :      https://github.com/driftyco/ionic-plugins-keyboard
 
@@ -4147,6 +4237,8 @@ angular.module('ngCordova.plugins.media', [])
           media.stopRecord();
         };
 
+        q.promise.media = media;
+
         return q.promise;
       }
     };
@@ -4325,7 +4417,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.touchid',
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.videoCapturePlus',
-  'ngCordova.plugins.zip'
+  'ngCordova.plugins.zip',
+  'ngCordova.plugins.insomnia'
 ]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mopub.git
@@ -4601,6 +4694,7 @@ angular.module('ngCordova.plugins.network', [])
  *    Magento
  *    vkontakte
  *    ADFS
+ *    Imgur
  */
 
 angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
@@ -5461,6 +5555,47 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
                                 setTimeout(function() {
                                     browserRef.close();
                                 }, 10);
+                            }
+                        });
+                        browserRef.addEventListener('exit', function(event) {
+                            deferred.reject("The sign in flow was canceled");
+                        });
+                    } else {
+                        deferred.reject("Could not find InAppBrowser plugin");
+                    }
+                } else {
+                    deferred.reject("Cannot authenticate via a web browser");
+                }
+                return deferred.promise;
+            },
+
+            /*
+             * Sign into the Imgur service
+             *
+             * @param    string clientId
+             * @return   promise
+             */
+            imgur: function(clientId) {
+                var deferred = $q.defer();
+                if(window.cordova) {
+                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+                    if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+                        var browserRef = window.open('https://api.imgur.com/oauth2/authorize?client_id=' + clientId + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        browserRef.addEventListener('loadstart', function(event) {
+                            if((event.url).indexOf("http://localhost/callback") === 0) {
+                            	browserRef.removeEventListener("exit",function(event){});
+                            	browserRef.close();
+                                var callbackResponse = (event.url).split("#")[1];
+                                var responseParameters = (callbackResponse).split("&");
+                                var parameterMap = [];
+                                for(var i = 0; i < responseParameters.length; i++) {
+                                    parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                                }
+                                if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                                    deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in, account_username: parameterMap.account_username });
+                                } else {
+                                    deferred.reject("Problem authenticating");
+                                }
                             }
                         });
                         browserRef.addEventListener('exit', function(event) {
