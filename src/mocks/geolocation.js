@@ -147,7 +147,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 											function(position) {
 												self.currentPosition = position;
 												self.locations.push(position);
-												defer.resolve(position);
+												defer.notify(position);
 											},
 											function(error) {
 												defer.reject(error);
