@@ -1,5 +1,5 @@
-// install   :      cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
-// link      :      https://github.com/aharris88/phonegap-sms-plugin
+// install   :      cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
+// link      :      https://github.com/cordova-sms/cordova-sms-plugin
 
 angular.module('ngCordova.plugins.sms', [])
 
