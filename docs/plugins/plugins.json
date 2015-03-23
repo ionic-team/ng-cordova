@@ -186,6 +186,12 @@
     "short-title": "InAppBrowser"
   },
   {
+    "link": "/docs/plugins/instagram/",
+    "title": "Instagram",
+    "keywords": "instagram image share",
+    "short-title": "Instagram"
+  },
+  {
     "link": "/docs/plugins/keyboard/",
     "title": "Keyboard",
     "keywords": "",
