@@ -22,6 +22,17 @@ cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
 ```javascript
 module.controller('ThisCtrl', function($cordovaSms) {
 
+ document.addEventListener("deviceready", function () {
+
+    $cordovaSms
+      .send('phonenumber', 'SMS content', options)
+      .then(function() {
+        // Success! SMS was sent
+      }, function(error) {
+        // An error occurred
+      });
+
+  });
 
 });
 ```
