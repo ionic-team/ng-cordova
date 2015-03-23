@@ -19,7 +19,7 @@ module.controller('ThisCtrl', function($scope, $cordovaInstagram) {
   // Get image from camera, base64 is good. See the
   // $cordovaCamera docs for more info
   
-  $cordovaCamera.share($scope.image.data, $scope.image.caption).then(function() {
+  $cordovaInstagram.share($scope.image.data, $scope.image.caption).then(function() {
     // Worked
   }, function(err) {
     // Didn't work
