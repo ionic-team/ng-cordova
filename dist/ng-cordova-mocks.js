@@ -1741,7 +1741,7 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
  * A service for testing push notifications features
  * in an app build with ngCordova.
  */  
-window.ngCordovaMocks.factory('$cordovaPush', ['$q', '$timeout', '$rootScope', function($q, $timeout, $rootScope) {
+ngCordovaMocks.factory('$cordovaPush', ['$q', '$timeout', '$rootScope', function($q, $timeout, $rootScope) {
   var throwsError = false;
 
   var deviceToken = '';
