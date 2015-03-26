@@ -97,7 +97,6 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 					if (navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(
 							function(position) {
-								console.log('IN');
 								this.currentPosition = position;
 								defer.resolve(this.currentPosition);
 							},
