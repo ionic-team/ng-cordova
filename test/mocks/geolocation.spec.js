@@ -85,6 +85,8 @@ describe('ngCordovaMocks', function() {
 
 			expect(stubNavGeo.calledOnce).toBe(true);
 			expect(count).toBe(1);
+
+			stubNavGeo.restore();
 		}));
 
 		it('should set next position', function() {
