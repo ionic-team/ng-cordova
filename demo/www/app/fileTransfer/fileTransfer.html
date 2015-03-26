@@ -1,0 +1,12 @@
+<ion-view title="File Transfer">
+	<ion-content padding="true">
+
+    <button class="button button-block button-positive" ng-click="downloadFile()">Download File</button>
+
+    <div class="card" ng-if="downloadProgress">
+      <div class="item item-text-wrap">
+        Progress : {{downloadProgress}}%
+      </div>
+    </div>
+	</ion-content>
+</ion-view>

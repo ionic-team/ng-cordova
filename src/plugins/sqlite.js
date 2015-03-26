@@ -3,16 +3,16 @@
 
 angular.module('ngCordova.plugins.sqlite', [])
 
-  .factory('$cordovaSQLite', ['$q', function ($q) {
+  .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
-    return  {
+    return {
       openDB: function (dbName, background) {
 
-        if(typeof background === 'undefined') {
+        if (typeof background === 'undefined') {
           background = 0;
         }
 
-        return window.sqlitePlugin.openDatabase({
+        return $window.sqlitePlugin.openDatabase({
           name: dbName,
           bgType: background
         });
@@ -31,6 +31,32 @@ angular.module('ngCordova.plugins.sqlite', [])
         return q.promise;
       },
 
+      insertCollection: function (db, query, bindings) {
+        var q = $q.defer();
+        var coll = bindings.slice(0); // clone collection
+
+        db.transaction(function (tx) {
+          (function insertOne() {
+            var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
+            try {
+              tx.executeSql(query, record, function (tx, result) {
+                if (coll.length === 0) {
+                  q.resolve(result);
+                } else {
+                  insertOne();
+                }
+              }, function (transaction, error) {
+                q.reject(error);
+                return;
+              });
+            } catch (exception) {
+              q.reject(exception);
+            }
+          })();
+        });
+        return q.promise;
+      },
+
       nestedExecute: function (db, query1, query2, binding1, binding2) {
         var q = $q.defer();
 
@@ -39,8 +65,8 @@ angular.module('ngCordova.plugins.sqlite', [])
               q.resolve(result);
               tx.executeSql(query2, binding2, function (tx, res) {
                 q.resolve(res);
-              })
-            })
+              });
+            });
           },
           function (transaction, error) {
             q.reject(error);
@@ -52,13 +78,13 @@ angular.module('ngCordova.plugins.sqlite', [])
       deleteDB: function (dbName) {
         var q = $q.defer();
 
-        window.sqlitePlugin.deleteDatabase(dbName, function (success) {
+        $window.sqlitePlugin.deleteDatabase(dbName, function (success) {
           q.resolve(success);
         }, function (error) {
-          q.reject(error)
+          q.reject(error);
         });
 
         return q.promise;
       }
-    }
+    };
   }]);

@@ -13,7 +13,7 @@ describe('Service: $cordovaKeyboard', function() {
           hideKeyboardAccessoryBar: jasmine.createSpy('hideAccessoryBar'),
           close: jasmine.createSpy('close'),
           disableScroll: jasmine.createSpy('disableScroll'),
-          isVisible: null,
+          isVisible: null
         }
       }
     }

@@ -7,31 +7,35 @@ angular.module('ngCordova.plugins.statusbar', [])
 
     return {
       overlaysWebView: function (bool) {
-        return StatusBar.overlaysWebView(true);
+        return StatusBar.overlaysWebView(!!bool);
       },
 
-      // styles: Default, LightContent, BlackTranslucent, BlackOpaque
       style: function (style) {
         switch (style) {
-          case 0:     // Default
+          // Default
+          case 0:
             return StatusBar.styleDefault();
 
-          case 1:     // LightContent
+          // LightContent
+          case 1:
             return StatusBar.styleLightContent();
 
-          case 2:     // BlackTranslucent
+          // BlackTranslucent
+          case 2:
             return StatusBar.styleBlackTranslucent();
 
-          case 3:     // BlackOpaque
+          // BlackOpaque
+          case 3:
             return StatusBar.styleBlackOpaque();
 
-          default:  // Default
+          default:
             return StatusBar.styleDefault();
         }
       },
 
-
-      // supported names: black, darkGray, lightGray, white, gray, red, green, blue, cyan, yellow, magenta, orange, purple, brown
+      // supported names:
+      // black, darkGray, lightGray, white, gray, red, green,
+      // blue, cyan, yellow, magenta, orange, purple, brown
       styleColor: function (color) {
         return StatusBar.backgroundColorByName(color);
       },
@@ -45,11 +49,11 @@ angular.module('ngCordova.plugins.statusbar', [])
       },
 
       show: function () {
-        return StatusBar.show()
+        return StatusBar.show();
       },
 
       isVisible: function () {
-        return StatusBar.isVisible();
+        return StatusBar.isVisible;
       }
-    }
+    };
   }]);

@@ -6,7 +6,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
   .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
     return {
-      scan: function (options) {
+      scan: function () {
         var q = $q.defer();
 
         cordova.plugins.barcodeScanner.scan(function (result) {
@@ -20,13 +20,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
       encode: function (type, data) {
         var q = $q.defer();
-
-        /* TODO needs work for type:
-         make the default:  BarcodeScanner.Encode.TEXT_TYPE
-         other options: .EMAIL_TYPE, .PHONE_TYPE, .SMS_TYPE
-
-         docs: https://github.com/wildabeast/BarcodeScanner#encoding-a-barcode
-         */
+        type = type || "TEXT_TYPE";
 
         cordova.plugins.barcodeScanner.encode(type, data, function (result) {
           q.resolve(result);
@@ -36,5 +30,5 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
         return q.promise;
       }
-    }
+    };
   }]);

@@ -1,6 +1,6 @@
 {
   "name": "ngCordova",
-  "version": "0.1.4-alpha",
+  "version": "0.1.12-alpha",
   "homepage": "http://ngCordova.com/",
   "authors": [
     "Max Lynch <max@drifty.com>",
@@ -9,8 +9,7 @@
   ],
   "description": "AngularJS Cordova wrappers for common Cordova plugins.",
   "main": [
-    "./dist/ng-cordova.js",
-    "./dist/ng-cordova.min.js"
+    "./dist/ng-cordova.js"
   ],
   "ignore": [
     "**/.*",
@@ -22,10 +21,13 @@
     "CONTRIBUTING.md"
   ],
   "dependencies": {
-    "angular": "1.2.23"
+    "angular": ">= 1.2.23"
   },
   "keywords": [
     "ngCordova",
+    "ng-cordova",
+    "ngcordova",
+    "ng cordova",
     "cordova",
     "phonegap",
     "angular",
@@ -36,8 +38,8 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "angular": "~1.2.23",
-    "angular-mocks": "~1.2.23",
+    "angular": ">= 1.2.23",
+    "angular-mocks": ">= 1.2.23",
     "jquery": "~2.1.1"
   }
 }

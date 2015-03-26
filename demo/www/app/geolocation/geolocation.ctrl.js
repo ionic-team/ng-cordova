@@ -1,6 +1,6 @@
 angular.module('demo.geolocation.ctrl', [])
 
-  .controller('GeolocationCtrl', function ($scope, $cordovaGeolocation, $ionicModal) {
+  .controller('GeolocationCtrl', function ($scope, $cordovaGeolocation) {
 
     $scope.getLocation = function () {
 
@@ -17,27 +17,4 @@ angular.module('demo.geolocation.ctrl', [])
         });
     };
 
-
-    /*
-     Ionic modal with source code
-     */
-
-    $ionicModal.fromTemplateUrl('app/geolocation/geolocation-source.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modal = modal;
-    });
-
-    $scope.closeModal = function () {
-      $scope.modal.hide();
-    };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function () {
-      $scope.modal.remove();
-    });
-
-    $scope.showSource = function () {
-      $scope.modal.show();
-    }
   });

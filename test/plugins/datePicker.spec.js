@@ -19,7 +19,7 @@ describe('Service: $cordovaDatePicker', function() {
     var options = { mode: 'date', date: new Date() };
 
     spyOn(window.datePicker, 'show')
-      .andCallFake(function (date, successCb, errorCb) {
+      .andCallFake(function (options, successCb, errorCb) {
         successCb(options.date);
       });
 
@@ -33,6 +33,27 @@ describe('Service: $cordovaDatePicker', function() {
 
     expect(result).toBe(options.date);
     expect(window.datePicker.show.calls[0].args[0]).toBe(options);
+  });
+
+  it('should have default options if none are passed', function() {
+    var result;
+
+    spyOn(window.datePicker, 'show')
+      .andCallFake(function(options, successCb, errorCb) {
+        successCb(options.date);
+      });
+
+    $cordovaDatePicker
+      .show()
+      .then(function (response) {
+        result = response;
+      });
+
+      $rootScope.$digest();
+
+      console.log(result);
+
+      expect(result instanceof Date).toBeTruthy();
   });
 
 });

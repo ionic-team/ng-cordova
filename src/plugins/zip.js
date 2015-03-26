@@ -3,23 +3,23 @@
 
 angular.module('ngCordova.plugins.zip', [])
 
-.factory('$cordovaZip', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaZip', ['$q', '$window', function ($q, $window) {
 
-  return {
-    unzip: function(source, destination) {
-      var q = $q.defer();
+    return {
+      unzip: function (source, destination) {
+        var q = $q.defer();
 
-      $window.zip.unzip(source, destination, function (isError) {
-        if(isError === 0) {
-          q.resolve();
-        } else {
-          q.reject();
-        }
-      }, function (progressEvent) {
-        q.notify(progressEvent);
-      });
+        $window.zip.unzip(source, destination, function (isError) {
+          if (isError === 0) {
+            q.resolve();
+          } else {
+            q.reject();
+          }
+        }, function (progressEvent) {
+          q.notify(progressEvent);
+        });
 
-      return q.promise;
-    }
-  }
-}]);
+        return q.promise;
+      }
+    };
+  }]);

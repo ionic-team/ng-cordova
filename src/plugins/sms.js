@@ -11,10 +11,10 @@ angular.module('ngCordova.plugins.sms', [])
         sms.send(number, message, intent, function (res) {
           q.resolve(res);
         }, function (err) {
-          q.reject(err)
+          q.reject(err);
         });
         return q.promise;
       }
-    }
+    };
 
   }]);

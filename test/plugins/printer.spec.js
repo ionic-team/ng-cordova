@@ -1,4 +1,4 @@
-describe('Service: $cordovaPrinter', function() {
+describe('Service: $cordovaPrinter', function () {
 
   var $cordovaPrinter, $rootScope;
 
@@ -10,17 +10,17 @@ describe('Service: $cordovaPrinter', function() {
 
     window.plugin = {
       printer: {
-        isServiceAvailable: angular.noop,
+        isAvailable: angular.noop,
         print: jasmine.createSpy('print')
       }
     };
   }));
 
-  it('should return window\'s printer.isServiceAvailable', function() {
+  it('should return window\'s printer.isAvailable', function () {
 
     var result;
 
-    spyOn(window.plugin.printer, 'isServiceAvailable')
+    spyOn(window.plugin.printer, 'isAvailable')
       .andCallFake(function (successCb, errorCb) {
         successCb(false);
       });
@@ -36,12 +36,18 @@ describe('Service: $cordovaPrinter', function() {
     expect(result).toBe(false);
   });
 
-  it('should call window\'s printer.print', function() {
+  it('should call window\'s printer.print', function () {
+    var result;
     var someDoc = 'someDocContent';
+    var options = {landscape: true};
 
-    $cordovaPrinter.print(someDoc);
+    $cordovaPrinter
+      .print(someDoc, options)
+      .then(function (response) {
+        result = response;
+      });
 
-    expect(window.plugin.printer.print).toHaveBeenCalledWith(someDoc);
+    expect(window.plugin.printer.print).toHaveBeenCalledWith(someDoc, options, jasmine.any(Function));
   });
 
 });

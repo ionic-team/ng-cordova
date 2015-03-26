@@ -5,7 +5,7 @@
  * @description
  * A service for testing location services
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($interval, $q) {
 	var throwsError = false;
 	var useHostAbilities = true;
@@ -22,7 +22,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 		 * @propertyOf ngCordovaMocks.cordovaGeolocation
 		 *
 		 * @description
-		 * A flag that signals whether a promise should be rejected or not. 
+		 * A flag that signals whether a promise should be rejected or not.
 		 * This property should only be used in automated tests.
 		**/
 		throwsError: throwsError,
@@ -35,7 +35,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 		 * @description
 		 * The collection of watchers that are currently active.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		watchIntervals: watchIntervals,
 
         /**
@@ -46,7 +46,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 		 * @description
 		 * The collection of 'locations' that have been logged.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		locations: locations,
 
         /**
@@ -57,7 +57,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 		 * @description
 		 * The last location logged.
 		 * This property should only be used in automated tests.
-		**/						
+		**/
 		currentPosition: currentPosition,
 
         /**
@@ -69,7 +69,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 		 * The position to be logged the next time that a watcher
 		 * gets the location.
 		 * This property should only be used in automated tests.
-		**/						
+		**/
 		nextPosition: nextPosition,
 
         /**
@@ -78,7 +78,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 		 * @propertyOf ngCordovaMocks.cordovaGeolocation
 		 *
 		 * @description
-		 * A flag that signals whether or not to try and use the host's 
+		 * A flag that signals whether or not to try and use the host's
 		 * (browser or otherwise) geolocation capabilities.
 		 * This property should only be used in automated tests.
 		**/
@@ -105,7 +105,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 							}
 						);
 					} else {
-						defer.reject('Geolocation is not supported by this browser.');						
+						defer.reject('Geolocation is not supported by this browser.');
 					}
 				} else {
 					defer.resolve(this.currentPosition);
@@ -116,21 +116,21 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 
 		watchPosition: function(options) {
 			var defer = $q.defer();
-			var watchId = Math.floor((Math.random() * 1000000) + 1);
+			var watchID = Math.floor((Math.random() * 1000000) + 1);
+			var self = this;
 
-			this.locations = [];
-			self = this;
+			self.locations = [];
 
-			if (this.throwsError) {
+			if (self.throwsError) {
 				defer.reject('There was an error getting the geolocation.');
 			} else {
 				var delay = 1000;
 				if (options && options.timeout) {
 					delay = options.timeout;
-				}				
+				}
 
-				this.watchIntervals.push({
-					watchId: watchId,
+				self.watchIntervals.push({
+					watchID: watchID,
 					interval: $interval(
 						function() {
 							if (self.throwsError) {
@@ -154,7 +154,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 											}
 										);
 									} else {
-										defer.reject('Geolocation is not supported by this browser.');						
+										defer.reject('Geolocation is not supported by this browser.');
 									}
 								} else {
 									result = {
@@ -176,27 +176,49 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 									defer.notify(result);
 								}
 							}
-						}, 
+						},
 						delay
 					)
 				});
 			}
 
-			return {
-				watchId: watchId,
-				promise: defer.promise
-			};						
+			var cancel = function(id) {
+				var removed = -1;
+				for (var i=0; i<self.watchIntervals.length; i++) {
+					if (self.watchIntervals[i].watchID === id) {
+						$interval.cancel(watchIntervals[i].interval);
+						removed = i;
+						break;
+					}
+				}
+
+				if (removed !== -1) {
+					self.watchIntervals.splice(removed, 1);
+				}
+			};
+
+      defer.promise.cancel = function() {
+      	cancel(watchID);
+      };
+
+      defer.promise.clearWatch = function(id) {
+      	cancel(id || watchID);
+      };
+
+      defer.promise.watchID = watchID;
+
+      return defer.promise;
 		},
 
-		clearWatch: function (watchId) {
-			var defer = $q.defer();			
-			if (watchId) {
+		clearWatch: function (watchID) {
+			var defer = $q.defer();
+			if (watchID) {
 				if (this.throwsError) {
 					defer.reject('Unable to clear watch.');
 				} else {
 					var removed = -1;
 					for (var i=0; i<this.watchIntervals.length; i++) {
-						if (this.watchIntervals[i].watchId === watchId) {
+						if (this.watchIntervals[i].watchID === watchID) {
 							$interval.cancel(watchIntervals[i].interval);
 							removed = i;
 							break;
@@ -211,6 +233,6 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 				defer.reject('Unable to clear watch. No watch ID provided.');
 			}
 			return defer.promise;
-		}		
+		}
 	};
 }]);

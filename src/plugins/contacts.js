@@ -11,11 +11,10 @@ angular.module('ngCordova.plugins.contacts', [])
         var deviceContact = navigator.contacts.create(contact);
 
         deviceContact.save(function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
         return q.promise;
       },
 
@@ -24,17 +23,16 @@ angular.module('ngCordova.plugins.contacts', [])
         var deviceContact = navigator.contacts.create(contact);
 
         deviceContact.remove(function (result) {
-            q.resolve(result);
-          },
-          function (err) {
-            q.reject(err);
-          });
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
         return q.promise;
       },
 
       clone: function (contact) {
         var deviceContact = navigator.contacts.create(contact);
-        return deviceContact.clone(contact)
+        return deviceContact.clone(contact);
       },
 
       find: function (options) {
@@ -43,33 +41,30 @@ angular.module('ngCordova.plugins.contacts', [])
         delete options.fields;
 
         navigator.contacts.find(fields, function (results) {
-            q.resolve(results);
-          },
-          function (err) {
-            q.reject(err);
-          },
-          options);
+          q.resolve(results);
+        }, function (err) {
+          q.reject(err);
+        }, options);
+
+        return q.promise;
+      },
+
+      pickContact: function () {
+        var q = $q.defer();
+
+        navigator.contacts.pickContact(function (contact) {
+          q.resolve(contact);
+        }, function (err) {
+          q.reject(err);
+        });
 
         return q.promise;
       }
-
-      /*
-       getContact: function (contact) {
-       var q = $q.defer();
-
-       navigator.contacts.pickContact(function (contact) {
-
-       })
-
-       }
-       */
 
       // TODO: method to set / get ContactAddress
       // TODO: method to set / get ContactError
       // TODO: method to set / get ContactField
       // TODO: method to set / get ContactName
       // TODO: method to set / get ContactOrganization
-
-    }
-
+    };
   }]);

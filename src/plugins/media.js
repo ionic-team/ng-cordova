@@ -9,8 +9,9 @@ angular.module('ngCordova.plugins.media', [])
       newMedia: function (src) {
         var q = $q.defer();
         var mediaStatus = null;
+        var media;
 
-        var media = new Media(src,
+        media = new Media(src,
           function (success) {
             q.resolve(success);
           }, function (error) {
@@ -19,71 +20,58 @@ angular.module('ngCordova.plugins.media', [])
             mediaStatus = status;
           });
 
-        return {
-          media: media,
-          mediaStatus: mediaStatus,
-          promise: q.promise
-        }
+        // getCurrentPosition NOT WORKING!
+        q.promise.getCurrentPosition = function () {
+          media.getCurrentPosition(function (success) {
+          }, function (error) {
+          });
+        };
 
-      },
-
-      getCurrentPosition: function (source) {
-        var q = $q.defer();
-
-        source.getCurrentPosition(function (success) {
-          q.resolve(success);
-
-        }, function (error) {
-          q.reject(error);
-        });
-
-        return q.promise;
-      },
-
-      getDuration: function (source) {
-
-        return source.getDuration();
-      },
-
-      play: function (source) {
-        return source.play();
+        q.promise.getDuration = function () {
+          media.getDuration();
+        };
 
         // iOS quirks :
         // -  myMedia.play({ numberOfLoops: 2 }) -> looping
         // -  myMedia.play({ playAudioWhenScreenIsLocked : false })
-      },
+        q.promise.play = function (options) {
+          if (typeof options !== "object") {
+            options = {};
+          }
+          media.play(options);
+        };
 
-      pause: function (source) {
-        return source.pause();
-      },
+        q.promise.pause = function () {
+          media.pause();
+        };
 
-      release: function (source) {
-        return source.release();
-      },
+        q.promise.stop = function () {
+          media.stop();
+        };
 
+        q.promise.release = function () {
+          media.release();
+        };
 
-      seekTo: function (source, milliseconds) {
+        q.promise.seekTo = function (timing) {
+          media.seekTo(timing);
+        };
 
-        return source.seekTo(milliseconds);
-      },
+        q.promise.setVolume = function (volume) {
+          media.setVolume(volume);
+        };
 
-      setVolume: function (source, volume) {
-        return source.setVolume(volume);
-      },
+        q.promise.startRecord = function () {
+          media.startRecord();
+        };
 
-      startRecord: function (source) {
+        q.promise.stopRecord = function () {
+          media.stopRecord();
+        };
 
-        return source.startRecord();
-      },
+        q.promise.media = media;
 
-      stopRecord: function (source) {
-
-        return source.stopRecord();
-      },
-
-      stop: function (source) {
-
-        return source.stop();
+        return q.promise;
       }
-    }
+    };
   }]);

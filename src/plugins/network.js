@@ -3,10 +3,30 @@
 
 angular.module('ngCordova.plugins.network', [])
 
-  .factory('$cordovaNetwork', [function () {
+  .factory('$cordovaNetwork', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
+
+    var offlineEvent = function () {
+      var networkState = navigator.connection.type;
+      $timeout(function () {
+        $rootScope.$broadcast('$cordovaNetwork:offline', networkState);
+      });
+    };
+
+    var onlineEvent = function () {
+      var networkState = navigator.connection.type;
+      $timeout(function () {
+        $rootScope.$broadcast('$cordovaNetwork:online', networkState);
+      });
+    };
+
+    document.addEventListener("deviceready", function () {
+      if (navigator.connection) {
+        document.addEventListener("offline", offlineEvent, false);
+        document.addEventListener("online", onlineEvent, false);
+      }
+    });
 
     return {
-
       getNetwork: function () {
         return navigator.connection.type;
       },
@@ -19,6 +39,18 @@ angular.module('ngCordova.plugins.network', [])
       isOffline: function () {
         var networkState = navigator.connection.type;
         return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
+      },
+
+      clearOfflineWatch: function () {
+        document.removeEventListener("offline", offlineEvent);
+        $rootScope.$$listeners["$cordovaNetwork:offline"] = [];
+      },
+
+      clearOnlineWatch: function () {
+        document.removeEventListener("online", offlineEvent);
+        $rootScope.$$listeners["$cordovaNetwork:online"] = [];
       }
-    }
+    };
+  }])
+  .run(['$cordovaNetwork', function ($cordovaNetwork) {
   }]);

@@ -3,19 +3,17 @@
 
 angular.module('ngCordova.plugins.keychain', [])
 
-  .factory('$cordovaKeychain', ['$q', function ($q) {
+  .factory('$cordovaKeychain', ['$q', '$window', function ($q, $window) {
 
-    var kc = new Keychain();
+    if ('Keychain' in $window) {
+      var kc = new Keychain();
+    }
 
     return {
       getForKey: function (key, serviceName) {
         var defer = $q.defer();
 
-        kc.getForKey(function (value) {
-          defer.resolve(value);
-        }, function (error) {
-          defer.reject(error);
-        }, key, serviceName);
+        kc.getForKey(defer.resolve, defer.reject, key, serviceName);
 
         return defer.promise;
       },
@@ -23,25 +21,17 @@ angular.module('ngCordova.plugins.keychain', [])
       setForKey: function (key, serviceName, value) {
         var defer = $q.defer();
 
-        kc.setForKey(function () {
-          defer.resolve();
-        }, function (error) {
-          defer.reject(error);
-        }, key, serviceName, value);
+        kc.setForKey(defer.resolve, defer.reject, key, serviceName, value);
 
         return defer.promise;
       },
 
-      removeForKey: function (ey, serviceName) {
+      removeForKey: function (key, serviceName) {
         var defer = $q.defer();
 
-        kc.removeForKey(function () {
-          defer.resolve();
-        }, function (error) {
-          defer.reject(error);
-        }, key, serviceName);
+        kc.removeForKey(defer.resolve, defer.reject, key, serviceName);
 
         return defer.promise;
       }
-    }
+    };
   }]);

@@ -3,13 +3,13 @@
 
 angular.module('ngCordova.plugins.ga', [])
 
-  .factory('$cordovaGA', ['$q', function ($q) {
+  .factory('$cordovaGA', ['$q', '$window', function ($q, $window) {
 
     return {
       init: function (id, mingap) {
         var q = $q.defer();
         mingap = (mingap >= 0) ? mingap : 10;
-        window.plugins.gaPlugin.init(function (result) {
+        $window.plugins.gaPlugin.init(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -21,7 +21,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
         var q = $q.defer();
-        window.plugins.gaPlugin.trackEvent(function (result) {
+        $window.plugins.gaPlugin.trackEvent(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -33,7 +33,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       trackPage: function (success, fail, pageURL) {
         var q = $q.defer();
-        window.plugins.gaPlugin.trackPage(function (result) {
+        $window.plugins.gaPlugin.trackPage(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -45,7 +45,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       setVariable: function (success, fail, index, value) {
         var q = $q.defer();
-        window.plugins.gaPlugin.setVariable(function (result) {
+        $window.plugins.gaPlugin.setVariable(function (result) {
             q.resolve(result);
           },
           function (error) {
@@ -57,7 +57,7 @@ angular.module('ngCordova.plugins.ga', [])
 
       exit: function (success, fail) {
         var q = $q.defer();
-        window.plugins.gaPlugin.exit(function (result) {
+        $window.plugins.gaPlugin.exit(function (result) {
             q.resolve(result);
           },
           function (error) {
