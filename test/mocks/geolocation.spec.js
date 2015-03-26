@@ -66,6 +66,27 @@ describe('ngCordovaMocks', function() {
 			expect(count).toBe(5);
 		});
 
+		it('should track location with navigator geolocation', inject(function($timeout) {
+			var stubNavGeo = sinon.stub(navigator.geolocation, 'getCurrentPosition', function(callback) {
+				callback({
+					coords: { latitude: 1, longitude: 2 }
+				});
+			});
+			
+			$cordovaGeolocation.watchPosition(gpsOptions).then(
+				function() { },
+				function(err) { expect(false).toBe(true); },
+				function(result) {
+					count = count + 1;
+				}
+			);
+
+			$interval.flush(1000);
+
+			expect(stubNavGeo.calledOnce).toBe(true);
+			expect(count).toBe(1);
+		}));
+
 		it('should set next position', function() {
 			var pos = null;
 			var positionExpected = {
