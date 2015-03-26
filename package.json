@@ -22,7 +22,9 @@
     "karma-coverage": "~0.2.6",
     "karma-jasmine": "~0.1.5",
     "karma-phantomjs-launcher": "~0.1.2",
-    "minimist": "^0.1.0"
+    "karma-sinon": "^1.0.4",
+    "minimist": "^0.1.0",
+    "sinon": "^1.14.1"
   },
   "licenses": [
     {

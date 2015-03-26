@@ -14,7 +14,7 @@ module.exports = {
     .concat('test/mocks/*.js')
   ,
 
-  frameworks: ['jasmine'],
+  frameworks: ['jasmine', 'sinon'],
   reporters: ['progress', 'coverage'],
   preprocessors: {
     'src/plugins/*.js': ['coverage']
