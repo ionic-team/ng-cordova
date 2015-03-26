@@ -66,7 +66,11 @@ describe('ngCordovaMocks', function() {
 			expect(count).toBe(5);
 		});
 
-		it('should track location with navigator geolocation', inject(function($timeout) {
+		it('should track location with navigator geolocation', inject(function() {
+			navigator = navigator || {};
+			navigator.geolocation = navigator.geolocation || {
+				getCurrentPosition: function(){}
+			};
 			var stubNavGeo = sinon.stub(navigator.geolocation, 'getCurrentPosition', function(callback) {
 				callback({
 					coords: { latitude: 1, longitude: 2 }
