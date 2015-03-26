@@ -1311,45 +1311,43 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
 								defer.reject('There was an error watching the geolocation.');
 							}
 
-							// Attempt to use nextPosition.
-							var result = self.nextPosition;
-							if (result === null) {
-								// Determine whether to use the host's geolocation capabilities or not
-								if (self.useHostAbilities) {
-									if (navigator.geolocation) {
-										navigator.geolocation.getCurrentPosition(
-											function(position) {
-												self.currentPosition = position;
-												self.locations.push(position);
-												defer.resolve(position);
-											},
-											function(error) {
-												defer.reject(error);
-											}
-										);
-									} else {
-										defer.reject('Geolocation is not supported by this browser.');
-									}
-								} else {
-									result = {
-										coords: {
-											latitude: ((Math.random() * 180) + 1) - 90,
-											longitude: ((Math.random() * 360) + 1) - 180,
-											altitude: ((Math.random() * 100) + 1),
-
-											accuracy: ((Math.random() * 10) + 1),
-											altitudeAccuracy: ((Math.random() * 10) + 1),
-											heading: ((Math.random() * 360) + 1),
-											speed: ((Math.random() * 100) + 1)
+							// Determine whether to use the host's geolocation capabilities or not
+							if (self.useHostAbilities) {
+								if (navigator.geolocation) {
+									navigator.geolocation.getCurrentPosition(
+										function(position) {
+											self.currentPosition = position;
+											self.locations.push(position);
+											defer.resolve(position);
 										},
-										timestamp: Date.now()
-									};
-
-									self.currentPosition = result;
-									self.locations.push(result);
-									defer.notify(result);
+										function(error) {
+											defer.reject(error);
+										}
+									);
+								} else {
+									defer.reject('Geolocation is not supported by this browser.');
 								}
+								return;
 							}
+							
+							// Attempt to use nextPosition.
+							var result = self.nextPosition || {
+								coords: {
+									latitude: ((Math.random() * 180) + 1) - 90,
+									longitude: ((Math.random() * 360) + 1) - 180,
+									altitude: ((Math.random() * 100) + 1),
+
+									accuracy: ((Math.random() * 10) + 1),
+									altitudeAccuracy: ((Math.random() * 10) + 1),
+									heading: ((Math.random() * 360) + 1),
+									speed: ((Math.random() * 100) + 1)
+								},
+								timestamp: Date.now()
+							};
+
+							self.currentPosition = result;
+							self.locations.push(result);
+							defer.notify(result);
 						},
 						delay
 					)
