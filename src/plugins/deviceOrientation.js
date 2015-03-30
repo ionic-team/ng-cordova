@@ -4,7 +4,9 @@
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
   .factory('$cordovaDeviceOrientation', ['$q', function ($q) {
-
+    var defaultOptions = {
+      frequency: 3000 // every 3s
+    };
     return {
       getCurrentHeading: function () {
         var q = $q.defer();
@@ -21,6 +23,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       watchHeading: function (options) {
         var q = $q.defer();
 
+        var options = angular.extend(defaultOptions, options);
         var watchID = navigator.compass.watchHeading(function (result) {
           q.notify(result);
         }, function (err) {
