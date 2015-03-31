@@ -1,0 +1,25 @@
+<ion-view title="Unified Push Notifications">
+  <ion-content class="has-header">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Url</span>
+        <input type="text" ng-model="config.pushServerURL" placeholder="http(s)//host:port/context">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">VariantID</span>
+        <input type="text" ng-model="config.varaintID" placeholder="1234456-234320">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">VariantSecret</span>
+        <input type="text" ng-model="config.varaintSecret" placeholder="1234456-234320">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">senderID</span>
+        <input type="text" ng-model="config.senderID" placeholder="Project ID only for android">
+      </label>
+    </div>
+    <button class="button button-block button-positive" ng-click="register()">
+      Register
+    </button>
+  </ion-content>
+</ion-view>
