@@ -30,10 +30,12 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       play: function (id, completeCallback) {
         var q = $q.defer();
-        $window.plugins.NativeAudio.play(id, completeCallback, function (result) {
-          q.resolve(result);
-        }, function (err) {
+        $window.plugins.NativeAudio.play(id, completeCallback
+        ,function (result) {
           q.reject(err);
+        }
+        , function (err) {
+          q.resolve(result);
         });
 
         return q.promise;
