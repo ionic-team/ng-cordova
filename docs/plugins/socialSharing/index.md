@@ -67,7 +67,7 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
     .share(message, subject, file, link) // Share via native share sheet
     .then(function(result) {
       // Success!
-    }, funtion(err) {
+    }, function(err) {
       // An error occured. Show a message to the user
     });
 
