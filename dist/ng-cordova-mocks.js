@@ -110,6 +110,139 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 }]);
 /**
  * @ngdoc service
+ * @name ngCordovaMocks.cordovaBLE
+ *
+ * @description
+ * A service for ble features
+ * in an app build with ngCordova.
+**/
+ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function($q, $timeout) {
+	var deviceScan = {
+    "name": "Test Device",
+    "id": "AA:BB:CC:DD:EE:FF",
+    "advertising": [2,1,6,3,3,15,24,8,9,66,97,116,116,101,114,121],
+    "rssi": -55
+  };
+
+  var deviceConnect = {
+    "name": "Test Device",
+    "id": "AA:BB:CC:DD:EE:FF",
+    "advertising": [2,1,6,3,3,15,24,8,9,66,97,116,116,101,114,121],
+    "rssi": -55,
+    "services": [
+      "1800",
+      "1801",
+      "180f"
+    ],
+    "characteristics": [
+      {
+        "service": "1800",
+        "characteristic": "2a00",
+        "properties": [ "Read" ]
+      },
+      {
+        "service": "1800",
+        "characteristic": "2a01",
+        "properties": [ "Read" ]
+      },
+      {
+        "service": "1801",
+        "characteristic": "2a05",
+        "properties": [ "Read" ]
+      },
+      {
+        "service": "180f",
+        "characteristic": "2a19",
+        "properties": [ "Read" ],
+        "descriptors": [ { "uuid": "2901" }, { "uuid": "2904" } ]
+      }
+    ]
+  };
+
+  var readData = new ArrayBuffer(8);
+
+  return {
+
+    scan: function (services, seconds) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(deviceScan);
+      }, seconds*1000);
+      return q.promise;
+    },
+
+    connect: function (deviceID) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(deviceConnect);
+      }, 1500);
+      return q.promise;
+    },
+
+    disconnect: function (deviceID) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(true);
+      }, 500);
+      return q.promise;
+    },
+
+    read: function (deviceID, serviceUUID, characteristicUUID) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(readData);
+      }, 100);
+      return q.promise;
+    },
+
+    write: function (deviceID, serviceUUID, characteristicUUID, data) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(true);
+      }, 100);
+      return q.promise;
+    },
+
+    writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(true);
+      }, 100);
+      return q.promise;
+    },
+
+    notify: function (deviceID, serviceUUID, characteristicUUID) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(true);
+      }, 100);
+      return q.promise;
+    },
+
+    indicate: function (deviceID, serviceUUID, characteristicUUID) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(true);
+      }, 100);
+      return q.promise;
+    },
+
+    isConnected: function (deviceID) {
+      var q = $q.defer();
+      q.resolve(true);
+      return q.promise;
+    },
+
+    isEnabled: function () {
+      var q = $q.defer();
+      q.resolve(true);
+      return q.promise;
+    }
+	};
+}]);
+
+/**
+ * @ngdoc service
  * @name ngCordovaMocks.cordovaCamera
  *
  * @description
@@ -1649,6 +1782,55 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 }]);
 /**
  * @ngdoc service
+ * @name ngCordovaMocks.cordovaGoogleAnalytics
+ *
+ * @description
+ * A service for testing google analytics services
+ * in an app build with ngCordova.
+ */
+ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
+  var throwsError = false;
+  var methods = {};
+      
+      /**
+   * @ngdoc property
+   * @name throwsError
+   * @propertyOf ngCordovaMocks.cordovaGeolocation
+   *
+   * @description
+   * A flag that signals whether a promise should be rejected or not.
+   * This property should only be used in automated tests.
+  **/
+  methods.throwsError = throwsError;
+
+  var methodsName = [
+    'startTrackerWithId',
+    'setUserId',
+    'debugMode',
+    'trackView',
+    'addCustomDimension',
+    'trackEvent',
+    'addTransaction',
+    'addTransactionItem'
+  ];
+
+  methodsName.forEach(function(funcName) {
+    methods[funcName] = function() {
+      var defer = $q.defer();
+      
+      (this.throwsError) ?
+        defer.reject() :
+        defer.resolve();
+
+      return defer.promise;
+    };
+  });
+
+  return methods;
+}]);
+
+/**
+ * @ngdoc service
  * @name ngCordovaMocks.cordovaKeyboard
  *
  * @description
@@ -1679,6 +1861,69 @@ ngCordovaMocks.factory('$cordovaKeyboard', function() {
 
 	};
 });
+
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.cordovaKeychain
+ *
+ * @description
+ * A service for testing Keychain features
+ * in an app built with ngCordova.
+ **/
+ngCordovaMocks.factory('$cordovaKeychain', ['$q', function($q) {
+  var keychains = {};
+
+  return {
+    /**
+     * @ngdoc property
+     * @name keychains
+     * @propertyOf ngCordovaMocks.cordovaKeychain
+     *
+     * @description
+     * The collection of 'keychains' that have been saved.
+     * This property should only be used in automated tests.
+     **/
+    keychains: keychains,
+
+    getForKey: function (key, serviceName) {
+      var defer = $q.defer();
+
+      if (this.keychains[serviceName]) {
+        defer.resolve(this.keychains[serviceName][key]);
+      } else {
+        defer.reject();
+      }
+
+      return defer.promise;
+    },
+
+    setForKey: function (key, serviceName, value) {
+      var defer = $q.defer();
+
+      if (!this.keychains[serviceName]) {
+        this.keychains[serviceName] = {};
+      }
+
+      this.keychains[serviceName][key] = value;
+
+      defer.resolve();
+
+      return defer.promise;
+    },
+
+    removeForKey: function (key, serviceName) {
+      var defer = $q.defer();
+
+      if (this.keychains[serviceName]) {
+        delete this.keychains[serviceName][key];
+      }
+
+      defer.resolve();
+
+      return defer.promise;
+    }
+  };
+}]);
 
 /**
  * @ngdoc service
@@ -1729,6 +1974,82 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
 		}
 	};
 });
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.cordovaPush
+ *
+ * @description
+ * A service for testing push notifications features
+ * in an app build with ngCordova.
+ */  
+ngCordovaMocks.factory('$cordovaPush', ['$q', '$timeout', '$rootScope', function($q, $timeout, $rootScope) {
+  var throwsError = false;
+
+  var deviceToken = '';
+
+  return {
+        /**
+     * @ngdoc property
+     * @name throwsError
+     * @propertyOf ngCordovaMocks.cordovaPush
+     *
+     * @description
+     * A flag that signals whether a promise should be rejected or not. 
+     * This property should only be used in automated tests.
+    **/   
+    throwsError: throwsError,
+
+        /**
+     * @ngdoc property
+     * @name deviceToken
+     * @propertyOf ngCordovaMocks.cordovaPush
+     *
+     * @description
+     * Token send when service register device
+     * This property should only be used in automated tests.
+    **/ 
+    deviceToken: deviceToken,
+
+    onNotification: function (notification) {
+      $timeout(function () {
+        $rootScope.$broadcast('$cordovaPush:notificationReceived', notification);
+      });
+    },
+
+    register: function (config) {
+      var _self = this;
+      var defer = $q.defer();
+      if (config !== undefined && config.ecb === undefined) {
+        config.ecb = this.onNotification;
+      }
+
+      if (this.throwsError) {
+        defer.reject('There was a register error.');
+      } else {
+        defer.resolve(this.deviceToken);
+        if (config && config.ecb) {
+          config.ecb({
+            event: 'registered',
+            regid: _self.deviceToken
+          });
+        }
+      }
+      return defer.promise;
+    },
+
+    unregister: function (options) {
+      var defer = $q.defer();
+      if (this.throwsError) {
+        defer.reject('There was a register error.');
+      } else {
+        defer.resolve();
+      }
+      return defer.promise;
+    },
+  };
+}]);
 /**
  * @ngdoc service
  * @name ngCordovaMocks.cordovaSocialSharing

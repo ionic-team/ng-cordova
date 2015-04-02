@@ -7,12 +7,12 @@ angular.module('demo.batteryStatus.ctrl', [])
     document.addEventListener("deviceready", function () {
       $scope.watch = function () {
         console.log("watching battery");
-        $cordovaBatteryStatus.$on('batterystatus', function (result) {
+        $cordovaBatteryStatus.$on('batterystatus', function (result, info) {
           $timeout(function () {
-            $scope.batteryLevel = result.level;       // (0 - 100)
-            $scope.isPluggedIn = result.isPlugged;   // bool
+            $scope.batteryLevel = info.level;       // (0 - 100)
+            $scope.isPluggedIn = info.isPlugged;   // bool
           });
-          alert("result" + result);
+          alert("Info " + info.level + " " + info.isPlugged);
         });
       };
     }, false);

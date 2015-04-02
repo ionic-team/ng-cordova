@@ -364,14 +364,14 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
   .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
     return {
-      scan: function () {
+      scan: function (config) {
         var q = $q.defer();
 
         cordova.plugins.barcodeScanner.scan(function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
-        });
+        }, config);
 
         return q.promise;
       },
@@ -3871,6 +3871,24 @@ angular.module('ngCordova.plugins.instagram', [])
         }
       });
       return q.promise;
+    },
+    isInstalled: function () {
+      var q = $q.defer();
+
+      if (!window.Instagram) {
+        console.error('Tried to call Instagram.isInstalled but the Instagram plugin isn\'t installed!');
+        q.resolve(null);
+        return q.promise;
+      }
+
+      Instagram.isInstalled(function (err, installed) {
+        if (err) {
+          q.reject(err);
+        } else {
+          q.resolve(installed || true);
+        }
+      });
+      return q.promise;
     }
   };
 }]);
@@ -3949,7 +3967,7 @@ angular.module('ngCordova.plugins.localNotification', [])
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
     document.addEventListener("deviceready", function () {
       if ($window.plugin && $window.plugin.notification) {
-        $window.plugin.notification.local.oncancel = function (id, state, json) {
+        $window.plugin.notification.local.on("cancel", function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -3958,9 +3976,9 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
           });
-        };
+        });
 
-        $window.plugin.notification.local.onclick = function (id, state, json) {
+        $window.plugin.notification.local.on("click", function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -3969,9 +3987,9 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
           });
-        };
+        });
 
-        $window.plugin.notification.local.ontrigger = function (id, state, json) {
+        $window.plugin.notification.local.on("trigger", function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -3980,9 +3998,9 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
           });
-        };
+        });
 
-        $window.plugin.notification.local.onadd = function (id, state, json) {
+        $window.plugin.notification.local.on("add", function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -3991,7 +4009,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
           });
-        };
+        });
       }
     }, false);
     return {
@@ -5962,17 +5980,17 @@ angular.module('ngCordova.plugins.push', [])
     };
   }]);
 
-// install   :      cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
-// link      :      https://github.com/aharris88/phonegap-sms-plugin
+// install   :      cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
+// link      :      https://github.com/cordova-sms/cordova-sms-plugin
 
 angular.module('ngCordova.plugins.sms', [])
 
   .factory('$cordovaSms', ['$q', function ($q) {
 
     return {
-      send: function (number, message, intent) {
+      send: function (number, message, options) {
         var q = $q.defer();
-        sms.send(number, message, intent, function (res) {
+        sms.send(number, message, options, function (res) {
           q.resolve(res);
         }, function (err) {
           q.reject(err);
