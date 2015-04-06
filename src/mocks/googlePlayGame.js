@@ -13,45 +13,45 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 		var throwsError = false;
 		var isSignedIn = false;
 		var displayName = '';
-		
+
 		return {
 
 		/**
 	     * @ngdoc property
-	     * @name throwsError
+	     * @name _throwsError
 	     * @propertyOf ngCordovaMocks.googlePlayGame
 	     *
 	     * @description
 	     * A flag that signals whether a promise should be rejected or not. 
 	     * This property should only be used in automated tests.
 	    **/   
-	    throwsError: throwsError,
+	    _throwsError: throwsError,
 
 	    /**
 	     * @ngdoc property
-	     * @name throwsError
+	     * @name _isSignedIn
 	     * @propertyOf ngCordovaMocks.googlePlayGame
 	     *
 	     * @description
 	     * A flag that signals whether a promise should be rejected or not. 
 	     * This property should only be used in automated tests.
 	    **/
-	    isSignedIn: isSignedIn,
+	    _isSignedIn: isSignedIn,
 
 	    /**
 	     * @ngdoc property
-	     * @name throwsError
+	     * @name _displayName
 	     * @propertyOf ngCordovaMocks.googlePlayGame
 	     *
 	     * @description
 	     * A flag that signals whether a promise should be rejected or not. 
 	     * This property should only be used in automated tests.
 	    **/
-	    displayName: displayName,
+	    _displayName: displayName,
 
 			auth: function() {
 				var defer = $q.defer();
-				if (this.throwsError) {
+				if (this._throwsError) {
 					defer.reject('There was a auth error.');
 				} else {
 					this.isSignedIn = true;
@@ -70,11 +70,11 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 			},
 			isSignedIn: function() {
 				var defer = $q.defer();
-				if (this.throwsError) {
+				if (this._throwsError) {
 					defer.reject('There was a isSignedIn error.');
 				} else {
 					defer.resolve({
-						isSignedIn: this.isSignedIn
+						'isSignedIn': this._isSignedIn
 					});
 				}
 				return defer.promise;
@@ -85,14 +85,14 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 					defer.reject('There was a showPlayer error.');
 				} else {
 					defer.resolve({
-						displayName: this.displayName
+						'displayName': this._displayName
 					});
 				}
 				return defer.promise;
 			},
 			submitScore: function(data) {
 				var defer = $q.defer();
-				if (this.throwsError) {
+				if (this._throwsError) {
 					defer.reject('There was a submitScore error.');
 				} else {
 					defer.resolve('OK');
@@ -110,7 +110,7 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 			},
 			showLeaderboard: function(data) {
 				var defer = $q.defer();
-				if (this.throwsError) {
+				if (this._throwsError) {
 					defer.reject('There was a showLeaderboard error.');
 				} else {
 					defer.resolve('OK');
@@ -128,7 +128,7 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 			},
 			incrementAchievement: function(data) {
 				var defer = $q.defer();
-				if (this.throwsError) {
+				if (this._throwsError) {
 					defer.reject('There was a incrementAchievement error.');
 				} else {
 					defer.resolve('OK');
