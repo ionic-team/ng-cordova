@@ -1,15 +1,88 @@
-// install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-admob.git
-// link     :     https://github.com/floatinghotpot/cordova-plugin-admob
+// install  :     cordova plugin add com.google.cordova.admob
+// link     :     https://github.com/floatinghotpot/cordova-admob-pro
 
 angular.module('ngCordova.plugins.adMob', [])
 
   .factory('$cordovaAdMob', ['$q', '$window', function ($q, $window) {
+    var AdMob = $window.plugins.AdMob;
 
     return {
-      createBannerView: function (options) {
+      setOptions: function (options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.createBannerView(options, function () {
+        AdMob.setOptions(options, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
+      },
+      
+      createBanner: function (args) {
+        var d = $q.defer();
+
+        AdMob.createBanner(args, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
+      },
+      
+      removeBanner: function () {
+        var d = $q.defer();
+
+        AdMob.removeBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
+      },
+      
+      hideBanner: function () {
+        var d = $q.defer();
+
+        AdMob.hideBanner(function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
+      },
+      
+      showBanner: function (position) {
+        var d = $q.defer();
+
+        AdMob.showBanner(position, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
+      },
+      
+      showBannerAtXY: function (x, y) {
+        var d = $q.defer();
+
+        AdMob.showBannerAtXY(x, y, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+
+        return d.promise;
+      },
+      
+      prepareInterstitial: function (args) {
+        var d = $q.defer();
+
+        AdMob.prepareInterstitial(args, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -18,46 +91,10 @@ angular.module('ngCordova.plugins.adMob', [])
         return d.promise;
       },
 
-      createInterstitialView: function (options) {
+      showInterstitial: function () {
         var d = $q.defer();
 
-        $window.plugins.AdMob.createInterstitialView(options, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
-
-        return d.promise;
-      },
-
-      requestAd: function (options) {
-        var d = $q.defer();
-
-        $window.plugins.AdMob.requestAd(options, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
-
-        return d.promise;
-      },
-
-      showAd: function (options) {
-        var d = $q.defer();
-
-        $window.plugins.AdMob.showAd(options, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
-
-        return d.promise;
-      },
-
-      requestInterstitialAd: function (options) {
-        var d = $q.defer();
-
-        $window.plugins.AdMob.requestInterstitialAd(options, function () {
+        AdMob.showInterstitial(function () {
           d.resolve();
         }, function () {
           d.reject();
