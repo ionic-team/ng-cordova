@@ -3,11 +3,14 @@ describe('Service: $cordovaAdMob', function() {
   var $cordovaAdMob, $rootScope;
 
   var functionNames = [
-    'createBannerView',
-    'createInterstitialView',
-    'requestAd',
-    'showAd',
-    'requestInterstitialAd'
+    'setOptions',
+    'createBanner',
+    'removeBanner',
+    'hideBanner',
+    'showBanner',
+    'showBannerAtXY',
+    'prepareInterstitial',
+    'showInterstitial'
   ];
 
   beforeEach(module('ngCordova.plugins.adMob'));
