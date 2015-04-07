@@ -4,13 +4,12 @@
 angular.module('ngCordova.plugins.adMob', [])
 
   .factory('$cordovaAdMob', ['$q', '$window', function ($q, $window) {
-    var AdMob = $window.plugins.AdMob;
 
     return {
       setOptions: function (options) {
         var d = $q.defer();
 
-        AdMob.setOptions(options, function () {
+        $window.plugins.AdMob.setOptions(options, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -22,7 +21,7 @@ angular.module('ngCordova.plugins.adMob', [])
       createBanner: function (args) {
         var d = $q.defer();
 
-        AdMob.createBanner(args, function () {
+        $window.plugins.AdMob.createBanner(args, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -34,7 +33,7 @@ angular.module('ngCordova.plugins.adMob', [])
       removeBanner: function () {
         var d = $q.defer();
 
-        AdMob.removeBanner(function () {
+        $window.plugins.AdMob.removeBanner(function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -46,7 +45,7 @@ angular.module('ngCordova.plugins.adMob', [])
       hideBanner: function () {
         var d = $q.defer();
 
-        AdMob.hideBanner(function () {
+        $window.plugins.AdMob.hideBanner(function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -58,7 +57,7 @@ angular.module('ngCordova.plugins.adMob', [])
       showBanner: function (position) {
         var d = $q.defer();
 
-        AdMob.showBanner(position, function () {
+        $window.plugins.AdMob.showBanner(position, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -70,7 +69,7 @@ angular.module('ngCordova.plugins.adMob', [])
       showBannerAtXY: function (x, y) {
         var d = $q.defer();
 
-        AdMob.showBannerAtXY(x, y, function () {
+        $window.plugins.AdMob.showBannerAtXY(x, y, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -82,7 +81,7 @@ angular.module('ngCordova.plugins.adMob', [])
       prepareInterstitial: function (args) {
         var d = $q.defer();
 
-        AdMob.prepareInterstitial(args, function () {
+        $window.plugins.AdMob.prepareInterstitial(args, function () {
           d.resolve();
         }, function () {
           d.reject();
@@ -94,7 +93,7 @@ angular.module('ngCordova.plugins.adMob', [])
       showInterstitial: function () {
         var d = $q.defer();
 
-        AdMob.showInterstitial(function () {
+        $window.plugins.AdMob.showInterstitial(function () {
           d.resolve();
         }, function () {
           d.reject();
