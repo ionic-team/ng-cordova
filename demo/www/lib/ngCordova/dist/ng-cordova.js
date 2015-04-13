@@ -364,14 +364,14 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
   .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
 
     return {
-      scan: function (config) {
+      scan: function () {
         var q = $q.defer();
 
         cordova.plugins.barcodeScanner.scan(function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
-        }, config);
+        });
 
         return q.promise;
       },
@@ -3269,128 +3269,6 @@ angular.module('ngCordova.plugins.googleMap', [])
     };
   }]);
 
-// install   :   cordova plugin add https://github.com/ptgamr/cordova-google-play-game.git --variable APP_ID=123456789
-// link      :   https://github.com/ptgamr/cordova-google-play-game
-
-angular.module('ngCordova.plugins.googlePlayGame', [])
-
-	.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
-
-		return {
-
-			auth: function() {
-				var q = $q.defer();
-
-				googleplaygame.auth(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			signout: function() {
-				var q = $q.defer();
-
-				googleplaygame.signout(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			isSignedIn: function() {
-				var q = $q.defer();
-
-				googleplaygame.isSignedIn(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			showPlayer: function() {
-				var q = $q.defer();
-
-				googleplaygame.showPlayer(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			submitScore: function(data) {
-				var q = $q.defer();
-
-				googleplaygame.submitScore(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			showAllLeaderboards: function() {
-				var q = $q.defer();
-
-				googleplaygame.showAllLeaderboards(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			showLeaderboard: function(data) {
-				var q = $q.defer();
-
-				googleplaygame.showLeaderboard(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			unlockAchievement: function(data) {
-				var q = $q.defer();
-
-				googleplaygame.unlockAchievement(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			incrementAchievement: function(data) {
-				var q = $q.defer();
-
-				googleplaygame.incrementAchievement(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			},
-			showAchievements: function() {
-				var q = $q.defer();
-
-				googleplaygame.showAchievements(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
-
-				return q.promise;
-			}
-		};
-
-	}]);
 // install  :     cordova plugin add nl.x-services.plugins.googleplus
 // link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
@@ -3993,24 +3871,6 @@ angular.module('ngCordova.plugins.instagram', [])
         }
       });
       return q.promise;
-    },
-    isInstalled: function () {
-      var q = $q.defer();
-
-      if (!window.Instagram) {
-        console.error('Tried to call Instagram.isInstalled but the Instagram plugin isn\'t installed!');
-        q.resolve(null);
-        return q.promise;
-      }
-
-      Instagram.isInstalled(function (err, installed) {
-        if (err) {
-          q.reject(err);
-        } else {
-          q.resolve(installed || true);
-        }
-      });
-      return q.promise;
     }
   };
 }]);
@@ -4089,7 +3949,7 @@ angular.module('ngCordova.plugins.localNotification', [])
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
     document.addEventListener("deviceready", function () {
       if ($window.plugin && $window.plugin.notification) {
-        $window.plugin.notification.local.on("cancel", function (id, state, json) {
+        $window.plugin.notification.local.oncancel = function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -4098,9 +3958,9 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
           });
-        });
+        };
 
-        $window.plugin.notification.local.on("click", function (id, state, json) {
+        $window.plugin.notification.local.onclick = function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -4109,9 +3969,9 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
           });
-        });
+        };
 
-        $window.plugin.notification.local.on("trigger", function (id, state, json) {
+        $window.plugin.notification.local.ontrigger = function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -4120,9 +3980,9 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
           });
-        });
+        };
 
-        $window.plugin.notification.local.on("add", function (id, state, json) {
+        $window.plugin.notification.local.onadd = function (id, state, json) {
           var notification = {
             id: id,
             state: state,
@@ -4131,7 +3991,7 @@ angular.module('ngCordova.plugins.localNotification', [])
           $timeout(function () {
             $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
           });
-        });
+        };
       }
     }, false);
     return {
@@ -4555,7 +4415,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleAds',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
-  'ngCordova.plugins.googlePlayGame',
   'ngCordova.plugins.healthKit',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',
@@ -6103,17 +5962,17 @@ angular.module('ngCordova.plugins.push', [])
     };
   }]);
 
-// install   :      cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
-// link      :      https://github.com/cordova-sms/cordova-sms-plugin
+// install   :      cordova plugin add https://github.com/aharris88/phonegap-sms-plugin.git
+// link      :      https://github.com/aharris88/phonegap-sms-plugin
 
 angular.module('ngCordova.plugins.sms', [])
 
   .factory('$cordovaSms', ['$q', function ($q) {
 
     return {
-      send: function (number, message, options) {
+      send: function (number, message, intent) {
         var q = $q.defer();
-        sms.send(number, message, options, function (res) {
+        sms.send(number, message, intent, function (res) {
           q.resolve(res);
         }, function (err) {
           q.reject(err);
@@ -6399,7 +6258,7 @@ angular.module('ngCordova.plugins.sqlite', [])
   }]);
 
 // install   :      cordova plugin add org.apache.cordova.statusbar
-// link      :      https://github.com/apache/cordova-plugin-statusbar/
+// link      :      https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md
 
 angular.module('ngCordova.plugins.statusbar', [])
 
