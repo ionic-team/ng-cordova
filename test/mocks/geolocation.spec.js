@@ -71,11 +71,11 @@ describe('ngCordovaMocks', function() {
 			navigator.geolocation = navigator.geolocation || {
 				getCurrentPosition: function(){}
 			};
-			var stubNavGeo = sinon.stub(navigator.geolocation, 'getCurrentPosition', function(callback) {
-				callback({
-					coords: { latitude: 1, longitude: 2 }
-				});
-			});
+			spyOn(navigator.geolocation, 'getCurrentPosition').andCallFake(
+				function(callback) {
+					callback({ coords: { latitude: 1, longitude: 2 } });
+				}
+			);
 			
 			$cordovaGeolocation.watchPosition(gpsOptions).then(
 				function() { },
@@ -87,10 +87,8 @@ describe('ngCordovaMocks', function() {
 
 			$interval.flush(1000);
 
-			expect(stubNavGeo.calledOnce).toBe(true);
+			expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
 			expect(count).toBe(1);
-
-			stubNavGeo.restore();
 		}));
 
 		it('should set next position', function() {
