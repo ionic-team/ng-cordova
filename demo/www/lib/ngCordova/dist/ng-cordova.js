@@ -3269,6 +3269,128 @@ angular.module('ngCordova.plugins.googleMap', [])
     };
   }]);
 
+// install   :   cordova plugin add https://github.com/ptgamr/cordova-google-play-game.git --variable APP_ID=123456789
+// link      :   https://github.com/ptgamr/cordova-google-play-game
+
+angular.module('ngCordova.plugins.googlePlayGame', [])
+
+	.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
+
+		return {
+
+			auth: function() {
+				var q = $q.defer();
+
+				googleplaygame.auth(function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			signout: function() {
+				var q = $q.defer();
+
+				googleplaygame.signout(function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			isSignedIn: function() {
+				var q = $q.defer();
+
+				googleplaygame.isSignedIn(function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			showPlayer: function() {
+				var q = $q.defer();
+
+				googleplaygame.showPlayer(function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			submitScore: function(data) {
+				var q = $q.defer();
+
+				googleplaygame.submitScore(data, function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			showAllLeaderboards: function() {
+				var q = $q.defer();
+
+				googleplaygame.showAllLeaderboards(function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			showLeaderboard: function(data) {
+				var q = $q.defer();
+
+				googleplaygame.showLeaderboard(data, function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			unlockAchievement: function(data) {
+				var q = $q.defer();
+
+				googleplaygame.unlockAchievement(data, function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			incrementAchievement: function(data) {
+				var q = $q.defer();
+
+				googleplaygame.incrementAchievement(data, function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			},
+			showAchievements: function() {
+				var q = $q.defer();
+
+				googleplaygame.showAchievements(function(success) {
+					return q.resolve(success);
+				}, function(err) {
+					return q.reject(err);
+				});
+
+				return q.promise;
+			}
+		};
+
+	}]);
 // install  :     cordova plugin add nl.x-services.plugins.googleplus
 // link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
@@ -4433,6 +4555,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleAds',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.googlePlayGame',
   'ngCordova.plugins.healthKit',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',
@@ -6276,7 +6399,7 @@ angular.module('ngCordova.plugins.sqlite', [])
   }]);
 
 // install   :      cordova plugin add org.apache.cordova.statusbar
-// link      :      https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md
+// link      :      https://github.com/apache/cordova-plugin-statusbar/
 
 angular.module('ngCordova.plugins.statusbar', [])
 
