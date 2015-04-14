@@ -3,16 +3,20 @@
 
 angular.module('ngCordova.plugins.ble', [])
 
-  .factory('$cordovaBLE', ['$q', function ($q) {
+  .factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout) {
 
     return {
       scan: function (services, seconds) {
         var q = $q.defer();
+        var devices = [];
         ble.scan(services, seconds, function (result) {
-          q.resolve(result);
+          devices.push(result);
         }, function (error) {
           q.reject(error);
         });
+        $timeout(function() {
+        	q.resolve(devices);
+  		  }, seconds*1000);
         return q.promise;
       },
 
