@@ -19,6 +19,27 @@ angular.module('ngCordova.plugins.healthKit', [])
       },
 
       /**
+       * Check whether or not the user granted your app access to a specific HealthKit type.
+       * Reference for possible types:
+       * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
+       */
+      checkAuthStatus: function (type) {
+        var q = $q.defer();
+
+        type = type || 'HKQuantityTypeIdentifierHeight';
+
+        $window.plugins.healthkit.checkAuthStatus({
+          'type': type
+        }, function (success) {
+          q.resolve(success);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      /**
        * Request authorization to access HealthKit data. See the full HealthKit constants
        * reference for possible read and write types:
        * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
