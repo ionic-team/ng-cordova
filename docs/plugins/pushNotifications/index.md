@@ -64,7 +64,7 @@ module.run(function($http, $cordovaPush) {
   };
 
   document.addEventListener("deviceready", function(){
-    $cordovaPush.register(config).then(function(result) {
+    $cordovaPush.register(iosConfig).then(function(result) {
       // Success -- send deviceToken to server, and store for future use
       console.log("result: " + result)
       $http.post("http://server.co/", {user: "Bob", tokenID: result.deviceToken})
@@ -114,7 +114,7 @@ module.run(function($cordovaPush) {
   };
 
   document.addEventListener("deviceready", function(){
-    $cordovaPush.register(config).then(function(result) {
+    $cordovaPush.register(androidConfig).then(function(result) {
       // Success
     }, function(err) {
       // Error
