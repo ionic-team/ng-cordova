@@ -49,6 +49,18 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
+
+      discoverUnpaired: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.discoverUnpaired(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+
       isEnabled: function () {
         var q = $q.defer();
         $window.bluetoothSerial.isEnabled(function () {
