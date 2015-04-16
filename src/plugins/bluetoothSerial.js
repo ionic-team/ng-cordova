@@ -60,6 +60,17 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       },
 
 
+      enable: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.enable(function () {
+          q.resolve();
+        }, function () {
+          q.reject();
+        });
+        return q.promise;
+      },
+
+
       isConnected: function () {
         var q = $q.defer();
         $window.bluetoothSerial.isConnected(function () {
