@@ -67,6 +67,17 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       clearDeviceDiscoveredListener: $window.bluetoothSerial.clearDeviceDiscoveredListener,
 
 
+      showBluetoothSettings: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.showBluetoothSettings(function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+
       isEnabled: function () {
         var q = $q.defer();
         $window.bluetoothSerial.isEnabled(function () {
