@@ -61,8 +61,13 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
       },
 
 
-      setDeviceDiscoveredListener: $window.bluetoothSerial.setDeviceDiscoveredListener,
-
+      setDeviceDiscoveredListener: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.setDeviceDiscoveredListener(function (data) {
+          q.notify(data);
+        });
+        return q.promise;
+      },
 
       clearDeviceDiscoveredListener: $window.bluetoothSerial.clearDeviceDiscoveredListener,
 
