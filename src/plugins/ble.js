@@ -32,7 +32,7 @@ angular.module('ngCordova.plugins.ble', [])
         }, function (error) {
           q.reject(error);
         });
-        scanner = q.promise;
+        scanning = q.promise;
         return q.promise;
       },
 
