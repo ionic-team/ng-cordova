@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaGeolocation
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/geolocation.js
-official-docs: https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-geolocation
 icon-apple: true
 icon-android: true
 icon-windows: true

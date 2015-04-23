@@ -4,7 +4,7 @@ title: DOCS | ngCordova
 
 plugin-name: $cordovaCamera
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/camera.js
-official-docs: https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera
+official-docs: https://github.com/apache/cordova-plugin-camera/
 icon-apple: true
 icon-android: true
 icon-windows: true

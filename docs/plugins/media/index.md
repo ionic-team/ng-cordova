@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaMedia
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/media.js
-official-docs: https://github.com/apache/cordova-plugin-media/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-media/
 icon-apple: true
 icon-android: true
 icon-windows: true

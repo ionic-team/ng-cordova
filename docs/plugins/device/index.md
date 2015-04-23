@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDevice
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/device.js
-official-docs: https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-device/
 icon-apple: true
 icon-android: true
 icon-windows: true

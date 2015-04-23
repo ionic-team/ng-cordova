@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDeviceOrientation
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/deviceOrientation.js
-official-docs: https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-device-orientation/
 icon-apple: true
 icon-android: true
 icon-windows: true

@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDeviceMotion
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/deviceMotion.js
-official-docs: https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-device-motion/
 icon-apple: true
 icon-android: true
 icon-windows: true

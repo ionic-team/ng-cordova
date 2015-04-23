@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaFileTransfer
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/fileTransfer.js
-official-docs:  https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md
+official-docs:  https://github.com/apache/cordova-plugin-file-transfer/
 icon-apple: true
 icon-android: true
 icon-windows: true
