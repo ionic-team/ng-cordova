@@ -18,7 +18,7 @@ describe('ngCordovaMocks', function() {
 		}));
 
 		it('should get the current position', function (done) {
-			var expected = { x:1, y:1, z:1, timestamp:Date() };
+			var expected = {coords: { longitude:1, latitude:1 }, timestamp:Date()};
 			$cordovaGeolocation.currentPosition = expected;
 			$cordovaGeolocation.useHostAbilities = false;
 
