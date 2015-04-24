@@ -64,10 +64,10 @@ module.run(function($http, $cordovaPush) {
   };
 
   document.addEventListener("deviceready", function(){
-    $cordovaPush.register(iosConfig).then(function(result) {
+    $cordovaPush.register(iosConfig).then(function(deviceToken) {
       // Success -- send deviceToken to server, and store for future use
-      console.log("result: " + result)
-      $http.post("http://server.co/", {user: "Bob", tokenID: result.deviceToken})
+      console.log("deviceToken: " + deviceToken)
+      $http.post("http://server.co/", {user: "Bob", tokenID: deviceToken})
     }, function(err) {
       alert("Registration error: " + err)
     });
