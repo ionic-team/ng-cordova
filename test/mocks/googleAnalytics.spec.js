@@ -51,8 +51,16 @@ describe('ngCordovaMocks', function() {
       testPromises('addCustomDimension');
     });
 
-    it('should add customer dimensions.', function() {
+    it('should track event.', function() {
       testPromises('trackEvent');
+    });
+
+    it('should track exception.', function() {
+      testPromises('trackException');
+    });
+
+    it('should track timing.', function() {
+      testPromises('trackTiming');
     });
 
     it('should add transaction.', function() {
