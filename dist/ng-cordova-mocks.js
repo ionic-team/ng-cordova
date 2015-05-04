@@ -1826,6 +1826,8 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
     'trackView',
     'addCustomDimension',
     'trackEvent',
+    'trackException',
+    'trackTiming',
     'addTransaction',
     'addTransactionItem'
   ];

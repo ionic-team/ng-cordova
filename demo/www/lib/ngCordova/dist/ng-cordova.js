@@ -1458,7 +1458,9 @@ angular.module('ngCordova.plugins.deviceMotion', [])
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
   .factory('$cordovaDeviceOrientation', ['$q', function ($q) {
-
+    var defaultOptions = {
+      frequency: 3000 // every 3s
+    };
     return {
       getCurrentHeading: function () {
         var q = $q.defer();
@@ -1475,6 +1477,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       watchHeading: function (options) {
         var q = $q.defer();
 
+        var options = angular.extend(defaultOptions, options);
         var watchID = navigator.compass.watchHeading(function (result) {
           q.notify(result);
         }, function (err) {
@@ -3234,6 +3237,30 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         return d.promise;
       },
 
+      trackException: function (description, fatal) {
+        var d = $q.defer();
+
+        $window.analytics.trackException(description, fatal, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      trackTiming: function (category, milliseconds, variable, label) {
+        var d = $q.defer();
+
+        $window.analytics.trackTiming(category, milliseconds, variable, label, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
       addTransaction: function (transactionId, affiliation, revenue, tax, shipping, currencyCode) {
         var d = $q.defer();
 
@@ -4088,16 +4115,16 @@ angular.module('ngCordova.plugins.instagram', [])
 
 angular.module('ngCordova.plugins.keyboard', [])
 
-  .factory('$cordovaKeyboard', [function () {
+  .factory('$cordovaKeyboard', ['$rootScope', function ($rootScope) {
 
     var keyboardShowEvent = function () {
-      $timeout(function () {
+      $rootScope.$evalAsync(function () {
         $rootScope.$broadcast('$cordovaKeyboard:show');
       });
     };
 
     var keyboardHideEvent = function () {
-      $timeout(function () {
+      $rootScope.$evalAsync(function () {
         $rootScope.$broadcast('$cordovaKeyboard:hide');
       });
     };
