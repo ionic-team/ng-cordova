@@ -33,6 +33,10 @@ angular.module('ngCordova.plugins.keyboard', [])
         return cordova.plugins.Keyboard.close();
       },
 
+      show: function () {
+        return cordova.plugins.Keyboard.show();
+      },
+
       disableScroll: function (bool) {
         return cordova.plugins.Keyboard.disableScroll(bool);
       },
