@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDialogs
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/dialogs.js
-official-docs: https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-dialogs
 icon-apple: true
 icon-android: true
 icon-windows: true
