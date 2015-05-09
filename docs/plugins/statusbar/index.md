@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaStatusbar
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/statusbar.js
-official-docs: https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-statusbar
 icon-apple: true
 icon-android: true
 icon-windows: true

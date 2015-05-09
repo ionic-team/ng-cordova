@@ -3,7 +3,7 @@ layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaPrinter
-source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/Printer.js
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/printer.js
 official-docs: https://github.com/katzer/cordova-plugin-printer
 icon-apple: true
 icon-android: true

@@ -3,8 +3,8 @@ layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaTouchID
-source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/touchID.js
-official-docs: https://github.com/leecrossley/cordova-plugin-touchid"
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/touchid.js
+official-docs: https://github.com/leecrossley/cordova-plugin-touchid
 icon-apple: true
 icon-android: false
 icon-windows: false
