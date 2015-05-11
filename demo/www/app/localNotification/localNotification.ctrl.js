@@ -14,7 +14,7 @@ angular.module('demo.localNotification.ctrl', [])
       };
 
       document.addEventListener("deviceready", function () {
-        $cordovaLocalNotification.add(event).then(function () {
+        $cordovaLocalNotification.schedule(event).then(function () {
           alert("local add : success");
         });
 
@@ -28,4 +28,3 @@ angular.module('demo.localNotification.ctrl', [])
       })
     }, false);
   });
-
