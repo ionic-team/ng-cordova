@@ -15,20 +15,20 @@ angular.module('ngCordova', [
 
 angular.module('ngCordova.plugins.actionSheet', [])
 
-  .factory('$cordovaActionSheet', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaActionSheet', ['$q', '$window', function($q, $window) {
 
     return {
-      show: function (options) {
+      show: function(options) {
         var q = $q.defer();
 
-        $window.plugins.actionsheet.show(options, function (result) {
+        $window.plugins.actionsheet.show(options, function(result) {
           q.resolve(result);
         });
 
         return q.promise;
       },
 
-      hide: function () {
+      hide: function() {
         return $window.plugins.actionsheet.hide();
       }
     };
@@ -39,63 +39,63 @@ angular.module('ngCordova.plugins.actionSheet', [])
 
 angular.module('ngCordova.plugins.adMob', [])
 
-  .factory('$cordovaAdMob', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaAdMob', ['$q', '$window', function($q, $window) {
 
     return {
-      createBannerView: function (options) {
+      createBannerView: function(options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.createBannerView(options, function () {
+        $window.plugins.AdMob.createBannerView(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createInterstitialView: function (options) {
+      createInterstitialView: function(options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.createInterstitialView(options, function () {
+        $window.plugins.AdMob.createInterstitialView(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      requestAd: function (options) {
+      requestAd: function(options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.requestAd(options, function () {
+        $window.plugins.AdMob.requestAd(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showAd: function (options) {
+      showAd: function(options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.showAd(options, function () {
+        $window.plugins.AdMob.showAd(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      requestInterstitialAd: function (options) {
+      requestInterstitialAd: function(options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.requestInterstitialAd(options, function () {
+        $window.plugins.AdMob.requestInterstitialAd(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
@@ -109,15 +109,15 @@ angular.module('ngCordova.plugins.adMob', [])
 
 angular.module('ngCordova.plugins.appAvailability', [])
 
-  .factory('$cordovaAppAvailability', ['$q', function ($q) {
+  .factory('$cordovaAppAvailability', ['$q', function($q) {
 
     return {
-      check: function (urlScheme) {
+      check: function(urlScheme) {
         var q = $q.defer();
 
-        appAvailability.check(urlScheme, function (result) {
+        appAvailability.check(urlScheme, function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -131,10 +131,9 @@ angular.module('ngCordova.plugins.appAvailability', [])
 
 angular.module('ngCordova.plugins.appRate', [])
 
-  .provider("$cordovaAppRate", [function () {
+  .provider("$cordovaAppRate", [function() {
 
-
-    this.setPreferences = function (defaults) {
+    this.setPreferences = function(defaults) {
       if (!defaults || !angular.isObject(defaults)) {
         return;
       }
@@ -151,8 +150,7 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.storeAppURL.windows8 = defaults.windowsURL || null;
     };
 
-
-    this.setCustomLocale = function (customObj) {
+    this.setCustomLocale = function(customObj) {
       var strings = {
         title: 'Rate %@',
         message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
@@ -166,9 +164,9 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.customLocale = strings;
     };
 
-    this.$get = ['$q', function ($q) {
+    this.$get = ['$q', function($q) {
       return {
-        promptForRating: function (immediate) {
+        promptForRating: function(immediate) {
           var q = $q.defer();
           var prompt = AppRate.promptForRating(immediate);
           q.resolve(prompt);
@@ -176,7 +174,7 @@ angular.module('ngCordova.plugins.appRate', [])
           return q.promise;
         },
 
-        navigateToAppStore: function () {
+        navigateToAppStore: function() {
           var q = $q.defer();
           var navigate = AppRate.navigateToAppStore();
           q.resolve(navigate);
@@ -184,13 +182,13 @@ angular.module('ngCordova.plugins.appRate', [])
           return q.promise;
         },
 
-        onButtonClicked: function (cb) {
-          AppRate.onButtonClicked = function (buttonIndex) {
+        onButtonClicked: function(cb) {
+          AppRate.onButtonClicked = function(buttonIndex) {
             cb.call(this, buttonIndex);
           };
         },
 
-        onRateDialogShow: function (cb) {
+        onRateDialogShow: function(cb) {
           AppRate.onRateDialogShow = cb();
         }
       };
@@ -202,12 +200,12 @@ angular.module('ngCordova.plugins.appRate', [])
 
 angular.module('ngCordova.plugins.appVersion', [])
 
-  .factory('$cordovaAppVersion', ['$q', function ($q) {
+  .factory('$cordovaAppVersion', ['$q', function($q) {
 
     return {
-      getAppVersion: function () {
+      getAppVersion: function() {
         var q = $q.defer();
-        cordova.getAppVersion(function (version) {
+        cordova.getAppVersion(function(version) {
           q.resolve(version);
         });
 
@@ -221,27 +219,27 @@ angular.module('ngCordova.plugins.appVersion', [])
 
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
-  .factory('$cordovaBackgroundGeolocation', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaBackgroundGeolocation', ['$q', '$window', function($q, $window) {
 
     return {
 
-      init: function () {
-        $window.navigator.geolocation.getCurrentPosition(function (location) {
+      init: function() {
+        $window.navigator.geolocation.getCurrentPosition(function(location) {
           return location;
         });
       },
 
-      configure: function (options) {
+      configure: function(options) {
 
         this.init();
         var q = $q.defer();
 
         $window.plugins.backgroundGeoLocation.configure(
-          function (result) {
+          function(result) {
             q.notify(result);
             $window.plugins.backgroundGeoLocation.finish();
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           }, options);
 
@@ -250,28 +248,28 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
         return q.promise;
       },
 
-      start: function () {
+      start: function() {
         var q = $q.defer();
 
         $window.plugins.backgroundGeoLocation.start(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
 
         return q.promise;
       },
 
-      stop: function () {
+      stop: function() {
         var q = $q.defer();
 
         $window.plugins.backgroundGeoLocation.stop(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
 
@@ -286,16 +284,15 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
 
 angular.module('ngCordova.plugins.badge', [])
 
-  .factory('$cordovaBadge', ['$q', function ($q) {
+  .factory('$cordovaBadge', ['$q', function($q) {
 
     return {
-      hasPermission: function () {
+      hasPermission: function() {
         var q = $q.defer();
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
             q.resolve(true);
-          }
-          else {
+          } else {
             q.reject("You do not have permission");
           }
         });
@@ -303,29 +300,28 @@ angular.module('ngCordova.plugins.badge', [])
         return q.promise;
       },
 
-      promptForPermission: function () {
+      promptForPermission: function() {
         return cordova.plugins.notification.badge.promptForPermission();
       },
 
-      set: function (number) {
+      set: function(number) {
         var q = $q.defer();
 
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
             q.resolve(cordova.plugins.notification.badge.set(number));
-          }
-          else {
+          } else {
             q.reject("You do not have permission to set Badge");
           }
         });
         return q.promise;
       },
 
-      get: function () {
+      get: function() {
         var q = $q.defer();
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
-            cordova.plugins.notification.badge.get(function (badge) {
+            cordova.plugins.notification.badge.get(function(badge) {
               q.resolve(badge);
             });
           } else {
@@ -336,21 +332,20 @@ angular.module('ngCordova.plugins.badge', [])
         return q.promise;
       },
 
-      clear: function () {
+      clear: function() {
         var q = $q.defer();
 
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
             q.resolve(cordova.plugins.notification.badge.clear());
-          }
-          else {
+          } else {
             q.reject("You do not have permission to clear Badge");
           }
         });
         return q.promise;
       },
 
-      configure: function (config) {
+      configure: function(config) {
         return cordova.plugins.notification.badge.configure(config);
       }
     };
@@ -361,28 +356,28 @@ angular.module('ngCordova.plugins.badge', [])
 
 angular.module('ngCordova.plugins.barcodeScanner', [])
 
-  .factory('$cordovaBarcodeScanner', ['$q', function ($q) {
+  .factory('$cordovaBarcodeScanner', ['$q', function($q) {
 
     return {
-      scan: function (config) {
+      scan: function(config) {
         var q = $q.defer();
 
-        cordova.plugins.barcodeScanner.scan(function (result) {
+        cordova.plugins.barcodeScanner.scan(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, config);
 
         return q.promise;
       },
 
-      encode: function (type, data) {
+      encode: function(type, data) {
         var q = $q.defer();
         type = type || "TEXT_TYPE";
 
-        cordova.plugins.barcodeScanner.encode(type, data, function (result) {
+        cordova.plugins.barcodeScanner.encode(type, data, function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -396,27 +391,27 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
 angular.module('ngCordova.plugins.batteryStatus', [])
 
-  .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
+  .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
 
-    var batteryStatus = function (status) {
-      $timeout(function () {
+    var batteryStatus = function(status) {
+      $timeout(function() {
         $rootScope.$broadcast('$cordovaBatteryStatus:status', status);
       });
     };
 
-    var batteryCritical = function (status) {
-      $timeout(function () {
+    var batteryCritical = function(status) {
+      $timeout(function() {
         $rootScope.$broadcast('$cordovaBatteryStatus:critical', status);
       });
     };
 
-    var batteryLow = function (status) {
-      $timeout(function () {
+    var batteryLow = function(status) {
+      $timeout(function() {
         $rootScope.$broadcast('$cordovaBatteryStatus:low', status);
       });
     };
 
-    document.addEventListener("deviceready", function () {
+    document.addEventListener("deviceready", function() {
       if (navigator.battery) {
         $window.addEventListener('batterystatus', batteryStatus, false);
         $window.addEventListener('batterycritical', batteryCritical, false);
@@ -426,7 +421,7 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     }, false);
     return true;
   }])
-  .run(['$cordovaBatteryStatus', function ($cordovaBatteryStatus) {
+  .run(['$cordovaBatteryStatus', function($cordovaBatteryStatus) {
   }]);
 
 //  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
@@ -434,104 +429,104 @@ angular.module('ngCordova.plugins.batteryStatus', [])
 
 angular.module('ngCordova.plugins.ble', [])
 
-  .factory('$cordovaBLE', ['$q', function ($q) {
+  .factory('$cordovaBLE', ['$q', function($q) {
 
     return {
-      scan: function (services, seconds) {
+      scan: function(services, seconds) {
         var q = $q.defer();
-        ble.scan(services, seconds, function (result) {
+        ble.scan(services, seconds, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      connect: function (deviceID) {
+      connect: function(deviceID) {
         var q = $q.defer();
-        ble.connect(deviceID, function (result) {
+        ble.connect(deviceID, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      disconnect: function (deviceID) {
+      disconnect: function(deviceID) {
         var q = $q.defer();
-        ble.disconnect(deviceID, function (result) {
+        ble.disconnect(deviceID, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      read: function (deviceID, serviceUUID, characteristicUUID) {
+      read: function(deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
-        ble.read(deviceID, serviceUUID, characteristicUUID, function (result) {
+        ble.read(deviceID, serviceUUID, characteristicUUID, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      write: function (deviceID, serviceUUID, characteristicUUID, data) {
+      write: function(deviceID, serviceUUID, characteristicUUID, data) {
         var q = $q.defer();
-        ble.write(deviceID, serviceUUID, characteristicUUID, data, function (result) {
+        ble.write(deviceID, serviceUUID, characteristicUUID, data, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
+      writeCommand: function(deviceID, serviceUUID, characteristicUUID, data) {
         var q = $q.defer();
-        ble.writeCommand(deviceID, serviceUUID, characteristicUUID, data, function (result) {
+        ble.writeCommand(deviceID, serviceUUID, characteristicUUID, data, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      notify: function (deviceID, serviceUUID, characteristicUUID) {
+      notify: function(deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
-        ble.notify(deviceID, serviceUUID, characteristicUUID, function (result) {
+        ble.notify(deviceID, serviceUUID, characteristicUUID, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      indicate: function (deviceID, serviceUUID, characteristicUUID) {
+      indicate: function(deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
-        ble.indicate(deviceID, serviceUUID, characteristicUUID, function (result) {
+        ble.indicate(deviceID, serviceUUID, characteristicUUID, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      isConnected: function (deviceID) {
+      isConnected: function(deviceID) {
         var q = $q.defer();
-        ble.isConnected(deviceID, function (result) {
+        ble.isConnected(deviceID, function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      isEnabled: function () {
+      isEnabled: function() {
         var q = $q.defer();
-        ble.isEnabled(function (result) {
+        ble.isEnabled(function(result) {
           q.resolve(result);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
@@ -544,67 +539,63 @@ angular.module('ngCordova.plugins.ble', [])
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
 
-  .factory('$cordovaBluetoothSerial', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaBluetoothSerial', ['$q', '$window', function($q, $window) {
 
     return {
-      connect: function (address) {
+      connect: function(address) {
         var q = $q.defer();
-        $window.bluetoothSerial.connect(address, function () {
+        $window.bluetoothSerial.connect(address, function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
       // not supported on iOS
-      connectInsecure: function (address) {
+      connectInsecure: function(address) {
         var q = $q.defer();
-        $window.bluetoothSerial.connectInsecure(address, function () {
+        $window.bluetoothSerial.connectInsecure(address, function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      disconnect: function () {
+      disconnect: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.disconnect(function () {
+        $window.bluetoothSerial.disconnect(function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      list: function () {
+      list: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.list(function (data) {
+        $window.bluetoothSerial.list(function(data) {
           q.resolve(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      discoverUnpaired: function () {
+      discoverUnpaired: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.discoverUnpaired(function (data) {
+        $window.bluetoothSerial.discoverUnpaired(function(data) {
           q.resolve(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      setDeviceDiscoveredListener: function () {
+      setDeviceDiscoveredListener: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.setDeviceDiscoveredListener(function (data) {
+        $window.bluetoothSerial.setDeviceDiscoveredListener(function(data) {
           q.notify(data);
         });
         return q.promise;
@@ -614,152 +605,141 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         $window.bluetoothSerial.clearDeviceDiscoveredListener();
       },
 
-
-      showBluetoothSettings: function () {
+      showBluetoothSettings: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.showBluetoothSettings(function () {
+        $window.bluetoothSerial.showBluetoothSettings(function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      isEnabled: function () {
+      isEnabled: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.isEnabled(function () {
+        $window.bluetoothSerial.isEnabled(function() {
           q.resolve();
-        }, function () {
+        }, function() {
           q.reject();
         });
         return q.promise;
       },
 
-
-      enable: function () {
+      enable: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.enable(function () {
+        $window.bluetoothSerial.enable(function() {
           q.resolve();
-        }, function () {
+        }, function() {
           q.reject();
         });
         return q.promise;
       },
 
-
-      isConnected: function () {
+      isConnected: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.isConnected(function () {
+        $window.bluetoothSerial.isConnected(function() {
           q.resolve();
-        }, function () {
+        }, function() {
           q.reject();
         });
         return q.promise;
       },
 
-
-      available: function () {
+      available: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.available(function (data) {
+        $window.bluetoothSerial.available(function(data) {
           q.resolve(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      read: function () {
+      read: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.read(function (data) {
+        $window.bluetoothSerial.read(function(data) {
           q.resolve(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      readUntil: function (delimiter) {
+      readUntil: function(delimiter) {
         var q = $q.defer();
-        $window.bluetoothSerial.readUntil(delimiter, function (data) {
+        $window.bluetoothSerial.readUntil(delimiter, function(data) {
           q.resolve(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      write: function (data) {
+      write: function(data) {
         var q = $q.defer();
-        $window.bluetoothSerial.write(data, function () {
+        $window.bluetoothSerial.write(data, function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      subscribe: function (delimiter) {
+      subscribe: function(delimiter) {
         var q = $q.defer();
-        $window.bluetoothSerial.subscribe(delimiter, function (data) {
+        $window.bluetoothSerial.subscribe(delimiter, function(data) {
           q.notify(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      subscribeRawData: function () {
+      subscribeRawData: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.subscribeRawData(function (data) {
+        $window.bluetoothSerial.subscribeRawData(function(data) {
           q.notify(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      unsubscribe: function () {
+      unsubscribe: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.unsubscribe(function () {
+        $window.bluetoothSerial.unsubscribe(function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      unsubscribeRawData: function () {
+      unsubscribeRawData: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.unsubscribeRawData(function () {
+        $window.bluetoothSerial.unsubscribeRawData(function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      clear: function () {
+      clear: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.clear(function () {
+        $window.bluetoothSerial.clear(function() {
           q.resolve();
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-
-      readRSSI: function () {
+      readRSSI: function() {
         var q = $q.defer();
-        $window.bluetoothSerial.readRSSI(function (data) {
+        $window.bluetoothSerial.readRSSI(function(data) {
           q.resolve(data);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
@@ -772,39 +752,39 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
 
 angular.module('ngCordova.plugins.brightness', [])
 
-  .factory('$cordovaBrightness', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaBrightness', ['$q', '$window', function($q, $window) {
 
     return {
-      get: function () {
+      get: function() {
         var q = $q.defer();
 
-        $window.cordova.plugins.brightness.getBrightness(function (result) {
+        $window.cordova.plugins.brightness.getBrightness(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      set: function (data) {
+      set: function(data) {
         var q = $q.defer();
 
-        $window.cordova.plugins.brightness.setBrightness(data, function (result) {
+        $window.cordova.plugins.brightness.setBrightness(data, function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      setKeepScreenOn: function (bool) {
+      setKeepScreenOn: function(bool) {
         var q = $q.defer();
 
-        $window.cordova.plugins.brightness.setKeepScreenOn(bool, function (result) {
+        $window.cordova.plugins.brightness.setKeepScreenOn(bool, function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -814,16 +794,14 @@ angular.module('ngCordova.plugins.brightness', [])
   }]);
 
 
-
-
 // install  :     cordova plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
 // link     :     https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin
 
 angular.module('ngCordova.plugins.calendar', [])
 
-  .factory('$cordovaCalendar', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaCalendar', ['$q', '$window', function($q, $window) {
     return {
-      createCalendar: function (options) {
+      createCalendar: function(options) {
         var d = $q.defer(),
           createCalOptions = $window.plugins.calendar.getCreateCalendarOptions();
 
@@ -833,28 +811,28 @@ angular.module('ngCordova.plugins.calendar', [])
           createCalOptions = angular.extend(createCalOptions, options);
         }
 
-        $window.plugins.calendar.createCalendar(createCalOptions, function (message) {
+        $window.plugins.calendar.createCalendar(createCalOptions, function(message) {
           d.resolve(message);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      deleteCalendar: function (calendarName) {
+      deleteCalendar: function(calendarName) {
         var d = $q.defer();
 
-        $window.plugins.calendar.deleteCalendar(calendarName, function (message) {
+        $window.plugins.calendar.deleteCalendar(calendarName, function(message) {
           d.resolve(message);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      createEvent: function (options) {
+      createEvent: function(options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -872,9 +850,9 @@ angular.module('ngCordova.plugins.calendar', [])
           defaultOptions.notes,
           new Date(defaultOptions.startDate),
           new Date(defaultOptions.endDate),
-          function (message) {
+          function(message) {
             d.resolve(message);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -882,7 +860,7 @@ angular.module('ngCordova.plugins.calendar', [])
         return d.promise;
       },
 
-      createEventWithOptions: function (options) {
+      createEventWithOptions: function(options) {
         var d = $q.defer(),
           defaultOptionKeys = [],
           calOptions = window.plugins.calendar.getCalendarOptions(),
@@ -911,9 +889,9 @@ angular.module('ngCordova.plugins.calendar', [])
           new Date(defaultOptions.startDate),
           new Date(defaultOptions.endDate),
           calOptions,
-          function (message) {
+          function(message) {
             d.resolve(message);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -921,7 +899,7 @@ angular.module('ngCordova.plugins.calendar', [])
         return d.promise;
       },
 
-      createEventInteractively: function (options) {
+      createEventInteractively: function(options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -939,9 +917,9 @@ angular.module('ngCordova.plugins.calendar', [])
           defaultOptions.notes,
           new Date(defaultOptions.startDate),
           new Date(defaultOptions.endDate),
-          function (message) {
+          function(message) {
             d.resolve(message);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -949,7 +927,7 @@ angular.module('ngCordova.plugins.calendar', [])
         return d.promise;
       },
 
-      createEventInNamedCalendar: function (options) {
+      createEventInNamedCalendar: function(options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -969,9 +947,9 @@ angular.module('ngCordova.plugins.calendar', [])
           new Date(defaultOptions.startDate),
           new Date(defaultOptions.endDate),
           defaultOptions.calendarName,
-          function (message) {
+          function(message) {
             d.resolve(message);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -979,7 +957,7 @@ angular.module('ngCordova.plugins.calendar', [])
         return d.promise;
       },
 
-      findEvent: function (options) {
+      findEvent: function(options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -997,9 +975,9 @@ angular.module('ngCordova.plugins.calendar', [])
           defaultOptions.notes,
           new Date(defaultOptions.startDate),
           new Date(defaultOptions.endDate),
-          function (foundEvent) {
+          function(foundEvent) {
             d.resolve(foundEvent);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -1007,43 +985,43 @@ angular.module('ngCordova.plugins.calendar', [])
         return d.promise;
       },
 
-      listEventsInRange: function (startDate, endDate) {
+      listEventsInRange: function(startDate, endDate) {
         var d = $q.defer();
 
-        $window.plugins.calendar.listEventsInRange(startDate, endDate, function (events) {
+        $window.plugins.calendar.listEventsInRange(startDate, endDate, function(events) {
           d.resolve(events);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      listCalendars: function () {
+      listCalendars: function() {
         var d = $q.defer();
 
-        $window.plugins.calendar.listCalendars(function (calendars) {
+        $window.plugins.calendar.listCalendars(function(calendars) {
           d.resolve(calendars);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      findAllEventsInNamedCalendar: function (calendarName) {
+      findAllEventsInNamedCalendar: function(calendarName) {
         var d = $q.defer();
 
-        $window.plugins.calendar.findAllEventsInNamedCalendar(calendarName, function (events) {
+        $window.plugins.calendar.findAllEventsInNamedCalendar(calendarName, function(events) {
           d.resolve(events);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      modifyEvent: function (options) {
+      modifyEvent: function(options) {
         var d = $q.defer(),
           defaultOptions = {
             title: null,
@@ -1071,9 +1049,9 @@ angular.module('ngCordova.plugins.calendar', [])
           defaultOptions.newNotes,
           new Date(defaultOptions.newStartDate),
           new Date(defaultOptions.newEndDate),
-          function (message) {
+          function(message) {
             d.resolve(message);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -1081,7 +1059,7 @@ angular.module('ngCordova.plugins.calendar', [])
         return d.promise;
       },
 
-      deleteEvent: function (options) {
+      deleteEvent: function(options) {
         var d = $q.defer(),
           defaultOptions = {
             newTitle: null,
@@ -1099,9 +1077,9 @@ angular.module('ngCordova.plugins.calendar', [])
           defaultOptions.notes,
           new Date(defaultOptions.startDate),
           new Date(defaultOptions.endDate),
-          function (message) {
+          function(message) {
             d.resolve(message);
-          }, function (error) {
+          }, function(error) {
             d.reject(error);
           }
         );
@@ -1116,10 +1094,10 @@ angular.module('ngCordova.plugins.calendar', [])
 
 angular.module('ngCordova.plugins.camera', [])
 
-  .factory('$cordovaCamera', ['$q', function ($q) {
+  .factory('$cordovaCamera', ['$q', function($q) {
 
     return {
-      getPicture: function (options) {
+      getPicture: function(options) {
         var q = $q.defer();
 
         if (!navigator.camera) {
@@ -1127,21 +1105,21 @@ angular.module('ngCordova.plugins.camera', [])
           return q.promise;
         }
 
-        navigator.camera.getPicture(function (imageData) {
+        navigator.camera.getPicture(function(imageData) {
           q.resolve(imageData);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
         return q.promise;
       },
 
-      cleanup: function () {
+      cleanup: function() {
         var q = $q.defer();
 
-        navigator.camera.cleanup(function () {
+        navigator.camera.cleanup(function() {
           q.resolve();
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -1155,10 +1133,10 @@ angular.module('ngCordova.plugins.camera', [])
 
 angular.module('ngCordova.plugins.capture', [])
 
-  .factory('$cordovaCapture', ['$q', function ($q) {
+  .factory('$cordovaCapture', ['$q', function($q) {
 
     return {
-      captureAudio: function (options) {
+      captureAudio: function(options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -1166,15 +1144,15 @@ angular.module('ngCordova.plugins.capture', [])
           return q.promise;
         }
 
-        navigator.device.capture.captureAudio(function (audioData) {
+        navigator.device.capture.captureAudio(function(audioData) {
           q.resolve(audioData);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
         return q.promise;
       },
-      captureImage: function (options) {
+      captureImage: function(options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -1182,15 +1160,15 @@ angular.module('ngCordova.plugins.capture', [])
           return q.promise;
         }
 
-        navigator.device.capture.captureImage(function (imageData) {
+        navigator.device.capture.captureImage(function(imageData) {
           q.resolve(imageData);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
         return q.promise;
       },
-      captureVideo: function (options) {
+      captureVideo: function(options) {
         var q = $q.defer();
 
         if (!navigator.device.capture) {
@@ -1198,9 +1176,9 @@ angular.module('ngCordova.plugins.capture', [])
           return q.promise;
         }
 
-        navigator.device.capture.captureVideo(function (videoData) {
+        navigator.device.capture.captureVideo(function(videoData) {
           q.resolve(videoData);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
@@ -1214,28 +1192,28 @@ angular.module('ngCordova.plugins.capture', [])
 
 angular.module('ngCordova.plugins.clipboard', [])
 
-  .factory('$cordovaClipboard', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaClipboard', ['$q', '$window', function($q, $window) {
 
     return {
-      copy: function (text) {
+      copy: function(text) {
         var q = $q.defer();
 
         $window.cordova.plugins.clipboard.copy(text,
-          function () {
+          function() {
             q.resolve();
-          }, function () {
+          }, function() {
             q.reject();
           });
 
         return q.promise;
       },
 
-      paste: function () {
+      paste: function() {
         var q = $q.defer();
 
-        $window.cordova.plugins.clipboard.paste(function (text) {
+        $window.cordova.plugins.clipboard.paste(function(text) {
           q.resolve(text);
-        }, function () {
+        }, function() {
           q.reject();
         });
 
@@ -1249,58 +1227,58 @@ angular.module('ngCordova.plugins.clipboard', [])
 
 angular.module('ngCordova.plugins.contacts', [])
 
-  .factory('$cordovaContacts', ['$q', function ($q) {
+  .factory('$cordovaContacts', ['$q', function($q) {
 
     return {
-      save: function (contact) {
+      save: function(contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
-        deviceContact.save(function (result) {
+        deviceContact.save(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
         return q.promise;
       },
 
-      remove: function (contact) {
+      remove: function(contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
-        deviceContact.remove(function (result) {
+        deviceContact.remove(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
         return q.promise;
       },
 
-      clone: function (contact) {
+      clone: function(contact) {
         var deviceContact = navigator.contacts.create(contact);
         return deviceContact.clone(contact);
       },
 
-      find: function (options) {
+      find: function(options) {
         var q = $q.defer();
         var fields = options.fields || ['id', 'displayName'];
         delete options.fields;
 
-        navigator.contacts.find(fields, function (results) {
+        navigator.contacts.find(fields, function(results) {
           q.resolve(results);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
         return q.promise;
       },
 
-      pickContact: function () {
+      pickContact: function() {
         var q = $q.defer();
 
-        navigator.contacts.pickContact(function (contact) {
+        navigator.contacts.pickContact(function(contact) {
           q.resolve(contact);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -1319,12 +1297,12 @@ angular.module('ngCordova.plugins.contacts', [])
 // link      :      https://github.com/VitaliiBlagodir/cordova-plugin-datepicker
 
 angular.module('ngCordova.plugins.datePicker', [])
-  .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
+  .factory('$cordovaDatePicker', ['$window', '$q', function($window, $q) {
     return {
-      show: function (options) {
+      show: function(options) {
         var q = $q.defer();
         options = options || {date: new Date(), mode: 'date'};
-        $window.datePicker.show(options, function (date) {
+        $window.datePicker.show(options, function(date) {
           q.resolve(date);
         });
         return q.promise;
@@ -1337,7 +1315,7 @@ angular.module('ngCordova.plugins.datePicker', [])
 
 angular.module('ngCordova.plugins.device', [])
 
-  .factory('$cordovaDevice', [function () {
+  .factory('$cordovaDevice', [function() {
 
     return {
       /**
@@ -1345,7 +1323,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
        * @returns {Object} The device object.
        */
-      getDevice: function () {
+      getDevice: function() {
         return device;
       },
 
@@ -1354,7 +1332,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicecordova
        * @returns {String} The Cordova version.
        */
-      getCordova: function () {
+      getCordova: function() {
         return device.cordova;
       },
 
@@ -1363,7 +1341,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicemodel
        * @returns {String} The name of the device's model or product.
        */
-      getModel: function () {
+      getModel: function() {
         return device.model;
       },
 
@@ -1371,7 +1349,7 @@ angular.module('ngCordova.plugins.device', [])
        * @deprecated device.name is deprecated as of version 2.3.0. Use device.model instead.
        * @returns {String}
        */
-      getName: function () {
+      getName: function() {
         return device.name;
       },
 
@@ -1380,7 +1358,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceplatform
        * @returns {String} The device's operating system name.
        */
-      getPlatform: function () {
+      getPlatform: function() {
         return device.platform;
       },
 
@@ -1389,7 +1367,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceuuid
        * @returns {String} The device's Universally Unique Identifier
        */
-      getUUID: function () {
+      getUUID: function() {
         return device.uuid;
       },
 
@@ -1398,7 +1376,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceversion
        * @returns {String}
        */
-      getVersion: function () {
+      getVersion: function() {
         return device.version;
       }
     };
@@ -1409,35 +1387,35 @@ angular.module('ngCordova.plugins.device', [])
 
 angular.module('ngCordova.plugins.deviceMotion', [])
 
-  .factory('$cordovaDeviceMotion', ['$q', function ($q) {
+  .factory('$cordovaDeviceMotion', ['$q', function($q) {
 
     return {
-      getCurrentAcceleration: function () {
+      getCurrentAcceleration: function() {
         var q = $q.defer();
 
-        navigator.accelerometer.getCurrentAcceleration(function (result) {
+        navigator.accelerometer.getCurrentAcceleration(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      watchAcceleration: function (options) {
+      watchAcceleration: function(options) {
         var q = $q.defer();
 
-        var watchID = navigator.accelerometer.watchAcceleration(function (result) {
+        var watchID = navigator.accelerometer.watchAcceleration(function(result) {
           q.notify(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
-        q.promise.cancel = function () {
+        q.promise.cancel = function() {
           navigator.accelerometer.clearWatch(watchID);
         };
 
-        q.promise.clearWatch = function (id) {
+        q.promise.clearWatch = function(id) {
           navigator.accelerometer.clearWatch(id || watchID);
         };
 
@@ -1446,7 +1424,7 @@ angular.module('ngCordova.plugins.deviceMotion', [])
         return q.promise;
       },
 
-      clearWatch: function (watchID) {
+      clearWatch: function(watchID) {
         return navigator.accelerometer.clearWatch(watchID);
       }
     };
@@ -1457,38 +1435,38 @@ angular.module('ngCordova.plugins.deviceMotion', [])
 
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
-  .factory('$cordovaDeviceOrientation', ['$q', function ($q) {
+  .factory('$cordovaDeviceOrientation', ['$q', function($q) {
     var defaultOptions = {
       frequency: 3000 // every 3s
     };
     return {
-      getCurrentHeading: function () {
+      getCurrentHeading: function() {
         var q = $q.defer();
 
-        navigator.compass.getCurrentHeading(function (result) {
+        navigator.compass.getCurrentHeading(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      watchHeading: function (options) {
+      watchHeading: function(options) {
         var q = $q.defer();
 
         var options = angular.extend(defaultOptions, options);
-        var watchID = navigator.compass.watchHeading(function (result) {
+        var watchID = navigator.compass.watchHeading(function(result) {
           q.notify(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
-        q.promise.cancel = function () {
+        q.promise.cancel = function() {
           navigator.compass.clearWatch(watchID);
         };
 
-        q.promise.clearWatch = function (id) {
+        q.promise.clearWatch = function(id) {
           navigator.compass.clearWatch(id || watchID);
         };
 
@@ -1497,7 +1475,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
         return q.promise;
       },
 
-      clearWatch: function (watchID) {
+      clearWatch: function(watchID) {
         return navigator.compass.clearWatch(watchID);
       }
     };
@@ -1508,18 +1486,17 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
 
 angular.module('ngCordova.plugins.dialogs', [])
 
-  .factory('$cordovaDialogs', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaDialogs', ['$q', '$window', function($q, $window) {
 
     return {
-      alert: function (message, title, buttonName) {
+      alert: function(message, title, buttonName) {
         var q = $q.defer();
 
         if (!$window.navigator.notification) {
           $window.alert(message);
           q.resolve();
-        }
-        else {
-          navigator.notification.alert(message, function () {
+        } else {
+          navigator.notification.alert(message, function() {
             q.resolve();
           }, title, buttonName);
         }
@@ -1527,19 +1504,17 @@ angular.module('ngCordova.plugins.dialogs', [])
         return q.promise;
       },
 
-      confirm: function (message, title, buttonLabels) {
+      confirm: function(message, title, buttonLabels) {
         var q = $q.defer();
 
         if (!$window.navigator.notification) {
           if ($window.confirm(message)) {
             q.resolve(1);
-          }
-          else {
+          } else {
             q.resolve(2);
           }
-        }
-        else {
-          navigator.notification.confirm(message, function (buttonIndex) {
+        } else {
+          navigator.notification.confirm(message, function(buttonIndex) {
             q.resolve(buttonIndex);
           }, title, buttonLabels);
         }
@@ -1547,27 +1522,25 @@ angular.module('ngCordova.plugins.dialogs', [])
         return q.promise;
       },
 
-      prompt: function (message, title, buttonLabels, defaultText) {
+      prompt: function(message, title, buttonLabels, defaultText) {
         var q = $q.defer();
 
         if (!$window.navigator.notification) {
           var res = $window.prompt(message, defaultText);
           if (res !== null) {
             q.resolve({input1: res, buttonIndex: 1});
-          }
-          else {
+          } else {
             q.resolve({input1: res, buttonIndex: 2});
           }
-        }
-        else {
-          navigator.notification.prompt(message, function (result) {
+        } else {
+          navigator.notification.prompt(message, function(result) {
             q.resolve(result);
           }, title, buttonLabels, defaultText);
         }
         return q.promise;
       },
 
-      beep: function (times) {
+      beep: function(times) {
         return navigator.notification.beep(times);
       }
     };
@@ -1578,30 +1551,30 @@ angular.module('ngCordova.plugins.dialogs', [])
 
 angular.module('ngCordova.plugins.emailComposer', [])
 
-  .factory('$cordovaEmailComposer', ['$q', function ($q) {
+  .factory('$cordovaEmailComposer', ['$q', function($q) {
 
     return {
-      isAvailable: function () {
+      isAvailable: function() {
         var q = $q.defer();
 
-        cordova.plugins.email.isAvailable(function (isAvailable) {
+        cordova.plugins.email.isAvailable(function(isAvailable) {
           isAvailable ? q.resolve() : q.reject();
         });
 
         return q.promise;
       },
 
-      open: function (properties) {
+      open: function(properties) {
         var q = $q.defer();
 
-        cordova.plugins.email.open(properties, function () {
+        cordova.plugins.email.open(properties, function() {
           q.reject(); // user closed email composer
         });
 
         return q.promise;
       },
 
-      addAlias: function (app, schema) {
+      addAlias: function(app, schema) {
         cordova.plugins.email.addAlias(app, schema);
       }
     };
@@ -1612,72 +1585,72 @@ angular.module('ngCordova.plugins.emailComposer', [])
 
 angular.module('ngCordova.plugins.facebook', [])
 
-  .provider('$cordovaFacebook', [function () {
+  .provider('$cordovaFacebook', [function() {
 
-    this.browserInit = function (id, version) {
+    this.browserInit = function(id, version) {
       this.appID = id;
       this.appVersion = version || "v2.0";
       facebookConnectPlugin.browserInit(this.appID, this.appVersion);
     };
 
-    this.$get = ['$q', function ($q) {
+    this.$get = ['$q', function($q) {
       return {
-        login: function (permissions) {
+        login: function(permissions) {
           var q = $q.defer();
-          facebookConnectPlugin.login(permissions, function (res) {
+          facebookConnectPlugin.login(permissions, function(res) {
             q.resolve(res);
-          }, function (res) {
+          }, function(res) {
             q.reject(res);
           });
 
           return q.promise;
         },
 
-        showDialog: function (options) {
+        showDialog: function(options) {
           var q = $q.defer();
-          facebookConnectPlugin.showDialog(options, function (res) {
+          facebookConnectPlugin.showDialog(options, function(res) {
             q.resolve(res);
-          }, function (err) {
+          }, function(err) {
             q.reject(err);
           });
           return q.promise;
         },
 
-        api: function (path, permissions) {
+        api: function(path, permissions) {
           var q = $q.defer();
-          facebookConnectPlugin.api(path, permissions, function (res) {
+          facebookConnectPlugin.api(path, permissions, function(res) {
             q.resolve(res);
-          }, function (err) {
+          }, function(err) {
             q.reject(err);
           });
           return q.promise;
         },
 
-        getAccessToken: function () {
+        getAccessToken: function() {
           var q = $q.defer();
-          facebookConnectPlugin.getAccessToken(function (res) {
+          facebookConnectPlugin.getAccessToken(function(res) {
             q.resolve(res);
-          }, function (err) {
+          }, function(err) {
             q.reject(err);
           });
           return q.promise;
         },
 
-        getLoginStatus: function () {
+        getLoginStatus: function() {
           var q = $q.defer();
-          facebookConnectPlugin.getLoginStatus(function (res) {
+          facebookConnectPlugin.getLoginStatus(function(res) {
             q.resolve(res);
-          }, function (err) {
+          }, function(err) {
             q.reject(err);
           });
           return q.promise;
         },
 
-        logout: function () {
+        logout: function() {
           var q = $q.defer();
-          facebookConnectPlugin.logout(function (res) {
+          facebookConnectPlugin.logout(function(res) {
             q.resolve(res);
-          }, function (err) {
+          }, function(err) {
             q.reject(err);
           });
           return q.promise;
@@ -1690,99 +1663,99 @@ angular.module('ngCordova.plugins.facebook', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-facebookads
 
 angular.module('ngCordova.plugins.facebookAds', [])
-  .factory('$cordovaFacebookAds', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaFacebookAds', ['$q', '$window', function($q, $window) {
 
     return {
-      setOptions: function (options) {
+      setOptions: function(options) {
         var d = $q.defer();
 
-        $window.FacebookAds.setOptions(options, function () {
+        $window.FacebookAds.setOptions(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function (options) {
+      createBanner: function(options) {
         var d = $q.defer();
 
-        $window.FacebookAds.createBanner(options, function () {
+        $window.FacebookAds.createBanner(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function () {
+      removeBanner: function() {
         var d = $q.defer();
 
-        $window.FacebookAds.removeBanner(function () {
+        $window.FacebookAds.removeBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function (position) {
+      showBanner: function(position) {
         var d = $q.defer();
 
-        $window.FacebookAds.showBanner(position, function () {
+        $window.FacebookAds.showBanner(position, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function (x, y) {
+      showBannerAtXY: function(x, y) {
         var d = $q.defer();
 
-        $window.FacebookAds.showBannerAtXY(x, y, function () {
+        $window.FacebookAds.showBannerAtXY(x, y, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function () {
+      hideBanner: function() {
         var d = $q.defer();
 
-        $window.FacebookAds.hideBanner(function () {
+        $window.FacebookAds.hideBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function (options) {
+      prepareInterstitial: function(options) {
         var d = $q.defer();
 
-        $window.FacebookAds.prepareInterstitial(options, function () {
+        $window.FacebookAds.prepareInterstitial(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function () {
+      showInterstitial: function() {
         var d = $q.defer();
 
-        $window.FacebookAds.showInterstitial(function () {
+        $window.FacebookAds.showInterstitial(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
@@ -1811,23 +1784,23 @@ angular.module('ngCordova.plugins.file', [])
     12: 'PATH_EXISTS_ERR'
   })
 
-  .provider('$cordovaFile', [function () {
+  .provider('$cordovaFile', [function() {
 
-    this.$get = ['$q', '$window', '$cordovaFileError', function ($q, $window, $cordovaFileError) {
+    this.$get = ['$q', '$window', '$cordovaFileError', function($q, $window, $cordovaFileError) {
 
       return {
 
         getFreeDiskSpace: function() {
-            var q = $q.defer();
-            cordova.exec(function(result) {
-                q.resolve(result);
-            }, function(error) {
-                q.reject(error);
-            }, "File", "getFreeDiskSpace", []);
-            return q.promise;
+          var q = $q.defer();
+          cordova.exec(function(result) {
+            q.resolve(result);
+          }, function(error) {
+            q.reject(error);
+          }, "File", "getFreeDiskSpace", []);
+          return q.promise;
         },
 
-        checkDir: function (path, dir) {
+        checkDir: function(path, dir) {
           var q = $q.defer();
 
           if ((/^\//.test(dir))) {
@@ -1836,13 +1809,13 @@ angular.module('ngCordova.plugins.file', [])
 
           try {
             var directory = path + dir;
-            $window.resolveLocalFileSystemURL(directory, function (fileSystem) {
+            $window.resolveLocalFileSystemURL(directory, function(fileSystem) {
               if (fileSystem.isDirectory === true) {
                 q.resolve(fileSystem);
               } else {
                 q.reject({code: 13, message: "input is not a directory"});
               }
-            }, function (error) {
+            }, function(error) {
               error.message = $cordovaFileError[error.code];
               q.reject(error);
             });
@@ -1854,8 +1827,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        checkFile: function (path, file) {
+        checkFile: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -1864,13 +1836,13 @@ angular.module('ngCordova.plugins.file', [])
 
           try {
             var directory = path + file;
-            $window.resolveLocalFileSystemURL(directory, function (fileSystem) {
+            $window.resolveLocalFileSystemURL(directory, function(fileSystem) {
               if (fileSystem.isFile === true) {
                 q.resolve(fileSystem);
               } else {
                 q.reject({code: 13, message: "input is not a file"});
               }
-            }, function (error) {
+            }, function(error) {
               error.message = $cordovaFileError[error.code];
               q.reject(error);
             });
@@ -1882,7 +1854,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        createDir: function (path, dirName, replaceBool) {
+        createDir: function(path, dirName, replaceBool) {
           var q = $q.defer();
 
           if ((/^\//.test(dirName))) {
@@ -1897,14 +1869,14 @@ angular.module('ngCordova.plugins.file', [])
           };
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, options, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, options, function(result) {
                 q.resolve(result);
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -1916,7 +1888,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        createFile: function (path, fileName, replaceBool) {
+        createFile: function(path, fileName, replaceBool) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -1931,14 +1903,14 @@ angular.module('ngCordova.plugins.file', [])
           };
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, options, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, options, function(result) {
                 q.resolve(result);
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -1949,8 +1921,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        removeDir: function (path, dirName) {
+        removeDir: function(path, dirName) {
           var q = $q.defer();
 
           if ((/^\//.test(dirName))) {
@@ -1958,19 +1929,19 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false}, function (dirEntry) {
-                dirEntry.remove(function () {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false}, function(dirEntry) {
+                dirEntry.remove(function() {
                   q.resolve({success: true, fileRemoved: dirEntry});
-                }, function (error) {
+                }, function(error) {
                   error.message = $cordovaFileError[error.code];
                   q.reject(error);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -1981,7 +1952,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        removeFile: function (path, fileName) {
+        removeFile: function(path, fileName) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -1989,19 +1960,19 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false}, function (fileEntry) {
-                fileEntry.remove(function () {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false}, function(fileEntry) {
+                fileEntry.remove(function() {
                   q.resolve({success: true, fileRemoved: fileEntry});
-                }, function (error) {
+                }, function(error) {
                   error.message = $cordovaFileError[error.code];
                   q.reject(error);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -2012,7 +1983,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        removeRecursively: function (path, dirName) {
+        removeRecursively: function(path, dirName) {
           var q = $q.defer();
 
           if ((/^\//.test(dirName))) {
@@ -2020,19 +1991,19 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false}, function (dirEntry) {
-                dirEntry.removeRecursively(function () {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false}, function(dirEntry) {
+                dirEntry.removeRecursively(function() {
                   q.resolve({success: true, fileRemoved: dirEntry});
-                }, function (error) {
+                }, function(error) {
                   error.message = $cordovaFileError[error.code];
                   q.reject(error);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -2043,7 +2014,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        writeFile: function (path, fileName, text, replaceBool) {
+        writeFile: function(path, fileName, text, replaceBool) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -2058,9 +2029,9 @@ angular.module('ngCordova.plugins.file', [])
           };
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, options, function (fileEntry) {
-                fileEntry.createWriter(function (writer) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, options, function(fileEntry) {
+                fileEntry.createWriter(function(writer) {
                   if (options.append === true) {
                     writer.seek(writer.length);
                   }
@@ -2069,26 +2040,25 @@ angular.module('ngCordova.plugins.file', [])
                     writer.truncate(options.truncate);
                   }
 
-                  writer.onwriteend = function (evt) {
+                  writer.onwriteend = function(evt) {
                     if (this.error) {
                       q.reject(this.error);
-                    }
-                    else {
+                    } else {
                       q.resolve(evt);
                     }
                   };
 
                   writer.write(text);
 
-                  q.promise.abort = function () {
+                  q.promise.abort = function() {
                     writer.abort();
                   };
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -2100,8 +2070,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        writeExistingFile: function (path, fileName, text) {
+        writeExistingFile: function(path, fileName, text) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -2109,31 +2078,30 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false}, function (fileEntry) {
-                fileEntry.createWriter(function (writer) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false}, function(fileEntry) {
+                fileEntry.createWriter(function(writer) {
                   writer.seek(writer.length);
 
-                  writer.onwriteend = function (evt) {
+                  writer.onwriteend = function(evt) {
                     if (this.error) {
                       q.reject(this.error);
-                    }
-                    else {
+                    } else {
                       q.resolve(evt);
                     }
                   };
 
                   writer.write(text);
 
-                  q.promise.abort = function () {
+                  q.promise.abort = function() {
                     writer.abort();
                   };
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -2145,8 +2113,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        readAsText: function (path, file) {
+        readAsText: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -2154,30 +2121,28 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
 
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
 
                   reader.readAsText(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -2189,8 +2154,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        readAsDataURL: function (path, file) {
+        readAsDataURL: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -2198,28 +2162,26 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
                   reader.readAsDataURL(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -2231,7 +2193,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        readAsBinaryString: function (path, file) {
+        readAsBinaryString: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -2239,28 +2201,26 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
                   reader.readAsBinaryString(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -2272,7 +2232,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        readAsArrayBuffer: function (path, file) {
+        readAsArrayBuffer: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -2280,28 +2240,26 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
                   reader.readAsArrayBuffer(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -2313,8 +2271,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        moveFile: function (path, fileName, newPath, newFileName) {
+        moveFile: function(path, fileName, newPath, newFileName) {
           var q = $q.defer();
 
           newFileName = newFileName || fileName;
@@ -2324,21 +2281,21 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false}, function (fileEntry) {
-                $window.resolveLocalFileSystemURL(newPath, function (newFileEntry) {
-                  fileEntry.moveTo(newFileEntry, newFileName, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false}, function(fileEntry) {
+                $window.resolveLocalFileSystemURL(newPath, function(newFileEntry) {
+                  fileEntry.moveTo(newFileEntry, newFileName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     q.reject(error);
                   });
-                }, function (err) {
+                }, function(err) {
                   q.reject(err);
                 });
-              }, function (err) {
+              }, function(err) {
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               q.reject(er);
             });
           } catch (e) {
@@ -2347,7 +2304,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        moveDir: function (path, dirName, newPath, newDirName) {
+        moveDir: function(path, dirName, newPath, newDirName) {
           var q = $q.defer();
 
           newDirName = newDirName || dirName;
@@ -2357,21 +2314,21 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false}, function (dirEntry) {
-                $window.resolveLocalFileSystemURL(newPath, function (newDirEntry) {
-                  dirEntry.moveTo(newDirEntry, newDirName, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false}, function(dirEntry) {
+                $window.resolveLocalFileSystemURL(newPath, function(newDirEntry) {
+                  dirEntry.moveTo(newDirEntry, newDirName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     q.reject(error);
                   });
-                }, function (erro) {
+                }, function(erro) {
                   q.reject(erro);
                 });
-              }, function (err) {
+              }, function(err) {
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               q.reject(er);
             });
           } catch (e) {
@@ -2380,8 +2337,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        copyDir: function (path, dirName, newPath, newDirName) {
+        copyDir: function(path, dirName, newPath, newDirName) {
           var q = $q.defer();
 
           newDirName = newDirName || dirName;
@@ -2391,25 +2347,25 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false, exclusive: false}, function (dirEntry) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false, exclusive: false}, function(dirEntry) {
 
-                $window.resolveLocalFileSystemURL(newPath, function (newDirEntry) {
-                  dirEntry.copyTo(newDirEntry, newDirName, function (result) {
+                $window.resolveLocalFileSystemURL(newPath, function(newDirEntry) {
+                  dirEntry.copyTo(newDirEntry, newDirName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     error.message = $cordovaFileError[error.code];
                     q.reject(error);
                   });
-                }, function (erro) {
+                }, function(erro) {
                   erro.message = $cordovaFileError[erro.code];
                   q.reject(erro);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -2420,7 +2376,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        copyFile: function (path, fileName, newPath, newFileName) {
+        copyFile: function(path, fileName, newPath, newFileName) {
           var q = $q.defer();
 
           newFileName = newFileName || fileName;
@@ -2430,25 +2386,25 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false, exclusive: false}, function (fileEntry) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false, exclusive: false}, function(fileEntry) {
 
-                $window.resolveLocalFileSystemURL(newPath, function (newFileEntry) {
-                  fileEntry.copyTo(newFileEntry, newFileName, function (result) {
+                $window.resolveLocalFileSystemURL(newPath, function(newFileEntry) {
+                  fileEntry.copyTo(newFileEntry, newFileName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     error.message = $cordovaFileError[error.code];
                     q.reject(error);
                   });
-                }, function (erro) {
+                }, function(erro) {
                   erro.message = $cordovaFileError[erro.code];
                   q.reject(erro);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -2506,37 +2462,37 @@ angular.module('ngCordova.plugins.file', [])
 
 angular.module('ngCordova.plugins.fileOpener2', [])
 
-  .factory('$cordovaFileOpener2', ['$q', function ($q) {
+  .factory('$cordovaFileOpener2', ['$q', function($q) {
 
     return {
-      open: function (file, type) {
+      open: function(file, type) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.open(file, type, {
-          error: function (e) {
+          error: function(e) {
             q.reject(e);
-          }, success: function () {
+          }, success: function() {
             q.resolve();
           }
         });
         return q.promise;
       },
 
-      uninstall: function (pack) {
+      uninstall: function(pack) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.uninstall(pack, {
-          error: function (e) {
+          error: function(e) {
             q.reject(e);
-          }, success: function () {
+          }, success: function() {
             q.resolve();
           }
         });
         return q.promise;
       },
 
-      appIsInstalled: function (pack) {
+      appIsInstalled: function(pack) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.appIsInstalled(pack, {
-          success: function (res) {
+          success: function(res) {
             q.resolve(res);
           }
         });
@@ -2550,25 +2506,25 @@ angular.module('ngCordova.plugins.fileOpener2', [])
 
 angular.module('ngCordova.plugins.fileTransfer', [])
 
-  .factory('$cordovaFileTransfer', ['$q', '$timeout', function ($q, $timeout) {
+  .factory('$cordovaFileTransfer', ['$q', '$timeout', function($q, $timeout) {
     return {
-      download: function (source, filePath, options, trustAllHosts) {
+      download: function(source, filePath, options, trustAllHosts) {
         var q = $q.defer();
         var ft = new FileTransfer();
         var uri = (options && options.encodeURI === false) ? source : encodeURI(source);
 
         if (options && options.timeout !== undefined && options.timeout !== null) {
-          $timeout(function () {
+          $timeout(function() {
             ft.abort();
           }, options.timeout);
           options.timeout = null;
         }
 
-        ft.onprogress = function (progress) {
+        ft.onprogress = function(progress) {
           q.notify(progress);
         };
 
-        q.promise.abort = function () {
+        q.promise.abort = function() {
           ft.abort();
         };
 
@@ -2576,23 +2532,23 @@ angular.module('ngCordova.plugins.fileTransfer', [])
         return q.promise;
       },
 
-      upload: function (server, filePath, options, trustAllHosts) {
+      upload: function(server, filePath, options, trustAllHosts) {
         var q = $q.defer();
         var ft = new FileTransfer();
         var uri = (options && options.encodeURI === false) ? server : encodeURI(server);
 
         if (options && options.timeout !== undefined && options.timeout !== null) {
-          $timeout(function () {
+          $timeout(function() {
             ft.abort();
           }, options.timeout);
           options.timeout = null;
         }
 
-        ft.onprogress = function (progress) {
+        ft.onprogress = function(progress) {
           q.notify(progress);
         };
 
-        q.promise.abort = function () {
+        q.promise.abort = function() {
           ft.abort();
         };
 
@@ -2607,42 +2563,42 @@ angular.module('ngCordova.plugins.fileTransfer', [])
 
 angular.module('ngCordova.plugins.flashlight', [])
 
-  .factory('$cordovaFlashlight', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaFlashlight', ['$q', '$window', function($q, $window) {
 
     return {
-      available: function () {
+      available: function() {
         var q = $q.defer();
-        $window.plugins.flashlight.available(function (isAvailable) {
+        $window.plugins.flashlight.available(function(isAvailable) {
           q.resolve(isAvailable);
         });
         return q.promise;
       },
 
-      switchOn: function () {
+      switchOn: function() {
         var q = $q.defer();
-        $window.plugins.flashlight.switchOn(function (response) {
+        $window.plugins.flashlight.switchOn(function(response) {
           q.resolve(response);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      switchOff: function () {
+      switchOff: function() {
         var q = $q.defer();
-        $window.plugins.flashlight.switchOff(function (response) {
+        $window.plugins.flashlight.switchOff(function(response) {
           q.resolve(response);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      toggle: function () {
+      toggle: function() {
         var q = $q.defer();
-        $window.plugins.flashlight.toggle(function (response) {
+        $window.plugins.flashlight.toggle(function(response) {
           q.resolve(response);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         });
         return q.promise;
@@ -2654,99 +2610,99 @@ angular.module('ngCordova.plugins.flashlight', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-flurry
 
 angular.module('ngCordova.plugins.flurryAds', [])
-  .factory('$cordovaFlurryAds', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaFlurryAds', ['$q', '$window', function($q, $window) {
 
     return {
-      setOptions: function (options) {
+      setOptions: function(options) {
         var d = $q.defer();
 
-        $window.FlurryAds.setOptions(options, function () {
+        $window.FlurryAds.setOptions(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function (options) {
+      createBanner: function(options) {
         var d = $q.defer();
 
-        $window.FlurryAds.createBanner(options, function () {
+        $window.FlurryAds.createBanner(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function () {
+      removeBanner: function() {
         var d = $q.defer();
 
-        $window.FlurryAds.removeBanner(function () {
+        $window.FlurryAds.removeBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function (position) {
+      showBanner: function(position) {
         var d = $q.defer();
 
-        $window.FlurryAds.showBanner(position, function () {
+        $window.FlurryAds.showBanner(position, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function (x, y) {
+      showBannerAtXY: function(x, y) {
         var d = $q.defer();
 
-        $window.FlurryAds.showBannerAtXY(x, y, function () {
+        $window.FlurryAds.showBannerAtXY(x, y, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function () {
+      hideBanner: function() {
         var d = $q.defer();
 
-        $window.FlurryAds.hideBanner(function () {
+        $window.FlurryAds.hideBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function (options) {
+      prepareInterstitial: function(options) {
         var d = $q.defer();
 
-        $window.FlurryAds.prepareInterstitial(options, function () {
+        $window.FlurryAds.prepareInterstitial(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function () {
+      showInterstitial: function() {
         var d = $q.defer();
 
-        $window.FlurryAds.showInterstitial(function () {
+        $window.FlurryAds.showInterstitial(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
@@ -2760,64 +2716,64 @@ angular.module('ngCordova.plugins.flurryAds', [])
 
 angular.module('ngCordova.plugins.ga', [])
 
-  .factory('$cordovaGA', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaGA', ['$q', '$window', function($q, $window) {
 
     return {
-      init: function (id, mingap) {
+      init: function(id, mingap) {
         var q = $q.defer();
         mingap = (mingap >= 0) ? mingap : 10;
-        $window.plugins.gaPlugin.init(function (result) {
+        $window.plugins.gaPlugin.init(function(result) {
             q.resolve(result);
           },
-          function (error) {
+          function(error) {
             q.reject(error);
           },
           id, mingap);
         return q.promise;
       },
 
-      trackEvent: function (success, fail, category, eventAction, eventLabel, eventValue) {
+      trackEvent: function(success, fail, category, eventAction, eventLabel, eventValue) {
         var q = $q.defer();
-        $window.plugins.gaPlugin.trackEvent(function (result) {
+        $window.plugins.gaPlugin.trackEvent(function(result) {
             q.resolve(result);
           },
-          function (error) {
+          function(error) {
             q.reject(error);
           },
           category, eventAction, eventLabel, eventValue);
         return q.promise;
       },
 
-      trackPage: function (success, fail, pageURL) {
+      trackPage: function(success, fail, pageURL) {
         var q = $q.defer();
-        $window.plugins.gaPlugin.trackPage(function (result) {
+        $window.plugins.gaPlugin.trackPage(function(result) {
             q.resolve(result);
           },
-          function (error) {
+          function(error) {
             q.reject(error);
           },
           pageURL);
         return q.promise;
       },
 
-      setVariable: function (success, fail, index, value) {
+      setVariable: function(success, fail, index, value) {
         var q = $q.defer();
-        $window.plugins.gaPlugin.setVariable(function (result) {
+        $window.plugins.gaPlugin.setVariable(function(result) {
             q.resolve(result);
           },
-          function (error) {
+          function(error) {
             q.reject(error);
           },
           index, value);
         return q.promise;
       },
 
-      exit: function (success, fail) {
+      exit: function(success, fail) {
         var q = $q.defer();
-        $window.plugins.gaPlugin.exit(function (result) {
+        $window.plugins.gaPlugin.exit(function(result) {
             q.resolve(result);
           },
-          function (error) {
+          function(error) {
             q.reject(error);
           });
         return q.promise;
@@ -2830,35 +2786,35 @@ angular.module('ngCordova.plugins.ga', [])
 
 angular.module('ngCordova.plugins.geolocation', [])
 
-  .factory('$cordovaGeolocation', ['$q', function ($q) {
+  .factory('$cordovaGeolocation', ['$q', function($q) {
 
     return {
-      getCurrentPosition: function (options) {
+      getCurrentPosition: function(options) {
         var q = $q.defer();
 
-        navigator.geolocation.getCurrentPosition(function (result) {
+        navigator.geolocation.getCurrentPosition(function(result) {
           q.resolve(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
         return q.promise;
       },
 
-      watchPosition: function (options) {
+      watchPosition: function(options) {
         var q = $q.defer();
 
-        var watchID = navigator.geolocation.watchPosition(function (result) {
+        var watchID = navigator.geolocation.watchPosition(function(result) {
           q.notify(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
-        q.promise.cancel = function () {
+        q.promise.cancel = function() {
           navigator.geolocation.clearWatch(watchID);
         };
 
-        q.promise.clearWatch = function (id) {
+        q.promise.clearWatch = function(id) {
           navigator.geolocation.clearWatch(id || watchID);
         };
 
@@ -2867,7 +2823,7 @@ angular.module('ngCordova.plugins.geolocation', [])
         return q.promise;
       },
 
-      clearWatch: function (watchID) {
+      clearWatch: function(watchID) {
         return navigator.geolocation.clearWatch(watchID);
       }
     };
@@ -2878,98 +2834,98 @@ angular.module('ngCordova.plugins.geolocation', [])
 
 angular.module('ngCordova.plugins.globalization', [])
 
-  .factory('$cordovaGlobalization', ['$q', function ($q) {
+  .factory('$cordovaGlobalization', ['$q', function($q) {
 
     return {
-      getPreferredLanguage: function () {
+      getPreferredLanguage: function() {
         var q = $q.defer();
 
-        navigator.globalization.getPreferredLanguage(function (result) {
+        navigator.globalization.getPreferredLanguage(function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
-      getLocaleName: function () {
+      getLocaleName: function() {
         var q = $q.defer();
 
-        navigator.globalization.getLocaleName(function (result) {
+        navigator.globalization.getLocaleName(function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
-      getFirstDayOfWeek: function () {
+      getFirstDayOfWeek: function() {
         var q = $q.defer();
 
-        navigator.globalization.getFirstDayOfWeek(function (result) {
+        navigator.globalization.getFirstDayOfWeek(function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
       // "date" parameter must be a JavaScript Date Object.
-      dateToString: function (date, options) {
+      dateToString: function(date, options) {
         var q = $q.defer();
 
         navigator.globalization.dateToString(
           date,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      stringToDate: function (dateString, options) {
+      stringToDate: function(dateString, options) {
         var q = $q.defer();
 
         navigator.globalization.stringToDate(
           dateString,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getDatePattern: function (options) {
+      getDatePattern: function(options) {
         var q = $q.defer();
 
         navigator.globalization.getDatePattern(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getDateNames: function (options) {
+      getDateNames: function(options) {
         var q = $q.defer();
 
         navigator.globalization.getDateNames(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
@@ -2977,73 +2933,73 @@ angular.module('ngCordova.plugins.globalization', [])
       },
 
       // "date" parameter must be a JavaScript Date Object.
-      isDayLightSavingsTime: function (date) {
+      isDayLightSavingsTime: function(date) {
         var q = $q.defer();
 
         navigator.globalization.isDayLightSavingsTime(
           date,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
-      numberToString: function (number, options) {
+      numberToString: function(number, options) {
         var q = $q.defer();
 
         navigator.globalization.numberToString(
           number,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      stringToNumber: function (numberString, options) {
+      stringToNumber: function(numberString, options) {
         var q = $q.defer();
 
         navigator.globalization.stringToNumber(
           numberString,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getNumberPattern: function (options) {
+      getNumberPattern: function(options) {
         var q = $q.defer();
 
         navigator.globalization.getNumberPattern(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getCurrencyPattern: function (currencyCode) {
+      getCurrencyPattern: function(currencyCode) {
         var q = $q.defer();
 
         navigator.globalization.getCurrencyPattern(
           currencyCode,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
@@ -3056,99 +3012,99 @@ angular.module('ngCordova.plugins.globalization', [])
 // link     :     https://github.com/floatinghotpot/cordova-admob-pro
 
 angular.module('ngCordova.plugins.googleAds', [])
-  .factory('$cordovaGoogleAds', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaGoogleAds', ['$q', '$window', function($q, $window) {
 
     return {
-      setOptions: function (options) {
+      setOptions: function(options) {
         var d = $q.defer();
 
-        $window.AdMob.setOptions(options, function () {
+        $window.AdMob.setOptions(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function (options) {
+      createBanner: function(options) {
         var d = $q.defer();
 
-        $window.AdMob.createBanner(options, function () {
+        $window.AdMob.createBanner(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function () {
+      removeBanner: function() {
         var d = $q.defer();
 
-        $window.AdMob.removeBanner(function () {
+        $window.AdMob.removeBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function (position) {
+      showBanner: function(position) {
         var d = $q.defer();
 
-        $window.AdMob.showBanner(position, function () {
+        $window.AdMob.showBanner(position, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function (x, y) {
+      showBannerAtXY: function(x, y) {
         var d = $q.defer();
 
-        $window.AdMob.showBannerAtXY(x, y, function () {
+        $window.AdMob.showBannerAtXY(x, y, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function () {
+      hideBanner: function() {
         var d = $q.defer();
 
-        $window.AdMob.hideBanner(function () {
+        $window.AdMob.hideBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function (options) {
+      prepareInterstitial: function(options) {
         var d = $q.defer();
 
-        $window.AdMob.prepareInterstitial(options, function () {
+        $window.AdMob.prepareInterstitial(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function () {
+      showInterstitial: function() {
         var d = $q.defer();
 
-        $window.AdMob.showInterstitial(function () {
+        $window.AdMob.showInterstitial(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
@@ -3162,123 +3118,123 @@ angular.module('ngCordova.plugins.googleAds', [])
 
 angular.module('ngCordova.plugins.googleAnalytics', [])
 
-  .factory('$cordovaGoogleAnalytics', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaGoogleAnalytics', ['$q', '$window', function($q, $window) {
 
     return {
-      startTrackerWithId: function (id) {
+      startTrackerWithId: function(id) {
         var d = $q.defer();
 
-        $window.analytics.startTrackerWithId(id, function (response) {
+        $window.analytics.startTrackerWithId(id, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      setUserId: function (id) {
+      setUserId: function(id) {
         var d = $q.defer();
 
-        $window.analytics.setUserId(id, function (response) {
+        $window.analytics.setUserId(id, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      debugMode: function () {
+      debugMode: function() {
         var d = $q.defer();
 
-        $window.analytics.debugMode(function (response) {
+        $window.analytics.debugMode(function(response) {
           d.resolve(response);
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      trackView: function (screenName) {
+      trackView: function(screenName) {
         var d = $q.defer();
 
-        $window.analytics.trackView(screenName, function (response) {
+        $window.analytics.trackView(screenName, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      addCustomDimension: function (key, value) {
+      addCustomDimension: function(key, value) {
         var d = $q.defer();
 
-        $window.analytics.addCustomDimension(key, value, function () {
+        $window.analytics.addCustomDimension(key, value, function() {
           d.resolve();
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      trackEvent: function (category, action, label, value) {
+      trackEvent: function(category, action, label, value) {
         var d = $q.defer();
 
-        $window.analytics.trackEvent(category, action, label, value, function (response) {
+        $window.analytics.trackEvent(category, action, label, value, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      trackException: function (description, fatal) {
+      trackException: function(description, fatal) {
         var d = $q.defer();
 
-        $window.analytics.trackException(description, fatal, function (response) {
+        $window.analytics.trackException(description, fatal, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      trackTiming: function (category, milliseconds, variable, label) {
+      trackTiming: function(category, milliseconds, variable, label) {
         var d = $q.defer();
 
-        $window.analytics.trackTiming(category, milliseconds, variable, label, function (response) {
+        $window.analytics.trackTiming(category, milliseconds, variable, label, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      addTransaction: function (transactionId, affiliation, revenue, tax, shipping, currencyCode) {
+      addTransaction: function(transactionId, affiliation, revenue, tax, shipping, currencyCode) {
         var d = $q.defer();
 
-        $window.analytics.addTransaction(transactionId, affiliation, revenue, tax, shipping, currencyCode, function (response) {
+        $window.analytics.addTransaction(transactionId, affiliation, revenue, tax, shipping, currencyCode, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
         return d.promise;
       },
 
-      addTransactionItem: function (transactionId, name, sku, category, price, quantity, currencyCode) {
+      addTransactionItem: function(transactionId, name, sku, category, price, quantity, currencyCode) {
         var d = $q.defer();
 
-        $window.analytics.addTransactionItem(transactionId, name, sku, category, price, quantity, currencyCode, function (response) {
+        $window.analytics.addTransactionItem(transactionId, name, sku, category, price, quantity, currencyCode, function(response) {
           d.resolve(response);
-        }, function (error) {
+        }, function(error) {
           d.reject(error);
         });
 
@@ -3295,18 +3251,17 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
 
 angular.module('ngCordova.plugins.googleMap', [])
 
-  .factory('$cordovaGoogleMap', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaGoogleMap', ['$q', '$window', function($q, $window) {
 
     var map = null;
 
     return {
-      getMap: function (options) {
+      getMap: function(options) {
         var q = $q.defer();
 
         if (!$window.plugin.google.maps) {
           q.reject(null);
-        }
-        else {
+        } else {
           var div = document.getElementById("map_canvas");
           map = $window.plugin.google.maps.Map.getMap(options);
           map.setDiv(div);
@@ -3315,28 +3270,27 @@ angular.module('ngCordova.plugins.googleMap', [])
         return q.promise;
       },
 
-
-      isMapLoaded: function () { // check if an instance of the map exists
+      isMapLoaded: function() { // check if an instance of the map exists
         return !!map;
       },
-      addMarker: function (markerOptions) { // add a marker to the map with given markerOptions
+      addMarker: function(markerOptions) { // add a marker to the map with given markerOptions
         var q = $q.defer();
-        map.addMarker(markerOptions, function (marker) {
+        map.addMarker(markerOptions, function(marker) {
           q.resolve(marker);
         });
 
         return q.promise;
       },
-      getMapTypeIds: function () {
+      getMapTypeIds: function() {
         return $window.plugin.google.maps.mapTypeId;
       },
-      setVisible: function (isVisible) {
+      setVisible: function(isVisible) {
         var q = $q.defer();
         map.setVisible(isVisible);
         return q.promise;
       },
       // I don't know how to deallocate te map and the google map plugin.
-      cleanup: function () {
+      cleanup: function() {
         map = null;
         // delete map;
       }
@@ -3348,189 +3302,190 @@ angular.module('ngCordova.plugins.googleMap', [])
 
 angular.module('ngCordova.plugins.googlePlayGame', [])
 
-	.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
+	.factory('$cordovaGooglePlayGame', ['$q', function($q) {
 
-		return {
+  return {
 
-			auth: function() {
-				var q = $q.defer();
+    auth: function() {
+      var q = $q.defer();
 
-				googleplaygame.auth(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.auth(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			signout: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    signout: function() {
+      var q = $q.defer();
 
-				googleplaygame.signout(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.signout(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			isSignedIn: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    isSignedIn: function() {
+      var q = $q.defer();
 
-				googleplaygame.isSignedIn(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.isSignedIn(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showPlayer: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showPlayer: function() {
+      var q = $q.defer();
 
-				googleplaygame.showPlayer(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showPlayer(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			submitScore: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    submitScore: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.submitScore(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.submitScore(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showAllLeaderboards: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showAllLeaderboards: function() {
+      var q = $q.defer();
 
-				googleplaygame.showAllLeaderboards(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showAllLeaderboards(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showLeaderboard: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showLeaderboard: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.showLeaderboard(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showLeaderboard(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			unlockAchievement: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    unlockAchievement: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.unlockAchievement(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.unlockAchievement(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			incrementAchievement: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    incrementAchievement: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.incrementAchievement(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.incrementAchievement(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showAchievements: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showAchievements: function() {
+      var q = $q.defer();
 
-				googleplaygame.showAchievements(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showAchievements(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			}
-		};
+      return q.promise;
+    }
+  };
 
 	}]);
+
 // install  :     cordova plugin add nl.x-services.plugins.googleplus
 // link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
   angular.module('ngCordova.plugins.googleplus', [])
 
-  .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaGooglePlus', ['$q', '$window', function($q, $window) {
 
     return {
-      login: function(iosKey){
-          if(iosKey === undefined){
-            iosKey = {};
-          }
-          var q = $q.defer();
-          $window.plugins.googleplus.login(
+      login: function(iosKey) {
+        if (iosKey === undefined) {
+          iosKey = {};
+        }
+        var q = $q.defer();
+        $window.plugins.googleplus.login(
           {
             'iOSApiKey': iosKey
             // there is no API key for Android; you app is wired to the Google+ API by 
             //listing your package name in the google dev console and signing your apk
           },
-          function (response) {
+          function(response) {
             q.resolve(response)
           },
-          function (error) {
-           q.reject(error)
+          function(error) {
+            q.reject(error)
           }
         );
 
         return q.promise;
       },
 
-      silentLogin: function(iosKey){
+      silentLogin: function(iosKey) {
 
-        if(iosKey === undefined){
-            iosKey = {};
-          }
-          var q = $q.defer();
-          $window.plugins.googleplus.trySilentLogin(
+        if (iosKey === undefined) {
+          iosKey = {};
+        }
+        var q = $q.defer();
+        $window.plugins.googleplus.trySilentLogin(
           {
             'iOSApiKey': iosKey
             // there is no API key for Android; you app is wired to the Google+ API by 
             //listing your package name in the google dev console and signing your apk
           },
-          function (response) {
+          function(response) {
             q.resolve(response)
           },
-          function (error) {
-           q.reject(error)
+          function(error) {
+            q.reject(error)
           }
         );
 
         return q.promise;
       },
 
-      logout: function(){
+      logout: function() {
         var q = $q.defer();
         $window.plugins.googleplus.logout(
-          function (response) {
+          function(response) {
             q.resolve(response);
           }
         );
       },
 
-      disconnect: function(){
+      disconnect: function() {
         var q = $q.defer();
         $window.plugins.googleplus.disconnect(
-          function (response) {
+          function(response) {
             q.resolve(response);
           }
         );
@@ -3544,15 +3499,15 @@ angular.module('ngCordova.plugins.googlePlayGame', [])
 
 angular.module('ngCordova.plugins.healthKit', [])
 
-  .factory('$cordovaHealthKit', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaHealthKit', ['$q', '$window', function($q, $window) {
 
     return {
-      isAvailable: function () {
+      isAvailable: function() {
         var q = $q.defer();
 
-        $window.plugins.healthkit.available(function (success) {
+        $window.plugins.healthkit.available(function(success) {
           q.resolve(success);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -3564,16 +3519,16 @@ angular.module('ngCordova.plugins.healthKit', [])
        * Reference for possible types:
        * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
        */
-      checkAuthStatus: function (type) {
+      checkAuthStatus: function(type) {
         var q = $q.defer();
 
         type = type || 'HKQuantityTypeIdentifierHeight';
 
         $window.plugins.healthkit.checkAuthStatus({
           'type': type
-        }, function (success) {
+        }, function(success) {
           q.resolve(success);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -3585,7 +3540,7 @@ angular.module('ngCordova.plugins.healthKit', [])
        * reference for possible read and write types:
        * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
        */
-      requestAuthorization: function (readTypes, writeTypes) {
+      requestAuthorization: function(readTypes, writeTypes) {
         var q = $q.defer();
 
         readTypes = readTypes || [
@@ -3598,22 +3553,22 @@ angular.module('ngCordova.plugins.healthKit', [])
         $window.plugins.healthkit.requestAuthorization({
           'readTypes': readTypes,
           'writeTypes': writeTypes
-        }, function (success) {
+        }, function(success) {
           q.resolve(success);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      readDateOfBirth: function () {
+      readDateOfBirth: function() {
         var q = $q.defer();
         $window.plugins.healthkit.readDateOfBirth(
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -3621,13 +3576,13 @@ angular.module('ngCordova.plugins.healthKit', [])
         return q.promise;
       },
 
-      readGender: function () {
+      readGender: function() {
         var q = $q.defer();
         $window.plugins.healthkit.readGender(
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -3635,63 +3590,63 @@ angular.module('ngCordova.plugins.healthKit', [])
         return q.promise;
       },
 
-      saveWeight: function (value, units, date) {
+      saveWeight: function(value, units, date) {
         var q = $q.defer();
         $window.plugins.healthkit.saveWeight({
             'unit': units || 'lb',
             'amount': value,
             'date': date || new Date()
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
         return q.promise;
       },
 
-      readWeight: function (units) {
+      readWeight: function(units) {
         var q = $q.defer();
         $window.plugins.healthkit.readWeight({
             'unit': units || 'lb'
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
 
         return q.promise;
       },
-      saveHeight: function (value, units, date) {
+      saveHeight: function(value, units, date) {
         var q = $q.defer();
         $window.plugins.healthkit.saveHeight({
             'unit': units || 'in',
             'amount': value,
             'date': date || new Date()
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
         return q.promise;
       },
-      readHeight: function (units) {
+      readHeight: function(units) {
         var q = $q.defer();
         $window.plugins.healthkit.readHeight({
             'unit': units || 'in'
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -3699,13 +3654,13 @@ angular.module('ngCordova.plugins.healthKit', [])
         return q.promise;
       },
 
-      findWorkouts: function () {
+      findWorkouts: function() {
         var q = $q.defer();
         $window.plugins.healthkit.findWorkouts({},
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -3729,13 +3684,13 @@ angular.module('ngCordova.plugins.healthKit', [])
          // 'extraData': "", // Not sure how necessary this is
        },
        */
-      saveWorkout: function (workout) {
+      saveWorkout: function(workout) {
         var q = $q.defer();
         $window.plugins.healthkit.saveWorkout(workout,
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -3752,13 +3707,13 @@ angular.module('ngCordova.plugins.healthKit', [])
 									'unit' : 'cm'
 							},
        */
-      querySampleType: function (sampleQuery) {
+      querySampleType: function(sampleQuery) {
         var q = $q.defer();
         $window.plugins.healthkit.querySampleType(sampleQuery,
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -3771,51 +3726,51 @@ angular.module('ngCordova.plugins.healthKit', [])
 // link     :     https://github.com/floatinghotpot/cordova-httpd
 
 angular.module('ngCordova.plugins.httpd', [])
-  .factory('$cordovaHttpd', ['$q', function ($q) {
+  .factory('$cordovaHttpd', ['$q', function($q) {
 
     return {
-      startServer: function (options) {
+      startServer: function(options) {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.startServer(options, function () {
+        cordova.plugins.CorHttpd.startServer(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      stopServer: function () {
+      stopServer: function() {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.stopServer(function () {
+        cordova.plugins.CorHttpd.stopServer(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      getURL: function () {
+      getURL: function() {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.getURL(function (url) {
+        cordova.plugins.CorHttpd.getURL(function(url) {
           d.resolve(url);
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      getLocalPath: function () {
+      getLocalPath: function() {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.getLocalPath(function (path) {
+        cordova.plugins.CorHttpd.getLocalPath(function(path) {
           d.resolve(path);
-        }, function () {
+        }, function() {
           d.reject();
         });
 
@@ -3829,99 +3784,99 @@ angular.module('ngCordova.plugins.httpd', [])
 // link     :     https://github.com/floatinghotpot/cordova-plugin-iad
 
 angular.module('ngCordova.plugins.iAd', [])
-  .factory('$cordovaiAd', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaiAd', ['$q', '$window', function($q, $window) {
 
     return {
-      setOptions: function (options) {
+      setOptions: function(options) {
         var d = $q.defer();
 
-        $window.iAd.setOptions(options, function () {
+        $window.iAd.setOptions(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function (options) {
+      createBanner: function(options) {
         var d = $q.defer();
 
-        $window.iAd.createBanner(options, function () {
+        $window.iAd.createBanner(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function () {
+      removeBanner: function() {
         var d = $q.defer();
 
-        $window.iAd.removeBanner(function () {
+        $window.iAd.removeBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function (position) {
+      showBanner: function(position) {
         var d = $q.defer();
 
-        $window.iAd.showBanner(position, function () {
+        $window.iAd.showBanner(position, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function (x, y) {
+      showBannerAtXY: function(x, y) {
         var d = $q.defer();
 
-        $window.iAd.showBannerAtXY(x, y, function () {
+        $window.iAd.showBannerAtXY(x, y, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function () {
+      hideBanner: function() {
         var d = $q.defer();
 
-        $window.iAd.hideBanner(function () {
+        $window.iAd.hideBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function (options) {
+      prepareInterstitial: function(options) {
         var d = $q.defer();
 
-        $window.iAd.prepareInterstitial(options, function () {
+        $window.iAd.prepareInterstitial(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function () {
+      showInterstitial: function() {
         var d = $q.defer();
 
-        $window.iAd.showInterstitial(function () {
+        $window.iAd.showInterstitial(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
@@ -3935,15 +3890,15 @@ angular.module('ngCordova.plugins.iAd', [])
 
 angular.module('ngCordova.plugins.imagePicker', [])
 
-  .factory('$cordovaImagePicker', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaImagePicker', ['$q', '$window', function($q, $window) {
 
     return {
-      getPictures: function (options) {
+      getPictures: function(options) {
         var q = $q.defer();
 
-        $window.imagePicker.getPictures(function (results) {
+        $window.imagePicker.getPictures(function(results) {
           q.resolve(results);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         }, options);
 
@@ -4145,6 +4100,10 @@ angular.module('ngCordova.plugins.keyboard', [])
         return cordova.plugins.Keyboard.close();
       },
 
+      show: function () {
+        return cordova.plugins.Keyboard.show();
+      },
+
       disableScroll: function (bool) {
         return cordova.plugins.Keyboard.disableScroll(bool);
       },
@@ -4209,85 +4168,185 @@ angular.module('ngCordova.plugins.keychain', [])
 angular.module('ngCordova.plugins.localNotification', [])
 
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
-    document.addEventListener("deviceready", function () {
-      if ($window.plugin && $window.plugin.notification) {
-        $window.plugin.notification.local.on("cancel", function (id, state, json) {
-          var notification = {
-            id: id,
-            state: state,
-            json: json
-          };
+    document.addEventListener('deviceready', function () {
+      if ($window.cordova &&
+        $window.cordova.plugins &&
+        $window.cordova.plugins.notification &&
+        $window.cordova.plugins.notification.local) {
+        // ----- "Scheduling" events
+
+        // A local notification was scheduled
+        $window.cordova.plugins.notification.local.on('schedule', function (notification, state) {
           $timeout(function () {
-            $rootScope.$broadcast("$cordovaLocalNotification:canceled", notification);
+            $rootScope.$broadcast('$cordovaLocalNotification:schedule', notification, state);
           });
         });
 
-        $window.plugin.notification.local.on("click", function (id, state, json) {
-          var notification = {
-            id: id,
-            state: state,
-            json: json
-          };
+        // A local notification was triggered
+        $window.cordova.plugins.notification.local.on('trigger', function (notification, state) {
           $timeout(function () {
-            $rootScope.$broadcast("$cordovaLocalNotification:clicked", notification);
+            $rootScope.$broadcast('$cordovaLocalNotification:trigger', notification, state);
           });
         });
 
-        $window.plugin.notification.local.on("trigger", function (id, state, json) {
-          var notification = {
-            id: id,
-            state: state,
-            json: json
-          };
+        // ----- "Update" events
+
+        // A local notification was updated
+        $window.cordova.plugins.notification.local.on('update', function (notification, state) {
           $timeout(function () {
-            $rootScope.$broadcast("$cordovaLocalNotification:triggered", notification);
+            $rootScope.$broadcast('$cordovaLocalNotification:update', notification, state);
           });
         });
 
-        $window.plugin.notification.local.on("add", function (id, state, json) {
-          var notification = {
-            id: id,
-            state: state,
-            json: json
-          };
+        // ----- "Clear" events
+
+        // A local notification was cleared from the notification center
+        $window.cordova.plugins.notification.local.on('clear', function (notification, state) {
           $timeout(function () {
-            $rootScope.$broadcast("$cordovaLocalNotification:added", notification);
+            $rootScope.$broadcast('$cordovaLocalNotification:clear', notification, state);
+          });
+        });
+
+        // All local notifications were cleared from the notification center
+        $window.cordova.plugins.notification.local.on('clearall', function (state) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaLocalNotification:clearall', state);
+          });
+        });
+
+        // ----- "Cancel" events
+
+        // A local notification was cancelled
+        $window.cordova.plugins.notification.local.on('cancel', function (notification, state) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaLocalNotification:cancel', notification, state);
+          });
+        });
+
+        // All local notifications were cancelled
+        $window.cordova.plugins.notification.local.on('cancelall', function (state) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaLocalNotification:cancelall', state);
+          });
+        });
+
+        // ----- Other events
+
+        // A local notification was clicked
+        $window.cordova.plugins.notification.local.on('click', function (notification, state) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaLocalNotification:click', notification, state);
           });
         });
       }
     }, false);
     return {
-      add: function (options, scope) {
+      schedule: function (options, scope) {
         var q = $q.defer();
         scope = scope || null;
-        $window.plugin.notification.local.add(options, function (result) {
+
+        $window.cordova.plugins.notification.local.schedule(options, function (result) {
           q.resolve(result);
         }, scope);
+
         return q.promise;
       },
 
-      cancel: function (id, scope) {
+      add: function (options, scope) {
+        console.warn('Deprecated: use "schedule" instead.');
+
         var q = $q.defer();
         scope = scope || null;
-        $window.plugin.notification.local.cancel(id, function (result) {
+
+        $window.cordova.plugins.notification.local.schedule(options, function (result) {
           q.resolve(result);
         }, scope);
+
+        return q.promise;
+      },
+
+      update: function (options, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.update(options, function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      clear: function (ids, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.clear(ids, function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      clearAll: function (scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.clearAll(function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      cancel: function (ids, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.cancel(ids, function (result) {
+          q.resolve(result);
+        }, scope);
+
         return q.promise;
       },
 
       cancelAll: function (scope) {
         var q = $q.defer();
         scope = scope || null;
-        $window.plugin.notification.local.cancelAll(function (result) {
+
+        $window.cordova.plugins.notification.local.cancelAll(function (result) {
           q.resolve(result);
         }, scope);
+
+        return q.promise;
+      },
+
+      isPresent: function (id, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.isPresent(id, function (result) {
+          q.resolve(result);
+        }, scope);
+
         return q.promise;
       },
 
       isScheduled: function (id, scope) {
         var q = $q.defer();
         scope = scope || null;
-        $window.plugin.notification.local.isScheduled(id, function (result) {
+
+        $window.cordova.plugins.notification.local.isScheduled(id, function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      isTriggered: function (id, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.isTriggered(id, function (result) {
           q.resolve(result);
         }, scope);
 
@@ -4296,61 +4355,159 @@ angular.module('ngCordova.plugins.localNotification', [])
 
       hasPermission: function (scope) {
         var q = $q.defer();
-        $window.plugin.notification.local.hasPermission(function (result) {
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.hasPermission(function (result) {
           result ? q.resolve(result) : q.reject(result);
         }, scope);
+
         return q.promise;
       },
 
-      promptForPermission: function () {
+      registerPermission: function (scope) {
         var q = $q.defer();
-        $window.plugin.notification.local.promptForPermission(function (result) {
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.registerPermission(function (result) {
           result ? q.resolve(result) : q.reject(result);
-        });
+        }, scope);
+
         return q.promise;
       },
 
-      registerPermission: function () {
+      promptForPermission: function (scope) {
+        console.warn('Deprecated: use "registerPermission" instead.');
+
         var q = $q.defer();
-        $window.plugin.notification.local.registerPermission(function (result) {
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.registerPermission(function (result) {
           result ? q.resolve(result) : q.reject(result);
-        });
+        }, scope);
+
+        return q.promise;
+      },
+
+      getAllIds: function (scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getAllIds(function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      getIds: function (scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getIds(function (result) {
+          q.resolve(result);
+        }, scope);
+
         return q.promise;
       },
 
       getScheduledIds: function (scope) {
         var q = $q.defer();
-        $window.plugin.notification.local.getScheduledIds(function (result) {
-          q.resolve(result);
-        }, scope);
-        return q.promise;
-      },
+        scope = scope || null;
 
-      isTriggered: function (id, scope) {
-        var q = $q.defer();
-        $window.plugin.notification.local.isTriggered(id, function (result) {
+        $window.cordova.plugins.notification.local.getScheduledIds(function (result) {
           q.resolve(result);
         }, scope);
+
         return q.promise;
       },
 
       getTriggeredIds: function (scope) {
         var q = $q.defer();
-        $window.plugin.notification.local.getTriggeredIds(function (result) {
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getTriggeredIds(function (result) {
           q.resolve(result);
         }, scope);
+
+        return q.promise;
+      },
+
+      get: function (ids, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.get(ids, function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      getAll: function (scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getAll(function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      getScheduled: function (ids, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getScheduled(ids, function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      getAllScheduled: function (scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getAllScheduled(function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      getTriggered: function (ids, scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getTriggered(ids, function (result) {
+          q.resolve(result);
+        }, scope);
+
+        return q.promise;
+      },
+
+      getAllTriggered: function (scope) {
+        var q = $q.defer();
+        scope = scope || null;
+
+        $window.cordova.plugins.notification.local.getAllTriggered(function (result) {
+          q.resolve(result);
+        }, scope);
+
         return q.promise;
       },
 
       getDefaults: function () {
-        return $window.plugin.notification.local.getDefaults();
+        return $window.cordova.plugins.notification.local.getDefaults();
       },
 
       setDefaults: function (Object) {
-        $window.plugin.notification.local.setDefaults(Object);
+        $window.cordova.plugins.notification.local.setDefaults(Object);
       }
     };
   }]);
+
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mmedia.git
 // link     :     https://github.com/floatinghotpot/cordova-plugin-mmedia
@@ -4995,925 +5152,938 @@ angular.module("ngCordova.plugins.oauth", ["ngCordova.plugins.oauthUtility"])
 
     return {
 
-        /*
-        * Sign into the ADFS service (ADFS 3.0 onwards)
-        *
-        * @param    string clientId (client registered in ADFS, with redirect_uri configured to: http://localhost/callback)
-        * @param	 string adfsServer (url of the ADFS Server)
-        * @param	 string relyingPartyId (url of the Relying Party (resource relying on ADFS for authentication) configured in ADFS)
-        * @return   promise
-        */
-        adfs: function(clientId, adfsServer, relyingPartyId) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open(adfsServer + '/adfs/oauth2/authorize?response_type=code&client_id=' + clientId +'&redirect_uri=http://localhost/callback&resource=' + relyingPartyId, '_blank', 'location=no');
+      /*
+       * Sign into the ADFS service (ADFS 3.0 onwards)
+       *
+       * @param    string clientId (client registered in ADFS, with redirect_uri configured to: http://localhost/callback)
+       * @param	 string adfsServer (url of the ADFS Server)
+       * @param	 string relyingPartyId (url of the Relying Party (resource relying on ADFS for authentication) configured in ADFS)
+       * @return   promise
+       */
+      adfs: function (clientId, adfsServer, relyingPartyId) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open(adfsServer + '/adfs/oauth2/authorize?response_type=code&client_id=' + clientId + '&redirect_uri=http://localhost/callback&resource=' + relyingPartyId, '_blank', 'location=no');
 
-                    browserRef.addEventListener("loadstart", function(event) {
-                        if((event.url).indexOf('http://localhost/callback') === 0) {
-                            var requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: adfsServer + "/adfs/oauth2/token", data: "client_id=" + clientId + "&code=" + requestToken + "&redirect_uri=http://localhost/callback&grant_type=authorization_code"  })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            })
-                            .finally(function() {
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            });
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
+            browserRef.addEventListener("loadstart", function (event) {
+              if ((event.url).indexOf('http://localhost/callback') === 0) {
+                var requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http({method: "post", url: adfsServer + "/adfs/oauth2/token", data: "client_id=" + clientId + "&code=" + requestToken + "&redirect_uri=http://localhost/callback&grant_type=authorization_code"})
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Dropbox service
+       *
+       * @param    string appKey
+       * @return   promise
+       */
+      dropbox: function (appKey) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open("https://www.dropbox.com/1/oauth2/authorize?client_id=" + appKey + "&redirect_uri=http://localhost/callback" + "&response_type=token", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+            browserRef.addEventListener("loadstart", function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
                 }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
-
-        /*
-        * Sign into the Dropbox service
-        *
-        * @param    string appKey
-        * @return   promise
-        */
-        dropbox: function(appKey) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open("https://www.dropbox.com/1/oauth2/authorize?client_id=" + appKey + "&redirect_uri=http://localhost/callback" + "&response_type=token", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
-                    browserRef.addEventListener("loadstart", function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            var callbackResponse = (event.url).split("#")[1];
-                            var responseParameters = (callbackResponse).split("&");
-                            var parameterMap = [];
-                            for(var i = 0; i < responseParameters.length; i++) {
-                                parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                            }
-                            if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                deferred.resolve({ access_token: parameterMap.access_token, token_type: parameterMap.token_type, uid: parameterMap.uid });
-                            } else {
-                                deferred.reject("Problem authenticating");
-                            }
-                            setTimeout(function() {
-                                browserRef.close();
-                            }, 10);
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve({access_token: parameterMap.access_token, token_type: parameterMap.token_type, uid: parameterMap.uid});
                 } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
+                  deferred.reject("Problem authenticating");
                 }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-        /*
-        * Sign into the Digital Ocean service
-        *
-        * @param    string clientId
-        * @param    string clientSecret
-        * @return   promise
-        */
-        digitalOcean: function(clientId, clientSecret) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open("https://cloud.digitalocean.com/v1/oauth/authorize?client_id=" + clientId + "&redirect_uri=http://localhost/callback&response_type=code&scope=read%20write", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
-                    browserRef.addEventListener("loadstart", function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            var requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: "https://cloud.digitalocean.com/v1/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            })
-                            .finally(function() {
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            });
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
+      /*
+       * Sign into the Digital Ocean service
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @return   promise
+       */
+      digitalOcean: function (clientId, clientSecret) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open("https://cloud.digitalocean.com/v1/oauth/authorize?client_id=" + clientId + "&redirect_uri=http://localhost/callback&response_type=code&scope=read%20write", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+            browserRef.addEventListener("loadstart", function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http({
+                  method: "post",
+                  url: "https://cloud.digitalocean.com/v1/oauth/token",
+                  data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken
+                })
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Google service
+       *
+       * @param    string clientId
+       * @param    array appScope
+       * @return   promise
+       */
+      google: function (clientId, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener("loadstart", function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve({access_token: parameterMap.access_token, token_type: parameterMap.token_type, expires_in: parameterMap.expires_in});
                 } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
+                  deferred.reject("Problem authenticating");
                 }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-        /*
-        * Sign into the Google service
-        *
-        * @param    string clientId
-        * @param    array appScope
-        * @return   promise
-        */
-        google: function(clientId, appScope) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener("loadstart", function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            var callbackResponse = (event.url).split("#")[1];
-                            var responseParameters = (callbackResponse).split("&");
-                            var parameterMap = [];
-                            for(var i = 0; i < responseParameters.length; i++) {
-                                parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                            }
-                            if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                deferred.resolve({ access_token: parameterMap.access_token, token_type: parameterMap.token_type, expires_in: parameterMap.expires_in });
-                            } else {
-                                deferred.reject("Problem authenticating");
-                            }
-                            setTimeout(function() {
-                                browserRef.close();
-                            }, 10);
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
+      /*
+       * Sign into the GitHub service
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @param    array appScope
+       * @return   promise
+       */
+      github: function (clientId, clientSecret, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http.defaults.headers.post.accept = 'application/json';
+                $http({method: "post", url: "https://github.com/login/oauth/access_token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&code=" + requestToken})
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Facebook service
+       *
+       * @param    string clientId
+       * @param    array appScope
+       * @return   promise
+       */
+      facebook: function (clientId, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://www.facebook.com/dialog/oauth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve({access_token: parameterMap.access_token, expires_in: parameterMap.expires_in});
                 } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
+                  deferred.reject("Problem authenticating");
                 }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-        /*
-        * Sign into the GitHub service
-        *
-        * @param    string clientId
-        * @param    string clientSecret
-        * @param    array appScope
-        * @return   promise
-        */
-        github: function(clientId, clientSecret, appScope) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http.defaults.headers.post.accept = 'application/json';
-                            $http({method: "post", url: "https://github.com/login/oauth/access_token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&code=" + requestToken })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            })
-                            .finally(function() {
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            });
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
+      /*
+       * Sign into the LinkedIn service
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @param    array appScope
+       * @param    string state
+       * @return   promise
+       */
+      linkedin: function (clientId, clientSecret, appScope, state) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&response_type=code&state=' + state, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http({
+                  method: "post",
+                  url: "https://www.linkedin.com/uas/oauth2/accessToken",
+                  data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken
+                })
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Instagram service
+       *
+       * @param    string clientId
+       * @param    array appScope
+       * @return   promise
+       */
+      instagram: function (clientId, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://api.instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve({access_token: parameterMap.access_token});
                 } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
+                  deferred.reject("Problem authenticating");
                 }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-        /*
-        * Sign into the Facebook service
-        *
-        * @param    string clientId
-        * @param    array appScope
-        * @return   promise
-        */
-        facebook: function(clientId, appScope) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://www.facebook.com/dialog/oauth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            var callbackResponse = (event.url).split("#")[1];
-                            var responseParameters = (callbackResponse).split("&");
-                            var parameterMap = [];
-                            for(var i = 0; i < responseParameters.length; i++) {
-                                parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                            }
-                            if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in });
-                            } else {
-                                deferred.reject("Problem authenticating");
-                            }
-                            setTimeout(function() {
-                                browserRef.close();
-                            }, 10);
+      /*
+       * Sign into the Box service
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @param    string appState
+       * @return   promise
+       */
+      box: function (clientId, clientSecret, appState) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://app.box.com/api/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&state=' + appState + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http({
+                  method: "post",
+                  url: "https://app.box.com/api/oauth2/token",
+                  data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken
+                })
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Reddit service
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @param    array appScope
+       * @return   promise
+       */
+      reddit: function (clientId, clientSecret, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://ssl.reddit.com/api/v1/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&duration=permanent&state=ngcordovaoauth&scope=' + appScope.join(",") + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http.defaults.headers.post.Authorization = 'Basic ' + btoa(clientId + ":" + clientSecret);
+                $http({method: "post", url: "https://ssl.reddit.com/api/v1/access_token", data: "redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken})
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Twitter service
+       * Note that this service requires jsSHA for generating HMAC-SHA1 Oauth 1.0 signatures
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @return   promise
+       */
+      twitter: function (clientId, clientSecret) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            if (typeof jsSHA !== "undefined") {
+              var oauthObject = {
+                oauth_consumer_key: clientId,
+                oauth_nonce: $cordovaOauthUtility.createNonce(10),
+                oauth_signature_method: "HMAC-SHA1",
+                oauth_timestamp: Math.round((new Date()).getTime() / 1000.0),
+                oauth_version: "1.0"
+              };
+              var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/request_token", oauthObject, {oauth_callback: "http://localhost/callback"}, clientSecret);
+              $http({
+                method: "post",
+                url: "https://api.twitter.com/oauth/request_token",
+                headers: {
+                  "Authorization": signatureObj.authorization_header,
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data: "oauth_callback=" + encodeURIComponent("http://localhost/callback")
+              })
+                .success(function (requestTokenResult) {
+                  var requestTokenParameters = (requestTokenResult).split("&");
+                  var parameterMap = {};
+                  for (var i = 0; i < requestTokenParameters.length; i++) {
+                    parameterMap[requestTokenParameters[i].split("=")[0]] = requestTokenParameters[i].split("=")[1];
+                  }
+                  if (parameterMap.hasOwnProperty("oauth_token") === false) {
+                    deferred.reject("Oauth request token was not received");
+                  }
+                  var browserRef = window.open('https://api.twitter.com/oauth/authenticate?oauth_token=' + parameterMap.oauth_token, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                  browserRef.addEventListener('loadstart', function (event) {
+                    if ((event.url).indexOf("http://localhost/callback") === 0) {
+                      var callbackResponse = (event.url).split("?")[1];
+                      var responseParameters = (callbackResponse).split("&");
+                      var parameterMap = {};
+                      for (var i = 0; i < responseParameters.length; i++) {
+                        parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                      }
+                      if (parameterMap.hasOwnProperty("oauth_verifier") === false) {
+                        deferred.reject("Browser authentication failed to complete.  No oauth_verifier was returned");
+                      }
+                      delete oauthObject.oauth_signature;
+                      oauthObject.oauth_token = parameterMap.oauth_token;
+                      var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/access_token", oauthObject, {oauth_verifier: parameterMap.oauth_verifier}, clientSecret);
+                      $http({
+                        method: "post",
+                        url: "https://api.twitter.com/oauth/access_token",
+                        headers: {
+                          "Authorization": signatureObj.authorization_header
+                        },
+                        params: {
+                          "oauth_verifier": parameterMap.oauth_verifier
                         }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
-                }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
-
-        /*
-        * Sign into the LinkedIn service
-        *
-        * @param    string clientId
-        * @param    string clientSecret
-        * @param    array appScope
-        * @param    string state
-        * @return   promise
-        */
-        linkedin: function(clientId, clientSecret, appScope, state) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://www.linkedin.com/uas/oauth2/authorization?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&response_type=code&state=' + state, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: "https://www.linkedin.com/uas/oauth2/accessToken", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            })
-                            .finally(function() {
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            });
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
-                }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
-
-        /*
-        * Sign into the Instagram service
-        *
-        * @param    string clientId
-        * @param    array appScope
-        * @return   promise
-        */
-        instagram: function(clientId, appScope) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://api.instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(" ") + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            var callbackResponse = (event.url).split("#")[1];
-                            var responseParameters = (callbackResponse).split("&");
-                            var parameterMap = [];
-                            for(var i = 0; i < responseParameters.length; i++) {
-                                parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                            }
-                            if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                deferred.resolve({ access_token: parameterMap.access_token });
-                            } else {
-                                deferred.reject("Problem authenticating");
-                            }
-                            setTimeout(function() {
-                                browserRef.close();
-                            }, 10);
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
-                }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
-
-        /*
-        * Sign into the Box service
-        *
-        * @param    string clientId
-        * @param    string clientSecret
-        * @param    string appState
-        * @return   promise
-        */
-        box: function(clientId, clientSecret, appState) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://app.box.com/api/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&state=' + appState + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: "https://app.box.com/api/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            })
-                            .finally(function() {
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            });
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
-                }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
-
-        /*
-        * Sign into the Reddit service
-        *
-        * @param    string clientId
-        * @param    string clientSecret
-        * @param    array appScope
-        * @return   promise
-        */
-        reddit: function(clientId, clientSecret, appScope) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://ssl.reddit.com/api/v1/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&duration=permanent&state=ngcordovaoauth&scope=' + appScope.join(",") + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            requestToken = (event.url).split("code=")[1];
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http.defaults.headers.post.Authorization = 'Basic ' + btoa(clientId + ":" + clientSecret);
-                            $http({method: "post", url: "https://ssl.reddit.com/api/v1/access_token", data: "redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
-                            .success(function(data) {
-                                deferred.resolve(data);
-                            })
-                            .error(function(data, status) {
-                                deferred.reject("Problem authenticating");
-                            })
-                            .finally(function() {
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            });
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
-                }
-            } else {
-                deferred.reject("Cannot authenticate via a web browser");
-            }
-            return deferred.promise;
-        },
-
-        /*
-         * Sign into the Twitter service
-         * Note that this service requires jsSHA for generating HMAC-SHA1 Oauth 1.0 signatures
-         *
-         * @param    string clientId
-         * @param    string clientSecret
-         * @return   promise
-         */
-        twitter: function(clientId, clientSecret) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    if(typeof jsSHA !== "undefined") {
-                        var oauthObject = {
-                            oauth_consumer_key: clientId,
-                            oauth_nonce: $cordovaOauthUtility.createNonce(10),
-                            oauth_signature_method: "HMAC-SHA1",
-                            oauth_timestamp: Math.round((new Date()).getTime() / 1000.0),
-                            oauth_version: "1.0"
-                        };
-                        var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/request_token", oauthObject,  { oauth_callback: "http://localhost/callback" }, clientSecret);
-                        $http({
-                            method: "post",
-                            url: "https://api.twitter.com/oauth/request_token",
-                            headers: {
-                                "Authorization": signatureObj.authorization_header,
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                            data: "oauth_callback=" + encodeURIComponent("http://localhost/callback")
+                      })
+                        .success(function (result) {
+                          var accessTokenParameters = result.split("&");
+                          var parameterMap = {};
+                          for (var i = 0; i < accessTokenParameters.length; i++) {
+                            parameterMap[accessTokenParameters[i].split("=")[0]] = accessTokenParameters[i].split("=")[1];
+                          }
+                          if (parameterMap.hasOwnProperty("oauth_token_secret") === false) {
+                            deferred.reject("Oauth access token was not received");
+                          }
+                          deferred.resolve(parameterMap);
                         })
-                            .success(function(requestTokenResult) {
-                                var requestTokenParameters = (requestTokenResult).split("&");
-                                var parameterMap = {};
-                                for(var i = 0; i < requestTokenParameters.length; i++) {
-                                    parameterMap[requestTokenParameters[i].split("=")[0]] = requestTokenParameters[i].split("=")[1];
-                                }
-                                if(parameterMap.hasOwnProperty("oauth_token") === false) {
-                                    deferred.reject("Oauth request token was not received");
-                                }
-                                var browserRef = window.open('https://api.twitter.com/oauth/authenticate?oauth_token=' + parameterMap.oauth_token, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                                browserRef.addEventListener('loadstart', function(event) {
-                                    if((event.url).indexOf("http://localhost/callback") === 0) {
-                                        var callbackResponse = (event.url).split("?")[1];
-                                        var responseParameters = (callbackResponse).split("&");
-                                        var parameterMap = {};
-                                        for(var i = 0; i < responseParameters.length; i++) {
-                                            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                                        }
-                                        if(parameterMap.hasOwnProperty("oauth_verifier") === false) {
-                                            deferred.reject("Browser authentication failed to complete.  No oauth_verifier was returned");
-                                        }
-                                        delete oauthObject.oauth_signature;
-                                        oauthObject.oauth_token = parameterMap.oauth_token;
-                                        var signatureObj = $cordovaOauthUtility.createSignature("POST", "https://api.twitter.com/oauth/access_token", oauthObject,  { oauth_verifier: parameterMap.oauth_verifier }, clientSecret);
-                                        $http({
-                                            method: "post",
-                                            url: "https://api.twitter.com/oauth/access_token",
-                                            headers: {
-                                                "Authorization": signatureObj.authorization_header
-                                            },
-                                            params: {
-                                                "oauth_verifier": parameterMap.oauth_verifier
-                                            }
-                                        })
-                                            .success(function(result) {
-                                                var accessTokenParameters = result.split("&");
-                                                var parameterMap = {};
-                                                for(var i = 0; i < accessTokenParameters.length; i++) {
-                                                    parameterMap[accessTokenParameters[i].split("=")[0]] = accessTokenParameters[i].split("=")[1];
-                                                }
-                                                if(parameterMap.hasOwnProperty("oauth_token_secret") === false) {
-                                                    deferred.reject("Oauth access token was not received");
-                                                }
-                                                deferred.resolve(parameterMap);
-                                            })
-                                            .error(function(error) {
-                                                deferred.reject(error);
-                                            })
-                                            .finally(function() {
-                                                setTimeout(function() {
-                                                    browserRef.close();
-                                                }, 10);
-                                            });
-                                    }
-                                });
-                                browserRef.addEventListener('exit', function(event) {
-                                    deferred.reject("The sign in flow was canceled");
-                                });
-                            })
-                            .error(function(error) {
-                                deferred.reject(error);
-                            });
-                    } else {
-                        deferred.reject("Missing jsSHA JavaScript library");
+                        .error(function (error) {
+                          deferred.reject(error);
+                        })
+                        .finally(function () {
+                          setTimeout(function () {
+                            browserRef.close();
+                          }, 10);
+                        });
                     }
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
-                }
+                  });
+                  browserRef.addEventListener('exit', function (event) {
+                    deferred.reject("The sign in flow was canceled");
+                  });
+                })
+                .error(function (error) {
+                  deferred.reject(error);
+                });
             } else {
-                deferred.reject("Cannot authenticate via a web browser");
+              deferred.reject("Missing jsSHA JavaScript library");
             }
-            return deferred.promise;
-        },
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-        /*
-        * Sign into the Meetup service
-        *
-        * @param    string clientId
-        * @return   promise
-        */
-        meetup: function(clientId) {
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open('https://secure.meetup.com/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                    browserRef.addEventListener('loadstart', function(event) {
-                        if((event.url).indexOf("http://localhost/callback") === 0) {
-                            var callbackResponse = (event.url).split("#")[1];
-                            var responseParameters = (callbackResponse).split("&");
-                            var parameterMap = {};
-                            for(var i = 0; i < responseParameters.length; i++) {
-                                parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                            }
-                            if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                deferred.resolve(parameterMap);
-                            } else {
-                                deferred.reject("Problem authenticating");
-                            }
-                            setTimeout(function() {
-                                browserRef.close();
-                            }, 10);
-                        }
-                    });
-                    browserRef.addEventListener('exit', function(event) {
-                        deferred.reject("The sign in flow was canceled");
-                    });
-                } else {
-                    deferred.reject("Could not find InAppBrowser plugin");
+      /*
+       * Sign into the Meetup service
+       *
+       * @param    string clientId
+       * @return   promise
+       */
+      meetup: function (clientId) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://secure.meetup.com/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = {};
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
                 }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve(parameterMap);
+                } else {
+                  deferred.reject("Problem authenticating");
+                }
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Salesforce service
+       *
+       * Suggestion: use salesforce oauth with forcetk.js(as SDK)
+       *
+       * @param    string loginUrl (such as: https://login.salesforce.com ; please notice community login)
+       * @param    string clientId (copy from connection app info)
+       * @param    string redirectUri (callback url in connection app info)
+       * @return   promise
+       */
+      salesforce: function (loginUrl, clientId) {
+        var redirectUri = 'http://localhost/callback';
+        var getAuthorizeUrl = function (loginUrl, clientId, redirectUri) {
+          return loginUrl + 'services/oauth2/authorize?display=touch' +
+            '&response_type=token&client_id=' + escape(clientId) +
+            '&redirect_uri=' + escape(redirectUri);
+        };
+        var startWith = function (string, str) {
+          return (string.substr(0, str.length) === str);
+        };
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open(getAuthorizeUrl(loginUrl, clientId, redirectUri), "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+            browserRef.addEventListener("loadstart", function (event) {
+              if (startWith(event.url, redirectUri)) {
+                var oauthResponse = {};
+
+                var fragment = (event.url).split('#')[1];
+
+                if (fragment) {
+                  var nvps = fragment.split('&');
+                  for (var nvp in nvps) {
+                    var parts = nvps[nvp].split('=');
+                    oauthResponse[parts[0]] = unescape(parts[1]);
+                  }
+                }
+
+                if (typeof oauthResponse === 'undefined' ||
+                  typeof oauthResponse.access_token === 'undefined') {
+                  deferred.reject("Problem authenticating");
+                } else {
+                  deferred.resolve(oauthResponse);
+                }
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Strava service
+       *
+       * @param    string clientId
+       * @param    string clientSecret
+       * @param    array appScope
+       * @return   promise
+       */
+      strava: function (clientId, clientSecret, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://www.strava.com/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(",") + '&response_type=code&approval_prompt=force', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                requestToken = (event.url).split("code=")[1];
+                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                $http({method: "post", url: "https://www.strava.com/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&code=" + requestToken})
+                  .success(function (data) {
+                    deferred.resolve(data);
+                  })
+                  .error(function (data, status) {
+                    deferred.reject("Problem authenticating");
+                  })
+                  .finally(function () {
+                    setTimeout(function () {
+                      browserRef.close();
+                    }, 10);
+                  });
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Foursquare service
+       *
+       * @param    string clientId
+       * @return   promise
+       */
+      foursquare: function (clientId) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://foursquare.com/oauth2/authenticate?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  var promiseResponse = {
+                    access_token: parameterMap.access_token,
+                    expires_in: parameterMap.expires_in
+                  };
+                  deferred.resolve(promiseResponse);
+                } else {
+                  deferred.reject("Problem authenticating");
+                }
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
+
+      /*
+       * Sign into the Magento service
+       * Note that this service requires jsSHA for generating HMAC-SHA1 Oauth 1.0 signatures
+       *
+       * @param    string baseUrl
+       * @param    string clientId
+       * @param    string clientSecret
+       * @return   promise
+       */
+      magento: function (baseUrl, clientId, clientSecret) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            if (typeof jsSHA !== "undefined") {
+              var oauthObject = {
+                oauth_callback: "http://localhost/callback",
+                oauth_consumer_key: clientId,
+                oauth_nonce: $cordovaOauthUtility.createNonce(5),
+                oauth_signature_method: "HMAC-SHA1",
+                oauth_timestamp: Math.round((new Date()).getTime() / 1000.0),
+                oauth_version: "1.0"
+              };
+              var signatureObj = $cordovaOauthUtility.createSignature("POST", baseUrl + "/oauth/initiate", oauthObject, {oauth_callback: "http://localhost/callback"}, clientSecret);
+              $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
+              $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+              $http({method: "post", url: baseUrl + "/oauth/initiate", data: "oauth_callback=http://localhost/callback"})
+                .success(function (requestTokenResult) {
+                  var requestTokenParameters = (requestTokenResult).split("&");
+                  var parameterMap = {};
+                  for (var i = 0; i < requestTokenParameters.length; i++) {
+                    parameterMap[requestTokenParameters[i].split("=")[0]] = requestTokenParameters[i].split("=")[1];
+                  }
+                  if (parameterMap.hasOwnProperty("oauth_token") === false) {
+                    deferred.reject("Oauth request token was not received");
+                  }
+                  var tokenSecret = parameterMap.oauth_token_secret;
+                  var browserRef = window.open(baseUrl + '/oauth/authorize?oauth_token=' + parameterMap.oauth_token, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                  browserRef.addEventListener('loadstart', function (event) {
+                    if ((event.url).indexOf("http://localhost/callback") === 0) {
+                      var callbackResponse = (event.url).split("?")[1];
+                      var responseParameters = (callbackResponse).split("&");
+                      var parameterMap = {};
+                      for (var i = 0; i < responseParameters.length; i++) {
+                        parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                      }
+                      if (parameterMap.hasOwnProperty("oauth_verifier") === false) {
+                        deferred.reject("Browser authentication failed to complete.  No oauth_verifier was returned");
+                      }
+                      delete oauthObject.oauth_signature;
+                      delete oauthObject.oauth_callback;
+                      oauthObject.oauth_token = parameterMap.oauth_token;
+                      oauthObject.oauth_nonce = $cordovaOauthUtility.createNonce(5);
+                      oauthObject.oauth_verifier = parameterMap.oauth_verifier;
+                      var signatureObj = $cordovaOauthUtility.createSignature("POST", baseUrl + "/oauth/token", oauthObject, {}, clientSecret, tokenSecret);
+                      $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
+                      $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                      $http({method: "post", url: baseUrl + "/oauth/token"})
+                        .success(function (result) {
+                          var accessTokenParameters = result.split("&");
+                          var parameterMap = {};
+                          for (var i = 0; i < accessTokenParameters.length; i++) {
+                            parameterMap[accessTokenParameters[i].split("=")[0]] = accessTokenParameters[i].split("=")[1];
+                          }
+                          if (parameterMap.hasOwnProperty("oauth_token_secret") === false) {
+                            deferred.reject("Oauth access token was not received");
+                          }
+                          deferred.resolve(parameterMap);
+                        })
+                        .error(function (error) {
+                          deferred.reject(error);
+                        })
+                        .finally(function () {
+                          setTimeout(function () {
+                            browserRef.close();
+                          }, 10);
+                        });
+                    }
+                  });
+                  browserRef.addEventListener('exit', function (event) {
+                    deferred.reject("The sign in flow was canceled");
+                  });
+                })
+                .error(function (error) {
+                  deferred.reject(error);
+                });
             } else {
-                deferred.reject("Cannot authenticate via a web browser");
+              deferred.reject("Missing jsSHA JavaScript library");
             }
-            return deferred.promise;
-        },
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-        /*
-        * Sign into the Salesforce service
-        *
-        * Suggestion: use salesforce oauth with forcetk.js(as SDK)
-        *
-        * @param    string loginUrl (such as: https://login.salesforce.com ; please notice community login)
-        * @param    string clientId (copy from connection app info)
-        * @param    string redirectUri (callback url in connection app info)
-        * @return   promise
-        */
-        salesforce: function (loginUrl, clientId) {
-            var redirectUri = 'http://localhost/callback';
-            var getAuthorizeUrl = function (loginUrl, clientId, redirectUri) {
-                return loginUrl+'services/oauth2/authorize?display=touch'+
-                '&response_type=token&client_id='+escape(clientId)+
-                '&redirect_uri='+escape(redirectUri);
-            };
-            var startWith = function(string, str) {
-                return (string.substr(0, str.length) === str);
-            };
-            var deferred = $q.defer();
-            if(window.cordova) {
-                var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                    var browserRef = window.open(getAuthorizeUrl(loginUrl, clientId, redirectUri), "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
-                    browserRef.addEventListener("loadstart", function(event) {
-                        if(startWith(event.url, redirectUri)) {
-                            var oauthResponse = {};
-
-                            var fragment = (event.url).split('#')[1];
-
-                            if (fragment) {
-                                var nvps = fragment.split('&');
-                                for (var nvp in nvps) {
-                                    var parts = nvps[nvp].split('=');
-                                    oauthResponse[parts[0]] = unescape(parts[1]);
-                                }
-                            }
-
-                            if (typeof oauthResponse === 'undefined' ||
-                                typeof oauthResponse.access_token === 'undefined') {
-                                    deferred.reject("Problem authenticating");
-                                } else {
-                                    deferred.resolve(oauthResponse);
-                                }
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            }
-                        });
-                        browserRef.addEventListener('exit', function(event) {
-                            deferred.reject("The sign in flow was canceled");
-                        });
-                    } else {
-                        deferred.reject("Could not find InAppBrowser plugin");
-                    }
-                } else {
-                    deferred.reject("Cannot authenticate via a web browser");
+      /*
+       * Sign into the Vkontakte service
+       *
+       * @param    string clientId
+       * @param    array appScope (for example: "friends,wall,photos,messages")
+       * @return   promise
+       */
+      vkontakte: function (clientId, appScope) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://oauth.vk.com/authorize?client_id=' + clientId + '&redirect_uri=http://oauth.vk.com/blank.html&response_type=token&scope=' + appScope.join(",") + '&display=touch&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              var tmp = (event.url).split("#");
+              if (tmp[0] == 'https://oauth.vk.com/blank.html' || tmp[0] == 'http://oauth.vk.com/blank.html') {
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
                 }
-                return deferred.promise;
-            },
-
-            /*
-            * Sign into the Strava service
-            *
-            * @param    string clientId
-            * @param    string clientSecret
-            * @param    array appScope
-            * @return   promise
-            */
-            strava: function(clientId, clientSecret, appScope) {
-                var deferred = $q.defer();
-                if(window.cordova) {
-                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                    if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                        var browserRef = window.open('https://www.strava.com/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(",") + '&response_type=code&approval_prompt=force', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                        browserRef.addEventListener('loadstart', function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
-                                requestToken = (event.url).split("code=")[1];
-                                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                                $http({method: "post", url: "https://www.strava.com/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&code=" + requestToken })
-                                .success(function(data) {
-                                    deferred.resolve(data);
-                                })
-                                .error(function(data, status) {
-                                    deferred.reject("Problem authenticating");
-                                })
-                                .finally(function() {
-                                    setTimeout(function() {
-                                        browserRef.close();
-                                    }, 10);
-                                });
-                            }
-                        });
-                        browserRef.addEventListener('exit', function(event) {
-                            deferred.reject("The sign in flow was canceled");
-                        });
-                    } else {
-                        deferred.reject("Could not find InAppBrowser plugin");
-                    }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve({access_token: parameterMap.access_token, expires_in: parameterMap.expires_in, user_id: parameterMap.user_id});
                 } else {
-                    deferred.reject("Cannot authenticate via a web browser");
+                  deferred.reject("Problem authenticating");
                 }
-                return deferred.promise;
-            },
+                setTimeout(function () {
+                  browserRef.close();
+                }, 10);
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      },
 
-            /*
-            * Sign into the Foursquare service
-            *
-            * @param    string clientId
-            * @return   promise
-            */
-            foursquare: function(clientId) {
-                var deferred = $q.defer();
-                if (window.cordova) {
-                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                    if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                        var browserRef = window.open('https://foursquare.com/oauth2/authenticate?client_id=' + clientId + '&redirect_uri=http://localhost/callback&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                        browserRef.addEventListener('loadstart', function (event) {
-                            if ((event.url).indexOf("http://localhost/callback") === 0) {
-                                var callbackResponse = (event.url).split("#")[1];
-                                var responseParameters = (callbackResponse).split("&");
-                                var parameterMap = [];
-                                for (var i = 0; i < responseParameters.length; i++) {
-                                    parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                                }
-                                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                    var promiseResponse = {
-                                        access_token: parameterMap.access_token,
-                                        expires_in: parameterMap.expires_in
-                                    };
-                                    deferred.resolve(promiseResponse);
-                                } else {
-                                    deferred.reject("Problem authenticating");
-                                }
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            }
-                        });
-                        browserRef.addEventListener('exit', function(event) {
-                            deferred.reject("The sign in flow was canceled");
-                        });
-                    } else {
-                        deferred.reject("Could not find InAppBrowser plugin");
-                    }
-                } else {
-                    deferred.reject("Cannot authenticate via a web browser");
+      /*
+       * Sign into the Imgur service
+       *
+       * @param    string clientId
+       * @return   promise
+       */
+      imgur: function (clientId) {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+          if (cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
+            var browserRef = window.open('https://api.imgur.com/oauth2/authorize?client_id=' + clientId + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+            browserRef.addEventListener('loadstart', function (event) {
+              if ((event.url).indexOf("http://localhost/callback") === 0) {
+                browserRef.removeEventListener("exit", function (event) {
+                });
+                browserRef.close();
+                var callbackResponse = (event.url).split("#")[1];
+                var responseParameters = (callbackResponse).split("&");
+                var parameterMap = [];
+                for (var i = 0; i < responseParameters.length; i++) {
+                  parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
                 }
-                return deferred.promise;
-            },
-
-            /*
-            * Sign into the Magento service
-            * Note that this service requires jsSHA for generating HMAC-SHA1 Oauth 1.0 signatures
-            *
-            * @param    string baseUrl
-            * @param    string clientId
-            * @param    string clientSecret
-            * @return   promise
-            */
-            magento: function(baseUrl, clientId, clientSecret) {
-                var deferred = $q.defer();
-                if(window.cordova) {
-                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                    if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                        if(typeof jsSHA !== "undefined") {
-                            var oauthObject = {
-                                oauth_callback: "http://localhost/callback",
-                                oauth_consumer_key: clientId,
-                                oauth_nonce: $cordovaOauthUtility.createNonce(5),
-                                oauth_signature_method: "HMAC-SHA1",
-                                oauth_timestamp: Math.round((new Date()).getTime() / 1000.0),
-                                oauth_version: "1.0"
-                            };
-                            var signatureObj = $cordovaOauthUtility.createSignature("POST", baseUrl + "/oauth/initiate", oauthObject,  { oauth_callback: "http://localhost/callback" }, clientSecret);
-                            $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
-                            $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                            $http({method: "post", url: baseUrl + "/oauth/initiate", data: "oauth_callback=http://localhost/callback" })
-                            .success(function(requestTokenResult) {
-                                var requestTokenParameters = (requestTokenResult).split("&");
-                                var parameterMap = {};
-                                for(var i = 0; i < requestTokenParameters.length; i++) {
-                                    parameterMap[requestTokenParameters[i].split("=")[0]] = requestTokenParameters[i].split("=")[1];
-                                }
-                                if(parameterMap.hasOwnProperty("oauth_token") === false) {
-                                    deferred.reject("Oauth request token was not received");
-                                }
-                                var tokenSecret = parameterMap.oauth_token_secret;
-                                var browserRef = window.open(baseUrl + '/oauth/authorize?oauth_token=' + parameterMap.oauth_token, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                                browserRef.addEventListener('loadstart', function(event) {
-                                    if((event.url).indexOf("http://localhost/callback") === 0) {
-                                        var callbackResponse = (event.url).split("?")[1];
-                                        var responseParameters = (callbackResponse).split("&");
-                                        var parameterMap = {};
-                                        for(var i = 0; i < responseParameters.length; i++) {
-                                            parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                                        }
-                                        if(parameterMap.hasOwnProperty("oauth_verifier") === false) {
-                                            deferred.reject("Browser authentication failed to complete.  No oauth_verifier was returned");
-                                        }
-                                        delete oauthObject.oauth_signature;
-                                        delete oauthObject.oauth_callback;
-                                        oauthObject.oauth_token = parameterMap.oauth_token;
-                                        oauthObject.oauth_nonce = $cordovaOauthUtility.createNonce(5);
-                                        oauthObject.oauth_verifier = parameterMap.oauth_verifier;
-                                        var signatureObj = $cordovaOauthUtility.createSignature("POST", baseUrl + "/oauth/token", oauthObject,  {}, clientSecret, tokenSecret);
-                                        $http.defaults.headers.post.Authorization = signatureObj.authorization_header;
-                                        $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                                        $http({method: "post", url: baseUrl + "/oauth/token" })
-                                        .success(function(result) {
-                                            var accessTokenParameters = result.split("&");
-                                            var parameterMap = {};
-                                            for(var i = 0; i < accessTokenParameters.length; i++) {
-                                                parameterMap[accessTokenParameters[i].split("=")[0]] = accessTokenParameters[i].split("=")[1];
-                                            }
-                                            if(parameterMap.hasOwnProperty("oauth_token_secret") === false) {
-                                                deferred.reject("Oauth access token was not received");
-                                            }
-                                            deferred.resolve(parameterMap);
-                                        })
-                                        .error(function(error) {
-                                            deferred.reject(error);
-                                        })
-                                        .finally(function() {
-                                            setTimeout(function() {
-                                                browserRef.close();
-                                            }, 10);
-                                        });
-                                    }
-                                });
-                                browserRef.addEventListener('exit', function(event) {
-                                    deferred.reject("The sign in flow was canceled");
-                                });
-                            })
-                            .error(function(error) {
-                                deferred.reject(error);
-                            });
-                        } else {
-                            deferred.reject("Missing jsSHA JavaScript library");
-                        }
-                    } else {
-                        deferred.reject("Could not find InAppBrowser plugin");
-                    }
+                if (parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                  deferred.resolve({access_token: parameterMap.access_token, expires_in: parameterMap.expires_in, account_username: parameterMap.account_username});
                 } else {
-                    deferred.reject("Cannot authenticate via a web browser");
+                  deferred.reject("Problem authenticating");
                 }
-                return deferred.promise;
-            },
-
-            /*
-            * Sign into the Vkontakte service
-            *
-            * @param    string clientId
-            * @param    array appScope (for example: "friends,wall,photos,messages")
-            * @return   promise
-            */
-            vkontakte: function(clientId, appScope) {
-                var deferred = $q.defer();
-                if(window.cordova) {
-                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                    if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                        var browserRef = window.open('https://oauth.vk.com/authorize?client_id=' + clientId + '&redirect_uri=http://oauth.vk.com/blank.html&response_type=token&scope=' + appScope.join(",") + '&display=touch&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                        browserRef.addEventListener('loadstart', function(event) {
-                            var tmp = (event.url).split("#");
-                            if (tmp[0] == 'https://oauth.vk.com/blank.html' || tmp[0] == 'http://oauth.vk.com/blank.html') {
-                                var callbackResponse = (event.url).split("#")[1];
-                                var responseParameters = (callbackResponse).split("&");
-                                var parameterMap = [];
-                                for(var i = 0; i < responseParameters.length; i++) {
-                                    parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                                }
-                                if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                    deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in, user_id: parameterMap.user_id });
-                                } else {
-                                    deferred.reject("Problem authenticating");
-                                }
-                                setTimeout(function() {
-                                    browserRef.close();
-                                }, 10);
-                            }
-                        });
-                        browserRef.addEventListener('exit', function(event) {
-                            deferred.reject("The sign in flow was canceled");
-                        });
-                    } else {
-                        deferred.reject("Could not find InAppBrowser plugin");
-                    }
-                } else {
-                    deferred.reject("Cannot authenticate via a web browser");
-                }
-                return deferred.promise;
-            },
-
-            /*
-             * Sign into the Imgur service
-             *
-             * @param    string clientId
-             * @return   promise
-             */
-            imgur: function(clientId) {
-                var deferred = $q.defer();
-                if(window.cordova) {
-                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
-                    if(cordovaMetadata.hasOwnProperty("org.apache.cordova.inappbrowser") === true) {
-                        var browserRef = window.open('https://api.imgur.com/oauth2/authorize?client_id=' + clientId + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
-                        browserRef.addEventListener('loadstart', function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
-                            	browserRef.removeEventListener("exit",function(event){});
-                            	browserRef.close();
-                                var callbackResponse = (event.url).split("#")[1];
-                                var responseParameters = (callbackResponse).split("&");
-                                var parameterMap = [];
-                                for(var i = 0; i < responseParameters.length; i++) {
-                                    parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
-                                }
-                                if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
-                                    deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in, account_username: parameterMap.account_username });
-                                } else {
-                                    deferred.reject("Problem authenticating");
-                                }
-                            }
-                        });
-                        browserRef.addEventListener('exit', function(event) {
-                            deferred.reject("The sign in flow was canceled");
-                        });
-                    } else {
-                        deferred.reject("Could not find InAppBrowser plugin");
-                    }
-                } else {
-                    deferred.reject("Cannot authenticate via a web browser");
-                }
-                return deferred.promise;
-            }
+              }
+            });
+            browserRef.addEventListener('exit', function (event) {
+              deferred.reject("The sign in flow was canceled");
+            });
+          } else {
+            deferred.reject("Could not find InAppBrowser plugin");
+          }
+        } else {
+          deferred.reject("Cannot authenticate via a web browser");
+        }
+        return deferred.promise;
+      }
 
     };
   }]);
@@ -5934,59 +6104,59 @@ angular.module("ngCordova.plugins.oauthUtility", [])
        * @param    string secretKey
        * @return   object
        */
-       createSignature: function(method, endPoint, headerParameters, bodyParameters, secretKey, tokenSecret) {
-           if(typeof jsSHA !== "undefined") {
-               var headerAndBodyParameters = angular.copy(headerParameters);
-               var bodyParameterKeys = Object.keys(bodyParameters);
-               for(var i = 0; i < bodyParameterKeys.length; i++) {
-                   headerAndBodyParameters[bodyParameterKeys[i]] = encodeURIComponent(bodyParameters[bodyParameterKeys[i]]);
-               }
-               var signatureBaseString = method + "&" + encodeURIComponent(endPoint) + "&";
-               var headerAndBodyParameterKeys = (Object.keys(headerAndBodyParameters)).sort();
-               for(i = 0; i < headerAndBodyParameterKeys.length; i++) {
-                   if(i == headerAndBodyParameterKeys.length - 1) {
-                       signatureBaseString += encodeURIComponent(headerAndBodyParameterKeys[i] + "=" + headerAndBodyParameters[headerAndBodyParameterKeys[i]]);
-                   } else {
-                       signatureBaseString += encodeURIComponent(headerAndBodyParameterKeys[i] + "=" + headerAndBodyParameters[headerAndBodyParameterKeys[i]] + "&");
-                   }
-               }
-               var oauthSignatureObject = new jsSHA(signatureBaseString, "TEXT");
+      createSignature: function (method, endPoint, headerParameters, bodyParameters, secretKey, tokenSecret) {
+        if (typeof jsSHA !== "undefined") {
+          var headerAndBodyParameters = angular.copy(headerParameters);
+          var bodyParameterKeys = Object.keys(bodyParameters);
+          for (var i = 0; i < bodyParameterKeys.length; i++) {
+            headerAndBodyParameters[bodyParameterKeys[i]] = encodeURIComponent(bodyParameters[bodyParameterKeys[i]]);
+          }
+          var signatureBaseString = method + "&" + encodeURIComponent(endPoint) + "&";
+          var headerAndBodyParameterKeys = (Object.keys(headerAndBodyParameters)).sort();
+          for (i = 0; i < headerAndBodyParameterKeys.length; i++) {
+            if (i == headerAndBodyParameterKeys.length - 1) {
+              signatureBaseString += encodeURIComponent(headerAndBodyParameterKeys[i] + "=" + headerAndBodyParameters[headerAndBodyParameterKeys[i]]);
+            } else {
+              signatureBaseString += encodeURIComponent(headerAndBodyParameterKeys[i] + "=" + headerAndBodyParameters[headerAndBodyParameterKeys[i]] + "&");
+            }
+          }
+          var oauthSignatureObject = new jsSHA(signatureBaseString, "TEXT");
 
-               var encodedTokenSecret = '';
-               if (tokenSecret) {
-                   encodedTokenSecret = encodeURIComponent(tokenSecret);
-               }
+          var encodedTokenSecret = '';
+          if (tokenSecret) {
+            encodedTokenSecret = encodeURIComponent(tokenSecret);
+          }
 
-               headerParameters.oauth_signature = encodeURIComponent(oauthSignatureObject.getHMAC(encodeURIComponent(secretKey) + "&" + encodedTokenSecret, "TEXT", "SHA-1", "B64"));
-               var headerParameterKeys = Object.keys(headerParameters);
-               var authorizationHeader = 'OAuth ';
-               for(i = 0; i < headerParameterKeys.length; i++) {
-                   if(i == headerParameterKeys.length - 1) {
-                       authorizationHeader += headerParameterKeys[i] + '="' + headerParameters[headerParameterKeys[i]] + '"';
-                   } else {
-                       authorizationHeader += headerParameterKeys[i] + '="' + headerParameters[headerParameterKeys[i]] + '",';
-                   }
-               }
-               return { signature_base_string: signatureBaseString, authorization_header: authorizationHeader, signature: headerParameters.oauth_signature };
-           } else {
-               return "Missing jsSHA JavaScript library";
-           }
-       },
+          headerParameters.oauth_signature = encodeURIComponent(oauthSignatureObject.getHMAC(encodeURIComponent(secretKey) + "&" + encodedTokenSecret, "TEXT", "SHA-1", "B64"));
+          var headerParameterKeys = Object.keys(headerParameters);
+          var authorizationHeader = 'OAuth ';
+          for (i = 0; i < headerParameterKeys.length; i++) {
+            if (i == headerParameterKeys.length - 1) {
+              authorizationHeader += headerParameterKeys[i] + '="' + headerParameters[headerParameterKeys[i]] + '"';
+            } else {
+              authorizationHeader += headerParameterKeys[i] + '="' + headerParameters[headerParameterKeys[i]] + '",';
+            }
+          }
+          return {signature_base_string: signatureBaseString, authorization_header: authorizationHeader, signature: headerParameters.oauth_signature};
+        } else {
+          return "Missing jsSHA JavaScript library";
+        }
+      },
 
-    /*
-    * Create Random String Nonce
-    *
-    * @param    integer length
-    * @return   string
-    */
-    createNonce: function(length) {
+      /*
+       * Create Random String Nonce
+       *
+       * @param    integer length
+       * @return   string
+       */
+      createNonce: function (length) {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for(var i = 0; i < length; i++) {
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        for (var i = 0; i < length; i++) {
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
         }
         return text;
-    }
+      }
 
     };
 
@@ -6083,7 +6253,7 @@ angular.module('ngCordova.plugins.progressIndicator', [])
   .factory('$cordovaProgress', ['$q', function ($q) {
 
     return {
-      show: function(_message) {
+      show: function (_message) {
         var message = _message || "Please wait...";
         return ProgressIndicator.show(message);
       },
@@ -6530,6 +6700,13 @@ angular.module('ngCordova.plugins.statusbar', [])
     return {
       overlaysWebView: function (bool) {
         return StatusBar.overlaysWebView(!!bool);
+      },
+
+      STYLES: {
+        DEFAULT: 0,
+        LIGHT_CONTENT: 1,
+        BLACK_TRANSLUCENT: 2,
+        BLACK_OPAQUE: 3
       },
 
       style: function (style) {

@@ -5,104 +5,104 @@
  * @description
  * A service for testing device information
  * in an app build with ngCordova.
-**/  
-ngCordovaMocks.factory('$cordovaDevice', function () {
-	var device = '';
-	var cordova = '';
-	var model = '';
-	var platform = '';
-	var uuid = '';
-	var version = '';
+ **/
+ngCordovaMocks.factory('$cordovaDevice', function() {
+  var device = '';
+  var cordova = '';
+  var model = '';
+  var platform = '';
+  var uuid = '';
+  var version = '';
 
-	return {
-        /**
-		 * @ngdoc property
-		 * @name device
-		 * @propertyOf ngCordovaMocks.cordovaDevice
-		 *
-		 * @description
-		 * The name of the 'device'. 
-		 * This property should only be used in automated tests.
-		**/		
-		device: device,
+  return {
+    /**
+     @ngdoc property
+     @name device
+     @propertyOf ngCordovaMocks.cordovaDevice
 
-        /**
-		 * @ngdoc property
-		 * @name cordova
-		 * @propertyOf ngCordovaMocks.cordovaDevice
-		 *
-		 * @description
-		 * The version of cordova in use.
-		 * This property should only be used in automated tests.
-		**/				
-		cordova: cordova,
+     @description
+     The name of the 'device'.
+     This property should only be used in automated tests.
+     */
+    device: device,
 
-        /**
-		 * @ngdoc property
-		 * @name model
-		 * @propertyOf ngCordovaMocks.cordovaDevice
-		 *
-		 * @description
-		 * The model of the device using the app.
-		 * This property should only be used in automated tests.
-		**/
-		model: model,
+    /**
+     @ngdoc property
+     @name cordova
+     @propertyOf ngCordovaMocks.cordovaDevice
 
-        /**
-		 * @ngdoc property
-		 * @name platform
-		 * @propertyOf ngCordovaMocks.cordovaDevice
-		 *
-		 * @description
-		 * The name of the operating system in use.
-		 * This property should only be used in automated tests.
-		**/		
-		platform: platform,
+     @description
+     The version of cordova in use.
+     This property should only be used in automated tests.
+     */
+    cordova: cordova,
 
-        /**
-		 * @ngdoc property
-		 * @name uuid
-		 * @propertyOf ngCordovaMocks.cordovaDevice
-		 *
-		 * @description
-		 * The unique identifier of a device.
-		 * This property should only be used in automated tests.
-		**/		
-		uuid: uuid,
+    /**
+     @ngdoc property
+     @name model
+     @propertyOf ngCordovaMocks.cordovaDevice
 
-        /**
-		 * @ngdoc property
-		 * @name version
-		 * @propertyOf ngCordovaMocks.cordovaDevice
-		 *
-		 * @description
-		 * The version of the operating system.
-		 * This property should only be used in automated tests.
-		**/		
-		version: version,
+     @description
+     The model of the device using the app.
+     This property should only be used in automated tests.
+     */
+    model: model,
 
-		getDevice: function () {
-			return this.device;
-		},
+    /**
+     @ngdoc property
+     @name platform
+     @propertyOf ngCordovaMocks.cordovaDevice
 
-		getCordova: function () {
-			return this.cordova;
-		},
+     @description
+     The name of the operating system in use.
+     This property should only be used in automated tests.
+     */
+    platform: platform,
 
-		getModel: function () {
-			return this.model;
-		},
+    /**
+     @ngdoc property
+     @name uuid
+     @propertyOf ngCordovaMocks.cordovaDevice
 
-		getPlatform: function() {
-			return this.platform;
-		},
+     @description
+     The unique identifier of a device.
+     This property should only be used in automated tests.
+     */
+    uuid: uuid,
 
-		getUUID: function() {
-			return this.uuid;
-		},
+    /**
+     @ngdoc property
+     @name version
+     @propertyOf ngCordovaMocks.cordovaDevice
 
-		getVersion: function() {
-			return this.version;
-		}
-	};
+     @description
+     The version of the operating system.
+     This property should only be used in automated tests.
+     */
+    version: version,
+
+    getDevice: function() {
+      return this.device;
+    },
+
+    getCordova: function() {
+      return this.cordova;
+    },
+
+    getModel: function() {
+      return this.model;
+    },
+
+    getPlatform: function() {
+      return this.platform;
+    },
+
+    getUUID: function() {
+      return this.uuid;
+    },
+
+    getVersion: function() {
+      return this.version;
+    }
+  };
 });

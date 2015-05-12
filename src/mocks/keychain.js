@@ -6,7 +6,7 @@
  * A service for testing Keychain features
  * in an app built with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaKeychain', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaKeychain', ['$q', function ($q) {
   var keychains = {};
 
   return {

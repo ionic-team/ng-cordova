@@ -7,25 +7,25 @@
  * @description
  * A service for testing push notifications features
  * in an app build with ngCordova.
- */  
-ngCordovaMocks.factory('$cordovaPush', ['$q', '$timeout', '$rootScope', function($q, $timeout, $rootScope) {
+ */
+ngCordovaMocks.factory('$cordovaPush', ['$q', '$timeout', '$rootScope', function ($q, $timeout, $rootScope) {
   var throwsError = false;
 
   var deviceToken = '';
 
   return {
-        /**
+    /**
      * @ngdoc property
      * @name throwsError
      * @propertyOf ngCordovaMocks.cordovaPush
      *
      * @description
-     * A flag that signals whether a promise should be rejected or not. 
+     * A flag that signals whether a promise should be rejected or not.
      * This property should only be used in automated tests.
-    **/   
+     **/
     throwsError: throwsError,
 
-        /**
+    /**
      * @ngdoc property
      * @name deviceToken
      * @propertyOf ngCordovaMocks.cordovaPush
@@ -33,7 +33,7 @@ ngCordovaMocks.factory('$cordovaPush', ['$q', '$timeout', '$rootScope', function
      * @description
      * Token send when service register device
      * This property should only be used in automated tests.
-    **/ 
+     **/
     deviceToken: deviceToken,
 
     onNotification: function (notification) {

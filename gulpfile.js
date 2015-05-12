@@ -18,6 +18,8 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['build']);
 
+gulp.task('test', ['lint', 'jscs']);
+
 gulp.task('build', function () {
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
@@ -96,7 +98,6 @@ gulp.task('jscs', function () {
       fix: true
     }))
     .pipe(gulp.dest('src/mocks/'));
-
 });
 
 gulp.task('karma-watch', function (done) {
