@@ -1,14 +1,48 @@
-//  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
+//  install   :   cordova plugin add com.megster.cordova.ble
 //  link      :   https://github.com/don/cordova-plugin-ble-central
 
 angular.module('ngCordova.plugins.ble', [])
 
-  .factory('$cordovaBLE', ['$q', function ($q) {
+  .factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout) {
+
+    var scanning = null;
 
     return {
       scan: function (services, seconds) {
         var q = $q.defer();
+        var devices = [];
         ble.scan(services, seconds, function (result) {
+          devices.push(result);
+          q.notify(result);
+        }, function (error) {
+          q.reject(error);
+        });
+
+        $timeout(function () {
+          q.resolve(devices);
+        }, seconds*1000);
+
+        return q.promise;
+      },
+
+      startScan: function(services) {
+        var q = $q.defer();
+        ble.startScan(services, function (result) {
+          q.notify(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        scanning = q.promise;
+        return q.promise;
+      },
+
+      stopScan: function() {
+        if(scanning !== null) {
+          scanning.resolve();
+          scanning = null;
+        }
+        var q = $q.defer();
+        ble.stopScan(function (result) {
           q.resolve(result);
         }, function (error) {
           q.reject(error);
@@ -66,9 +100,39 @@ angular.module('ngCordova.plugins.ble', [])
         return q.promise;
       },
 
+      writeWithoutResponse: function (deviceID, serviceUUID, characteristicUUID, data) {
+        var q = $q.defer();
+        ble.writeWithoutResponse(deviceID, serviceUUID, characteristicUUID, data, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
       notify: function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
         ble.notify(deviceID, serviceUUID, characteristicUUID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      startNotification: function (deviceID, serviceUUID, characteristicUUID) {
+        var q = $q.defer();
+        ble.startNotification(deviceID, serviceUUID, characteristicUUID, function (result) {
+          q.resolve(result);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      stopNotification: function (deviceID, serviceUUID, characteristicUUID) {
+        var q = $q.defer();
+        ble.stopNotification(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
         }, function (error) {
           q.reject(error);
