@@ -1,3 +1,5 @@
+'use strict';
+
 describe('ngCordovaMocks', function() {
 	beforeEach(function() {
 		module('ngCordovaMocks');
@@ -62,6 +64,56 @@ describe('ngCordovaMocks', function() {
 			$rootScope.$digest();
 
 			expect(count).toBe(5);
+		});
+
+		it('should track location with navigator geolocation', inject(function() {
+			navigator = navigator || {};
+			navigator.geolocation = navigator.geolocation || {
+				getCurrentPosition: function(){}
+			};
+			spyOn(navigator.geolocation, 'getCurrentPosition').andCallFake(
+				function(callback) {
+					callback({ coords: { latitude: 1, longitude: 2 } });
+				}
+			);
+			
+			$cordovaGeolocation.watchPosition(gpsOptions).then(
+				function() { },
+				function(err) { expect(false).toBe(true); },
+				function(result) {
+					count = count + 1;
+				}
+			);
+
+			$interval.flush(1000);
+
+			expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
+			expect(count).toBe(1);
+		}));
+
+		it('should set next position', function() {
+			var pos = null;
+			var positionExpected = {
+				coords: { latitude: 1, longitude: 2 }
+			};
+
+			$cordovaGeolocation.useHostAbilities = false;
+			$cordovaGeolocation.nextPosition = positionExpected;
+
+			var watch = $cordovaGeolocation.watchPosition(gpsOptions);
+			watch.then(
+				function() { },
+				function(err) { expect(false).toBe(true); },
+				function(result) {
+					count = count + 1;
+					pos = result;
+				}
+			);
+
+			$interval.flush(1000);
+
+			expect(count).toBe(1);
+			expect(pos).toBe(positionExpected);
 		});
 
 		it('should clear a created watch', function() {
