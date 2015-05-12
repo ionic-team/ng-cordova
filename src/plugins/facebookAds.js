@@ -2,99 +2,99 @@
 // link     :     https://github.com/floatinghotpot/cordova-plugin-facebookads
 
 angular.module('ngCordova.plugins.facebookAds', [])
-  .factory('$cordovaFacebookAds', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaFacebookAds', ['$q', '$window', function($q, $window) {
 
     return {
-      setOptions: function (options) {
+      setOptions: function(options) {
         var d = $q.defer();
 
-        $window.FacebookAds.setOptions(options, function () {
+        $window.FacebookAds.setOptions(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function (options) {
+      createBanner: function(options) {
         var d = $q.defer();
 
-        $window.FacebookAds.createBanner(options, function () {
+        $window.FacebookAds.createBanner(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function () {
+      removeBanner: function() {
         var d = $q.defer();
 
-        $window.FacebookAds.removeBanner(function () {
+        $window.FacebookAds.removeBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function (position) {
+      showBanner: function(position) {
         var d = $q.defer();
 
-        $window.FacebookAds.showBanner(position, function () {
+        $window.FacebookAds.showBanner(position, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function (x, y) {
+      showBannerAtXY: function(x, y) {
         var d = $q.defer();
 
-        $window.FacebookAds.showBannerAtXY(x, y, function () {
+        $window.FacebookAds.showBannerAtXY(x, y, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function () {
+      hideBanner: function() {
         var d = $q.defer();
 
-        $window.FacebookAds.hideBanner(function () {
+        $window.FacebookAds.hideBanner(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function (options) {
+      prepareInterstitial: function(options) {
         var d = $q.defer();
 
-        $window.FacebookAds.prepareInterstitial(options, function () {
+        $window.FacebookAds.prepareInterstitial(options, function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function () {
+      showInterstitial: function() {
         var d = $q.defer();
 
-        $window.FacebookAds.showInterstitial(function () {
+        $window.FacebookAds.showInterstitial(function() {
           d.resolve();
-        }, function () {
+        }, function() {
           d.reject();
         });
 

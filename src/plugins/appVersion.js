@@ -3,12 +3,12 @@
 
 angular.module('ngCordova.plugins.appVersion', [])
 
-  .factory('$cordovaAppVersion', ['$q', function ($q) {
+  .factory('$cordovaAppVersion', ['$q', function($q) {
 
     return {
-      getAppVersion: function () {
+      getAppVersion: function() {
         var q = $q.defer();
-        cordova.getAppVersion(function (version) {
+        cordova.getAppVersion(function(version) {
           q.resolve(version);
         });
 

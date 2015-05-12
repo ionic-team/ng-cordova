@@ -6,7 +6,7 @@ angular.module('ngCordova.plugins.progressIndicator', [])
   .factory('$cordovaProgress', ['$q', function ($q) {
 
     return {
-      show: function(_message) {
+      show: function (_message) {
         var message = _message || "Please wait...";
         return ProgressIndicator.show(message);
       },

@@ -3,98 +3,98 @@
 
 angular.module('ngCordova.plugins.globalization', [])
 
-  .factory('$cordovaGlobalization', ['$q', function ($q) {
+  .factory('$cordovaGlobalization', ['$q', function($q) {
 
     return {
-      getPreferredLanguage: function () {
+      getPreferredLanguage: function() {
         var q = $q.defer();
 
-        navigator.globalization.getPreferredLanguage(function (result) {
+        navigator.globalization.getPreferredLanguage(function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
-      getLocaleName: function () {
+      getLocaleName: function() {
         var q = $q.defer();
 
-        navigator.globalization.getLocaleName(function (result) {
+        navigator.globalization.getLocaleName(function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
-      getFirstDayOfWeek: function () {
+      getFirstDayOfWeek: function() {
         var q = $q.defer();
 
-        navigator.globalization.getFirstDayOfWeek(function (result) {
+        navigator.globalization.getFirstDayOfWeek(function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
       // "date" parameter must be a JavaScript Date Object.
-      dateToString: function (date, options) {
+      dateToString: function(date, options) {
         var q = $q.defer();
 
         navigator.globalization.dateToString(
           date,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      stringToDate: function (dateString, options) {
+      stringToDate: function(dateString, options) {
         var q = $q.defer();
 
         navigator.globalization.stringToDate(
           dateString,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getDatePattern: function (options) {
+      getDatePattern: function(options) {
         var q = $q.defer();
 
         navigator.globalization.getDatePattern(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getDateNames: function (options) {
+      getDateNames: function(options) {
         var q = $q.defer();
 
         navigator.globalization.getDateNames(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
@@ -102,73 +102,73 @@ angular.module('ngCordova.plugins.globalization', [])
       },
 
       // "date" parameter must be a JavaScript Date Object.
-      isDayLightSavingsTime: function (date) {
+      isDayLightSavingsTime: function(date) {
         var q = $q.defer();
 
         navigator.globalization.isDayLightSavingsTime(
           date,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;
       },
 
-      numberToString: function (number, options) {
+      numberToString: function(number, options) {
         var q = $q.defer();
 
         navigator.globalization.numberToString(
           number,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      stringToNumber: function (numberString, options) {
+      stringToNumber: function(numberString, options) {
         var q = $q.defer();
 
         navigator.globalization.stringToNumber(
           numberString,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getNumberPattern: function (options) {
+      getNumberPattern: function(options) {
         var q = $q.defer();
 
         navigator.globalization.getNumberPattern(
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           },
           options);
         return q.promise;
       },
 
-      getCurrencyPattern: function (currencyCode) {
+      getCurrencyPattern: function(currencyCode) {
         var q = $q.defer();
 
         navigator.globalization.getCurrencyPattern(
           currencyCode,
-          function (result) {
+          function(result) {
             q.resolve(result);
           },
-          function (err) {
+          function(err) {
             q.reject(err);
           });
         return q.promise;

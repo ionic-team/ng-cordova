@@ -3,16 +3,15 @@
 
 angular.module('ngCordova.plugins.badge', [])
 
-  .factory('$cordovaBadge', ['$q', function ($q) {
+  .factory('$cordovaBadge', ['$q', function($q) {
 
     return {
-      hasPermission: function () {
+      hasPermission: function() {
         var q = $q.defer();
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
             q.resolve(true);
-          }
-          else {
+          } else {
             q.reject("You do not have permission");
           }
         });
@@ -20,29 +19,28 @@ angular.module('ngCordova.plugins.badge', [])
         return q.promise;
       },
 
-      promptForPermission: function () {
+      promptForPermission: function() {
         return cordova.plugins.notification.badge.promptForPermission();
       },
 
-      set: function (number) {
+      set: function(number) {
         var q = $q.defer();
 
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
             q.resolve(cordova.plugins.notification.badge.set(number));
-          }
-          else {
+          } else {
             q.reject("You do not have permission to set Badge");
           }
         });
         return q.promise;
       },
 
-      get: function () {
+      get: function() {
         var q = $q.defer();
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
-            cordova.plugins.notification.badge.get(function (badge) {
+            cordova.plugins.notification.badge.get(function(badge) {
               q.resolve(badge);
             });
           } else {
@@ -53,21 +51,20 @@ angular.module('ngCordova.plugins.badge', [])
         return q.promise;
       },
 
-      clear: function () {
+      clear: function() {
         var q = $q.defer();
 
-        cordova.plugins.notification.badge.hasPermission(function (permission) {
+        cordova.plugins.notification.badge.hasPermission(function(permission) {
           if (permission) {
             q.resolve(cordova.plugins.notification.badge.clear());
-          }
-          else {
+          } else {
             q.reject("You do not have permission to clear Badge");
           }
         });
         return q.promise;
       },
 
-      configure: function (config) {
+      configure: function(config) {
         return cordova.plugins.notification.badge.configure(config);
       }
     };

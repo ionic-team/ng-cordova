@@ -3,120 +3,120 @@
 
 angular.module('ngCordova.plugins.googlePlayGame', [])
 
-	.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
+	.factory('$cordovaGooglePlayGame', ['$q', function($q) {
 
-		return {
+  return {
 
-			auth: function() {
-				var q = $q.defer();
+    auth: function() {
+      var q = $q.defer();
 
-				googleplaygame.auth(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.auth(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			signout: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    signout: function() {
+      var q = $q.defer();
 
-				googleplaygame.signout(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.signout(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			isSignedIn: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    isSignedIn: function() {
+      var q = $q.defer();
 
-				googleplaygame.isSignedIn(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.isSignedIn(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showPlayer: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showPlayer: function() {
+      var q = $q.defer();
 
-				googleplaygame.showPlayer(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showPlayer(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			submitScore: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    submitScore: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.submitScore(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.submitScore(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showAllLeaderboards: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showAllLeaderboards: function() {
+      var q = $q.defer();
 
-				googleplaygame.showAllLeaderboards(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showAllLeaderboards(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showLeaderboard: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showLeaderboard: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.showLeaderboard(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showLeaderboard(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			unlockAchievement: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    unlockAchievement: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.unlockAchievement(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.unlockAchievement(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			incrementAchievement: function(data) {
-				var q = $q.defer();
+      return q.promise;
+    },
+    incrementAchievement: function(data) {
+      var q = $q.defer();
 
-				googleplaygame.incrementAchievement(data, function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.incrementAchievement(data, function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			},
-			showAchievements: function() {
-				var q = $q.defer();
+      return q.promise;
+    },
+    showAchievements: function() {
+      var q = $q.defer();
 
-				googleplaygame.showAchievements(function(success) {
-					return q.resolve(success);
-				}, function(err) {
-					return q.reject(err);
-				});
+      googleplaygame.showAchievements(function(success) {
+        return q.resolve(success);
+      }, function(err) {
+        return q.reject(err);
+      });
 
-				return q.promise;
-			}
-		};
+      return q.promise;
+    }
+  };
 
 	}]);

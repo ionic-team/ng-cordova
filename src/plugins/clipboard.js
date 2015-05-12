@@ -3,28 +3,28 @@
 
 angular.module('ngCordova.plugins.clipboard', [])
 
-  .factory('$cordovaClipboard', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaClipboard', ['$q', '$window', function($q, $window) {
 
     return {
-      copy: function (text) {
+      copy: function(text) {
         var q = $q.defer();
 
         $window.cordova.plugins.clipboard.copy(text,
-          function () {
+          function() {
             q.resolve();
-          }, function () {
+          }, function() {
             q.reject();
           });
 
         return q.promise;
       },
 
-      paste: function () {
+      paste: function() {
         var q = $q.defer();
 
-        $window.cordova.plugins.clipboard.paste(function (text) {
+        $window.cordova.plugins.clipboard.paste(function(text) {
           q.resolve(text);
-        }, function () {
+        }, function() {
           q.reject();
         });
 

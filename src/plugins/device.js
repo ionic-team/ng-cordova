@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.device', [])
 
-  .factory('$cordovaDevice', [function () {
+  .factory('$cordovaDevice', [function() {
 
     return {
       /**
@@ -11,7 +11,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
        * @returns {Object} The device object.
        */
-      getDevice: function () {
+      getDevice: function() {
         return device;
       },
 
@@ -20,7 +20,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicecordova
        * @returns {String} The Cordova version.
        */
-      getCordova: function () {
+      getCordova: function() {
         return device.cordova;
       },
 
@@ -29,7 +29,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicemodel
        * @returns {String} The name of the device's model or product.
        */
-      getModel: function () {
+      getModel: function() {
         return device.model;
       },
 
@@ -37,7 +37,7 @@ angular.module('ngCordova.plugins.device', [])
        * @deprecated device.name is deprecated as of version 2.3.0. Use device.model instead.
        * @returns {String}
        */
-      getName: function () {
+      getName: function() {
         return device.name;
       },
 
@@ -46,7 +46,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceplatform
        * @returns {String} The device's operating system name.
        */
-      getPlatform: function () {
+      getPlatform: function() {
         return device.platform;
       },
 
@@ -55,7 +55,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceuuid
        * @returns {String} The device's Universally Unique Identifier
        */
-      getUUID: function () {
+      getUUID: function() {
         return device.uuid;
       },
 
@@ -64,7 +64,7 @@ angular.module('ngCordova.plugins.device', [])
        * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceversion
        * @returns {String}
        */
-      getVersion: function () {
+      getVersion: function() {
         return device.version;
       }
     };

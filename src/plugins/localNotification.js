@@ -6,9 +6,9 @@ angular.module('ngCordova.plugins.localNotification', [])
   .factory('$cordovaLocalNotification', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
     document.addEventListener('deviceready', function () {
       if ($window.cordova &&
-          $window.cordova.plugins &&
-          $window.cordova.plugins.notification &&
-          $window.cordova.plugins.notification.local) {
+        $window.cordova.plugins &&
+        $window.cordova.plugins.notification &&
+        $window.cordova.plugins.notification.local) {
         // ----- "Scheduling" events
 
         // A local notification was scheduled

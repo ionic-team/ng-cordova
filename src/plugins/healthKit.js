@@ -3,15 +3,15 @@
 
 angular.module('ngCordova.plugins.healthKit', [])
 
-  .factory('$cordovaHealthKit', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaHealthKit', ['$q', '$window', function($q, $window) {
 
     return {
-      isAvailable: function () {
+      isAvailable: function() {
         var q = $q.defer();
 
-        $window.plugins.healthkit.available(function (success) {
+        $window.plugins.healthkit.available(function(success) {
           q.resolve(success);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -23,16 +23,16 @@ angular.module('ngCordova.plugins.healthKit', [])
        * Reference for possible types:
        * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
        */
-      checkAuthStatus: function (type) {
+      checkAuthStatus: function(type) {
         var q = $q.defer();
 
         type = type || 'HKQuantityTypeIdentifierHeight';
 
         $window.plugins.healthkit.checkAuthStatus({
           'type': type
-        }, function (success) {
+        }, function(success) {
           q.resolve(success);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
@@ -44,7 +44,7 @@ angular.module('ngCordova.plugins.healthKit', [])
        * reference for possible read and write types:
        * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
        */
-      requestAuthorization: function (readTypes, writeTypes) {
+      requestAuthorization: function(readTypes, writeTypes) {
         var q = $q.defer();
 
         readTypes = readTypes || [
@@ -57,22 +57,22 @@ angular.module('ngCordova.plugins.healthKit', [])
         $window.plugins.healthkit.requestAuthorization({
           'readTypes': readTypes,
           'writeTypes': writeTypes
-        }, function (success) {
+        }, function(success) {
           q.resolve(success);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      readDateOfBirth: function () {
+      readDateOfBirth: function() {
         var q = $q.defer();
         $window.plugins.healthkit.readDateOfBirth(
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -80,13 +80,13 @@ angular.module('ngCordova.plugins.healthKit', [])
         return q.promise;
       },
 
-      readGender: function () {
+      readGender: function() {
         var q = $q.defer();
         $window.plugins.healthkit.readGender(
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -94,63 +94,63 @@ angular.module('ngCordova.plugins.healthKit', [])
         return q.promise;
       },
 
-      saveWeight: function (value, units, date) {
+      saveWeight: function(value, units, date) {
         var q = $q.defer();
         $window.plugins.healthkit.saveWeight({
             'unit': units || 'lb',
             'amount': value,
             'date': date || new Date()
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
         return q.promise;
       },
 
-      readWeight: function (units) {
+      readWeight: function(units) {
         var q = $q.defer();
         $window.plugins.healthkit.readWeight({
             'unit': units || 'lb'
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
 
         return q.promise;
       },
-      saveHeight: function (value, units, date) {
+      saveHeight: function(value, units, date) {
         var q = $q.defer();
         $window.plugins.healthkit.saveHeight({
             'unit': units || 'in',
             'amount': value,
             'date': date || new Date()
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
         return q.promise;
       },
-      readHeight: function (units) {
+      readHeight: function(units) {
         var q = $q.defer();
         $window.plugins.healthkit.readHeight({
             'unit': units || 'in'
           },
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -158,13 +158,13 @@ angular.module('ngCordova.plugins.healthKit', [])
         return q.promise;
       },
 
-      findWorkouts: function () {
+      findWorkouts: function() {
         var q = $q.defer();
         $window.plugins.healthkit.findWorkouts({},
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -188,13 +188,13 @@ angular.module('ngCordova.plugins.healthKit', [])
          // 'extraData': "", // Not sure how necessary this is
        },
        */
-      saveWorkout: function (workout) {
+      saveWorkout: function(workout) {
         var q = $q.defer();
         $window.plugins.healthkit.saveWorkout(workout,
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );
@@ -211,13 +211,13 @@ angular.module('ngCordova.plugins.healthKit', [])
 									'unit' : 'cm'
 							},
        */
-      querySampleType: function (sampleQuery) {
+      querySampleType: function(sampleQuery) {
         var q = $q.defer();
         $window.plugins.healthkit.querySampleType(sampleQuery,
-          function (success) {
+          function(success) {
             q.resolve(success);
           },
-          function (err) {
+          function(err) {
             q.resolve(err);
           }
         );

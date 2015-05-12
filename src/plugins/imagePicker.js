@@ -3,15 +3,15 @@
 
 angular.module('ngCordova.plugins.imagePicker', [])
 
-  .factory('$cordovaImagePicker', ['$q', '$window', function ($q, $window) {
+  .factory('$cordovaImagePicker', ['$q', '$window', function($q, $window) {
 
     return {
-      getPictures: function (options) {
+      getPictures: function(options) {
         var q = $q.defer();
 
-        $window.imagePicker.getPictures(function (results) {
+        $window.imagePicker.getPictures(function(results) {
           q.resolve(results);
-        }, function (error) {
+        }, function(error) {
           q.reject(error);
         }, options);
 

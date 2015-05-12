@@ -13,7 +13,8 @@ var gulp = require('gulp'),
   prettify = require('gulp-prettify'),
   changelog = require('conventional-changelog'),
   q = require('q'),
-  fs = require('fs');
+  fs = require('fs'),
+  jscs = require('gulp-jscs');
 
 gulp.task('default', ['build']);
 
@@ -78,6 +79,24 @@ gulp.task('lint', function () {
   return gulp.src('./src/plugins/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('jscs', function () {
+  gulp.src('src/plugins/*.js')
+    .pipe(jscs({
+      preset: 'google',
+      fix: true
+    }))
+    .pipe(gulp.dest('src/plugins/'));
+
+
+  gulp.src('./src/mocks/*.js')
+    .pipe(jscs({
+      preset: 'google',
+      fix: true
+    }))
+    .pipe(gulp.dest('src/mocks/'));
+
 });
 
 gulp.task('karma-watch', function (done) {

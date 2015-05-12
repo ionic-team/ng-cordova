@@ -18,23 +18,23 @@ angular.module('ngCordova.plugins.file', [])
     12: 'PATH_EXISTS_ERR'
   })
 
-  .provider('$cordovaFile', [function () {
+  .provider('$cordovaFile', [function() {
 
-    this.$get = ['$q', '$window', '$cordovaFileError', function ($q, $window, $cordovaFileError) {
+    this.$get = ['$q', '$window', '$cordovaFileError', function($q, $window, $cordovaFileError) {
 
       return {
 
         getFreeDiskSpace: function() {
-            var q = $q.defer();
-            cordova.exec(function(result) {
-                q.resolve(result);
-            }, function(error) {
-                q.reject(error);
-            }, "File", "getFreeDiskSpace", []);
-            return q.promise;
+          var q = $q.defer();
+          cordova.exec(function(result) {
+            q.resolve(result);
+          }, function(error) {
+            q.reject(error);
+          }, "File", "getFreeDiskSpace", []);
+          return q.promise;
         },
 
-        checkDir: function (path, dir) {
+        checkDir: function(path, dir) {
           var q = $q.defer();
 
           if ((/^\//.test(dir))) {
@@ -43,13 +43,13 @@ angular.module('ngCordova.plugins.file', [])
 
           try {
             var directory = path + dir;
-            $window.resolveLocalFileSystemURL(directory, function (fileSystem) {
+            $window.resolveLocalFileSystemURL(directory, function(fileSystem) {
               if (fileSystem.isDirectory === true) {
                 q.resolve(fileSystem);
               } else {
                 q.reject({code: 13, message: "input is not a directory"});
               }
-            }, function (error) {
+            }, function(error) {
               error.message = $cordovaFileError[error.code];
               q.reject(error);
             });
@@ -61,8 +61,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        checkFile: function (path, file) {
+        checkFile: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -71,13 +70,13 @@ angular.module('ngCordova.plugins.file', [])
 
           try {
             var directory = path + file;
-            $window.resolveLocalFileSystemURL(directory, function (fileSystem) {
+            $window.resolveLocalFileSystemURL(directory, function(fileSystem) {
               if (fileSystem.isFile === true) {
                 q.resolve(fileSystem);
               } else {
                 q.reject({code: 13, message: "input is not a file"});
               }
-            }, function (error) {
+            }, function(error) {
               error.message = $cordovaFileError[error.code];
               q.reject(error);
             });
@@ -89,7 +88,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        createDir: function (path, dirName, replaceBool) {
+        createDir: function(path, dirName, replaceBool) {
           var q = $q.defer();
 
           if ((/^\//.test(dirName))) {
@@ -104,14 +103,14 @@ angular.module('ngCordova.plugins.file', [])
           };
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, options, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, options, function(result) {
                 q.resolve(result);
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -123,7 +122,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        createFile: function (path, fileName, replaceBool) {
+        createFile: function(path, fileName, replaceBool) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -138,14 +137,14 @@ angular.module('ngCordova.plugins.file', [])
           };
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, options, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, options, function(result) {
                 q.resolve(result);
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -156,8 +155,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        removeDir: function (path, dirName) {
+        removeDir: function(path, dirName) {
           var q = $q.defer();
 
           if ((/^\//.test(dirName))) {
@@ -165,19 +163,19 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false}, function (dirEntry) {
-                dirEntry.remove(function () {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false}, function(dirEntry) {
+                dirEntry.remove(function() {
                   q.resolve({success: true, fileRemoved: dirEntry});
-                }, function (error) {
+                }, function(error) {
                   error.message = $cordovaFileError[error.code];
                   q.reject(error);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -188,7 +186,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        removeFile: function (path, fileName) {
+        removeFile: function(path, fileName) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -196,19 +194,19 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false}, function (fileEntry) {
-                fileEntry.remove(function () {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false}, function(fileEntry) {
+                fileEntry.remove(function() {
                   q.resolve({success: true, fileRemoved: fileEntry});
-                }, function (error) {
+                }, function(error) {
                   error.message = $cordovaFileError[error.code];
                   q.reject(error);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -219,7 +217,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        removeRecursively: function (path, dirName) {
+        removeRecursively: function(path, dirName) {
           var q = $q.defer();
 
           if ((/^\//.test(dirName))) {
@@ -227,19 +225,19 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false}, function (dirEntry) {
-                dirEntry.removeRecursively(function () {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false}, function(dirEntry) {
+                dirEntry.removeRecursively(function() {
                   q.resolve({success: true, fileRemoved: dirEntry});
-                }, function (error) {
+                }, function(error) {
                   error.message = $cordovaFileError[error.code];
                   q.reject(error);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -250,7 +248,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        writeFile: function (path, fileName, text, replaceBool) {
+        writeFile: function(path, fileName, text, replaceBool) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -265,9 +263,9 @@ angular.module('ngCordova.plugins.file', [])
           };
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, options, function (fileEntry) {
-                fileEntry.createWriter(function (writer) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, options, function(fileEntry) {
+                fileEntry.createWriter(function(writer) {
                   if (options.append === true) {
                     writer.seek(writer.length);
                   }
@@ -276,26 +274,25 @@ angular.module('ngCordova.plugins.file', [])
                     writer.truncate(options.truncate);
                   }
 
-                  writer.onwriteend = function (evt) {
+                  writer.onwriteend = function(evt) {
                     if (this.error) {
                       q.reject(this.error);
-                    }
-                    else {
+                    } else {
                       q.resolve(evt);
                     }
                   };
 
                   writer.write(text);
 
-                  q.promise.abort = function () {
+                  q.promise.abort = function() {
                     writer.abort();
                   };
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -307,8 +304,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        writeExistingFile: function (path, fileName, text) {
+        writeExistingFile: function(path, fileName, text) {
           var q = $q.defer();
 
           if ((/^\//.test(fileName))) {
@@ -316,31 +312,30 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false}, function (fileEntry) {
-                fileEntry.createWriter(function (writer) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false}, function(fileEntry) {
+                fileEntry.createWriter(function(writer) {
                   writer.seek(writer.length);
 
-                  writer.onwriteend = function (evt) {
+                  writer.onwriteend = function(evt) {
                     if (this.error) {
                       q.reject(this.error);
-                    }
-                    else {
+                    } else {
                       q.resolve(evt);
                     }
                   };
 
                   writer.write(text);
 
-                  q.promise.abort = function () {
+                  q.promise.abort = function() {
                     writer.abort();
                   };
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -352,8 +347,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        readAsText: function (path, file) {
+        readAsText: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -361,30 +355,28 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
 
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
 
                   reader.readAsText(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -396,8 +388,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        readAsDataURL: function (path, file) {
+        readAsDataURL: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -405,28 +396,26 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
                   reader.readAsDataURL(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -438,7 +427,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        readAsBinaryString: function (path, file) {
+        readAsBinaryString: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -446,28 +435,26 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
                   reader.readAsBinaryString(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -479,7 +466,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        readAsArrayBuffer: function (path, file) {
+        readAsArrayBuffer: function(path, file) {
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
@@ -487,28 +474,26 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(file, {create: false}, function (fileEntry) {
-                fileEntry.file(function (fileData) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(file, {create: false}, function(fileEntry) {
+                fileEntry.file(function(fileData) {
                   var reader = new FileReader();
-                  reader.onloadend = function (evt) {
+                  reader.onloadend = function(evt) {
                     if (evt.target._result !== undefined || evt.target._result !== null) {
                       q.resolve(evt.target._result);
-                    }
-                    else if (evt.target._error !== undefined || evt.target._error !== null) {
+                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
                       q.reject(evt.target._error);
-                    }
-                    else {
+                    } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
                   };
                   reader.readAsArrayBuffer(fileData);
                 });
-              }, function (error) {
+              }, function(error) {
                 error.message = $cordovaFileError[error.code];
                 q.reject(error);
               });
-            }, function (err) {
+            }, function(err) {
               err.message = $cordovaFileError[err.code];
               q.reject(err);
             });
@@ -520,8 +505,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        moveFile: function (path, fileName, newPath, newFileName) {
+        moveFile: function(path, fileName, newPath, newFileName) {
           var q = $q.defer();
 
           newFileName = newFileName || fileName;
@@ -531,21 +515,21 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false}, function (fileEntry) {
-                $window.resolveLocalFileSystemURL(newPath, function (newFileEntry) {
-                  fileEntry.moveTo(newFileEntry, newFileName, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false}, function(fileEntry) {
+                $window.resolveLocalFileSystemURL(newPath, function(newFileEntry) {
+                  fileEntry.moveTo(newFileEntry, newFileName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     q.reject(error);
                   });
-                }, function (err) {
+                }, function(err) {
                   q.reject(err);
                 });
-              }, function (err) {
+              }, function(err) {
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               q.reject(er);
             });
           } catch (e) {
@@ -554,7 +538,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        moveDir: function (path, dirName, newPath, newDirName) {
+        moveDir: function(path, dirName, newPath, newDirName) {
           var q = $q.defer();
 
           newDirName = newDirName || dirName;
@@ -564,21 +548,21 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false}, function (dirEntry) {
-                $window.resolveLocalFileSystemURL(newPath, function (newDirEntry) {
-                  dirEntry.moveTo(newDirEntry, newDirName, function (result) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false}, function(dirEntry) {
+                $window.resolveLocalFileSystemURL(newPath, function(newDirEntry) {
+                  dirEntry.moveTo(newDirEntry, newDirName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     q.reject(error);
                   });
-                }, function (erro) {
+                }, function(erro) {
                   q.reject(erro);
                 });
-              }, function (err) {
+              }, function(err) {
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               q.reject(er);
             });
           } catch (e) {
@@ -587,8 +571,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-
-        copyDir: function (path, dirName, newPath, newDirName) {
+        copyDir: function(path, dirName, newPath, newDirName) {
           var q = $q.defer();
 
           newDirName = newDirName || dirName;
@@ -598,25 +581,25 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getDirectory(dirName, {create: false, exclusive: false}, function (dirEntry) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getDirectory(dirName, {create: false, exclusive: false}, function(dirEntry) {
 
-                $window.resolveLocalFileSystemURL(newPath, function (newDirEntry) {
-                  dirEntry.copyTo(newDirEntry, newDirName, function (result) {
+                $window.resolveLocalFileSystemURL(newPath, function(newDirEntry) {
+                  dirEntry.copyTo(newDirEntry, newDirName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     error.message = $cordovaFileError[error.code];
                     q.reject(error);
                   });
-                }, function (erro) {
+                }, function(erro) {
                   erro.message = $cordovaFileError[erro.code];
                   q.reject(erro);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
@@ -627,7 +610,7 @@ angular.module('ngCordova.plugins.file', [])
           return q.promise;
         },
 
-        copyFile: function (path, fileName, newPath, newFileName) {
+        copyFile: function(path, fileName, newPath, newFileName) {
           var q = $q.defer();
 
           newFileName = newFileName || fileName;
@@ -637,25 +620,25 @@ angular.module('ngCordova.plugins.file', [])
           }
 
           try {
-            $window.resolveLocalFileSystemURL(path, function (fileSystem) {
-              fileSystem.getFile(fileName, {create: false, exclusive: false}, function (fileEntry) {
+            $window.resolveLocalFileSystemURL(path, function(fileSystem) {
+              fileSystem.getFile(fileName, {create: false, exclusive: false}, function(fileEntry) {
 
-                $window.resolveLocalFileSystemURL(newPath, function (newFileEntry) {
-                  fileEntry.copyTo(newFileEntry, newFileName, function (result) {
+                $window.resolveLocalFileSystemURL(newPath, function(newFileEntry) {
+                  fileEntry.copyTo(newFileEntry, newFileName, function(result) {
                     q.resolve(result);
-                  }, function (error) {
+                  }, function(error) {
                     error.message = $cordovaFileError[error.code];
                     q.reject(error);
                   });
-                }, function (erro) {
+                }, function(erro) {
                   erro.message = $cordovaFileError[erro.code];
                   q.reject(erro);
                 });
-              }, function (err) {
+              }, function(err) {
                 err.message = $cordovaFileError[err.code];
                 q.reject(err);
               });
-            }, function (er) {
+            }, function(er) {
               er.message = $cordovaFileError[er.code];
               q.reject(er);
             });
