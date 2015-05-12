@@ -3,7 +3,7 @@ layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaSQLite
-source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/SQLite.js
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/sqlite.js
 official-docs: https://github.com/brodysoft/Cordova-SQLitePlugin
 icon-apple: true
 icon-android: true
