@@ -6,19 +6,20 @@
  * A service for testing interaction with device directories and files
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFile', ['$q', function ($q) {
   var throwsError = false;
   var fileSystem = {};
   var shouldMockFiles = false;
   var files = {};
 
-  var mockIt = function(errorMessage) {
+  var mockIt = function (errorMessage) {
     var defer = $q.defer();
     if (this.throwsError) {
       defer.reject(errorMessage);
     } else {
       defer.resolve();
     }
+
     return defer.promise;
   };
 
@@ -69,7 +70,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
      * **/
     files: files,
 
-    checkDir: function(directory) {
+    checkDir: function (directory) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         if (this.files[directory] && !this.files[directory].isFile) {
@@ -77,27 +78,29 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         } else {
           defer.reject();
         }
+
         return defer.promise;
       }
 
       return mockIt.call(this, 'There was an error checking the directory.');
     },
 
-    createDir: function(directory, overwrite) {
+    createDir: function (directory, overwrite) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         this.files[directory] = {isFile: false};
         defer.resolve();
         return defer.promise;
       }
+
       return mockIt.call(this, 'There was an error creating the directory.');
     },
 
-    listDir: function(filePath) {
+    listDir: function (filePath) {
       return mockIt.call(this, 'There was an error listing the directory');
     },
 
-    checkFile: function(filePath) {
+    checkFile: function (filePath) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         if (this.files[filePath] && this.files[filePath].isFile) {
@@ -105,12 +108,14 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         } else {
           defer.reject();
         }
+
         return defer.promise;
       }
+
       return mockIt.call(this, 'There was an error checking for the file.');
     },
 
-    createFile: function(filePath, overwrite) {
+    createFile: function (filePath, overwrite) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         this.files[filePath] = {
@@ -124,25 +129,26 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
       return mockIt.call(this, 'There was an error creating the file.');
     },
 
-    removeFile: function(directory, file) {
+    removeFile: function (directory, file) {
       return mockIt.call(this, 'There was an error removng the file.');
     },
 
-    writeFile: function(filePath, data, options) {
+    writeFile: function (filePath, data, options) {
       if (this.shouldMockFiles && filePath && data) {
         this.files[filePath] = {
           isFile: true,
           fileContent: data
         };
       }
+
       return mockIt.call(this, 'There was an error writing the file.');
     },
 
-    readFile: function(filePath) {
+    readFile: function (filePath) {
       return this.readAsText(filePath);
     },
 
-    readAsText: function(filePath) {
+    readAsText: function (filePath) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         if (files[filePath] && files[filePath].isFile) {
@@ -150,40 +156,42 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         } else {
           defer.reject();
         }
+
         return defer.promise;
       }
+
       return mockIt.call(this, 'There was an error reading the file as text.');
     },
 
-    readAsDataURL: function(filePath) {
+    readAsDataURL: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file as a data url.');
     },
 
-    readAsBinaryString: function(filePath) {
+    readAsBinaryString: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file as a binary string.');
     },
 
-    readAsArrayBuffer: function(filePath) {
+    readAsArrayBuffer: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file as an array buffer.');
     },
 
-    readFileMetadata: function(filePath) {
+    readFileMetadata: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file metadata');
     },
 
-    readFileAbsolute: function(filePath) {
+    readFileAbsolute: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file from the absolute path');
     },
 
-    readFileMetadataAbsolute: function(filePath) {
+    readFileMetadataAbsolute: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file metadta from the absolute path');
     },
 
-    downloadFile: function(source, filePath, trust, options) {
+    downloadFile: function (source, filePath, trust, options) {
       return mockIt.call(this, 'There was an error downloading the file.');
     },
 
-    uploadFile: function(server, filePath, options) {
+    uploadFile: function (server, filePath, options) {
       return mockIt.call(this, 'There was an error uploading the file.');
     }
   };

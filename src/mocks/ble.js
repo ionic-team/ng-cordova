@@ -6,7 +6,7 @@
  * A service for ble features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function($q, $timeout) {
+ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout) {
   var deviceScan = {
     name: 'Test Device',
     id: 'AA:BB:CC:DD:EE:FF',
@@ -53,77 +53,77 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function($q, $timeout) 
 
   return {
 
-    scan: function(services, seconds) {
+    scan: function (services, seconds) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(deviceScan);
       }, seconds * 1000);
       return q.promise;
     },
 
-    connect: function(deviceID) {
+    connect: function (deviceID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(deviceConnect);
       }, 1500);
       return q.promise;
     },
 
-    disconnect: function(deviceID) {
+    disconnect: function (deviceID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 500);
       return q.promise;
     },
 
-    read: function(deviceID, serviceUUID, characteristicUUID) {
+    read: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(readData);
       }, 100);
       return q.promise;
     },
 
-    write: function(deviceID, serviceUUID, characteristicUUID, data) {
+    write: function (deviceID, serviceUUID, characteristicUUID, data) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    writeCommand: function(deviceID, serviceUUID, characteristicUUID, data) {
+    writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    notify: function(deviceID, serviceUUID, characteristicUUID) {
+    notify: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    indicate: function(deviceID, serviceUUID, characteristicUUID) {
+    indicate: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    isConnected: function(deviceID) {
+    isConnected: function (deviceID) {
       var q = $q.defer();
       q.resolve(true);
       return q.promise;
     },
 
-    isEnabled: function() {
+    isEnabled: function () {
       var q = $q.defer();
       q.resolve(true);
       return q.promise;

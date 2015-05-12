@@ -6,7 +6,7 @@
  * A service for testing google analytics services
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
   var throwsError = false;
   var methods = {};
 
@@ -34,8 +34,8 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
     'addTransactionItem'
   ];
 
-  methodsName.forEach(function(funcName) {
-    methods[funcName] = function() {
+  methodsName.forEach(function (funcName) {
+    methods[funcName] = function () {
       var defer = $q.defer();
 
       (this.throwsError) ?

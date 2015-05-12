@@ -3,20 +3,20 @@
 
 angular.module('ngCordova.plugins.actionSheet', [])
 
-  .factory('$cordovaActionSheet', ['$q', '$window', function($q, $window) {
+  .factory('$cordovaActionSheet', ['$q', '$window', function ($q, $window) {
 
     return {
-      show: function(options) {
+      show: function (options) {
         var q = $q.defer();
 
-        $window.plugins.actionsheet.show(options, function(result) {
+        $window.plugins.actionsheet.show(options, function (result) {
           q.resolve(result);
         });
 
         return q.promise;
       },
 
-      hide: function() {
+      hide: function () {
         return $window.plugins.actionsheet.hide();
       }
     };

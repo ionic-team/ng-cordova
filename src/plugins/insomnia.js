@@ -11,6 +11,6 @@ angular.module('ngCordova.plugins.insomnia', [])
       allowSleepAgain: function () {
         return $window.plugins.insomnia.allowSleepAgain();
       }
-    }
+    };
 
   }]);

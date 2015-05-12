@@ -6,7 +6,7 @@
  * A service for mocking the accelerometer
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($interval, $q) {
   var currentAcceleration = null;
   var throwsError = false;
   var positions = [];
@@ -57,17 +57,18 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
      */
     watchIntervals: watchIntervals,
 
-    getCurrentAcceleration: function() {
+    getCurrentAcceleration: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the current acceleration.');
       } else {
         defer.resolve(this.currentAcceleration);
       }
+
       return defer.promise;
     },
 
-    watchAcceleration: function(options) {
+    watchAcceleration: function (options) {
       var defer = $q.defer();
       var watchId = Math.floor((Math.random() * 1000000) + 1);
 
@@ -83,7 +84,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
         }
 
         this.watchIntervals.push($interval(
-          function() {
+          function () {
             if (self.throwsError) {
               defer.reject('There was an error watching the acceleration.');
             }
@@ -107,7 +108,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
       };
     },
 
-    clearWatch: function(watchId) {
+    clearWatch: function (watchId) {
       var defer = $q.defer();
       if (watchId) {
         if (this.throwsError) {
@@ -129,6 +130,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
       } else {
         defer.reject('Unable to clear watch. No watch ID provided.');
       }
+
       return defer.promise;
     }
   };

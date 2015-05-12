@@ -6,7 +6,7 @@
  * A service for testing barcode scanner features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function ($q) {
   var throwsError = false;
 
   var scannedText = '';
@@ -63,17 +63,18 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
      **/
     wasCancelled: wasCancelled,
 
-    scan: function() {
+    scan: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error scanning.');
       } else {
         defer.resolve({text: this.scannedText, format: this.scannedFormat, cancelled: this.wasCancelled});
       }
+
       return defer.promise;
     },
 
-    encode: function(type, data) {
+    encode: function (type, data) {
       this.scannedFormat = type;
       this.scannedText = data;
 
@@ -83,6 +84,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     }
   };

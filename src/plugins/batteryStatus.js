@@ -3,27 +3,27 @@
 
 angular.module('ngCordova.plugins.batteryStatus', [])
 
-  .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
+  .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
 
-    var batteryStatus = function(status) {
-      $timeout(function() {
+    var batteryStatus = function (status) {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:status', status);
       });
     };
 
-    var batteryCritical = function(status) {
-      $timeout(function() {
+    var batteryCritical = function (status) {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:critical', status);
       });
     };
 
-    var batteryLow = function(status) {
-      $timeout(function() {
+    var batteryLow = function (status) {
+      $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:low', status);
       });
     };
 
-    document.addEventListener("deviceready", function() {
+    document.addEventListener("deviceready", function () {
       if (navigator.battery) {
         $window.addEventListener('batterystatus', batteryStatus, false);
         $window.addEventListener('batterycritical', batteryCritical, false);
@@ -33,5 +33,5 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     }, false);
     return true;
   }])
-  .run(['$cordovaBatteryStatus', function($cordovaBatteryStatus) {
+  .run(['$cordovaBatteryStatus', function ($cordovaBatteryStatus) {
   }]);

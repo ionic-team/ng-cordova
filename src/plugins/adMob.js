@@ -3,63 +3,63 @@
 
 angular.module('ngCordova.plugins.adMob', [])
 
-  .factory('$cordovaAdMob', ['$q', '$window', function($q, $window) {
+  .factory('$cordovaAdMob', ['$q', '$window', function ($q, $window) {
 
     return {
-      createBannerView: function(options) {
+      createBannerView: function (options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.createBannerView(options, function() {
+        $window.plugins.AdMob.createBannerView(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createInterstitialView: function(options) {
+      createInterstitialView: function (options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.createInterstitialView(options, function() {
+        $window.plugins.AdMob.createInterstitialView(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      requestAd: function(options) {
+      requestAd: function (options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.requestAd(options, function() {
+        $window.plugins.AdMob.requestAd(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showAd: function(options) {
+      showAd: function (options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.showAd(options, function() {
+        $window.plugins.AdMob.showAd(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      requestInterstitialAd: function(options) {
+      requestInterstitialAd: function (options) {
         var d = $q.defer();
 
-        $window.plugins.AdMob.requestInterstitialAd(options, function() {
+        $window.plugins.AdMob.requestInterstitialAd(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 

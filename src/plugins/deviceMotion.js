@@ -3,35 +3,35 @@
 
 angular.module('ngCordova.plugins.deviceMotion', [])
 
-  .factory('$cordovaDeviceMotion', ['$q', function($q) {
+  .factory('$cordovaDeviceMotion', ['$q', function ($q) {
 
     return {
-      getCurrentAcceleration: function() {
+      getCurrentAcceleration: function () {
         var q = $q.defer();
 
-        navigator.accelerometer.getCurrentAcceleration(function(result) {
+        navigator.accelerometer.getCurrentAcceleration(function (result) {
           q.resolve(result);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         });
 
         return q.promise;
       },
 
-      watchAcceleration: function(options) {
+      watchAcceleration: function (options) {
         var q = $q.defer();
 
-        var watchID = navigator.accelerometer.watchAcceleration(function(result) {
+        var watchID = navigator.accelerometer.watchAcceleration(function (result) {
           q.notify(result);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         }, options);
 
-        q.promise.cancel = function() {
+        q.promise.cancel = function () {
           navigator.accelerometer.clearWatch(watchID);
         };
 
-        q.promise.clearWatch = function(id) {
+        q.promise.clearWatch = function (id) {
           navigator.accelerometer.clearWatch(id || watchID);
         };
 
@@ -40,7 +40,7 @@ angular.module('ngCordova.plugins.deviceMotion', [])
         return q.promise;
       },
 
-      clearWatch: function(watchID) {
+      clearWatch: function (watchID) {
         return navigator.accelerometer.clearWatch(watchID);
       }
     };

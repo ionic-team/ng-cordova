@@ -2,99 +2,99 @@
 // link     :     https://github.com/floatinghotpot/cordova-admob-pro
 
 angular.module('ngCordova.plugins.googleAds', [])
-  .factory('$cordovaGoogleAds', ['$q', '$window', function($q, $window) {
+  .factory('$cordovaGoogleAds', ['$q', '$window', function ($q, $window) {
 
     return {
-      setOptions: function(options) {
+      setOptions: function (options) {
         var d = $q.defer();
 
-        $window.AdMob.setOptions(options, function() {
+        $window.AdMob.setOptions(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function(options) {
+      createBanner: function (options) {
         var d = $q.defer();
 
-        $window.AdMob.createBanner(options, function() {
+        $window.AdMob.createBanner(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function() {
+      removeBanner: function () {
         var d = $q.defer();
 
-        $window.AdMob.removeBanner(function() {
+        $window.AdMob.removeBanner(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function(position) {
+      showBanner: function (position) {
         var d = $q.defer();
 
-        $window.AdMob.showBanner(position, function() {
+        $window.AdMob.showBanner(position, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function(x, y) {
+      showBannerAtXY: function (x, y) {
         var d = $q.defer();
 
-        $window.AdMob.showBannerAtXY(x, y, function() {
+        $window.AdMob.showBannerAtXY(x, y, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function() {
+      hideBanner: function () {
         var d = $q.defer();
 
-        $window.AdMob.hideBanner(function() {
+        $window.AdMob.hideBanner(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function(options) {
+      prepareInterstitial: function (options) {
         var d = $q.defer();
 
-        $window.AdMob.prepareInterstitial(options, function() {
+        $window.AdMob.prepareInterstitial(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function() {
+      showInterstitial: function () {
         var d = $q.defer();
 
-        $window.AdMob.showInterstitial(function() {
+        $window.AdMob.showInterstitial(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 

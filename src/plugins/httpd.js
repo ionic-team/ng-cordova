@@ -2,51 +2,51 @@
 // link     :     https://github.com/floatinghotpot/cordova-httpd
 
 angular.module('ngCordova.plugins.httpd', [])
-  .factory('$cordovaHttpd', ['$q', function($q) {
+  .factory('$cordovaHttpd', ['$q', function ($q) {
 
     return {
-      startServer: function(options) {
+      startServer: function (options) {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.startServer(options, function() {
+        cordova.plugins.CorHttpd.startServer(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      stopServer: function() {
+      stopServer: function () {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.stopServer(function() {
+        cordova.plugins.CorHttpd.stopServer(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      getURL: function() {
+      getURL: function () {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.getURL(function(url) {
+        cordova.plugins.CorHttpd.getURL(function (url) {
           d.resolve(url);
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      getLocalPath: function() {
+      getLocalPath: function () {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.getLocalPath(function(path) {
+        cordova.plugins.CorHttpd.getLocalPath(function (path) {
           d.resolve(path);
-        }, function() {
+        }, function () {
           d.reject();
         });
 

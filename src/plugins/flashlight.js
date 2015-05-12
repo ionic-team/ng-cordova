@@ -3,42 +3,42 @@
 
 angular.module('ngCordova.plugins.flashlight', [])
 
-  .factory('$cordovaFlashlight', ['$q', '$window', function($q, $window) {
+  .factory('$cordovaFlashlight', ['$q', '$window', function ($q, $window) {
 
     return {
-      available: function() {
+      available: function () {
         var q = $q.defer();
-        $window.plugins.flashlight.available(function(isAvailable) {
+        $window.plugins.flashlight.available(function (isAvailable) {
           q.resolve(isAvailable);
         });
         return q.promise;
       },
 
-      switchOn: function() {
+      switchOn: function () {
         var q = $q.defer();
-        $window.plugins.flashlight.switchOn(function(response) {
+        $window.plugins.flashlight.switchOn(function (response) {
           q.resolve(response);
-        }, function(error) {
+        }, function (error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      switchOff: function() {
+      switchOff: function () {
         var q = $q.defer();
-        $window.plugins.flashlight.switchOff(function(response) {
+        $window.plugins.flashlight.switchOff(function (response) {
           q.resolve(response);
-        }, function(error) {
+        }, function (error) {
           q.reject(error);
         });
         return q.promise;
       },
 
-      toggle: function() {
+      toggle: function () {
         var q = $q.defer();
-        $window.plugins.flashlight.toggle(function(response) {
+        $window.plugins.flashlight.toggle(function (response) {
           q.resolve(response);
-        }, function(error) {
+        }, function (error) {
           q.reject(error);
         });
         return q.promise;

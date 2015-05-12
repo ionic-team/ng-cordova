@@ -2,99 +2,99 @@
 // link     :     https://github.com/floatinghotpot/cordova-plugin-iad
 
 angular.module('ngCordova.plugins.iAd', [])
-  .factory('$cordovaiAd', ['$q', '$window', function($q, $window) {
+  .factory('$cordovaiAd', ['$q', '$window', function ($q, $window) {
 
     return {
-      setOptions: function(options) {
+      setOptions: function (options) {
         var d = $q.defer();
 
-        $window.iAd.setOptions(options, function() {
+        $window.iAd.setOptions(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      createBanner: function(options) {
+      createBanner: function (options) {
         var d = $q.defer();
 
-        $window.iAd.createBanner(options, function() {
+        $window.iAd.createBanner(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      removeBanner: function() {
+      removeBanner: function () {
         var d = $q.defer();
 
-        $window.iAd.removeBanner(function() {
+        $window.iAd.removeBanner(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBanner: function(position) {
+      showBanner: function (position) {
         var d = $q.defer();
 
-        $window.iAd.showBanner(position, function() {
+        $window.iAd.showBanner(position, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showBannerAtXY: function(x, y) {
+      showBannerAtXY: function (x, y) {
         var d = $q.defer();
 
-        $window.iAd.showBannerAtXY(x, y, function() {
+        $window.iAd.showBannerAtXY(x, y, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      hideBanner: function() {
+      hideBanner: function () {
         var d = $q.defer();
 
-        $window.iAd.hideBanner(function() {
+        $window.iAd.hideBanner(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      prepareInterstitial: function(options) {
+      prepareInterstitial: function (options) {
         var d = $q.defer();
 
-        $window.iAd.prepareInterstitial(options, function() {
+        $window.iAd.prepareInterstitial(options, function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 
         return d.promise;
       },
 
-      showInterstitial: function() {
+      showInterstitial: function () {
         var d = $q.defer();
 
-        $window.iAd.showInterstitial(function() {
+        $window.iAd.showInterstitial(function () {
           d.resolve();
-        }, function() {
+        }, function () {
           d.reject();
         });
 

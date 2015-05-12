@@ -6,11 +6,11 @@
  */
 (function(){
 var ngCordovaMocks = angular.module('ngCordovaMocks', []);
-ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function ($q) {
   var throwsError = false;
   return {
     throwsError: throwsError,
-    getAppVersion: function() {
+    getAppVersion: function () {
       var defer = $q.defer();
       defer.resolve('mock v');
       return defer.promise;
@@ -26,7 +26,7 @@ ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function($q) {
  * A service for testing barcode scanner features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function ($q) {
   var throwsError = false;
 
   var scannedText = '';
@@ -83,17 +83,18 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
      **/
     wasCancelled: wasCancelled,
 
-    scan: function() {
+    scan: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error scanning.');
       } else {
         defer.resolve({text: this.scannedText, format: this.scannedFormat, cancelled: this.wasCancelled});
       }
+
       return defer.promise;
     },
 
-    encode: function(type, data) {
+    encode: function (type, data) {
       this.scannedFormat = type;
       this.scannedText = data;
 
@@ -103,6 +104,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     }
   };
@@ -116,7 +118,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
  * A service for ble features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function($q, $timeout) {
+ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout) {
   var deviceScan = {
     name: 'Test Device',
     id: 'AA:BB:CC:DD:EE:FF',
@@ -163,77 +165,77 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function($q, $timeout) 
 
   return {
 
-    scan: function(services, seconds) {
+    scan: function (services, seconds) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(deviceScan);
       }, seconds * 1000);
       return q.promise;
     },
 
-    connect: function(deviceID) {
+    connect: function (deviceID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(deviceConnect);
       }, 1500);
       return q.promise;
     },
 
-    disconnect: function(deviceID) {
+    disconnect: function (deviceID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 500);
       return q.promise;
     },
 
-    read: function(deviceID, serviceUUID, characteristicUUID) {
+    read: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(readData);
       }, 100);
       return q.promise;
     },
 
-    write: function(deviceID, serviceUUID, characteristicUUID, data) {
+    write: function (deviceID, serviceUUID, characteristicUUID, data) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    writeCommand: function(deviceID, serviceUUID, characteristicUUID, data) {
+    writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    notify: function(deviceID, serviceUUID, characteristicUUID) {
+    notify: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    indicate: function(deviceID, serviceUUID, characteristicUUID) {
+    indicate: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
-      $timeout(function() {
+      $timeout(function () {
         q.resolve(true);
       }, 100);
       return q.promise;
     },
 
-    isConnected: function(deviceID) {
+    isConnected: function (deviceID) {
       var q = $q.defer();
       q.resolve(true);
       return q.promise;
     },
 
-    isEnabled: function() {
+    isEnabled: function () {
       var q = $q.defer();
       q.resolve(true);
       return q.promise;
@@ -249,7 +251,7 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function($q, $timeout) 
  * A service for testing camera features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCamera', ['$q', function ($q) {
   var throwsError = false;
   var imageData = '';
 
@@ -277,7 +279,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
      **/
     imageData: imageData,
 
-    getPicture: function(options) {
+    getPicture: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the picture.');
@@ -288,6 +290,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
 
         defer.resolve(this.imageData);
       }
+
       return defer.promise;
     }
   };
@@ -303,7 +306,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
  *
  * @example
  */
-ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCapture', ['$q', function ($q) {
   var throwsError = false;
 
   return {
@@ -318,33 +321,36 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
      **/
     throwsError: throwsError,
 
-    captureAudio: function() {
+    captureAudio: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error capturing the audio.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     },
 
-    captureImage: function() {
+    captureImage: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error capturing the image.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     },
 
-    captureVideo: function() {
+    captureVideo: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error capturing the video.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     }
   };
@@ -358,7 +364,7 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
  * A service for testing features related with contacts
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaContacts', ['$q', function ($q) {
   var throwsError = false;
   var contacts = [];
 
@@ -385,7 +391,7 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
      */
     contacts: contacts,
 
-    save: function(contact) {
+    save: function (contact) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error saving the contact.');
@@ -407,10 +413,11 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
           defer.reject('Contact already exists.');
         }
       }
+
       return defer.promise;
     },
 
-    remove: function(contact) {
+    remove: function (contact) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error saving the contact.');
@@ -432,10 +439,11 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
           defer.resolve();
         }
       }
+
       return defer.promise;
     },
 
-    find: function(options) {
+    find: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error finding the contact.');
@@ -457,11 +465,13 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
                 var propertyValue = this.contacts[i][key];
               }
             }
+
             // TODO: Search by individual fields
             defer.resolve(results);
           }
         }
       }
+
       return defer.promise;
     }
   };
@@ -475,9 +485,9 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
  * A service for testing datepicker features
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDatePicker', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaDatePicker', ['$q', function ($q) {
   return {
-    show: function(options) {
+    show: function (options) {
       var q = $q.defer();
       options = options || {date: new Date(), mode: 'date'};
       q.resolve(options.date);
@@ -494,7 +504,7 @@ ngCordovaMocks.factory('$cordovaDatePicker', ['$q', function($q) {
  * A service for testing device information
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaDevice', function() {
+ngCordovaMocks.factory('$cordovaDevice', function () {
   var device = '';
   var cordova = '';
   var model = '';
@@ -569,27 +579,27 @@ ngCordovaMocks.factory('$cordovaDevice', function() {
      */
     version: version,
 
-    getDevice: function() {
+    getDevice: function () {
       return this.device;
     },
 
-    getCordova: function() {
+    getCordova: function () {
       return this.cordova;
     },
 
-    getModel: function() {
+    getModel: function () {
       return this.model;
     },
 
-    getPlatform: function() {
+    getPlatform: function () {
       return this.platform;
     },
 
-    getUUID: function() {
+    getUUID: function () {
       return this.uuid;
     },
 
-    getVersion: function() {
+    getVersion: function () {
       return this.version;
     }
   };
@@ -603,7 +613,7 @@ ngCordovaMocks.factory('$cordovaDevice', function() {
  * A service for mocking the accelerometer
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($interval, $q) {
   var currentAcceleration = null;
   var throwsError = false;
   var positions = [];
@@ -654,17 +664,18 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
      */
     watchIntervals: watchIntervals,
 
-    getCurrentAcceleration: function() {
+    getCurrentAcceleration: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the current acceleration.');
       } else {
         defer.resolve(this.currentAcceleration);
       }
+
       return defer.promise;
     },
 
-    watchAcceleration: function(options) {
+    watchAcceleration: function (options) {
       var defer = $q.defer();
       var watchId = Math.floor((Math.random() * 1000000) + 1);
 
@@ -680,7 +691,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
         }
 
         this.watchIntervals.push($interval(
-          function() {
+          function () {
             if (self.throwsError) {
               defer.reject('There was an error watching the acceleration.');
             }
@@ -704,7 +715,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
       };
     },
 
-    clearWatch: function(watchId) {
+    clearWatch: function (watchId) {
       var defer = $q.defer();
       if (watchId) {
         if (this.throwsError) {
@@ -726,6 +737,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
       } else {
         defer.reject('Unable to clear watch. No watch ID provided.');
       }
+
       return defer.promise;
     }
   };
@@ -739,7 +751,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function($int
  * A service for testing compass fetures
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function ($interval, $q) {
   var currentHeading = null;
   var throwsError = false;
   var readings = [];
@@ -790,17 +802,18 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
      */
     watchIntervals: watchIntervals,
 
-    getCurrentHeading: function() {
+    getCurrentHeading: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the current heading.');
       } else {
         defer.resolve(this.currentHeading);
       }
+
       return defer.promise;
     },
 
-    watchHeading: function(options) {
+    watchHeading: function (options) {
       var defer = $q.defer();
       var watchID = Math.floor((Math.random() * 1000000) + 1);
       var self = this;
@@ -818,7 +831,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
         self.watchIntervals.push({
           watchID: watchID,
           interval: $interval(
-            function() {
+            function () {
               if (self.throwsError) {
                 defer.reject('There was an error watching the acceleration.');
               }
@@ -837,7 +850,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
         });
       }
 
-      var cancel = function(id) {
+      var cancel = function (id) {
         var removed = -1;
         for (var i = 0; i < self.watchIntervals.length; i++) {
           if (self.watchIntervals[i].watchID === id) {
@@ -852,11 +865,11 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
         }
       };
 
-      defer.promise.cancel = function() {
+      defer.promise.cancel = function () {
         cancel(watchID);
       };
 
-      defer.promise.clearWatch = function(id) {
+      defer.promise.clearWatch = function (id) {
         cancel(id || watchID);
       };
 
@@ -865,7 +878,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
       return defer.promise;
     },
 
-    clearWatch: function(watchId) {
+    clearWatch: function (watchId) {
       var defer = $q.defer();
       if (watchId) {
         if (this.throwsError) {
@@ -887,6 +900,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
       } else {
         defer.reject('Unable to clear watch. No watch ID provided.');
       }
+
       return defer.promise;
     }
   };
@@ -900,7 +914,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
  * A service for testing dialogs
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
   var dialogText = false;
   var dialogTitle = '';
   var defaultValue = '';
@@ -987,7 +1001,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
      */
     useHostAbilities: useHostAbilities,
 
-    alert: function(message, title, buttonName) {
+    alert: function (message, title, buttonName) {
       var d = $q.defer();
 
       if (this.useHostAbilities) {
@@ -1004,7 +1018,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
       return d.promise;
     },
 
-    confirm: function(message, title, buttonName) {
+    confirm: function (message, title, buttonName) {
       var d = $q.defer();
 
       if (this.useHostAbilities) {
@@ -1021,7 +1035,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
       return d.promise;
     },
 
-    prompt: function(message, title, buttonLabels, defaultText) {
+    prompt: function (message, title, buttonLabels, defaultText) {
       var d = $q.defer();
 
       if (this.useHostAbilities) {
@@ -1043,7 +1057,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
       return d.promise;
     },
 
-    beep: function(times) {
+    beep: function (times) {
       this.beepCount = times;
     }
   };
@@ -1057,19 +1071,20 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
  * A service for testing interaction with device directories and files
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFile', ['$q', function ($q) {
   var throwsError = false;
   var fileSystem = {};
   var shouldMockFiles = false;
   var files = {};
 
-  var mockIt = function(errorMessage) {
+  var mockIt = function (errorMessage) {
     var defer = $q.defer();
     if (this.throwsError) {
       defer.reject(errorMessage);
     } else {
       defer.resolve();
     }
+
     return defer.promise;
   };
 
@@ -1120,7 +1135,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
      * **/
     files: files,
 
-    checkDir: function(directory) {
+    checkDir: function (directory) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         if (this.files[directory] && !this.files[directory].isFile) {
@@ -1128,27 +1143,29 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         } else {
           defer.reject();
         }
+
         return defer.promise;
       }
 
       return mockIt.call(this, 'There was an error checking the directory.');
     },
 
-    createDir: function(directory, overwrite) {
+    createDir: function (directory, overwrite) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         this.files[directory] = {isFile: false};
         defer.resolve();
         return defer.promise;
       }
+
       return mockIt.call(this, 'There was an error creating the directory.');
     },
 
-    listDir: function(filePath) {
+    listDir: function (filePath) {
       return mockIt.call(this, 'There was an error listing the directory');
     },
 
-    checkFile: function(filePath) {
+    checkFile: function (filePath) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         if (this.files[filePath] && this.files[filePath].isFile) {
@@ -1156,12 +1173,14 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         } else {
           defer.reject();
         }
+
         return defer.promise;
       }
+
       return mockIt.call(this, 'There was an error checking for the file.');
     },
 
-    createFile: function(filePath, overwrite) {
+    createFile: function (filePath, overwrite) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         this.files[filePath] = {
@@ -1175,25 +1194,26 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
       return mockIt.call(this, 'There was an error creating the file.');
     },
 
-    removeFile: function(directory, file) {
+    removeFile: function (directory, file) {
       return mockIt.call(this, 'There was an error removng the file.');
     },
 
-    writeFile: function(filePath, data, options) {
+    writeFile: function (filePath, data, options) {
       if (this.shouldMockFiles && filePath && data) {
         this.files[filePath] = {
           isFile: true,
           fileContent: data
         };
       }
+
       return mockIt.call(this, 'There was an error writing the file.');
     },
 
-    readFile: function(filePath) {
+    readFile: function (filePath) {
       return this.readAsText(filePath);
     },
 
-    readAsText: function(filePath) {
+    readAsText: function (filePath) {
       if (this.shouldMockFiles) {
         var defer = $q.defer();
         if (files[filePath] && files[filePath].isFile) {
@@ -1201,40 +1221,42 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
         } else {
           defer.reject();
         }
+
         return defer.promise;
       }
+
       return mockIt.call(this, 'There was an error reading the file as text.');
     },
 
-    readAsDataURL: function(filePath) {
+    readAsDataURL: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file as a data url.');
     },
 
-    readAsBinaryString: function(filePath) {
+    readAsBinaryString: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file as a binary string.');
     },
 
-    readAsArrayBuffer: function(filePath) {
+    readAsArrayBuffer: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file as an array buffer.');
     },
 
-    readFileMetadata: function(filePath) {
+    readFileMetadata: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file metadata');
     },
 
-    readFileAbsolute: function(filePath) {
+    readFileAbsolute: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file from the absolute path');
     },
 
-    readFileMetadataAbsolute: function(filePath) {
+    readFileMetadataAbsolute: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file metadta from the absolute path');
     },
 
-    downloadFile: function(source, filePath, trust, options) {
+    downloadFile: function (source, filePath, trust, options) {
       return mockIt.call(this, 'There was an error downloading the file.');
     },
 
-    uploadFile: function(server, filePath, options) {
+    uploadFile: function (server, filePath, options) {
       return mockIt.call(this, 'There was an error uploading the file.');
     }
   };
@@ -1248,7 +1270,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
  * A service for testing fileOpener2
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
 
   var throwsError = false;
 
@@ -1265,7 +1287,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
      **/
     throwsError: throwsError,
 
-    open: function(file, type) {
+    open: function (file, type) {
 
       var defer = $q.defer();
 
@@ -1282,7 +1304,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
 
     },
 
-    uninstall: function(pack) {
+    uninstall: function (pack) {
 
       var defer = $q.defer();
 
@@ -1299,7 +1321,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
 
     },
 
-    appIsInstalled: function(pack) {
+    appIsInstalled: function (pack) {
 
       var defer = $q.defer();
 
@@ -1329,7 +1351,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
  * A service for testing location services
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function ($interval, $q) {
   var throwsError = false;
   var useHostAbilities = true;
 
@@ -1407,7 +1429,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
      */
     useHostAbilities: useHostAbilities,
 
-    getCurrentPosition: function(options) {
+    getCurrentPosition: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the location.');
@@ -1419,11 +1441,11 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         if (this.useHostAbilities) {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-              function(position) {
+              function (position) {
                 this.currentPosition = position;
                 defer.resolve(this.currentPosition);
               },
-              function(error) {
+              function (error) {
                 defer.reject(error);
               }
             );
@@ -1434,10 +1456,11 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
           defer.resolve(this.currentPosition);
         }
       }
+
       return defer.promise;
     },
 
-    watchPosition: function(options) {
+    watchPosition: function (options) {
       var defer = $q.defer();
       var watchID = Math.floor((Math.random() * 1000000) + 1);
       var self = this;
@@ -1455,7 +1478,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         self.watchIntervals.push({
           watchID: watchID,
           interval: $interval(
-            function() {
+            function () {
               if (self.throwsError) {
                 defer.reject('There was an error watching the geolocation.');
               }
@@ -1467,12 +1490,12 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
                 if (self.useHostAbilities) {
                   if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
-                      function(position) {
+                      function (position) {
                         self.currentPosition = position;
                         self.locations.push(position);
                         defer.resolve(position);
                       },
-                      function(error) {
+                      function (error) {
                         defer.reject(error);
                       }
                     );
@@ -1505,7 +1528,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         });
       }
 
-      var cancel = function(id) {
+      var cancel = function (id) {
         var removed = -1;
         for (var i = 0; i < self.watchIntervals.length; i++) {
           if (self.watchIntervals[i].watchID === id) {
@@ -1520,11 +1543,11 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         }
       };
 
-      defer.promise.cancel = function() {
+      defer.promise.cancel = function () {
         cancel(watchID);
       };
 
-      defer.promise.clearWatch = function(id) {
+      defer.promise.clearWatch = function (id) {
         cancel(id || watchID);
       };
 
@@ -1533,7 +1556,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
       return defer.promise;
     },
 
-    clearWatch: function(watchID) {
+    clearWatch: function (watchID) {
       var defer = $q.defer();
       if (watchID) {
         if (this.throwsError) {
@@ -1555,6 +1578,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
       } else {
         defer.reject('Unable to clear watch. No watch ID provided.');
       }
+
       return defer.promise;
     }
   };
@@ -1568,7 +1592,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
  * A service for testing features related to a user's locale and timezone.
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function ($q) {
   var throwsError = false;
   var language = (navigator.language) ? navigator.language : 'en-US';
   var preferredLanguage = {value: language};
@@ -1620,37 +1644,40 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
      **/
     firstDayOfWeek: firstDayOfWeek,
 
-    getPreferredLanguage: function() {
+    getPreferredLanguage: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the preferred language.');
       } else {
         defer.resolve(this.preferredLanguage);
       }
+
       return defer.promise;
     },
 
-    getLocaleName: function() {
+    getLocaleName: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the locale name.');
       } else {
         defer.resolve(this.localeName);
       }
+
       return defer.promise;
     },
 
-    getFirstDayOfWeek: function() {
+    getFirstDayOfWeek: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the first day of week.');
       } else {
         defer.resolve(this.firstDayOfWeek);
       }
+
       return defer.promise;
     },
 
-    dateToString: function(date, options) {
+    dateToString: function (date, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the string from the date.');
@@ -1660,14 +1687,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
         // TODO: Review
         date = date;
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    stringToDate: function(dateString, options) {
+    stringToDate: function (dateString, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the date from the string.');
@@ -1677,14 +1706,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
         // TODO: Review
         dateString = dateString;
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getDatePattern: function(options) {
+    getDatePattern: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the date pattern.');
@@ -1693,14 +1724,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getDateNames: function(options) {
+    getDateNames: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the date names.');
@@ -1709,14 +1742,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    isDayLightSavingsTime: function(date) {
+    isDayLightSavingsTime: function (date) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting if this is in daylight savings time mode.');
@@ -1725,14 +1760,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         date = date;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    numberToString: function(number, options) {
+    numberToString: function (number, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the number to a string.');
@@ -1742,14 +1779,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
         // TODO: Review
         number = number;
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    stringToNumber: function(numberString, options) {
+    stringToNumber: function (numberString, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the string to a number.');
@@ -1758,14 +1797,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getNumberPattern: function(options) {
+    getNumberPattern: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the string to a number.');
@@ -1774,14 +1815,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getCurrencyPattern: function(currencyCode) {
+    getCurrencyPattern: function (currencyCode) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the string to a number.');
@@ -1790,10 +1833,12 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         currencyCode = currencyCode;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     }
   };
@@ -1807,7 +1852,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
  * A service for testing google analytics services
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
   var throwsError = false;
   var methods = {};
 
@@ -1835,8 +1880,8 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
     'addTransactionItem'
   ];
 
-  methodsName.forEach(function(funcName) {
-    methods[funcName] = function() {
+  methodsName.forEach(function (funcName) {
+    methods[funcName] = function () {
       var defer = $q.defer();
 
       (this.throwsError) ?
@@ -1860,7 +1905,7 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function($q) {
  * A service for testing Google Play Game features
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
   var throwsError = false;
   var isSignedIn = false;
   var displayName = '';
@@ -1900,7 +1945,7 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
      **/
     _displayName: displayName,
 
-    auth: function() {
+    auth: function () {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a auth error.');
@@ -1908,18 +1953,20 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
         this.isSignedIn = true;
         defer.resolve('SIGN IN SUCCESS');
       }
+
       return defer.promise;
     },
-    signout: function() {
+    signout: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a signout error.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     },
-    isSignedIn: function() {
+    isSignedIn: function () {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a isSignedIn error.');
@@ -1928,9 +1975,10 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
           'isSignedIn': this._isSignedIn
         });
       }
+
       return defer.promise;
     },
-    showPlayer: function() {
+    showPlayer: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a showPlayer error.');
@@ -1939,60 +1987,67 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
           'displayName': this._displayName
         });
       }
+
       return defer.promise;
     },
-    submitScore: function(data) {
+    submitScore: function (data) {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a submitScore error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    showAllLeaderboards: function() {
+    showAllLeaderboards: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a showAllLeaderboards error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    showLeaderboard: function(data) {
+    showLeaderboard: function (data) {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a showLeaderboard error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    unlockAchievement: function(data) {
+    unlockAchievement: function (data) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a unlockAchievement error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    incrementAchievement: function(data) {
+    incrementAchievement: function (data) {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a incrementAchievement error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    showAchievements: function() {
+    showAchievements: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a showAchievements error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     }
   };
@@ -2007,25 +2062,25 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
  * A service for testing device keyboard features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaKeyboard', function() {
+ngCordovaMocks.factory('$cordovaKeyboard', function () {
   var isVisible = false;
 
   return {
-    hideAccessoryBar: function(bool) {
+    hideAccessoryBar: function (bool) {
     },
 
-    close: function() {
+    close: function () {
       isVisible = false;
     },
 
-    show: function() {
+    show: function () {
       isVisible = true;
     },
 
-    disableScroll: function(bool) {
+    disableScroll: function (bool) {
     },
 
-    isVisible: function() {
+    isVisible: function () {
       return isVisible;
     }
 

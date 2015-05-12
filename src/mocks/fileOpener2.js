@@ -6,7 +6,7 @@
  * A service for testing fileOpener2
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
 
   var throwsError = false;
 
@@ -23,7 +23,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
      **/
     throwsError: throwsError,
 
-    open: function(file, type) {
+    open: function (file, type) {
 
       var defer = $q.defer();
 
@@ -40,7 +40,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
 
     },
 
-    uninstall: function(pack) {
+    uninstall: function (pack) {
 
       var defer = $q.defer();
 
@@ -57,7 +57,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function($q) {
 
     },
 
-    appIsInstalled: function(pack) {
+    appIsInstalled: function (pack) {
 
       var defer = $q.defer();
 

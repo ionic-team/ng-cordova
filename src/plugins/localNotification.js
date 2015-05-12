@@ -194,7 +194,11 @@ angular.module('ngCordova.plugins.localNotification', [])
         scope = scope || null;
 
         $window.cordova.plugins.notification.local.hasPermission(function (result) {
-          result ? q.resolve(result) : q.reject(result);
+          if (result) {
+            q.resolve(result);
+          } else {
+            q.reject(result);
+          }
         }, scope);
 
         return q.promise;
@@ -205,7 +209,11 @@ angular.module('ngCordova.plugins.localNotification', [])
         scope = scope || null;
 
         $window.cordova.plugins.notification.local.registerPermission(function (result) {
-          result ? q.resolve(result) : q.reject(result);
+          if (result) {
+            q.resolve(result);
+          } else {
+            q.reject(result);
+          }
         }, scope);
 
         return q.promise;
@@ -218,7 +226,11 @@ angular.module('ngCordova.plugins.localNotification', [])
         scope = scope || null;
 
         $window.cordova.plugins.notification.local.registerPermission(function (result) {
-          result ? q.resolve(result) : q.reject(result);
+          if (result) {
+            q.resolve(result);
+          } else {
+            q.reject(result);
+          }
         }, scope);
 
         return q.promise;

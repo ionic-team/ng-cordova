@@ -6,7 +6,7 @@
  * A service for testing camera features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCamera', ['$q', function ($q) {
   var throwsError = false;
   var imageData = '';
 
@@ -34,7 +34,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
      **/
     imageData: imageData,
 
-    getPicture: function(options) {
+    getPicture: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the picture.');
@@ -45,6 +45,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
 
         defer.resolve(this.imageData);
       }
+
       return defer.promise;
     }
   };

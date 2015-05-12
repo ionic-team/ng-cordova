@@ -3,30 +3,34 @@
 
 angular.module('ngCordova.plugins.emailComposer', [])
 
-  .factory('$cordovaEmailComposer', ['$q', function($q) {
+  .factory('$cordovaEmailComposer', ['$q', function ($q) {
 
     return {
-      isAvailable: function() {
+      isAvailable: function () {
         var q = $q.defer();
 
-        cordova.plugins.email.isAvailable(function(isAvailable) {
-          isAvailable ? q.resolve() : q.reject();
+        cordova.plugins.email.isAvailable(function (isAvailable) {
+          if (isAvailable) {
+            q.resolve();
+          } else {
+            q.reject();
+          }
         });
 
         return q.promise;
       },
 
-      open: function(properties) {
+      open: function (properties) {
         var q = $q.defer();
 
-        cordova.plugins.email.open(properties, function() {
+        cordova.plugins.email.open(properties, function () {
           q.reject(); // user closed email composer
         });
 
         return q.promise;
       },
 
-      addAlias: function(app, schema) {
+      addAlias: function (app, schema) {
         cordova.plugins.email.addAlias(app, schema);
       }
     };

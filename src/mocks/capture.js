@@ -8,7 +8,7 @@
  *
  * @example
  */
-ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaCapture', ['$q', function ($q) {
   var throwsError = false;
 
   return {
@@ -23,33 +23,36 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
      **/
     throwsError: throwsError,
 
-    captureAudio: function() {
+    captureAudio: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error capturing the audio.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     },
 
-    captureImage: function() {
+    captureImage: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error capturing the image.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     },
 
-    captureVideo: function() {
+    captureVideo: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error capturing the video.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     }
   };

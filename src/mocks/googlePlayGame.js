@@ -8,7 +8,7 @@
  * A service for testing Google Play Game features
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
   var throwsError = false;
   var isSignedIn = false;
   var displayName = '';
@@ -48,7 +48,7 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
      **/
     _displayName: displayName,
 
-    auth: function() {
+    auth: function () {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a auth error.');
@@ -56,18 +56,20 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
         this.isSignedIn = true;
         defer.resolve('SIGN IN SUCCESS');
       }
+
       return defer.promise;
     },
-    signout: function() {
+    signout: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a signout error.');
       } else {
         defer.resolve();
       }
+
       return defer.promise;
     },
-    isSignedIn: function() {
+    isSignedIn: function () {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a isSignedIn error.');
@@ -76,9 +78,10 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
           'isSignedIn': this._isSignedIn
         });
       }
+
       return defer.promise;
     },
-    showPlayer: function() {
+    showPlayer: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a showPlayer error.');
@@ -87,60 +90,67 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function($q) {
           'displayName': this._displayName
         });
       }
+
       return defer.promise;
     },
-    submitScore: function(data) {
+    submitScore: function (data) {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a submitScore error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    showAllLeaderboards: function() {
+    showAllLeaderboards: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a showAllLeaderboards error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    showLeaderboard: function(data) {
+    showLeaderboard: function (data) {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a showLeaderboard error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    unlockAchievement: function(data) {
+    unlockAchievement: function (data) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a unlockAchievement error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    incrementAchievement: function(data) {
+    incrementAchievement: function (data) {
       var defer = $q.defer();
       if (this._throwsError) {
         defer.reject('There was a incrementAchievement error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     },
-    showAchievements: function() {
+    showAchievements: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was a showAchievements error.');
       } else {
         defer.resolve('OK');
       }
+
       return defer.promise;
     }
   };

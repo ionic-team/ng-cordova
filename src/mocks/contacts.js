@@ -6,7 +6,7 @@
  * A service for testing features related with contacts
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaContacts', ['$q', function ($q) {
   var throwsError = false;
   var contacts = [];
 
@@ -33,7 +33,7 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
      */
     contacts: contacts,
 
-    save: function(contact) {
+    save: function (contact) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error saving the contact.');
@@ -55,10 +55,11 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
           defer.reject('Contact already exists.');
         }
       }
+
       return defer.promise;
     },
 
-    remove: function(contact) {
+    remove: function (contact) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error saving the contact.');
@@ -80,10 +81,11 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
           defer.resolve();
         }
       }
+
       return defer.promise;
     },
 
-    find: function(options) {
+    find: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error finding the contact.');
@@ -105,11 +107,13 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
                 var propertyValue = this.contacts[i][key];
               }
             }
+
             // TODO: Search by individual fields
             defer.resolve(results);
           }
         }
       }
+
       return defer.promise;
     }
   };

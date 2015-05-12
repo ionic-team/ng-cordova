@@ -6,7 +6,7 @@
  * A service for testing device information
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaDevice', function() {
+ngCordovaMocks.factory('$cordovaDevice', function () {
   var device = '';
   var cordova = '';
   var model = '';
@@ -81,27 +81,27 @@ ngCordovaMocks.factory('$cordovaDevice', function() {
      */
     version: version,
 
-    getDevice: function() {
+    getDevice: function () {
       return this.device;
     },
 
-    getCordova: function() {
+    getCordova: function () {
       return this.cordova;
     },
 
-    getModel: function() {
+    getModel: function () {
       return this.model;
     },
 
-    getPlatform: function() {
+    getPlatform: function () {
       return this.platform;
     },
 
-    getUUID: function() {
+    getUUID: function () {
       return this.uuid;
     },
 
-    getVersion: function() {
+    getVersion: function () {
       return this.version;
     }
   };

@@ -6,7 +6,7 @@
  * A service for testing features related to a user's locale and timezone.
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function ($q) {
   var throwsError = false;
   var language = (navigator.language) ? navigator.language : 'en-US';
   var preferredLanguage = {value: language};
@@ -58,37 +58,40 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
      **/
     firstDayOfWeek: firstDayOfWeek,
 
-    getPreferredLanguage: function() {
+    getPreferredLanguage: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the preferred language.');
       } else {
         defer.resolve(this.preferredLanguage);
       }
+
       return defer.promise;
     },
 
-    getLocaleName: function() {
+    getLocaleName: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the locale name.');
       } else {
         defer.resolve(this.localeName);
       }
+
       return defer.promise;
     },
 
-    getFirstDayOfWeek: function() {
+    getFirstDayOfWeek: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the first day of week.');
       } else {
         defer.resolve(this.firstDayOfWeek);
       }
+
       return defer.promise;
     },
 
-    dateToString: function(date, options) {
+    dateToString: function (date, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the string from the date.');
@@ -98,14 +101,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
         // TODO: Review
         date = date;
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    stringToDate: function(dateString, options) {
+    stringToDate: function (dateString, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the date from the string.');
@@ -115,14 +120,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
         // TODO: Review
         dateString = dateString;
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getDatePattern: function(options) {
+    getDatePattern: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the date pattern.');
@@ -131,14 +138,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getDateNames: function(options) {
+    getDateNames: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the date names.');
@@ -147,14 +156,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    isDayLightSavingsTime: function(date) {
+    isDayLightSavingsTime: function (date) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting if this is in daylight savings time mode.');
@@ -163,14 +174,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         date = date;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    numberToString: function(number, options) {
+    numberToString: function (number, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the number to a string.');
@@ -180,14 +193,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
         // TODO: Review
         number = number;
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    stringToNumber: function(numberString, options) {
+    stringToNumber: function (numberString, options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the string to a number.');
@@ -196,14 +211,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getNumberPattern: function(options) {
+    getNumberPattern: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the string to a number.');
@@ -212,14 +229,16 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         options = options;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     },
 
-    getCurrencyPattern: function(currencyCode) {
+    getCurrencyPattern: function (currencyCode) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error convertng the string to a number.');
@@ -228,10 +247,12 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
         // TODO: Review
         currencyCode = currencyCode;
+
         // END TODO: Review
 
         defer.resolve(result);
       }
+
       return defer.promise;
     }
   };

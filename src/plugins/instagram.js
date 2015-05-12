@@ -15,7 +15,7 @@ angular.module('ngCordova.plugins.instagram', [])
         return q.promise;
       }
 
-      Instagram.share(options.image, options.caption, function(err) {
+      Instagram.share(options.image, options.caption, function (err) {
         if(err) {
           q.reject(err);
         } else {

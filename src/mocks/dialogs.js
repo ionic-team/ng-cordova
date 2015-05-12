@@ -6,7 +6,7 @@
  * A service for testing dialogs
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
   var dialogText = false;
   var dialogTitle = '';
   var defaultValue = '';
@@ -93,7 +93,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
      */
     useHostAbilities: useHostAbilities,
 
-    alert: function(message, title, buttonName) {
+    alert: function (message, title, buttonName) {
       var d = $q.defer();
 
       if (this.useHostAbilities) {
@@ -110,7 +110,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
       return d.promise;
     },
 
-    confirm: function(message, title, buttonName) {
+    confirm: function (message, title, buttonName) {
       var d = $q.defer();
 
       if (this.useHostAbilities) {
@@ -127,7 +127,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
       return d.promise;
     },
 
-    prompt: function(message, title, buttonLabels, defaultText) {
+    prompt: function (message, title, buttonLabels, defaultText) {
       var d = $q.defer();
 
       if (this.useHostAbilities) {
@@ -149,7 +149,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function($q) {
       return d.promise;
     },
 
-    beep: function(times) {
+    beep: function (times) {
       this.beepCount = times;
     }
   };

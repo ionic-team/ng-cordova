@@ -6,7 +6,7 @@
  * A service for testing compass fetures
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function ($interval, $q) {
   var currentHeading = null;
   var throwsError = false;
   var readings = [];
@@ -57,17 +57,18 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
      */
     watchIntervals: watchIntervals,
 
-    getCurrentHeading: function() {
+    getCurrentHeading: function () {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the current heading.');
       } else {
         defer.resolve(this.currentHeading);
       }
+
       return defer.promise;
     },
 
-    watchHeading: function(options) {
+    watchHeading: function (options) {
       var defer = $q.defer();
       var watchID = Math.floor((Math.random() * 1000000) + 1);
       var self = this;
@@ -85,7 +86,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
         self.watchIntervals.push({
           watchID: watchID,
           interval: $interval(
-            function() {
+            function () {
               if (self.throwsError) {
                 defer.reject('There was an error watching the acceleration.');
               }
@@ -104,7 +105,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
         });
       }
 
-      var cancel = function(id) {
+      var cancel = function (id) {
         var removed = -1;
         for (var i = 0; i < self.watchIntervals.length; i++) {
           if (self.watchIntervals[i].watchID === id) {
@@ -119,11 +120,11 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
         }
       };
 
-      defer.promise.cancel = function() {
+      defer.promise.cancel = function () {
         cancel(watchID);
       };
 
-      defer.promise.clearWatch = function(id) {
+      defer.promise.clearWatch = function (id) {
         cancel(id || watchID);
       };
 
@@ -132,7 +133,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
       return defer.promise;
     },
 
-    clearWatch: function(watchId) {
+    clearWatch: function (watchId) {
       var defer = $q.defer();
       if (watchId) {
         if (this.throwsError) {
@@ -154,6 +155,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
       } else {
         defer.reject('Unable to clear watch. No watch ID provided.');
       }
+
       return defer.promise;
     }
   };

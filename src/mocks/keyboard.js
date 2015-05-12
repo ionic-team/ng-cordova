@@ -6,25 +6,25 @@
  * A service for testing device keyboard features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaKeyboard', function() {
+ngCordovaMocks.factory('$cordovaKeyboard', function () {
   var isVisible = false;
 
   return {
-    hideAccessoryBar: function(bool) {
+    hideAccessoryBar: function (bool) {
     },
 
-    close: function() {
+    close: function () {
       isVisible = false;
     },
 
-    show: function() {
+    show: function () {
       isVisible = true;
     },
 
-    disableScroll: function(bool) {
+    disableScroll: function (bool) {
     },
 
-    isVisible: function() {
+    isVisible: function () {
       return isVisible;
     }
 

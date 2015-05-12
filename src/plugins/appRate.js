@@ -3,9 +3,9 @@
 
 angular.module('ngCordova.plugins.appRate', [])
 
-  .provider("$cordovaAppRate", [function() {
+  .provider("$cordovaAppRate", [function () {
 
-    this.setPreferences = function(defaults) {
+    this.setPreferences = function (defaults) {
       if (!defaults || !angular.isObject(defaults)) {
         return;
       }
@@ -22,7 +22,7 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.storeAppURL.windows8 = defaults.windowsURL || null;
     };
 
-    this.setCustomLocale = function(customObj) {
+    this.setCustomLocale = function (customObj) {
       var strings = {
         title: 'Rate %@',
         message: 'If you enjoy using %@, would you mind taking a moment to rate it? It won’t take more than a minute. Thanks for your support!',
@@ -36,9 +36,9 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.customLocale = strings;
     };
 
-    this.$get = ['$q', function($q) {
+    this.$get = ['$q', function ($q) {
       return {
-        promptForRating: function(immediate) {
+        promptForRating: function (immediate) {
           var q = $q.defer();
           var prompt = AppRate.promptForRating(immediate);
           q.resolve(prompt);
@@ -46,7 +46,7 @@ angular.module('ngCordova.plugins.appRate', [])
           return q.promise;
         },
 
-        navigateToAppStore: function() {
+        navigateToAppStore: function () {
           var q = $q.defer();
           var navigate = AppRate.navigateToAppStore();
           q.resolve(navigate);
@@ -54,13 +54,13 @@ angular.module('ngCordova.plugins.appRate', [])
           return q.promise;
         },
 
-        onButtonClicked: function(cb) {
-          AppRate.onButtonClicked = function(buttonIndex) {
+        onButtonClicked: function (cb) {
+          AppRate.onButtonClicked = function (buttonIndex) {
             cb.call(this, buttonIndex);
           };
         },
 
-        onRateDialogShow: function(cb) {
+        onRateDialogShow: function (cb) {
           AppRate.onRateDialogShow = cb();
         }
       };

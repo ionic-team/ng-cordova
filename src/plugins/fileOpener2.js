@@ -3,37 +3,37 @@
 
 angular.module('ngCordova.plugins.fileOpener2', [])
 
-  .factory('$cordovaFileOpener2', ['$q', function($q) {
+  .factory('$cordovaFileOpener2', ['$q', function ($q) {
 
     return {
-      open: function(file, type) {
+      open: function (file, type) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.open(file, type, {
-          error: function(e) {
+          error: function (e) {
             q.reject(e);
-          }, success: function() {
+          }, success: function () {
             q.resolve();
           }
         });
         return q.promise;
       },
 
-      uninstall: function(pack) {
+      uninstall: function (pack) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.uninstall(pack, {
-          error: function(e) {
+          error: function (e) {
             q.reject(e);
-          }, success: function() {
+          }, success: function () {
             q.resolve();
           }
         });
         return q.promise;
       },
 
-      appIsInstalled: function(pack) {
+      appIsInstalled: function (pack) {
         var q = $q.defer();
         cordova.plugins.fileOpener2.appIsInstalled(pack, {
-          success: function(res) {
+          success: function (res) {
             q.resolve(res);
           }
         });

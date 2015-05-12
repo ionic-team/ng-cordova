@@ -6,7 +6,7 @@
  * A service for testing location services
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($interval, $q) {
+ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function ($interval, $q) {
   var throwsError = false;
   var useHostAbilities = true;
 
@@ -84,7 +84,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
      */
     useHostAbilities: useHostAbilities,
 
-    getCurrentPosition: function(options) {
+    getCurrentPosition: function (options) {
       var defer = $q.defer();
       if (this.throwsError) {
         defer.reject('There was an error getting the location.');
@@ -96,11 +96,11 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         if (this.useHostAbilities) {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-              function(position) {
+              function (position) {
                 this.currentPosition = position;
                 defer.resolve(this.currentPosition);
               },
-              function(error) {
+              function (error) {
                 defer.reject(error);
               }
             );
@@ -111,10 +111,11 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
           defer.resolve(this.currentPosition);
         }
       }
+
       return defer.promise;
     },
 
-    watchPosition: function(options) {
+    watchPosition: function (options) {
       var defer = $q.defer();
       var watchID = Math.floor((Math.random() * 1000000) + 1);
       var self = this;
@@ -132,7 +133,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         self.watchIntervals.push({
           watchID: watchID,
           interval: $interval(
-            function() {
+            function () {
               if (self.throwsError) {
                 defer.reject('There was an error watching the geolocation.');
               }
@@ -144,12 +145,12 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
                 if (self.useHostAbilities) {
                   if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
-                      function(position) {
+                      function (position) {
                         self.currentPosition = position;
                         self.locations.push(position);
                         defer.resolve(position);
                       },
-                      function(error) {
+                      function (error) {
                         defer.reject(error);
                       }
                     );
@@ -182,7 +183,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         });
       }
 
-      var cancel = function(id) {
+      var cancel = function (id) {
         var removed = -1;
         for (var i = 0; i < self.watchIntervals.length; i++) {
           if (self.watchIntervals[i].watchID === id) {
@@ -197,11 +198,11 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
         }
       };
 
-      defer.promise.cancel = function() {
+      defer.promise.cancel = function () {
         cancel(watchID);
       };
 
-      defer.promise.clearWatch = function(id) {
+      defer.promise.clearWatch = function (id) {
         cancel(id || watchID);
       };
 
@@ -210,7 +211,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
       return defer.promise;
     },
 
-    clearWatch: function(watchID) {
+    clearWatch: function (watchID) {
       var defer = $q.defer();
       if (watchID) {
         if (this.throwsError) {
@@ -232,6 +233,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
       } else {
         defer.reject('Unable to clear watch. No watch ID provided.');
       }
+
       return defer.promise;
     }
   };

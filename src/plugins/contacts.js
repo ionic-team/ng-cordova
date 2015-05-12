@@ -3,58 +3,58 @@
 
 angular.module('ngCordova.plugins.contacts', [])
 
-  .factory('$cordovaContacts', ['$q', function($q) {
+  .factory('$cordovaContacts', ['$q', function ($q) {
 
     return {
-      save: function(contact) {
+      save: function (contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
-        deviceContact.save(function(result) {
+        deviceContact.save(function (result) {
           q.resolve(result);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         });
         return q.promise;
       },
 
-      remove: function(contact) {
+      remove: function (contact) {
         var q = $q.defer();
         var deviceContact = navigator.contacts.create(contact);
 
-        deviceContact.remove(function(result) {
+        deviceContact.remove(function (result) {
           q.resolve(result);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         });
         return q.promise;
       },
 
-      clone: function(contact) {
+      clone: function (contact) {
         var deviceContact = navigator.contacts.create(contact);
         return deviceContact.clone(contact);
       },
 
-      find: function(options) {
+      find: function (options) {
         var q = $q.defer();
         var fields = options.fields || ['id', 'displayName'];
         delete options.fields;
 
-        navigator.contacts.find(fields, function(results) {
+        navigator.contacts.find(fields, function (results) {
           q.resolve(results);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         }, options);
 
         return q.promise;
       },
 
-      pickContact: function() {
+      pickContact: function () {
         var q = $q.defer();
 
-        navigator.contacts.pickContact(function(contact) {
+        navigator.contacts.pickContact(function (contact) {
           q.resolve(contact);
-        }, function(err) {
+        }, function (err) {
           q.reject(err);
         });
 

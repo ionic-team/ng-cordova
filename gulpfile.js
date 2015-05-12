@@ -86,16 +86,16 @@ gulp.task('lint', function () {
 gulp.task('jscs', function () {
   gulp.src('src/plugins/*.js')
     .pipe(jscs({
-      preset: 'google',
-      fix: true
+      fix: true,
+      "requireSpaceAfterKeywords": ['function']
     }))
     .pipe(gulp.dest('src/plugins/'));
 
 
   gulp.src('./src/mocks/*.js')
     .pipe(jscs({
-      preset: 'google',
-      fix: true
+      fix: true,
+      "requireSpaceAfterKeywords": ['function']
     }))
     .pipe(gulp.dest('src/mocks/'));
 });
