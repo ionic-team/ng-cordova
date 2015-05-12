@@ -7,15 +7,14 @@ angular.module('demo.localNotification.ctrl', [])
       var _60_seconds_from_now = new Date(now + 60 * 1000);
       var event = {
         id: 1,
-        date: _60_seconds_from_now,
+        at: _60_seconds_from_now,
         title: "Test Event",
-        message: "this is a message about the event",
-        badge: 2
+        text: "this is a message about the event"
       };
 
       document.addEventListener("deviceready", function () {
         $cordovaLocalNotification.schedule(event).then(function () {
-          alert("local add : success");
+          console.log("local add : success");
         });
 
       }, false);
@@ -23,8 +22,9 @@ angular.module('demo.localNotification.ctrl', [])
     };
 
     document.addEventListener("deviceready", function () {
-      $rootScope.$on("localNotification:triggered", function (event, notification) {
-        alert("notif id:" + notification.id + " state: " + notification.state);
-      })
+      $rootScope.$on("$cordovaLocalNotification:trigger", function (event, notification, state) {
+        console.log("notification id:" + notification.id + " state: " + state);
+      });
     }, false);
   });
+
