@@ -3269,6 +3269,80 @@ angular.module('ngCordova.plugins.googleMap', [])
     };
   }]);
 
+// install  :     cordova plugin add nl.x-services.plugins.googleplus
+// link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
+
+  angular.module('ngCordova.plugins.googleplus', [])
+
+  .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
+
+    return {
+      login: function(iosKey){
+          if(iosKey === undefined){
+            iosKey = {};
+          }
+          var q = $q.defer();
+          $window.plugins.googleplus.login(
+          {
+            'iOSApiKey': iosKey
+            // there is no API key for Android; you app is wired to the Google+ API by 
+            //listing your package name in the google dev console and signing your apk
+          },
+          function (response) {
+            q.resolve(response)
+          },
+          function (error) {
+           q.reject(error)
+          }
+        );
+
+        return q.promise;
+      },
+
+      silentLogin: function(iosKey){
+
+        if(iosKey === undefined){
+            iosKey = {};
+          }
+          var q = $q.defer();
+          $window.plugins.googleplus.trySilentLogin(
+          {
+            'iOSApiKey': iosKey
+            // there is no API key for Android; you app is wired to the Google+ API by 
+            //listing your package name in the google dev console and signing your apk
+          },
+          function (response) {
+            q.resolve(response)
+          },
+          function (error) {
+           q.reject(error)
+          }
+        );
+
+        return q.promise;
+      },
+
+      logout: function(){
+        var q = $q.defer();
+        $window.plugins.googleplus.logout(
+          function (response) {
+            q.resolve(response);
+          }
+        );
+      },
+
+      disconnect: function(){
+        var q = $q.defer();
+        $window.plugins.googleplus.disconnect(
+          function (response) {
+            q.resolve(response);
+          }
+        );
+      }
+    };
+
+  }]);
+
 // install   :      cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
 // link      :      https://github.com/Telerik-Verified-Plugins/HealthKit
 
@@ -3756,6 +3830,22 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
     }];
   }]);
 
+// install  :     cordova plugin add https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git
+// link     :     https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin
+angular.module('ngCordova.plugins.insomnia', [])
+
+  .factory('$cordovaInsomnia', ['$window', function ($window) {
+
+    return {
+      keepAwake: function () {
+        return $window.plugins.insomnia.keepAwake();
+      },
+      allowSleepAgain: function () {
+        return $window.plugins.insomnia.allowSleepAgain();
+      }
+    }
+
+  }]);
 // install   :      cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
 // link      :      https://github.com/driftyco/ionic-plugins-keyboard
 
@@ -4147,6 +4237,8 @@ angular.module('ngCordova.plugins.media', [])
           media.stopRecord();
         };
 
+        q.promise.media = media;
+
         return q.promise;
       }
     };
@@ -4326,7 +4418,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip',
-  'ngCordova.plugins.googleplus'
+  'ngCordova.plugins.insomnia'
 ]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mopub.git
@@ -4453,9 +4545,9 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         return q.promise;
       },
 
-      preloadComplex: function (id, assetPath, volume, voices) {
+      preloadComplex: function (id, assetPath, volume, voices, delay) {
         var q = $q.defer();
-        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices, function (result) {
+        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices, delay, function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
@@ -4466,11 +4558,11 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       play: function (id, completeCallback) {
         var q = $q.defer();
-        $window.plugins.NativeAudio.play(id, completeCallback, function (result) {
+        $window.plugins.NativeAudio.play(id, function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
-        });
+        }, completeCallback);
 
         return q.promise;
       },
@@ -6405,80 +6497,6 @@ angular.module('ngCordova.plugins.zip', [])
         return q.promise;
       }
     };
-  }]);
-  
- // install  :     cordova plugin add nl.x-services.plugins.googleplus
- // link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
-
-  angular.module('ngCordova.plugins.googleplus', [])
-
-  .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
-
-    return {
-      login: function(iosKey){
-          if(iosKey === undefined){
-            iosKey = {};
-          }
-          var q = $q.defer();
-          $window.plugins.googleplus.login(
-          {
-            'iOSApiKey': iosKey
-            // there is no API key for Android; you app is wired to the Google+ API by 
-            //listing your package name in the google dev console and signing your apk
-          },
-          function (response) {
-            q.resolve(response)
-          },
-          function (error) {
-           q.reject(error)
-          }
-        );
-
-        return q.promise;
-      },
-
-      silentLogin: function(iosKey){
-
-        if(iosKey === undefined){
-            iosKey = {};
-          }
-          var q = $q.defer();
-          $window.plugins.googleplus.trySilentLogin(
-          {
-            'iOSApiKey': iosKey
-            // there is no API key for Android; you app is wired to the Google+ API by 
-            //listing your package name in the google dev console and signing your apk
-          },
-          function (response) {
-            q.resolve(response)
-          },
-          function (error) {
-           q.reject(error)
-          }
-        );
-
-        return q.promise;
-      },
-
-      logout: function(){
-        var q = $q.defer();
-        $window.plugins.googleplus.logout(
-          function (response) {
-            q.resolve(response);
-          }
-        );
-      },
-
-      disconnect: function(){
-        var q = $q.defer();
-        $window.plugins.googleplus.disconnect(
-          function (response) {
-            q.resolve(response);
-          }
-        );
-      }
-    };
-
   }]);
 
 })();
