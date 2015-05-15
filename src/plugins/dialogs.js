@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.dialogs
-// link      :     https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-dialogs
+// link      :     https://github.com/apache/cordova-plugin-dialogs
 
 angular.module('ngCordova.plugins.dialogs', [])
 

@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.file-transfer
-// link      :     https://github.com/apache/cordova-plugin-file-transfer/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-file-transfer
+// link      :     https://github.com/apache/cordova-plugin-file-transfer
 
 angular.module('ngCordova.plugins.fileTransfer', [])
 

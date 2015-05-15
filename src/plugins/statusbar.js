@@ -1,5 +1,5 @@
-// install   :      cordova plugin add org.apache.cordova.statusbar
-// link      :      https://github.com/apache/cordova-plugin-statusbar/
+// install   :      cordova plugin add cordova-plugin-statusbar
+// link      :      https://github.com/apache/cordova-plugin-statusbar
 
 angular.module('ngCordova.plugins.statusbar', [])
 

@@ -1,4 +1,4 @@
-// install   :   cordova plugins add https://github.com/vstirbu/InstagramPlugin
+// install   :   cordova plugins add https://github.com/vstirbu/InstagramPlugin.git
 // link      :   https://github.com/vstirbu/InstagramPlugin
 
 angular.module('ngCordova.plugins.instagram', [])

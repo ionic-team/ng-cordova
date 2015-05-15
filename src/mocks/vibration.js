@@ -62,7 +62,7 @@ ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function ($timeout) {
 
     /* jshint ignore:start */
     vibrateWithPattern: function (pattern, repeat) {
-      // Based on the documentation (https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md)
+      // Based on the documentation (https://github.com/apache/cordova-plugin-vibration)
       // This method is deprecated. For that reason, this isn't implemented at this time.
     },
     /* jshint ignore:end */
