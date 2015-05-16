@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaFile
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/file.js
-official-docs:  https://github.com/apache/cordova-plugin-file/
+official-docs:  https://github.com/apache/cordova-plugin-file
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 A Plugin to get access to the device's files and directories.
 
 ```
-cordova plugin add org.apache.cordova.file
+cordova plugin add cordova-plugin-file
 ```
 
 
@@ -310,7 +310,7 @@ module.controller('MyCtrl', function($scope, $cordovaFile) {
       }, function (error) {
           // error
       });
-      
+
 
     // CHECK
     $cordovaFile.checkDir(cordova.file.dataDirectory, "dir/other_dir")

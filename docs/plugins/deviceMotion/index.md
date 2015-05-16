@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDeviceMotion
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/deviceMotion.js
-official-docs: https://github.com/apache/cordova-plugin-device-motion/
+official-docs: https://github.com/apache/cordova-plugin-device-motion
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 This plugin provides access to the device's accelerometer. The accelerometer is a motion sensor that detects the change (delta) in movement relative to the current device orientation, in three dimensions along the x, y, and z axis.
 
 ```
-cordova plugin add org.apache.cordova.device-motion
+cordova plugin add cordova-plugin-device-motion
 ```
 
 #### Methods

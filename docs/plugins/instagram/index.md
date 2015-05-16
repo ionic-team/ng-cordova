@@ -12,13 +12,17 @@ icon-windows: false
 
 Cordova Plugin For opening images in the Instagram app.
 
+```
+cordova plugin add https://github.com/vstirbu/InstagramPlugin.git
+```
+
 #### Example
 
 ```javascript
 module.controller('ThisCtrl', function($scope, $cordovaInstagram) {
   // Get image from camera, base64 is good. See the
   // $cordovaCamera docs for more info
-  
+
   $cordovaInstagram.share($scope.image.data, $scope.image.caption).then(function() {
     // Worked
   }, function(err) {

@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaBadge
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/badge.js
-official-docs: https://github.com/katzer/cordova-plugin-badge/blob/master/README.md
+official-docs: https://github.com/katzer/cordova-plugin-badge
 icon-apple: true
 icon-android: true
 icon-windows: true

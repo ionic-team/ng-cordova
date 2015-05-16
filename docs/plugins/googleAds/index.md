@@ -14,7 +14,7 @@ The [GoogleAds](https://github.com/floatinghotpot/cordova-admob-pro) plugin pres
 
 
 ```bash
-cordova plugin add com.google.cordova.admob
+cordova plugin add https://github.com/floatinghotpot/cordova-admob-pro.git
 ```
 
 

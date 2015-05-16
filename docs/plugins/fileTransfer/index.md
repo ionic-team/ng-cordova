@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaFileTransfer
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/fileTransfer.js
-official-docs:  https://github.com/apache/cordova-plugin-file-transfer/
+official-docs:  https://github.com/apache/cordova-plugin-file-transfer
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 This plugin allows you to upload and download files.
 
 ```
-cordova plugin add org.apache.cordova.file-transfer
+cordova plugin add cordova-plugin-file-transfer
 ```
 
 #### Methods
@@ -93,4 +93,3 @@ module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
 
 });
 ```
-

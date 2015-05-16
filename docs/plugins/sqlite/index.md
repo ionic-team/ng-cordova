@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaSQLite
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/SQLite.js
-official-docs: https://github.com/brodysoft/Cordova-SQLitePlugin
+official-docs: https://github.com/litehelpers/Cordova-sqlite-storage
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
 
 ```
-cordova plugin add https://github.com/brodysoft/Cordova-SQLitePlugin.git
+cordova plugin add https://github.com/litehelpers/Cordova-sqlite-storage.git
 ```
 
 ```javascript

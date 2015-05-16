@@ -49,7 +49,7 @@ Various Progress Dialogs for indicating loading or downloading.
 </table>
 
 ```
-cordova plugin add org.pbernasconi.progressindicator
+cordova plugin add https://github.com/pbernasconi/cordova-progressIndicator.git
 ```
 
 ```javascript

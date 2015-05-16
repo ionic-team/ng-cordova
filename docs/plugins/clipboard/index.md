@@ -14,7 +14,7 @@ The [Clipboard](https://github.com/VersoSolutions/CordovaClipboard) plugin provi
 
 
 ```
-cordova plugin add https://github.com/VersoSolutions/CordovaClipboard
+cordova plugin add https://github.com/VersoSolutions/CordovaClipboard.git
 ```
 
 

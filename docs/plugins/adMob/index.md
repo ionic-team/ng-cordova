@@ -14,7 +14,7 @@ The [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob) plugin prese
 
 
 ```bash
-cordova plugin add com.rjfun.cordova.plugin.admob
+cordova plugin add https://github.com/floatinghotpot/cordova-plugin-admob.git
 ```
 
 

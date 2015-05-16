@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaNetwork
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/network.js
-official-docs: https://github.com/apache/cordova-plugin-network-information/
+official-docs: https://github.com/apache/cordova-plugin-network-information
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 This plugin provides an implementation of an old version of the [Network Information API](http://www.w3.org/TR/2011/WD-netinfo-api-20110607/). It provides information about the device's cellular and wifi connection, and whether the device has an internet connection.
 
 ```
-cordova plugin add org.apache.cordova.network-information
+cordova plugin add cordova-plugin-network-information
 ```
 
 #### Methods
