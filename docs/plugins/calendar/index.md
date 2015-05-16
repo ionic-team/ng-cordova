@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaCalendar
 source:  https://github.com/driftyco/ng-cordova/blob/master/src/plugins/calendar.js
-official-docs:  https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/blob/master/README.md
+official-docs:  https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin
 icon-apple: true
 icon-android: true
 icon-windows: false

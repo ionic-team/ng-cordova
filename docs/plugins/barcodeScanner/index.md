@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaBarcodeScanner
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/barcodeScanner.js
-official-docs: https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
+official-docs: https://github.com/wildabeast/BarcodeScanner
 icon-apple: true
 icon-android: true
 icon-windows: true

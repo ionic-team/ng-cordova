@@ -4,17 +4,17 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaCapture
 source:  https://github.com/driftyco/ng-cordova/blob/master/src/plugins/capture.js
-official-docs:  https://github.com/apache/cordova-plugin-media-capture/
+official-docs:  https://github.com/apache/cordova-plugin-media-capture
 icon-apple: true
 icon-android: true
 icon-windows: true
 ---
 
 
-This plugin allows you to record sound, video and images throught the native capabilities of the device
+This plugin allows you to record sound, video and images through the native capabilities of the device
 
 ```bash
-$ cordova plugin add org.apache.cordova.media-capture
+$ cordova plugin add cordova-plugin-media-capture
 ```
 
 ```javascript
@@ -52,4 +52,3 @@ module.controller('MyCtrl', function($scope, $cordovaCapture) {
 
 });
 ```
-

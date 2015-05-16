@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaBatteryStatus
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/batteryStatus.js
-official-docs: https://github.com/apache/cordova-plugin-battery-status/blob/master/doc/index.md
+official-docs: https://github.com/apache/cordova-plugin-battery-status
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 The [BatteryStatus](https://github.com/apache/cordova-plugin-battery-status) plugin provides an API for the current battery status.
 
 ```bash
-cordova plugin add org.apache.cordova.battery-status
+cordova plugin add cordova-plugin-battery-status
 ```
 
 

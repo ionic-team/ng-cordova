@@ -4,19 +4,19 @@ title: DOCS | ngCordova
 
 plugin-name: $cordovaCamera
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/camera.js
-official-docs: https://github.com/apache/cordova-plugin-camera/
+official-docs: https://github.com/apache/cordova-plugin-camera
 icon-apple: true
 icon-android: true
 icon-windows: true
 ---
 
-This service makes it easy to use the [`org.apache.cordova.camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
+This service makes it easy to use the [`cordova-plugin-camera`](https://github.com/apache/cordova-plugin-camera) plugin to take pictures and video
 from a device.
 
 > **NOTE**: The camera API only works on a real device, and not in the emulator.
 
 ```bash
-cordova plugin add org.apache.cordova.camera
+cordova plugin add cordova-plugin-camera
 ```
 
 #### Methods
@@ -100,9 +100,7 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
 
 
     $cordovaCamera.cleanup().then(...); // only for FILE_URI
-    
+
   }, false);
 });
 ```
-
-

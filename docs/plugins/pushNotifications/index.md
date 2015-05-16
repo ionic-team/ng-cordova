@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name:  $cordovaPush
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/push.js
-official-docs: https://github.com/phonegap-build/PushPlugin#-plugin-api
+official-docs: https://github.com/phonegap-build/PushPlugin
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -71,18 +71,18 @@ module.run(function($http, $cordovaPush) {
     }, function(err) {
       alert("Registration error: " + err)
     });
-    
-    
+
+
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       if (notification.alert) {
         navigator.notification.alert(notification.alert);
       }
-  
+
       if (notification.sound) {
         var snd = new Media(event.sound);
         snd.play();
       }
-  
+
       if (notification.badge) {
         $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
           // Success!
@@ -91,14 +91,14 @@ module.run(function($http, $cordovaPush) {
         });
       }
     });
-  
+
     // WARNING! dangerous to unregister (results in loss of tokenID)
     $cordovaPush.unregister(options).then(function(result) {
       // Success!
     }, function(err) {
       // Error
     });
-    
+
   }, false);
 ```
 
@@ -119,7 +119,7 @@ module.run(function($cordovaPush) {
     }, function(err) {
       // Error
     })
-  
+
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
@@ -127,30 +127,30 @@ module.run(function($cordovaPush) {
             alert('registration ID = ' + notification.regid);
           }
           break;
-  
+
         case 'message':
           // this is the actual push notification. its format depends on the data model from the push server
           alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
           break;
-  
+
         case 'error':
           alert('GCM error = ' + notification.msg);
           break;
-  
+
         default:
           alert('An unknown GCM event has occurred');
           break;
       }
     });
-    
-    
+
+
     // WARNING: dangerous to unregister (results in loss of tokenID)
     $cordovaPush.unregister(options).then(function(result) {
       // Success!
     }, function(err) {
       // Error
     })
-    
+
   }, false);
 });
 ```

@@ -30,16 +30,16 @@
     "short-title": "AppVersion"
   },
   {
-    "link": "/docs/plugins/badge/",
-    "title": "Badge",
-    "keywords": "badge",
-    "short-title": "Badge"
-  },
-  {
     "link": "/docs/plugins/backgroundGeolocation/",
     "title": "Background Geolocation",
     "keywords": "bg location",
     "short-title": "BackgroundGeolocation"
+  },
+  {
+    "link": "/docs/plugins/badge/",
+    "title": "Badge",
+    "keywords": "badge",
+    "short-title": "Badge"
   },
   {
     "link": "/docs/plugins/barcodeScanner/",
@@ -132,16 +132,16 @@
     "short-title": "File"
   },
   {
-    "link": "/docs/plugins/fileTransfer/",
-    "title": "File Transfer",
-    "keywords": "file transfer upload download ",
-    "short-title": "FileTransfer"
-  },
-  {
     "link": "/docs/plugins/fileOpener2/",
     "title": "FileOpener2",
     "keywords": "",
     "short-title": "FileOpener2"
+  },
+  {
+    "link": "/docs/plugins/fileTransfer/",
+    "title": "File Transfer",
+    "keywords": "file transfer upload download ",
+    "short-title": "FileTransfer"
   },
   {
     "link": "/docs/plugins/flashlight/",

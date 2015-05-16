@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDatePicker
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/datepicker.js
-official-docs: http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
+official-docs: https://github.com/VitaliiBlagodir/cordova-plugin-datepicker
 icon-apple: true
 icon-android: true
 icon-windows: false
@@ -13,7 +13,7 @@ icon-windows: false
 Show a native date or time picker widget.
 
 ```
-cordova plugin add http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
+cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
 ```
 
 #### Methods

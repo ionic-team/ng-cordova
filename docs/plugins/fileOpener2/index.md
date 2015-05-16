@@ -13,7 +13,7 @@ icon-windows: false
 This plugin will open a file on your device file system with its default application.
 
 ```
-cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
+cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2.git
 
 ```
 
@@ -22,7 +22,7 @@ cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
 module.controller('MyCtrl', function($scope, $cordovaFileOpener2) {
 
   $cordovaFileOpener2.open(
-    '/sdcard/Download/gmail.apk', 
+    '/sdcard/Download/gmail.apk',
     'application/vnd.android.package-archive'
   ).then(function() {
       // Success!
@@ -77,4 +77,3 @@ module.controller('MyCtrl', function($scope, $cordovaFileOpener2) {
 
 });
 ```
-

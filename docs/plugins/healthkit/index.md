@@ -4,7 +4,7 @@ title: ngCordova - Documentation and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaHealthKit
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/healthKit.js
-official-docs: http://plugins.telerik.com/plugin/healthkit
+official-docs: https://github.com/Telerik-Verified-Plugins/HealthKit
 icon-apple: true
 icon-android: false
 icon-windows: false
@@ -19,7 +19,7 @@ Cordova Plugin For accessing and modifying HealthKit data in iOS apps (iOS only)
 <img src="/img/plugins/healthkit/entitlement.png" style="max-width: 100%">
 
 ```bash
-cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
+cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit.git
 ```
 
 
@@ -59,7 +59,7 @@ readTypes and writeTypes are arrays of [HealthKit Constants](https://developer.a
 ```javascript
 module.controller('ThisCtrl', function($scope, $cordovaHealthKit) {
 
-  // Requests read privileges for DOB, active energy burned, and height, and write privs for 
+  // Requests read privileges for DOB, active energy burned, and height, and write privs for
   // the same plus cycling
 
   $cordovaHealthKit.requestAuthorization(
@@ -124,7 +124,7 @@ $cordovaHealthKit.readWeight('kg').then(function(v) {
   /*
   v is of the form:
 
-  { 
+  {
     'unit': 'kg',
     'value': '200',
     'date': '2014-11-22 09:33:00'
@@ -173,7 +173,7 @@ $cordovaHealthKit.readHeight('cm').then(function(v) {
   /*
   v is of the form:
 
-  { 
+  {
     'unit': 'cm',
     'value': '200',
     'date': '2014-11-22 09:33:00'
@@ -266,4 +266,3 @@ $cordovaHealthKit.saveWorkout(
 }, function(err) {
 });
 ```
-

@@ -4,7 +4,7 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaDevice
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/device.js
-official-docs: https://github.com/apache/cordova-plugin-device/
+official-docs: https://github.com/apache/cordova-plugin-device
 icon-apple: true
 icon-android: true
 icon-windows: true
@@ -13,7 +13,7 @@ icon-windows: true
 Grab device related information, such as platform, and device model.
 
 ```
-cordova plugin add org.apache.cordova.device
+cordova plugin add cordova-plugin-device
 ```
 
 #### Methods

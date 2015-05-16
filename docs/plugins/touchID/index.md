@@ -13,7 +13,7 @@ icon-windows: false
 Cordova Plugin to leverage the iOS local authentication framework to allow in-app user authentication using Touch ID.
 
 ```
-cordova plugin add uk.co.ilee.touchid
+cordova plugin add https://github.com/leecrossley/cordova-plugin-touchid.git
 ```
 
 ```javascript
