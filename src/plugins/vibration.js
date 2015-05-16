@@ -1,5 +1,5 @@
-// install   :      cordova plugin add org.apache.cordova.vibration
-// link      :      https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md
+// install   :      cordova plugin add cordova-plugin-vibration
+// link      :      https://github.com/apache/cordova-plugin-vibration
 
 angular.module('ngCordova.plugins.vibration', [])
 

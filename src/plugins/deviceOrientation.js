@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.device-orientation
-// link      :     https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-device-orientation
+// link      :     https://github.com/apache/cordova-plugin-device-orientation
 
 angular.module('ngCordova.plugins.deviceOrientation', [])
 

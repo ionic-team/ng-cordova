@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.inappbrowser
-// link      :     https://github.com/apache/cordova-plugin-inappbrowser/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-inappbrowser
+// link      :     https://github.com/apache/cordova-plugin-inappbrowser
 
 angular.module('ngCordova.plugins.inAppBrowser', [])
 

@@ -1,5 +1,5 @@
-// install   :    cordova plugin add org.apache.cordova.media-capture
-// link      :    https://github.com/apache/cordova-plugin-media-capture/blob/master/doc/index.md
+// install   :    cordova plugin add cordova-plugin-media-capture
+// link      :    https://github.com/apache/cordova-plugin-media-capture
 
 angular.module('ngCordova.plugins.capture', [])
 

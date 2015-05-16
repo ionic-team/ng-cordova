@@ -1,4 +1,4 @@
-// install  :     cordova plugin add nl.x-services.plugins.googleplus
+// install  :     cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git
 // link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
 angular.module('ngCordova.plugins.googleplus', [])

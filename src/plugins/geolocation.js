@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.geolocation
-// link      :     https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-geolocation
+// link      :     https://github.com/apache/cordova-plugin-geolocation
 
 angular.module('ngCordova.plugins.geolocation', [])
 

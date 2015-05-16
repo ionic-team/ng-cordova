@@ -78,7 +78,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
       if (this.throwsError) {
         defer.reject('There was an error watching the current acceleration.');
       } else {
-        var delay = 10000;		// The default based on https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md
+        var delay = 10000;		// The default based on https://github.com/apache/cordova-plugin-device-motion
         if (options && options.frequency) {
           delay = options.frequency;
         }

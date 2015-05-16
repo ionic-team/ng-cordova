@@ -1,5 +1,5 @@
-// install   :      cordova plugin add org.apache.cordova.network-information
-// link      :      https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md
+// install   :      cordova plugin add cordova-plugin-network-information
+// link      :      https://github.com/apache/cordova-plugin-network-information
 
 angular.module('ngCordova.plugins.network', [])
 

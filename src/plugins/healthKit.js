@@ -1,4 +1,4 @@
-// install   :      cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
+// install   :      cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit.git
 // link      :      https://github.com/Telerik-Verified-Plugins/HealthKit
 
 angular.module('ngCordova.plugins.healthKit', [])

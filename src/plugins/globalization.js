@@ -1,5 +1,5 @@
-// install   :      cordova plugin add org.apache.cordova.globalization
-// link      :      https://github.com/apache/cordova-plugin-globalization/blob/master/doc/index.md
+// install   :      cordova plugin add cordova-plugin-globalization
+// link      :      https://github.com/apache/cordova-plugin-globalization
 
 angular.module('ngCordova.plugins.globalization', [])
 
