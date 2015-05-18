@@ -16,7 +16,7 @@ The plugin provides access to the standard interface that manages the editing an
 Using this interface does not guarantee immediate delivery of the corresponding email message. The user may cancel the creation of the message, and if the user does choose to send the message, the message is only queued in the Mail application outbox. This allows you to generate emails even in situations where the user does not have network access, such as in airplane mode. This interface does not provide a way for you to verify whether emails were actually sent.
 
 ```bash
-cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git@0.8.2
+cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
 ```
 
 #### Methods
