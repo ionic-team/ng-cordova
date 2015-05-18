@@ -83,7 +83,7 @@ Set the volume for audio playback.
 
 Start recording an audio file.
 
-##### `startRecord()`
+##### `stopRecord()`
 
 Stop recording an audio file.
 
