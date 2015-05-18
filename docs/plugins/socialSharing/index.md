@@ -104,9 +104,9 @@ module.controller('MyCtrl', function($scope, $cordovaSocialSharing) {
       // An error occurred. Show a message to the user
     });
 
-  // toArr and bccArr must be an array, file can be either null, string or array
+// toArr, ccArr and bccArr must be an array, file can be either null, string or array
   $cordovaSocialSharing
-    .shareViaEmail(message, subject, toArr, bccArr, file)
+    .shareViaEmail(message, subject, toArr, ccArr, bccArr, file)
     .then(function(result) {
       // Success!
     }, function(err) {
