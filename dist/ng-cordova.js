@@ -4833,6 +4833,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleAds',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.googleplus',
   'ngCordova.plugins.googlePlayGame',
   'ngCordova.plugins.healthKit',
   'ngCordova.plugins.httpd',
