@@ -1,4 +1,4 @@
-// install  :     cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git@0.8.2
+// install  :     cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
 // link     :     https://github.com/katzer/cordova-plugin-email-composer
 
 angular.module('ngCordova.plugins.emailComposer', [])
