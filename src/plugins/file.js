@@ -361,10 +361,10 @@ angular.module('ngCordova.plugins.file', [])
                   var reader = new FileReader();
 
                   reader.onloadend = function (evt) {
-                    if (evt.target._result !== undefined || evt.target._result !== null) {
-                      q.resolve(evt.target._result);
-                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
-                      q.reject(evt.target._error);
+                    if (evt.target.result !== undefined || evt.target.result !== null) {
+                      q.resolve(evt.target.result);
+                    } else if (evt.target.error !== undefined || evt.target.error !== null) {
+                      q.reject(evt.target.error);
                     } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
@@ -401,10 +401,10 @@ angular.module('ngCordova.plugins.file', [])
                 fileEntry.file(function (fileData) {
                   var reader = new FileReader();
                   reader.onloadend = function (evt) {
-                    if (evt.target._result !== undefined || evt.target._result !== null) {
-                      q.resolve(evt.target._result);
-                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
-                      q.reject(evt.target._error);
+                    if (evt.target.result !== undefined || evt.target.result !== null) {
+                      q.resolve(evt.target.result);
+                    } else if (evt.target.error !== undefined || evt.target.error !== null) {
+                      q.reject(evt.target.error);
                     } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
@@ -440,10 +440,10 @@ angular.module('ngCordova.plugins.file', [])
                 fileEntry.file(function (fileData) {
                   var reader = new FileReader();
                   reader.onloadend = function (evt) {
-                    if (evt.target._result !== undefined || evt.target._result !== null) {
-                      q.resolve(evt.target._result);
-                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
-                      q.reject(evt.target._error);
+                    if (evt.target.result !== undefined || evt.target.result !== null) {
+                      q.resolve(evt.target.result);
+                    } else if (evt.target.error !== undefined || evt.target.error !== null) {
+                      q.reject(evt.target.error);
                     } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
@@ -479,10 +479,10 @@ angular.module('ngCordova.plugins.file', [])
                 fileEntry.file(function (fileData) {
                   var reader = new FileReader();
                   reader.onloadend = function (evt) {
-                    if (evt.target._result !== undefined || evt.target._result !== null) {
-                      q.resolve(evt.target._result);
-                    } else if (evt.target._error !== undefined || evt.target._error !== null) {
-                      q.reject(evt.target._error);
+                    if (evt.target.result !== undefined || evt.target.result !== null) {
+                      q.resolve(evt.target.result);
+                    } else if (evt.target.error !== undefined || evt.target.error !== null) {
+                      q.reject(evt.target.error);
                     } else {
                       q.reject({code: null, message: 'READER_ONLOADEND_ERR'});
                     }
