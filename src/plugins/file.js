@@ -281,8 +281,11 @@ angular.module('ngCordova.plugins.file', [])
                       q.resolve(evt);
                     }
                   };
-
-                  writer.write(text);
+                  
+                  var blob = new Blob([text], {
+                    type: 'text/plain'
+                  });
+                  writer.write(blob);
 
                   q.promise.abort = function () {
                     writer.abort();
