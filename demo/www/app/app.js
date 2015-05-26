@@ -34,6 +34,7 @@ angular.module('demo', [
   'demo.preferences.ctrl',
   'demo.printer.ctrl',
   'demo.pushNotifications.ctrl',
+  'demo.qrcodeScanner.ctrl',
   'demo.socialSharing.ctrl',
   'demo.sqlite.ctrl',
   'demo.statusbar.ctrl',
@@ -320,6 +321,12 @@ angular.module('demo', [
         url: '/pushNotifications',
         templateUrl: 'app/pushNotifications/pushNotifications.html',
         controller: "PushNotificationsCtrl"
+      })
+
+      .state('qrcodeScanner', {
+        url: '/qrcodeScanner',
+        templateUrl: 'app/qrcodeScanner/qrcodeScanner.html',
+        controller: "QRCodeScannerCtrl"
       })
 
       .state('socialSharing', {

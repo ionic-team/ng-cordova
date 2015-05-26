@@ -86,6 +86,7 @@ $ bower install ngCordova
 - [Printer](https://github.com/katzer/cordova-plugin-printer)
 - [Progress Indicator](https://github.com/pbernasconi/cordova-progressIndicator)
 - [Push Notifications](https://github.com/phonegap-build/PushPlugin)
+- [QRCode Scanner](https://github.com/wladiston/QRCodeScanner)
 - [SMS](https://github.com/aharris88/phonegap-sms-plugin)
 - [Social Sharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 - [Spinner Dialog](https://github.com/Paldom/SpinnerDialog)
