@@ -6,14 +6,8 @@ angular.module('ngCordova.plugins.ble', [])
   .factory('$cordovaBLE', ['$q', function ($q) {
 
     return {
-      scan: function (services, seconds) {
-        var q = $q.defer();
-        ble.scan(services, seconds, function (result) {
-          q.resolve(result);
-        }, function (error) {
-          q.reject(error);
-        });
-        return q.promise;
+      scan: function (services, seconds, successCallback, errorCallback) {
+        ble.scan(services, seconds, successCallback, errorCallback);
       },
 
       connect: function (deviceID) {
@@ -66,14 +60,8 @@ angular.module('ngCordova.plugins.ble', [])
         return q.promise;
       },
 
-      startNotification: function (deviceID, serviceUUID, characteristicUUID) {
-        var q = $q.defer();
-        ble.startNotification(deviceID, serviceUUID, characteristicUUID, function (result) {
-          q.resolve(result);
-        }, function (error) {
-          q.reject(error);
-        });
-        return q.promise;
+      startNotification: function (deviceID, serviceUUID, characteristicUUID, successCallback, errorCallback) {
+        ble.startNotification(deviceID, serviceUUID, characteristicUUID, successCallback, errorCallback);
       },
 
       stopNotification: function (deviceID, serviceUUID, characteristicUUID) {
