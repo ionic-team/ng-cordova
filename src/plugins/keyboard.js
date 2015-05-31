@@ -3,7 +3,7 @@
 
 angular.module('ngCordova.plugins.keyboard', [])
 
-  .factory('$cordovaKeyboard', ['$rootScope', function ($rootScope) {
+  .factory('$cordovaKeyboard', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
     var keyboardShowEvent = function () {
       $rootScope.$evalAsync(function () {
