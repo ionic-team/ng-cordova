@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.15-alpha
+ * v0.1.17-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -243,6 +243,30 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout)
   };
 }]);
 
+ngCordovaMocks.factory('$cordovaBrightness', ['$q', function ($q) {
+	var currentBrightness = 100;
+
+	return {
+		get: function () {
+			var q = $q.defer();
+			q.resolve(currentBrightness);
+        	return q.promise;
+		},
+
+		set: function (data) {
+			var q = $q.defer();
+			currentBrightness = data;
+			q.resolve('OK');
+        	return q.promise;
+		},
+
+		setKeepScreenOn: function (bool) {
+			var q = $q.defer();
+			q.resolve('OK');
+			return q.promise;
+		}
+	};
+}]);
 /**
  * @ngdoc service
  * @name ngCordovaMocks.cordovaCamera
@@ -685,7 +709,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
       if (this.throwsError) {
         defer.reject('There was an error watching the current acceleration.');
       } else {
-        var delay = 10000;		// The default based on https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md
+        var delay = 10000;		// The default based on https://github.com/apache/cordova-plugin-device-motion
         if (options && options.frequency) {
           delay = options.frequency;
         }
@@ -823,7 +847,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
       if (self.throwsError) {
         defer.reject('There was an error getting the compass heading.');
       } else {
-        var delay = 100;		// The default based on https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md
+        var delay = 100;		// The default based on https://github.com/apache/cordova-plugin-device-orientation
         if (options && options.frequency) {
           delay = options.frequency;
         }
@@ -2170,7 +2194,7 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
      *
      * @description
      * They type of connection. Values should match those found at
-     * https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md
+     * https://github.com/apache/cordova-plugin-network-information
      * This property should only be used in automated tests.
      **/
     connectionType: connectionType,
@@ -2802,7 +2826,7 @@ ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function ($timeout) {
 
     /* jshint ignore:start */
     vibrateWithPattern: function (pattern, repeat) {
-      // Based on the documentation (https://github.com/apache/cordova-plugin-vibration/blob/master/doc/index.md)
+      // Based on the documentation (https://github.com/apache/cordova-plugin-vibration)
       // This method is deprecated. For that reason, this isn't implemented at this time.
     },
     /* jshint ignore:end */
