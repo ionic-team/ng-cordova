@@ -11,15 +11,18 @@ describe('ngCordovaMocks', function() {
 		}));
 
 		it('should get the current brightness', function () {
-			var currentBrightness = $cordovaBrightness.get();
-			expect(currentBrightness).toEqual(100);
+			$cordovaBrightness.get().then(function (result) {
+				expect(result.value).toEqual(100);
+			});
 		});
 
 		it('should set the current brightness', function () {
 			$cordovaBrightness.set(50);
 
 			var currentBrightness = $cordovaBrightness.get();
-			expect(currentBrightness).toEqual(50);
+			$cordovaBrightness.get().then(function (result) {
+				expect(result.value).toEqual(50);
+			});
 		});
 	});
 })
