@@ -4,44 +4,36 @@
 angular.module('ngCordova.plugins.flashlight', [])
 
   .factory('$cordovaFlashlight', ['$q', '$window', function ($q, $window) {
+    
+    /**
+     * Wraps a call to the plugin in a promise, and handles
+     * if the plugin is missing by rejecting the promise chain.
+     */
+    function willCallFlashlightPlugin(action) {
+      var q = $q.defer();
+      try {
+        $window.plugins.flashlight[action](q.resolve, q.reject);
+      } catch (e) {
+        q.reject(e);
+      }
+      return q.promise;
+    }
 
     return {
       available: function () {
-        var q = $q.defer();
-        $window.plugins.flashlight.available(function (isAvailable) {
-          q.resolve(isAvailable);
-        });
-        return q.promise;
+        return willCallFlashlightPlugin("available");
       },
 
       switchOn: function () {
-        var q = $q.defer();
-        $window.plugins.flashlight.switchOn(function (response) {
-          q.resolve(response);
-        }, function (error) {
-          q.reject(error);
-        });
-        return q.promise;
+        return willCallFlashlightPlugin("switchOn");
       },
 
       switchOff: function () {
-        var q = $q.defer();
-        $window.plugins.flashlight.switchOff(function (response) {
-          q.resolve(response);
-        }, function (error) {
-          q.reject(error);
-        });
-        return q.promise;
+        return willCallFlashlightPlugin("switchOff");
       },
 
       toggle: function () {
-        var q = $q.defer();
-        $window.plugins.flashlight.toggle(function (response) {
-          q.resolve(response);
-        }, function (error) {
-          q.reject(error);
-        });
-        return q.promise;
+        return willCallFlashlightPlugin("toggle");
       }
     };
   }]);

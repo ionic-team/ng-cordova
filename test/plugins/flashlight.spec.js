@@ -35,7 +35,16 @@ describe('Service: $cordovaFlashlight', function() {
     $cordovaFlashlight.available();
     $rootScope.$digest();
 
-    expect(window.plugins.flashlight.available).toHaveBeenCalledWith(jasmine.any(Function));
+    expect(window.plugins.flashlight.available).toHaveBeenCalledWith(jasmine.any(Function), jasmine.any(Function));
+  });
+
+  it('should gracefully handle if the plugin is not present', function() {
+      delete window.plugins.flashlight;
+
+      $cordovaFlashlight.available();
+      $rootScope.$digest();
+
+      // not exepecting an error to the be thrown
   });
 
   for (var i = 0; i < functionNames.length; i++) {
