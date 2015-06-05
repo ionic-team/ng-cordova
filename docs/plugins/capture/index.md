@@ -11,7 +11,7 @@ icon-windows: true
 ---
 
 
-This plugin allows you to record sound, video and images through the native capabilities of the device
+This plugin allows you to record sound, video and images through the native capabilities of the device.
 
 ```bash
 $ cordova plugin add cordova-plugin-media-capture
