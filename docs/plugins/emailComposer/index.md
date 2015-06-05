@@ -38,7 +38,7 @@ cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
 > | isHtml      | `String`       | Indicats if the body is HTML or plain text |
 
 
-![actionSheet-ios](emailComposer-ios.png) ![actionSheet-android](emailComposer-android.png)
+![actionSheet-ios](emailComposer-ios.png)
 
 #### Example
 
