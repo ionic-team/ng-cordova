@@ -10,7 +10,7 @@ icon-android: true
 icon-windows: false
 ---
 
-The [AppRate](https://github.com/pushandplay/cordova-plugin-apprate) plugin makes it easy to prompt the user to rate your app, either no or later, or never.
+The [AppRate](https://github.com/pushandplay/cordova-plugin-apprate) plugin makes it easy to prompt the user to rate your app, either now or later, or never.
 
 
 ```bash
