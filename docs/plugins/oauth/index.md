@@ -10,14 +10,14 @@ icon-android: true
 icon-windows: true
 ---
 
-Use browser login flow for various oauth providers
+Use browser login flow for various Oauth providers
 
 ```
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
 ```
 
 When registering your application with various service providers such as Facebook or Google, it is very important to use
-**http://localhost/callback** as the callback / redirect uri.  The Oauth module depends on this in order to complete the
+**http://localhost/callback** as the callback / redirect url.  The Oauth module depends on this in order to complete the
 browser flow.
 
 ``` javascript
@@ -46,7 +46,7 @@ module.controller('MyCtrl', function($scope, $cordovaOauth) {
 });
 ```
 
-To use Twitter in your project you must have the open source library, [jsSHA](https://github.com/Caligatio/jsSHA), included
+To use Twitter in your project, you must have the open source library, [jsSHA](https://github.com/Caligatio/jsSHA), included
 in your project.  This is because Twitter requires request signing using HMAC-SHA1, not natively found in JavaScript.
 
 ``` html
