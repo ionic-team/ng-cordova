@@ -22,7 +22,7 @@ gulp.task('default', ['build']);
 gulp.task('test', ['lint', 'jscs']);
 
 gulp.task('build', function () {
-  git.updateSubmodule({ args: '--remote' });
+  git.updateSubmodule({ args: '--init --remote' });
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
     .pipe(header(buildConfig.closureStart))
