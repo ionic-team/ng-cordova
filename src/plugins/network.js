@@ -47,7 +47,7 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       clearOnlineWatch: function () {
-        document.removeEventListener("online", offlineEvent);
+        document.removeEventListener("online", onlineEvent);
         $rootScope.$$listeners["$cordovaNetwork:online"] = [];
       }
     };
