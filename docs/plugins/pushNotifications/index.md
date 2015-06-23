@@ -13,6 +13,9 @@ icon-windows: true
 
 Allows your application to receive push notifications. To receive notifications in your controllers or services, listen for `$cordovaPush:notificationReceived` event.
 
+Note: Ionic offers a tightly-integrated Push Notification service to make sending and receiving push notifications easy for Ionic apps: [Ionic Push docs](http://docs.ionic.io/v1.0/docs/push-from-scratch)
+
+
 ```
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 ```
