@@ -14,13 +14,15 @@ var gulp = require('gulp'),
   changelog = require('conventional-changelog'),
   q = require('q'),
   fs = require('fs'),
-  jscs = require('gulp-jscs');
+  jscs = require('gulp-jscs'),
+  git = require('gulp-git');
 
 gulp.task('default', ['build']);
 
 gulp.task('test', ['lint', 'jscs']);
 
 gulp.task('build', function () {
+  git.updateSubmodule({ args: '--init --remote' });
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
     .pipe(header(buildConfig.closureStart))
