@@ -1,6 +1,7 @@
 .*.sw*
 node_modules/
 .idea/*
+*.iml
 demo/platforms/*
 demo/plugins/*
 _site
