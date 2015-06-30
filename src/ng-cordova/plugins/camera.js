@@ -1,5 +1,5 @@
 export class Camera {
-  static takePicture(options) {
+  static getPicture(options) {
     return new Promise((resolve, reject) => {
       navigator.camera.getPicture(function (imageData) {
         resolve(imageData);

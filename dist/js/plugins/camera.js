@@ -16,8 +16,8 @@ System.register("ng-cordova/plugins/camera", [], function (_export) {
         }
 
         _createClass(Camera, null, [{
-          key: "takePicture",
-          value: function takePicture(options) {
+          key: "getPicture",
+          value: function getPicture(options) {
             return new Promise(function (resolve, reject) {
               navigator.camera.getPicture(function (imageData) {
                 resolve(imageData);

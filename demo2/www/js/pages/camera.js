@@ -14,7 +14,7 @@ console.log('Camera', Camera);
   template: `
   <ion-navbar *navbar><ion-title>Camera</ion-navbar>
   <ion-content padding>
-    <button (click)="takePicture()" button>Take Picture</button>
+    <button (click)="takePicture()" primary>Take Picture</button>
   </ion-content>
   `
 })
@@ -26,5 +26,12 @@ export class CameraPage {
   toggleMenu() {
     let aside = this.app.getComponent('mainMenu');
     aside.toggle();
+  }
+  takePicture() {
+    Camera.getPicture().then((imageData) => {
+      console.log('GOT PICTURE');
+    }, (err) => {
+      console.error('Couldn\'t take picture!', err)
+    })
   }
 }

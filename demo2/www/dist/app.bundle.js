@@ -120,6 +120,15 @@ System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', './song
             var aside = this.app.getComponent('mainMenu');
             aside.toggle();
           }
+        }, {
+          key: 'takePicture',
+          value: function takePicture() {
+            Camera.getPicture().then(function (imageData) {
+              console.log('GOT PICTURE');
+            }, function (err) {
+              console.error('Couldn\'t take picture!', err);
+            });
+          }
         }]);
 
         return CameraPage;
@@ -130,7 +139,7 @@ System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', './song
       Object.defineProperty(CameraPage, 'annotations', { get: function get() {
           return [new Component({ selector: 'ion-view' }), new View({
             directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
-            template: '\n  <ion-navbar *navbar><ion-title>Camera</ion-navbar>\n  <ion-content padding>\n    <button (click)="takePicture()" button>Take Picture</button>\n  </ion-content>\n  '
+            template: '\n  <ion-navbar *navbar><ion-title>Camera</ion-navbar>\n  <ion-content padding>\n    <button (click)="takePicture()" primary>Take Picture</button>\n  </ion-content>\n  '
           })];
         } });
       Object.defineProperty(CameraPage, 'parameters', { get: function get() {
