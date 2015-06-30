@@ -36,6 +36,9 @@
   "dependencies": {
     "conventional-changelog": "0.0.11",
     "fs": "0.0.2",
+    "gulp-babel": "^5.1.0",
+    "gulp-cache": "^0.2.10",
+    "gulp-cached": "^1.1.0",
     "gulp-git": "^1.2.4",
     "q": "^1.1.2"
   }

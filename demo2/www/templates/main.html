@@ -1,0 +1,14 @@
+<ion-aside #aside [content]="content" [register]="aside" register-id="mainMenu">
+  <ion-toolbar>
+    <ion-title>Plugins</ion-title>
+  </ion-toolbar>
+  <ion-content>
+    <ion-list>
+      <ion-item *ng-for="#p of plugins" (^click)="openPage(aside, p)">
+        {{p.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-aside>
+
+<ion-nav #content [root]="firstPage" [register]="content" register-id="nav"></ion-nav>
