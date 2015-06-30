@@ -4951,7 +4951,7 @@ System.register('ng-cordova/module', [], function (_export) {
   return {
     setters: [],
     execute: function () {
-      angular.module('ngCordova', ['ngCordova.plugins']);
+      angular.module('ngCordova.plugins', ['ngCordova.plugins.actionSheet', 'ngCordova.plugins.adMob', 'ngCordova.plugins.appAvailability', 'ngCordova.plugins.appRate', 'ngCordova.plugins.appVersion', 'ngCordova.plugins.backgroundGeolocation', 'ngCordova.plugins.badge', 'ngCordova.plugins.barcodeScanner', 'ngCordova.plugins.batteryStatus', 'ngCordova.plugins.ble', 'ngCordova.plugins.bluetoothSerial', 'ngCordova.plugins.brightness', 'ngCordova.plugins.calendar', 'ngCordova.plugins.camera', 'ngCordova.plugins.capture', 'ngCordova.plugins.clipboard', 'ngCordova.plugins.contacts', 'ngCordova.plugins.datePicker', 'ngCordova.plugins.device', 'ngCordova.plugins.deviceMotion', 'ngCordova.plugins.deviceOrientation', 'ngCordova.plugins.dialogs', 'ngCordova.plugins.emailComposer', 'ngCordova.plugins.facebook', 'ngCordova.plugins.facebookAds', 'ngCordova.plugins.file', 'ngCordova.plugins.fileTransfer', 'ngCordova.plugins.fileOpener2', 'ngCordova.plugins.flashlight', 'ngCordova.plugins.flurryAds', 'ngCordova.plugins.ga', 'ngCordova.plugins.geolocation', 'ngCordova.plugins.globalization', 'ngCordova.plugins.googleAds', 'ngCordova.plugins.googleAnalytics', 'ngCordova.plugins.googleMap', 'ngCordova.plugins.googlePlayGame', 'ngCordova.plugins.healthKit', 'ngCordova.plugins.httpd', 'ngCordova.plugins.iAd', 'ngCordova.plugins.imagePicker', 'ngCordova.plugins.inAppBrowser', 'ngCordova.plugins.keyboard', 'ngCordova.plugins.keychain', 'ngCordova.plugins.localNotification', 'ngCordova.plugins.media', 'ngCordova.plugins.mMediaAds', 'ngCordova.plugins.mobfoxAds', 'ngCordova.plugins.mopubAds', 'ngCordova.plugins.nativeAudio', 'ngCordova.plugins.network', 'ngCordovaOauth', 'ngCordova.plugins.pinDialog', 'ngCordova.plugins.prefs', 'ngCordova.plugins.printer', 'ngCordova.plugins.progressIndicator', 'ngCordova.plugins.push', 'ngCordova.plugins.sms', 'ngCordova.plugins.socialSharing', 'ngCordova.plugins.spinnerDialog', 'ngCordova.plugins.splashscreen', 'ngCordova.plugins.sqlite', 'ngCordova.plugins.statusbar', 'ngCordova.plugins.toast', 'ngCordova.plugins.touchid', 'ngCordova.plugins.vibration', 'ngCordova.plugins.videoCapturePlus', 'ngCordova.plugins.zip', 'ngCordova.plugins.insomnia']);
     }
   };
 });
@@ -5218,6 +5218,18 @@ System.register('ng-cordova/network', [], function (_export) {
         };
       }]).run(['$cordovaNetwork', function ($cordovaNetwork) {}]);
     }
+  };
+});
+System.register('ng-cordova/ng-cordova', ['./plugins/camera'], function (_export) {
+  'use strict';
+
+  return {
+    setters: [function (_pluginsCamera) {
+      for (var _key in _pluginsCamera) {
+        _export(_key, _pluginsCamera[_key]);
+      }
+    }],
+    execute: function () {}
   };
 });
 System.register("ng-cordova/oauth", [], function (_export) {
@@ -7811,7 +7823,102 @@ System.register('ng-cordova/vibration', [], function (_export) {
     }
   };
 });
+System.register('ng-cordova/videoCapturePlus', [], function (_export) {
+  // install   :    cordova plugin add https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin.git
+  // link      :    https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin
 
+  'use strict';
+
+  return {
+    setters: [],
+    execute: function () {
+      angular.module('ngCordova.plugins.videoCapturePlus', []).provider('$cordovaVideoCapturePlus', [function () {
+
+        var defaultOptions = {};
+
+        /**
+         * the nr of videos to record, default 1 (on iOS always 1)
+         *
+         * @param limit
+         */
+        this.setLimit = function setLimit(limit) {
+          defaultOptions.limit = limit;
+        };
+
+        /**
+         * max duration in seconds, default 0, which is 'forever'
+         *
+         * @param seconds
+         */
+        this.setMaxDuration = function setMaxDuration(seconds) {
+          defaultOptions.duration = seconds;
+        };
+
+        /**
+         * set to true to override the default low quality setting
+         *
+         * @param {Boolean} highquality
+         */
+        this.setHighQuality = function setHighQuality(highquality) {
+          defaultOptions.highquality = highquality;
+        };
+
+        /**
+         * you'll want to sniff the user-Agent/device and pass the best overlay based on that..
+         * set to true to override the default backfacing camera setting. iOS: works fine, Android: YMMV (#18)
+         *
+         * @param {Boolean} frontcamera
+         */
+        this.useFrontCamera = function useFrontCamera(frontcamera) {
+          defaultOptions.frontcamera = frontcamera;
+        };
+
+        /**
+         * put the png in your www folder
+         *
+         * @param {String} imageUrl
+         */
+        this.setPortraitOverlay = function setPortraitOverlay(imageUrl) {
+          defaultOptions.portraitOverlay = imageUrl;
+        };
+
+        /**
+         *
+         * @param {String} imageUrl
+         */
+        this.setLandscapeOverlay = function setLandscapeOverlay(imageUrl) {
+          defaultOptions.landscapeOverlay = imageUrl;
+        };
+
+        /**
+         * iOS only
+         *
+         * @param text
+         */
+        this.setOverlayText = function setOverlayText(text) {
+          defaultOptions.overlayText = text;
+        };
+
+        this.$get = ['$q', '$window', function ($q, $window) {
+          return {
+            captureVideo: function captureVideo(options) {
+              var q = $q.defer();
+
+              if (!$window.plugins.videocaptureplus) {
+                q.resolve(null);
+                return q.promise;
+              }
+
+              $window.plugins.videocaptureplus.captureVideo(q.resolve, q.reject, angular.extend({}, defaultOptions, options));
+
+              return q.promise;
+            }
+          };
+        }];
+      }]);
+    }
+  };
+});
 System.register('ng-cordova/zip', [], function (_export) {
   // install  :     cordova plugin add https://github.com/MobileChromeApps/zip.git
   // link     :     https://github.com/MobileChromeApps/zip
@@ -7841,6 +7948,54 @@ System.register('ng-cordova/zip', [], function (_export) {
           }
         };
       }]);
+    }
+  };
+});
+System.register("ng-cordova/plugins/camera", [], function (_export) {
+  "use strict";
+
+  var Camera;
+
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  return {
+    setters: [],
+    execute: function () {
+      Camera = (function () {
+        function Camera() {
+          _classCallCheck(this, Camera);
+        }
+
+        _createClass(Camera, null, [{
+          key: "takePicture",
+          value: function takePicture(options) {
+            return new Promise(function (resolve, reject) {
+              navigator.camera.getPicture(function (imageData) {
+                resolve(imageData);
+              }, function (err) {
+                reject(err);
+              }, options);
+            });
+          }
+        }, {
+          key: "cleanup",
+          value: function cleanup() {
+            return new Promise(function (resolve, reject) {
+              navigator.camera.cleanup(function () {
+                resolve();
+              }, function (err) {
+                reject(err);
+              });
+            });
+          }
+        }]);
+
+        return Camera;
+      })();
+
+      _export("Camera", Camera);
     }
   };
 });

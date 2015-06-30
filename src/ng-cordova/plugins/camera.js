@@ -8,7 +8,7 @@ export class Camera {
       }, options);
     });
   }
-  cleanup: function () {
+  static cleanup() {
     return new Promise((resolve, reject) => {
       navigator.camera.cleanup(function () {
         resolve();
