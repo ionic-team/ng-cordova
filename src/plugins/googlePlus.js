@@ -49,11 +49,15 @@ angular.module('ngCordova.plugins.googlePlus', [])
           q.resolve(response);
         });
       },
-      
+
       isAvailable: function () {
         var q = $q.defer();
-        $window.plugins.googleplus.isAvailable(function (response) {
-          q.resolve(response);
+        $window.plugins.googleplus.isAvailable(function (available) {
+          if (available) {
+            q.resolve(available);
+          } else {
+            q.reject(available);
+          }
         });
         
         return q.promise;
