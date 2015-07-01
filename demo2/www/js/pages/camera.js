@@ -10,7 +10,7 @@ console.log('Camera', Camera);
 @View({
   directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
   template: `
-  <ion-navbar *navbar><ion-title>Camera</ion-navbar>
+  <ion-navbar *navbar><ion-nav-items primary><button icon (^click)="app.getComponent('mainMenu').toggle()"><i class="icon ion-navicon"></i></button></ion-nav-items><ion-title>Camera</ion-title></ion-navbar>
   <ion-content padding>
     <button (click)="takePicture()" primary>Take Picture</button>
   </ion-content>

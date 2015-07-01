@@ -94,7 +94,7 @@ System.register('ng-cordova/plugins/geolocation', ['rx'], function (_export) {
           _classCallCheck(this, Geolocation);
         }
 
-        _createClass(Geolocation, [{
+        _createClass(Geolocation, null, [{
           key: 'getCurrentPosition',
           value: function getCurrentPosition(options) {
             return new Promise(function (resolve, reject) {

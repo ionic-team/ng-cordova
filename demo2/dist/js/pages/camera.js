@@ -61,7 +61,7 @@ System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', 'ng-cor
       Object.defineProperty(CameraPage, 'annotations', { get: function get() {
           return [new Component({ selector: 'ion-view' }), new View({
             directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
-            template: '\n  <ion-navbar *navbar><ion-title>Camera</ion-navbar>\n  <ion-content padding>\n    <button (click)="takePicture()" primary>Take Picture</button>\n  </ion-content>\n  '
+            template: '\n  <ion-navbar *navbar><ion-nav-items primary><button icon (^click)="app.getComponent(\'mainMenu\').toggle()"><i class="icon ion-navicon"></i></button></ion-nav-items><ion-title>Camera</ion-title></ion-navbar>\n  <ion-content padding>\n    <button (click)="takePicture()" primary>Take Picture</button>\n  </ion-content>\n  '
           })];
         } });
       Object.defineProperty(CameraPage, 'parameters', { get: function get() {
