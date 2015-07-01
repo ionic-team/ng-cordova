@@ -207,7 +207,7 @@ System.register('app/pages/geolocation', ['angular2/angular2', 'ionic/ionic', 'n
           value: function trackLocation() {
             var _this2 = this;
 
-            Geolocation.trackPosition().source.subscribe(function (pos) {
+            Geolocation.watchPosition().source.subscribe(function (pos) {
               _this2.location = pos;
             });
           }

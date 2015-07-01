@@ -1,7 +1,11 @@
 // install   :     cordova plugin add cordova-plugin-geolocation
 // link      :     https://github.com/apache/cordova-plugin-geolocation
 
-import * as Rx from 'rx'
+//import * as Rx from 'rx'
+
+import * as Rx from 'rx';
+
+console.log('Imported Rx', Rx, 'yea');
 
 export class Geolocation {
   static getCurrentPosition(options) {

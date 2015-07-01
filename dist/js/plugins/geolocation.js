@@ -2,6 +2,8 @@ System.register('ng-cordova/plugins/geolocation', ['rx'], function (_export) {
   // install   :     cordova plugin add cordova-plugin-geolocation
   // link      :     https://github.com/apache/cordova-plugin-geolocation
 
+  //import * as Rx from 'rx'
+
   'use strict';
 
   var Rx, Geolocation;
@@ -15,6 +17,9 @@ System.register('ng-cordova/plugins/geolocation', ['rx'], function (_export) {
       Rx = _rx;
     }],
     execute: function () {
+
+      console.log('Imported Rx', Rx, 'yea');
+
       Geolocation = (function () {
         function Geolocation() {
           _classCallCheck(this, Geolocation);

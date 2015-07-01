@@ -33,7 +33,7 @@ export class GeolocationPage {
     })
   }
   trackLocation() {
-    Geolocation.trackPosition().source.subscribe((pos) => {
+    Geolocation.watchPosition().source.subscribe((pos) => {
       this.location = pos;
     })
   }

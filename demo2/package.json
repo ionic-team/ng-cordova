@@ -5,10 +5,11 @@
     "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
-    "gulp-traceur": "^0.17.1"
+    "gulp-traceur": "^0.17.1",
+    "minimist": "^1.1.1"
   },
   "dependencies": {
-    "minimist": "^1.1.1"
+    "rx": "2.5.1"
   },
   "jspm": {
     "directories": {},
