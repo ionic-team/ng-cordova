@@ -15,7 +15,9 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "org.apache.cordova.camera",
+    "cordova-plugin-device"
   ],
   "cordovaPlatforms": [
     "ios"
