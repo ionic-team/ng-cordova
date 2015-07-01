@@ -1,3 +1,6 @@
+// install   :   cordova plugin add cordova-plugin-camera
+// link      :   https://github.com/apache/cordova-plugin-camera
+
 export class Camera {
   static getPicture(options) {
     return new Promise((resolve, reject) => {
