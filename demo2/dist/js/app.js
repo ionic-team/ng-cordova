@@ -1,7 +1,7 @@
 System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index'], function (_export) {
   'use strict';
 
-  var bootstrap, NgFor, Component, Directive, View, IonicApp, Register, Aside, NavParams, Nav, NavController, Navbar, NavbarTemplate, List, Item, Content, Button, CameraPage, MyApp;
+  var bootstrap, NgFor, Component, Directive, View, IonicApp, Register, Aside, NavParams, Nav, NavController, Navbar, NavbarTemplate, List, Item, Content, Button, CameraPage, GeolocationPage, MyApp;
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -35,6 +35,7 @@ System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index']
       Button = _ionicIonic.Button;
     }, function (_pagesIndex) {
       CameraPage = _pagesIndex.CameraPage;
+      GeolocationPage = _pagesIndex.GeolocationPage;
     }],
     execute: function () {
       MyApp = (function () {
@@ -45,6 +46,9 @@ System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index']
           this.plugins = [{
             title: 'Camera',
             component: CameraPage
+          }, {
+            title: 'Geolocation',
+            component: GeolocationPage
           }];
           this.firstPage = CameraPage;
         }

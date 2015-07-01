@@ -1,7 +1,7 @@
-System.register('app/pages/playlists', ['angular2/angular2', 'ionic/ionic'], function (_export) {
+System.register('app/pages/geolocation', ['angular2/angular2', 'ionic/ionic', 'ng-cordova/ng-cordova'], function (_export) {
   'use strict';
 
-  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, PlaylistsPage;
+  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, Geolocation, GeolocationPage;
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -22,36 +22,56 @@ System.register('app/pages/playlists', ['angular2/angular2', 'ionic/ionic'], fun
       List = _ionicIonic.List;
       Item = _ionicIonic.Item;
       Content = _ionicIonic.Content;
+    }, function (_ngCordovaNgCordova) {
+      Geolocation = _ngCordovaNgCordova.Geolocation;
     }],
     execute: function () {
-      PlaylistsPage = (function () {
-        function PlaylistsPage(app, nav) {
-          _classCallCheck(this, PlaylistsPage);
+      GeolocationPage = (function () {
+        function GeolocationPage(app, nav) {
+          _classCallCheck(this, GeolocationPage);
 
+          this.name = 'Max';
           this.app = app;
-          this.playlists = [{ title: '90\'s Punk' }, { title: '80\'s Revival' }];
         }
 
-        _createClass(PlaylistsPage, [{
+        _createClass(GeolocationPage, [{
           key: 'toggleMenu',
           value: function toggleMenu() {
             var aside = this.app.getComponent('mainMenu');
             aside.toggle();
           }
+        }, {
+          key: 'getPosition',
+          value: function getPosition() {
+            var _this = this;
+
+            Geolocation.getCurrentPosition().then(function (pos) {
+              _this.location = pos;
+            });
+          }
+        }, {
+          key: 'trackLocation',
+          value: function trackLocation() {
+            var _this2 = this;
+
+            Geolocation.trackPosition().source.subscribe(function (pos) {
+              _this2.location = pos;
+            });
+          }
         }]);
 
-        return PlaylistsPage;
+        return GeolocationPage;
       })();
 
-      _export('PlaylistsPage', PlaylistsPage);
+      _export('GeolocationPage', GeolocationPage);
 
-      Object.defineProperty(PlaylistsPage, 'annotations', { get: function get() {
+      Object.defineProperty(GeolocationPage, 'annotations', { get: function get() {
           return [new Component({ selector: 'ion-view' }), new View({
             directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
-            templateUrl: 'templates/pages/playlists.html'
+            template: '\n  <ion-navbar *navbar><ion-title>Geolocation</ion-navbar>\n  <ion-content padding>\n    <button (click)="getPosition()" primary>Get Position</button>\n    <button (click)="trackLocation()" primary>Track Location</button>\n  </ion-content>\n  '
           })];
         } });
-      Object.defineProperty(PlaylistsPage, 'parameters', { get: function get() {
+      Object.defineProperty(GeolocationPage, 'parameters', { get: function get() {
           return [[IonicApp], [NavController]];
         } });
     }

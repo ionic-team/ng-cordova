@@ -1,4 +1,7 @@
 System.register("ng-cordova/plugins/camera", [], function (_export) {
+  // install   :   cordova plugin add cordova-plugin-camera
+  // link      :   https://github.com/apache/cordova-plugin-camera
+
   "use strict";
 
   var Camera;

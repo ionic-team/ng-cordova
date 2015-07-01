@@ -4,7 +4,7 @@ import {bootstrap, NgFor, ComponentAnnotation as Component,
 import {IonicApp, Register, Aside, NavParams, Nav, NavController,
   Navbar, NavbarTemplate, List, Item, Content, Button} from 'ionic/ionic';
 
-import {CameraPage} from './pages/index';
+import {CameraPage, GeolocationPage} from './pages/index';
 
 @Component({ selector: 'ion-app' })
 @View({
@@ -17,6 +17,8 @@ class MyApp {
 
     this.plugins = [
       { title: 'Camera', component: CameraPage },
+      { title: 'Geolocation', component: GeolocationPage },
+
     ];
 
     this.firstPage = CameraPage;

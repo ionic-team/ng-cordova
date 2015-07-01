@@ -1,7 +1,7 @@
 System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index'], function (_export) {
   'use strict';
 
-  var bootstrap, NgFor, Component, Directive, View, IonicApp, Register, Aside, NavParams, Nav, NavController, Navbar, NavbarTemplate, List, Item, Content, Button, CameraPage, MyApp;
+  var bootstrap, NgFor, Component, Directive, View, IonicApp, Register, Aside, NavParams, Nav, NavController, Navbar, NavbarTemplate, List, Item, Content, Button, CameraPage, GeolocationPage, MyApp;
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -35,6 +35,7 @@ System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index']
       Button = _ionicIonic.Button;
     }, function (_pagesIndex) {
       CameraPage = _pagesIndex.CameraPage;
+      GeolocationPage = _pagesIndex.GeolocationPage;
     }],
     execute: function () {
       MyApp = (function () {
@@ -45,6 +46,9 @@ System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index']
           this.plugins = [{
             title: 'Camera',
             component: CameraPage
+          }, {
+            title: 'Geolocation',
+            component: GeolocationPage
           }];
           this.firstPage = CameraPage;
         }
@@ -74,10 +78,10 @@ System.register('app/app', ['angular2/angular2', 'ionic/ionic', './pages/index']
     }
   };
 });
-System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', './song-detail', 'ng-cordova/ng-cordova'], function (_export) {
+System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', 'ng-cordova/ng-cordova'], function (_export) {
   'use strict';
 
-  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, SongDetailPage, Camera, CameraPage;
+  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, Camera, CameraPage;
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -98,8 +102,6 @@ System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', './song
       List = _ionicIonic.List;
       Item = _ionicIonic.Item;
       Content = _ionicIonic.Content;
-    }, function (_songDetail) {
-      SongDetailPage = _songDetail.SongDetailPage;
     }, function (_ngCordovaNgCordova) {
       Camera = _ngCordovaNgCordova.Camera;
     }],
@@ -148,7 +150,86 @@ System.register('app/pages/camera', ['angular2/angular2', 'ionic/ionic', './song
     }
   };
 });
-System.register('app/pages/index', ['./camera'], function (_export) {
+System.register('app/pages/geolocation', ['angular2/angular2', 'ionic/ionic', 'ng-cordova/ng-cordova'], function (_export) {
+  'use strict';
+
+  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, Geolocation, GeolocationPage;
+
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+  return {
+    setters: [function (_angular2Angular2) {
+      bootstrap = _angular2Angular2.bootstrap;
+      NgFor = _angular2Angular2.NgFor;
+      Component = _angular2Angular2.ComponentAnnotation;
+      Directive = _angular2Angular2.DirectiveAnnotation;
+      View = _angular2Angular2.ViewAnnotation;
+    }, function (_ionicIonic) {
+      IonicApp = _ionicIonic.IonicApp;
+      NavController = _ionicIonic.NavController;
+      Navbar = _ionicIonic.Navbar;
+      NavbarTemplate = _ionicIonic.NavbarTemplate;
+      List = _ionicIonic.List;
+      Item = _ionicIonic.Item;
+      Content = _ionicIonic.Content;
+    }, function (_ngCordovaNgCordova) {
+      Geolocation = _ngCordovaNgCordova.Geolocation;
+    }],
+    execute: function () {
+      GeolocationPage = (function () {
+        function GeolocationPage(app, nav) {
+          _classCallCheck(this, GeolocationPage);
+
+          this.name = 'Max';
+          this.app = app;
+        }
+
+        _createClass(GeolocationPage, [{
+          key: 'toggleMenu',
+          value: function toggleMenu() {
+            var aside = this.app.getComponent('mainMenu');
+            aside.toggle();
+          }
+        }, {
+          key: 'getPosition',
+          value: function getPosition() {
+            var _this = this;
+
+            Geolocation.getCurrentPosition().then(function (pos) {
+              _this.location = pos;
+            });
+          }
+        }, {
+          key: 'trackLocation',
+          value: function trackLocation() {
+            var _this2 = this;
+
+            Geolocation.trackPosition().source.subscribe(function (pos) {
+              _this2.location = pos;
+            });
+          }
+        }]);
+
+        return GeolocationPage;
+      })();
+
+      _export('GeolocationPage', GeolocationPage);
+
+      Object.defineProperty(GeolocationPage, 'annotations', { get: function get() {
+          return [new Component({ selector: 'ion-view' }), new View({
+            directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
+            template: '\n  <ion-navbar *navbar><ion-title>Geolocation</ion-navbar>\n  <ion-content padding>\n    <button (click)="getPosition()" primary>Get Position</button>\n    <button (click)="trackLocation()" primary>Track Location</button>\n  </ion-content>\n  '
+          })];
+        } });
+      Object.defineProperty(GeolocationPage, 'parameters', { get: function get() {
+          return [[IonicApp], [NavController]];
+        } });
+    }
+  };
+});
+System.register('app/pages/index', ['./camera', './geolocation'], function (_export) {
   'use strict';
 
   return {
@@ -156,207 +237,11 @@ System.register('app/pages/index', ['./camera'], function (_export) {
       for (var _key in _camera) {
         _export(_key, _camera[_key]);
       }
+    }, function (_geolocation) {
+      for (var _key2 in _geolocation) {
+        _export(_key2, _geolocation[_key2]);
+      }
     }],
     execute: function () {}
-  };
-});
-System.register("app/pages/pages", [], function (_export) {
-  "use strict";
-
-  return {
-    setters: [],
-    execute: function () {}
-  };
-});
-System.register('app/pages/playlists', ['angular2/angular2', 'ionic/ionic'], function (_export) {
-  'use strict';
-
-  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, PlaylistsPage;
-
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  return {
-    setters: [function (_angular2Angular2) {
-      bootstrap = _angular2Angular2.bootstrap;
-      NgFor = _angular2Angular2.NgFor;
-      Component = _angular2Angular2.ComponentAnnotation;
-      Directive = _angular2Angular2.DirectiveAnnotation;
-      View = _angular2Angular2.ViewAnnotation;
-    }, function (_ionicIonic) {
-      IonicApp = _ionicIonic.IonicApp;
-      NavController = _ionicIonic.NavController;
-      Navbar = _ionicIonic.Navbar;
-      NavbarTemplate = _ionicIonic.NavbarTemplate;
-      List = _ionicIonic.List;
-      Item = _ionicIonic.Item;
-      Content = _ionicIonic.Content;
-    }],
-    execute: function () {
-      PlaylistsPage = (function () {
-        function PlaylistsPage(app, nav) {
-          _classCallCheck(this, PlaylistsPage);
-
-          this.app = app;
-          this.playlists = [{ title: '90\'s Punk' }, { title: '80\'s Revival' }];
-        }
-
-        _createClass(PlaylistsPage, [{
-          key: 'toggleMenu',
-          value: function toggleMenu() {
-            var aside = this.app.getComponent('mainMenu');
-            aside.toggle();
-          }
-        }]);
-
-        return PlaylistsPage;
-      })();
-
-      _export('PlaylistsPage', PlaylistsPage);
-
-      Object.defineProperty(PlaylistsPage, 'annotations', { get: function get() {
-          return [new Component({ selector: 'ion-view' }), new View({
-            directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
-            templateUrl: 'templates/pages/playlists.html'
-          })];
-        } });
-      Object.defineProperty(PlaylistsPage, 'parameters', { get: function get() {
-          return [[IonicApp], [NavController]];
-        } });
-    }
-  };
-});
-System.register('app/pages/song-detail', ['angular2/angular2', 'ionic/ionic'], function (_export) {
-  'use strict';
-
-  var bootstrap, NgFor, Component, Directive, View, NavParams, NavController, Navbar, NavbarTemplate, Content, Button, SongDetailPage;
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  return {
-    setters: [function (_angular2Angular2) {
-      bootstrap = _angular2Angular2.bootstrap;
-      NgFor = _angular2Angular2.NgFor;
-      Component = _angular2Angular2.ComponentAnnotation;
-      Directive = _angular2Angular2.DirectiveAnnotation;
-      View = _angular2Angular2.ViewAnnotation;
-    }, function (_ionicIonic) {
-      NavParams = _ionicIonic.NavParams;
-      NavController = _ionicIonic.NavController;
-      Navbar = _ionicIonic.Navbar;
-      NavbarTemplate = _ionicIonic.NavbarTemplate;
-      Content = _ionicIonic.Content;
-      Button = _ionicIonic.Button;
-    }],
-    execute: function () {
-      SongDetailPage = function SongDetailPage(nav, navParams) {
-        _classCallCheck(this, SongDetailPage);
-
-        this.nav = nav;
-        this.song = navParams.song;
-        console.log('Showing song', this.song);
-      };
-
-      _export('SongDetailPage', SongDetailPage);
-
-      Object.defineProperty(SongDetailPage, 'annotations', { get: function get() {
-          return [new Component({ selector: 'ion-view' }), new View({
-            directives: [Content, Button, Navbar, NavbarTemplate],
-            templateUrl: 'templates/pages/song_detail.html'
-          })];
-        } });
-      Object.defineProperty(SongDetailPage, 'parameters', { get: function get() {
-          return [[NavController], [NavParams]];
-        } });
-    }
-  };
-});
-System.register('app/pages/songs', ['angular2/angular2', 'ionic/ionic', './song-detail'], function (_export) {
-  'use strict';
-
-  var bootstrap, NgFor, Component, Directive, View, IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content, SongDetailPage, SongsPage;
-
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  return {
-    setters: [function (_angular2Angular2) {
-      bootstrap = _angular2Angular2.bootstrap;
-      NgFor = _angular2Angular2.NgFor;
-      Component = _angular2Angular2.ComponentAnnotation;
-      Directive = _angular2Angular2.DirectiveAnnotation;
-      View = _angular2Angular2.ViewAnnotation;
-    }, function (_ionicIonic) {
-      IonicApp = _ionicIonic.IonicApp;
-      NavController = _ionicIonic.NavController;
-      Navbar = _ionicIonic.Navbar;
-      NavbarTemplate = _ionicIonic.NavbarTemplate;
-      List = _ionicIonic.List;
-      Item = _ionicIonic.Item;
-      Content = _ionicIonic.Content;
-    }, function (_songDetail) {
-      SongDetailPage = _songDetail.SongDetailPage;
-    }],
-    execute: function () {
-      SongsPage = (function () {
-        function SongsPage(app, nav) {
-          _classCallCheck(this, SongsPage);
-
-          this.name = 'Max';
-          this.app = app;
-          this.songs = [{
-            title: 'Linoleum',
-            artist: 'NOFX'
-          }, {
-            title: 'Rise Above',
-            artist: 'Black Flag'
-          }, {
-            title: 'Ruby Soho',
-            artist: 'Rancid'
-          }, {
-            title: 'Blitzkrieg Bop',
-            artist: 'Ramones'
-          }, {
-            title: 'Where Eagles Dare',
-            artist: 'Misfits'
-          }, {
-            title: 'Superman',
-            artist: 'Goldfinger'
-          }, {
-            title: 'Give Me The Cure',
-            artist: 'Fugazi'
-          }];
-        }
-
-        _createClass(SongsPage, [{
-          key: 'openSong',
-          value: function openSong(song) {
-            this.nav.push(SongDetailPage, { song: song });
-          }
-        }, {
-          key: 'toggleMenu',
-          value: function toggleMenu() {
-            var aside = this.app.getComponent('mainMenu');
-            aside.toggle();
-          }
-        }]);
-
-        return SongsPage;
-      })();
-
-      _export('SongsPage', SongsPage);
-
-      Object.defineProperty(SongsPage, 'annotations', { get: function get() {
-          return [new Component({ selector: 'ion-view' }), new View({
-            directives: [NgFor, Content, List, Item, Navbar, NavbarTemplate],
-            templateUrl: 'templates/pages/songs.html'
-          })];
-        } });
-      Object.defineProperty(SongsPage, 'parameters', { get: function get() {
-          return [[IonicApp], [NavController]];
-        } });
-    }
   };
 });

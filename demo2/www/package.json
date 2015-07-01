@@ -8,7 +8,8 @@
     "gulp-traceur": "^0.17.1"
   },
   "dependencies": {
-    "minimist": "^1.1.1"
+    "minimist": "^1.1.1",
+    "rx": "2.5.1"
   },
   "jspm": {
     "directories": {},
