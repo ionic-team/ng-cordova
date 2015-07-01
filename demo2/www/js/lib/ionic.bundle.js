@@ -1303,7 +1303,7 @@ System.register('ionic/config/config', ['../util/util'], function (_export) {
         function IonicConfig(settings) {
           _classCallCheck(this, IonicConfig);
 
-          this._settings = { platform: 'ios' };
+          this._settings = {};
           if (settings) {
             extend(this._settings, settings);
           }
@@ -3623,7 +3623,6 @@ System.register('ionic/platform/platform', ['../util/util', '../util/dom'], func
         }, {
           key: 'load',
           value: function load(config) {
-            alert('Checking platforms');
             var rootPlatformNode = null;
             var engineNode = null;
             var self = this;
@@ -3644,7 +3643,6 @@ System.register('ionic/platform/platform', ['../util/util', '../util/dom'], func
             }
             if (rootPlatformNode) {
               if (engineNode) {
-                alert('Found engine node: ' + engineNode.name);
                 engineNode.child(rootPlatformNode);
                 rootPlatformNode.parent(engineNode);
                 rootPlatformNode = engineNode;
@@ -3739,16 +3737,13 @@ System.register('ionic/platform/platform', ['../util/util', '../util/dom'], func
         }, {
           key: 'isMatch',
           value: function isMatch(p) {
-            alert('Checking if match:' + p.name + ' ' + this.c.isMatched);
             if (typeof this.c.isMatched !== 'boolean') {
-              if (p.platformOverride) {
+              if (p.platformOverride && !this.isEngine) {
                 this.c.isMatched = p.platformOverride === this.c.name;
               } else if (!this.c.isMatch) {
                 this.c.isMatched = false;
               } else {
-                console.log('Is match?');
                 this.c.isMatched = this.c.isMatch(p);
-                console.log(this.c.isMatched);
               }
             }
             return this.c.isMatched;
@@ -3827,7 +3822,7 @@ System.register('ionic/platform/registry', ['./platform'], function (_export) {
     execute: function () {
       Platform.register({
         name: 'core',
-        settings: { mode: 'core' }
+        settings: { mode: 'ios' }
       });
       Platform.setDefault('core');
       Platform.register({ name: 'mobile' });
@@ -3906,14 +3901,11 @@ System.register('ionic/platform/registry', ['./platform'], function (_export) {
         name: 'cordova',
         isEngine: true,
         methods: { ready: function ready(resolve) {
-            alert('Cordova ready?');
             Platform.windowLoad(function () {
-              alert('YES');
               document.addEventListener('deviceready', resolve);
             });
           } },
         isMatch: function isMatch(p) {
-          alert('Checking cordova');
           return !!(window.cordova || window.PhoneGap || window.phonegap);
         }
       });
@@ -5655,6 +5647,10 @@ System.register('ionic/components/app/app', ['angular2/angular2', 'angular2/src/
     Platform.width(window.innerWidth);
     Platform.height(window.innerHeight);
     Platform.load(config);
+
+    window.reloadPlatform = function() {
+      Platform.load(config);
+    };
     return app;
   }
 

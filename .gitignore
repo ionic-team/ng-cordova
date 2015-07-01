@@ -3,6 +3,8 @@ node_modules/
 .idea/*
 demo/platforms/*
 demo/plugins/*
+demo2/platforms/*
+demo2/plugins/*
 _site
 bower_components
 coverage
