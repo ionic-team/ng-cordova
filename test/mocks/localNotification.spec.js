@@ -66,8 +66,8 @@ describe('ngCordovaMocks', function() {
       localStorage.setItem("ngCordLocNotif-2", "{mydata: 'mydata2'}");
       $cordovaLocalNotification.getAllIds(1).then(
         function(res){
-          expect(res[0]).toBe(1);
-          expect(res[1]).toBe(2);
+          expect(res).toContain(1);
+          expect(res).toContain(2);
           expect(res.length).toBe(2);
         },
         function() { expect(false).toBe(true); }
@@ -82,7 +82,6 @@ describe('ngCordovaMocks', function() {
         function(res){
           expect(res).toContain(1);
           expect(res).toContain(2);
-
           expect(res.length).toBe(2);
         },
         function() { expect(false).toBe(true); }
