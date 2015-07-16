@@ -11,7 +11,7 @@ describe('ngCordovaMocks', function() {
 		}));
 
 		it('should get the device name', function () {
-			// NOTE: device.name was deprecated in Cordova 2.3. 
+			// NOTE: device.name was deprecated in Cordova 2.3.
 			// This test can be removed once device.name is removed.
 			$cordovaDevice.device = 'Power Device';
 			var deviceName = $cordovaDevice.getDevice();
@@ -56,6 +56,14 @@ describe('ngCordovaMocks', function() {
 
 			var v = $cordovaDevice.getVersion();
 			expect(v).toEqual(version);
-		});		
-	});
+		});
+
+    it('should get the manufacturer', function () {
+      var manufacturer = 'apple';
+      $cordovaDevice.manufacturer = manufacturer;
+
+      var v = $cordovaDevice.getManufacturer();
+      expect(v).toEqual(manufacturer);
+    });
+  });
 })
