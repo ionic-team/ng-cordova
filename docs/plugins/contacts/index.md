@@ -17,7 +17,7 @@ cordova plugin add cordova-plugin-contacts
 ```
 
 ```javascript
-module.controller('MyCtrl', function($scope, $cordovaContacts) {
+module.controller('MyCtrl', function($scope, $cordovaContacts, $ionicPlatform) {
   $scope.addContact = function() {
     $cordovaContacts.save($scope.contactForm).then(function(result) {
       // Contact saved
@@ -26,6 +26,28 @@ module.controller('MyCtrl', function($scope, $cordovaContacts) {
     });
   };
 
-  // Many more features will be added shortly
+  $scope.getAllContacts = function() {
+    $cordovaContacts.find().then(function(result) { //omitting parameter to .find() causes all contacts to be returned
+      $scope.contacts = result;//all contacts returned in result object.
+    }
+  };
+
+  $scope.findContactsBySearchTerm = function (searchTerm) {
+    var opts = {                                           //search options
+      filter : searchTerm,                                 // 'Bob'
+      multiple: true,                                      // Yes, return any contact that matches criteria
+      fields:  [ 'displayName', 'name' ]                   // These are the fields to search for 'bob'.
+      desiredFields: [id];    //return fields.
+    };
+
+    if ($ionicPlatform.isAndroid()) {
+      opts.hasPhoneNumber = true;         //hasPhoneNumber only works for android.
+    };
+
+    $cordovaContacts.find(opts).then(function (result) {
+      $scope.contacts = result;
+    };
+  }
+
 });
 ```
