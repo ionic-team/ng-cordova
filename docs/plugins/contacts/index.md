@@ -27,8 +27,8 @@ module.controller('MyCtrl', function($scope, $cordovaContacts, $ionicPlatform) {
   };
 
   $scope.getAllContacts = function() {
-    $cordovaContacts.find().then(function(result) { //omitting parameter to .find() causes all contacts to be returned
-      $scope.contacts = result;//all contacts returned in result object.
+    $cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
+      $scope.contacts = allContacts;
     }
   };
 
@@ -44,9 +44,15 @@ module.controller('MyCtrl', function($scope, $cordovaContacts, $ionicPlatform) {
       opts.hasPhoneNumber = true;         //hasPhoneNumber only works for android.
     };
 
-    $cordovaContacts.find(opts).then(function (result) {
-      $scope.contacts = result;
+    $cordovaContacts.find(opts).then(function (contactsFound) {
+      $scope.contacts = contactsFound;
     };
+  }
+
+  $scope.pickContactUsingNativeUI = function () {
+    $cordovaContacts.pickContact().then(function (contactPicked) {
+      $scope.contact = contactPicked;
+    }
   }
 
 });
