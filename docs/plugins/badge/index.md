@@ -34,3 +34,90 @@ module.controller('MyCtrl', function($cordovaBadge) {
 });
 
 ```
+
+##### `set(number)`
+
+Set a number to display on the badge.
+
+```javascript
+module.controller('MyCtrl', function($cordovaBadge) {
+
+  $cordovaBadge.set(3).then(function() {
+    // You have permission, badge set.
+  }, function(err) {
+    // You do not have permission.
+  });
+
+});
+
+```
+
+##### `get()`
+
+Get the current badge number displayed.
+
+```javascript
+module.controller('MyCtrl', function($cordovaBadge) {
+
+  $cordovaBadge.get().then(function(badge) {
+    // You have permission, badge returned.
+  }, function(err) {
+    // You do not have permission.
+  });
+
+});
+
+```
+
+##### `clear()`
+
+Clear the current badge number displayed.
+
+```javascript
+module.controller('MyCtrl', function($cordovaBadge) {
+
+  $cordovaBadge.clear().then(function() {
+    // You have permission, badge cleared.
+  }, function(err) {
+    // You do not have permission.
+  });
+
+});
+
+```
+
+##### `increase(number)`
+
+Increase the current badge number displayed by the number provided.
+If number is not passed, badge will increase by 1.
+
+```javascript
+module.controller('MyCtrl', function($cordovaBadge) {
+
+  $cordovaBadge.increase(number).then(function() {
+    // You have permission, badge increased.
+  }, function(err) {
+    // You do not have permission.
+  });
+
+});
+
+```
+
+##### `decrease(number)`
+
+Decrease the current badge number displayed by the number provided.
+If number is not passed, badge will decrease by 1.
+
+```javascript
+module.controller('MyCtrl', function($cordovaBadge) {
+
+  $cordovaBadge.decrease(number).then(function() {
+    // You have permission, badge decreased.
+  }, function(err) {
+    // You do not have permission.
+  });
+
+});
+
+```
