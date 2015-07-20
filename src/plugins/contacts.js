@@ -39,13 +39,20 @@ angular.module('ngCordova.plugins.contacts', [])
         var q = $q.defer();
         var fields = options.fields || ['id', 'displayName'];
         delete options.fields;
-
-        navigator.contacts.find(fields, function (results) {
-          q.resolve(results);
-        }, function (err) {
-          q.reject(err);
-        }, options);
-
+        if (Object.keys(options).length === 0) {
+          navigator.contacts.find(fields, function (results) {
+            q.resolve(results);
+          },function (err) {
+            q.reject(err)
+          });
+        }
+        else {
+          navigator.contacts.find(fields, function (results) {
+            q.resolve(results);
+          }, function (err) {
+            q.reject(err);
+          }, options);
+        }
         return q.promise;
       },
 
