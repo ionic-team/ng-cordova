@@ -6007,7 +6007,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -6098,7 +6098,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -6192,7 +6192,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -6298,7 +6298,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -6400,7 +6400,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -6445,7 +6445,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+				    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -6550,7 +6550,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                                 .error(function(error) {
                                                     deferred.reject(error);
                                                 })
-                                                .finally(function() {
+                                                ['finally'](function() {
                                                     setTimeout(function() {
                                                         browserRef.close();
                                                     }, 10);
@@ -6711,7 +6711,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                 .error(function(data, status) {
                                     deferred.reject("Problem authenticating");
                                 })
-                                .finally(function() {
+                                ['finally'](function() {
                                     setTimeout(function() {
                                         browserRef.close();
                                     }, 10);
@@ -6805,7 +6805,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                                 .error(function(error) {
                                                     deferred.reject(error);
                                                 })
-                                                .finally(function() {
+                                                ['finally'](function() {
                                                     setTimeout(function() {
                                                         browserRef.close();
                                                     }, 10);
@@ -6955,7 +6955,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                         .error(function(error) {
                                             deferred.reject(error);
                                         })
-                                        .finally(function() {
+                                        ['finally'](function() {
                                             setTimeout(function() {
                                                 browserRef.close();
                                             }, 10);
@@ -7407,7 +7407,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
@@ -7458,7 +7458,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                     .error(function(data, status) {
                                         deferred.reject("Problem authenticating");
                                     })
-                                    .finally(function() {
+                                    ['finally'](function() {
                                         setTimeout(function() {
                                             browserRef.close();
                                         }, 10);
