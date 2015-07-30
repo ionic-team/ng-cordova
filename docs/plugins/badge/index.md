@@ -35,7 +35,7 @@ module.controller('MyCtrl', function($cordovaBadge) {
 
 ```
 
-##### `set(number)`
+##### `set(badge, callback, scope)`
 
 Set a number to display on the badge.
 
@@ -69,7 +69,7 @@ module.controller('MyCtrl', function($cordovaBadge) {
 
 ```
 
-##### `clear()`
+##### `clear(callback, scope)`
 
 Clear the current badge number displayed.
 
@@ -86,7 +86,7 @@ module.controller('MyCtrl', function($cordovaBadge) {
 
 ```
 
-##### `increase(number)`
+##### `increase(count, callback, scope)`
 
 Increase the current badge number displayed by the number provided.
 If number is not passed, badge will increase by 1.
@@ -94,7 +94,7 @@ If number is not passed, badge will increase by 1.
 ```javascript
 module.controller('MyCtrl', function($cordovaBadge) {
 
-  $cordovaBadge.increase(number).then(function() {
+  $cordovaBadge.increase(count).then(function() {
     // You have permission, badge increased.
   }, function(err) {
     // You do not have permission.
@@ -104,7 +104,7 @@ module.controller('MyCtrl', function($cordovaBadge) {
 
 ```
 
-##### `decrease(number)`
+##### `decrease(count, callback, scope)`
 
 Decrease the current badge number displayed by the number provided.
 If number is not passed, badge will decrease by 1.
@@ -112,7 +112,7 @@ If number is not passed, badge will decrease by 1.
 ```javascript
 module.controller('MyCtrl', function($cordovaBadge) {
 
-  $cordovaBadge.decrease(number).then(function() {
+  $cordovaBadge.decrease(count).then(function() {
     // You have permission, badge decreased.
   }, function(err) {
     // You do not have permission.
