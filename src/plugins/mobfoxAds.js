@@ -2,6 +2,7 @@
 // link     :     https://github.com/floatinghotpot/cordova-mobfox-pro
 
 angular.module('ngCordova.plugins.mobfoxAds', [])
+
   .factory('$cordovaMobFoxAds', ['$q', '$window', function ($q, $window) {
 
     return {

@@ -4,9 +4,11 @@
 angular.module('ngCordova.plugins.deviceOrientation', [])
 
   .factory('$cordovaDeviceOrientation', ['$q', function ($q) {
+
     var defaultOptions = {
       frequency: 3000 // every 3s
     };
+    
     return {
       getCurrentHeading: function () {
         var q = $q.defer();

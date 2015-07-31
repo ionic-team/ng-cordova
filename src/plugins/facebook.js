@@ -5,6 +5,12 @@ angular.module('ngCordova.plugins.facebook', [])
 
   .provider('$cordovaFacebook', [function () {
 
+    /**
+      * Init browser settings for Facebook plugin
+      *
+      * @param {number} id
+      * @param {string} version
+      */
     this.browserInit = function (id, version) {
       this.appID = id;
       this.appVersion = version || "v2.0";

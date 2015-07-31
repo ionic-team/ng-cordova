@@ -6,7 +6,6 @@ angular.module('ngCordova.plugins.prefs', [])
   .factory('$cordovaPreferences', ['$window', '$q', function ($window, $q) {
 
     return {
-
       set: function (key, value) {
         var q = $q.defer();
 

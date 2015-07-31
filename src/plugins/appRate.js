@@ -5,6 +5,21 @@ angular.module('ngCordova.plugins.appRate', [])
 
   .provider("$cordovaAppRate", [function () {
 
+    /**
+      * Set defaults settings to AppRate
+      *
+      * @param {Object} defaults - AppRate default settings
+      * @param {string} defaults.language
+      * @param {string} defaults.appName
+      * @param {boolean} defaults.promptForNewVersion
+      * @param {boolean} defaults.openStoreInApp
+      * @param {number} defaults.usesUntilPrompt
+      * @param {boolean} defaults.useCustomRateDialog
+      * @param {string} defaults.iosURL
+      * @param {string} defaults.androidURL
+      * @param {string} defaults.blackberryURL 
+      * @param {string} defaults.windowsURL
+      */
     this.setPreferences = function (defaults) {
       if (!defaults || !angular.isObject(defaults)) {
         return;
@@ -22,6 +37,15 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.storeAppURL.windows8 = defaults.windowsURL || null;
     };
 
+    /**
+      * Set custom locale
+      *
+      * @param {Object} customObj
+      * @param {string} customObj.title
+      * @param {string} customObj.cancelButtonLabel
+      * @param {string} customObj.laterButtonLabel
+      * @param {string} customObj.rateButtonLabel
+      */
     this.setCustomLocale = function (customObj) {
       var strings = {
         title: 'Rate %@',

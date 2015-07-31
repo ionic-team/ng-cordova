@@ -4,6 +4,7 @@
 angular.module('ngCordova.plugins.push', [])
 
   .factory('$cordovaPush', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
+    
     return {
       onNotification: function (notification) {
         $timeout(function () {

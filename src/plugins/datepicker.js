@@ -2,7 +2,9 @@
 // link      :      https://github.com/VitaliiBlagodir/cordova-plugin-datepicker
 
 angular.module('ngCordova.plugins.datePicker', [])
+
   .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
+    
     return {
       show: function (options) {
         var q = $q.defer();
