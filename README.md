@@ -30,7 +30,7 @@ Install manually, or from bower:
 $ bower install ngCordova
 ```
 
-## Plugins `(63+)`
+## Plugins `(66+)`
 
 - [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
 - [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
@@ -42,6 +42,7 @@ $ bower install ngCordova
 - [Badge](https://github.com/katzer/cordova-plugin-badge)
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
+- [Beacon](https://github.com/petermetz/cordova-plugin-ibeacon)
 - [Bluetooth Low Energy](https://github.com/evothings/cordova-ble)
 - [Bluetooth Serial](https://github.com/don/BluetoothSerial)
 - [Brightness](https://github.com/fiscal-cliff/phonegap-plugin-brightness)
