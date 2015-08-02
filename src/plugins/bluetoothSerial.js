@@ -8,9 +8,15 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
     return {
       connect: function (address) {
         var q = $q.defer();
+        var disconnectionPromise = $q.defer();
+        var isConnected = false;
         $window.bluetoothSerial.connect(address, function () {
-          q.resolve();
+          isConnected = true;
+          q.resolve(disconnectionPromise);
         }, function (error) {
+          if(isConnected === false) {
+            disconnectionPromise.reject(error);
+          }
           q.reject(error);
         });
         return q.promise;
