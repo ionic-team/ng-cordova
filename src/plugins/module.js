@@ -36,6 +36,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
   'ngCordova.plugins.googlePlayGame',
+  'ngCordova.plugins.googlePlus',
   'ngCordova.plugins.healthKit',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',

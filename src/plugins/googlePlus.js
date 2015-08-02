@@ -1,7 +1,7 @@
 // install  :     cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git
 // link     :     https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
-angular.module('ngCordova.plugins.googleplus', [])
+angular.module('ngCordova.plugins.googlePlus', [])
 
   .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
 
@@ -48,6 +48,19 @@ angular.module('ngCordova.plugins.googleplus', [])
         $window.plugins.googleplus.disconnect(function (response) {
           q.resolve(response);
         });
+      },
+
+      isAvailable: function () {
+        var q = $q.defer();
+        $window.plugins.googleplus.isAvailable(function (available) {
+          if (available) {
+            q.resolve(available);
+          } else {
+            q.reject(available);
+          }
+        });
+        
+        return q.promise;
       }
     };
 
