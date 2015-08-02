@@ -22,7 +22,7 @@ This plugin provides the ability to record and play back audio files on a device
 [Apple reference "Playing and Recording Background Audio"](https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html)
 
 ```
-cordova plugin add cordova-plugin-media
+cordova plugin add org.apache.cordova.media
 ```
 
 
@@ -93,11 +93,7 @@ Stop recording an audio file.
 module.controller('MyCtrl', function($scope, $cordovaMedia) {
 
   var src = "/src/audio.mp3";
-  var media = $cordovaMedia.newMedia(src).then(function() {
-    // success
-  }, function () {
-    // error
-  });
+  var media = $cordovaMedia.newMedia(src);
 
 
   var iOSPlayOptions = {
