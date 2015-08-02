@@ -294,7 +294,7 @@ angular.module('ngCordova.plugins.badge', [])
           if (permission) {
             q.resolve(true);
           } else {
-            q.reject("You do not have permission");
+            q.reject('You do not have permission');
           }
         });
 
@@ -305,14 +305,16 @@ angular.module('ngCordova.plugins.badge', [])
         return cordova.plugins.notification.badge.promptForPermission();
       },
 
-      set: function (number) {
+      set: function (badge, callback, scope) {
         var q = $q.defer();
 
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
-            q.resolve(cordova.plugins.notification.badge.set(number));
+            q.resolve(
+              cordova.plugins.notification.badge.set(badge, callback, scope)
+            );
           } else {
-            q.reject("You do not have permission to set Badge");
+            q.reject('You do not have permission to set Badge');
           }
         });
         return q.promise;
@@ -326,23 +328,51 @@ angular.module('ngCordova.plugins.badge', [])
               q.resolve(badge);
             });
           } else {
-            q.reject("You do not have permission to get Badge");
+            q.reject('You do not have permission to get Badge');
           }
         });
 
         return q.promise;
       },
 
-      clear: function () {
+      clear: function (callback, scope) {
         var q = $q.defer();
 
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
-            q.resolve(cordova.plugins.notification.badge.clear());
+            q.resolve(cordova.plugins.notification.badge.clear(callback, scope));
           } else {
-            q.reject("You do not have permission to clear Badge");
+            q.reject('You do not have permission to clear Badge');
           }
         });
+        return q.promise;
+      },
+
+      increase: function (count, callback, scope) {
+        var q = $q.defer();
+
+        this.hasPermission().then(function (){
+          q.resolve(
+            cordova.plugins.notification.badge.increase(count, callback, scope)
+          );
+        }, function (){
+          q.reject('You do not have permission to increase Badge');
+        }) ;
+
+        return q.promise;
+      },
+
+      decrease: function (count, callback, scope) {
+        var q = $q.defer();
+
+        this.hasPermission().then(function (){
+          q.resolve(
+            cordova.plugins.notification.badge.decrease(count, callback, scope)
+          );
+        }, function (){
+          q.reject('You do not have permission to decrease Badge');
+        }) ;
+
         return q.promise;
       },
 
@@ -5106,7 +5136,7 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       clearOnlineWatch: function () {
-        document.removeEventListener("online", offlineEvent);
+        document.removeEventListener("online", onlineEvent);
         $rootScope.$$listeners["$cordovaNetwork:online"] = [];
       }
     };
@@ -6079,19 +6109,26 @@ angular.module("oauth.providers", ["oauth.utils"])
              *
              * @param    string clientId
              * @param    string clientSecret
+             * @param    object options
              * @return   promise
              */
-            digitalOcean: function(clientId, clientSecret) {
+            digitalOcean: function(clientId, clientSecret, options) {
                 var deferred = $q.defer();
                 if(window.cordova) {
                     var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
                     if($cordovaOauthUtility.isInAppBrowserInstalled(cordovaMetadata) === true) {
-                        var browserRef = window.open("https://cloud.digitalocean.com/v1/oauth/authorize?client_id=" + clientId + "&redirect_uri=http://localhost/callback&response_type=code&scope=read%20write", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open("https://cloud.digitalocean.com/v1/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=read%20write", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
                         browserRef.addEventListener("loadstart", function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
                                 var requestToken = (event.url).split("code=")[1];
                                 $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                                $http({method: "post", url: "https://cloud.digitalocean.com/v1/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                                $http({method: "post", url: "https://cloud.digitalocean.com/v1/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=" + redirect_uri + "&grant_type=authorization_code" + "&code=" + requestToken })
                                     .success(function(data) {
                                         deferred.resolve(data);
                                     })
@@ -6172,20 +6209,27 @@ angular.module("oauth.providers", ["oauth.utils"])
              * @param    string clientId
              * @param    string clientSecret
              * @param    array appScope
+             * @param    object options
              * @return   promise
              */
-            github: function(clientId, clientSecret, appScope) {
+            github: function(clientId, clientSecret, appScope, options) {
                 var deferred = $q.defer();
                 if(window.cordova) {
                     var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
                     if($cordovaOauthUtility.isInAppBrowserInstalled(cordovaMetadata) === true) {
-                        var browserRef = window.open('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open('https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
                         browserRef.addEventListener('loadstart', function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
                                 requestToken = (event.url).split("code=")[1];
                                 $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
                                 $http.defaults.headers.post.accept = 'application/json';
-                                $http({method: "post", url: "https://github.com/login/oauth/access_token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&code=" + requestToken })
+                                $http({method: "post", url: "https://github.com/login/oauth/access_token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=" + redirect_uri + "&code=" + requestToken })
                                     .success(function(data) {
                                         deferred.resolve(data);
                                     })
@@ -6230,7 +6274,11 @@ angular.module("oauth.providers", ["oauth.utils"])
                                 redirect_uri = options.redirect_uri;
                             }
                         }
-                        var browserRef = window.open('https://www.facebook.com/v2.0/dialog/oauth?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&response_type=token&scope=' + appScope.join(","), '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        var flowUrl = "https://www.facebook.com/v2.0/dialog/oauth?client_id=" + clientId + "&redirect_uri=" + redirect_uri + "&response_type=token&scope=" + appScope.join(",");
+                        if(options !== undefined && options.hasOwnProperty("auth_type")) {
+                            flowUrl += "&auth_type=" + options.auth_type;
+                        }
+                        var browserRef = window.open(flowUrl, '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
                         browserRef.addEventListener('loadstart', function(event) {
                             if((event.url).indexOf(redirect_uri) === 0) {
                             	browserRef.removeEventListener("exit",function(event){});
@@ -6381,19 +6429,26 @@ angular.module("oauth.providers", ["oauth.utils"])
              * @param    string clientId
              * @param    string clientSecret
              * @param    string appState
+             * @param    object options
              * @return   promise
              */
-            box: function(clientId, clientSecret, appState) {
+            box: function(clientId, clientSecret, appState, options) {
                 var deferred = $q.defer();
                 if(window.cordova) {
                     var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
                     if($cordovaOauthUtility.isInAppBrowserInstalled(cordovaMetadata) === true) {
-                        var browserRef = window.open('https://app.box.com/api/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=http://localhost/callback&state=' + appState + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open('https://app.box.com/api/oauth2/authorize/?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&state=' + appState + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
                         browserRef.addEventListener('loadstart', function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
                                 requestToken = (event.url).split("code=")[1];
                                 $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-                                $http({method: "post", url: "https://app.box.com/api/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                                $http({method: "post", url: "https://app.box.com/api/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=" + redirect_uri + "&grant_type=authorization_code" + "&code=" + requestToken })
                                     .success(function(data) {
                                         deferred.resolve(data);
                                     })
@@ -6425,20 +6480,27 @@ angular.module("oauth.providers", ["oauth.utils"])
              * @param    string clientId
              * @param    string clientSecret
              * @param    array appScope
+             * @param    object options
              * @return   promise
              */
-            reddit: function(clientId, clientSecret, appScope, compact) {
+            reddit: function(clientId, clientSecret, appScope, compact, options) {
                 var deferred = $q.defer();
                 if(window.cordova) {
                     var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
                     if($cordovaOauthUtility.isInAppBrowserInstalled(cordovaMetadata) === true) {
-                        var browserRef = window.open('https://ssl.reddit.com/api/v1/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&duration=permanent&state=ngcordovaoauth&scope=' + appScope.join(",") + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open('https://ssl.reddit.com/api/v1/authorize?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&duration=permanent&state=ngcordovaoauth&scope=' + appScope.join(",") + '&response_type=code', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
                         browserRef.addEventListener('loadstart', function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
                                 requestToken = (event.url).split("code=")[1];
                                 $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
                                 $http.defaults.headers.post.Authorization = 'Basic ' + btoa(clientId + ":" + clientSecret);
-                                $http({method: "post", url: "https://ssl.reddit.com/api/v1/access_token", data: "redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                                $http({method: "post", url: "https://ssl.reddit.com/api/v1/access_token", data: "redirect_uri=" + redirect_uri + "&grant_type=authorization_code" + "&code=" + requestToken })
                                     .success(function(data) {
                                         deferred.resolve(data);
                                     })
@@ -6692,16 +6754,23 @@ angular.module("oauth.providers", ["oauth.utils"])
             * @param    string clientId
             * @param    string clientSecret
             * @param    array appScope
+            * @param    object options
             * @return   promise
             */
-            strava: function(clientId, clientSecret, appScope) {
+            strava: function(clientId, clientSecret, appScope, options) {
                 var deferred = $q.defer();
                 if(window.cordova) {
                     var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
                     if($cordovaOauthUtility.isInAppBrowserInstalled(cordovaMetadata) === true) {
-                        var browserRef = window.open('https://www.strava.com/oauth/authorize?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=' + appScope.join(",") + '&response_type=code&approval_prompt=force', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open('https://www.strava.com/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope.join(",") + '&response_type=code&approval_prompt=force', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
                         browserRef.addEventListener('loadstart', function(event) {
-                            if((event.url).indexOf("http://localhost/callback") === 0) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
                                 requestToken = (event.url).split("code=")[1];
                                 $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
                                 $http({method: "post", url: "https://www.strava.com/oauth/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&code=" + requestToken })
@@ -7475,6 +7544,103 @@ angular.module("oauth.providers", ["oauth.utils"])
                     deferred.reject("Cannot authenticate via a web browser");
                 }
                 return deferred.promise;
+            },
+
+            /*
+             * Sign into the FamilySearch service
+             *
+             * @param    string clientId
+             * @param    object options
+             * @return   promise
+             */
+            familySearch: function(clientId, state, options) {
+                var deferred = $q.defer();
+                if(window.cordova) {
+                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+                    if(cordovaMetadata.hasOwnProperty("cordova-plugin-inappbrowser") === true) {
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open("https://ident.familysearch.org/cis-web/oauth2/v3/authorization?client_id=" + clientId + "&redirect_uri=" + redirect_uri + "&response_type=code&state=" + state, "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+                        browserRef.addEventListener("loadstart", function(event) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
+                                var requestToken = (event.url).split("code=")[1];
+                                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                                $http({method: "post", url: "https://ident.familysearch.org/cis-web/oauth2/v3/token", data: "client_id=" + clientId + "&redirect_uri=" + redirect_uri + "&grant_type=authorization_code&code=" + requestToken })
+                                  .success(function(data) {
+                                      deferred.resolve(data);
+                                  })
+                                  .error(function(data, status) {
+                                      deferred.reject("Problem authenticating");
+                                  })
+                                  .finally(function() {
+                                      setTimeout(function() {
+                                          browserRef.close();
+                                      }, 10);
+                                  });
+                            }
+                        });
+                        browserRef.addEventListener('exit', function(event) {
+                            deferred.reject("The sign in flow was canceled");
+                        });
+                    } else {
+                        deferred.reject("Could not find InAppBrowser plugin");
+                    }
+                } else {
+                    deferred.reject("Cannot authenticate via a web browser");
+                }
+                return deferred.promise;
+            },
+
+            /*
+             * Sign into the Envato service
+             *
+             * @param    string clientId
+             * @param    object options
+             * @return   promise
+             */
+            envato: function(clientId, options) {
+                var deferred = $q.defer();
+                if(window.cordova) {
+                    var cordovaMetadata = cordova.require("cordova/plugin_list").metadata;
+                    if($cordovaOauthUtility.isInAppBrowserInstalled(cordovaMetadata) === true) {
+                        var redirect_uri = "http://localhost/callback";
+                        if(options !== undefined) {
+                            if(options.hasOwnProperty("redirect_uri")) {
+                                redirect_uri = options.redirect_uri;
+                            }
+                        }
+                        var browserRef = window.open('https://api.envato.com/authorization?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&response_type=token', '_blank', 'location=no,clearsessioncache=yes,clearcache=yes');
+                        browserRef.addEventListener('loadstart', function(event) {
+                            if((event.url).indexOf(redirect_uri) === 0) {
+                            	browserRef.removeEventListener("exit",function(event){});
+                            	browserRef.close();
+                                var callbackResponse = (event.url).split("#")[1];
+                                var responseParameters = (callbackResponse).split("&");
+                                var parameterMap = [];
+                                for(var i = 0; i < responseParameters.length; i++) {
+                                    parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+                                }
+                                if(parameterMap.access_token !== undefined && parameterMap.access_token !== null) {
+                                    deferred.resolve({ access_token: parameterMap.access_token, expires_in: parameterMap.expires_in });
+                                } else {
+                                    deferred.reject("Problem authenticating");
+                                }
+                            }
+                        });
+                        browserRef.addEventListener('exit', function(event) {
+                            deferred.reject("The sign in flow was canceled");
+                        });
+                    } else {
+                        deferred.reject("Could not find InAppBrowser plugin");
+                    }
+                } else {
+                    deferred.reject("Cannot authenticate via a web browser");
+                }
+                return deferred.promise;
             }
 
         };
@@ -7530,6 +7696,8 @@ angular.module("oauth.providers", ["oauth.utils"])
  *    Venmo
  *    Stripe
  *    Rally
+ *    Family Search
+ *    Envato
  */
 
 angular.module("ngCordovaOauth", [
