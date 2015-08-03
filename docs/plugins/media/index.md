@@ -93,11 +93,7 @@ Stop recording an audio file.
 module.controller('MyCtrl', function($scope, $cordovaMedia) {
 
   var src = "/src/audio.mp3";
-  var media = $cordovaMedia.newMedia(src).then(function() {
-    // success
-  }, function () {
-    // error
-  });
+  var media = $cordovaMedia.newMedia(src);
 
 
   var iOSPlayOptions = {
