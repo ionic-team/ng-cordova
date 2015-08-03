@@ -42,6 +42,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.iAd',
   'ngCordova.plugins.imagePicker',
   'ngCordova.plugins.inAppBrowser',
+  'ngCordova.plugins.instagram',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
   'ngCordova.plugins.launchNavigator',
