@@ -14,7 +14,8 @@ describe('Service: $cordovaDevice', function() {
       name: 'iPhone 5C',
       platform: 'iOS',
       uuid: 89749382749823749823,
-      version: 5
+      version: 5,
+      manufacturer: 'apple'
     };
   }));
 
@@ -44,6 +45,10 @@ describe('Service: $cordovaDevice', function() {
 
   it('should return window.device.version on getVersion', function() {
     expect($cordovaDevice.getVersion()).toBe(window.device.version);
+  });
+
+  it('should return window.device.manufacturer on getManufacturer', function() {
+    expect($cordovaDevice.getManufacturer()).toBe(window.device.manufacturer);
   });
 
 });

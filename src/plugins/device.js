@@ -66,6 +66,14 @@ angular.module('ngCordova.plugins.device', [])
        */
       getVersion: function () {
         return device.version;
+      },
+
+      /**
+       * Returns the device manufacturer.
+       * @returns {String}
+       */
+      getManufacturer: function () {
+        return device.manufacturer;
       }
     };
   }]);
