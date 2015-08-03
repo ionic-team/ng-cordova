@@ -72,6 +72,12 @@
     "short-title": "Capture"
   },
   {
+      "link": "/docs/plugins/cardIO/",
+      "title": "CardIO",
+      "keywords": "cardio card-io billing card number cardscan",
+      "short-title": "CardIO"
+  },
+  {
     "link": "/docs/plugins/clipboard/",
     "title": "Clipboard",
     "keywords": "copy paste",
