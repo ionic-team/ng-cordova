@@ -44,6 +44,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.inAppBrowser',
   'ngCordova.plugins.keyboard',
   'ngCordova.plugins.keychain',
+  'ngCordova.plugins.launchNavigator',
   'ngCordova.plugins.localNotification',
   'ngCordova.plugins.media',
   'ngCordova.plugins.mMediaAds',

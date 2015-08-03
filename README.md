@@ -30,7 +30,7 @@ Install manually, or from bower:
 $ bower install ngCordova
 ```
 
-## Plugins `(63+)`
+## Plugins `(64+)`
 
 - [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
 - [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
@@ -74,6 +74,7 @@ $ bower install ngCordova
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
 - [Keychain](https://github.com/shazron/KeychainPlugin)
+- [Launch Navigator](https://github.com/dpa99c/phonegap-launch-navigator)
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
 - [Media Capture](https://github.com/apache/cordova-plugin-media-capture)
 - [Media](https://github.com/apache/cordova-plugin-media) *
