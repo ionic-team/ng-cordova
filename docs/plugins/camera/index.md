@@ -16,7 +16,7 @@ from a device.
 > **NOTE**: The camera API only works on a real device, and not in the emulator.
 
 ```bash
-cordova plugin add cordova-plugin-camera
+cordova plugin add org.apache.cordova.camera
 ```
 
 #### Methods

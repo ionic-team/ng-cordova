@@ -13,7 +13,7 @@ icon-windows: true
 A powerful way to create, remove, and search through contacts on the device.
 
 ```
-cordova plugin add cordova-plugin-contacts
+cordova plugin add org.apache.cordova.contacts
 ```
 
 ```javascript
