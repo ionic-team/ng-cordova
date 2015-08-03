@@ -14,15 +14,13 @@ module.exports = {
 
   dist: 'dist',
   demo : {
-    ngCordova : 'demo/www/lib/ngCordova/dist',
+    ngCordova : 'demo2/www/js/lib/',
     lib : 'demo/www/lib',
     www : 'demo/www'
   },
 
   pluginFiles: [
-    'src/module.js',
-    'src/plugins/*.js',
-    'src/plugins/oauth/src/*.js'
+    'src/ng-cordova/**/*.js'
   ],
 
   mockFiles: [

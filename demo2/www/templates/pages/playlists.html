@@ -1,0 +1,8 @@
+<!-- all on one line to avoid a bug in Angular 2 with text nodes in templates: https://github.com/angular/angular/issues/2162 -->
+<ion-navbar *navbar><ion-nav-items primary><button icon (^click)="toggleMenu()"><i class="icon ion-navicon"></i></button></ion-nav-items><ion-title>Playlists</ion-title></ion-navbar>
+
+<ion-content>
+  <ion-list inset>
+    <ion-item *ng-for="#playlist of playlists" (^click)="openPlaylist(playlist)">{{playlist.title}}</ion-item>
+  </ion-list>
+</ion-content>

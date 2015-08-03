@@ -15,14 +15,16 @@ var gulp = require('gulp'),
   q = require('q'),
   fs = require('fs'),
   jscs = require('gulp-jscs'),
-  git = require('gulp-git');
+
+  babel = require('gulp-babel'),
+  cache = require('gulp-cached');
 
 gulp.task('default', ['build']);
 
 gulp.task('test', ['lint', 'jscs']);
 
 gulp.task('build', function () {
-  git.updateSubmodule({ args: '--init --remote' });
+  //git.updateSubmodule({ args: '--init --remote' });
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
     .pipe(header(buildConfig.closureStart))
@@ -37,17 +39,35 @@ gulp.task('build', function () {
     .pipe(gulp.dest(buildConfig.dist));
 
   return gulp.src(buildConfig.pluginFiles)
-    .pipe(concat('ng-cordova.js'))
-    .pipe(header(buildConfig.closureStart))
-    .pipe(footer(buildConfig.closureEnd))
-    .pipe(header(buildConfig.banner))
-    .pipe(gulp.dest(buildConfig.dist))
-    .pipe(gulp.dest(buildConfig.demo.ngCordova))
-    .pipe(uglify())
-    .pipe(header(buildConfig.banner))
-    .pipe(rename({extname: '.min.js'}))
-    .pipe(gulp.dest(buildConfig.dist))
-    .pipe(gulp.dest(buildConfig.demo.ngCordova));
+     .pipe(cache('transpile', { optimizeMemory: true }))
+     .pipe(babel({
+        modules: "system",
+        moduleIds: true,
+        getModuleId: function(name) {
+          return "ng-cordova/" + name;
+        }
+     }))
+     .on('error', function (err) {
+       console.log("ERROR: " + err.message);
+       this.emit('end');
+     })
+     .pipe(gulp.dest('dist/js/'));
+});
+
+gulp.task('bundle', function() {
+
+  return gulp.src(['dist/js/**/*.js', '!js/**/*'])
+             .pipe(concat('ng-cordova.js'))
+             .pipe(header(buildConfig.closureStart))
+             .pipe(footer(buildConfig.closureEnd))
+             .pipe(header(buildConfig.banner))
+             .pipe(gulp.dest(buildConfig.dist))
+             .pipe(gulp.dest(buildConfig.demo.ngCordova))
+             .pipe(uglify())
+             .pipe(header(buildConfig.banner))
+             .pipe(rename({extname: '.min.js'}))
+             .pipe(gulp.dest(buildConfig.dist))
+             .pipe(gulp.dest(buildConfig.demo.ngCordova));
 });
 
 gulp.task('changelog', function () {
@@ -108,8 +128,8 @@ gulp.task('karma-watch', function (done) {
   karma.start(karmaConf, done);
 });
 
-gulp.task('watch', ['build'], function () {
-  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build']);
+gulp.task('watch', ['build', 'bundle'], function () {
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build', 'bundle']);
 });
 
 
