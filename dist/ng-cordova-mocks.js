@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.17-alpha
+ * v0.1.18-alpha
  * Copyright 2014 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -1289,14 +1289,6 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function ($q) {
 
     readFileMetadataAbsolute: function (filePath) {
       return mockIt.call(this, 'There was an error reading the file metadta from the absolute path');
-    },
-
-    downloadFile: function (source, filePath, trust, options) {
-      return mockIt.call(this, 'There was an error downloading the file.');
-    },
-
-    uploadFile: function (server, filePath, options) {
-      return mockIt.call(this, 'There was an error uploading the file.');
     }
   };
 }]);
@@ -1382,6 +1374,48 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
 }]);
 
 
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.cordovaFileTransfer
+ *
+ * @description
+ * A service for testing download and upload
+ * in an app build with ngCordova.
+ */
+ngCordovaMocks.factory('$cordovaFileTransfer', ['$q', function($q) {
+    var throwsError = false;
+
+    var mockIt = function(errorMessage) {
+        var defer = $q.defer();
+        if (this.throwsError) {
+            defer.reject(errorMessage);
+        } else {
+            defer.resolve();
+        }
+        return defer.promise;
+    };
+
+    return {
+        /**
+         * @ngdoc property
+         * @name throwsError
+         * @propertyOf ngCordovaMocks.cordovaFileTransfer
+         *
+         * @description
+         * A flag that signals whether a promise should be rejected or not.
+         * This property should only be used in automated tests.
+         **/
+        throwsError: throwsError,
+
+        download: function(source, filePath, trust, options) {
+            return mockIt.call(this, 'There was an error downloading the file.');
+        },
+
+        upload: function(server, filePath, options) {
+            return mockIt.call(this, 'There was an error uploading the file.'); 
+        }
+    };
+}]);
 /**
  * @ngdoc service
  * @name ngCordovaMocks.cordovaGeolocation
