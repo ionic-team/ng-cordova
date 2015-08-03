@@ -11,6 +11,11 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
       getCurrentHeading: function () {
         var q = $q.defer();
 
+        if(!navigator.compass) {
+            q.reject('No compass on Device');
+            return q.promise;
+        }
+
         navigator.compass.getCurrentHeading(function (result) {
           q.resolve(result);
         }, function (err) {
@@ -22,6 +27,11 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
 
       watchHeading: function (options) {
         var q = $q.defer();
+
+        if(!navigator.compass) {
+            q.reject('No compass on Device');
+            return q.promise;
+        }
 
         var _options = angular.extend(defaultOptions, options);
         var watchID = navigator.compass.watchHeading(function (result) {
