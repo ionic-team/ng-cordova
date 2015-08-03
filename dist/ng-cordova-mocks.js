@@ -603,6 +603,17 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
      */
     version: version,
 
+    /**
+     @ngdoc property
+     @name manufacturer
+     @propertyOf ngCordovaMocks.cordovaDevice
+
+     @description
+     The manufacturer of the device.
+     This property should only be used in automated tests.
+     */
+    version: version,
+
     getDevice: function () {
       return this.device;
     },
@@ -625,6 +636,10 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 
     getVersion: function () {
       return this.version;
+    },
+
+    getManufacturer: function () {
+      return this.manufacturer;
     }
   };
 });
