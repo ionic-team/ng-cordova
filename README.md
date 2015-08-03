@@ -33,7 +33,7 @@ $ bower install ngCordova
 ## Plugins `(64+)`
 
 - [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
-- [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob)
+- [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob) (:warning: share % Ad revenue)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Preferences](https://github.com/dferrell/plugins-application-preferences)
 - [App Rate](https://github.com/pushandplay/cordova-plugin-apprate)
@@ -57,19 +57,19 @@ $ bower install ngCordova
 - [Dialogs](https://github.com/apache/cordova-plugin-dialogs) *
 - [Email Composer](https://github.com/katzer/cordova-plugin-email-composer)
 - [Facebook Connect](https://github.com/Wizcorp/phonegap-facebook-plugin)
-- [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads)
+- [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads) (:warning: share % Ad revenue)
 - [File](https://github.com/apache/cordova-plugin-file) *
 - [File Transfer](https://github.com/apache/cordova-plugin-file-transfer) *
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
-- [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurry)
+- [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurry) (:warning: share % Ad revenue)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
 - [Globalization](https://github.com/apache/cordova-plugin-globalization) *
-- [Google Ads](https://github.com/floatinghotpot/cordova-admob-pro)
+- [Google Ads](https://github.com/floatinghotpot/cordova-admob-pro) (:warning: share % Ad revenue)
 - [Google Analytics](https://github.com/danwilson/google-analytics-plugin)
 - [Google Plus](https://github.com/EddyVerbruggen/cordova-plugin-googleplus)
 - [HealthKit for iOS](https://github.com/Telerik-Verified-Plugins/HealthKit)
 - [Httpd (Web Server)](https://github.com/floatinghotpot/cordova-httpd)
-- [Apple iAd](https://github.com/floatinghotpot/cordova-iad-pro)
+- [Apple iAd](https://github.com/floatinghotpot/cordova-iad-pro) (:warning: share % Ad revenue)
 - [Image Picker](https://github.com/wymsee/cordova-imagePicker)
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
@@ -78,9 +78,9 @@ $ bower install ngCordova
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
 - [Media Capture](https://github.com/apache/cordova-plugin-media-capture)
 - [Media](https://github.com/apache/cordova-plugin-media) *
-- [MillennialMedia Ads](https://github.com/floatinghotpot/cordova-plugin-mmedia)
-- [MobFox Ads](https://github.com/floatinghotpot/cordova-mobfox-pro)
-- [MoPub Ads](https://github.com/floatinghotpot/cordova-plugin-mopub)
+- [MillennialMedia Ads](https://github.com/floatinghotpot/cordova-plugin-mmedia) (:warning: share % Ad revenue)
+- [MobFox Ads](https://github.com/floatinghotpot/cordova-mobfox-pro) (:warning: share % Ad revenue)
+- [MoPub Ads](https://github.com/floatinghotpot/cordova-plugin-mopub) (:warning: share % Ad revenue)
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
 - [Network Information](https://github.com/apache/cordova-plugin-network-information) *
 - [Oauth](https://github.com/nraboy/ng-cordova-oauth)
