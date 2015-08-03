@@ -5,6 +5,10 @@ angular.module('ngCordova.plugins.network', [])
 
   .factory('$cordovaNetwork', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
+
+    /**
+      * Fires offline a event
+      */
     var offlineEvent = function () {
       var networkState = navigator.connection.type;
       $timeout(function () {
@@ -12,6 +16,9 @@ angular.module('ngCordova.plugins.network', [])
       });
     };
 
+    /**
+      * Fires online a event
+      */
     var onlineEvent = function () {
       var networkState = navigator.connection.type;
       $timeout(function () {

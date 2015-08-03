@@ -5,18 +5,27 @@ angular.module('ngCordova.plugins.batteryStatus', [])
 
   .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
 
+    /**
+      * @param {string} status
+      */
     var batteryStatus = function (status) {
       $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:status', status);
       });
     };
 
+    /**
+      * @param {string} status
+      */
     var batteryCritical = function (status) {
       $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:critical', status);
       });
     };
 
+    /**
+      * @param {string} status
+      */
     var batteryLow = function (status) {
       $timeout(function () {
         $rootScope.$broadcast('$cordovaBatteryStatus:low', status);

@@ -2,6 +2,7 @@
 // link     :     https://github.com/floatinghotpot/cordova-plugin-facebookads
 
 angular.module('ngCordova.plugins.facebookAds', [])
+
   .factory('$cordovaFacebookAds', ['$q', '$window', function ($q, $window) {
 
     return {

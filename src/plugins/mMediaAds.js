@@ -2,6 +2,7 @@
 // link     :     https://github.com/floatinghotpot/cordova-plugin-mmedia
 
 angular.module('ngCordova.plugins.mMediaAds', [])
+
   .factory('$cordovaMMediaAds', ['$q', '$window', function ($q, $window) {
 
     return {

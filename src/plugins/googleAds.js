@@ -2,6 +2,7 @@
 // link     :     https://github.com/floatinghotpot/cordova-admob-pro
 
 angular.module('ngCordova.plugins.googleAds', [])
+
   .factory('$cordovaGoogleAds', ['$q', '$window', function ($q, $window) {
 
     return {

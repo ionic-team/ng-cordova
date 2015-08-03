@@ -6,7 +6,6 @@ angular.module('ngCordova.plugins.googlePlayGame', [])
   .factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 
     return {
-
       auth: function () {
         var q = $q.defer();
 
