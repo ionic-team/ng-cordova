@@ -181,14 +181,6 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 
 		readFileMetadataAbsolute: function (filePath) {
 			return mockIt.call(this, 'There was an error reading the file metadta from the absolute path');
-		},
-
-		downloadFile: function(source, filePath, trust, options) {
-			return mockIt.call(this, 'There was an error downloading the file.');	
-		},
-
-		uploadFile: function(server, filePath, options) {
-			return mockIt.call(this, 'There was an error uploading the file.');	
-		}		
+		}	
 	};
 }]);
