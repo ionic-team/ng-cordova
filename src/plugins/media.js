@@ -109,7 +109,7 @@ angular.module('ngCordova.plugins.media', [])
 
   NewMedia.prototype.currentTime = function () {
       q2 = $q.defer();
-      this.media.getCurrentPosition(function(position){
+      this.media.getCurrentPosition(function (position){
       q2.resolve(position);
       });
       return q2.promise;
@@ -117,7 +117,7 @@ angular.module('ngCordova.plugins.media', [])
 
   NewMedia.prototype.getDuration = function () {
     q3 = $q.defer();
-    this.media.getDuration(function(duration){
+    this.media.getDuration(function (duration){
     q3.resolve(duration);
     });
     return q3.promise;

@@ -11,10 +11,10 @@ angular.module('ngCordova.plugins.launchNavigator', [])
         launchnavigator.navigate(
           destination,
           start,
-          function(){
+          function (){
             q.resolve();
           },
-          function(error){
+          function (error){
             q.reject(error);
           },
 		  options);

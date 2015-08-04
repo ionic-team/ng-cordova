@@ -15,10 +15,10 @@ angular.module('ngCordova.plugins.ble', [])
           q.reject(error);
         });
 
-        $timeout(function() {
-            ble.stopScan(function() {
+        $timeout(function () {
+            ble.stopScan(function () {
               q.resolve();
-            }, function(error) {
+            }, function (error) {
               q.reject(error);
             });
         }, seconds*1000);
