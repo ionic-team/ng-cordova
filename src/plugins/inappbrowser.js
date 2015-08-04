@@ -18,7 +18,7 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
           var q = $q.defer();
 
           if (requestOptions && !angular.isObject(requestOptions)) {
-            q.reject("options must be an object");
+            q.reject('options must be an object');
             return q.promise;
           }
 

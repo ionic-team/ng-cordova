@@ -10,7 +10,7 @@ angular.module('ngCordova.plugins.brightness', [])
         var q = $q.defer();
 
         if (!$window.cordova) {
-          q.reject("Not supported without cordova.js");
+          q.reject('Not supported without cordova.js');
         } else {
           $window.cordova.plugins.brightness.getBrightness(function (result) {
             q.resolve(result);
@@ -26,7 +26,7 @@ angular.module('ngCordova.plugins.brightness', [])
         var q = $q.defer();
 
         if (!$window.cordova) {
-          q.reject("Not supported without cordova.js");
+          q.reject('Not supported without cordova.js');
         } else {
           $window.cordova.plugins.brightness.setBrightness(data, function (result) {
             q.resolve(result);
@@ -42,7 +42,7 @@ angular.module('ngCordova.plugins.brightness', [])
         var q = $q.defer();
 
         if (!$window.cordova) {
-          q.reject("Not supported without cordova.js");
+          q.reject('Not supported without cordova.js');
         } else {
           $window.cordova.plugins.brightness.setKeepScreenOn(bool, function (result) {
             q.resolve(result);

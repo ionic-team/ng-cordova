@@ -17,10 +17,10 @@ angular.module('ngCordova.plugins.keyboard', [])
       });
     };
 
-    document.addEventListener("deviceready", function () {
+    document.addEventListener('deviceready', function () {
       if (cordova.plugins.Keyboard) {
-        window.addEventListener("native.keyboardshow", keyboardShowEvent, false);
-        window.addEventListener("native.keyboardhide", keyboardHideEvent, false);
+        window.addEventListener('native.keyboardshow', keyboardShowEvent, false);
+        window.addEventListener('native.keyboardhide', keyboardHideEvent, false);
       }
     });
 
@@ -46,13 +46,13 @@ angular.module('ngCordova.plugins.keyboard', [])
       },
 
       clearShowWatch: function () {
-        document.removeEventListener("native.keyboardshow", keyboardShowEvent);
-        $rootScope.$$listeners["$cordovaKeyboard:show"] = [];
+        document.removeEventListener('native.keyboardshow', keyboardShowEvent);
+        $rootScope.$$listeners['$cordovaKeyboard:show'] = [];
       },
 
       clearHideWatch: function () {
-        document.removeEventListener("native.keyboardhide", keyboardHideEvent);
-        $rootScope.$$listeners["$cordovaKeyboard:hide"] = [];
+        document.removeEventListener('native.keyboardhide', keyboardHideEvent);
+        $rootScope.$$listeners['$cordovaKeyboard:hide'] = [];
       }
     };
   }]);

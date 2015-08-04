@@ -55,7 +55,7 @@ angular.module('ngCordova.plugins.ga', [])
         return q.promise;
       },
 
-      exit: function (success, fail) {
+      exit: function () {
         var q = $q.defer();
         $window.plugins.gaPlugin.exit(function (result) {
             q.resolve(result);

@@ -1,6 +1,7 @@
 // install : cordova plugin add https://github.com/vkeepe/card.io.git
 // link    : https://github.com/vkeepe/card.io.git
 
+/* globals CardIO: true */
 angular.module('ngCordova.plugins.cardIO', [])
 
   .provider(
@@ -10,26 +11,26 @@ angular.module('ngCordova.plugins.cardIO', [])
      * Default array of response data from cardIO scan card
      */
     var defaultRespFields = [
-      "card_type",
-      "redacted_card_number",
-      "card_number",
-      "expiry_month",
-      "expiry_year",
-      "short_expiry_year",
-      "cvv",
-      "zip"
+      'card_type',
+      'redacted_card_number',
+      'card_number',
+      'expiry_month',
+      'expiry_year',
+      'short_expiry_year',
+      'cvv',
+      'zip'
     ];
 
     /**
      * Default config for cardIO scan function
      */
     var defaultScanConfig = {
-      "expiry": true,
-      "cvv": true,
-      "zip": false,
-      "suppressManual": false,
-      "suppressConfirm": false,
-      "hideLogo": true
+      'expiry': true,
+      'cvv': true,
+      'zip': false,
+      'suppressManual': false,
+      'suppressConfirm': false,
+      'hideLogo': true
     };
 
     /**
@@ -55,10 +56,8 @@ angular.module('ngCordova.plugins.cardIO', [])
       defaultScanConfig.expiry = config.expiry || true;
       defaultScanConfig.cvv = config.cvv || true;
       defaultScanConfig.zip = config.zip || false;
-      defaultScanConfig.suppressManual = config.suppressManual
-      || false;
-      defaultScanConfig.suppressConfirm = config.suppressConfirm
-      || false;
+      defaultScanConfig.suppressManual = config.suppressManual || false;
+      defaultScanConfig.suppressConfirm = config.suppressConfirm || false;
       defaultScanConfig.hideLogo = config.hideLogo || true;
     };
 
@@ -75,7 +74,7 @@ angular.module('ngCordova.plugins.cardIO', [])
             defaultScanConfig,
             function (response) {
 
-              if (response == null) {
+              if (response === null) {
                 deferred.reject(null);
               } else {
 
@@ -84,13 +83,12 @@ angular.module('ngCordova.plugins.cardIO', [])
                   var i = 0, len = defaultRespFields.length; i < len; i++) {
                   var field = defaultRespFields[i];
 
-                  if (field == "short_expiry_year") {
-                    respData[field] = String(response['expiry_year']).substr(
+                  if (field === 'short_expiry_year') {
+                    respData[field] = String(response.expiry_year).substr( // jshint ignore:line
                       2, 2
-                    )
-                    || "";
+                    ) || '';
                   } else {
-                    respData[field] = response[field] || "";
+                    respData[field] = response[field] || '';
                   }
                 }
                 deferred.resolve(respData);
@@ -102,7 +100,7 @@ angular.module('ngCordova.plugins.cardIO', [])
           );
           return deferred.promise;
         }
-      }
-    }]
+      };
+    }];
   }]
 );

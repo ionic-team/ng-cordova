@@ -32,7 +32,7 @@ angular.module('ngCordova.plugins.batteryStatus', [])
       });
     };
 
-    document.addEventListener("deviceready", function () {
+    document.addEventListener('deviceready', function () {
       if (navigator.battery) {
         $window.addEventListener('batterystatus', batteryStatus, false);
         $window.addEventListener('batterycritical', batteryCritical, false);
@@ -42,5 +42,6 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     }, false);
     return true;
   }])
-  .run(['$cordovaBatteryStatus', function ($cordovaBatteryStatus) {
+  .run(['$injector', function ($injector) {
+    $injector.get('$cordovaBatteryStatus'); //ensure the factory and subsequent event listeners get initialised
   }]);

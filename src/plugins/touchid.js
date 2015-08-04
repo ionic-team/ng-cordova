@@ -1,6 +1,7 @@
 // install   :      cordova plugin add https://github.com/leecrossley/cordova-plugin-touchid.git
 // link      :      https://github.com/leecrossley/cordova-plugin-touchid
 
+/* globals touchid: true */
 angular.module('ngCordova.plugins.touchid', [])
 
   .factory('$cordovaTouchID', ['$q', function ($q) {
@@ -9,7 +10,7 @@ angular.module('ngCordova.plugins.touchid', [])
       checkSupport: function () {
         var defer = $q.defer();
         if (!window.cordova) {
-          defer.reject("Not supported without cordova.js");
+          defer.reject('Not supported without cordova.js');
         } else {
           touchid.checkSupport(function (value) {
             defer.resolve(value);
@@ -21,16 +22,16 @@ angular.module('ngCordova.plugins.touchid', [])
         return defer.promise;
       },
 
-      authenticate: function (auth_reason_text) {
+      authenticate: function (authReasonText) {
         var defer = $q.defer();
         if (!window.cordova) {
-          defer.reject("Not supported without cordova.js");
+          defer.reject('Not supported without cordova.js');
         } else {
           touchid.authenticate(function (value) {
             defer.resolve(value);
           }, function (err) {
             defer.reject(err);
-          }, auth_reason_text);
+          }, authReasonText);
         }
 
         return defer.promise;

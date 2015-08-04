@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['git', 'build']);
 
-gulp.task('test', ['lint', 'jscs']);
+gulp.task('lint', ['jshint', 'jscs']);
 
 gulp.task('git', function(cb) {
     git.updateSubmodule({ args: '--init --remote' }, cb);
@@ -82,10 +82,11 @@ gulp.task('karma', function (done) {
   karma.start(karmaConf, done);
 });
 
-gulp.task('lint', function () {
+gulp.task('jshint', function () {
   return gulp.src('./src/plugins/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('jscs', function () {

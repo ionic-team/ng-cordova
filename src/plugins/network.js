@@ -1,10 +1,10 @@
 // install   :      cordova plugin add cordova-plugin-network-information
 // link      :      https://github.com/apache/cordova-plugin-network-information
 
+/* globals Connection: true */
 angular.module('ngCordova.plugins.network', [])
 
   .factory('$cordovaNetwork', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
-
 
     /**
       * Fires offline a event
@@ -26,10 +26,10 @@ angular.module('ngCordova.plugins.network', [])
       });
     };
 
-    document.addEventListener("deviceready", function () {
+    document.addEventListener('deviceready', function () {
       if (navigator.connection) {
-        document.addEventListener("offline", offlineEvent, false);
-        document.addEventListener("online", onlineEvent, false);
+        document.addEventListener('offline', offlineEvent, false);
+        document.addEventListener('online', onlineEvent, false);
       }
     });
 
@@ -49,15 +49,16 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       clearOfflineWatch: function () {
-        document.removeEventListener("offline", offlineEvent);
-        $rootScope.$$listeners["$cordovaNetwork:offline"] = [];
+        document.removeEventListener('offline', offlineEvent);
+        $rootScope.$$listeners['$cordovaNetwork:offline'] = [];
       },
 
       clearOnlineWatch: function () {
-        document.removeEventListener("online", onlineEvent);
-        $rootScope.$$listeners["$cordovaNetwork:online"] = [];
+        document.removeEventListener('online', onlineEvent);
+        $rootScope.$$listeners['$cordovaNetwork:online'] = [];
       }
     };
   }])
-  .run(['$cordovaNetwork', function ($cordovaNetwork) {
+  .run(['$injector', function ($injector) {
+    $injector.get('$cordovaNetwork'); //ensure the factory always gets initialised
   }]);

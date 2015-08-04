@@ -31,7 +31,7 @@
     }
   ],
   "scripts": {
-    "test": "gulp karma --browsers=PhantomJS --reporters=progress"
+    "test": "gulp lint && gulp karma --browsers=PhantomJS --reporters=progress"
   },
   "dependencies": {
     "conventional-changelog": "0.0.11",
