@@ -1382,10 +1382,10 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
  * A service for testing download and upload
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaFileTransfer', ['$q', function($q) {
+ngCordovaMocks.factory('$cordovaFileTransfer', ['$q', function ($q) {
     var throwsError = false;
 
-    var mockIt = function(errorMessage) {
+    var mockIt = function (errorMessage) {
         var defer = $q.defer();
         if (this.throwsError) {
             defer.reject(errorMessage);
@@ -1407,11 +1407,11 @@ ngCordovaMocks.factory('$cordovaFileTransfer', ['$q', function($q) {
          **/
         throwsError: throwsError,
 
-        download: function(source, filePath, trust, options) {
+        download: function (source, filePath, trust, options) {
             return mockIt.call(this, 'There was an error downloading the file.');
         },
 
-        upload: function(server, filePath, options) {
+        upload: function (server, filePath, options) {
             return mockIt.call(this, 'There was an error uploading the file.'); 
         }
     };

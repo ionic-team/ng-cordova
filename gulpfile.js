@@ -17,12 +17,15 @@ var gulp = require('gulp'),
   jscs = require('gulp-jscs'),
   git = require('gulp-git');
 
-gulp.task('default', ['build']);
+gulp.task('default', ['git', 'build']);
 
 gulp.task('test', ['lint', 'jscs']);
 
-gulp.task('build', function () {
-  git.updateSubmodule({ args: '--init --remote' });
+gulp.task('git', function(cb) {
+    git.updateSubmodule({ args: '--init --remote' }, cb);
+});
+
+gulp.task('build', ['git'], function () {
   gulp.src(buildConfig.mockFiles)
     .pipe(concat('ng-cordova-mocks.js'))
     .pipe(header(buildConfig.closureStart))
