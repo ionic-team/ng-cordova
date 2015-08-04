@@ -114,6 +114,12 @@ $ bower install ngCordova
 - https://twitter.com/paolobernasconi
 - https://github.com/pbernasconi
 
+## Project Maintainer
+
+#### George Stocker
+ - https://twitter.com/gortok
+ - https://github.com/gortok
+ 
 
 ## LICENSE
 
