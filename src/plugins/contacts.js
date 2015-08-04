@@ -43,7 +43,7 @@ angular.module('ngCordova.plugins.contacts', [])
           navigator.contacts.find(fields, function (results) {
             q.resolve(results);
           },function (err) {
-            q.reject(err)
+            q.reject(err);
           });
         }
         else {

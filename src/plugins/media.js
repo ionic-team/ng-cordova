@@ -1,18 +1,23 @@
 // install   :      cordova plugin add cordova-plugin-media
 // link      :      https://github.com/apache/cordova-plugin-media
 
+/* globals Media: true */
 angular.module('ngCordova.plugins.media', [])
 
 .service('NewMedia', ['$q', '$interval', function ($q, $interval) {
   var q, q2, q3, mediaStatus = null, mediaPosition = -1, mediaTimer, mediaDuration = -1;
 
   function setTimer(media) {
-      if (angular.isDefined(mediaTimer)) return;
+      if (angular.isDefined(mediaTimer)) {
+        return;
+      }
 
       mediaTimer = $interval(function () {
           if (mediaDuration < 0) {
               mediaDuration = media.getDuration();
-              if (q && mediaDuration > 0) q.notify({duration: mediaDuration});
+              if (q && mediaDuration > 0) {
+                q.notify({duration: mediaDuration});
+              }
           }
 
           media.getCurrentPosition(
@@ -24,10 +29,12 @@ angular.module('ngCordova.plugins.media', [])
             },
             // error callback
             function (e) {
-                console.log("Error getting pos=" + e);
+                console.log('Error getting pos=' + e);
             });
 
-          if (q) q.notify({position: mediaPosition});
+          if (q) {
+            q.notify({position: mediaPosition});
+          }
 
       }, 1000);
   }
@@ -66,7 +73,7 @@ angular.module('ngCordova.plugins.media', [])
   NewMedia.prototype.play = function (options) {
       q = $q.defer();
 
-      if (typeof options !== "object") {
+      if (typeof options !== 'object') {
           options = {};
       }
 
@@ -121,7 +128,7 @@ angular.module('ngCordova.plugins.media', [])
     q3.resolve(duration);
     });
     return q3.promise;
-  }
+  };
 
   return NewMedia;
 

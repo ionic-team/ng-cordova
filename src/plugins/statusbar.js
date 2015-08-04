@@ -1,6 +1,7 @@
 // install   :      cordova plugin add cordova-plugin-statusbar
 // link      :      https://github.com/apache/cordova-plugin-statusbar
 
+/* globals StatusBar: true */
 angular.module('ngCordova.plugins.statusbar', [])
 
 .factory('$cordovaStatusbar', [function () {

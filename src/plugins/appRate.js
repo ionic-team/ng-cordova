@@ -1,9 +1,10 @@
 // install  :     cordova plugin add https://github.com/pushandplay/cordova-plugin-apprate.git
 // link     :     https://github.com/pushandplay/cordova-plugin-apprate
 
+/* globals AppRate: true */
 angular.module('ngCordova.plugins.appRate', [])
 
-  .provider("$cordovaAppRate", [function () {
+  .provider('$cordovaAppRate', [function () {
 
     /**
       * Set defaults settings to AppRate
@@ -17,7 +18,7 @@ angular.module('ngCordova.plugins.appRate', [])
       * @param {boolean} defaults.useCustomRateDialog
       * @param {string} defaults.iosURL
       * @param {string} defaults.androidURL
-      * @param {string} defaults.blackberryURL 
+      * @param {string} defaults.blackberryURL
       * @param {string} defaults.windowsURL
       */
     this.setPreferences = function (defaults) {
@@ -26,7 +27,7 @@ angular.module('ngCordova.plugins.appRate', [])
       }
 
       AppRate.preferences.useLanguage = defaults.language || null;
-      AppRate.preferences.displayAppName = defaults.appName || "";
+      AppRate.preferences.displayAppName = defaults.appName || '';
       AppRate.preferences.promptAgainForEachNewVersion = defaults.promptForNewVersion || true;
       AppRate.preferences.openStoreInApp = defaults.openStoreInApp || false;
       AppRate.preferences.usesUntilPrompt = defaults.usesUntilPrompt || 3;

@@ -20,7 +20,7 @@ angular.module('ngCordova.plugins.barcodeScanner', [])
 
       encode: function (type, data) {
         var q = $q.defer();
-        type = type || "TEXT_TYPE";
+        type = type || 'TEXT_TYPE';
 
         cordova.plugins.barcodeScanner.encode(type, data, function (result) {
           q.resolve(result);
