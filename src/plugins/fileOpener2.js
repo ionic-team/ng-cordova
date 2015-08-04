@@ -1,4 +1,4 @@
-// install   :      cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2
+// install   :      cordova plugin add https://github.com/pwlin/cordova-plugin-file-opener2.git
 // link      :      https://github.com/pwlin/cordova-plugin-file-opener2
 
 angular.module('ngCordova.plugins.fileOpener2', [])

@@ -35,6 +35,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.googleAds',
   'ngCordova.plugins.googleAnalytics',
   'ngCordova.plugins.googleMap',
+  'ngCordova.plugins.googlePlayGame',
   'ngCordova.plugins.healthKit',
   'ngCordova.plugins.httpd',
   'ngCordova.plugins.iAd',
@@ -49,8 +50,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.mopubAds',
   'ngCordova.plugins.nativeAudio',
   'ngCordova.plugins.network',
-  'ngCordova.plugins.oauth',
-  'ngCordova.plugins.oauthUtility',
+  'ngCordovaOauth',
   'ngCordova.plugins.pinDialog',
   'ngCordova.plugins.prefs',
   'ngCordova.plugins.printer',
@@ -66,5 +66,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.touchid',
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.videoCapturePlus',
-  'ngCordova.plugins.zip'
+  'ngCordova.plugins.zip',
+  'ngCordova.plugins.insomnia'
 ]);

@@ -1,4 +1,4 @@
-//  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
+//  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central.git
 //  link      :   https://github.com/don/cordova-plugin-ble-central
 
 angular.module('ngCordova.plugins.ble', [])
@@ -66,9 +66,9 @@ angular.module('ngCordova.plugins.ble', [])
         return q.promise;
       },
 
-      notify: function (deviceID, serviceUUID, characteristicUUID) {
+      startNotification: function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
-        ble.notify(deviceID, serviceUUID, characteristicUUID, function (result) {
+        ble.startNotification(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
         }, function (error) {
           q.reject(error);
@@ -76,9 +76,9 @@ angular.module('ngCordova.plugins.ble', [])
         return q.promise;
       },
 
-      indicate: function (deviceID, serviceUUID, characteristicUUID) {
+      stopNotification: function (deviceID, serviceUUID, characteristicUUID) {
         var q = $q.defer();
-        ble.indicate(deviceID, serviceUUID, characteristicUUID, function (result) {
+        ble.stopNotification(deviceID, serviceUUID, characteristicUUID, function (result) {
           q.resolve(result);
         }, function (error) {
           q.reject(error);

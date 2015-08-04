@@ -1,4 +1,4 @@
-// install   :      cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
+// install   :      cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit.git
 // link      :      https://github.com/Telerik-Verified-Plugins/HealthKit
 
 angular.module('ngCordova.plugins.healthKit', [])
@@ -10,6 +10,27 @@ angular.module('ngCordova.plugins.healthKit', [])
         var q = $q.defer();
 
         $window.plugins.healthkit.available(function (success) {
+          q.resolve(success);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      /**
+       * Check whether or not the user granted your app access to a specific HealthKit type.
+       * Reference for possible types:
+       * https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/
+       */
+      checkAuthStatus: function (type) {
+        var q = $q.defer();
+
+        type = type || 'HKQuantityTypeIdentifierHeight';
+
+        $window.plugins.healthkit.checkAuthStatus({
+          'type': type
+        }, function (success) {
           q.resolve(success);
         }, function (err) {
           q.reject(err);

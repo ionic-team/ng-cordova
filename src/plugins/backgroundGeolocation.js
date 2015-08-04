@@ -61,4 +61,5 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
       }
     };
   }
+
   ]);

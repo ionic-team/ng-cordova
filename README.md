@@ -66,7 +66,6 @@ $ bower install ngCordova
 - [Globalization](https://github.com/apache/cordova-plugin-globalization) *
 - [Google Ads](https://github.com/floatinghotpot/cordova-admob-pro)
 - [Google Analytics](https://github.com/danwilson/google-analytics-plugin)
-- [Google Maps]()
 - [HealthKit for iOS](https://github.com/Telerik-Verified-Plugins/HealthKit)
 - [Httpd (Web Server)](https://github.com/floatinghotpot/cordova-httpd)
 - [Apple iAd](https://github.com/floatinghotpot/cordova-iad-pro)

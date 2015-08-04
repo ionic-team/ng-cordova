@@ -44,5 +44,3 @@ angular.module('ngCordova.plugins.brightness', [])
     };
   }]);
 
-
-

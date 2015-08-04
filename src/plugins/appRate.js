@@ -5,7 +5,6 @@ angular.module('ngCordova.plugins.appRate', [])
 
   .provider("$cordovaAppRate", [function () {
 
-
     this.setPreferences = function (defaults) {
       if (!defaults || !angular.isObject(defaults)) {
         return;
@@ -22,7 +21,6 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.storeAppURL.blackberry = defaults.blackberryURL || null;
       AppRate.preferences.storeAppURL.windows8 = defaults.windowsURL || null;
     };
-
 
     this.setCustomLocale = function (customObj) {
       var strings = {

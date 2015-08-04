@@ -1,4 +1,4 @@
-// install   :     cordova plugin add com.megster.cordova.bluetoothserial
+// install   :     cordova plugin add https://github.com/don/BluetoothSerial.git
 // link      :     https://github.com/don/BluetoothSerial
 
 angular.module('ngCordova.plugins.bluetoothSerial', [])
@@ -27,7 +27,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
-
       disconnect: function () {
         var q = $q.defer();
         $window.bluetoothSerial.disconnect(function () {
@@ -38,11 +37,42 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
-
       list: function () {
         var q = $q.defer();
         $window.bluetoothSerial.list(function (data) {
           q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      discoverUnpaired: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.discoverUnpaired(function (data) {
+          q.resolve(data);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      setDeviceDiscoveredListener: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.setDeviceDiscoveredListener(function (data) {
+          q.notify(data);
+        });
+        return q.promise;
+      },
+
+      clearDeviceDiscoveredListener: function () {
+        $window.bluetoothSerial.clearDeviceDiscoveredListener();
+      },
+
+      showBluetoothSettings: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.showBluetoothSettings(function () {
+          q.resolve();
         }, function (error) {
           q.reject(error);
         });
@@ -59,6 +89,15 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
+      enable: function () {
+        var q = $q.defer();
+        $window.bluetoothSerial.enable(function () {
+          q.resolve();
+        }, function () {
+          q.reject();
+        });
+        return q.promise;
+      },
 
       isConnected: function () {
         var q = $q.defer();
@@ -70,7 +109,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
-
       available: function () {
         var q = $q.defer();
         $window.bluetoothSerial.available(function (data) {
@@ -80,7 +118,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         });
         return q.promise;
       },
-
 
       read: function () {
         var q = $q.defer();
@@ -102,7 +139,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
-
       write: function (data) {
         var q = $q.defer();
         $window.bluetoothSerial.write(data, function () {
@@ -112,7 +148,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         });
         return q.promise;
       },
-
 
       subscribe: function (delimiter) {
         var q = $q.defer();
@@ -134,7 +169,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
-
       unsubscribe: function () {
         var q = $q.defer();
         $window.bluetoothSerial.unsubscribe(function () {
@@ -155,7 +189,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         return q.promise;
       },
 
-
       clear: function () {
         var q = $q.defer();
         $window.bluetoothSerial.clear(function () {
@@ -165,7 +198,6 @@ angular.module('ngCordova.plugins.bluetoothSerial', [])
         });
         return q.promise;
       },
-
 
       readRSSI: function () {
         var q = $q.defer();

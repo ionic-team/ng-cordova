@@ -1,5 +1,5 @@
-// install   :      cordova plugin add org.apache.cordova.statusbar
-// link      :      https://github.com/apache/cordova-plugin-statusbar/blob/master/doc/index.md
+// install   :      cordova plugin add cordova-plugin-statusbar
+// link      :      https://github.com/apache/cordova-plugin-statusbar
 
 angular.module('ngCordova.plugins.statusbar', [])
 
@@ -8,6 +8,13 @@ angular.module('ngCordova.plugins.statusbar', [])
     return {
       overlaysWebView: function (bool) {
         return StatusBar.overlaysWebView(!!bool);
+      },
+
+      STYLES: {
+        DEFAULT: 0,
+        LIGHT_CONTENT: 1,
+        BLACK_TRANSLUCENT: 2,
+        BLACK_OPAQUE: 3
       },
 
       style: function (style) {

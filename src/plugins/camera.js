@@ -1,5 +1,5 @@
-// install   :   cordova plugin add org.apache.cordova.camera
-// link      :   https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#orgapachecordovacamera
+// install   :   cordova plugin add cordova-plugin-camera
+// link      :   https://github.com/apache/cordova-plugin-camera
 
 angular.module('ngCordova.plugins.camera', [])
 

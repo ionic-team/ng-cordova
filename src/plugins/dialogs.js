@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.dialogs
-// link      :     https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-dialogs
+// link      :     https://github.com/apache/cordova-plugin-dialogs
 
 angular.module('ngCordova.plugins.dialogs', [])
 
@@ -12,8 +12,7 @@ angular.module('ngCordova.plugins.dialogs', [])
         if (!$window.navigator.notification) {
           $window.alert(message);
           q.resolve();
-        }
-        else {
+        } else {
           navigator.notification.alert(message, function () {
             q.resolve();
           }, title, buttonName);
@@ -28,12 +27,10 @@ angular.module('ngCordova.plugins.dialogs', [])
         if (!$window.navigator.notification) {
           if ($window.confirm(message)) {
             q.resolve(1);
-          }
-          else {
+          } else {
             q.resolve(2);
           }
-        }
-        else {
+        } else {
           navigator.notification.confirm(message, function (buttonIndex) {
             q.resolve(buttonIndex);
           }, title, buttonLabels);
@@ -49,12 +46,10 @@ angular.module('ngCordova.plugins.dialogs', [])
           var res = $window.prompt(message, defaultText);
           if (res !== null) {
             q.resolve({input1: res, buttonIndex: 1});
-          }
-          else {
+          } else {
             q.resolve({input1: res, buttonIndex: 2});
           }
-        }
-        else {
+        } else {
           navigator.notification.prompt(message, function (result) {
             q.resolve(result);
           }, title, buttonLabels, defaultText);

@@ -16,8 +16,7 @@ angular.module('ngCordova.plugins.googleMap', [])
 
         if (!$window.plugin.google.maps) {
           q.reject(null);
-        }
-        else {
+        } else {
           var div = document.getElementById("map_canvas");
           map = $window.plugin.google.maps.Map.getMap(options);
           map.setDiv(div);
@@ -25,7 +24,6 @@ angular.module('ngCordova.plugins.googleMap', [])
         }
         return q.promise;
       },
-
 
       isMapLoaded: function () { // check if an instance of the map exists
         return !!map;

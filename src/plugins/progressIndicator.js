@@ -1,4 +1,4 @@
-// install   :      cordova plugin add org.pbernasconi.progressindicator
+// install   :      cordova plugin add https://github.com/pbernasconi/cordova-progressIndicator.git
 // link      :      http://pbernasconi.github.io/cordova-progressIndicator/
 
 angular.module('ngCordova.plugins.progressIndicator', [])
@@ -6,7 +6,7 @@ angular.module('ngCordova.plugins.progressIndicator', [])
   .factory('$cordovaProgress', ['$q', function ($q) {
 
     return {
-      show: function(_message) {
+      show: function (_message) {
         var message = _message || "Please wait...";
         return ProgressIndicator.show(message);
       },

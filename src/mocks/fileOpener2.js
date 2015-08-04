@@ -27,7 +27,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
 
       var defer = $q.defer();
 
-      if(this.throwError) {
+      if (this.throwError) {
         defer.reject({
           status: 0,
           message: 'There was an error capturing the file.'
@@ -44,7 +44,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
 
       var defer = $q.defer();
 
-      if(this.throwError) {
+      if (this.throwError) {
         defer.reject({
           status: 0,
           message: 'There was an error capturing the packageId.'
@@ -61,7 +61,7 @@ ngCordovaMocks.factory('$cordovaFileOpener2', ['$q', function ($q) {
 
       var defer = $q.defer();
 
-      if(this.throwError) {
+      if (this.throwError) {
         defer.reject({
           status: 0,
           message: 'There was an error capturing the packageId.'

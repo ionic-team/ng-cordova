@@ -1,5 +1,5 @@
-// install   :     cordova plugin add org.apache.cordova.device
-// link      :     https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
+// install   :     cordova plugin add cordova-plugin-device
+// link      :     https://github.com/apache/cordova-plugin-device
 
 angular.module('ngCordova.plugins.device', [])
 
@@ -8,7 +8,7 @@ angular.module('ngCordova.plugins.device', [])
     return {
       /**
        * Returns the whole device object.
-       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md
+       * @see https://github.com/apache/cordova-plugin-device
        * @returns {Object} The device object.
        */
       getDevice: function () {
@@ -17,7 +17,7 @@ angular.module('ngCordova.plugins.device', [])
 
       /**
        * Returns the Cordova version.
-       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicecordova
+       * @see https://github.com/apache/cordova-plugin-device#devicecordova
        * @returns {String} The Cordova version.
        */
       getCordova: function () {
@@ -26,7 +26,7 @@ angular.module('ngCordova.plugins.device', [])
 
       /**
        * Returns the name of the device's model or product.
-       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicemodel
+       * @see https://github.com/apache/cordova-plugin-device#devicemodel
        * @returns {String} The name of the device's model or product.
        */
       getModel: function () {
@@ -43,7 +43,7 @@ angular.module('ngCordova.plugins.device', [])
 
       /**
        * Returns the device's operating system name.
-       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceplatform
+       * @see https://github.com/apache/cordova-plugin-device#deviceplatform
        * @returns {String} The device's operating system name.
        */
       getPlatform: function () {
@@ -52,7 +52,7 @@ angular.module('ngCordova.plugins.device', [])
 
       /**
        * Returns the device's Universally Unique Identifier.
-       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceuuid
+       * @see https://github.com/apache/cordova-plugin-device#deviceuuid
        * @returns {String} The device's Universally Unique Identifier
        */
       getUUID: function () {
@@ -61,7 +61,7 @@ angular.module('ngCordova.plugins.device', [])
 
       /**
        * Returns the operating system version.
-       * @see https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceversion
+       * @see https://github.com/apache/cordova-plugin-device#deviceversion
        * @returns {String}
        */
       getVersion: function () {

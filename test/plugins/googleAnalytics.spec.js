@@ -16,6 +16,8 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       trackView: angular.noop,
       addCustomDimension: angular.noop,
       trackEvent: angular.noop,
+      trackException: angular.noop,
+      trackTiming: angular.noop,
       addTransaction: angular.noop,
       addTransactionItem: angular.noop,
     };
@@ -255,7 +257,98 @@ describe('Service: $cordovaGoogleAnalytics', function() {
         errorCb('Tracker not started');
       });
 
-    $cordovaGoogleAnalytics.trackEvent()
+    $cordovaGoogleAnalytics
+      .trackEvent()
+      .then(angular.noop, function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe('Tracker not started');
+  });
+
+  it('should call $window\'s analytics.trackException method', function() {
+
+    var result;
+
+    spyOn($window.analytics, 'trackException')
+      .andCallFake(function (description, fatal, successCb, errorCb) {
+        successCb('Track Exception: ' + description);
+      });
+
+    $cordovaGoogleAnalytics
+      .trackException('Video player exception', false)
+      .then(function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe('Track Exception: Video player exception');
+    expect($window.analytics.trackException).toHaveBeenCalledWith(
+      'Video player exception', false,
+      jasmine.any(Function),
+      jasmine.any(Function)
+    );
+  });
+
+  it('should call errorCb when in $window\'s analytics.trackException a error orccurs', function() {
+
+    var result;
+
+    spyOn($window.analytics, 'trackException')
+      .andCallFake(function (description, fatal, successCb, errorCb) {
+        errorCb('Tracker not started');
+      });
+
+    $cordovaGoogleAnalytics
+      .trackException()
+      .then(angular.noop, function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe('Tracker not started');
+  });
+
+  it('should call $window\'s analytics.trackTiming method', function() {
+
+    var result;
+
+    spyOn($window.analytics, 'trackTiming')
+      .andCallFake(function (category, milliseconds, variable, label, successCb, errorCb) {
+        successCb('Track Timing: ' + category);
+      });
+
+    $cordovaGoogleAnalytics
+      .trackTiming('Videos', 100, 'Video Load Time', 'Gone With the Wind')
+      .then(function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe('Track Timing: Videos');
+    expect($window.analytics.trackTiming).toHaveBeenCalledWith(
+      'Videos', 100, 'Video Load Time', 'Gone With the Wind',
+      jasmine.any(Function),
+      jasmine.any(Function)
+    );
+  });
+
+  it('should call errorCb when in $window\'s analytics.trackTiming a error orccurs', function() {
+
+    var result;
+
+    spyOn($window.analytics, 'trackTiming')
+      .andCallFake(function (category, milliseconds, variable, label, successCb, errorCb) {
+        errorCb('Tracker not started');
+      });
+
+    $cordovaGoogleAnalytics
+      .trackTiming()
       .then(angular.noop, function (response) {
         result = response;
       });

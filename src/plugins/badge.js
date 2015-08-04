@@ -1,4 +1,4 @@
-// install  :     cordova plugin add de.appplant.cordova.plugin.badge
+// install  :     cordova plugin add https://github.com/katzer/cordova-plugin-badge.git
 // link     :     https://github.com/katzer/cordova-plugin-badge
 
 angular.module('ngCordova.plugins.badge', [])
@@ -11,8 +11,7 @@ angular.module('ngCordova.plugins.badge', [])
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
             q.resolve(true);
-          }
-          else {
+          } else {
             q.reject("You do not have permission");
           }
         });
@@ -30,8 +29,7 @@ angular.module('ngCordova.plugins.badge', [])
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
             q.resolve(cordova.plugins.notification.badge.set(number));
-          }
-          else {
+          } else {
             q.reject("You do not have permission to set Badge");
           }
         });
@@ -59,8 +57,7 @@ angular.module('ngCordova.plugins.badge', [])
         cordova.plugins.notification.badge.hasPermission(function (permission) {
           if (permission) {
             q.resolve(cordova.plugins.notification.badge.clear());
-          }
-          else {
+          } else {
             q.reject("You do not have permission to clear Badge");
           }
         });

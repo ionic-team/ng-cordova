@@ -5,11 +5,11 @@
  * @description
  * A service for testing device keyboard features
  * in an app build with ngCordova.
-**/ 
-ngCordovaMocks.factory('$cordovaKeyboard', function() {
-  var isVisible=false;
-	
-	return {
+ **/
+ngCordovaMocks.factory('$cordovaKeyboard', function () {
+  var isVisible = false;
+
+  return {
     hideAccessoryBar: function (bool) {
     },
 
@@ -23,10 +23,10 @@ ngCordovaMocks.factory('$cordovaKeyboard', function() {
 
     disableScroll: function (bool) {
     },
-   
+
     isVisible: function () {
       return isVisible;
     }
 
-	};
+  };
 });

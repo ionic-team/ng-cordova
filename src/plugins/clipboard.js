@@ -1,4 +1,4 @@
-// install   :     cordova plugin add https://github.com/VersoSolutions/CordovaClipboard
+// install   :     cordova plugin add https://github.com/VersoSolutions/CordovaClipboard.git
 // link      :     https://github.com/VersoSolutions/CordovaClipboard
 
 angular.module('ngCordova.plugins.clipboard', [])
