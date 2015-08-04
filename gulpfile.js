@@ -22,7 +22,7 @@ gulp.task('default', ['prepare', 'build']);
 gulp.task('test', ['lint', 'jscs']);
 
 gulp.task('prepare', function() {
-    return git.updateSubmodule({ args: '--init --remote' });
+    git.updateSubmodule({ args: '--init --remote' });
 });
 
 gulp.task('build', ['prepare'], function () {
