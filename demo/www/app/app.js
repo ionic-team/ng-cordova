@@ -39,7 +39,8 @@ angular.module('demo', [
   'demo.statusbar.ctrl',
   'demo.toast.ctrl',
   'demo.touchid.ctrl',
-  'demo.vibration.ctrl'
+  'demo.vibration.ctrl',
+  'demo.upsPushNotifications.ctrl'
 ])
 
   .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus, $cordovaLocalNotification, $cordovaPush) {
@@ -358,8 +359,13 @@ angular.module('demo', [
         url: '/vibration',
         templateUrl: 'app/vibration/vibration.html',
         controller: "VibrationCtrl"
-      });
+      })
 
+      .state('upsPushNotifications', {
+        url: '/upsPushNotifications',
+        templateUrl: 'app/upsPushNotifications/pushNotifications.html',
+        controller: "UpsPushNotificationsCtrl"
+      });
 
     $urlRouterProvider.otherwise('/menu');
   });
