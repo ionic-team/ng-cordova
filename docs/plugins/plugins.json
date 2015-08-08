@@ -180,6 +180,12 @@
     "short-title": "HealthKit"
   },
   {
+    "link": "/docs/plugins/beacon/",
+    "title": "iBeacon",
+    "keywords": "iBeacon beacon bluetooth low energy",
+    "short-title": "iBeacon"
+  },
+  {
     "link": "/docs/plugins/imagePicker/",
     "title": "Image Picker",
     "keywords": "picture image cameraroll",
