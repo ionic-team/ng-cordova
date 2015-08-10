@@ -14,7 +14,7 @@
     "webpack": "^1.10.5"
   },
   "dependencies": {
-    "angular2": "^2.0.0-alpha.33",
+    "angular2": "^2.0.0-alpha.34",
     "reflect-metadata": "^0.1.0",
     "rtts_assert": "^2.0.0-alpha.33",
     "traceur-runtime": "0.0.59",
