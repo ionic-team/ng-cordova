@@ -13,7 +13,7 @@ icon-windows: true
 Configure the device's StatusBar with colors and styles.
 
 ```
-cordova plugin add cordova-plugin-statusbar
+cordova plugin add org.apache.cordova.statusbar
 ```
 
 ```javascript
