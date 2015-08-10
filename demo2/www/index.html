@@ -10,31 +10,12 @@
   <script src="cordova.js"></script>
 </head>
 <body>
-
   <ion-app>
     <ion-loading-icon></ion-loading-icon>
   </ion-app>
 
-  <!--
-  <script src="js/lib/web-animations.min.js"></script>
-
-  <script src="js/lib/traceur-runtime.js"></script>
-
-  <script src="js/lib/system.js"></script>
-  <script src="config.js"></script>
-
-  <script src="js/lib/angular2.dev.js"></script>
--->
-
-  <!-- Ionic bundle -->
   <script src="lib/bundle.js"></script>
-
-
-  <!-- Your app bundle -->
   <script src="_app/app.bundle.js"></script>
-
-  <script>
-  System.import("app/app");
-  </script>
+  <script>System && System.import && System.import('app/app')</script>
 </body>
 </html>
