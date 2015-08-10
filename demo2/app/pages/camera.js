@@ -1,5 +1,4 @@
-import {bootstrap, NgFor, ComponentAnnotation as Component,
-  DirectiveAnnotation as Directive, ViewAnnotation as View} from 'angular2/angular2';
+import {NgFor, Component, Directive, View} from 'angular2/angular2';
 import {IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content} from 'ionic/ionic';
 
 import {Camera} from 'ng-cordova/ng-cordova';

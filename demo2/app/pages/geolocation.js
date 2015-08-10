@@ -1,8 +1,7 @@
-import {bootstrap, NgFor, NgIf, ComponentAnnotation as Component,
-  DirectiveAnnotation as Directive, ViewAnnotation as View} from 'angular2/angular2';
+import {bootstrap, NgFor, NgIf, Component, Directive, View} from 'angular2/angular2';
 import {IonicApp, NavController, Navbar, NavbarTemplate, List, Item, Content} from 'ionic/ionic';
 
-import {Geolocation} from 'ng-cordova/ng-cordova';
+//import {Geolocation} from 'ng-cordova/ng-cordova';
 
 @Component({ selector: 'ion-view' })
 @View({

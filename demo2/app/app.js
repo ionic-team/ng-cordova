@@ -1,27 +1,24 @@
-import {App, IonicView, NavController} from 'ionic/ionic';
 
-//import {CameraPage, GeolocationPage} from './pages/index';
+import {App, IonicApp} from 'ionic/ionic';
 
-console.log('UP HERE');
+import {CameraPage} from './pages/camera';
+import {GeolocationPage} from './pages/geolocation';
 
 @App({
-  templateUrl: '_app/main.html'
+  templateUrl: '_app/app.html'
 })
 class MyApp {
   constructor(app: IonicApp) {
-    console.log('Loading app');
+    console.log('IonicApp Start');
 
     this.app = app;
 
-/*
-    this.plugins = [
-      { title: 'Camera', component: CameraPage },
-      { title: 'Geolocation', component: GeolocationPage },
-
+    this.pages = [
+      { title: 'Songs', component: CameraPage },
+      { title: 'Playlists', component: GeolocationPage },
     ];
 
     this.firstPage = CameraPage;
-    */
   }
 
   openPage(aside, page) {

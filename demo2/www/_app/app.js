@@ -1,35 +1,20 @@
-System.register("app/app", ["angular2/angular2", "ionic/ionic", "./pages/songs", "./pages/playlists"], function (_export) {
+System.register("app/app", ["ionic/ionic", "./pages/camera", "./pages/geolocation"], function (_export) {
     "use strict";
 
-    var NgFor, Component, View, IonicApp, Register, Aside, Nav, List, Item, Content, SongsPage, PlaylistsPage, __decorate, __metadata, MyApp;
+    var App, IonicApp, CameraPage, GeolocationPage, __decorate, __metadata, MyApp;
 
     var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-    _export("main", main);
-
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function main(ionicBootstrap) {
-        ionicBootstrap(MyApp);
-    }
-
     return {
-        setters: [function (_angular2Angular2) {
-            NgFor = _angular2Angular2.NgFor;
-            Component = _angular2Angular2.Component;
-            View = _angular2Angular2.View;
-        }, function (_ionicIonic) {
+        setters: [function (_ionicIonic) {
+            App = _ionicIonic.App;
             IonicApp = _ionicIonic.IonicApp;
-            Register = _ionicIonic.Register;
-            Aside = _ionicIonic.Aside;
-            Nav = _ionicIonic.Nav;
-            List = _ionicIonic.List;
-            Item = _ionicIonic.Item;
-            Content = _ionicIonic.Content;
-        }, function (_pagesSongs) {
-            SongsPage = _pagesSongs.SongsPage;
-        }, function (_pagesPlaylists) {
-            PlaylistsPage = _pagesPlaylists.PlaylistsPage;
+        }, function (_pagesCamera) {
+            CameraPage = _pagesCamera.CameraPage;
+        }, function (_pagesGeolocation) {
+            GeolocationPage = _pagesGeolocation.GeolocationPage;
         }],
         execute: function () {
             __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -58,10 +43,10 @@ System.register("app/app", ["angular2/angular2", "ionic/ionic", "./pages/songs",
                 var _class = function MyApp(app) {
                     _classCallCheck(this, _class);
 
-                    console.log("IonicApp Start", SongsPage);
+                    console.log("IonicApp Start");
                     this.app = app;
-                    this.pages = [{ title: "Songs", component: SongsPage }, { title: "Playlists", component: PlaylistsPage }];
-                    this.firstPage = SongsPage;
+                    this.pages = [{ title: "Songs", component: CameraPage }, { title: "Playlists", component: GeolocationPage }];
+                    this.firstPage = CameraPage;
                 };
 
                 _createClass(_class, [{
@@ -79,9 +64,8 @@ System.register("app/app", ["angular2/angular2", "ionic/ionic", "./pages/songs",
                 return _class;
             })();
 
-            MyApp = __decorate([Component({ selector: "ion-app" }), View({
-                directives: [NgFor, Aside, Nav, Content, List, Item, Register],
-                templateUrl: "templates/main.html"
+            MyApp = __decorate([App({
+                templateUrl: "_app/app.html"
             }), __metadata("design:paramtypes", [typeof IonicApp !== "undefined" && IonicApp || Object])], MyApp);
         }
     };

@@ -112,6 +112,7 @@ gulp.task('copy-html', function() {
 gulp.task('copy-lib', function() {
   return gulp.src([
       'lib/ionic/js/bundle.js',
+      'lib/ng-cordova/ng-cordova.js',
       //'lib/**/*.js',
       'lib/**/*.css',
       'lib/**/fonts/**/*'
@@ -126,7 +127,7 @@ gulp.task('bundle.systemjs', ['transpile.systemjs'], function(done){
 });
 
 gulp.task('bundle.webpack', ['transpile.commonjs'], function() {
-  var config = require('./webpack.config.js'); 
+  var config = require('./webpack.config.js');
   return gulp.src("www/_app/app.js")
     .pipe(webpack(config))
     .pipe(gulp.dest('./'));
