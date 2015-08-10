@@ -11,32 +11,30 @@
 </head>
 <body>
 
-  <ion-app module="app/app">
+  <ion-app>
     <ion-loading-icon></ion-loading-icon>
   </ion-app>
 
-
-  <!-- web animations polyfill for non-chrome browsers -->
+  <!--
   <script src="js/lib/web-animations.min.js"></script>
 
-  <!-- Traceur Runtime for transpiled es5 code -->
   <script src="js/lib/traceur-runtime.js"></script>
 
-  <!-- SystemJS Loader -->
   <script src="js/lib/system.js"></script>
   <script src="config.js"></script>
 
-  <!-- Angular bundle -->
   <script src="js/lib/angular2.dev.js"></script>
-
-  <script src="js/lib/ng-cordova.js"></script>
-
-  <!-- Your app bundle -->
-  <script src="dist/app.bundle.js"></script>
+-->
 
   <!-- Ionic bundle -->
-  <script src="js/lib/ionic.bundle.js"></script>
+  <script src="lib/bundle.js"></script>
 
 
+  <!-- Your app bundle -->
+  <script src="_app/app.bundle.js"></script>
+
+  <script>
+  System.import("app/app");
+  </script>
 </body>
 </html>
