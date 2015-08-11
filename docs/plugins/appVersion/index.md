@@ -32,7 +32,7 @@ module.controller('myCtrl', function($scope, $cordovaAppVersion) {
 
   document.addEventListener("deviceready", function () {
 
-    $cordovaAppVersion.getAppVersion().then(function (version) {
+    $cordovaAppVersion.getVersionNumber().then(function (version) {
         var appVersion = version;
       });
   }, false);
