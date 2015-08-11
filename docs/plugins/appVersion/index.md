@@ -18,12 +18,17 @@ cordova plugin add https://github.com/whiteoctober/cordova-plugin-app-version.gi
 
 #### Methods
 
-##### `getAppVersion()`
+##### `getVersionNumber()`
 
-Get the version of the current app running.
+Get the version number of the current app running.
 
-**Returns**  `String`, with the app-version
+**Returns**  `String`, with the version number
 
+##### `getVersionCode()`
+
+Get the build identifier of the app
+
+**Returns**  `String`, with the build identifier
 
 #### Example
 
@@ -36,5 +41,11 @@ module.controller('myCtrl', function($scope, $cordovaAppVersion) {
         var appVersion = version;
       });
   }, false);
+  
+  $cordovaAppVersion.getVersionCode().then(function (build) {
+        var appBuild = build;
+      });
+  }, false);
+  
 });
 ```
