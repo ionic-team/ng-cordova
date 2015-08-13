@@ -5,7 +5,7 @@ module.exports = {
   banner: '/*!\n' +
     ' * ngCordova\n' +
     ' * v' + pkg.version +'\n' +
-    ' * Copyright 2014 Drifty Co. http://drifty.com/\n' +
+    ' * Copyright 2015 Drifty Co. http://drifty.com/\n' +
     ' * See LICENSE in this repository for license information\n' +
     ' */\n',
 
