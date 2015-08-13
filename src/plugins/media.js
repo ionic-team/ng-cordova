@@ -133,7 +133,7 @@ angular.module('ngCordova.plugins.media', [])
   return NewMedia;
 
 }])
-.factory('$cordovaMedia2', ['NewMedia', function (NewMedia) {
+.factory('$cordovaMedia', ['NewMedia', function (NewMedia) {
   return {
       newMedia: function (src) {
           return new NewMedia(src);
