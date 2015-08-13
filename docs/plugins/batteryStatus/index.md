@@ -13,7 +13,7 @@ icon-windows: true
 The [BatteryStatus](https://github.com/apache/cordova-plugin-battery-status) plugin provides an API for the current battery status.
 
 ```bash
-cordova plugin add cordova-plugin-battery-status
+cordova plugin add org.apache.cordova.battery-status
 ```
 
 

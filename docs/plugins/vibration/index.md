@@ -13,7 +13,7 @@ icon-windows: true
 Vibrate the device programmatically.
 
 ```
-cordova plugin add cordova-plugin-vibration
+cordova plugin add org.apache.cordova.vibration
 ```
 
 ```javascript

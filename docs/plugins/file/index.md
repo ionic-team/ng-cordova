@@ -13,7 +13,7 @@ icon-windows: true
 A Plugin to get access to the device's files and directories.
 
 ```
-cordova plugin add cordova-plugin-file
+cordova plugin add org.apache.cordova.file
 ```
 
 

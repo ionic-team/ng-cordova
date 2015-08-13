@@ -14,7 +14,7 @@ The essential purpose of local notifications is to enable an application to info
 They are scheduled by an application and delivered on the same device.
 
 ```
-cordova plugin add de.appplant.cordova.plugin.local-notification
+cordova plugin add https://github.com/katzer/cordova-plugin-local-notifications.git
 ```
 
 
