@@ -39,3 +39,4 @@ cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.
 cordova plugin add https://github.com/Telerik-Verified-Plugins/HealthKit
 cordova plugin add de.appplant.cordova.plugin.badge
 cordova plugin add aerogear-cordova-push
+cordova plugin add com.unarin.cordova.beacon
