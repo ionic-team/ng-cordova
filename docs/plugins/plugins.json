@@ -216,6 +216,12 @@
     "short-title": "Keychain"
   },
   {
+    "link": "/docs/plugins/launchNavigator/",
+    "title": "Launch Navigator",
+    "keywords": "launchNavigator navigator gps",
+    "short-title": "LaunchNavigator"
+  },
+  {
     "link": "/docs/plugins/localNotification/",
     "title": "Local Notification",
     "keywords": "",
