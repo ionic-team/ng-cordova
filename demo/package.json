@@ -48,6 +48,7 @@
     "https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git",
     "https://github.com/Telerik-Verified-Plugins/HealthKit",
     "de.appplant.cordova.plugin.badge",
-    "aerogear-cordova-push"
+    "aerogear-cordova-push",
+    "com.unarin.cordova.beacon"
   ]
 }

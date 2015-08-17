@@ -8,6 +8,7 @@ angular.module('demo', [
   'demo.appRate.ctrl',
   'demo.barcodeScanner.ctrl',
   'demo.batteryStatus.ctrl',
+  'demo.beacon.ctrl',
   'demo.camera.ctrl',
   'demo.clipboard.ctrl',
   'demo.contacts.ctrl',
@@ -163,6 +164,12 @@ angular.module('demo', [
         url: '/batteryStatus',
         templateUrl: 'app/batteryStatus/batteryStatus.html',
         controller: "BatteryStatusCtrl"
+      })
+
+      .state('beacon', {
+        url: '/beacon',
+        templateUrl: 'app/beacon/beacon.html',
+        controller: "BeaconCtrl"
       })
 
       .state('camera', {
