@@ -17,7 +17,9 @@ angular.module('ngCordova.plugins.camera', [])
         navigator.camera.getPicture(function (imageData) {
           q.resolve(imageData);
         }, function (err) {
-          q.reject(err);
+          if(angular.isDefined(err)) {
+            q.reject(err);
+          }
         }, options);
 
         return q.promise;
