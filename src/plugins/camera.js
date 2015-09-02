@@ -5,7 +5,6 @@ angular.module('ngCordova.plugins.camera', [])
   .provider('$cordovaCamera', function() {
 
     var Camera = {};
-    
     Camera.DestinationType = {
       DATA_URL: 0, // Return image as base64-encoded string
       FILE_URI: 1, // Return image file URI
@@ -49,40 +48,171 @@ angular.module('ngCordova.plugins.camera', [])
       saveToPhotoAlbum: false
     };
 
+    /**
+    * @description
+    * Set qualitity value
+    *
+    * @param {number} value
+    */
     function setQuality(value) {
-      options.quality = value;
+      if(angular.isNumber(value)){
+        options.quality = value;
+      } else {
+        throw 'The param for setQuality need be a number';
+      }
     }
 
+    /**
+    * @description
+    * choose destinationType value, can be "DATA_URL", "FILE_URI" or "NATIVE_URI".
+    * will happen crash error if param value be different of this 3 options.
+    *
+    * @param {String} can be "DATA_URL", "FILE_URI" or "NATIVE_URI"
+    */
     function setDestinationType(value) {
-      options.destinationType = Camera.DestinationType[value];
+      if(angular.isString(value)){
+
+        var uperValue = value.toUpperCase();
+
+        if(uperValue == 'DATA_URI' || uperValue == 'FILE_URI' || uperValue == 'NATIVE_URI') {
+          options.destinationType = Camera.DestinationType[value];
+        } else {
+          throw 'The param for setDestinationType can be only DATA_URI, FILE_URI or NATIVE_URI';
+        }
+
+      } else {
+        throw 'The param for setDestinationType need be a String';
+      }
     }
 
+    /**
+    * @description
+    * choose sourceType value, can be "PHOTOLIBRARY", "CAMERA" or "SAVEDPHOTOALBUM".
+    * will happen crash error if param value be different of this 3 options.
+    *
+    * @param {String} can be "PHOTOLIBRARY", "CAMERA" or "SAVEDPHOTOALBUM".
+    */
     function setSourceType(value) {
-      options.sourceType = Camera.PictureSourceType[value];
+      if(angular.isString(value)){
+
+        var uperValue = value.toUpperCase();
+        if(uperValue == 'PHOTOLIBRARY' || uperValue == 'CAMERA' || uperValue == 'SAVEDPHOTOALBUM'){
+          options.sourceType = Camera.PictureSourceType[value];
+        } else {
+          throw 'The sourceType param can be onlye PHOTOLIBRARY, CAMERA or SAVEDPHOTOALBUM!';
+        }
+        
+      } else {
+        throw 'The sourceType param need be a string !';
+      }
     }
 
+    /**
+    * @description
+    * choose allowEdit value.
+    *
+    * @param {Boolean} value.
+    */
     function setAllowEdit(value) {
-      options.allowEdit = value;
+      if(angular.isBoolean(value)) {
+        options.allowEdit = value;
+      } else {
+        throw 'The allowEdit param need be a boolean value.';
+      }
     };
 
+    /**
+    * @description
+    * choose encodingType value, can be "JPEG", or "PNG".
+    * will happen crash error if param value be different of this 2 options.
+    *
+    * @param {String} can be can be "JPEG", or "PNG".
+    */
     function setEncodingType(value) {
-      options.encodingType = Camera.EncodingType[value];
+      if(angular.isString(value)) {
+
+        var uperValue = value.toUpperCase();
+        if(uperValue == 'JPEG' || uperValue == 'PNG') {
+          options.encodingType = Camera.EncodingType[value];
+        } else {
+          throw 'The encodingType param can be only JPED or PNG';
+        }
+      } else {
+        throw 'The encodingType param need be a String value.';
+      }
     };
 
+    /**
+    * @description
+    * choose targetWidth value,
+    *
+    * @param {number} value.
+    */
     function setTargetWidth(value) {
-      options.targetWidth = value;
+      if(angular.isNumber(value)) {
+        options.targetWidth = value;
+      } else {
+        throw 'The targetWidth param need be a number value';
+      }
     };
 
+    /**
+    * @description
+    * choose targetHeight value,
+    *
+    * @param {number} value.
+    */
     function setTargetHeight(value) {
-      options.targetHeight = value;
+      if(angular.isNumber(value)) {
+        options.targetHeight = value;
+      } else {
+        throw 'The targetHeight param need be a number value';
+      }
     };
 
-    function setPopoverOptionsfunction(value) {
-      options.popoverOptions = value;
+    /**
+    * @description
+    * set popoverOptions value (only for iOS)
+    * 
+      ```
+        { x : 0, 
+          y :  32,
+          width : 320,
+          height : 480,
+          arrowDir : 'ARROW_ANY' // can be ARROW_RIGHT, ARROW_LEFT, ARROW_UP, ARROW_DOWN or ARROW_ANY
+        }
+      ```
+    * @param {Object}
+    */
+    function setPopoverOptions(value) {
+      if(angular.isObject(value)){
+        if(angular.isDefined(value.arrowDir)) {
+          if(!angular.isString(value.arrowDir))   throw 'The param popoverOptions.arrowDir need be a String value.';
+          
+          var arrowDir = value.arrowDir.toUpperCase();
+          if(arrowDir != 'ARROW_UP' && arrowDir != 'ARROW_DOWN' && arrowDir != 'ARROW_RIGHT' && arrowDir != 'ARROW_LEFT' && arrowDir != 'ARROW_ANY'){
+            throw 'The param popoverOptions.arrowDir can be only ARROW_UP, ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT or ARROW_ANY.';
+          }
+          options.popoverOptions.arrowDir = Camera.PopoverArrowDirection[arrowDir];
+        }
+        options.popoverOptions = value;
+      } else {
+        throw 'The popoverOptions need be a Object value.';
+      }
     };
 
+    /**
+    * @description
+    * choose saveToPhotoAlbum value.
+    *
+    * @param {Boolean} value.
+    */
     function setSaveToPhotoAlbum(value) {
-      options.saveToPhotoAlbum = value;
+      if(angular.isBoolean(value)) {
+        options.saveToPhotoAlbum = value;
+      } else {
+        throw 'The saveToPhotoAlbum param need be a boolean value.';
+      }
     };
 
     return {
@@ -95,9 +225,9 @@ angular.module('ngCordova.plugins.camera', [])
       setTargetHeight: setTargetHeight,
       setPopoverOptions: setPopoverOptions,
       setSaveToPhotoAlbum: setSaveToPhotoAlbum,
-      $get: function() {
+      $get: function($q) {
         return {
-          getPicture: function(options) {
+          getPicture: function(values) {
             var q = $q.defer();
 
             if (!navigator.camera) {
@@ -105,7 +235,7 @@ angular.module('ngCordova.plugins.camera', [])
               return q.promise;
             }
 
-            if (values) {
+            if (angular.isObject(values)) {
               for (key in values) {
                 switch (key) {
                   case 'destinationType':
