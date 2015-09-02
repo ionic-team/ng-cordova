@@ -54,6 +54,7 @@ $ bower install ngCordova
 - [Date Picker](https://github.com/VitaliiBlagodir/cordova-plugin-datepicker)
 - [Device Motion](https://github.com/apache/cordova-plugin-device-motion) *
 - [Device Orientation](https://github.com/apache/cordova-plugin-device-orientation) *
+- [Diagnostic](https://github.com/dpa99c/cordova-diagnostic-plugin)
 - [Device](https://github.com/apache/cordova-plugin-device) *
 - [Dialogs](https://github.com/apache/cordova-plugin-dialogs) *
 - [Email Composer](https://github.com/katzer/cordova-plugin-email-composer)

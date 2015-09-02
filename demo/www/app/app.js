@@ -16,6 +16,7 @@ angular.module('demo', [
   'demo.device.ctrl',
   'demo.deviceMotion.ctrl',
   'demo.deviceOrientation.ctrl',
+  'demo.diagnostic.ctrl',
   'demo.dialogs.ctrl',
   'demo.emailComposer.ctrl',
   'demo.facebook.ctrl',
@@ -214,6 +215,12 @@ angular.module('demo', [
         url: '/deviceOrientation',
         templateUrl: 'app/deviceOrientation/deviceOrientation.html',
         controller: "DeviceOrientationCtrl"
+      })
+
+      .state('diagnostic', {
+        url: '/diagnostic',
+        templateUrl: 'app/diagnostic/diagnostic.html',
+        controller: "DiagnosticCtrl"
       })
 
       .state('dialogs', {
