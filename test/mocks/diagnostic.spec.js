@@ -20,7 +20,7 @@ describe('ngCordovaMocks', function() {
 
 		it('should get the location status', function (done) {
 			var expected = true;
-			$cordovaDiagnostic.useHostAbilities = true;
+			$cordovaDiagnostic.useHostAbilities = false;
 
 			$cordovaDiagnostic.isLocationEnabled()
 				.then(
@@ -35,7 +35,7 @@ describe('ngCordovaMocks', function() {
 
 		it('should get the wifi status', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.isWifiEnabled()
         .then(
@@ -50,7 +50,7 @@ describe('ngCordovaMocks', function() {
 
     it('should get the camera status', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.isCameraEnabled()
         .then(
@@ -65,7 +65,7 @@ describe('ngCordovaMocks', function() {
 
     it('should get the bluetooth status', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.isBluetoothEnabled()
         .then(
@@ -80,7 +80,7 @@ describe('ngCordovaMocks', function() {
 
     it('should get the wifi status', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.isWifiEnabled()
         .then(
@@ -99,7 +99,7 @@ describe('ngCordovaMocks', function() {
 
     it('should switch to location settings', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.switchToLocationSettings()
         .then(
@@ -114,7 +114,7 @@ describe('ngCordovaMocks', function() {
 
     it('should switch to mobile data settings', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.switchToMobileDataSettings()
         .then(
@@ -129,7 +129,7 @@ describe('ngCordovaMocks', function() {
 
     it('should switch to bluetooth settings', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.switchToBluetoothSettings()
         .then(
@@ -144,7 +144,7 @@ describe('ngCordovaMocks', function() {
 
     it('should switch to wifi settings', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.switchToWifiSettings()
         .then(
@@ -163,7 +163,7 @@ describe('ngCordovaMocks', function() {
 
     it('should get the location enabled setting status', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.isLocationEnabledSetting()
         .then(
@@ -178,7 +178,7 @@ describe('ngCordovaMocks', function() {
 
     it('should get the location authorized status', function (done) {
       var expected = true;
-      $cordovaDiagnostic.useHostAbilities = true;
+      $cordovaDiagnostic.useHostAbilities = false;
 
       $cordovaDiagnostic.isLocationAuthorized()
         .then(
