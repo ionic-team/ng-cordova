@@ -76,6 +76,7 @@ $ bower install ngCordova
 - [Keychain](https://github.com/shazron/KeychainPlugin)
 - [Launch Navigator](https://github.com/dpa99c/phonegap-launch-navigator)
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
+- [Market](https://github.com/xmartlabs/cordova-plugin-market)
 - [Media Capture](https://github.com/apache/cordova-plugin-media-capture)
 - [Media](https://github.com/apache/cordova-plugin-media) *
 - [MillennialMedia Ads](https://github.com/floatinghotpot/cordova-plugin-mmedia) (:warning: share % Ad revenue)
