@@ -4917,6 +4917,24 @@ angular.module('ngCordova.plugins.mMediaAds', [])
     };
   }]);
 
+// install  :     cordova plugin add https://github.com/xmartlabs/cordova-plugin-market.git
+// link     :     https://github.com/xmartlabs/cordova-plugin-market
+
+angular.module('ngCordova.plugins.market', [])
+  .factory('$cordovaMarket', ['$q', '$window', function ($q, $window) {
+    return {
+      open: function (appId) {
+        var d = $q.defer();
+        $window.cordova.plugins.market.open(appId, function () {
+          d.resolve();
+        }, function () {
+          d.reject();
+        });
+        return d.promise;
+      }
+    };
+  }]);
+
 // install   :      cordova plugin add cordova-plugin-media
 // link      :      https://github.com/apache/cordova-plugin-media
 
