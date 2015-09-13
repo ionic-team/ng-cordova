@@ -5233,6 +5233,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.keychain',
   'ngCordova.plugins.launchNavigator',
   'ngCordova.plugins.localNotification',
+  'ngCordova.plugins.market',
   'ngCordova.plugins.media',
   'ngCordova.plugins.mMediaAds',
   'ngCordova.plugins.mobfoxAds',
