@@ -73,6 +73,34 @@ describe('Service: $cordovaToast', function() {
     })(functionNames[i]);
   }
 
+  it('should call window\'s plugins.toast.showWithOptions method', function() {
+
+    var result;
+
+    spyOn(window.plugins.toast, 'showWithOptions')
+      .andCallFake(function (options, successCb, errorCb) {
+        successCb(true);
+      });
+
+    $cordovaToast.showWithOptions({ message: 'some message', duration: 1000, position: 'top', addPixelsY: 123 })
+      .then(function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe(true);
+    expect(window.plugins.toast.showWithOptions).toHaveBeenCalledWith({ 
+        message: 'some message',
+        duration: 1000,
+        position: 'top',
+        addPixelsY: 123
+      },
+      jasmine.any(Function),
+      jasmine.any(Function)
+    );
+  });
+
   it('should call window\'s plugins.toast.show method', function() {
 
     var result;
