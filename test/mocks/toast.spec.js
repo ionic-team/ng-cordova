@@ -14,6 +14,7 @@ describe('ngCordovaMocks', function () {
       'showLongTop',
       'showLongCenter',
       'showLongBottom',
+      'showWithOptions',
       'show'
     ];
 
