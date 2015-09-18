@@ -5239,6 +5239,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip',
   'ngCordova.plugins.insomnia'
+  'ngCordova.plugins.navigationbar'
 ]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mopub.git
