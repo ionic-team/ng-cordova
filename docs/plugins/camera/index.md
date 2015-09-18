@@ -43,6 +43,7 @@ cordova plugin add org.apache.cordova.camera
 > | cameraDirection   | `Number`       | Back = `0`, Front-facing = `1` |
 > | popoverOptions    | `String`       | iOS-only options that specify popover location in iPad |
 > | saveToPhotoAlbum  | `Boolean`      | Save image to photo album on the device |
+> | correctOrientation  | `Boolean`      | correct camera captured images in case wrong orientation |
 
 **Returns**  `Object` with image data
 
@@ -65,7 +66,8 @@ module.controller('PictureCtrl', function($scope, $cordovaCamera) {
       targetWidth: 100,
       targetHeight: 100,
       popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false
+      saveToPhotoAlbum: false,
+	  correctOrientation:true
     };
 
     $cordovaCamera.getPicture(options).then(function(imageData) {
