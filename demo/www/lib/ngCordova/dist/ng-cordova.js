@@ -5432,6 +5432,23 @@ angular.module('ngCordova.plugins.nativeAudio', [])
     };
   }]);
 
+// install   :      cordova plugin add cordova-plugin-navigationbar
+// link      :      https://github.com/Tobiaswk/cordova-plugin-navigationbar
+
+/* globals NavigationBar: true */
+angular.module('ngCordova.plugins.navigationbar', [])
+
+.factory('$cordovaNavigationbar', [function() {
+
+  return {
+
+    styleHex: function(colorHex) {
+      return NavigationBar.backgroundColorByHexString(colorHex);
+    }
+
+  };
+}]);
+
 // install   :      cordova plugin add cordova-plugin-network-information
 // link      :      https://github.com/apache/cordova-plugin-network-information
 
