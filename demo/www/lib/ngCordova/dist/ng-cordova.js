@@ -5949,13 +5949,15 @@ angular.module('ngCordova.plugins.push', [])
     };
   }]);
 
+
 // install   :      cordova plugin add phonegap-plugin-push
 // link      :      https://github.com/phonegap/phonegap-plugin-push
 
 angular.module('ngCordova.plugins.push_v5', [])
   .factory('$cordovaPushV5',['$q', '$rootScope', '$timeout', function ($q, $rootScope, $timeout) {
+   /*global PushNotification*/
 
-    var push = undefined;
+    var push;
     return {
       initialize : function (options) {
         var q = $q.defer();
@@ -5976,6 +5978,7 @@ angular.module('ngCordova.plugins.push_v5', [])
         });
       },
       register : function () {
+        var q = $q.defer();
         if (push === undefined) {
           q.reject(new Error('init must be called before any other operation'));
         } else {
@@ -5986,18 +5989,20 @@ angular.module('ngCordova.plugins.push_v5', [])
         return q.promise;
       },
       unregister : function () {
+        var q = $q.defer();
         if (push === undefined) {
           q.reject(new Error('init must be called before any other operation'));
         } else {
           push.unregister(function (success) {
             q.resolve(success);
           },function (error) {
-            q.reject(error)
+            q.reject(error);
           });
         }
         return q.promise;
       },
       setBadgeNumber : function (number) {
+        var q = $q.defer();
         if (push === undefined) {
           q.reject(new Error('init must be called before any other operation'));
         } else {
