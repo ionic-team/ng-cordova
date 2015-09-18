@@ -6,7 +6,7 @@
  * A service for testing the navigation bar
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaStatusbar', function() {
+ngCordovaMocks.factory('$cordovaNavigationbar', function() {
 
   return {
 
