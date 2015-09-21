@@ -1,0 +1,23 @@
+<ion-view title="Diagnostic">
+
+	<ion-content>
+		<div class="card">
+			<div class="item item-divider">
+				Get location status
+			</div>
+			<div class="item">
+				<strong>Enabled </strong> &nbsp; {{ locationEnabled }}
+			</div>
+			<div class="item" ng-show="errorMsg">
+				<p>{{errorMsg}}</p>
+			</div>
+		</div>
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="isLocationEnabled()">
+				Get location status
+			</button>
+
+		</div>
+	</ion-content>
+</ion-view>
