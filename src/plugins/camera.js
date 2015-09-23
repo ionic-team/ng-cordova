@@ -119,7 +119,7 @@ angular.module('ngCordova.plugins.camera', [])
       } else {
         throw 'The allowEdit param need be a boolean value.';
       }
-    };
+    }
 
     /**
      * @description
@@ -140,7 +140,7 @@ angular.module('ngCordova.plugins.camera', [])
       } else {
         throw 'The encodingType param need be a String value.';
       }
-    };
+    }
 
     /**
      * @description
@@ -154,7 +154,7 @@ angular.module('ngCordova.plugins.camera', [])
       } else {
         throw 'The targetWidth param need be a number value';
       }
-    };
+    }
 
     /**
      * @description
@@ -168,7 +168,7 @@ angular.module('ngCordova.plugins.camera', [])
       } else {
         throw 'The targetHeight param need be a number value';
       }
-    };
+    }
 
     /**
      * @description
@@ -188,7 +188,7 @@ angular.module('ngCordova.plugins.camera', [])
       if (angular.isObject(value)) {
         if (angular.isDefined(value.arrowDir)) {
           if (!angular.isString(value.arrowDir)){
-            throw 'The param popoverOptions.arrowDir need be a String value.'
+            throw 'The param popoverOptions.arrowDir need be a String value.';
           }
 
           var arrowDir = value.arrowDir.toUpperCase();
@@ -201,7 +201,7 @@ angular.module('ngCordova.plugins.camera', [])
       } else {
         throw 'The popoverOptions need be a Object value.';
       }
-    };
+    }
 
     /**
      * @description
@@ -215,7 +215,7 @@ angular.module('ngCordova.plugins.camera', [])
       } else {
         throw 'The saveToPhotoAlbum param need be a boolean value.';
       }
-    };
+    }
 
     return {
       setQuality: setQuality,
