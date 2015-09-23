@@ -104,7 +104,7 @@ angular.module('demo', [
     })
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $cordovaAppRateProvider, $cordovaInAppBrowserProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $cordovaFacebookProvider, $cordovaAppRateProvider, $cordovaInAppBrowserProvider, $cordovaCameraProvider) {
 
     if (!window.cordova) {
       var appID = 1234567890;
@@ -128,6 +128,7 @@ angular.module('demo', [
     }, false);
 
     $cordovaInAppBrowserProvider.setDefaultOptions(browserOptions);
+    $cordovaCameraProvider.setQuality(80);
 
     $stateProvider
 
