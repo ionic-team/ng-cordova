@@ -30,7 +30,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 2. Create a new branch in your personally forked repo, with a name similar to your edits, such as `fix-facebook-plugin`
 3. Make your edits inside your new branch
 4. Commit them and push them back to your personal github fork
-5. Make a new [Pull Request](https://github.com/driftyco/ng-cordova/compare/) on the ng-cordova repo. Point your branch to the `master` ng-cordova branch and submit
+5. Make a new [Pull Request](https://github.com/driftyco/ng-cordova/compare/) on the ng-cordova repo. Point your branch to the `dev-next` ng-cordova branch and submit.
 
 
 #### Fix the Docs
