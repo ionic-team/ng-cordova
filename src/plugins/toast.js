@@ -66,7 +66,6 @@ angular.module('ngCordova.plugins.toast', [])
         return q.promise;
       },
 
-
       show: function (message, duration, position) {
         var q = $q.defer();
         $window.plugins.toast.show(message, duration, position, function (response) {
@@ -74,6 +73,17 @@ angular.module('ngCordova.plugins.toast', [])
         }, function (error) {
           q.reject(error);
         });
+        return q.promise;
+      },
+
+      hide: function () {
+        var q = $q.defer();
+        try {
+          $window.plugins.toast.hide();
+          q.resolve();
+        } catch (error) {
+          q.reject(error && error.message);
+        }
         return q.promise;
       }
     };
