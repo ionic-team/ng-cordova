@@ -500,6 +500,223 @@ angular.module('ngCordova.plugins.batteryStatus', [])
     $injector.get('$cordovaBatteryStatus'); //ensure the factory and subsequent event listeners get initialised
   }]);
 
+// install   :  cordova plugin add https://github.com/petermetz/cordova-plugin-ibeacon.git
+// link      :  https://github.com/petermetz/cordova-plugin-ibeacon
+
+angular.module('ngCordova.plugins.beacon', [])
+
+  .factory('$cordovaBeacon', ['$window', '$rootScope', '$timeout', '$q', function ($window, $rootScope, $timeout, $q) {
+    var callbackDidDetermineStateForRegion = null;
+    var callbackDidStartMonitoringForRegion = null;
+    var callbackDidExitRegion = null;
+    var callbackDidEnterRegion = null;
+    var callbackDidRangeBeaconsInRegion = null;
+    var callbackPeripheralManagerDidStartAdvertising = null;
+    var callbackPeripheralManagerDidUpdateState = null;
+    var callbackDidChangeAuthorizationStatus = null;
+
+    document.addEventListener('deviceready', function () {
+      if ($window.cordova &&
+          $window.cordova.plugins &&
+          $window.cordova.plugins.locationManager) {
+        var delegate = new $window.cordova.plugins.locationManager.Delegate();
+
+        delegate.didDetermineStateForRegion = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:didDetermineStateForRegion', pluginResult);
+          });
+
+          if (callbackDidDetermineStateForRegion) {
+            callbackDidDetermineStateForRegion(pluginResult);
+          }
+        };
+
+        delegate.didStartMonitoringForRegion = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:didStartMonitoringForRegion', pluginResult);
+          });
+
+          if (callbackDidStartMonitoringForRegion) {
+            callbackDidStartMonitoringForRegion(pluginResult);
+          }
+        };
+
+        delegate.didExitRegion = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:didExitRegion', pluginResult);
+          });
+
+          if (callbackDidExitRegion) {
+            callbackDidExitRegion(pluginResult);
+          }
+        };
+
+        delegate.didEnterRegion = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:didEnterRegion', pluginResult);
+          });
+
+          if (callbackDidEnterRegion) {
+            callbackDidEnterRegion(pluginResult);
+          }
+        };
+
+        delegate.didRangeBeaconsInRegion = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:didRangeBeaconsInRegion', pluginResult);
+          });
+
+          if (callbackDidRangeBeaconsInRegion) {
+            callbackDidRangeBeaconsInRegion(pluginResult);
+          }
+        };
+
+        delegate.peripheralManagerDidStartAdvertising = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:peripheralManagerDidStartAdvertising', pluginResult);
+          });
+
+          if (callbackPeripheralManagerDidStartAdvertising) {
+            callbackPeripheralManagerDidStartAdvertising(pluginResult);
+          }
+        };
+
+        delegate.peripheralManagerDidUpdateState = function (pluginResult) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:peripheralManagerDidUpdateState', pluginResult);
+          });
+
+          if (callbackPeripheralManagerDidUpdateState) {
+            callbackPeripheralManagerDidUpdateState(pluginResult);
+          }
+        };
+
+        delegate.didChangeAuthorizationStatus = function (status) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaBeacon:didChangeAuthorizationStatus', status);
+          });
+
+          if (callbackDidChangeAuthorizationStatus) {
+            callbackDidChangeAuthorizationStatus(status);
+          }
+        };
+
+        $window.cordova.plugins.locationManager.setDelegate(delegate);
+      }
+    }, false);
+
+    return {
+      setCallbackDidDetermineStateForRegion: function (callback) {
+        callbackDidDetermineStateForRegion = callback;
+      },
+      setCallbackDidStartMonitoringForRegion: function (callback) {
+        callbackDidStartMonitoringForRegion = callback;
+      },
+      setCallbackDidExitRegion: function (callback) {
+        callbackDidExitRegion = callback;
+      },
+      setCallbackDidEnterRegion: function (callback) {
+        callbackDidEnterRegion = callback;
+      },
+      setCallbackDidRangeBeaconsInRegion: function (callback) {
+        callbackDidRangeBeaconsInRegion = callback;
+      },
+      setCallbackPeripheralManagerDidStartAdvertising: function (callback) {
+        callbackPeripheralManagerDidStartAdvertising = callback;
+      },
+      setCallbackPeripheralManagerDidUpdateState: function (callback) {
+        callbackPeripheralManagerDidUpdateState = callback;
+      },
+      setCallbackDidChangeAuthorizationStatus: function (callback) {
+        callbackDidChangeAuthorizationStatus = callback;
+      },
+      createBeaconRegion: function (identifier, uuid, major, minor, notifyEntryStateOnDisplay) {
+        major = major || undefined;
+        minor = minor || undefined;
+
+        return new $window.cordova.plugins.locationManager.BeaconRegion(
+          identifier,
+          uuid,
+          major,
+          minor,
+          notifyEntryStateOnDisplay
+        );
+      },
+      isBluetoothEnabled: function () {
+        return $q.when($window.cordova.plugins.locationManager.isBluetoothEnabled());
+      },
+      enableBluetooth: function () {
+        return $q.when($window.cordova.plugins.locationManager.enableBluetooth());
+      },
+      disableBluetooth: function () {
+        return $q.when($window.cordova.plugins.locationManager.disableBluetooth());
+      },
+      startMonitoringForRegion: function (region) {
+        return $q.when($window.cordova.plugins.locationManager.startMonitoringForRegion(region));
+      },
+      stopMonitoringForRegion: function (region) {
+        return $q.when($window.cordova.plugins.locationManager.stopMonitoringForRegion(region));
+      },
+      requestStateForRegion: function (region) {
+        return $q.when($window.cordova.plugins.locationManager.requestStateForRegion(region));
+      },
+      startRangingBeaconsInRegion: function (region) {
+        return $q.when($window.cordova.plugins.locationManager.startRangingBeaconsInRegion(region));
+      },
+      stopRangingBeaconsInRegion: function (region) {
+        return $q.when($window.cordova.plugins.locationManager.stopRangingBeaconsInRegion(region));
+      },
+      getAuthorizationStatus: function () {
+        return $q.when($window.cordova.plugins.locationManager.getAuthorizationStatus());
+      },
+      requestWhenInUseAuthorization: function () {
+        return $q.when($window.cordova.plugins.locationManager.requestWhenInUseAuthorization());
+      },
+      requestAlwaysAuthorization: function () {
+        return $q.when($window.cordova.plugins.locationManager.requestAlwaysAuthorization());
+      },
+      getMonitoredRegions: function () {
+        return $q.when($window.cordova.plugins.locationManager.getMonitoredRegions());
+      },
+      getRangedRegions: function () {
+        return $q.when($window.cordova.plugins.locationManager.getRangedRegions());
+      },
+      isRangingAvailable: function () {
+        return $q.when($window.cordova.plugins.locationManager.isRangingAvailable());
+      },
+      isMonitoringAvailableForClass: function (region) {
+        return $q.when($window.cordova.plugins.locationManager.isMonitoringAvailableForClass(region));
+      },
+      startAdvertising: function (region, measuredPower) {
+        return $q.when($window.cordova.plugins.locationManager.startAdvertising(region, measuredPower));
+      },
+      stopAdvertising: function () {
+        return $q.when($window.cordova.plugins.locationManager.stopAdvertising());
+      },
+      isAdvertisingAvailable: function () {
+        return $q.when($window.cordova.plugins.locationManager.isAdvertisingAvailable());
+      },
+      isAdvertising: function () {
+        return $q.when($window.cordova.plugins.locationManager.isAdvertising());
+      },
+      disableDebugLogs: function () {
+        return $q.when($window.cordova.plugins.locationManager.disableDebugLogs());
+      },
+      enableDebugNotifications: function () {
+        return $q.when($window.cordova.plugins.locationManager.enableDebugNotifications());
+      },
+      disableDebugNotifications: function () {
+        return $q.when($window.cordova.plugins.locationManager.disableDebugNotifications());
+      },
+      enableDebugLogs: function () {
+        return $q.when($window.cordova.plugins.locationManager.enableDebugLogs());
+      },
+      appendToDeviceLog: function (message) {
+        return $q.when($window.cordova.plugins.locationManager.appendToDeviceLog(message));
+      }
+    };
+  }]);
+
 //  install   :   cordova plugin add https://github.com/don/cordova-plugin-ble-central.git
 //  link      :   https://github.com/don/cordova-plugin-ble-central
 
@@ -4321,7 +4538,7 @@ angular.module('ngCordova.plugins.instagram', [])
         if (err) {
           q.reject(err);
         } else {
-          q.resolve(installed || true);
+          q.resolve(installed);
         }
       });
       return q.promise;
@@ -4435,7 +4652,7 @@ angular.module('ngCordova.plugins.launchNavigator', [])
   .factory('$cordovaLaunchNavigator', ['$q', function ($q) {
 
     return {
-      navigate: function (destination, start, successFn, errorFn, options) {
+      navigate: function (destination, start, options) {
         var q = $q.defer();
         launchnavigator.navigate(
           destination,
@@ -5176,6 +5393,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.badge',
   'ngCordova.plugins.barcodeScanner',
   'ngCordova.plugins.batteryStatus',
+  'ngCordova.plugins.beacon',
   'ngCordova.plugins.ble',
   'ngCordova.plugins.bluetoothSerial',
   'ngCordova.plugins.brightness',
@@ -5832,6 +6050,74 @@ angular.module('ngCordova.plugins.push', [])
     };
   }]);
 
+
+// install   :      cordova plugin add phonegap-plugin-push
+// link      :      https://github.com/phonegap/phonegap-plugin-push
+
+angular.module('ngCordova.plugins.push_v5', [])
+  .factory('$cordovaPushV5',['$q', '$rootScope', '$timeout', function ($q, $rootScope, $timeout) {
+   /*global PushNotification*/
+
+    var push;
+    return {
+      initialize : function (options) {
+        var q = $q.defer();
+        push = PushNotification.init(options);
+        q.resolve(push);
+        return q.promise;
+      },
+      onNotification : function () {
+        $timeout(function () {
+          push.on('notification', function (notification) {
+            $rootScope.$emit('$cordovaPushV5:notificationReceived', notification);
+          });
+        });
+      },
+      onError : function () {
+        $timeout(function () {
+          push.on('error', function (error) { $rootScope.$emit('$cordovaPushV5:errorOccurred', error);});
+        });
+      },
+      register : function () {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.on('registration', function (data) {
+            q.resolve(data.registrationId);
+          });
+        }
+        return q.promise;
+      },
+      unregister : function () {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.unregister(function (success) {
+            q.resolve(success);
+          },function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
+      },
+      setBadgeNumber : function (number) {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.setApplicationIconBadgeNumber(function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          }, number);
+        }
+        return q.promise;
+      }
+    };
+  }]);
+
 // install   :      cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
 // link      :      https://github.com/cordova-sms/cordova-sms-plugin
 
@@ -6046,14 +6332,18 @@ angular.module('ngCordova.plugins.sqlite', [])
 
     return {
       openDB: function (options, background) {
-        if (typeof options !== 'object') {
-          options = {name: options};
-        }
-        if (typeof background !== 'undefined') {
-          options.bgType = background;
+
+        if (angular.isObject(options) && !angular.isString(options)) {
+          if (typeof background !== 'undefined') {
+            options.bgType = background;
+          }
+          return $window.sqlitePlugin.openDatabase(options);
         }
 
-        return $window.sqlitePlugin.openDatabase(options);
+        return $window.sqlitePlugin.openDatabase({
+          name: options,
+          bgType: background
+        });
       },
 
       execute: function (db, query, binding) {
@@ -6321,6 +6611,51 @@ angular.module('ngCordova.plugins.touchid', [])
         }
 
         return defer.promise;
+      }
+    };
+  }]);
+
+// install   :      cordova plugin add https://github.com/aerogear/aerogear-cordova-push.git
+// link      :      https://github.com/aerogear/aerogear-cordova-push
+
+angular.module('ngCordova.plugins.upsPush', [])
+
+  .factory('$cordovaUpsPush', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
+    return {
+      register: function (config) {
+        var q = $q.defer();
+
+        $window.push.register(function (notification) {
+          $timeout(function () {
+            $rootScope.$broadcast('$cordovaUpsPush:notificationReceived', notification);
+          });
+        }, function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        }, config);
+
+        return q.promise;
+      },
+
+      unregister: function (options) {
+        var q = $q.defer();
+        $window.push.unregister(function () {
+          q.resolve();
+        }, function (error) {
+          q.reject(error);
+        }, options);
+
+        return q.promise;
+      },
+
+      // iOS only
+      setBadgeNumber: function (number) {
+        var q = $q.defer();
+        $window.push.setApplicationIconBadgeNumber(function () {
+          q.resolve();
+        }, number);
+        return q.promise;
       }
     };
   }]);
