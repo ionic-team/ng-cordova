@@ -13,7 +13,7 @@ var ngCordovaMocks = angular.module('ngCordovaMocks', []);
  * @description
  * A service for testing barcode scanner features
  * in an app build with ngCordova.
-**/ 
+**/
 ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 	var throwsError = false;
 
@@ -28,9 +28,9 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaBarcodeScanner
 		 *
 		 * @description
-		 * A flag that signals whether a promise should be rejected or not. 
+		 * A flag that signals whether a promise should be rejected or not.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		throwsError: throwsError,
 
         /**
@@ -40,10 +40,10 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 		 *
 		 * @description
 		 * Used to simulate the result.text property of a
-		 * successful scan. For more information, see the text at 
+		 * successful scan. For more information, see the text at
 		 * https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		scannedText: scannedText,
 
         /**
@@ -53,7 +53,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 		 *
 		 * @description
 		 * Used to simulate the result.format property of a
-		 * successful scan. For more information, see the text at 
+		 * successful scan. For more information, see the text at
 		 * https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
 		 * This property should only be used in automated tests.
 		**/
@@ -66,7 +66,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 		 *
 		 * @description
 		 * Used to simulate the result.cancelled property of a
-		 * successful scan. For more information, see the text at 
+		 * successful scan. For more information, see the text at
 		 * https://github.com/wildabeast/BarcodeScanner/#using-the-plugin
 		 * This property should only be used in automated tests.
 		**/
@@ -93,7 +93,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
 				defer.resolve();
 			}
 			return defer.promise;
-		}		
+		}
 	};
 }]);
 /**
@@ -103,7 +103,7 @@ ngCordovaMocks.factory('$cordovaBarcodeScanner', ['$q', function($q) {
  * @description
  * A service for testing camera features
  * in an app build with ngCordova.
-**/ 
+**/
 ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
 	var throwsError = false;
 
@@ -114,9 +114,9 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaCamera
 		 *
 		 * @description
-		 * A flag that signals whether a promise should be rejected or not. 
+		 * A flag that signals whether a promise should be rejected or not.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		throwsError: throwsError,
 
 		getPicture: function(options) {
@@ -128,7 +128,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
 					options = options;	// This is just to get by JSHint.
 				}
 
-				defer.resolve();					
+				defer.resolve();
 			}
 			return defer.promise;
 		}
@@ -143,7 +143,7 @@ ngCordovaMocks.factory('$cordovaCamera', ['$q', function($q) {
  * in an app build with ngCordova.
  *
  * @example
- */ 
+ */
 ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
 	var throwsError = false;
 
@@ -154,9 +154,9 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaCapture
 		 *
 		 * @description
-		 * A flag that signals whether a promise should be rejected or not. 
+		 * A flag that signals whether a promise should be rejected or not.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		throwsError: throwsError,
 
 		captureAudio : function() {
@@ -197,7 +197,7 @@ ngCordovaMocks.factory('$cordovaCapture', ['$q', function($q) {
  * @description
  * A service for testing features related with contacts
  * in an app build with ngCordova.
-**/  
+**/
 ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 	var throwsError = false;
 	var contacts = [];
@@ -242,7 +242,7 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 
 				if (existingIndex === null) {
 					this.contacts.push(contact);
-					defer.resolve();					
+					defer.resolve();
 				} else {
 					defer.reject('Contact already exists.');
 				}
@@ -281,7 +281,7 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 				defer.reject('There was an error finding the contact.');
 			} else {
 				var fields = options.fields || ['id', 'displayName'];
-				delete options.fields;				
+				delete options.fields;
 
 				if (!fields) {
 					defer.reject('ContactError.INVALID_ARGUMENT_ERROR');
@@ -302,7 +302,7 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function($q) {
 					}
 				}
 			}
-			return defer.promise;			
+			return defer.promise;
 		}
 	};
 }]);
@@ -329,7 +329,7 @@ ngCordovaMocks.factory('$cordovaDatePicker', function () {
  * @description
  * A service for testing device information
  * in an app build with ngCordova.
-**/  
+**/
 ngCordovaMocks.factory('$cordovaDevice', function () {
 	var device = '';
 	var cordova = '';
@@ -345,9 +345,9 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 		 * @propertyOf ngCordovaMocks.cordovaDevice
 		 *
 		 * @description
-		 * The name of the 'device'. 
+		 * The name of the 'device'.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		device: device,
 
         /**
@@ -358,7 +358,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 		 * @description
 		 * The version of cordova in use.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		cordova: cordova,
 
         /**
@@ -380,7 +380,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 		 * @description
 		 * The name of the operating system in use.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		platform: platform,
 
         /**
@@ -391,7 +391,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 		 * @description
 		 * The unique identifier of a device.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		uuid: uuid,
 
         /**
@@ -402,7 +402,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 		 * @description
 		 * The version of the operating system.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		version: version,
 
 		getDevice: function () {
@@ -437,7 +437,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
  * @description
  * A service for mocking the accelerometer
  * in an app build with ngCordova.
-**/  
+**/
 ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($interval, $q) {
 	var currentAcceleration = null;
 	var throwsError = false;
@@ -451,9 +451,9 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 		 * @propertyOf ngCordovaMocks.cordovaDeviceMotion
 		 *
 		 * @description
-		 * The current acceleration. 
+		 * The current acceleration.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		currentAcceleration: currentAcceleration,
 
         /**
@@ -475,7 +475,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 		 * @description
 		 * The collection of 'positions' that have been logged.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		positions: positions,
 
         /**
@@ -486,7 +486,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 		 * @description
 		 * The collection of watchers that are currently active.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		watchIntervals: watchIntervals,
 
 		getCurrentAcceleration: function () {
@@ -505,14 +505,14 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 
 			this.positions = [];
 			self = this;
-			
+
 			if (this.throwsError) {
 				defer.reject('There was an error watching the current acceleration.');
 			} else {
 				var delay = 10000;		// The default based on https://github.com/apache/cordova-plugin-device-motion/blob/master/doc/index.md
 				if (options && options.frequency) {
 					delay = options.frequency;
-				}				
+				}
 
 				this.watchIntervals.push($interval(
 					function() {
@@ -527,8 +527,8 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 						var result = { x: randomX, y: randomY, z:randomZ, timestamp:Date.now() };
 
 						self.positions.push(result);
-						defer.notify(result);	
-					}, 
+						defer.notify(result);
+					},
 					delay
 				));
 			}
@@ -540,7 +540,7 @@ ngCordovaMocks.factory('$cordovaDeviceMotion', ['$interval', '$q', function ($in
 		},
 
 		clearWatch: function (watchId) {
-			var defer = $q.defer();			
+			var defer = $q.defer();
 			if (watchId) {
 				if (this.throwsError) {
 					defer.reject('Unable to clear watch.');
@@ -733,7 +733,7 @@ ngCordovaMocks.factory('$cordovaDeviceOrientation', ['$interval', '$q', function
  * @description
  * A service for testing dialogs
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 	var dialogText = false;
 	var dialogTitle = '';
@@ -751,7 +751,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 		 * @description
 		 * The main content in the dialog.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		dialogText: dialogText,
 
         /**
@@ -762,7 +762,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 		 * @description
 		 * The title of the dialog.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		dialogTitle: dialogTitle,
 
         /**
@@ -795,7 +795,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 		 * @description
 		 * An array of the text of each button in the dialog.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		buttonLabels: [],
 
         /**
@@ -806,7 +806,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 		 * @description
 		 * The number of times a beep has occurred.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		beepCount: beepCount,
 
         /**
@@ -815,26 +815,26 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 		 * @propertyOf ngCordovaMocks.cordovaDialogs
 		 *
 		 * @description
-		 * A flag that signals whether or not to try and use the host's 
+		 * A flag that signals whether or not to try and use the host's
 		 * (browser or otherwise) prompting capabilities.
 		 * This property should only be used in automated tests.
 		**/
-		useHostAbilities: useHostAbilities,		
+		useHostAbilities: useHostAbilities,
 
 		alert: function(message, title, buttonName) {
 			var d = $q.defer();
 
 			if (this.useHostAbilities) {
-				// NOTE: The window.alert method doesn't support a title or callbacks.				
+				// NOTE: The window.alert method doesn't support a title or callbacks.
 				alert(message);
 				d.resolve();
 			} else {
 				this.dialogText = message;
 				this.dialogTitle = title;
-				this.buttonLabels.push(buttonName);				
+				this.buttonLabels.push(buttonName);
 				d.resolve();
 			}
-			
+
 			return d.promise;
 		},
 
@@ -848,7 +848,7 @@ ngCordovaMocks.factory('$cordovaDialogs', ['$q', function ($q) {
 			} else {
 				this.dialogText = message;
 				this.dialogTitle = title;
-				this.buttonLabels.push(buttonName);				
+				this.buttonLabels.push(buttonName);
 				d.resolve(0);
 			}
 
@@ -924,15 +924,15 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 		 * @description
 		 * A fake, in-memory file system. This is incomplete at this time.
 		 * This property should only be used in automated tests.
-		 **/		
+		 **/
 		fileSystem: fileSystem,
 
 		checkDir: function(directory) {
-			return mockIt.call(this, 'There was an error checking the directory.');		
+			return mockIt.call(this, 'There was an error checking the directory.');
 		},
 
 		createDir: function(directory, overwrite) {
-			return mockIt.call(this, 'There was an error creating the directory.');		
+			return mockIt.call(this, 'There was an error creating the directory.');
 		},
 
 		listDir: function(filePath) {
@@ -940,7 +940,7 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 		},
 
 		checkFile: function(directory, file) {
-			return mockIt.call(this, 'There was an error checking for the file.');	
+			return mockIt.call(this, 'There was an error checking for the file.');
 		},
 
 		createFile: function(directory, file, overwrite) {
@@ -948,15 +948,15 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 		},
 
 		removeFile: function(directory, file) {
-			return mockIt.call(this,'There was an error removng the file.');	
+			return mockIt.call(this,'There was an error removng the file.');
 		},
 
 		writeFile: function(directory, file, options) {
-			return mockIt.call(this,'There was an error writing the file.');		
+			return mockIt.call(this,'There was an error writing the file.');
 		},
 
 		readFile: function(directory, file) {
-			return mockIt.call(this, 'There was an error reading the file.');			
+			return mockIt.call(this, 'There was an error reading the file.');
 		},
 
 		readAsText: function (filePath) {
@@ -988,12 +988,12 @@ ngCordovaMocks.factory('$cordovaFile', ['$q', function($q) {
 		},
 
 		downloadFile: function(source, filePath, trust, options) {
-			return mockIt.call(this, 'There was an error downloading the file.');	
+			return mockIt.call(this, 'There was an error downloading the file.');
 		},
 
 		uploadFile: function(server, filePath, options) {
-			return mockIt.call(this, 'There was an error uploading the file.');	
-		}		
+			return mockIt.call(this, 'There was an error uploading the file.');
+		}
 	};
 }]);
 /**
@@ -1242,7 +1242,7 @@ ngCordovaMocks.factory('$cordovaGeolocation', ['$interval', '$q', function($inte
  * @description
  * A service for testing features related to a user's locale and timezone.
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 	var throwsError = false;
 	var preferredLanguage = 'en';
@@ -1256,9 +1256,9 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaGlobalization
 		 *
 		 * @description
-		 * A flag that signals whether a promise should be rejected or not. 
+		 * A flag that signals whether a promise should be rejected or not.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		throwsError: throwsError,
 
         /**
@@ -1269,7 +1269,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 		 * @description
 		 * The user's preferred language.
 		 * This property should only be used in automated tests.
-		**/						
+		**/
 		preferredLanguage: preferredLanguage,
 
         /**
@@ -1280,7 +1280,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 		 * @description
 		 * The name of the user's locale.
 		 * This property should only be used in automated tests.
-		**/			
+		**/
 		localeName: localeName,
 
         /**
@@ -1291,7 +1291,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 		 * @description
 		 * The first day of the week based on the user's locale.
 		 * This property should only be used in automated tests.
-		**/					
+		**/
 		firstDayOfWeek: firstDayOfWeek,
 
 		getPreferredLanguage: function() {
@@ -1338,7 +1338,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
 				defer.resolve(result);
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
 
 		stringToDate: function(dateString, options) {
@@ -1355,8 +1355,8 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
 				defer.resolve(result);
 			}
-			return defer.promise;			
-		},	
+			return defer.promise;
+		},
 
 		getDatePattern: function(options) {
 			var defer = $q.defer();
@@ -1371,7 +1371,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
 				defer.resolve(result);
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
 
 		getDateNames: function(options) {
@@ -1452,7 +1452,7 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
 				defer.resolve(result);
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
 
 		getCurrencyPattern: function(currencyCode) {
@@ -1468,8 +1468,8 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
 
 				defer.resolve(result);
 			}
-			return defer.promise;			
-		}	
+			return defer.promise;
+		}
 	};
 }]);
 /**
@@ -1479,10 +1479,10 @@ ngCordovaMocks.factory('$cordovaGlobalization', ['$q', function($q) {
  * @description
  * A service for testing device keyboard features
  * in an app build with ngCordova.
-**/ 
+**/
 ngCordovaMocks.factory('$cordovaKeyboard', function() {
   var isVisible=false;
-	
+
 	return {
     hideAccessoryBar: function (bool) {
     },
@@ -1497,7 +1497,7 @@ ngCordovaMocks.factory('$cordovaKeyboard', function() {
 
     disableScroll: function (bool) {
     },
-   
+
     isVisible: function () {
       return isVisible;
     }
@@ -1512,7 +1512,7 @@ ngCordovaMocks.factory('$cordovaKeyboard', function() {
  * @description
  * A service for testing networked fetures
  * in an app build with ngCordova.
- */  
+ */
 ngCordovaMocks.factory('$cordovaNetwork', function () {
 	var connectionType = 'WiFi connection';
 	var isConnected = true;
@@ -1525,9 +1525,9 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
 		 *
 		 * @description
 		 * They type of connection. Values should match those found at
-		 * https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md 
+		 * https://github.com/apache/cordova-plugin-network-information/blob/master/doc/index.md
 		 * This property should only be used in automated tests.
-		**/	
+		**/
 		connectionType: connectionType,
 
         /**
@@ -1536,9 +1536,9 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
 		 * @propertyOf ngCordovaMocks.cordovaNetwork
 		 *
 		 * @description
-		 * A flag that signals whether the app is connected to a network. 
+		 * A flag that signals whether the app is connected to a network.
 		 * This property should only be used in automated tests.
-		**/			
+		**/
 		isConnected: isConnected,
 
 		getNetwork: function () {
@@ -1561,7 +1561,7 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
  * @description
  * A service for testing via social services
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 	var throwsError = false;
 	var message = '';
@@ -1582,9 +1582,9 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaSocialSharing
 		 *
 		 * @description
-		 * A flag that signals whether a promise should be rejected or not. 
+		 * A flag that signals whether a promise should be rejected or not.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		throwsError: throwsError,
 
         /**
@@ -1593,7 +1593,7 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaSocialSharing
 		 *
 		 * @description
-		 * The message to be shared via a social service. 
+		 * The message to be shared via a social service.
 		 * This property should only be used in automated tests.
 		**/
 		message: message,
@@ -1604,7 +1604,7 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 		 * @propertyOf ngCordovaMocks.cordovaSocialSharing
 		 *
 		 * @description
-		 * An image to be shared via a social service. 
+		 * An image to be shared via a social service.
 		 * This property should only be used in automated tests.
 		**/
 		image: image,
@@ -1725,7 +1725,7 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 
 				defer.resolve();
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
 
 		shareViaSMS: function(message, number) {
@@ -1738,7 +1738,7 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 
 				defer.resolve();
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
 
 		shareViaEmail: function(message, subject, toArr, bccArr, file) {
@@ -1755,8 +1755,21 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 
 				defer.resolve();
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
+
+        shareViaInstagram: function(message, image) {
+          var defer = $q.defer();
+          if (this.throwsError) {
+            defer.reject('There was an error sharing via Instagram.');
+          } else {
+            this.message = message;
+            this.image = image;
+
+            defer.resolve();
+          }
+          return defer.promise;
+        },
 
 		canShareViaEmail: function() {
 			var defer = $q.defer();
@@ -1782,7 +1795,7 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
 
 				defer.resolve();
 			}
-			return defer.promise;			
+			return defer.promise;
 		},
 
 		shareVia: function(via, message, subject, file, link) {
@@ -1824,7 +1837,7 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function($q) {
  * @description
  * A service for testing the splash screen
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaSplashscreen', function() {
 	var isVisible = false;
 
@@ -1837,7 +1850,7 @@ ngCordovaMocks.factory('$cordovaSplashscreen', function() {
 		 * @description
 		 * A flag that signals whether the splash screen is visible or not.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		isVisible: isVisible,
 
 		hide: function() {
@@ -1861,7 +1874,7 @@ ngCordovaMocks.factory('$cordovaSplashscreen', function() {
  * @description
  * A service for testing the status bar
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaStatusbar', function() {
 	var isStatusBarVisible = true;
 	var canOverlayWebView = true;
@@ -1875,7 +1888,7 @@ ngCordovaMocks.factory('$cordovaStatusbar', function() {
 		 * @description
 		 * A flag that signals whether the status bar is visible or not.
 		 * This property should only be used in automated tests.
-		**/		
+		**/
 		isStatusBarVisible: isStatusBarVisible,
 
 		/**
@@ -1886,7 +1899,7 @@ ngCordovaMocks.factory('$cordovaStatusbar', function() {
 		 * @description
 		 * A flag that signals whether the status bar can overlay the web view.
 		 * This property should only be used in automated tests.
-		**/			
+		**/
 		canOverlayWebView: canOverlayWebView,
 
 		overlaysWebView: function(bool) {
@@ -1928,7 +1941,7 @@ ngCordovaMocks.factory('$cordovaStatusbar', function() {
  * @description
  * A service for testing vibration
  * in an app build with ngCordova.
- */ 
+ */
 ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
 	var isVibrating = false;
 	var vibrateTimer = null;
@@ -1953,7 +1966,7 @@ ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
 		 * @description
 		 * A flag that signals whether vibration is active.
 		 * This property should only be used in automated tests.
-		**/				
+		**/
 		isVibrating: isVibrating,
 
 		vibrate: function(time) {
@@ -1970,7 +1983,7 @@ ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
 							self.vibrateTimer = null;
 						},
 						time[0]
-					);					
+					);
 				} else {
 					this.vibrateTimer = $timeout(
 						function() {
@@ -1978,7 +1991,7 @@ ngCordovaMocks.factory('$cordovaVibration', ['$timeout', function($timeout) {
 							self.vibrateTimer = null;
 						},
 						time
-					);					
+					);
 				}
 			}
 		},

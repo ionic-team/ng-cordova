@@ -35,7 +35,7 @@ describe('ngCordovaMocks', function() {
 			;
 
 			$rootScope.$digest();
-		});		
+		});
 
 		it('should share with whatsApp', function (done) {
 			$cordovaSocialSharing.shareViaWhatsApp('Check out Ecofic!', null, 'http://www.ecofic.com')
@@ -135,6 +135,31 @@ describe('ngCordovaMocks', function() {
 			;
 
 			$rootScope.$digest();
-		});		
+		});
+
+        it('should share with instagram', function (done) {
+          $cordovaSocialSharing.shareViaInstagram('Check out Ecofic!', null)
+            .then(
+            function() { expect(true).toBe(true); },
+            function() { expect(false).toBe(true); }
+          )
+            .finally(function() { done(); })
+          ;
+
+          $rootScope.$digest();
+        });
+
+        it('should throw an error while sharing with instagram.', function(done) {
+          $cordovaSocialSharing.throwsError = true;
+          $cordovaSocialSharing.shareViaInstagram('Check out Ecofic!', null)
+            .then(
+            function() { expect(true).toBe(false); },
+            function() { expect(true).toBe(true); }
+          )
+            .finally(function() { done(); })
+          ;
+
+          $rootScope.$digest();
+        });
 	});
 })

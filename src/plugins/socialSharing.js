@@ -95,6 +95,17 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
+      shareViaInstagram: function (message, file) {
+        var q = $q.defer();
+        file = file || null;
+        $window.plugins.socialsharing.shareViaInstagram(message, file, function () {
+          q.resolve(true);
+        }, function () {
+          q.reject(false);
+        });
+        return q.promise;
+      },
+
       shareVia: function (via, message, subject, file, link) {
         var q = $q.defer();
         message = message || null;

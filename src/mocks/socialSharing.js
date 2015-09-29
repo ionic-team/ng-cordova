@@ -202,6 +202,19 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function ($q) {
       return defer.promise;
     },
 
+    shareViaInstagram: function(message, image) {
+      var defer = $q.defer();
+      if (this.throwsError) {
+        defer.reject('There was an error sharing via Instagram.');
+      } else {
+        this.message = message;
+        this.image = image;
+
+        defer.resolve();
+      }
+      return defer.promise;
+    },
+
     canShareViaEmail: function () {
       var defer = $q.defer();
       if (this.throwsError) {

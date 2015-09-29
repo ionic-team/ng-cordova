@@ -905,7 +905,7 @@ angular.module('ngCordova.plugins.brightness', [])
 angular.module('ngCordova.plugins.calendar', [])
 
   .factory('$cordovaCalendar', ['$q', '$window', function ($q, $window) {
-    
+
     return {
       createCalendar: function (options) {
         var d = $q.defer(),
@@ -1519,7 +1519,7 @@ angular.module('ngCordova.plugins.contacts', [])
 angular.module('ngCordova.plugins.datePicker', [])
 
   .factory('$cordovaDatePicker', ['$window', '$q', function ($window, $q) {
-    
+
     return {
       show: function (options) {
         var q = $q.defer();
@@ -1681,7 +1681,7 @@ angular.module('ngCordova.plugins.deviceOrientation', [])
     var defaultOptions = {
       frequency: 3000 // every 3s
     };
-    
+
     return {
       getCurrentHeading: function () {
         var q = $q.defer();
@@ -3748,7 +3748,7 @@ angular.module('ngCordova.plugins.googlePlus', [])
             q.reject(available);
           }
         });
-        
+
         return q.promise;
       }
     };
@@ -5843,6 +5843,17 @@ angular.module('ngCordova.plugins.socialSharing', [])
         bccArr = bccArr || null;
         fileArr = fileArr || null;
         $window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr, function () {
+          q.resolve(true);
+        }, function () {
+          q.reject(false);
+        });
+        return q.promise;
+      },
+
+      shareViaInstagram: function (message, file) {
+        var q = $q.defer();
+        file = file || null;
+        $window.plugins.socialsharing.shareViaInstagram(message, file, function () {
           q.resolve(true);
         }, function () {
           q.reject(false);
