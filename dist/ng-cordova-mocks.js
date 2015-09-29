@@ -1483,7 +1483,7 @@ ngCordovaMocks.factory('$cordovaFileTransfer', ['$q', function ($q) {
         },
 
         upload: function (server, filePath, options) {
-            return mockIt.call(this, 'There was an error uploading the file.'); 
+            return mockIt.call(this, 'There was an error uploading the file.');
         }
     };
 }]);
@@ -2619,6 +2619,19 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function ($q) {
         this.toAddresses = toArr;
         this.bccAddressesc = bccArr;
         this.attachments = file;
+
+        defer.resolve();
+      }
+      return defer.promise;
+    },
+
+    shareViaInstagram: function(message, image) {
+      var defer = $q.defer();
+      if (this.throwsError) {
+        defer.reject('There was an error sharing via Instagram.');
+      } else {
+        this.message = message;
+        this.image = image;
 
         defer.resolve();
       }
