@@ -502,6 +502,30 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function ($q) {
       }
 
       return defer.promise;
+    },
+
+    pickContact: function () {
+      var defer = $q.defer();
+
+      if (this.throwsError) {
+        defer.reject('There was an error picking the contact.');
+      } else {
+        defer.resolve(null);
+      }
+
+      return defer.promise;
+    },
+
+    create: function () {
+      var defer = $q.defer();
+
+      if (this.throwsError) {
+        defer.reject('There was an error picking the contact.');
+      } else {
+        defer.resolve(null);
+      }
+
+      return defer.promise;
     }
   };
 }]);
