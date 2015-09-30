@@ -14,6 +14,11 @@ ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function ($q) {
       var defer = $q.defer();
       defer.resolve('mock v');
       return defer.promise;
+    },
+    getVersionNumber: function() {
+      var defer = $q.defer();
+      defer.resolve('0.0.0');
+      return defer.promise;
     }
   };
 }]);
@@ -494,6 +499,30 @@ ngCordovaMocks.factory('$cordovaContacts', ['$q', function ($q) {
             defer.resolve(results);
           }
         }
+      }
+
+      return defer.promise;
+    },
+
+    pickContact: function () {
+      var defer = $q.defer();
+
+      if (this.throwsError) {
+        defer.reject('There was an error picking the contact.');
+      } else {
+        defer.resolve(null);
+      }
+
+      return defer.promise;
+    },
+
+    create: function () {
+      var defer = $q.defer();
+
+      if (this.throwsError) {
+        defer.reject('There was an error picking the contact.');
+      } else {
+        defer.resolve(null);
       }
 
       return defer.promise;
