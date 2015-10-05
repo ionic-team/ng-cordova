@@ -1,33 +1,142 @@
-// install   :
-// link      :
+// install   :      cordova plugin add cordova-plugin-app-preferences
+// link      :      https://github.com/apla/me.apla.cordova.app-preferences
 
-angular.module('ngCordova.plugins.prefs', [])
+/* globals preferences: true */
+angular.module('ngCordova.plugins.preferences', [])
 
-  .factory('$cordovaPreferences', ['$window', '$q', function ($window, $q) {
+  .factory('$cordovaPreferences', ['$q', function ($q) {
 
-    return {
-      set: function (key, value) {
-        var q = $q.defer();
+     return {
+    	
+    	/**
+    	 * Decorate the promise object.
+    	 * @param promise The promise object.
+    	 */
+    	decoratePromise: function(promise){
+    		promise.success = function(fn) {
+	            promise.then(fn);
+	            return promise;
+	        };
 
-        $window.appgiraffe.plugins.applicationPreferences.set(key, value, function (result) {
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
-        });
+	        promise.error = function(fn) {
+	            promise.then(null, fn);
+	            return promise;
+	        };
+    	},
+    	
+    	/**
+    	 * Store the value of the given dictionary and key.
+    	 * @param key The key of the preference.
+    	 * @param value The value to set.
+         * @param dict The dictionary. It's optional.
+         * @returns Returns a promise.
+    	 */
+	    store: function(key, value, dict) {
+	    	var deferred = $q.defer();
+	    	var promise = deferred.promise;
+            
+            function ok(value){
+                deferred.resolve(value);
+            }
+            
+            function error(error){
+                deferred.reject(new Error(error));
+            }
+            
+            var storeResult;
+            if(arguments.length == 3){
+                storeResult = plugins.appPreferences.store(dict, key, value)
+            } else {
+                storeResult = plugins.appPreferences.store(key, value)
+            }
+            storeResult.then(ok, error);
+            
+	    	this.decoratePromise(promise);
+	    	return promise;
+	    },
+	    
+	    /**
+	     * Fetch the value by the given dictionary and key.
+	     * @param key The key of the preference to retrieve.
+         * @param dict The dictionary. It's optional.
+         * @returns Returns a promise.
+	     */
+	    fetch: function(key, dict) {
+	    	var deferred = $q.defer();
+	    	var promise = deferred.promise;
+            
+            function ok(value){
+                deferred.resolve(value);
+            }
+            
+            function error(error){
+                deferred.reject(new Error(error));
+            }
+            
+            var fetchResult;
+            if(arguments.length == 2){
+                fetchResult = plugins.appPreferences.fetch(dict, key);
+            } else {
+                fetchResult = plugins.appPreferences.fetch(key);
+            }
+	    	fetchResult.then(ok, error);
+            
+	    	this.decoratePromise(promise);
+	    	return promise;
+	    },
+        
+        /**
+	     * Remove the value by the given key.
+	     * @param key The key of the preference to retrieve.
+         * @param dict The dictionary. It's optional.
+         * @returns Returns a promise.
+	     */
+	    remove: function(key, dict) {
+	    	var deferred = $q.defer();
+	    	var promise = deferred.promise;
+            
+            function ok(value){
+                deferred.resolve(value);
+            }
+            
+            function error(error){
+                deferred.reject(new Error(error));
+            }
+            
+            var removeResult;
+            if(arguments.length == 2){
+                removeResult = plugins.appPreferences.remove(dict, key);
+            } else {
+                removeResult = plugins.appPreferences.remove(key);
+            }
+            removeResult.then(ok, error);
+	    	
+	    	this.decoratePromise(promise);
+	    	return promise;
+	    },
+        
+        /**
+	     * Show the application preferences.
+         * @returns Returns a promise.
+	     */
+	    show: function() {
+	    	var deferred = $q.defer();
+	    	var promise = deferred.promise;
+            
+            function ok(value){
+                deferred.resolve(value);
+            }
+            
+            function error(error){
+                deferred.reject(new Error(error));
+            }
+            
+            plugins.appPreferences.show()
+                .then(ok, error);
+	    	
+	    	this.decoratePromise(promise);
+	    	return promise;
+	    }
+    }
 
-        return q.promise;
-      },
-
-      get: function (key) {
-        var q = $q.defer();
-
-        $window.appgiraffe.plugins.applicationPreferences.get(key, function (value) {
-          q.resolve(value);
-        }, function (err) {
-          q.reject(err);
-        });
-
-        return q.promise;
-      }
-    };
   }]);
