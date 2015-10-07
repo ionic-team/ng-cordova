@@ -52,6 +52,8 @@ angular.module('ngCordova.plugins.media', [])
   }
 
   function NewMedia(src) {
+      q = $q.defer();
+
       this.media = new Media(src,
         function (success) {
             clearTimer();
@@ -71,8 +73,6 @@ angular.module('ngCordova.plugins.media', [])
   // -  myMedia.play({ numberOfLoops: 2 }) -> looping
   // -  myMedia.play({ playAudioWhenScreenIsLocked : false })
   NewMedia.prototype.play = function (options) {
-      q = $q.defer();
-
       if (typeof options !== 'object') {
           options = {};
       }
