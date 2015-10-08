@@ -2,7 +2,7 @@
 layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 
-plugin-name: $cordovaKeychain
+plugin-name: $cordovaLaunchNavigator
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/launchNavigator.js
 official-docs: https://github.com/dpa99c/phonegap-launch-navigator
 icon-apple: true
