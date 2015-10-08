@@ -139,6 +139,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
             q.reject();
           }
         });
+        return q.promise;
       }
     };
   }]);
