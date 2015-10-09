@@ -1,12 +1,13 @@
 // install   :      cordova plugin add cordova-plugin-app-preferences
 // link      :      https://github.com/apla/me.apla.cordova.app-preferences
 
-/* globals preferences: true */
 angular.module('ngCordova.plugins.preferences', [])
 
-  .factory('$cordovaPreferences', ['$q', function ($q) {
+  .factory('$cordovaPreferences', ['$window', '$q', function ($window, $q) {
 
      return {
+         
+         pluginNotEnabledMessage: 'Plugin not enabled',
     	
     	/**
     	 * Decorate the promise object.
@@ -39,17 +40,22 @@ angular.module('ngCordova.plugins.preferences', [])
                 deferred.resolve(value);
             }
             
-            function error(error){
+            function errorCallback(error){
                 deferred.reject(new Error(error));
             }
             
-            var storeResult;
-            if(arguments.length == 3){
-                storeResult = plugins.appPreferences.store(dict, key, value)
+            if($window.plugins){
+                var storeResult;
+                if(arguments.length === 3){
+                    storeResult = $window.plugins.appPreferences.store(dict, key, value);
+                } else {
+                    storeResult = $window.plugins.appPreferences.store(key, value);
+                }
+                
+                storeResult.then(ok, errorCallback);
             } else {
-                storeResult = plugins.appPreferences.store(key, value)
+                deferred.reject(new Error(this.pluginNotEnabledMessage));
             }
-            storeResult.then(ok, error);
             
 	    	this.decoratePromise(promise);
 	    	return promise;
@@ -69,17 +75,21 @@ angular.module('ngCordova.plugins.preferences', [])
                 deferred.resolve(value);
             }
             
-            function error(error){
+            function errorCallback(error){
                 deferred.reject(new Error(error));
             }
             
-            var fetchResult;
-            if(arguments.length == 2){
-                fetchResult = plugins.appPreferences.fetch(dict, key);
+            if($window.plugins){
+                var fetchResult;
+                if(arguments.length === 2){
+                    fetchResult = $window.plugins.appPreferences.fetch(dict, key);
+                } else {
+                    fetchResult = $window.plugins.appPreferences.fetch(key);
+                }
+                fetchResult.then(ok, errorCallback);
             } else {
-                fetchResult = plugins.appPreferences.fetch(key);
+                deferred.reject(new Error(this.pluginNotEnabledMessage));
             }
-	    	fetchResult.then(ok, error);
             
 	    	this.decoratePromise(promise);
 	    	return promise;
@@ -99,17 +109,21 @@ angular.module('ngCordova.plugins.preferences', [])
                 deferred.resolve(value);
             }
             
-            function error(error){
+            function errorCallback(error){
                 deferred.reject(new Error(error));
             }
             
-            var removeResult;
-            if(arguments.length == 2){
-                removeResult = plugins.appPreferences.remove(dict, key);
+            if($window.plugins){
+                var removeResult;
+                if(arguments.length === 2){
+                    removeResult = $window.plugins.appPreferences.remove(dict, key);
+                } else {
+                    removeResult = $window.plugins.appPreferences.remove(key);
+                }
+                removeResult.then(ok, errorCallback);
             } else {
-                removeResult = plugins.appPreferences.remove(key);
+                deferred.reject(new Error(this.pluginNotEnabledMessage));
             }
-            removeResult.then(ok, error);
 	    	
 	    	this.decoratePromise(promise);
 	    	return promise;
@@ -127,16 +141,20 @@ angular.module('ngCordova.plugins.preferences', [])
                 deferred.resolve(value);
             }
             
-            function error(error){
+            function errorCallback(error){
                 deferred.reject(new Error(error));
             }
             
-            plugins.appPreferences.show()
-                .then(ok, error);
+            if($window.plugins){
+                $window.plugins.appPreferences.show()
+                    .then(ok, errorCallback);
+            } else {
+                deferred.reject(new Error(this.pluginNotEnabledMessage));
+            }
 	    	
 	    	this.decoratePromise(promise);
 	    	return promise;
 	    }
-    }
+    };
 
   }]);
