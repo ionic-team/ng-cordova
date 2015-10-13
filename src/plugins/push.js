@@ -4,7 +4,7 @@
 angular.module('ngCordova.plugins.push', [])
 
   .factory('$cordovaPush', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
-    var push;  
+    var push = null;
     return {
         
       onNotification: function (notification) {
@@ -39,10 +39,11 @@ angular.module('ngCordova.plugins.push', [])
 
       unregister: function (options) {
         var q = $q.defer();
-          if(push === undefined){
+          if(push === null){
             q.reject("Push not Initialized");
           } else {
             push.unregister(function (result) {
+              push = null;
               q.resolve(result);
             }, function (error) {
               q.reject(error);
@@ -54,7 +55,7 @@ angular.module('ngCordova.plugins.push', [])
       // iOS only
       setBadgeNumber: function (number) {
         var q = $q.defer();
-          if(push === undefined){
+          if(push === null){
             q.reject("Push not Initialized");
           } else {
             push.setApplicationIconBadgeNumber(function (result) {
