@@ -1,6 +1,7 @@
 // install   :      cordova plugin add phonegap-plugin-push
 // link      :      https://github.com/phonegap/phonegap-plugin-push
-
+// The Official Plugin creates a global Object PushNotification
+/*globals PushNotification*/
 angular.module('ngCordova.plugins.push', [])
 
   .factory('$cordovaPush', ['$q', '$window', '$rootScope', '$timeout', function ($q, $window, $rootScope, $timeout) {
@@ -40,7 +41,7 @@ angular.module('ngCordova.plugins.push', [])
       unregister: function (options) {
         var q = $q.defer();
           if(push === null){
-            q.reject("Push not Initialized");
+            q.reject('Push not Initialized');
           } else {
             push.unregister(function (result) {
               push = null;
@@ -56,7 +57,7 @@ angular.module('ngCordova.plugins.push', [])
       setBadgeNumber: function (number) {
         var q = $q.defer();
           if(push === null){
-            q.reject("Push not Initialized");
+            q.reject('Push not Initialized');
           } else {
             push.setApplicationIconBadgeNumber(function (result) {
               q.resolve(result);
