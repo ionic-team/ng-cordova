@@ -56,7 +56,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.network',
   'ngCordovaOauth',
   'ngCordova.plugins.pinDialog',
-  'ngCordova.plugins.prefs',
+  'ngCordova.plugins.preferences',
   'ngCordova.plugins.printer',
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.push',
