@@ -30,6 +30,18 @@ Get the build identifier of the app
 
 **Returns**  `String`, with the build identifier
 
+##### `getAppName()`
+
+Get the name of the app
+
+**Returns**  `String`, with the app name
+
+##### `getPackageName()`
+
+Get the package name of the app
+
+**Returns**  `String`, with the package name
+
 #### Example
 
 ```javascript
@@ -44,6 +56,16 @@ module.controller('myCtrl', function($scope, $cordovaAppVersion) {
   
   $cordovaAppVersion.getVersionCode().then(function (build) {
         var appBuild = build;
+      });
+  }, false);
+  
+  $cordovaAppVersion.getVersionCode().then(function (name) {
+        var appName = name;
+      });
+  }, false);
+  
+  $cordovaAppVersion.getVersionCode().then(function (package) {
+        var appPackage = package;
       });
   }, false);
   
