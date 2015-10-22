@@ -30,7 +30,7 @@ Install manually, or from bower:
 $ bower install ngCordova
 ```
 
-## Plugins `(67+)`
+## Plugins `(68+)`
 
 - [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
 - [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob) (:warning: share % Ad revenue)
@@ -85,6 +85,7 @@ $ bower install ngCordova
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
 - [Network Information](https://github.com/apache/cordova-plugin-network-information) *
 - [Oauth](https://github.com/nraboy/ng-cordova-oauth)
+- [OneSignal](https://github.com/one-signal/OneSignal-Cordova-SDK)
 - [Pin Dialog](https://github.com/Paldom/PinDialog)
 - [Printer](https://github.com/katzer/cordova-plugin-printer)
 - [Progress Indicator](https://github.com/pbernasconi/cordova-progressIndicator)
@@ -120,7 +121,7 @@ $ bower install ngCordova
 #### George Stocker
  - https://twitter.com/gortok
  - https://github.com/gortok
- 
+
 
 ## LICENSE
 
