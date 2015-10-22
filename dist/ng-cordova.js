@@ -1565,12 +1565,12 @@ angular.module('ngCordova.plugins.cardIO', [])
         return;
       }
 
-      defaultScanConfig.expiry = config.expiry || true;
-      defaultScanConfig.cvv = config.cvv || true;
+      defaultScanConfig.expiry = (config.expiry == undefined) ? true : config.expiry;
+      defaultScanConfig.cvv = (config.cvv == undefined) ? true : config.cvv;
       defaultScanConfig.zip = config.zip || false;
       defaultScanConfig.suppressManual = config.suppressManual || false;
       defaultScanConfig.suppressConfirm = config.suppressConfirm || false;
-      defaultScanConfig.hideLogo = config.hideLogo || true;
+      defaultScanConfig.hideLogo = (config.hideLogo == undefined) ? true : config.hideLogo;
     };
 
     /**
@@ -5457,7 +5457,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip',
   'ngCordova.plugins.insomnia',
-  'ngCordova.plugins.oneSignal'
+  'ngCordova.plugins.oneSignal',
+  'ngCordova.plugins.cardIO'
 ]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mopub.git
