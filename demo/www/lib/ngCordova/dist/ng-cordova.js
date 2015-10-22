@@ -5769,7 +5769,7 @@ angular.module('ngCordova.plugins.oneSignal', [])
         $window.plugins.OneSignal.deleteTags(tags);
       },
 
-      getIds: function (ids) {
+      getIds: function () {
         var d = $q.defer();
 
         $window.plugins.OneSignal.getIds(function (ids) {
