@@ -5725,7 +5725,7 @@ angular.module('ngCordova.plugins.oneSignal', [])
 
     return {
       init: function (oneSignalId, options, callback) {
-        $window.plugins.OneSignal.init(oneSignalId, options, callback());
+        $window.plugins.OneSignal.init(oneSignalId, options, callback);
       },
 
       enableInAppAlertNotification: function (bool) {
@@ -5791,10 +5791,6 @@ angular.module('ngCordova.plugins.oneSignal', [])
 
       enableNotificationsWhenActive: function (bool) {
         $window.plugins.OneSignal.enableNotificationsWhenActive(bool);
-      },
-
-      enableInAppAlertNotification: function (bool) {
-        $window.plugins.OneSignal.enableInAppAlertNotification(bool);
       },
 
       setSubscription: function (bool) {
