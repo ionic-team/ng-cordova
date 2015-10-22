@@ -1617,6 +1617,29 @@ angular.module('ngCordova.plugins.cardIO', [])
   }]
 );
 
+// install  :     cordova plugin add https://github.com/dtmtec/cordova-plugin-carrier.git
+// link     :     https://github.com/dtmtec/cordova-plugin-carrier
+
+angular.module('ngCordova.plugins.carrier', [])
+
+  .factory('$cordovaCarrier', ['$q', '$window', function ($q, $window) {
+
+     return {
+      getCarrierInfo: function () {
+        var q = $q.defer();
+
+        $window.plugins.carrier.getCarrierInfo(function (response) {
+          q.resolve(response);
+        }, function (error) {
+          q.reject(error);
+        });
+
+        return q.promise;
+      }
+    };
+
+  }]);
+
 // install   :     cordova plugin add https://github.com/VersoSolutions/CordovaClipboard.git
 // link      :     https://github.com/VersoSolutions/CordovaClipboard
 
@@ -5462,7 +5485,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.zip',
   'ngCordova.plugins.insomnia',
   'ngCordova.plugins.oneSignal',
-  'ngCordova.plugins.cardIO'
+  'ngCordova.plugins.cardIO',
+  'ngCordova.plugins.carrier'
 ]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mopub.git
