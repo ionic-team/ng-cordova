@@ -14,6 +14,11 @@ ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function ($q) {
       var defer = $q.defer();
       defer.resolve('mock v');
       return defer.promise;
+    },
+    getVersionNumber: function() {
+      var defer = $q.defer();
+      defer.resolve('0.0.0');
+      return defer.promise;
     }
   };
 }]);
@@ -2199,6 +2204,68 @@ ngCordovaMocks.factory('$cordovaGooglePlayGame', ['$q', function ($q) {
 }]);
 
 /**
+   * @ngdoc service
+   * @name ngCordovaMocks.cordovaGooglePlus
+   *
+   * @description
+   * A service for testing Google Plus features
+   * in an app built with ngCordova.
+   **/
+  ngCordovaMocks.factory('$cordovaGooglePlus', ['$q', function ($q) {
+    return {
+
+      /**
+       * These properties are here for the purpose of automated testing only.
+       **/
+      loginShouldSucceedWith: null,
+      silentLoginShouldSucceedWith: null,
+      disconnectShouldSucceedWith: null,
+      isAvailableShouldSucceedWith: null,
+      logoutShouldSuceedWith: null,
+
+      login: function (options) {
+        if (this.loginShouldSucceedWith !== null) {
+          return $q.when(this.loginShouldSucceedWith);
+        } else {
+          return $q.reject();
+        }
+      },
+
+      silentLogin: function (options) {
+        if (this.loginShouldSucceedWith !== null) {
+          return $q.when(this.silentLoginShouldSucceedWith);
+        } else {
+          return $q.reject();
+        }
+      },
+
+      logout: function () {
+        if (this.logoutShouldSuceedWith !== null) {
+          return $q.when(this.logoutShouldSuceedWith);
+        } else {
+          return $q.reject();
+        }
+      },
+
+      disconnect: function () {
+        if (this.logoutShouldSuceedWith !== null) {
+          return $q.when(this.disconnectShouldSucceedWith);
+        } else {
+          return $q.reject();
+        }
+      },
+
+      isAvailable: function () {
+        if (this.logoutShouldSuceedWith !== null) {
+          return $q.when(this.disconnectShouldSucceedWith);
+        } else {
+          return $q.reject();
+        }
+      }
+    };
+  }]);
+
+/**
  * @ngdoc service
  * @name ngCordovaMocks.cordovaKeyboard
  *
@@ -2466,6 +2533,94 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
     }
   };
 });
+
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.oneSignal
+ *
+ * @description
+ * A service for testing One Signal push notifications features
+ * in an app build with ngCordova.
+ **/
+ngCordovaMocks.factory('$cordovaOneSignal',  ['$q', function ($q) {
+  return {
+    init: function (oneSignalId, options, callback) {
+      console.log('One Signal Initialized with id: ' + oneSignalId);
+    },
+
+    enableInAppAlertNotification: function (bool) {
+      console.log('One Signal enableInAppAlertNotification: ' + bool);
+    },
+
+    setLogLevel: function () {
+    },
+
+    registerForPushNotifications: function () {
+    },
+
+    sendTag: function (key, value) {
+      console.log('One Signal send tag with: {key: ' + key + ' value: ' + value
+      + '}');
+    },
+
+    sendTags: function (tags) {
+      console.log('One Signal send tags with: ' + tags);
+    },
+
+    getTags: function () {
+      var d = $q.defer();
+
+      d.resolve([]);
+
+      return d.promise;
+    },
+
+    deleteTag: function (tag) {
+      console.log('One Signal delete tag with: ' + tag);
+    },
+
+    deleteTags: function (tags) {
+      console.log('One Signal delete tags with: ' + tags);
+    },
+
+    getIds: function (ids) {
+      var d = $q.defer();
+
+      d.resolve([]);
+
+      return d.promise;
+    },
+
+    enableVibrate: function (bool) {
+      console.log('One Signal enable vibrate: ' + bool);
+    },
+
+    enableSound: function (bool) {
+      console.log('One Signal enable sound: ' + bool);
+    },
+
+    enableNotificationsWhenActive: function (bool) {
+      console.log('One Signal enableNotificationsWhenActive: ' + bool);
+    },
+
+    enableInAppAlertNotification: function (bool) {
+      console.log('One Signal enableInAppAlertNotification: ' + bool);
+    },
+
+    setSubscription: function (bool) {
+      console.log('One Signal setSubscription: ' + bool);
+    },
+
+    postNotification: function (notificationObj) {
+      var d = $q.defer();
+
+      d.resolve(function() {});
+
+      return d.promise;
+    }
+
+  };
+}]);
 
 'use strict';
 
