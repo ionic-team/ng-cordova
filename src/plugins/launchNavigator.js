@@ -7,7 +7,7 @@ angular.module('ngCordova.plugins.launchNavigator', [])
   .factory('$cordovaLaunchNavigator', ['$q', function ($q) {
 
     return {
-      navigate: function (destination, start, successFn, errorFn, options) {
+      navigate: function (destination, start, options) {
         var q = $q.defer();
         launchnavigator.navigate(
           destination,

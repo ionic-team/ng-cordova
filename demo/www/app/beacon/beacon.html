@@ -1,0 +1,46 @@
+<ion-view title="Beacon">
+  <ion-content padding="false" has-bouncing="false">
+    <div class="list card">
+      <div class="item item-text-wrap">
+        <button class="button button-block button-stable" ng-click="clearLogs()">
+          Clear logs
+        </button>
+      </div>
+      <div class="item item-text-wrap">
+        <strong>Permission</strong>
+        <button class="button button-block button-stable" ng-click="requestAlwaysAuthorization()">
+          Request Always Authorization (iOS only)
+        </button>
+      </div>
+      <div class="item item-text-wrap">
+        <strong>Start</strong>
+        <button class="button button-block button-stable" ng-click="startMonitoringForRegion()">
+          Start Monitoring for region
+        </button>
+        <button class="button button-block button-stable" ng-click="startRangingBeaconsInRegion()">
+          Start Ranging beacons in region
+        </button>
+      </div>
+      <div class="item item-text-wrap">
+        <strong>Stop</strong>
+        <button class="button button-block button-stable" ng-click="stopMonitoringForRegion()">
+          Stop Monitoring for region
+        </button>
+        <button class="button button-block button-stable" ng-click="stopRangingBeaconsInRegion()">
+          Stop Ranging beacons in region
+        </button>
+      </div>
+      <div class="item item-divider item-text-wrap">
+        Events
+      </div>
+      <div class="item item-text-wrap">
+        <strong>didStartMonitoringForRegion</strong><br />
+        <pre>{{didStartMonitoringForRegionLog}}</pre>
+        <strong>didDetermineStateForRegion</strong><br />
+        <pre>{{didDetermineStateForRegionLog}}</pre>
+        <strong>didRangeBeaconsInRegion</strong><br />
+        <pre>{{didRangeBeaconsInRegionLog}}</pre>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
