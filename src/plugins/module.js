@@ -73,5 +73,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.zip',
   'ngCordova.plugins.insomnia',
   'ngCordova.plugins.oneSignal',
-  'ngCordova.plugins.cardIO'
+  'ngCordova.plugins.cardIO',
+  'ngCordova.plugins.carrier'
 ]);
