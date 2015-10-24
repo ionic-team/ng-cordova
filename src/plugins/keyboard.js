@@ -46,12 +46,12 @@ angular.module('ngCordova.plugins.keyboard', [])
       },
 
       clearShowWatch: function () {
-        document.removeEventListener('native.keyboardshow', keyboardShowEvent);
+        window.removeEventListener('native.keyboardshow', keyboardShowEvent);
         $rootScope.$$listeners['$cordovaKeyboard:show'] = [];
       },
 
       clearHideWatch: function () {
-        document.removeEventListener('native.keyboardhide', keyboardHideEvent);
+        window.removeEventListener('native.keyboardhide', keyboardHideEvent);
         $rootScope.$$listeners['$cordovaKeyboard:hide'] = [];
       }
     };
