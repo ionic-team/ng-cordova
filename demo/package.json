@@ -4,7 +4,7 @@
   "description": "An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
-    "gulp-sass": "^0.7.1",
+    "gulp-sass": "^2.1.0",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0"
