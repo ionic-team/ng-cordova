@@ -53,12 +53,12 @@ angular.module('ngCordova.plugins.cardIO', [])
         return;
       }
 
-      defaultScanConfig.expiry = config.expiry || true;
-      defaultScanConfig.cvv = config.cvv || true;
+      defaultScanConfig.expiry = (config.expiry == undefined) ? true : config.expiry;
+      defaultScanConfig.cvv = (config.cvv == undefined) ? true : config.cvv;
       defaultScanConfig.zip = config.zip || false;
       defaultScanConfig.suppressManual = config.suppressManual || false;
       defaultScanConfig.suppressConfirm = config.suppressConfirm || false;
-      defaultScanConfig.hideLogo = config.hideLogo || true;
+      defaultScanConfig.hideLogo = (config.hideLogo == undefined) ? true : config.hideLogo;
     };
 
     /**

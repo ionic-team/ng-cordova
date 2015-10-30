@@ -5,14 +5,15 @@ angular.module('ngCordova.plugins.googlePlus', [])
 
   .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
 
-    return {
-      login: function (iosKey) {
+     return {
+      login: function (options) {
         var q = $q.defer();
 
-        if (iosKey === undefined) {
-          iosKey = {};
+        if (options === undefined) {
+          options = {'iOSApiKey': {}};
         }
-        $window.plugins.googleplus.login({'iOSApiKey': iosKey}, function (response) {
+
+        $window.plugins.googleplus.login(options, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error);
@@ -21,13 +22,14 @@ angular.module('ngCordova.plugins.googlePlus', [])
         return q.promise;
       },
 
-      silentLogin: function (iosKey) {
+      silentLogin: function (options) {
         var q = $q.defer();
 
-        if (iosKey === undefined) {
-          iosKey = {};
+        if (options === undefined) {
+          options = {'iOSApiKey': {}};
         }
-        $window.plugins.googleplus.trySilentLogin({'iOSApiKey': iosKey}, function (response) {
+
+        $window.plugins.googleplus.trySilentLogin(options, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error);
@@ -41,6 +43,7 @@ angular.module('ngCordova.plugins.googlePlus', [])
         $window.plugins.googleplus.logout(function (response) {
           q.resolve(response);
         });
+        return q.promise;
       },
 
       disconnect: function () {
@@ -48,6 +51,7 @@ angular.module('ngCordova.plugins.googlePlus', [])
         $window.plugins.googleplus.disconnect(function (response) {
           q.resolve(response);
         });
+        return q.promise;
       },
 
       isAvailable: function () {
@@ -59,7 +63,7 @@ angular.module('ngCordova.plugins.googlePlus', [])
             q.reject(available);
           }
         });
-        
+
         return q.promise;
       }
     };
