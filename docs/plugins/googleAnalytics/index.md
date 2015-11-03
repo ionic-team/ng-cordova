@@ -3,7 +3,7 @@ layout: docs-plugins
 title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaGoogleAnalytics
-source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/ga.js
+source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/googleAnalytics.js
 official-docs: https://github.com/danwilson/google-analytics-plugin
 icon-apple: true
 icon-android: true
