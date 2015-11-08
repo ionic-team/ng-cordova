@@ -2,14 +2,14 @@
 // link      :     https://github.com/gitawego/cordova-screenshot
 
 angular.module('ngCordova.plugins.screenshot', [])
-.factory('$cordovaScreenshot', ['$q', function($q) {
+.factory('$cordovaScreenshot', ['$q', function ($q) {
   return {
-    captureToFile: function(opts) {
+    captureToFile: function (opts) {
 
       var options = opts || {};
 
-      extension = options.extension || 'jpg';
-      quality = options.quality || '100';
+      var extension = options.extension || 'jpg';
+      var quality = options.quality || '100';
 
       var defer = $q.defer();
 
@@ -18,7 +18,7 @@ angular.module('ngCordova.plugins.screenshot', [])
         return defer.promise;
       }
 
-      navigator.screenshot.save(function(error, res) {
+      navigator.screenshot.save(function (error, res) {
         if (error) {
           defer.reject(error);
         } else {
@@ -28,12 +28,12 @@ angular.module('ngCordova.plugins.screenshot', [])
 
       return defer.promise;
     },
-    captureToUri: function(opts) {
+    captureToUri: function (opts) {
 
       var options = opts || {};
 
-      extension = options.extension || 'jpg';
-      quality = options.quality || '100';
+      var extension = options.extension || 'jpg';
+      var quality = options.quality || '100';
 
       var defer = $q.defer();
 
@@ -42,7 +42,7 @@ angular.module('ngCordova.plugins.screenshot', [])
         return defer.promise;
       }
 
-      navigator.screenshot.URI(function(error, res) {
+      navigator.screenshot.URI(function (error, res) {
         if (error) {
           defer.reject(error);
         } else {
