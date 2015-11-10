@@ -38,7 +38,7 @@ angular.module('ngCordova.plugins.instagram', [])
         if (err) {
           q.reject(err);
         } else {
-          q.resolve(installed || true);
+          q.resolve(installed);
         }
       });
       return q.promise;
