@@ -5445,6 +5445,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.printer',
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.push',
+  'ngCordova.plugins.push_v5',
   'ngCordova.plugins.sms',
   'ngCordova.plugins.socialSharing',
   'ngCordova.plugins.spinnerDialog',
