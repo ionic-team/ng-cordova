@@ -8,6 +8,7 @@ describe('ngCordovaMocks', function () {
     var $cordovaToast = null;
     var message = 'A message.';
     var functionNames = [
+      'hide',
       'showShortTop',
       'showShortCenter',
       'showShortBottom',
