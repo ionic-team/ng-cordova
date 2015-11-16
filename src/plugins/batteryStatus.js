@@ -5,6 +5,11 @@ angular.module('ngCordova.plugins.batteryStatus', [])
 
   .factory('$cordovaBatteryStatus', ['$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
 
+    var service = {
+      level: null,
+      isPlugged: null
+    };
+
     /**
       * @param {string} status
       */
@@ -38,11 +43,6 @@ angular.module('ngCordova.plugins.batteryStatus', [])
       });
     };
   
-    service = {
-      level: null,
-      isPlugged: null
-    };
-  
     document.addEventListener('deviceready', function () {
       if (navigator.battery) {
         $window.addEventListener('batterystatus', batteryStatus, false);
@@ -55,6 +55,7 @@ angular.module('ngCordova.plugins.batteryStatus', [])
         });
       }
     }, false);
+    
     return service;
   }])
   .run(['$injector', function ($injector) {
