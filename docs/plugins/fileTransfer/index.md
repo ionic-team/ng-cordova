@@ -61,7 +61,7 @@ module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
 
     var url = "http://cdn.wall-pix.net/albums/art-space/00030109.jpg";
     var targetPath = cordova.file.documentsDirectory + "testImage.png";
-    var trustHosts = true
+    var trustHosts = true;
     var options = {};
 
     $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
@@ -72,7 +72,7 @@ module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
       }, function (progress) {
         $timeout(function () {
           $scope.downloadProgress = (progress.loaded / progress.total) * 100;
-        })
+        });
       });
 
    }, false);
