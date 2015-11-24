@@ -10,7 +10,6 @@ angular.module('ngCordova.plugins.inAppBrowser', [])
     
     this.$get = ['$rootScope', '$q', '$window', '$timeout', function ($rootScope, $q, $window, $timeout) {
       return {
-        
         setDefaultOptions: function (config) {
           defaultOptions = angular.extend(defaultOptions, config);
         },
