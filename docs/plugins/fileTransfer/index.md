@@ -13,7 +13,7 @@ icon-windows: true
 This plugin allows you to upload and download files.
 
 ```
-cordova plugin add org.apache.cordova.file-transfer
+cordova plugin add cordova-plugin-file-transfer
 ```
 
 #### Methods

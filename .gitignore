@@ -11,3 +11,4 @@ coverage
 
 demo/
 npm-debug.log
+src/plugins/oauth/

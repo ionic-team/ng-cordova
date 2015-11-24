@@ -13,7 +13,7 @@ icon-windows: true
 Obtains information and performs operations specific to the user's locale and timezone.
 
 ```
-cordova plugin add org.apache.cordova.globalization
+cordova plugin add cordova-plugin-globalization
 ```
 
 

@@ -13,7 +13,7 @@ icon-windows: true
 Provides a web browser view. It could be used to open images, access web pages, and open PDF files.
 
 ```
-cordova plugin add org.apache.cordova.inappbrowser
+cordova plugin add cordova-plugin-inappbrowser
 ```
 
 #### Methods

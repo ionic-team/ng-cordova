@@ -22,7 +22,7 @@ This plugin provides the ability to record and play back audio files on a device
 [Apple reference "Playing and Recording Background Audio"](https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html)
 
 ```
-cordova plugin add org.apache.cordova.media
+cordova plugin add cordova-plugin-media
 ```
 
 
@@ -101,7 +101,7 @@ module.controller('MyCtrl', function($scope, $cordovaMedia) {
     playAudioWhenScreenIsLocked : false
   }
 
-  media.play(options); // iOS only!
+  media.play(iOSPlayOptions); // iOS only!
   media.play(); // Android
 
   media.pause();

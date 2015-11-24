@@ -16,14 +16,14 @@ from a device.
 > **NOTE**: The camera API only works on a real device, and not in the emulator.
 
 ```bash
-cordova plugin add org.apache.cordova.camera
+cordova plugin add cordova-plugin-camera
 ```
 
 #### Methods
 
 ##### `getPicture(options)`
 
-[View Camera Options](https://github.com/apache/cordova-plugin-camera/blob/master/doc/index.md#cameraoptions)
+[View Camera Options](https://github.com/apache/cordova-plugin-camera#module_camera.CameraOptions)
 
 
 | Param        | Type           | Detail  |
