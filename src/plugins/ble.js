@@ -93,7 +93,7 @@ angular.module('ngCordova.plugins.ble', [])
 
       writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
         $log.warning('writeCommand is deprecated, use writeWithoutResponse');
-        return writeWithoutResponse(deviceID, serviceUUID, characteristicUUID, data);
+        return this.writeWithoutResponse(deviceID, serviceUUID, characteristicUUID, data);
       },
 
       startNotification: function (deviceID, serviceUUID, characteristicUUID, callback, errorCallback) {
