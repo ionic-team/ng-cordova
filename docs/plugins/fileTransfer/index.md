@@ -18,7 +18,7 @@ cordova plugin add org.apache.cordova.file-transfer
 
 #### Methods
 
-##### `download(url, filePath, options, trustHosts)`
+##### `download(url, targetPath, options, trustHosts)`
 
 Downloads a file from server.
 
@@ -35,7 +35,7 @@ Downloads a file from server.
 > | progress     | `Object`    | Returns download progress Object |
 
 
-##### `upload(server, filePath, options, trustAllHosts)`
+##### `upload(server, targetPath, options, trustAllHosts)`
 
 Sends a file to a server.
 
