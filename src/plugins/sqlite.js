@@ -7,12 +7,11 @@ angular.module('ngCordova.plugins.sqlite', [])
 
     return {
       openDB: function (options, background) {
-
         if (angular.isObject(options) && !angular.isString(options)) {
           if (typeof background !== 'undefined') {
             options.bgType = background;
           }
-          return $window.sqlitePlugin.openDatabase(options);
+          return $window.sqlitePlugin.openDatabase(options, options.success, options.error);
         }
 
         return $window.sqlitePlugin.openDatabase({
