@@ -80,13 +80,13 @@ angular.module('ngCordova.plugins.appRate', [])
         },
 
         onButtonClicked: function (cb) {
-          AppRate.onButtonClicked = function (buttonIndex) {
+          AppRate.preferences.callbacks.onButtonClicked = function (buttonIndex) {
             cb.call(this, buttonIndex);
           };
         },
 
         onRateDialogShow: function (cb) {
-          AppRate.onRateDialogShow = cb();
+          AppRate.preferences.callbacks.onRateDialogShow = cb();
         }
       };
     }];
