@@ -65,7 +65,7 @@ angular.module('ngCordova.plugins.file', [])
           var q = $q.defer();
 
           if ((/^\//.test(file))) {
-            q.reject('directory cannot start with \/');
+            q.reject('file cannot start with \/');
           }
 
           try {
