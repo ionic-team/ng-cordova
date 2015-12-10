@@ -62,6 +62,19 @@ angular.module('ngCordova.plugins.push_v5', [])
           }, number);
         }
         return q.promise;
+      },
+      finish: function(){
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.finish(function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
       }
     };
   }]);
