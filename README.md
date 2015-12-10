@@ -37,7 +37,7 @@ $ bower install ngCordova
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
 - [App Rate](https://github.com/pushandplay/cordova-plugin-apprate)
 - [App Version](https://github.com/whiteoctober/cordova-plugin-app-version)
-- [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
+- [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation/tree/0.3.7) (:warning: legacy free version)
 - [Badge](https://github.com/katzer/cordova-plugin-badge)
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
