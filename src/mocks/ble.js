@@ -6,7 +6,7 @@
  * A service for ble features
  * in an app build with ngCordova.
  **/
-ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout) {
+ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', '$interval', '$log', function ($q, $timeout, $interval, $log) {
   var deviceScan = {
     name: 'Test Device',
     id: 'AA:BB:CC:DD:EE:FF',
@@ -55,9 +55,31 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout)
 
     scan: function (services, seconds) {
       var q = $q.defer();
+
+      // first notify about discovered device
       $timeout(function () {
-        q.resolve(deviceScan);
+        q.notify(deviceScan);
+      }, Math.round(seconds * 1000 * Math.random()));
+
+      // end scan
+      $timeout(function () {
+        q.resolve();
       }, seconds * 1000);
+
+      return q.promise;
+    },
+
+    startScan: function (services, callback, errorCallback) {
+      $timeout(function () {
+        callback(deviceScan);
+      }, Math.round(1000 * Math.random()));
+    },
+
+    stopScan: function () {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve();
+      }, 500);
       return q.promise;
     },
 
@@ -93,26 +115,30 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout)
       return q.promise;
     },
 
+    writeWithoutResponse: function (deviceID, serviceUUID, characteristicUUID, data) {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve(true);
+      }, 100);
+      return q.promise;
+    },
+
     writeCommand: function (deviceID, serviceUUID, characteristicUUID, data) {
-      var q = $q.defer();
-      $timeout(function () {
-        q.resolve(true);
-      }, 100);
-      return q.promise;
+      $log.warning('writeCommand is deprecated, use writeWithoutResponse');
+      return this.writeWithoutResponse(deviceID, serviceUUID, characteristicUUID, data);
     },
 
-    notify: function (deviceID, serviceUUID, characteristicUUID) {
-      var q = $q.defer();
-      $timeout(function () {
-        q.resolve(true);
-      }, 100);
-      return q.promise;
+    startNotification: function (deviceID, serviceUUID, characteristicUUID, callback, errorCallback) {
+      $interval(function () {
+        var data = new Uint8Array([Math.round(255 * Math.random())]); // one byte with random number
+        callback(data);
+      }, 200, 10); // repeat 10 times with 200 ms delay for each
     },
 
-    indicate: function (deviceID, serviceUUID, characteristicUUID) {
+    stopNotification: function (deviceID, serviceUUID, characteristicUUID) {
       var q = $q.defer();
       $timeout(function () {
-        q.resolve(true);
+        q.resolve();
       }, 100);
       return q.promise;
     },
@@ -120,6 +146,14 @@ ngCordovaMocks.factory('$cordovaBLE', ['$q', '$timeout', function ($q, $timeout)
     isConnected: function (deviceID) {
       var q = $q.defer();
       q.resolve(true);
+      return q.promise;
+    },
+
+    enable: function () {
+      var q = $q.defer();
+      $timeout(function () {
+        q.resolve();
+      }, 1500);
       return q.promise;
     },
 
