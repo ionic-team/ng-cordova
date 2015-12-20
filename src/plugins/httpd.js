@@ -9,8 +9,8 @@ angular.module('ngCordova.plugins.httpd', [])
       startServer: function (options) {
         var d = $q.defer();
 
-        cordova.plugins.CorHttpd.startServer(options, function () {
-          d.resolve();
+        cordova.plugins.CorHttpd.startServer(options, function (url) {
+          d.resolve(url);
         }, function () {
           d.reject();
         });
