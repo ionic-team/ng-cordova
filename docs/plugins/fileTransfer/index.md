@@ -53,7 +53,7 @@ Sends a file to a server.
 
 The `options` parameter is an `Object` with the following key possibilities:
 
-| Preferences         | Type      | Detail   |
+| Param               | Type      | Detail   |
 | ------------------- |---------- | -------- |
 | encodeURI           | `Boolean` | Encode the server `url` using `encodeURI`. Default is set to `true` |
 | timeout             | `Integer` | Timeout to abort the operation. In millisecond |
