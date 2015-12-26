@@ -53,12 +53,12 @@ Sends a file to a server.
 
 The `options` parameter is an `Object` with the following key possibilities:
 
-| Param               | Type      | Detail   |
+| Property            | Type      | Detail   |
 | ------------------- |---------- | -------- |
 | encodeURI           | `Boolean` | Encode the server `url` using `encodeURI`. Default is set to `true` |
-| timeout             | `Integer` | Timeout to abort the operation. In millisecond |
+| timeout             | `Integer` | Timeout of the query. In millisecond |
 
-All other parameters will be passed to the cordova FileTransfer object. All parameters can be found in the Cordova [FileTransfer documentation](https://github.com/apache/cordova-plugin-file-transfer#upload"FileTransfer documentation").
+All other properties will be passed to the cordova FileTransfer object. All parameters can be found in the Cordova [FileTransfer documentation](https://github.com/apache/cordova-plugin-file-transfer#upload).
 
 #### Example
 
