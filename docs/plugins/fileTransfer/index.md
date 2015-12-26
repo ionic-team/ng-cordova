@@ -51,6 +51,15 @@ Sends a file to a server.
 > | success      | `Object`    | Returns success object with file path and more info  |
 > | progress     | `Object`    | Returns download progress Object |
 
+The `options` parameter is an `Object` with the following key possibilities:
+
+| Preferences         | Type      | Detail   |
+| ------------------- |---------- | -------- |
+| encodeURI           | `Boolean` | Encode the server `url` using `encodeURI`. Default is set to `true` |
+| timeout             | `Integer` | Timeout to abort the operation. In millisecond |
+
+All other parameters will be passed to the cordova FileTransfer object. All parameters can be found in the Cordova [FileTransfer documentation](https://github.com/apache/cordova-plugin-file-transfer#upload"FileTransfer documentation").
+
 #### Example
 
 
