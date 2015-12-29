@@ -5,8 +5,12 @@ describe('ngCordovaMocks', function() {
 
 	describe('cordovaNetwork', function () {
 		var $cordovaNetwork = null;
+		var $rootScope = null;
+		var $cordovaNetwork = null;
 
-		beforeEach(inject(function (_$cordovaNetwork_) {
+		beforeEach(inject(function (_$cordovaNetwork_,_$rootScope_,_$cordovaNetwork_) {
+			$cordovaNetwork = _$cordovaNetwork_;
+			$rootScope = _$rootScope_;
 			$cordovaNetwork = _$cordovaNetwork_;
 		}));
 
@@ -25,6 +29,30 @@ describe('ngCordovaMocks', function() {
 		it('should check if offline', function() {
 			var isOffline = $cordovaNetwork.isOffline();
 			expect(isOffline).toBe(false);
-		})
+		});
+
+		it('should launch listeners when switching to online', function() {
+			var isOnline = false;
+
+			$rootScope.$on('$cordovaNetwork:online',function(){
+				isOnline = $cordovaNetwork.isOnline();
+			});
+
+			$cordovaNetwork.switchToOnline();
+
+			expect(isOnline).toBe(true);
+		});
+
+		it('should launch listeners when switching to online', function() {
+			var isOffline = false;
+
+			$rootScope.$on('$cordovaNetwork:offline',function(){
+				isOffline = $cordovaNetwork.isOffline();
+			});
+
+			$cordovaNetwork.switchToOffline();
+
+			expect(isOffline).toBe(true);
+		});
 	});
 })
