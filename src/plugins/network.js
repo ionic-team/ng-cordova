@@ -39,13 +39,11 @@ angular.module('ngCordova.plugins.network', [])
       },
 
       isOnline: function () {
-        var networkState = navigator.connection.type;
-        return networkState !== Connection.UNKNOWN && networkState !== Connection.NONE;
+        return navigator.onLine === true;
       },
 
       isOffline: function () {
-        var networkState = navigator.connection.type;
-        return networkState === Connection.UNKNOWN || networkState === Connection.NONE;
+        return navigator.onLine === false;
       },
 
       clearOfflineWatch: function () {
