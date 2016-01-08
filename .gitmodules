@@ -1,3 +1,0 @@
-[submodule "src/plugins/oauth"]
-	path = src/plugins/oauth
-	url = https://github.com/nraboy/ng-cordova-oauth

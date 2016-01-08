@@ -83,7 +83,7 @@ $ bower install ngCordova
 - [MoPub Ads](https://github.com/floatinghotpot/cordova-plugin-mopub) (:warning: share % Ad revenue)
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
 - [Network Information](https://github.com/apache/cordova-plugin-network-information) *
-- [Oauth](https://github.com/nraboy/ng-cordova-oauth)
+- [Oauth](https://github.com/nraboy/ng-cordova-oauth) (available separately)
 - [Pin Dialog](https://github.com/Paldom/PinDialog)
 - [Preferences](https://github.com/apla/me.apla.cordova.app-preferences)
 - [Printer](https://github.com/katzer/cordova-plugin-printer)
@@ -122,7 +122,7 @@ $ bower install ngCordova
 #### George Stocker
  - https://twitter.com/gortok
  - https://github.com/gortok
- 
+
 
 ## LICENSE
 

@@ -31,7 +31,6 @@ angular.module('demo', [
   'demo.localNotification.ctrl',
   'demo.media.ctrl',
   'demo.network.ctrl',
-  'demo.oauth.ctrl',
   'demo.preferences.ctrl',
   'demo.printer.ctrl',
   'demo.pushNotifications.ctrl',
@@ -304,12 +303,6 @@ angular.module('demo', [
         url: '/network',
         templateUrl: 'app/network/network.html',
         controller: "NetworkCtrl"
-      })
-
-      .state('oauth', {
-        url: '/oauth',
-        templateUrl: 'app/oauth/oauth.html',
-        controller: "OauthCtrl"
       })
 
       .state('preferences', {
