@@ -22,7 +22,6 @@ module.exports = {
   pluginFiles: [
     'src/module.js',
     'src/plugins/*.js',
-    'src/plugins/oauth/src/*.js'
   ],
 
   mockFiles: [
