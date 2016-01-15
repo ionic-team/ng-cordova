@@ -229,6 +229,24 @@ angular.module('ngCordova.plugins.appVersion', [])
   .factory('$cordovaAppVersion', ['$q', function ($q) {
 
     return {
+      getAppName: function () {
+        var q = $q.defer();
+        cordova.getAppVersion.getAppName(function (name) {
+          q.resolve(name);
+        });
+
+        return q.promise;
+      },
+
+      getPackageName: function () {
+        var q = $q.defer();
+        cordova.getAppVersion.getPackageName(function (package) {
+          q.resolve(package);
+        });
+
+        return q.promise;
+      },
+
       getVersionNumber: function () {
         var q = $q.defer();
         cordova.getAppVersion.getVersionNumber(function (version) {
@@ -1572,11 +1590,11 @@ angular.module('ngCordova.plugins.cardIO', [])
      * Configuring defaultRespFields using $cordovaNgCardIOProvider
      *
      */
-    this.setCardIOResponseFields = function (filelds) {
-      if (!filelds || !angular.isArray(filelds)) {
+    this.setCardIOResponseFields = function (fields) {
+      if (!fields || !angular.isArray(fields)) {
         return;
       }
-      defaultRespFields = filelds;
+      defaultRespFields = fields;
     };
 
     /**
@@ -1766,12 +1784,13 @@ angular.module('ngCordova.plugins.datePicker', [])
         options = options || {date: new Date(), mode: 'date'};
         $window.datePicker.show(options, function (date) {
           q.resolve(date);
+        }, function(error){
+          q.reject(error);
         });
         return q.promise;
       }
     };
   }]);
-
 // install   :     cordova plugin add cordova-plugin-device
 // link      :     https://github.com/apache/cordova-plugin-device
 
@@ -6386,6 +6405,8 @@ angular.module('ngCordova.plugins.socialSharing', [])
             q.reject();
           }
         });
+        
+        return q.promise;
       }
     };
   }]);
@@ -6665,7 +6686,6 @@ angular.module('ngCordova.plugins.toast', [])
         return q.promise;
       },
 
-
       show: function (message, duration, position) {
         var q = $q.defer();
         $window.plugins.toast.show(message, duration, position, function (response) {
@@ -6673,6 +6693,17 @@ angular.module('ngCordova.plugins.toast', [])
         }, function (error) {
           q.reject(error);
         });
+        return q.promise;
+      },
+
+      hide: function () {
+        var q = $q.defer();
+        try {
+          $window.plugins.toast.hide();
+          q.resolve();
+        } catch (error) {
+          q.reject(error && error.message);
+        }
         return q.promise;
       }
     };
