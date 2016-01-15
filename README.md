@@ -1,7 +1,8 @@
+
 [ngCordova](http://ngcordova.com/)
 ==========
 
-[![Travis](http://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
+[![Travis](https://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](https://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
 
 ### Cordova with AngularJS Goodness
 
@@ -16,7 +17,7 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 | RESOURCE | LINK |
 |------------|---------|
 | **Website** | [ngCordova.com](http://ngcordova.com/) |
-| **Docs** | [ngCordova.com/docs](http://ngcordova.com/docs) |
+| **Docs** | [ngCordova.com/docs](http://ngcordova.com/docs/) |
 | **Requirements** | [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/) |
 | **Install** | `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) |
 | **Custom build** | [ngCordova.com/build](http://ngcordova.com/build/) |
@@ -72,7 +73,7 @@ $ bower install ngCordova
 - [Apple iAd](https://github.com/floatinghotpot/cordova-iad-pro) (:warning: share % Ad revenue)
 - [Image Picker](https://github.com/wymsee/cordova-imagePicker)
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
-- [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
+- [Keyboard](https://github.com/driftyco/ionic-plugin-keyboard)
 - [Keychain](https://github.com/shazron/KeychainPlugin)
 - [Launch Navigator](https://github.com/dpa99c/phonegap-launch-navigator)
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
@@ -95,13 +96,13 @@ $ bower install ngCordova
 - [Social Sharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 - [Spinner Dialog](https://github.com/Paldom/SpinnerDialog)
 - [Splashscreen](https://github.com/apache/cordova-plugin-splashscreen) *
-- [SQLite](https://github.com/brodysoft/Cordova-SQLitePlugin)
+- [SQLite](https://github.com/litehelpers/Cordova-sqlite-storage)
 - [StatusBar](https://github.com/apache/cordova-plugin-statusbar) *
 - [Toast](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
 - [Touchid](https://github.com/leecrossley/cordova-plugin-touchid)
 - [Vibration](https://github.com/apache/cordova-plugin-vibration) *
 - [Video Capture Plus](https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin) *
-- [Zip](https://github.com/MobileChromeApps/zip)
+- [Zip](https://github.com/MobileChromeApps/cordova-plugin-zip)
 
 `* official Apache Cordova Plugin`
 
