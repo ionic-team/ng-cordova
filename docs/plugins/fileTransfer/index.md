@@ -13,7 +13,7 @@ icon-windows: true
 This plugin allows you to upload and download files.
 
 ```
-cordova plugin add org.apache.cordova.file-transfer
+cordova plugin add cordova-plugin-file-transfer
 ```
 
 #### Methods
@@ -61,7 +61,7 @@ module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
 
     var url = "http://cdn.wall-pix.net/albums/art-space/00030109.jpg";
     var targetPath = cordova.file.documentsDirectory + "testImage.png";
-    var trustHosts = true
+    var trustHosts = true;
     var options = {};
 
     $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
@@ -72,7 +72,7 @@ module.controller('MyCtrl', function($scope, $timeout, $cordovaFileTransfer) {
       }, function (progress) {
         $timeout(function () {
           $scope.downloadProgress = (progress.loaded / progress.total) * 100;
-        })
+        });
       });
 
    }, false);
