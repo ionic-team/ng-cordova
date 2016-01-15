@@ -4,18 +4,18 @@ title: ngCordova - Document and Examples - by the Ionic Framework Team
 
 plugin-name: $cordovaBarcodeScanner
 source: https://github.com/driftyco/ng-cordova/blob/master/src/plugins/barcodeScanner.js
-official-docs: https://github.com/wildabeast/BarcodeScanner
+official-docs: https://github.com/phonegap/phonegap-plugin-barcodescanner
 icon-apple: true
 icon-android: true
 icon-windows: true
 ---
 
 
-The [Barcode Scanner Plugin](https://github.com/wildabeast/BarcodeScanner/) opens a camera view and automagically scans a barcode, returning the data back to you.
+The [Barcode Scanner Plugin](https://github.com/phonegap/phonegap-plugin-barcodescanner) opens a camera view and automagically scans a barcode, returning the data back to you.
 
 
 ```bash
-cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
+cordova plugin add https://github.com/phonegap/phonegap-plugin-barcodescanner.git
 ```
 
 
