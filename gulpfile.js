@@ -17,7 +17,7 @@ var gulp = require('gulp'),
   jscs = require('gulp-jscs'),
   git = require('gulp-git');
 
-gulp.task('default', ['git', 'build']);
+gulp.task('default', ['build']);
 
 gulp.task('lint', ['jshint', 'jscs']);
 
