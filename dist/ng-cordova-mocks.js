@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.23-alpha
+ * v0.1.24-alpha
  * Copyright 2015 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -2502,6 +2502,39 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
   };
 });
 
+
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.printer
+ *
+ * @description
+ * A service for testing printer
+ * in an app build with ngCordovaMocks.
+ */
+
+
+ngCordovaMocks.factory('$cordovaPrinter', ['$q', function ($q) {
+
+    return {
+      isAvailable: function () {
+        var q = $q.defer();
+
+        q.resolve(true);;
+
+        return q.promise;
+      },
+
+      print: function (doc, options) {
+        var q = $q.defer();
+
+        console.log("$cordovaPrinter.print called with (doc, options):", doc, options);
+    		q.resolve();
+
+        return q.promise;
+      }
+    };
+
+}]);
 'use strict';
 
 /**
