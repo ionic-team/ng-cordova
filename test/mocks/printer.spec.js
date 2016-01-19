@@ -28,19 +28,21 @@ describe('ngCordovaMocks', function() {
 	    expect(result).toBe(true);
 	  });
 
-	  // it('should call window\'s printer.print', function () {
-	  //   var result;
-	  //   var someDoc = 'someDocContent';
-	  //   var options = {landscape: true};
+	  it('should call window\'s printer.print', function () {
+	    var result;
+	    var someDoc = 'someDocContent';
+	    var options = {landscape: true};
 
-	  //   $cordovaPrinter
-	  //     .print(someDoc, options)
-	  //     .then(function (response) {
-	  //       result = response;
-	  //     });
+	    $cordovaPrinter
+	      .print(someDoc, options)
+	      .then(function (response) {
+	        result = response;
+	      });
 
-	  //   expect(window.plugin.printer.print).toHaveBeenCalledWith(someDoc, options, jasmine.any(Function));
-	  // });
+	   $rootScope.$digest();
+
+	    expect(result).toBe(undefined);
+	  });
 
 	});
 });
