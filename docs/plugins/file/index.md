@@ -124,7 +124,7 @@ Check if a file exists in a certain path, directory.
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
 | path         | `FileSystem`   | Base FileSystem. Please refer to the iOS and Android filesystems above |
-| directory    | `String`       | Name of file to check |
+| file         | `String`       | Name of file to check |
 
 > **Returns**  `Object`
 
@@ -149,7 +149,7 @@ Creates a new file in the specific path. The `replace` boolean value determines 
 | Param        | Type           | Detail  |
 | ------------ |----------------| --------|
 | path         | `FileSystem`   | Base FileSystem. Please refer to the iOS and Android filesystems above |
-| directory    | `String`       | Name of file to create |
+| file         | `String`       | Name of file to create |
 | replace      | `Boolean`      | If `true`, replaces file with same name. If `false` returns error |
 
 > **Returns**  `Object`
