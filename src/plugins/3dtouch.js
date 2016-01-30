@@ -28,10 +28,10 @@ angular.module('ngCordova.plugins.3dtouch', [])
                 if (!window.cordova) {
                     deferred.reject('Not supported in browser');
                 } else {
-                    if (!ThreeDeeTouch) {
+                    if (!window.ThreeDeeTouch) {
                         deferred.reject('Could not find 3D touch plugin');
                     } else {
-                        ThreeDeeTouch.isAvailable(function (value) {
+                        window.ThreeDeeTouch.isAvailable(function (value) {
                             deferred.resolve(value);
                         }, function (err) {
                             deferred.reject(err);
@@ -72,8 +72,8 @@ angular.module('ngCordova.plugins.3dtouch', [])
                 this.isAvailable().then(function() {
                     quickActions.push(quickAction);
                     quickActionHandler[type] = callback;
-                    ThreeDeeTouch.configureQuickActions(quickActions);
-                    ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
+                    window.ThreeDeeTouch.configureQuickActions(quickActions);
+                    window.ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
                     deferred.resolve(quickActions);
                 },
                 function(err) {
@@ -95,7 +95,7 @@ angular.module('ngCordova.plugins.3dtouch', [])
 
                 this.isAvailable().then(function() {
                     quickActionHandler[type] = callback;
-                    ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
+                    window.ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
                     deferred.resolve(true);
                 },
                 function(err) {
@@ -114,7 +114,7 @@ angular.module('ngCordova.plugins.3dtouch', [])
                 var deferred = $q.defer();
 
                 this.isAvailable().then(function() {
-                    ThreeDeeTouch.enableLinkPreview();
+                    window.ThreeDeeTouch.enableLinkPreview();
                         deferred.resolve(true);
                 },
                 function(err) {
@@ -134,7 +134,7 @@ angular.module('ngCordova.plugins.3dtouch', [])
                 var deferred = $q.defer();
 
                 this.isAvailable().then(function() {
-                    ThreeDeeTouch.watchForceTouches(callback);
+                    window.ThreeDeeTouch.watchForceTouches(callback);
                     deferred.resolve(true);
                 },
                 function(err) {
