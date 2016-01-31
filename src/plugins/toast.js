@@ -66,6 +66,16 @@ angular.module('ngCordova.plugins.toast', [])
         return q.promise;
       },
 
+      showWithOptions: function (options) {
+        var q = $q.defer();
+        $window.plugins.toast.showWithOptions(options, function (response) {
+          q.resolve(response);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
       show: function (message, duration, position) {
         var q = $q.defer();
         $window.plugins.toast.show(message, duration, position, function (response) {

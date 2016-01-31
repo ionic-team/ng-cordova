@@ -77,6 +77,15 @@ ngCordovaMocks.factory('$cordovaToast', ['$q', function ($q) {
       }
       return defer.promise;
     },
+    showWithOptions: function (options) {
+      var defer = $q.defer();
+      if (this.throwsError) {
+        defer.reject('There was an error showing the toast.');
+      } else {
+        defer.resolve();
+      }
+      return defer.promise;
+		},
     show: function (message, duration, position) {
       var defer = $q.defer();
       if (this.throwsError) {
