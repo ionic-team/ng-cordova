@@ -1,72 +1,77 @@
+// install   :     cordova plugin add cordova-plugin-contacts
+// link      :     https://github.com/apache/cordova-plugin-contacts
+
 angular.module('ngCordova.plugins.contacts', [])
 
-.factory('$cordovaContacts', ['$q', function ($q) {
+  .factory('$cordovaContacts', ['$q', function ($q) {
 
-  return {
-    save: function (contact) {
-      var q = $q.defer();
-      var deviceContact = navigator.contacts.create(contact);
+    return {
+      save: function (contact) {
+        var q = $q.defer();
+        var deviceContact = navigator.contacts.create(contact);
 
-      deviceContact.save(function (result) {
+        deviceContact.save(function (result) {
           q.resolve(result);
-        },
-        function (err) {
+        }, function (err) {
           q.reject(err);
         });
-      return q.promise;
-    },
+        return q.promise;
+      },
 
-    remove: function (contact) {
-      var q = $q.defer();
-      var deviceContact = navigator.contacts.create(contact);
+      remove: function (contact) {
+        var q = $q.defer();
+        var deviceContact = navigator.contacts.create(contact);
 
-      deviceContact.remove(function (result) {
+        deviceContact.remove(function (result) {
           q.resolve(result);
-        },
-        function (err) {
+        }, function (err) {
           q.reject(err);
         });
-      return q.promise;
-    },
+        return q.promise;
+      },
 
-    clone: function (contact) {
-      var deviceContact = navigator.contacts.create(contact);
-      return deviceContact.clone(contact)
-    },
+      clone: function (contact) {
+        var deviceContact = navigator.contacts.create(contact);
+        return deviceContact.clone(contact);
+      },
 
-    find: function (options) {
-      var q = $q.defer();
-      var fields = options.fields || ['id', 'displayName'];
-      delete options.fields;
+      find: function (options) {
+        var q = $q.defer();
+        var fields = options.fields || ['id', 'displayName'];
+        delete options.fields;
+        if (Object.keys(options).length === 0) {
+          navigator.contacts.find(fields, function (results) {
+            q.resolve(results);
+          },function (err) {
+            q.reject(err);
+          });
+        }
+        else {
+          navigator.contacts.find(fields, function (results) {
+            q.resolve(results);
+          }, function (err) {
+            q.reject(err);
+          }, options);
+        }
+        return q.promise;
+      },
 
-      navigator.contacts.find(fields, function (results) {
-          q.resolve(results);
-        },
-        function (err) {
+      pickContact: function () {
+        var q = $q.defer();
+
+        navigator.contacts.pickContact(function (contact) {
+          q.resolve(contact);
+        }, function (err) {
           q.reject(err);
-        },
-        options);
+        });
 
-      return q.promise;
-    }
+        return q.promise;
+      }
 
-    /*
-     getContact: function (contact) {
-     var q = $q.defer();
-
-     navigator.contacts.pickContact(function (contact) {
-
-     })
-
-     }
-     */
-
-    // TODO: method to set / get ContactAddress
-    // TODO: method to set / get ContactError
-    // TODO: method to set / get ContactField
-    // TODO: method to set / get ContactName
-    // TODO: method to set / get ContactOrganization
-
-  }
-
-}]);
+      // TODO: method to set / get ContactAddress
+      // TODO: method to set / get ContactError
+      // TODO: method to set / get ContactField
+      // TODO: method to set / get ContactName
+      // TODO: method to set / get ContactOrganization
+    };
+  }]);

@@ -1,0 +1,53 @@
+<!--
+ - save(contact)
+ - remove(contact)
+ - clone(contact)
+ - find(options)
+-->
+
+
+<ion-view title="Contacts">
+  <ion-content>
+
+    <div class="padding-horizontal">
+      <button class="button button-block button-balanced" ng-click="pickContact()">
+        Pick a Contact from Phone
+      </button>
+    </div>
+
+    <div class="card" ng-if="selectedContact != undefined">
+      <div class="item">
+        <h3>NAME: {{selectedContact.name.givenName}} {{selectedContact.name.familyName}}</h3>
+      </div>
+    </div>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Create new Contact</span>
+        <input type="text" placeholder="Create new Contact" ng-model="newContact">
+      </label>
+    </div>
+
+    <div class="padding-horizontal">
+      <button class="button button-block button-positive" ng-click="saveContact(newContact)">
+        Create new Contact
+      </button>
+    </div>
+    <br>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Remove a Contact</span>
+        <input type="text" placeholder="Remove a Contact" ng-model="oldContact">
+      </label>
+    </div>
+
+    <div class="padding-horizontal">
+      <button class="button button-block button-assertive" ng-click="removeContact(contact)">
+        Remove Contact
+      </button>
+    </div>
+
+
+  </ion-content>
+</ion-view>

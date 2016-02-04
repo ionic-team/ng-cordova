@@ -1,0 +1,283 @@
+<ion-view title="File">
+  <ion-content padding="false">
+
+    <button class="button button-full button-assertive" ng-click="test()">test</button>
+
+
+    <h4 class="padding-horizontal">CHECK</h4>
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Check Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Directory" ng-model="inputs.checkDir">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="checkDir()">
+          Check Directory
+        </button>
+      </div>
+      <div class="item" ng-if="checkDirResult">
+        {{checkDirResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Check File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.checkFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="checkFile()">
+          Check File
+        </button>
+      </div>
+      <div class="item" ng-if="checkFileResult">
+        {{checkFileResult}}
+      </div>
+    </div>
+
+    <h4 class="padding-horizontal">CREATE</h4>
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Create Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.createDirectory">
+        </label>
+        <button class="button button-small button-balanced button-outline" ng-click="createDirectory()">
+          Create Directory
+        </button>
+      </div>
+      <div class="item" ng-if="createDirectoryResult">
+        {{createDirectoryResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Create File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.createFile">
+        </label>
+        <button class="button button-small button-balanced button-outline" ng-click="createFile()">
+          Create File
+        </button>
+      </div>
+      <div class="item" ng-if="createFileResult">
+        {{createFileResult}}
+      </div>
+    </div>
+
+
+    <h4 class="padding-horizontal">REMOVE</h4>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Remove File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.removeFile">
+        </label>
+        <button class="button button-small button-assertive button-outline" ng-click="removeFile()">
+          Remove File
+        </button>
+      </div>
+      <div class="item" ng-if="removeFileResult">
+        {{removeFileResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Remove Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.removeDirectory">
+        </label>
+        <button class="button button-small button-assertive button-outline" ng-click="removeDirectory()">
+          Remove Directory
+        </button>
+      </div>
+      <div class="item" ng-if="removeDirectoryResult">
+        {{removeDirectoryResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Remove Recursively
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="File" ng-model="inputs.removeRecursively">
+        </label>
+        <button class="button button-small button-assertive button-outline" ng-click="removeRecursively()">
+          Remove Recursive
+        </button>
+      </div>
+      <div class="item" ng-if="removeRecursivelyResult">
+        {{removeRecursivelyResult}}
+      </div>
+    </div>
+
+
+    <h4 class="padding-horizontal">WRITE</h4>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Write File
+      </div>
+      <div class="item">
+        <label class="item item-input">
+          <input type="text" placeholder="text" ng-model="inputs.writeText">
+        </label>
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.writeFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="writeFile()">
+          Write File
+        </button>
+      </div>
+      <div class="item" ng-if="writeFileResult">
+        {{writeFileResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Write Existing File
+      </div>
+      <div class="item">
+        <label class="item item-input">
+          <input type="text" placeholder="text" ng-model="inputs.writeExistingText">
+        </label>
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.writeExistingFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="writeExistingFile()">
+          Write Existing File
+        </button>
+      </div>
+      <div class="item item-text-wrap" ng-if="writeExistingFileResult">
+        {{writeExistingFileResult}}
+      </div>
+    </div>
+
+    <h4 class="padding-horizontal">READ</h4>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Read File As Text
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.readFile">
+        </label>
+        <button class="button button-small button-positive button-outline" ng-click="readFileAsText()">
+          Read File
+        </button>
+      </div>
+      <div class="item item-text-wrap" ng-if="readFileResult">
+        {{readFileResult}}
+      </div>
+    </div>
+
+
+    <h4 class="padding-horizontal">MOVE</h4>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Move Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.moveDirectory">
+        </label>
+        <button class="button button-small button-royal button-outline" ng-click="moveDir()">
+          Move File
+        </button>
+      </div>
+      <div class="item" ng-if="moveDirectoryResult">
+        {{moveDirectoryResult}}
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Move File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.moveFile">
+        </label>
+        <button class="button button-small button-royal button-outline" ng-click="moveFile()">
+          Move File
+        </button>
+      </div>
+      <div class="item" ng-if="moveFileResult">
+        {{moveFileResult}}
+      </div>
+    </div>
+
+    <h4 class="padding-horizontal">COPY</h4>
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Copy Directory
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.copyDirectory">
+        </label>
+        <button class="button button-small button-energized button-outline" ng-click="copyDir()">
+          Copy Directory
+        </button>
+      </div>
+      <div class="item" ng-if="copyDirectoryResult">
+        {{copyDirectoryResult}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider-ios">
+        Copy File
+      </div>
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Write File Name" ng-model="inputs.copyFile">
+        </label>
+        <button class="button button-small button-energized button-outline" ng-click="copyFile()">
+          Copy File
+        </button>
+      </div>
+      <div class="item" ng-if="copyFileResult">
+        {{copyFileResult}}
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

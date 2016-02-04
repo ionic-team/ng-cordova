@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- '0.10'
+before_install:
+- npm install -g gulp bower
+- bower install
+notifications:
+  email: false
+deploy:
+  provider: npm
+  email: paolo.enrico.bernasconi@gmail.com
+  api_key:
+    secure: dBjQuYwAMqzziqwKKzntnQGKT3LLK+U/ZUuAHvemuuMYHlXcJSwO6gqBcGynGVjzUbq6ONJ4orDqSdicjJXgOXzjJ6PeP5KQzcQ4MHW2ZEnaEr/Wyu81GbwgivOmvF6kJj+7o/oLHSmrSVVXPTxxKNH+5K3CpLlzxaJmCO1UpyI=
+  on:
+    tags: true
+    branch: master

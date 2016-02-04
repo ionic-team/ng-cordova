@@ -1,27 +1,42 @@
 {
   "name": "ng-cordova",
   "private": false,
-  "version": "0.1.2-alpha",
+  "main": "dist/ng-cordova",
+  "version": "0.1.24-alpha",
   "repository": {
     "url": "git://github.com/driftyco/ng-cordova.git"
   },
   "devDependencies": {
+    "gulp": "^3.7.0",
+    "gulp-concat": "^2.2.0",
+    "gulp-footer": "^1.0.4",
+    "gulp-header": "^1.0.2",
+    "gulp-jscs": "^1.6.0",
+    "gulp-jshint": "^1.6.1",
+    "gulp-prettify": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-shell": "^0.2.10",
+    "gulp-uglify": "^0.2.1",
+    "jshint-stylish": "^0.4.0",
     "karma": "^0.12.16",
     "karma-chrome-launcher": "~0.1.2",
+    "karma-coverage": "~0.2.6",
     "karma-jasmine": "~0.1.5",
     "karma-phantomjs-launcher": "~0.1.2",
-    "gulp-rename": "^1.2.0",
-    "gulp-concat": "^2.2.0",
-    "gulp-header": "^1.0.2",
-    "gulp-footer": "^1.0.4",
-    "gulp": "^3.7.0",
-    "gulp-jshint": "^1.6.1",
-    "gulp-uglify": "^0.2.1",
     "minimist": "^0.1.0"
   },
   "licenses": [
     {
       "type": "MIT"
     }
-  ]
+  ],
+  "scripts": {
+    "test": "gulp lint && gulp karma --browsers=PhantomJS --reporters=progress"
+  },
+  "dependencies": {
+    "conventional-changelog": "0.0.11",
+    "fs": "0.0.2",
+    "gulp-git": "^1.2.4",
+    "q": "^1.1.2"
+  }
 }

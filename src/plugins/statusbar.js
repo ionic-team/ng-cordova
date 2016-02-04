@@ -1,42 +1,60 @@
+// install   :      cordova plugin add cordova-plugin-statusbar
+// link      :      https://github.com/apache/cordova-plugin-statusbar
+
+/* globals StatusBar: true */
 angular.module('ngCordova.plugins.statusbar', [])
 
-.factory('$cordovaStatusbar', [function() {
+.factory('$cordovaStatusbar', [function () {
 
   return {
-  	overlaysWebView: function(bool) {
-      return StatusBar.overlaysWebView(true);
-	  },
 
-    // styles: Default, LightContent, BlackTranslucent, BlackOpaque
+    /**
+      * @param {boolean} bool
+      */
+    overlaysWebView: function (bool) {
+      return StatusBar.overlaysWebView(!!bool);
+    },
+
+    STYLES: {
+      DEFAULT: 0,
+      LIGHT_CONTENT: 1,
+      BLACK_TRANSLUCENT: 2,
+      BLACK_OPAQUE: 3
+    },
+
+    /**
+      * @param {number} style
+      */
     style: function (style) {
       switch (style) {
-        case 0:     // Default
-          return StatusBar.styleDefault();
-          break;
+        // Default
+        case 0:
+        return StatusBar.styleDefault();
 
-        case 1:     // LightContent
-          return StatusBar.styleLightContent();
-          break;
+        // LightContent
+        case 1:
+        return StatusBar.styleLightContent();
 
-        case 2:     // BlackTranslucent
-          return StatusBar.styleBlackTranslucent();
-          break;
+        // BlackTranslucent
+        case 2:
+        return StatusBar.styleBlackTranslucent();
 
-        case 3:     // BlackOpaque
-          return StatusBar.styleBlackOpaque();
-          break;
+        // BlackOpaque
+        case 3:
+        return StatusBar.styleBlackOpaque();
 
-        default:  // Default
-          return StatusBar.styleDefault();
+        default:
+        return StatusBar.styleDefault();
       }
     },
 
-
-    // supported names: black, darkGray, lightGray, white, gray, red, green, blue, cyan, yellow, magenta, orange, purple, brown
+    // supported names:
+    // black, darkGray, lightGray, white, gray, red, green,
+    // blue, cyan, yellow, magenta, orange, purple, brown
     styleColor: function (color) {
       return StatusBar.backgroundColorByName(color);
     },
-    
+
     styleHex: function (colorHex) {
       return StatusBar.backgroundColorByHexString(colorHex);
     },
@@ -46,11 +64,11 @@ angular.module('ngCordova.plugins.statusbar', [])
     },
 
     show: function () {
-      return StatusBar.show()
+      return StatusBar.show();
     },
 
     isVisible: function () {
-      return StatusBar.isVisible();
+      return StatusBar.isVisible;
     }
-  }
+  };
 }]);

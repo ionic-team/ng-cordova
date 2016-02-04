@@ -1,0 +1,23 @@
+<ion-view title="Battery Status">
+  <ion-content scroll="false" padding="true">
+    <button ng-click="watch()" class="button button-block button-primary">Start Watch</button>
+
+    <div class="card">
+      <div class="item item-divider">
+        Battery Level
+      </div>
+      <div class="item item-body">
+        {{batteryLevel}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        is Plugged in
+      </div>
+      <div class="item item-body">
+        {{isPluggedIn}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

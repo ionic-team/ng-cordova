@@ -1,19 +1,28 @@
+// install   :      cordova plugin add https://github.com/litehelpers/Cordova-sqlite-storage.git
+// link      :      https://github.com/litehelpers/Cordova-sqlite-storage
+
 angular.module('ngCordova.plugins.sqlite', [])
 
-  .factory('$cordovaSQLite', ['$q', function ($q) {
+  .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
-    return  {
-      openDB: function (dbName) {
-        return  window.sqlitePlugin.openDatabase({name: dbName});
-      },
+    return {
+      openDB: function (options, background) {
 
+        if (angular.isObject(options) && !angular.isString(options)) {
+          if (typeof background !== 'undefined') {
+            options.bgType = background;
+          }
+          return $window.sqlitePlugin.openDatabase(options);
+        }
 
-      openDBBackground: function (dbName) {
-        return window.sqlitePlugin.openDatabase({name: dbName, bgType: 1});
+        return $window.sqlitePlugin.openDatabase({
+          name: options,
+          bgType: background
+        });
       },
 
       execute: function (db, query, binding) {
-        q = $q.defer();
+        var q = $q.defer();
         db.transaction(function (tx) {
           tx.executeSql(query, binding, function (tx, result) {
               q.resolve(result);
@@ -25,24 +34,60 @@ angular.module('ngCordova.plugins.sqlite', [])
         return q.promise;
       },
 
+      insertCollection: function (db, query, bindings) {
+        var q = $q.defer();
+        var coll = bindings.slice(0); // clone collection
+
+        db.transaction(function (tx) {
+          (function insertOne() {
+            var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
+            try {
+              tx.executeSql(query, record, function (tx, result) {
+                if (coll.length === 0) {
+                  q.resolve(result);
+                } else {
+                  insertOne();
+                }
+              }, function (transaction, error) {
+                q.reject(error);
+                return;
+              });
+            } catch (exception) {
+              q.reject(exception);
+            }
+          })();
+        });
+        return q.promise;
+      },
+
       nestedExecute: function (db, query1, query2, binding1, binding2) {
-        q = $q.defer();
+        var q = $q.defer();
 
         db.transaction(function (tx) {
             tx.executeSql(query1, binding1, function (tx, result) {
               q.resolve(result);
               tx.executeSql(query2, binding2, function (tx, res) {
                 q.resolve(res);
-              })
-            })
+              });
+            });
           },
           function (transaction, error) {
             q.reject(error);
           });
 
         return q.promise;
-      }
+      },
 
-      // more methods here
-    }
+      deleteDB: function (dbName) {
+        var q = $q.defer();
+
+        $window.sqlitePlugin.deleteDatabase(dbName, function (success) {
+          q.resolve(success);
+        }, function (error) {
+          q.reject(error);
+        });
+
+        return q.promise;
+      }
+    };
   }]);

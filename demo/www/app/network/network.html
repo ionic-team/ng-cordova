@@ -1,0 +1,19 @@
+<ion-view title="Network">
+	<ion-content padding="true">
+		<div class="card">
+
+			<div class="item">
+				<strong>You are currently</strong> &nbsp {{connectionType}}
+			</div>
+			<div class="item">
+				<strong>Network Type</strong> &nbsp {{networkType}}
+			</div>
+		</div>
+
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="refresh()">
+				Refresh
+			</button>
+		</div>
+	</ion-content>
+</ion-view>
