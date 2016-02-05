@@ -1,5 +1,5 @@
-// install   : cordova plugin add https://github.com/sidneys/cordova-plugin-nativeaudio.git
-// link      : https://github.com/sidneys/cordova-plugin-nativeaudio
+// install   : cordova plugin add cordova-plugin-nativeaudio
+// link      : https://github.com/floatinghotpot/cordova-plugin-nativeaudio
 
 angular.module('ngCordova.plugins.nativeAudio', [])
 
@@ -17,9 +17,9 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         return q.promise;
       },
 
-      preloadComplex: function (id, assetPath, volume, voices) {
+      preloadComplex: function (id, assetPath, volume, voices, delay) {
         var q = $q.defer();
-        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices, function (result) {
+        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices, delay, function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
