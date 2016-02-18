@@ -14,10 +14,9 @@ var gulp = require('gulp'),
   changelog = require('conventional-changelog'),
   q = require('q'),
   fs = require('fs'),
-  jscs = require('gulp-jscs'),
-  git = require('gulp-git');
+  jscs = require('gulp-jscs');
 
-gulp.task('default', ['git', 'build']);
+gulp.task('default', ['build']);
 
 gulp.task('lint', ['jshint', 'jscs']);
 
