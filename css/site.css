@@ -796,8 +796,8 @@ blockquote > table {
 .mastfoot {
     position: relative;
     clear: both;
-    height: 220px;
-    margin-top: -220px;
+    height: 260px;
+    margin-top: -260px;
     font-family: "AvenirNextLTPro-UltLt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     letter-spacing: -0.04em;
@@ -833,6 +833,19 @@ blockquote > table {
 
 .mastfoot > .footer-text i {
     color: red;
+}
+
+.mastfoot .legal,
+.mastfoot .legal a {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 10px;
+  transition: .4s color;
+}
+
+.mastfoot .legal a:hover {
+  color: #aaa;
 }
 
 /*
