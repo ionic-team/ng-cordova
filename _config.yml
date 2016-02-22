@@ -1,5 +1,5 @@
 name: ngCordova
-markdown: redcarpet
+markdown: kramdown
 redcarpet:
  extensions: ["tables"]
 pygments: true
