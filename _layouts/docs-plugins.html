@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="ionic,html5,cordova,phonegap,angularjs,ionic framework,geolocation">
+	<meta name="description" content="ngCordova - Simple and powerful AngularJS Services for Cordova and Phonegap">
+	<meta name="author" content="Ionic Framework">
+	<meta property="og:title" content="ngCordova - Cordova Plugins with AngularJS Magic"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
+	<link rel="shortcut icon" href="/img/favicon.ico">
+
+	<title>{{page.title}}</title>
+
+	<link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
+	<link href="/css/site.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<div class="wrapper">
+
+	<nav class="navbar">
+		<div class="container nav-container">
+			<a class="masthead-brand" href="/"><img src="/img/ngcordova-logo.png" alt="ngCordova"></a>
+			<ul class="nav masthead-nav">
+				<li class="active"><a href="/docs/">Docs</a></li>
+				<li><a href="/build">Custom Build</a></li>
+				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li class="nav-search-bar">
+					<label for="searchInput" class="sronly">Search Docs</label>
+					<input class="nav-input" type="text" placeholder="Search docs" id="searchInput"><i class="ion-ios-search"></i>
+					<ul class="results-dropdown" id="searchResults">
+						<script id="template" type="text/html">
+							<li><a href="<%= link %>"><%= title %></a></li>
+						</script>
+					</ul>
+					<ul class="no-results-dropdown" id="noSearchResults">
+						<li>No results found</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container docs-container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="docked-menu">
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/">Overview</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/install/">Install</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu">
+						<li class="menu-title">
+							<a href="/docs/common-issues/">Common Issues</a>
+						</li>
+					</ul>
+					<ul class="nav left-menu active-menu">
+						<li class="menu-title">
+							<a href="/docs/plugins/">Plugins</a>
+						</li>
+						<ul id="pluginsList">
+							<li><a href="/docs/plugins/actionSheet/">Action Sheet</a></li>
+							<li><a href="/docs/plugins/adMob/">AdMob</a></li>
+							<li><a href="/docs/plugins/appAvailability/">App Availability</a></li>
+							<li><a href="/docs/plugins/appRate/">App Rate</a></li>
+							<li><a href="/docs/plugins/appVersion/">App Version</a></li>
+                            <li><a href="/docs/plugins/badge/">Badge</a></li>
+							<li><a href="/docs/plugins/backgroundGeolocation/">Background Geoloc</a></li>
+							<li><a href="/docs/plugins/batteryStatus/">Battery Status</a></li>
+							<li><a href="/docs/plugins/barcodeScanner/">Barcode Scanner</a></li>
+							<li><a href="/docs/plugins/calendar/">Calendar</a></li>
+							<li><a href="/docs/plugins/camera/">Camera</a></li>
+							<li><a href="/docs/plugins/capture/">Capture</a></li>
+							<li><a href="/docs/plugins/clipboard/">Clipboard</a></li>
+							<li><a href="/docs/plugins/contacts/">Contacts</a></li>
+							<li><a href="/docs/plugins/datePicker/">Date Picker</a></li>
+							<li><a href="/docs/plugins/device/">Device</a></li>
+							<li><a href="/docs/plugins/deviceMotion/">Device Motion</a></li>
+							<li><a href="/docs/plugins/deviceOrientation/">Device Orientation</a></li>
+							<li><a href="/docs/plugins/dialogs/">Dialogs</a></li>
+							<li><a href="/docs/plugins/emailComposer/">Email Composer</a></li>
+							<li><a href="/docs/plugins/facebook/">Facebook</a></li>
+							<li><a href="/docs/plugins/file/">File</a></li>
+							<li><a href="/docs/plugins/fileTransfer/">File Transfer</a></li>
+							<li><a href="/docs/plugins/fileOpener2/">FileOpener2</a></li>
+							<li><a href="/docs/plugins/flashlight/">Flashlight</a></li>
+							<li><a href="/docs/plugins/geolocation/">Geolocation</a></li>
+							<li><a href="/docs/plugins/globalization/">Globalization</a></li>
+							<li><a href="/docs/plugins/googleAnalytics/">Google Analytics</a></li>
+							<li><a href="/docs/plugins/healthkit/">HealthKit</a></li>
+							<li><a href="/docs/plugins/beacon/">iBeacon</a></li>
+							<li><a href="/docs/plugins/imagePicker/">Image Picker</a></li>
+							<li><a href="/docs/plugins/inAppBrowser/">In App Browser</a></li>
+							<li><a href="/docs/plugins/instagram/">Instagram</a></li>
+							<li><a href="/docs/plugins/keyboard/">Keyboard</a></li>
+							<li><a href="/docs/plugins/keychain/">Keychain</a></li>
+							<li><a href="/docs/plugins/launchNavigator/">Launch Navigator</a></li>
+							<li><a href="/docs/plugins/localNotification/">Local Notification</a></li>
+							<li><a href="/docs/plugins/media/">Media</a></li>
+							<li><a href="/docs/plugins/nativeAudio/">Native Audio</a></li>
+							<li><a href="/docs/plugins/network/">Network</a></li>
+							<li><a href="/docs/plugins/oauth/">OAuth</a></li>
+							<li><a href="/docs/plugins/pinDialog/">Pin Dialog</a></li>
+							<li><a href="/docs/plugins/preferences/">Preferences</a></li>
+							<li><a href="/docs/plugins/printer/">Printer</a></li>
+							<li><a href="/docs/plugins/progressIndicator/">Progress Indicator</a></li>
+							<li><a href="/docs/plugins/pushNotifications/">Push Notifications</a></li>
+							<li><a href="/docs/plugins/sms/">SMS</a></li>
+							<li><a href="/docs/plugins/socialSharing/">Social Sharing</a></li>
+							<li><a href="/docs/plugins/spinnerDialog/">Spinner Dialog</a></li>
+							<li><a href="/docs/plugins/splashscreen/">Splashscreen</a></li>
+							<li><a href="/docs/plugins/sqlite/">SQLite</a></li>
+							<li><a href="/docs/plugins/statusbar/">StatusBar</a></li>
+							<li><a href="/docs/plugins/toast/">Toast</a></li>
+							<li><a href="/docs/plugins/touchID/">TouchID</a></li>
+							<li><a href="/docs/plugins/vibration/">Vibration</a></li>
+							<li><a href="/docs/plugins/zip/">ZIP</a></li>
+						</ul>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-9">
+				{% if page.hide-header == null %}
+
+				<div class="anchor-row">
+					<h3><code>{{page.plugin-name}}</code></h3>
+
+					<div class="button-row">
+						<a class="btn-anchor" href="{{page.source}}">Source</a>
+						<a class="btn-anchor" href="{{page.official-docs}}">Official Docs</a>
+					</div>
+					<div class="icon-row">
+						{% if page.icon-apple == true %}<i class="icon ion-social-apple"></i>{% endif %}
+						{% if page.icon-android == true %}<i class="icon ion-social-android"></i>{% endif %}
+						{% if page.icon-windows == true %}<i class="icon ion-social-windows"></i>{% endif %}
+					</div>
+				</div>
+				{% endif %}
+
+
+				<div class="plugin-content">
+					{{content}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include mastfoot.html %}
+
+{% include scripts.html %}
+{% include analytics.html %}
+</body>
+</html>

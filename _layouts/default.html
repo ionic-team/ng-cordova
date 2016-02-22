@@ -12,13 +12,12 @@
 	<meta property="og:image" content="http://ngcordova.com/img/ngcordova-logo.png">
 	<link rel="shortcut icon" href="/img/favicon.ico">
 
-	<title>{{page.title}} - by the Ionic Framework Team</title>
+	<title>{{page.title}} - by the Ionic Team</title>
 
 	<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
-	<link href="/css/cover.css" rel="stylesheet">
+	<link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
+	<link href="/css/site.css" rel="stylesheet">
 	<link href="/css/syntax.css" rel="stylesheet">
-
-	<script src="../../assets/js/ie8-responsive-file-warning.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -29,40 +28,40 @@
 
 <body>
 
-<div class="site-wrapper">
+<div class="home-wrapper">
 
-	<div class="site-wrapper-inner">
-
-		<div class="cover-container">
-
-			<div class="masthead clearfix">
-				<div class="inner">
-					<a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" width="181" height="83" alt="ngCordova"></a>
-					<ul class="nav masthead-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="/docs/">Docs</a></li>
-						<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
-						<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
-						<li><a href="/build">Custom Build</a></li>
+	<nav class="navbar">
+		<div class="container nav-container">
+			<a class="masthead-brand" href="#"><img src="/img/ngcordova-logo.png" alt="ngCordova"></a>
+			<ul class="nav masthead-nav">
+				<li><a href="/docs/">Docs</a></li>
+				<li><a href="/build">Custom Build</a></li>
+				<li><a href="http://ionicframework.com/" target="_blank">Ionic</a></li>
+				<li><a href="https://github.com/driftyco/ng-cordova/" target="_blank">GitHub</a></li>
+				<li class="nav-search-bar">
+					<label for="searchInput" class="sronly">Search Docs</label>
+					<input class="nav-input" type="text" placeholder="Search docs" id="searchInput"><i class="ion-ios-search" id="searchIcon"></i>
+					<ul class="results-dropdown" id="searchResults">
+						<script id="template" type="text/html">
+							<li><a href="<%= link %>"><%= title %></a></li>
+						</script>
 					</ul>
-				</div>
-			</div>
-
-			<div class="inner cover">
-
-				{{ content }}
-
-			</div>
-
-			{% include mastfoot.html %}
-
+					<ul class="no-results-dropdown" id="noSearchResults">
+						<li>No results found</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
+	</nav>
+
+	<div class="home-container">
+		{{ content }}
 	</div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/lib/bootstrap/bootstrap.js"></script>
+{% include mastfoot.html %}
 
+{% include scripts.html %}
 {% include analytics.html %}
 </body>
 </html>
