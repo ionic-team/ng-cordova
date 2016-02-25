@@ -22,7 +22,7 @@ describe('Service: $cordovaZip', function () {
     var dest = 'cordova-2.9.1-src';
 
     spyOn($window.zip, 'unzip')
-      .andCallFake(function (src, dest, callback, updateCallback) {
+      .and.callFake(function (src, dest, callback, updateCallback) {
         callback(0);
       });
 
@@ -53,7 +53,7 @@ describe('Service: $cordovaZip', function () {
     var dest = 'cordova-2.9.1-src';
 
     spyOn($window.zip, 'unzip')
-      .andCallFake(function (src, dest, callback, updateCallback) {
+      .and.callFake(function (src, dest, callback, updateCallback) {
         callback(-1);
       });
 
@@ -83,7 +83,7 @@ describe('Service: $cordovaZip', function () {
     var dest = 'cordova-2.9.1-src';
 
     spyOn($window.zip, 'unzip')
-      .andCallFake(function (src, dest, callback, updateCallback) {
+      .and.callFake(function (src, dest, callback, updateCallback) {
         $timeout(function () {
           updateCallback(notifyResult);
         }, 1000);

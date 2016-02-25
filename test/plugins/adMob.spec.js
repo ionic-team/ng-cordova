@@ -33,7 +33,7 @@ describe('Service: $cordovaAdMob', function() {
         var options = { someOption: 1 };
 
         spyOn(window.plugins.AdMob, fnName)
-          .andCallFake(function (options, successCb, errorCb) {
+          .and.callFake(function (options, successCb, errorCb) {
             successCb();
           });
 
@@ -53,7 +53,7 @@ describe('Service: $cordovaAdMob', function() {
         var options = { someOption: 1 };
 
         spyOn(window.plugins.AdMob, fnName)
-          .andCallFake(function (options, successCb, errorCb) {
+          .and.callFake(function (options, successCb, errorCb) {
             errorCb();
           });
 

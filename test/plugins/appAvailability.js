@@ -18,7 +18,7 @@ describe('Service: $cordovaAppAvailability', function() {
     var result;
 
     spyOn(window.appAvailability, 'check')
-      .andCallFake(function (urlScheme, successCb, errorCb) {
+      .and.callFake(function (urlScheme, successCb, errorCb) {
         successCb(true);
       });
 
@@ -31,7 +31,7 @@ describe('Service: $cordovaAppAvailability', function() {
     $rootScope.$digest();
 
     expect(result).toBe(true);
-    expect(window.appAvailability.check.calls[0].args[0]).toBe('twitter://');
+    expect(window.appAvailability.check.calls.argsFor(0)[0]).toBe('twitter://');
   });
 
   it('should call errorCb when in window\'s appAvailability.check a error orccurs', function() {
@@ -40,7 +40,7 @@ describe('Service: $cordovaAppAvailability', function() {
     var errorObj = { someError: 1 };
 
     spyOn(window.appAvailability, 'check')
-      .andCallFake(function (urlScheme, successCb, errorCb) {
+      .and.callFake(function (urlScheme, successCb, errorCb) {
         errorCb(errorObj);
       });
 

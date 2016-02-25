@@ -39,7 +39,7 @@ describe('Service: $cordovaGlobalization', function() {
         var result;
 
         spyOn(navigator.globalization, fnName)
-          .andCallFake(function (successCb, errorCb) {
+          .and.callFake(function (successCb, errorCb) {
             successCb('some result');
           });
 
@@ -59,7 +59,7 @@ describe('Service: $cordovaGlobalization', function() {
         var errorObj = { testError: true };
 
         spyOn(navigator.globalization, fnName)
-          .andCallFake(function (successCb, errorCb) {
+          .and.callFake(function (successCb, errorCb) {
             errorCb(errorObj);
           });
 
@@ -82,7 +82,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'dateToString')
-      .andCallFake(function (date, successCb, errorCb, options) {
+      .and.callFake(function (date, successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -95,8 +95,8 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.dateToString.calls[0].args[0]).toBe(date);
-    expect(navigator.globalization.dateToString.calls[0].args[3]).toBe(options);
+    expect(navigator.globalization.dateToString.calls.argsFor(0)[0]).toBe(date);
+    expect(navigator.globalization.dateToString.calls.argsFor(0)[3]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.dateToString when error occurs', function() {
@@ -107,7 +107,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'dateToString')
-      .andCallFake(function (date, successCb, errorCb, options) {
+      .and.callFake(function (date, successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -129,7 +129,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'stringToDate')
-      .andCallFake(function (date, successCb, errorCb, options) {
+      .and.callFake(function (date, successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -142,8 +142,8 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.stringToDate.calls[0].args[0]).toBe(date);
-    expect(navigator.globalization.stringToDate.calls[0].args[3]).toBe(options);
+    expect(navigator.globalization.stringToDate.calls.argsFor(0)[0]).toBe(date);
+    expect(navigator.globalization.stringToDate.calls.argsFor(0)[3]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.stringToDate when error occurs', function() {
@@ -154,7 +154,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'stringToDate')
-      .andCallFake(function (date, successCb, errorCb, options) {
+      .and.callFake(function (date, successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -175,7 +175,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'getDatePattern')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -188,7 +188,7 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.getDatePattern.calls[0].args[2]).toBe(options);
+    expect(navigator.globalization.getDatePattern.calls.argsFor(0)[2]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.getDatePattern when error occurs', function() {
@@ -198,7 +198,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'getDatePattern')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -219,7 +219,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'getDateNames')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -232,7 +232,7 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.getDateNames.calls[0].args[2]).toBe(options);
+    expect(navigator.globalization.getDateNames.calls.argsFor(0)[2]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.getDateNames when error occurs', function() {
@@ -242,7 +242,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'getDateNames')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -263,7 +263,7 @@ describe('Service: $cordovaGlobalization', function() {
     var date = new Date();
 
     spyOn(navigator.globalization, 'isDayLightSavingsTime')
-      .andCallFake(function (date, successCb, errorCb) {
+      .and.callFake(function (date, successCb, errorCb) {
         successCb('some result');
       });
 
@@ -276,7 +276,7 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.isDayLightSavingsTime.calls[0].args[0]).toBe(date);
+    expect(navigator.globalization.isDayLightSavingsTime.calls.argsFor(0)[0]).toBe(date);
   });
 
   it('should call errorCb in navigator\'s globalization.isDayLightSavingsTime when error occurs', function() {
@@ -286,7 +286,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'isDayLightSavingsTime')
-      .andCallFake(function (date, successCb, errorCb) {
+      .and.callFake(function (date, successCb, errorCb) {
         errorCb(errorObj);
       });
 
@@ -307,7 +307,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'getNumberPattern')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -320,7 +320,7 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.getNumberPattern.calls[0].args[2]).toBe(options);
+    expect(navigator.globalization.getNumberPattern.calls.argsFor(0)[2]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.getNumberPattern when error occurs', function() {
@@ -330,7 +330,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'getNumberPattern')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -352,7 +352,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'numberToString')
-      .andCallFake(function (number, successCb, errorCb, options) {
+      .and.callFake(function (number, successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -365,8 +365,8 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.numberToString.calls[0].args[0]).toBe(number);
-    expect(navigator.globalization.numberToString.calls[0].args[3]).toBe(options);
+    expect(navigator.globalization.numberToString.calls.argsFor(0)[0]).toBe(number);
+    expect(navigator.globalization.numberToString.calls.argsFor(0)[3]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.numberToString when error occurs', function() {
@@ -377,7 +377,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'numberToString')
-      .andCallFake(function (number, successCb, errorCb, options) {
+      .and.callFake(function (number, successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -399,7 +399,7 @@ describe('Service: $cordovaGlobalization', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.globalization, 'stringToNumber')
-      .andCallFake(function (number, successCb, errorCb, options) {
+      .and.callFake(function (number, successCb, errorCb, options) {
         successCb('some result');
       });
 
@@ -412,8 +412,8 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.stringToNumber.calls[0].args[0]).toBe(number);
-    expect(navigator.globalization.stringToNumber.calls[0].args[3]).toBe(options);
+    expect(navigator.globalization.stringToNumber.calls.argsFor(0)[0]).toBe(number);
+    expect(navigator.globalization.stringToNumber.calls.argsFor(0)[3]).toBe(options);
   });
 
   it('should call errorCb in navigator\'s globalization.stringToNumber when error occurs', function() {
@@ -424,7 +424,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'stringToNumber')
-      .andCallFake(function (number, successCb, errorCb, options) {
+      .and.callFake(function (number, successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -445,7 +445,7 @@ describe('Service: $cordovaGlobalization', function() {
     var currencyCode = 6;
 
     spyOn(navigator.globalization, 'getCurrencyPattern')
-      .andCallFake(function (currencyCode, successCb, errorCb) {
+      .and.callFake(function (currencyCode, successCb, errorCb) {
         successCb('some result');
       });
 
@@ -458,7 +458,7 @@ describe('Service: $cordovaGlobalization', function() {
     $rootScope.$digest();
 
     expect(result).toBe('some result');
-    expect(navigator.globalization.getCurrencyPattern.calls[0].args[0]).toBe(currencyCode);
+    expect(navigator.globalization.getCurrencyPattern.calls.argsFor(0)[0]).toBe(currencyCode);
   });
 
   it('should call errorCb in navigator\'s globalization.getCurrencyPattern when error occurs', function() {
@@ -468,7 +468,7 @@ describe('Service: $cordovaGlobalization', function() {
     var errorObj = { testError: true };
 
     spyOn(navigator.globalization, 'getCurrencyPattern')
-      .andCallFake(function (currencyCode, successCb, errorCb) {
+      .and.callFake(function (currencyCode, successCb, errorCb) {
         errorCb(errorObj);
       });
 

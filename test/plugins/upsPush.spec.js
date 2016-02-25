@@ -21,7 +21,7 @@ describe('Service: $cordovaUpsPush', function () {
       config = { someConfig: 1 };
 
     spyOn(window.push, 'register')
-      .andCallFake(function (notifyCb, successCb, errorCb, config) {
+      .and.callFake(function (notifyCb, successCb, errorCb, config) {
         successCb();
       });
 
@@ -34,7 +34,7 @@ describe('Service: $cordovaUpsPush', function () {
     $rootScope.$digest();
 
     expect(called).toBe(true);
-    expect(window.push.register.calls[0].args[3]).toBe(config);
+    expect(window.push.register.calls.argsFor(0)[3]).toBe(config);
   });
 
   it('should call errorCb when in push\'s register a error orccurs', function () {
@@ -43,7 +43,7 @@ describe('Service: $cordovaUpsPush', function () {
       errorObj = { someError: 1 };
 
     spyOn(window.push, 'register')
-      .andCallFake(function (notifyCb, successCb, errorCb, config) {
+      .and.callFake(function (notifyCb, successCb, errorCb, config) {
         errorCb(errorObj);
       });
 
@@ -62,7 +62,7 @@ describe('Service: $cordovaUpsPush', function () {
     var called = false;
 
     spyOn(window.push, 'unregister')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         successCb();
       });
 
@@ -75,7 +75,7 @@ describe('Service: $cordovaUpsPush', function () {
     $rootScope.$digest();
 
     expect(called).toBe(true);
-    expect(window.push.unregister.calls[0].args[2]);
+    expect(window.push.unregister.calls.argsFor(0)[2]);
   });
 
   it('should call errorCb when in push\'s unregister a error orccurs', function() {
@@ -84,7 +84,7 @@ describe('Service: $cordovaUpsPush', function () {
     var errorObj = { someError: 1 };
 
     spyOn(window.push, 'unregister')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         errorCb(errorObj);
       });
 
@@ -104,7 +104,7 @@ describe('Service: $cordovaUpsPush', function () {
       number = 7;
 
     spyOn(window.push, 'setApplicationIconBadgeNumber')
-      .andCallFake(function (successCb, number) {
+      .and.callFake(function (successCb, number) {
         successCb();
       });
 
@@ -117,6 +117,6 @@ describe('Service: $cordovaUpsPush', function () {
     $rootScope.$digest();
 
     expect(called).toBe(true);
-    expect(window.push.setApplicationIconBadgeNumber.calls[0].args[1]).toBe(number);
+    expect(window.push.setApplicationIconBadgeNumber.calls.argsFor(0)[1]).toBe(number);
   });
 });

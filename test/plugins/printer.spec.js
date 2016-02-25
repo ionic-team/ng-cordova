@@ -21,7 +21,7 @@ describe('Service: $cordovaPrinter', function () {
     var result;
 
     spyOn(window.plugin.printer, 'isAvailable')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         successCb(false);
       });
 

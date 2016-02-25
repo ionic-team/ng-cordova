@@ -27,7 +27,7 @@ describe('Service: $cordovaBarcodeScanner', function () {
     var imageData = {data: '123456789'};
 
     spyOn(cordova.plugins.barcodeScanner, 'scan')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         successCb(imageData);
       });
 

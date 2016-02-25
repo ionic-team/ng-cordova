@@ -6,7 +6,7 @@ var gulp = require('gulp'),
   header = require('gulp-header'),
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
-  karma = require('karma').server,
+  Server = require('karma').Server,
   karmaConf = require('./config/karma.conf.js'),
   rename = require('gulp-rename'),
   shell = require('gulp-shell'),
@@ -75,7 +75,8 @@ gulp.task('karma', function (done) {
   karmaConf.singleRun = true;
   argv.browsers && (karmaConf.browsers = argv.browsers.trim().split(','));
   argv.reporters && (karmaConf.reporters = argv.reporters.trim().split(','));
-  karma.start(karmaConf, done);
+  var server = new Server(karmaConf, done);
+  server.start();
 });
 
 gulp.task('jshint', function () {
@@ -105,7 +106,8 @@ gulp.task('jscs', function () {
 gulp.task('karma-watch', function (done) {
   console.log(karmaConf);
   karmaConf.singleRun = false;
-  karma.start(karmaConf, done);
+  var server = new Server(karmaConf, done);
+  server.start();
 });
 
 gulp.task('watch', ['build'], function () {

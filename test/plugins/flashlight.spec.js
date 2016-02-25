@@ -28,7 +28,7 @@ describe('Service: $cordovaFlashlight', function() {
   it('should call window\'s plugins.flashlight.available method', function() {
 
     spyOn(window.plugins.flashlight, 'available')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         successCb();
       });
 
@@ -44,7 +44,7 @@ describe('Service: $cordovaFlashlight', function() {
       it('should call window\'s plugins.flashlight.' + fnName + ' method', function() {
 
         spyOn(window.plugins.flashlight, fnName)
-          .andCallFake(function (successCb, errorCb) {
+          .and.callFake(function (successCb, errorCb) {
             successCb();
           });
 
@@ -63,7 +63,7 @@ describe('Service: $cordovaFlashlight', function() {
         var errorObj = { someError: 1 };
 
         spyOn(window.plugins.flashlight, fnName)
-          .andCallFake(function (successCb, errorCb) {
+          .and.callFake(function (successCb, errorCb) {
             errorCb(errorObj);
           });
 

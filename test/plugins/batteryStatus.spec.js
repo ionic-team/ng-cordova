@@ -15,7 +15,7 @@ describe('Service: $cordovaBatteryStatus', function () {
     (function (eventName) {
       it('should broadcast the `' + eventName + '` event the right way', function () {
 
-        spyOn($rootScope, '$broadcast').andCallThrough();
+        spyOn($rootScope, '$broadcast').and.callThrough();
 
         var result = {'isPlugged': true, 'level': 1};
 

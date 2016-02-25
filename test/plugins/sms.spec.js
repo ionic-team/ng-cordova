@@ -21,7 +21,7 @@ describe('Service: $cordovaSms', function() {
     var intent = 'INTENT';
 
     spyOn(window.sms, 'send')
-      .andCallFake(function (number, message, intent, successCb, errorCb) {
+      .and.callFake(function (number, message, intent, successCb, errorCb) {
         successCb(true);
       });
 
@@ -46,7 +46,7 @@ describe('Service: $cordovaSms', function() {
     var errorResult;
 
     spyOn(window.sms, 'send')
-      .andCallFake(function (number, message, intent, successCb, errorCb) {
+      .and.callFake(function (number, message, intent, successCb, errorCb) {
         errorCb(false);
       });
 

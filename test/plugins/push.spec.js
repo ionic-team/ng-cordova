@@ -23,7 +23,7 @@ describe('Service: $cordovaPush', function() {
     var config = { someConfig: 1 };
 
     spyOn(window.plugins.pushNotification, 'register')
-      .andCallFake(function (successCb, errorCb, config) {
+      .and.callFake(function (successCb, errorCb, config) {
         successCb(true);
       });
 
@@ -36,7 +36,7 @@ describe('Service: $cordovaPush', function() {
     $rootScope.$digest();
 
     expect(result).toBe(true);
-    expect(window.plugins.pushNotification.register.calls[0].args[2]).toBe(config);
+    expect(window.plugins.pushNotification.register.calls.argsFor(0)[2]).toBe(config);
   });
 
   it('should call errorCb when in window\'s pushNotification.register a error orccurs', function() {
@@ -45,7 +45,7 @@ describe('Service: $cordovaPush', function() {
     var errorObj = { someError: 1 };
 
     spyOn(window.plugins.pushNotification, 'register')
-      .andCallFake(function (successCb, errorCb, config) {
+      .and.callFake(function (successCb, errorCb, config) {
         errorCb(errorObj);
       });
 
@@ -65,7 +65,7 @@ describe('Service: $cordovaPush', function() {
     var options = { someConfig: 1 };
 
     spyOn(window.plugins.pushNotification, 'unregister')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         successCb(true);
       });
 
@@ -78,7 +78,7 @@ describe('Service: $cordovaPush', function() {
     $rootScope.$digest();
 
     expect(result).toBe(true);
-    expect(window.plugins.pushNotification.unregister.calls[0].args[2]).toBe(options);
+    expect(window.plugins.pushNotification.unregister.calls.argsFor(0)[2]).toBe(options);
   });
 
   it('should call errorCb when in window\'s pushNotification.unregister a error orccurs', function() {
@@ -87,7 +87,7 @@ describe('Service: $cordovaPush', function() {
     var errorObj = { someError: 1 };
 
     spyOn(window.plugins.pushNotification, 'unregister')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -107,7 +107,7 @@ describe('Service: $cordovaPush', function() {
     var number = 7;
 
     spyOn(window.plugins.pushNotification, 'setApplicationIconBadgeNumber')
-      .andCallFake(function (successCb, errorCb, number) {
+      .and.callFake(function (successCb, errorCb, number) {
         successCb(true);
       });
 
@@ -120,7 +120,7 @@ describe('Service: $cordovaPush', function() {
     $rootScope.$digest();
 
     expect(result).toBe(true);
-    expect(window.plugins.pushNotification.setApplicationIconBadgeNumber.calls[0].args[2]).toBe(number);
+    expect(window.plugins.pushNotification.setApplicationIconBadgeNumber.calls.argsFor(0)[2]).toBe(number);
   });
 
   it('should call errorCb when in window\'s pushNotification.setApplicationIconBadgeNumber a error orccurs', function() {
@@ -129,7 +129,7 @@ describe('Service: $cordovaPush', function() {
     var errorObj = { someError: 1 };
 
     spyOn(window.plugins.pushNotification, 'setApplicationIconBadgeNumber')
-      .andCallFake(function (successCb, errorCb, number) {
+      .and.callFake(function (successCb, errorCb, number) {
         errorCb(errorObj);
       });
 

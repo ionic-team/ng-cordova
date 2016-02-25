@@ -20,6 +20,13 @@ module.exports = {
     'src/plugins/*.js': ['coverage']
   },
 
+  plugins: [
+    'karma-jasmine',
+    'karma-phantomjs-launcher',
+    'karma-chrome-launcher',
+    'karma-coverage'
+  ],
+
   coverageReporter: {
     type : 'html',
     dir : 'coverage/'
@@ -43,4 +50,3 @@ module.exports = {
   // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
   browsers: ['Chrome']
 };
-

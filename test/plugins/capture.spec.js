@@ -32,7 +32,7 @@ describe('Service: $cordovaCapture', function() {
         var options = { someOption: 1 };
 
         spyOn(navigator.device.capture, fnName)
-          .andCallFake(function (successCb, errorCb, options) {
+          .and.callFake(function (successCb, errorCb, options) {
             successCb(true);
           });
 
@@ -44,7 +44,7 @@ describe('Service: $cordovaCapture', function() {
         $rootScope.$digest();
 
         expect(result).toBe(true);
-        expect(navigator.device.capture[fnName].calls[0].args[2]).toBe(options);
+        expect(navigator.device.capture[fnName].calls.argsFor(0)[2]).toBe(options);
       });
 
       it('navigator\'s device.capture.' + fnName + ' return `null` when device.capture is not set', function() {
@@ -70,7 +70,7 @@ describe('Service: $cordovaCapture', function() {
         var errorObj = { someError: 1 };
 
         spyOn(navigator.device.capture, fnName)
-          .andCallFake(function (successCb, errorCb, options) {
+          .and.callFake(function (successCb, errorCb, options) {
             errorCb(errorObj);
           });
 

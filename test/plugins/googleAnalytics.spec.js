@@ -28,7 +28,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'startTrackerWithId')
-      .andCallFake(function (id, successCb, errorCb) {
+      .and.callFake(function (id, successCb, errorCb) {
         successCb('tracker started');
       });
 
@@ -41,7 +41,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $rootScope.$digest();
 
     expect(result).toBe('tracker started');
-    expect($window.analytics.startTrackerWithId.calls[0].args[0]).toBe('UA-000000-01');
+    expect($window.analytics.startTrackerWithId.calls.argsFor(0)[0]).toBe('UA-000000-01');
   });
 
   it('should call errorCb when in $window\'s analytics.startTrackerWithId a error orccurs', function() {
@@ -49,7 +49,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'startTrackerWithId')
-      .andCallFake(function (id, successCb, errorCb) {
+      .and.callFake(function (id, successCb, errorCb) {
         errorCb('tracker id is not valid');
       });
 
@@ -68,7 +68,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'setUserId')
-      .andCallFake(function (id, successCb, errorCb) {
+      .and.callFake(function (id, successCb, errorCb) {
         successCb('Set user id: ' + id);
       });
 
@@ -81,7 +81,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $rootScope.$digest();
 
     expect(result).toBe('Set user id: USER_ID');
-    expect($window.analytics.setUserId.calls[0].args[0]).toBe('USER_ID');
+    expect($window.analytics.setUserId.calls.argsFor(0)[0]).toBe('USER_ID');
   });
 
   it('should call errorCb when in $window\'s analytics.setUserId a error orccurs', function() {
@@ -89,7 +89,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'setUserId')
-      .andCallFake(function (id, successCb, errorCb) {
+      .and.callFake(function (id, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
@@ -108,7 +108,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'debugMode')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         successCb('debugMode enabled');
       });
 
@@ -128,7 +128,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'debugMode')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         errorCb();
       });
 
@@ -147,7 +147,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackView')
-      .andCallFake(function (screenName, successCb, errorCb) {
+      .and.callFake(function (screenName, successCb, errorCb) {
         successCb('Track Screen: ' + screenName);
       });
 
@@ -160,7 +160,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $rootScope.$digest();
 
     expect(result).toBe('Track Screen: Home Screen');
-    expect($window.analytics.trackView.calls[0].args[0]).toBe('Home Screen');
+    expect($window.analytics.trackView.calls.argsFor(0)[0]).toBe('Home Screen');
   });
 
   it('should call errorCb when in $window\'s analytics.trackView a error orccurs', function() {
@@ -168,7 +168,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackView')
-      .andCallFake(function (screenName, successCb, errorCb) {
+      .and.callFake(function (screenName, successCb, errorCb) {
         errorCb('Expected one non-empty string argument');
       });
 
@@ -187,7 +187,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'addCustomDimension')
-      .andCallFake(function (key, value, successCb, errorCb) {
+      .and.callFake(function (key, value, successCb, errorCb) {
         successCb();
       });
 
@@ -200,8 +200,8 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $rootScope.$digest();
 
     expect(result).toBe('success');
-    expect($window.analytics.addCustomDimension.calls[0].args[0]).toBe('dimension1');
-    expect($window.analytics.addCustomDimension.calls[0].args[1]).toBe('Level 1');
+    expect($window.analytics.addCustomDimension.calls.argsFor(0)[0]).toBe('dimension1');
+    expect($window.analytics.addCustomDimension.calls.argsFor(0)[1]).toBe('Level 1');
   });
 
   it('should call errorCb when in $window\'s analytics.addCustomDimension a error orccurs', function() {
@@ -209,7 +209,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'addCustomDimension')
-      .andCallFake(function (key, value, successCb, errorCb) {
+      .and.callFake(function (key, value, successCb, errorCb) {
         errorCb('Expected one non-empty string argument');
       });
 
@@ -228,7 +228,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackEvent')
-      .andCallFake(function (category, action, label, value, successCb, errorCb) {
+      .and.callFake(function (category, action, label, value, successCb, errorCb) {
         successCb('Track Event: ' + category);
       });
 
@@ -253,7 +253,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackEvent')
-      .andCallFake(function (category, action, label, value, successCb, errorCb) {
+      .and.callFake(function (category, action, label, value, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
@@ -273,7 +273,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackException')
-      .andCallFake(function (description, fatal, successCb, errorCb) {
+      .and.callFake(function (description, fatal, successCb, errorCb) {
         successCb('Track Exception: ' + description);
       });
 
@@ -298,7 +298,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackException')
-      .andCallFake(function (description, fatal, successCb, errorCb) {
+      .and.callFake(function (description, fatal, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
@@ -318,7 +318,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackTiming')
-      .andCallFake(function (category, milliseconds, variable, label, successCb, errorCb) {
+      .and.callFake(function (category, milliseconds, variable, label, successCb, errorCb) {
         successCb('Track Timing: ' + category);
       });
 
@@ -343,7 +343,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'trackTiming')
-      .andCallFake(function (category, milliseconds, variable, label, successCb, errorCb) {
+      .and.callFake(function (category, milliseconds, variable, label, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
@@ -363,7 +363,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'addTransaction')
-      .andCallFake(function (transactionId, affiliation, revenue, tax, shipping, currencyCode, successCb, errorCb) {
+      .and.callFake(function (transactionId, affiliation, revenue, tax, shipping, currencyCode, successCb, errorCb) {
         successCb('Add Transaction: ' + transactionId);
       });
 
@@ -388,7 +388,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'addTransaction')
-      .andCallFake(function (transactionId, affiliation, revenue, tax, shipping, currencyCode, successCb, errorCb) {
+      .and.callFake(function (transactionId, affiliation, revenue, tax, shipping, currencyCode, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
@@ -407,7 +407,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'addTransactionItem')
-      .andCallFake(function (transactionId, name ,sku, category, price, quantity, currencyCode, successCb, errorCb) {
+      .and.callFake(function (transactionId, name ,sku, category, price, quantity, currencyCode, successCb, errorCb) {
         successCb('Add Transaction Item: ' + transactionId);
       });
 
@@ -432,7 +432,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.analytics, 'addTransactionItem')
-      .andCallFake(function (transactionId, name ,sku, category, price, quantity, currencyCode, successCb, errorCb) {
+      .and.callFake(function (transactionId, name ,sku, category, price, quantity, currencyCode, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
