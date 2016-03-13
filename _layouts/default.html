@@ -26,7 +26,17 @@
 	<![endif]-->
 </head>
 
+
+{% if page.show_header %}
+<body class="header-note">
+<div id="header-note">
+  New! Check out <a href="http://github.com/driftyco/ionic-native">Ionic Native</a>. It's like ngCordova but for ES6 and TypeScript.
+</div>
+{% else %}
 <body>
+{% endif %}
+
+
 
 <div class="home-wrapper">
 
