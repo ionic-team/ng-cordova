@@ -94,7 +94,7 @@ angular.module('ngCordova.plugins.dialogs', [])
           navigator.notification.progressStart(title, message);
           q.resolve();
         } else {
-          q.reject(message, titl);
+          q.reject(message, title);
         }
       
         return q.promise;
