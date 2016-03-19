@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.23-alpha
+ * v0.1.24-alpha
  * Copyright 2015 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -240,8 +240,8 @@ angular.module('ngCordova.plugins.appVersion', [])
 
       getPackageName: function () {
         var q = $q.defer();
-        cordova.getAppVersion.getPackageName(function (package) {
-          q.resolve(package);
+        cordova.getAppVersion.getPackageName(function (pkg) {
+          q.resolve(pkg);
         });
 
         return q.promise;

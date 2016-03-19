@@ -17,8 +17,8 @@ angular.module('ngCordova.plugins.appVersion', [])
 
       getPackageName: function () {
         var q = $q.defer();
-        cordova.getAppVersion.getPackageName(function (package) {
-          q.resolve(package);
+        cordova.getAppVersion.getPackageName(function (pkg) {
+          q.resolve(pkg);
         });
 
         return q.promise;
