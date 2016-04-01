@@ -13,13 +13,13 @@ angular.module('ngCordova.plugins.preferences', [])
     	 * Decorate the promise object.
     	 * @param promise The promise object.
     	 */
-    	decoratePromise: function(promise){
-    		promise.success = function(fn) {
+    	decoratePromise: function (promise){
+    		promise.success = function (fn) {
 	            promise.then(fn);
 	            return promise;
 	        };
 
-	        promise.error = function(fn) {
+	        promise.error = function (fn) {
 	            promise.then(null, fn);
 	            return promise;
 	        };
@@ -32,7 +32,7 @@ angular.module('ngCordova.plugins.preferences', [])
          * @param dict The dictionary. It's optional.
          * @returns Returns a promise.
     	 */
-	    store: function(key, value, dict) {
+	    store: function (key, value, dict) {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
@@ -67,7 +67,7 @@ angular.module('ngCordova.plugins.preferences', [])
          * @param dict The dictionary. It's optional.
          * @returns Returns a promise.
 	     */
-	    fetch: function(key, dict) {
+	    fetch: function (key, dict) {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
@@ -101,7 +101,7 @@ angular.module('ngCordova.plugins.preferences', [])
          * @param dict The dictionary. It's optional.
          * @returns Returns a promise.
 	     */
-	    remove: function(key, dict) {
+	    remove: function (key, dict) {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
@@ -133,7 +133,7 @@ angular.module('ngCordova.plugins.preferences', [])
 	     * Show the application preferences.
          * @returns Returns a promise.
 	     */
-	    show: function() {
+	    show: function () {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
