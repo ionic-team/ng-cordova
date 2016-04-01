@@ -20,7 +20,7 @@ describe('Service: $cordovaPinDialog', function() {
     var result;
 
     spyOn(window.plugins.pinDialog, 'prompt')
-      .andCallFake(function (message, callback, title, buttons) {
+      .and.callFake(function (message, callback, title, buttons) {
         callback({
           buttonIndex: 2
         });

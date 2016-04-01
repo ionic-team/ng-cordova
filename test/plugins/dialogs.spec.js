@@ -26,7 +26,7 @@ describe('Service: $cordovaDialogs', function () {
     var buttonName = "Okay";
 
     spyOn(navigator.notification, 'alert')
-      .andCallFake(function (message, successCb, title, buttonName) {
+      .and.callFake(function (message, successCb, title, buttonName) {
         successCb();
       });
 

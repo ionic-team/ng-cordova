@@ -37,7 +37,7 @@ describe('Service: $cordovaCamera', function() {
     var imageData = { url: 'file://blob' };
 
     spyOn(navigator.camera, 'getPicture')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         successCb(imageData);
       });
 
@@ -50,7 +50,7 @@ describe('Service: $cordovaCamera', function() {
     $rootScope.$digest();
 
     expect(result).toBe(imageData);
-    expect(navigator.camera.getPicture.calls[0].args[2]).toBe(options);
+    expect(navigator.camera.getPicture.calls.argsFor(0)[2]).toBe(options);
   });
 
   it('should call errorCb when in window\'s appAvailability.getPicture a error orccurs', function() {
@@ -59,7 +59,7 @@ describe('Service: $cordovaCamera', function() {
     var errorObj = { someError: 1 };
 
     spyOn(navigator.camera, 'getPicture')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         errorCb(errorObj);
       });
 
@@ -79,7 +79,7 @@ describe('Service: $cordovaCamera', function() {
     var options = { someOptions: 1 };
 
     spyOn(navigator.camera, 'cleanup')
-      .andCallFake(function (successCb, errorCb) {
+      .and.callFake(function (successCb, errorCb) {
         successCb();
       });
 
@@ -87,7 +87,7 @@ describe('Service: $cordovaCamera', function() {
 
     $rootScope.$digest();
 
-    expect(navigator.camera.cleanup.calls[0].args[2]).toBe();
+    expect(navigator.camera.cleanup.calls.argsFor(0)[2]).toBe();
   });
 
   it('should call errorCb when in window\'s appAvailability.cleanup a error orccurs', function() {
@@ -96,7 +96,7 @@ describe('Service: $cordovaCamera', function() {
     var errorObj = { someError: 1 };
 
     spyOn(navigator.camera, 'cleanup')
-      .andCallFake(function (successCb, errorCb, options) {
+      .and.callFake(function (successCb, errorCb, options) {
         errorCb(errorObj);
       });
 

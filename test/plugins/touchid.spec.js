@@ -18,7 +18,7 @@ describe('Service: $cordovaTouchID', function() {
     var result;
 
     spyOn(window.touchid, 'checkSupport')
-      .andCallFake(function(successCb, errCb) {
+      .and.callFake(function(successCb, errCb) {
         successCb();
       });
 
@@ -38,7 +38,7 @@ describe('Service: $cordovaTouchID', function() {
     var errorResult;
 
     spyOn(window.touchid, 'checkSupport')
-      .andCallFake(function(successCb, errCb) {
+      .and.callFake(function(successCb, errCb) {
         errCb("Not available in test");
       });
 
@@ -74,7 +74,7 @@ describe('Service: $cordovaTouchID', function() {
     var auth_text_reason = "To prove the test works";
 
     spyOn(window.touchid, 'authenticate')
-      .andCallFake(function(successCb, errCb, text) {
+      .and.callFake(function(successCb, errCb, text) {
         successCb();
       });
 
