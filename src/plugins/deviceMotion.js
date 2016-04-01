@@ -12,6 +12,7 @@ angular.module('ngCordova.plugins.deviceMotion', [])
         if (angular.isUndefined(navigator.accelerometer) ||
         !angular.isFunction(navigator.accelerometer.getCurrentAcceleration)) {
           q.reject('Device do not support watchAcceleration');
+          return q.promise;
         }
 
         navigator.accelerometer.getCurrentAcceleration(function (result) {
@@ -29,6 +30,7 @@ angular.module('ngCordova.plugins.deviceMotion', [])
         if (angular.isUndefined(navigator.accelerometer) ||
         !angular.isFunction(navigator.accelerometer.watchAcceleration)) {
           q.reject('Device do not support watchAcceleration');
+          return q.promise;
         }
 
         var watchID = navigator.accelerometer.watchAcceleration(function (result) {
