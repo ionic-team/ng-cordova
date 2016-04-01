@@ -17,9 +17,9 @@ angular.module('ngCordova.plugins.nativeAudio', [])
         return q.promise;
       },
 
-      preloadComplex: function (id, assetPath, volume, voices) {
+      preloadComplex: function (id, assetPath, volume, voices, delay) {
         var q = $q.defer();
-        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices, function (result) {
+        $window.plugins.NativeAudio.preloadComplex(id, assetPath, volume, voices, delay, function (result) {
           q.resolve(result);
         }, function (err) {
           q.reject(err);
@@ -30,11 +30,11 @@ angular.module('ngCordova.plugins.nativeAudio', [])
 
       play: function (id, completeCallback) {
         var q = $q.defer();
-        $window.plugins.NativeAudio.play(id, completeCallback, function (err) {
-          q.reject(err);
-        }, function (result) {
+        $window.plugins.NativeAudio.play(id, function (result) {
           q.resolve(result);
-        });
+        }, function (err) {
+          q.reject(err);
+        }, completeCallback);
 
         return q.promise;
       },
