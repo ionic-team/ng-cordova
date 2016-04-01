@@ -6,7 +6,7 @@
  * A service for testing networked fetures
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaNetwork', function () {
+ngCordovaMocks.factory('$cordovaNetwork', ['$rootScope',function ($rootScope) {
   var connectionType = 'WiFi connection';
   var isConnected = true;
 
@@ -34,6 +34,16 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
      **/
     isConnected: isConnected,
 
+    switchToOnline: function(){
+      this.isConnected = true;
+      $rootScope.$broadcast('$cordovaNetwork:online');
+    },
+
+    switchToOffline: function(){
+      this.isConnected = false;
+      $rootScope.$broadcast('$cordovaNetwork:offline');
+    },
+
     getNetwork: function () {
       return this.connectionType;
     },
@@ -46,4 +56,4 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
       return !this.isConnected;
     }
   };
-});
+}]);
