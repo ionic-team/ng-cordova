@@ -103,6 +103,7 @@ $ bower install ngCordova
 - [Vibration](https://github.com/apache/cordova-plugin-vibration) *
 - [Video Capture Plus](https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin) *
 - [Zip](https://github.com/MobileChromeApps/cordova-plugin-zip)
+- [Google](https://github.com/EddyVerbruggen/cordova-plugin-googleplus)
 
 `* official Apache Cordova Plugin`
 
