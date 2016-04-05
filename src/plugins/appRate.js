@@ -43,6 +43,7 @@ angular.module('ngCordova.plugins.appRate', [])
       *
       * @param {Object} customObj
       * @param {string} customObj.title
+      * @param {string} customObj.message
       * @param {string} customObj.cancelButtonLabel
       * @param {string} customObj.laterButtonLabel
       * @param {string} customObj.rateButtonLabel
@@ -80,13 +81,11 @@ angular.module('ngCordova.plugins.appRate', [])
         },
 
         onButtonClicked: function (cb) {
-          AppRate.onButtonClicked = function (buttonIndex) {
-            cb.call(this, buttonIndex);
-          };
+          AppRate.preferences.callbacks.onButtonClicked = cb.bind(this);
         },
 
         onRateDialogShow: function (cb) {
-          AppRate.onRateDialogShow = cb();
+          AppRate.preferences.callbacks.onRateDialogShow = cb.bind(this);
         }
       };
     }];
