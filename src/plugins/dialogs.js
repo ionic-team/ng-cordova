@@ -59,6 +59,71 @@ angular.module('ngCordova.plugins.dialogs', [])
 
       beep: function (times) {
         return navigator.notification.beep(times);
+      },
+
+      activityStart: function (message, title) {
+        var q = $q.defer();
+
+        if (cordova.platformId === 'android') {
+          navigator.notification.activityStart(title, message);
+          q.resolve();
+        } else {
+          q.reject(message, title);
+        }
+      
+        return q.promise;
+      },
+
+      activityStop: function () {
+        var q = $q.defer();
+
+        if (cordova.platformId === 'android') {
+          navigator.notification.activityStop();
+          q.resolve();
+        } else {
+          q.reject();
+        }
+      
+        return q.promise;
+      },
+
+      progressStart: function (message, title) {
+        var q = $q.defer();
+
+        if (cordova.platformId === 'android') {
+          navigator.notification.progressStart(title, message);
+          q.resolve();
+        } else {
+          q.reject(message, title);
+        }
+      
+        return q.promise;
+      },
+
+      progressStop: function () {
+        var q = $q.defer();
+
+        if (cordova.platformId === 'android') {
+          navigator.notification.progressStop();
+          q.resolve();
+        } else {
+          q.reject();
+        }
+      
+        return q.promise;
+      },
+
+      progressValue: function (value) {
+        var q = $q.defer();
+
+        if (cordova.platformId === 'android') {
+          navigator.notification.progressValue(value);
+          q.resolve();
+        } else {
+          q.reject(value);
+        }
+      
+        return q.promise;
       }
     };
   }]);
