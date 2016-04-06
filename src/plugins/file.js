@@ -647,6 +647,34 @@ angular.module('ngCordova.plugins.file', [])
             q.reject(e);
           }
           return q.promise;
+        },
+
+        readFileMetadata: function (path, file) {
+          var q = $q.defer();
+
+          if ((/^\//.test(file))) {
+            q.reject('directory cannot start with \/');
+          }
+
+          try {
+            var directory = path + file;
+            $window.resolveLocalFileSystemURL(directory, function (fileEntry) {
+              fileEntry.file(function (result) {
+                q.resolve(result);
+              }, function (error) {
+                error.message = $cordovaFileError[error.code];
+                q.reject(error);
+              });
+            }, function (err) {
+              err.message = $cordovaFileError[err.code];
+              q.reject(err);
+            });
+          } catch (e) {
+            e.message = $cordovaFileError[e.code];
+            q.reject(e);
+          }
+
+          return q.promise;
         }
 
         /*
@@ -682,9 +710,6 @@ angular.module('ngCordova.plugins.file', [])
          return q.promise;
          },
 
-         readFileMetadata: function (filePath) {
-         //return getFile(filePath, {create: false});
-         }
          */
       };
 
