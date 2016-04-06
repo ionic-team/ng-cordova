@@ -3,7 +3,7 @@ angular.module('demo.localNotification.ctrl', [])
   .controller('LocalNotificationCtrl', function ($scope, $rootScope, $cordovaLocalNotification) {
 
     $scope.addNotification = function () {
-      var now = new Date();
+      var now = new Date().getTime();
       var _60_seconds_from_now = new Date(now + 60 * 1000);
       var event = {
         id: 1,
