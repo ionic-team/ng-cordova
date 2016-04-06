@@ -63,7 +63,7 @@ angular.module('ngCordova.plugins.push_v5', [])
         }
         return q.promise;
       },
-      finish: function(){
+      finish: function (){
         var q = $q.defer();
         if (push === undefined) {
           q.reject(new Error('init must be called before any other operation'));
