@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.23-alpha
+ * v0.1.24-alpha
  * Copyright 2015 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -5234,14 +5234,20 @@ angular.module('ngCordova.plugins.media', [])
         function (success) {
             clearTimer();
             resetValues();
-            q.resolve(success);
+            if (q) {
+              q.resolve(success);
+            }
         }, function (error) {
             clearTimer();
             resetValues();
-            q.reject(error);
+            if (q) {
+              q.reject(error);
+            }
         }, function (status) {
             mediaStatus = status;
-            q.notify({status: mediaStatus});
+            if (q) {
+              q.notify({status: mediaStatus});
+            }
         });
   }
 

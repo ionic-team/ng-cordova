@@ -56,14 +56,20 @@ angular.module('ngCordova.plugins.media', [])
         function (success) {
             clearTimer();
             resetValues();
-            q.resolve(success);
+            if (q) {
+              q.resolve(success);
+            }
         }, function (error) {
             clearTimer();
             resetValues();
-            q.reject(error);
+            if (q) {
+              q.reject(error);
+            }
         }, function (status) {
             mediaStatus = status;
-            q.notify({status: mediaStatus});
+            if (q) {
+              q.notify({status: mediaStatus});
+            }
         });
   }
 
