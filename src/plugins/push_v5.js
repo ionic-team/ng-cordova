@@ -50,6 +50,19 @@ angular.module('ngCordova.plugins.push_v5', [])
         }
         return q.promise;
       },
+      getBadgeNumber : function () {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.getApplicationIconBadgeNumber(function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
+      }
       setBadgeNumber : function (number) {
         var q = $q.defer();
         if (push === undefined) {
