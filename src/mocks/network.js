@@ -34,12 +34,12 @@ ngCordovaMocks.factory('$cordovaNetwork', ['$rootScope',function ($rootScope) {
      **/
     isConnected: isConnected,
 
-    switchToOnline: function(){
+    switchToOnline: function (){
       this.isConnected = true;
       $rootScope.$broadcast('$cordovaNetwork:online');
     },
 
-    switchToOffline: function(){
+    switchToOffline: function (){
       this.isConnected = false;
       $rootScope.$broadcast('$cordovaNetwork:offline');
     },

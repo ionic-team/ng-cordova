@@ -22,7 +22,7 @@ ngCordovaMocks.factory('$cordovaActionSheet', ['$q', function ($q) {
 		 */
 		throwsError: throwsError,
 
-		show: function() {
+		show: function () {
 			var defer = $q.defer();
 
 			if (this.throwsError) {
