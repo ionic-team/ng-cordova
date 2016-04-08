@@ -62,7 +62,7 @@ angular.module('ngCordova.plugins.push_v5', [])
           });
         }
         return q.promise;
-      }
+      },
       setBadgeNumber : function (number) {
         var q = $q.defer();
         if (push === undefined) {
