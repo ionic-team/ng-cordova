@@ -1,11 +1,49 @@
 /*!
  * ngCordova
- * v0.1.23-alpha
+ * v0.1.24-alpha
  * Copyright 2015 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
 (function(){
 var ngCordovaMocks = angular.module('ngCordovaMocks', []);
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.cordovaActionSheet
+ *
+ * @description
+ * A service for testing action sheet
+ * in an app build with ngCordova.
+ **/
+ngCordovaMocks.factory('$cordovaActionSheet', ['$q', function ($q) {
+  var throwsError = false;
+
+	return {
+		/**
+		 * @ngdoc property
+		 * @name throwsError
+		 * @propertyOf ngCordovaMocks.cordovaActionSheet
+		 * @type Boolean
+		 *
+		 * @description
+		 * A flag that signals whether a promise should be rejected.
+		 * This property should only be used in automated tests
+		 */
+		throwsError: throwsError,
+
+		show: function() {
+			var defer = $q.defer();
+
+			if (this.throwsError) {
+				defer.reject('There was an error on showing action sheet');
+			} else {
+				defer.resolve();
+			}
+
+			return defer.promise;
+		}
+	};
+}]);
+
 ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function ($q) {
   var throwsError = false;
   return {
@@ -2460,7 +2498,7 @@ ngCordovaMocks.factory('$cordovaLocalNotification', ['$q', function ($q) {
  * A service for testing networked fetures
  * in an app build with ngCordova.
  */
-ngCordovaMocks.factory('$cordovaNetwork', function () {
+ngCordovaMocks.factory('$cordovaNetwork', ['$rootScope',function ($rootScope) {
   var connectionType = 'WiFi connection';
   var isConnected = true;
 
@@ -2488,6 +2526,16 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
      **/
     isConnected: isConnected,
 
+    switchToOnline: function(){
+      this.isConnected = true;
+      $rootScope.$broadcast('$cordovaNetwork:online');
+    },
+
+    switchToOffline: function(){
+      this.isConnected = false;
+      $rootScope.$broadcast('$cordovaNetwork:offline');
+    },
+
     getNetwork: function () {
       return this.connectionType;
     },
@@ -2500,7 +2548,160 @@ ngCordovaMocks.factory('$cordovaNetwork', function () {
       return !this.isConnected;
     }
   };
-});
+}]);
+
+/**
+ * @ngdoc service
+ * @name ngCordovaMocks.cordovaProgress
+ *
+ * @description
+ * A service for testing Progress Indicator
+ * in an app build with ngCordova.
+ */
+
+ngCordovaMocks.factory('$cordovaProgress', [
+  '$timeout', function($timeout) {
+
+    return {
+      show: function(_message) {
+        var message = _message || 'Please wait...';
+        console.info('$cordovaProgress.message', message);
+      },
+
+      showSimple: function(_dim) {
+        var dim = _dim || false;
+        console.info('$cordovaProgress.dim', dim);
+      },
+
+      showSimpleWithLabel: function(_dim, _label) {
+        var dim   = _dim || false;
+        var label = _label || 'Loading...';
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.label', label);
+        console.groupEnd();
+      },
+
+      showSimpleWithLabelDetail: function(_dim, _label, _detail) {
+        var dim    = _dim || false;
+        var label  = _label || 'Loading...';
+        var detail = _detail || 'Please wait';
+
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.label', label);
+        console.info('$cordovaProgress.detail', detail);
+        console.groupEnd();
+      },
+
+      showDeterminate: function(_dim, _timeout) {
+        var dim     = _dim || false;
+        var timeout = _timeout || 50000;
+        console.group();
+        console.info('$cordovaProgress.dim show', dim);
+        console.info('$cordovaProgress.timeout', timeout);
+        console.groupEnd();
+        $timeout(function() {
+          console.info('$cordovaProgress.dim timeout', dim);
+        }, timeout);
+      },
+
+      showDeterminateWithLabel: function(_dim, _timeout, _label) {
+        var dim     = _dim || false;
+        var timeout = _timeout || 50000;
+        var label   = _label || 'Loading...';
+
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.timeout', timeout);
+        console.info('$cordovaProgress.label', label);
+        console.groupEnd();
+        $timeout(function() {
+          console.info('$cordovaProgress[dim, label] timeout', [dim, label]);
+        }, timeout);
+      },
+
+      showAnnular: function(_dim, _timeout) {
+        var dim     = _dim || false;
+        var timeout = _timeout || 50000;
+
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.timeout', timeout);
+        console.groupEnd();
+        $timeout(function() {
+          console.info('$cordovaProgress.dim timeout', dim);
+        }, timeout);
+      },
+
+      showAnnularWithLabel: function(_dim, _timeout, _label) {
+        var dim     = _dim || false;
+        var timeout = _timeout || 50000;
+        var label   = _label || 'Loading...';
+
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.timeout', timeout);
+        console.info('$cordovaProgress.label', label);
+        console.groupEnd();
+        $timeout(function() {
+          console.info('$cordovaProgress[dim, label] timeout', [dim, label]);
+        }, timeout);
+      },
+
+      showBar: function(_dim, _timeout) {
+        var dim     = _dim || false;
+        var timeout = _timeout || 50000;
+
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.timeout', timeout);
+        console.groupEnd();
+        $timeout(function() {
+          console.info('$cordovaProgress.dim timeout', dim);
+        }, timeout);
+      },
+
+      showBarWithLabel: function(_dim, _timeout, _label) {
+        var dim     = _dim || false;
+        var timeout = _timeout || 50000;
+        var label   = _label || 'Loading...';
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.label', label);
+        console.info('$cordovaProgress.timeout', timeout);
+        console.groupEnd();
+        $timeout(function() {
+          console.info('$cordovaProgress[dim, label] timeout', [dim, label]);
+        }, timeout);
+      },
+
+      showSuccess: function(_dim, _label) {
+        var dim   = _dim || false;
+        var label = _label || 'Success';
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.label', label);
+        console.groupEnd();
+      },
+
+      showText: function(_dim, _text, _position) {
+        var dim      = _dim || false;
+        var text     = _text || 'Warning';
+        var position = _position || 'center';
+        console.group();
+        console.info('$cordovaProgress.dim', dim);
+        console.info('$cordovaProgress.text', text);
+        console.info('$cordovaProgress.position', position);
+        console.groupEnd();
+      },
+
+      hide: function() {
+        console.info('$cordovaProgress.hide');
+      }
+    };
+  }
+]);
 
 'use strict';
 
