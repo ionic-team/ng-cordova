@@ -19,7 +19,7 @@ ngCordovaMocks.factory('$cordovaSQLite', ['$q', function ($q) {
     nestedExecuteShouldSucceedWith: null,
     deleteDBShouldSucceedWith : null,
 
-    openDB: function (options, background) {
+    openDB: function (options, background, location, iosLocation) {
       if (this.openDBShouldSucceedWith !== null) {
         $q.when(this.openDBShouldSucceedWith)
       } else {
