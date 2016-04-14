@@ -23,7 +23,7 @@ describe('Service: $cordovaSQLite', function() {
     $cordovaSQLite.openDB(dbName, location, iosLocation);
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
-      name: dbName, bgType: undefined, location: location, iosLocation: iosLocation
+      name: dbName, bgType: undefined, location: location, iosDatabaseLocation: iosLocation
     });
   });
 
@@ -40,7 +40,7 @@ describe('Service: $cordovaSQLite', function() {
       name: dbName,
       bgType: bgType,
       location: location,
-      iosLocation: iosLocation
+      iosDatabaseLocation: iosLocation
     });
   });
 
@@ -50,12 +50,12 @@ describe('Service: $cordovaSQLite', function() {
     var location = "default";
     var iosLocation = "default";
     spyOn(window.sqlitePlugin, 'openDatabase');
-    $cordovaSQLite.openDB({name: dbName, location:"default", iosLocation:"default"});
+    $cordovaSQLite.openDB({name: dbName, location:"default", iosDatabaseLocation:"default"});
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
       name: dbName,
       location: location,
-      iosLocation: iosLocation
+      iosDatabaseLocation: iosLocation
     });
   });
 
