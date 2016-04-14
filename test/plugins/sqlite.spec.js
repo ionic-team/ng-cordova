@@ -17,11 +17,13 @@ describe('Service: $cordovaSQLite', function() {
   it('should call window\'s sqlitePlugin.open method without background', function() {
 
     var dbName = 'someDbName';
+    var location = "default";
+    var iosLocation = "default";
     spyOn(window.sqlitePlugin, 'openDatabase');
-    $cordovaSQLite.openDB(dbName);
+    $cordovaSQLite.openDB(dbName, location, iosLocation);
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
-      name: dbName, bgType: undefined
+      name: dbName, bgType: undefined, location: location, iosLocation: iosLocation
     });
   });
 
@@ -29,24 +31,31 @@ describe('Service: $cordovaSQLite', function() {
 
     var dbName = 'someDbName';
     var bgType = 2;
+    var location = "default";
+    var iosLocation = "default";
     spyOn(window.sqlitePlugin, 'openDatabase');
-    $cordovaSQLite.openDB(dbName, bgType);
+    $cordovaSQLite.openDB(dbName, bgType, location, iosLocation);
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
       name: dbName,
-      bgType: bgType
+      bgType: bgType,
+      location: location,
+      iosLocation: iosLocation
     });
   });
 
   it('should call window\'s sqlitePlugin.open method with options', function() {
 
     var dbName = 'someDbName';
+    var location = "default";
+    var iosLocation = "default";
     spyOn(window.sqlitePlugin, 'openDatabase');
-    $cordovaSQLite.openDB({name: dbName, createFromLocation: 1});
+    $cordovaSQLite.openDB({name: dbName, location:"default", iosLocation:"default"});
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
       name: dbName,
-      createFromLocation: 1
+      location: location,
+      iosLocation: iosLocation
     });
   });
 
@@ -54,13 +63,15 @@ describe('Service: $cordovaSQLite', function() {
 
     var result;
     var dbName = 'someDbName';
+    var location = "default";
+    var iosLocation = "default";
 
     spyOn(window.sqlitePlugin, 'deleteDatabase')
       .and.callFake(function (dbName, successCb, errorCb) {
         successCb(true);
       });
 
-    $cordovaSQLite.deleteDB(dbName)
+    $cordovaSQLite.deleteDB(dbName, location, iosLocation)
       .then(function (response) {
         result = response;
       });
@@ -75,9 +86,11 @@ describe('Service: $cordovaSQLite', function() {
     var result;
     var errorObj = { someError: 1 };
     var dbName = 'someDbName';
+    var location = "default";
+    var iosLocation = "default";
 
     spyOn(window.sqlitePlugin, 'deleteDatabase')
-      .and.callFake(function (dbName, successCb, errorCb) {
+      .and.callFake(function (dbName, location, iosLocation, successCb, errorCb) {
         errorCb(errorObj);
       });
 
