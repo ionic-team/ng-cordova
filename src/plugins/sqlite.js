@@ -86,10 +86,10 @@ angular.module('ngCordova.plugins.sqlite', [])
         return q.promise;
       },
 
-      deleteDB: function (dbName, location, iosLocation) {
+      deleteDB: function (options) {
         var q = $q.defer();
 
-        $window.sqlitePlugin.deleteDatabase(dbName, location, iosLocation, function (success) {
+        $window.sqlitePlugin.deleteDatabase(options, function (success) {
           q.resolve(success);
         }, function (error) {
           q.reject(error);
