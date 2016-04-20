@@ -48,10 +48,29 @@ ngCordovaMocks.factory('$cordovaAppVersion', ['$q', function ($q) {
   var throwsError = false;
   return {
     throwsError: throwsError,
-    getAppVersion: function () {
-      var defer = $q.defer();
-      defer.resolve('mock v');
-      return defer.promise;
+
+    getAppName: function () {
+      var q = $q.defer();
+      q.resolve('mock app name');
+      return q.promise;
+    },
+
+    getPackageName: function () {
+      var q = $q.defer();
+      q.resolve('mock package name');
+      return q.promise;
+    },
+
+    getVersionNumber: function () {
+      var q = $q.defer();
+      q.resolve('mock version nr');
+      return q.promise;
+    },
+
+    getVersionCode: function () {
+      var q = $q.defer();
+      q.resolve('mock version code');
+      return q.promise;
     }
   };
 }]);
