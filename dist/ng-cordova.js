@@ -4331,6 +4331,42 @@ angular.module('ngCordova.plugins.healthKit', [])
         );
         return q.promise;
       }
+      queryCorrelationType: function (correlationQuery) {
+        var q = $q.defer();
+        $window.plugins.healthkit.queryCorrelationType(correlationQuery,
+            function (success) {
+              q.resolve(success);
+            },
+            function (err) {
+              q.resolve(err);
+            }
+        );
+        return q.promise;
+      },
+      sumQuantityType: function (sampleQuery) {
+        var q = $q.defer();
+        $window.plugins.healthkit.sumQuantityType(sampleQuery,
+            function (success) {
+              q.resolve(success);
+            },
+            function (err) {
+              q.resolve(err);
+            }
+        );
+        return q.promise;
+      },
+      querySampleTypeAggregated: function (sampleQuery) {
+        var q = $q.defer();
+        $window.plugins.healthkit.querySampleTypeAggregated(sampleQuery,
+            function (success) {
+              q.resolve(success);
+            },
+            function (err) {
+              q.resolve(err);
+            }
+        );
+        return q.promise;
+      }
     };
   }]);
 
