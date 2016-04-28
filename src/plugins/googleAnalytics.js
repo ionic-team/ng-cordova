@@ -59,7 +59,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         var parsedKey = parseInt(key, 10);
 
         if (isNaN(parsedKey)) {
-          d.reject();
+          d.reject('Parameter "key" must be an integer.');
         }
 
         $window.analytics.addCustomDimension(parsedKey, value, function () {

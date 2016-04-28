@@ -192,7 +192,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .addCustomDimension('dimension1', 'Level 1')
+      .addCustomDimension(1, 'Level 1')
       .then(function (response) {
         result = 'success';
       });
@@ -200,7 +200,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $rootScope.$digest();
 
     expect(result).toBe('success');
-    expect($window.analytics.addCustomDimension.calls.argsFor(0)[0]).toBe('dimension1');
+    expect($window.analytics.addCustomDimension.calls.argsFor(0)[0]).toBe(1);
     expect($window.analytics.addCustomDimension.calls.argsFor(0)[1]).toBe('Level 1');
   });
 
