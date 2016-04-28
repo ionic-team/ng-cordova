@@ -210,7 +210,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
 
     spyOn($window.analytics, 'addCustomDimension')
       .and.callFake(function (key, value, successCb, errorCb) {
-        errorCb('Expected one non-empty string argument');
+        errorCb('Parameter "key" must be an integer.');
       });
 
     $cordovaGoogleAnalytics.addCustomDimension()
@@ -220,7 +220,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
 
     $rootScope.$digest();
 
-    expect(result).toBe('Expected one non-empty string argument');
+    expect(result).toBe('Parameter "key" must be an integer.');
   });
 
   it('should call $window\'s analytics.trackEvent method', function() {
