@@ -19,6 +19,7 @@ angular.module('ngCordova.plugins.appRate', [])
       * @param {string} defaults.iosURL
       * @param {string} defaults.androidURL
       * @param {string} defaults.blackberryURL
+      * @param {string} defaults.windows8URL
       * @param {string} defaults.windowsURL
       */
     this.setPreferences = function (defaults) {
@@ -35,7 +36,8 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.storeAppURL.ios = defaults.iosURL || null;
       AppRate.preferences.storeAppURL.android = defaults.androidURL || null;
       AppRate.preferences.storeAppURL.blackberry = defaults.blackberryURL || null;
-      AppRate.preferences.storeAppURL.windows8 = defaults.windowsURL || null;
+      AppRate.preferences.storeAppURL.windows8 = defaults.windows8URL || null;
+      AppRate.preferences.storeAppURL.windows = defaults.windowsURL || null;
     };
 
     /**
