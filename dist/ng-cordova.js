@@ -5579,6 +5579,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.push',
   'ngCordova.plugins.push_v5',
+  'ngCordova.plugins.recentsControl',
   'ngCordova.plugins.sms',
   'ngCordova.plugins.socialSharing',
   'ngCordova.plugins.spinnerDialog',
@@ -6868,6 +6869,28 @@ angular.module('ngCordova.plugins.touchid', [])
       }
     };
   }]);
+
+// install   :      cordova plugin add cordova-plugin-recentscontrol
+// link      :      https://github.com/smcpjames/cordova-plugin-recentscontrol
+
+/* globals RecentsControl: true */
+angular.module('ngCordova.plugins.recentsControl', [])
+
+.factory('$cordovaRecents', function () {
+    return {
+        setColor: function (color) {
+            return RecentsControl.setColor(color);
+        },
+
+        setDescription: function (desc) {
+            return RecentsControl.setDescription(desc);
+        },
+
+        setOptions: function (colorStr, desc) {
+            return RecentsControl.setOptions(colorStr, desc);
+        }
+    };
+});
 
 // install   :      cordova plugin add https://github.com/aerogear/aerogear-cordova-push.git
 // link      :      https://github.com/aerogear/aerogear-cordova-push
