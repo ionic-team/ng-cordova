@@ -258,6 +258,21 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function ($q) {
         defer.resolve();
       }
       return defer.promise;
+    },
+
+    shareWithOptions: function (options) {
+      var defer = $q.defer();
+      if (this.throwsError) {
+        defer.reject('There was an error sharing via SMS.');
+      } else {
+        this.message = options.message;
+        this.subject = options.subject;
+        this.attachments = options.files;
+        this.link = options.url;
+
+        defer.resolve();
+      }
+      return defer.promise;
     }
   };
 }]);
