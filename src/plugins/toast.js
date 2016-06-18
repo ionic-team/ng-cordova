@@ -1,4 +1,4 @@
-// install   :      cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+// install   :      cordova plugin add cordova-plugin-x-toast
 // link      :      https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
 
 angular.module('ngCordova.plugins.toast', [])
@@ -8,6 +8,11 @@ angular.module('ngCordova.plugins.toast', [])
     return {
       showShortTop: function (message) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.showShortTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
@@ -18,6 +23,11 @@ angular.module('ngCordova.plugins.toast', [])
 
       showShortCenter: function (message) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.showShortCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
@@ -28,6 +38,11 @@ angular.module('ngCordova.plugins.toast', [])
 
       showShortBottom: function (message) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.showShortBottom(message, function (response) {
           q.resolve(response);
         }, function (error) {
@@ -38,6 +53,11 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongTop: function (message) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.showLongTop(message, function (response) {
           q.resolve(response);
         }, function (error) {
@@ -48,6 +68,11 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongCenter: function (message) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.showLongCenter(message, function (response) {
           q.resolve(response);
         }, function (error) {
@@ -58,7 +83,32 @@ angular.module('ngCordova.plugins.toast', [])
 
       showLongBottom: function (message) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.showLongBottom(message, function (response) {
+          q.resolve(response);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      showWithOptions: function (message, duration, position, styling) {
+        var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
+        $window.plugins.toast.showWithOptions({
+          message: message,
+          duration: duration,
+          position: position,
+          styling: styling
+        }, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error);
@@ -68,6 +118,11 @@ angular.module('ngCordova.plugins.toast', [])
 
       show: function (message, duration, position) {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
+
         $window.plugins.toast.show(message, duration, position, function (response) {
           q.resolve(response);
         }, function (error) {
@@ -78,6 +133,10 @@ angular.module('ngCordova.plugins.toast', [])
 
       hide: function () {
         var q = $q.defer();
+        if(!$window.plugins || !$window.plugins.toast) {
+          console.error('The toast plugin is not installed');
+          return q.reject('The toast plugin is not installed');
+        }
         try {
           $window.plugins.toast.hide();
           q.resolve();
