@@ -1,6 +1,7 @@
 // install   :  cordova plugin add https://github.com/xseignard/cordovarduino.git
 // link      :  https://github.com/xseignard/cordovarduino
 
+/* globals serial: true */
 angular.module('ngCordova.plugins.serial', [])
 
   .factory('$cordovaSerial', ['$q', function ($q) {
