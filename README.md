@@ -92,6 +92,7 @@ $ bower install ngCordova
 - [Push Notifications](https://github.com/phonegap-build/PushPlugin) (**deprecated** - Will be removed in future release)
 - [Push Notifications - V5] (https://github.com/phonegap/phonegap-plugin-push)
 - [Screenshots](https://github.com/gitawego/cordova-screenshot)
+- [Serial](https://github.com/xseignard/cordovarduino)
 - [SMS](https://github.com/aharris88/phonegap-sms-plugin)
 - [Social Sharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 - [Spinner Dialog](https://github.com/Paldom/SpinnerDialog)
