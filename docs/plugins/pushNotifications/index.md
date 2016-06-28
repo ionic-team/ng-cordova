@@ -10,6 +10,8 @@ icon-android: true
 icon-windows: true
 ---
 
+# [DEPRECATED] 
+## The `PushPlugin` is deprecated. Use the `$cordovaPushV5` which is the service for [phonegap-plugin-push](https://github.com/phonegap/phonegap-plugin-push).
 
 Allows your application to receive push notifications. To receive notifications in your controllers or services, listen for `$cordovaPush:notificationReceived` event.
 
