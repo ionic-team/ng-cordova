@@ -87,7 +87,7 @@ module.controller('ThisCtrl', function($cordovaInAppBrowser) {
       toolbar: 'no'
     };
 
-  document.addEventListener(function () {
+  document.addEventListener("deviceready", function () {
     $cordovaInAppBrowser.open('http://ngcordova.com', '_blank', options)
       .then(function(event) {
         // success
