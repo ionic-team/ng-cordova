@@ -68,7 +68,7 @@ module.config(function($cordovaInAppBrowserProvider) {
     toolbar: 'no'
   };
 
-  document.addEventListener(function () {
+  document.addEventListener("deviceready", function () {
 
     $cordovaInAppBrowserProvider.setDefaultOptions(options)
 
