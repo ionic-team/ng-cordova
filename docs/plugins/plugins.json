@@ -276,6 +276,12 @@
     "short-title": "PushNotifications"
   },
   {
+    "link": "/docs/plugins/pushNotificationsV5/",
+    "title": "Push Notifications V5",
+    "keywords": "APN GCM",
+    "short-title": "PushNotificationsV5"
+  },
+  {
     "link": "/docs/plugins/socialSharing/",
     "title": "Social Sharing",
     "keywords": "email twitter facebook SMS",
