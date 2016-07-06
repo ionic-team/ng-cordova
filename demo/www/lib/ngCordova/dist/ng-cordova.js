@@ -1,6 +1,6 @@
 /*!
  * ngCordova
- * v0.1.26-alpha
+ * v0.1.27-alpha
  * Copyright 2015 Drifty Co. http://drifty.com/
  * See LICENSE in this repository for license information
  */
@@ -9,6 +9,154 @@
 angular.module('ngCordova', [
   'ngCordova.plugins'
 ]);
+
+// install   :      cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-3dtouch.git
+// link      :      https://github.com/EddyVerbruggen/cordova-plugin-3dtouch
+
+angular.module('ngCordova.plugins.3dtouch', [])
+
+    .factory('$cordova3DTouch', ['$q', function($q) {
+        var quickActions = [];
+        var quickActionHandler = {};
+
+        var createQuickActionHandler = function(quickActionHandler) {
+            return function (payload) {
+                for (var key in quickActionHandler) {
+                    if (payload.type === key) {
+                        quickActionHandler[key]();
+                    }
+                }
+            };
+        };
+
+        return {
+            /*
+             * Checks if Cordova 3D touch is present and loaded
+             *
+             * @return   promise
+             */
+            isAvailable: function () {
+                var deferred = $q.defer();
+                if (!window.cordova) {
+                    deferred.reject('Not supported in browser');
+                } else {
+                    if (!window.ThreeDeeTouch) {
+                        deferred.reject('Could not find 3D touch plugin');
+                    } else {
+                        window.ThreeDeeTouch.isAvailable(function (value) {
+                            deferred.resolve(value);
+                        }, function (err) {
+                            deferred.reject(err);
+                        });
+                    }
+                }
+
+                return deferred.promise;
+            },
+
+            /*
+             * Add a quick action to menu
+             *
+             * @param    string type
+             * @param    string title
+             * @param    string iconType (optional)
+             * @param    string subtitle (optional)
+             * @param    function callback (optional)
+             * @return   promise
+             */
+            addQuickAction: function(type, title, iconType, iconTemplate, subtitle, callback) {
+                var deferred = $q.defer();
+
+                var quickAction = {
+                    type: type,
+                    title: title,
+                    subtitle: subtitle
+                };
+
+                if (iconType) {
+                    quickAction.iconType = iconType;
+                }
+
+                if (iconTemplate) {
+                    quickAction.iconTemplate = iconTemplate;
+                }
+
+                this.isAvailable().then(function() {
+                    quickActions.push(quickAction);
+                    quickActionHandler[type] = callback;
+                    window.ThreeDeeTouch.configureQuickActions(quickActions);
+                    window.ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
+                    deferred.resolve(quickActions);
+                },
+                function(err) {
+                    deferred.reject(err);
+                });
+
+                return deferred.promise;
+            },
+
+            /*
+             * Add a quick action handler. Used for static quick actions
+             *
+             * @param    string type
+             * @param    function callback
+             * @return   promise
+             */
+            addQuickActionHandler: function(type, callback) {
+                var deferred = $q.defer();
+
+                this.isAvailable().then(function() {
+                    quickActionHandler[type] = callback;
+                    window.ThreeDeeTouch.onHomeIconPressed = createQuickActionHandler(quickActionHandler);
+                    deferred.resolve(true);
+                },
+                function(err) {
+                    deferred.reject(err);
+                });
+
+                return deferred.promise;
+            },
+
+            /*
+             * Enable link preview popup when force touch is appled to link elements
+             *
+             * @return   bool
+             */
+            enableLinkPreview: function() {
+                var deferred = $q.defer();
+
+                this.isAvailable().then(function() {
+                    window.ThreeDeeTouch.enableLinkPreview();
+                        deferred.resolve(true);
+                },
+                function(err) {
+                    deferred.reject(err);
+                });
+
+                return deferred.promise;
+            },
+
+            /*
+             * Add a hanlder function for force touch events,
+             *
+             * @param    function callback
+             * @return   promise
+             */
+            addForceTouchHandler: function(callback) {
+                var deferred = $q.defer();
+
+                this.isAvailable().then(function() {
+                    window.ThreeDeeTouch.watchForceTouches(callback);
+                    deferred.resolve(true);
+                },
+                function(err) {
+                    deferred.reject(err);
+                });
+
+                return deferred.promise;
+            }
+        };
+    }]);
 
 // install  :     cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git
 // link     :     https://github.com/EddyVerbruggen/cordova-plugin-actionsheet
@@ -172,6 +320,7 @@ angular.module('ngCordova.plugins.appRate', [])
       *
       * @param {Object} customObj
       * @param {string} customObj.title
+      * @param {string} customObj.message
       * @param {string} customObj.cancelButtonLabel
       * @param {string} customObj.laterButtonLabel
       * @param {string} customObj.rateButtonLabel
@@ -209,13 +358,11 @@ angular.module('ngCordova.plugins.appRate', [])
         },
 
         onButtonClicked: function (cb) {
-          AppRate.onButtonClicked = function (buttonIndex) {
-            cb.call(this, buttonIndex);
-          };
+          AppRate.preferences.callbacks.onButtonClicked = cb.bind(this);
         },
 
         onRateDialogShow: function (cb) {
-          AppRate.onRateDialogShow = cb();
+          AppRate.preferences.callbacks.onRateDialogShow = cb.bind(this);
         }
       };
     }];
@@ -3789,8 +3936,13 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
 
       addCustomDimension: function (key, value) {
         var d = $q.defer();
+        var parsedKey = parseInt(key, 10);
 
-        $window.analytics.addCustomDimension(key, value, function () {
+        if (isNaN(parsedKey)) {
+          d.reject('Parameter "key" must be an integer.');
+        }
+
+        $window.analytics.addCustomDimension(parsedKey, value, function () {
           d.resolve();
         }, function (error) {
           d.reject(error);
@@ -5518,6 +5670,7 @@ angular.module('ngCordova.plugins.mobfoxAds', [])
   }]);
 
 angular.module('ngCordova.plugins', [
+  'ngCordova.plugins.3dtouch',
   'ngCordova.plugins.actionSheet',
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
@@ -6304,6 +6457,27 @@ angular.module('ngCordova.plugins.push_v5', [])
     };
   }]);
 
+// install   :      cordova plugin add cordova-plugin-recentscontrol
+// link      :      https://github.com/smcpjames/cordova-plugin-recentscontrol
+
+/* globals RecentsControl: true */
+angular.module('ngCordova.plugins.recentsControl', [])
+
+.factory('$cordovaRecents', function () {
+    return {
+        setColor: function (color) {
+            return RecentsControl.setColor(color);
+        },
+
+        setDescription: function (desc) {
+            return RecentsControl.setDescription(desc);
+        },
+
+        setOptions: function (colorStr, desc) {
+            return RecentsControl.setOptions(colorStr, desc);
+        }
+    };
+});
 // install   :     cordova plugin add https://github.com/gitawego/cordova-screenshot.git
 // link      :     https://github.com/gitawego/cordova-screenshot
 
@@ -6360,6 +6534,99 @@ angular.module('ngCordova.plugins.screenshot', [])
     }
   };
 }]);
+// install   :  cordova plugin add https://github.com/xseignard/cordovarduino.git
+// link      :  https://github.com/xseignard/cordovarduino
+
+/* globals serial: true */
+angular.module('ngCordova.plugins.serial', [])
+
+  .factory('$cordovaSerial', ['$q', function ($q) {
+
+    var serialService = {};
+
+    serialService.requestPermission = function requestPermission(options) {
+      var q = $q.defer();
+
+      serial.requestPermission(options, function success() {
+        q.resolve();
+      }, function error(err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    };
+
+    serialService.open = function(options) {
+      var q = $q.defer();
+
+      serial.open(options, function success() {
+        q.resolve();
+      }, function error(err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    };
+
+    serialService.write = function(data) {
+      var q = $q.defer();
+
+      serial.write(data, function success() {
+        q.resolve();
+      }, function error(err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    };
+
+    serialService.writeHex = function(data) {
+      var q = $q.defer();
+
+      serial.writeHex(data, function success() {
+        q.resolve();
+      }, function error(err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    };
+
+    serialService.read = function() {
+      var q = $q.defer();
+
+      serial.read(function success(buffer) {
+        var view = new Uint8Array(buffer);
+        q.resolve(view);
+      }, function error(err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    };
+
+    serialService.registerReadCallback = function(successCallback, errorCallback) {
+      serial.registerReadCallback(function success(buffer) {
+        var view = new Uint8Array(buffer);
+        successCallback(view);
+      }, errorCallback);
+    };
+
+    serialService.close = function() {
+      var q = $q.defer();
+
+      serial.close(function success() {
+        q.resolve();
+      }, function error(err) {
+        q.reject(err);
+      });
+
+      return q.promise;
+    };
+
+    return serialService;
+  }]);
+
 // install   :      cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
 // link      :      https://github.com/cordova-sms/cordova-sms-plugin
 
@@ -6399,6 +6666,16 @@ angular.module('ngCordova.plugins.socialSharing', [])
         file = file || null;
         link = link || null;
         $window.plugins.socialsharing.share(message, subject, file, link, function () {
+          q.resolve(true);
+        }, function () {
+          q.reject(false);
+        });
+        return q.promise;
+      },
+
+      shareWithOptions: function (options) {
+        var q = $q.defer();
+        $window.plugins.socialsharing.shareWithOptions(options, function () {
           q.resolve(true);
         }, function () {
           q.reject(false);
@@ -6523,7 +6800,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
             q.reject();
           }
         });
-        
+
         return q.promise;
       }
     };
@@ -6537,9 +6814,9 @@ angular.module('ngCordova.plugins.spinnerDialog', [])
   .factory('$cordovaSpinnerDialog', ['$window', function ($window) {
 
     return {
-      show: function (title, message, fixed) {
+      show: function (title, message, fixed, iosOptions) {
         fixed = fixed || false;
-        return $window.plugins.spinnerDialog.show(title, message, fixed);
+        return $window.plugins.spinnerDialog.show(title, message, fixed, iosOptions);
       },
       hide: function () {
         return $window.plugins.spinnerDialog.hide();
@@ -6804,6 +7081,16 @@ angular.module('ngCordova.plugins.toast', [])
         return q.promise;
       },
 
+      showWithOptions: function (options) {
+        var q = $q.defer();
+        $window.plugins.toast.showWithOptions(options, function (response) {
+          q.resolve(response);
+        }, function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
       show: function (message, duration, position) {
         var q = $q.defer();
         $window.plugins.toast.show(message, duration, position, function (response) {
@@ -6869,6 +7156,19 @@ angular.module('ngCordova.plugins.touchid', [])
     };
   }]);
 
+// install   :      cordova plugin add cordova-plugin-tts
+// link      :      https://github.com/smcpjames/cordova-plugin-tts
+
+/* globals TTS: true */
+angular.module('ngCordova.plugins.tts', [])
+
+.factory('$cordovaTTS', function () {
+    return {
+        speak: function (text, onfulfilled, onrejected) {
+            return TTS.speak(text, onfulfilled, onrejected);
+        }
+    };
+});
 // install   :      cordova plugin add https://github.com/aerogear/aerogear-cordova-push.git
 // link      :      https://github.com/aerogear/aerogear-cordova-push
 
