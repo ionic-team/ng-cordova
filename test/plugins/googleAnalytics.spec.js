@@ -192,7 +192,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .addCustomDimension('dimension1', 'Level 1')
+      .addCustomDimension(1, 'Level 1')
       .then(function (response) {
         result = 'success';
       });
@@ -200,7 +200,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $rootScope.$digest();
 
     expect(result).toBe('success');
-    expect($window.analytics.addCustomDimension.calls.argsFor(0)[0]).toBe('dimension1');
+    expect($window.analytics.addCustomDimension.calls.argsFor(0)[0]).toBe(1);
     expect($window.analytics.addCustomDimension.calls.argsFor(0)[1]).toBe('Level 1');
   });
 
@@ -210,7 +210,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
 
     spyOn($window.analytics, 'addCustomDimension')
       .and.callFake(function (key, value, successCb, errorCb) {
-        errorCb('Expected one non-empty string argument');
+        errorCb('Parameter "key" must be an integer.');
       });
 
     $cordovaGoogleAnalytics.addCustomDimension()
@@ -220,7 +220,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
 
     $rootScope.$digest();
 
-    expect(result).toBe('Expected one non-empty string argument');
+    expect(result).toBe('Parameter "key" must be an integer.');
   });
 
   it('should call $window\'s analytics.trackEvent method', function() {

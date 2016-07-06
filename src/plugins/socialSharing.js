@@ -22,6 +22,16 @@ angular.module('ngCordova.plugins.socialSharing', [])
         return q.promise;
       },
 
+      shareWithOptions: function (options) {
+        var q = $q.defer();
+        $window.plugins.socialsharing.shareWithOptions(options, function () {
+          q.resolve(true);
+        }, function () {
+          q.reject(false);
+        });
+        return q.promise;
+      },
+
       shareViaTwitter: function (message, file, link) {
         var q = $q.defer();
         file = file || null;
@@ -139,7 +149,7 @@ angular.module('ngCordova.plugins.socialSharing', [])
             q.reject();
           }
         });
-        
+
         return q.promise;
       }
     };

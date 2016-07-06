@@ -8,6 +8,7 @@ describe('Service: $cordovaToast', function() {
     'showShortBottom',
     'showLongTop',
     'showLongCenter',
+    'showWithOptions',
     'showLongBottom'
   ];
 
