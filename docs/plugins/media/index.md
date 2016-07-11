@@ -87,6 +87,14 @@ Start recording an audio file.
 
 Stop recording an audio file.
 
+##### `getDuration()`
+
+Get the duration of an audio file.
+
+##### `getCurrentPosition()`
+
+Get the current position within an audio file.
+
 #### Example
 
 ```javascript
@@ -118,7 +126,7 @@ module.controller('MyCtrl', function($scope, $cordovaMedia) {
 
   media.stopRecord();
 
-  media.getDuration(media);
+  media.getDuration();
 
   media.getCurrentPosition().then(...);
 });
