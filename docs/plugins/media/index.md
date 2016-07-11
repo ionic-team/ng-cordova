@@ -118,8 +118,8 @@ module.controller('MyCtrl', function($scope, $cordovaMedia) {
 
   media.stopRecord();
 
-  // media.getDuration(media); not working yet
+  media.getDuration(media);
 
-  // media.getCurrentPosition().then(...); not working yet
+  media.getCurrentPosition().then(...);
 });
 ```
