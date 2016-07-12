@@ -53,21 +53,21 @@ module.controller('myCtrl', function($scope, $cordovaAppVersion) {
         var appVersion = version;
       });
   }, false);
-  
+
   $cordovaAppVersion.getVersionCode().then(function (build) {
         var appBuild = build;
       });
   }, false);
-  
-  $cordovaAppVersion.getVersionCode().then(function (name) {
+
+  $cordovaAppVersion.getAppName().then(function (name) {
         var appName = name;
       });
   }, false);
-  
-  $cordovaAppVersion.getVersionCode().then(function (package) {
+
+  $cordovaAppVersion.getPackageName().then(function (package) {
         var appPackage = package;
       });
   }, false);
-  
+
 });
 ```
