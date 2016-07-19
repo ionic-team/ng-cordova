@@ -25,7 +25,7 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
     'startTrackerWithId',
     'setUserId',
     'debugMode',
-    'setAllowIDFACollection';
+    'setAllowIDFACollection',
     'trackView',
     'addCustomDimension',
     'trackEvent',
