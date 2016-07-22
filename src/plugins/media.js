@@ -88,10 +88,12 @@ angular.module('ngCordova.plugins.media', [])
   };
 
   NewMedia.prototype.stop  = function () {
+      clearTimer(this);
       this.media.stop();
   };
 
   NewMedia.prototype.release  = function () {
+      clearTimer(this);
       this.media.release();
       this.media = undefined;
       this.mediaPosition = -1;
