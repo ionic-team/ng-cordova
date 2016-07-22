@@ -63,5 +63,11 @@ module.controller('MyCtrl', function($scope, $cordovaGoogleAnalytics) {
   $cordovaGoogleAnalytics.addTransactionItem(
     '1234', 'Fluffy Pink Bunnies', 'DD23444', 'Party Toys', '11.99', '1', 'GBP'
   );
+
+  // allow IDFA collection to enable demographics and interest reports
+  // https://developers.google.com/analytics/devguides/collection/ios/v3/optional-features#idfa
+
+  $cordovaGoogleAnalytics.setAllowIDFACollection(true);
+  
 });
 ```
