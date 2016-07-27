@@ -106,8 +106,8 @@ module.run(function($http, $cordovaPushV5) {
     $cordovaPushV5.onError();
     
     // register to get registrationId
-    $cordovaPushV5.register().then(function(data) {
-      // `data.registrationId` save it somewhere;
+    $cordovaPushV5.register().then(function(registrationId) {
+      // save `registrationId` somewhere;
     })
   });
   
