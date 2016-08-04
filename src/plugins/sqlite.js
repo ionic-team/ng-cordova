@@ -34,6 +34,17 @@ angular.module('ngCordova.plugins.sqlite', [])
         return q.promise;
       },
 
+      batch: function (db, queries) {
+        var q = $q.defer();
+        db.sqlBatch(queries, function () {
+          q.resolve();
+        },
+        function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
       insertCollection: function (db, query, bindings) {
         var q = $q.defer();
         var coll = bindings.slice(0); // clone collection
