@@ -89,10 +89,10 @@ angular.module('ngCordova.plugins.sqlite', [])
         return q.promise;
       },
 
-      closeDB: function (dbName) {
+      closeDB: function (db) {
         var q = $q.defer();
 
-        $window.sqlitePlugin.close(dbName, function (success) {
+        db.close(function (success) {
           q.resolve(success);
         }, function (error) {
           q.reject(error);
