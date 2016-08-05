@@ -10,8 +10,7 @@ describe('Service: $cordovaSQLite', function() {
 
     window.sqlitePlugin = {
       openDatabase: angular.noop,
-      deleteDatabase: angular.noop,
-      close: angular.noop
+      deleteDatabase: angular.noop
     };
   }));
 
@@ -91,26 +90,4 @@ describe('Service: $cordovaSQLite', function() {
 
     expect(result).toBe(errorObj);
   });
-
-  it('should call errorCb when in window\'s sqlitePlugin.close an error orccurs', function() {
-
-    var result;
-    var errorObj = { someError: 1 };
-    var dbName = 'someDbName';
-
-    spyOn(window.sqlitePlugin, 'close')
-      .and.callFake(function (dbName, successCb, errorCb) {
-        errorCb(errorObj);
-      });
-
-    $cordovaSQLite.closeDB(dbName)
-      .then(angular.noop, function (response) {
-        result = response;
-      });
-
-    $rootScope.$digest();
-
-    expect(result).toBe(errorObj);
-  });
-
 });
