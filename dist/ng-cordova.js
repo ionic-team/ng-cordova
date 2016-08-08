@@ -5732,6 +5732,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.push',
   'ngCordova.plugins.push_v5',
+  'ngCordova.plugins.screensize',
   'ngCordova.plugins.sms',
   'ngCordova.plugins.socialSharing',
   'ngCordova.plugins.spinnerDialog',
@@ -6534,6 +6535,23 @@ angular.module('ngCordova.plugins.screenshot', [])
     }
   };
 }]);
+
+
+angular.module('ngCordova.plugins.screensize', [])
+    .factory('$cordovaScreenSize', ['$q', '$window', function ($q, $window) {
+        return {
+            get: function () {
+                var q = $q.defer();
+                $window.plugins.screensize.get(function (result) {
+                    q.resolve(result);
+                }, function (error) {
+                    q.reject();
+                });
+                return q.promise;
+            }
+        }
+    }]);
+
 // install   :  cordova plugin add https://github.com/xseignard/cordovarduino.git
 // link      :  https://github.com/xseignard/cordovarduino
 
