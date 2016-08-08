@@ -6537,6 +6537,9 @@ angular.module('ngCordova.plugins.screenshot', [])
 }]);
 
 
+// install   : cordova plugin add cordova-plugin-screensize
+// link      :  https://github.com/pbakondy/cordova-plugin-screensize
+
 angular.module('ngCordova.plugins.screensize', [])
     .factory('$cordovaScreenSize', ['$q', '$window', function ($q, $window) {
         return {
