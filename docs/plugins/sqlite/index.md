@@ -10,7 +10,7 @@ icon-android: true
 icon-windows: true
 ---
 
-Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/brodysoft/Cordova-SQLitePlugin/blob/master/README.md)
+Native interface to sqlite in a Cordova/PhoneGap plugin for Android/iOS/WP(8), with HTML5 Web SQL API [View Docs](https://github.com/litehelpers/Cordova-sqlite-storage/blob/storage-master/README.md)
 
 ```
 cordova plugin add https://github.com/litehelpers/Cordova-sqlite-storage.git
