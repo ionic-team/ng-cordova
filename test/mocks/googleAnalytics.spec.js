@@ -31,12 +31,16 @@ describe('ngCordovaMocks', function() {
       $timeout.flush();
     };
 
-    it('should start tracker', function () {
+    it('should start tracker', function() {
       testPromises('startTrackerWithId');
     });
 
     it('should set User Id.', function() {
       testPromises('setUserId');
+    });
+
+    it('should set App version', function() {
+      testPromises('setAppVersion');
     });
 
     it('should set debug mode.', function() {
@@ -55,6 +59,10 @@ describe('ngCordovaMocks', function() {
       testPromises('trackEvent');
     });
 
+    it('should track metric', function() {
+      testPromises('trackMetric');
+    });
+
     it('should track exception.', function() {
       testPromises('trackException');
     });
@@ -69,6 +77,18 @@ describe('ngCordovaMocks', function() {
 
     it('should add add a transaction item.', function() {
       testPromises('addTransactionItem');
+    });
+
+    it('should set Anonymize Ip', function() {
+      testPromises('setAnonymizeIp');
+    });
+
+    it('should set Allow IDFA Collection', function() {
+      testPromises('setAllowIDFACollection');
+    });
+
+    it('should enable Uncaught Exception Reporting', function() {
+      testPromises('enableUncaughtExceptionReporting');
     });
   });
 })
