@@ -5,26 +5,27 @@
 angular.module('ngCordova.plugins.media', [])
 
 .service('NewMedia', ['$q', '$interval', function ($q, $interval) {
-  var q, q2, q3, mediaStatus = null, mediaPosition = -1, mediaTimer, mediaDuration = -1;
 
-  function setTimer(media) {
-      if (angular.isDefined(mediaTimer)) {
+  //
+  // Privates functions
+  function setTimer(player) {
+      if (angular.isDefined(player.mediaTimer)) {
         return;
       }
 
-      mediaTimer = $interval(function () {
-          if (mediaDuration < 0) {
-              mediaDuration = media.getDuration();
-              if (q && mediaDuration > 0) {
-                q.notify({duration: mediaDuration});
+      player.mediaTimer = $interval(function () {
+          if (player.mediaDuration < 0) {
+              player.mediaDuration = player.media.getDuration();
+              if (player.$defer && player.mediaDuration > 0) {
+                player.$defer.notify({duration: player.mediaDuration});
               }
           }
 
-          media.getCurrentPosition(
+          player.media.getCurrentPosition(
             // success callback
             function (position) {
                 if (position > -1) {
-                    mediaPosition = position;
+                    player.mediaPosition = position;
                 }
             },
             // error callback
@@ -32,38 +33,36 @@ angular.module('ngCordova.plugins.media', [])
                 console.log('Error getting pos=' + e);
             });
 
-          if (q) {
-            q.notify({position: mediaPosition});
-          }
+            player.$defer.notify({position: player.mediaPosition});
 
       }, 1000);
   }
 
-  function clearTimer() {
-      if (angular.isDefined(mediaTimer)) {
-          $interval.cancel(mediaTimer);
-          mediaTimer = undefined;
+  function clearTimer(player) {
+      if (angular.isDefined(player.mediaTimer)) {
+          $interval.cancel(player.mediaTimer);
+          player.mediaTimer = undefined;
       }
   }
 
-  function resetValues() {
-      mediaPosition = -1;
-      mediaDuration = -1;
-  }
 
+  //
+  // Public API
   function NewMedia(src) {
+      var self=this;
+      this.$defer=$q.defer();
+      this.mediaPosition = -1;
+      this.mediaDuration = -1;
+      this.mediaTimer = undefined;
+
       this.media = new Media(src,
         function (success) {
-            clearTimer();
-            resetValues();
-            q.resolve(success);
+            self.$defer.resolve(success);
         }, function (error) {
-            clearTimer();
-            resetValues();
-            q.reject(error);
+            self.$defer.reject(error);
         }, function (status) {
-            mediaStatus = status;
-            q.notify({status: mediaStatus});
+            self.media.mediaStatus = status;
+            self.$defer.notify({status: self.media.mediaStatus});
         });
   }
 
@@ -71,7 +70,6 @@ angular.module('ngCordova.plugins.media', [])
   // -  myMedia.play({ numberOfLoops: 2 }) -> looping
   // -  myMedia.play({ playAudioWhenScreenIsLocked : false })
   NewMedia.prototype.play = function (options) {
-      q = $q.defer();
 
       if (typeof options !== 'object') {
           options = {};
@@ -79,23 +77,27 @@ angular.module('ngCordova.plugins.media', [])
 
       this.media.play(options);
 
-      setTimer(this.media);
+      setTimer(this);
 
-      return q.promise;
+      return this.$defer.promise;
   };
 
   NewMedia.prototype.pause = function () {
-      clearTimer();
+      clearTimer(this);
       this.media.pause();
   };
 
   NewMedia.prototype.stop  = function () {
+      clearTimer(this);
       this.media.stop();
   };
 
   NewMedia.prototype.release  = function () {
+      clearTimer(this);
       this.media.release();
       this.media = undefined;
+      this.mediaPosition = -1;
+      this.mediaDuration = -1;
   };
 
   NewMedia.prototype.seekTo  = function (timing) {
@@ -115,19 +117,19 @@ angular.module('ngCordova.plugins.media', [])
   };
 
   NewMedia.prototype.currentTime = function () {
-      q2 = $q.defer();
+      var q = $q.defer();
       this.media.getCurrentPosition(function (position){
-      q2.resolve(position);
+      	q.resolve(position);
       });
-      return q2.promise;
+      return q.promise;
   };
 
   NewMedia.prototype.getDuration = function () {
-    q3 = $q.defer();
+    var q = $q.defer();
     this.media.getDuration(function (duration){
-    q3.resolve(duration);
+    	q.resolve(duration);
     });
-    return q3.promise;
+    return q.promise;
   };
 
   return NewMedia;

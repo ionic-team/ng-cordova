@@ -5,15 +5,15 @@ angular.module('ngCordova.plugins.keyboard', [])
 
   .factory('$cordovaKeyboard', ['$rootScope', function ($rootScope) {
 
-    var keyboardShowEvent = function () {
+    var keyboardShowEvent = function (ev) {
       $rootScope.$evalAsync(function () {
-        $rootScope.$broadcast('$cordovaKeyboard:show');
+        $rootScope.$broadcast('$cordovaKeyboard:show', { ev: ev });
       });
     };
 
-    var keyboardHideEvent = function () {
+    var keyboardHideEvent = function (ev) {
       $rootScope.$evalAsync(function () {
-        $rootScope.$broadcast('$cordovaKeyboard:hide');
+        $rootScope.$broadcast('$cordovaKeyboard:hide', { ev: ev });
       });
     };
 
