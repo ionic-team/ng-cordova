@@ -70,7 +70,7 @@ describe('Service: $cordovaSQLite', function() {
     expect(result).toBe(true);
   });
 
-  it('should call errorCb when in window\'s sqlitePlugin.deleteDatabase a error orccurs', function() {
+  it('should call errorCb when in window\'s sqlitePlugin.deleteDatabase an error orccurs', function() {
 
     var result;
     var errorObj = { someError: 1 };
@@ -90,5 +90,4 @@ describe('Service: $cordovaSQLite', function() {
 
     expect(result).toBe(errorObj);
   });
-
 });
