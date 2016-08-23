@@ -54,20 +54,6 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         return d.promise;
       },
 
-      setAllowIDFACollection: function(enable) {
-        var d = $q.defer();
-
-        if(typeof(enable) === 'undefined') {
-          enable = true;
-        }
-
-        $window.analytics.setAllowIDFACollection(enable, function (response) {
-          d.resolve(response);
-        }, function () {
-          d.reject();
-        });
-      },
-
       trackView: function (screenName) {
         var d = $q.defer();
 
@@ -188,13 +174,17 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
           d.resolve(response);
         }, function (error) {
           d.reject(error);
-        }); 
+        });
 
         return d.promise;
       },
 
       enableUncaughtExceptionReporting: function (enable) {
         var d = $q.defer();
+
+        if(typeof(enable) === 'undefined') {
+          enable = true;
+        }
 
         $window.ga.enableUncaughtExceptionReporting(enable, function (response) {
           d.resolve(response);
