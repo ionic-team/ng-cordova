@@ -14,6 +14,13 @@ angular.module('ngCordova.plugins.push_v5', [])
         q.resolve(push);
         return q.promise;
       },
+      hasPermission : function () {
+        var q = $q.defer();
+        PushNotification.hasPermission(function(response) {
+          q.resolve(response);
+        });
+        return q.promise;
+      },
       onNotification : function () {
         $timeout(function () {
           push.on('notification', function (notification) {
