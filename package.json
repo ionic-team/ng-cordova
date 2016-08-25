@@ -27,10 +27,10 @@
     "minimist": "^0.1.0",
     "phantomjs-prebuilt": "^2.1.4"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
+  "license": "MIT",
+  "keywords": [
+    "cordova",
+    "angularjs"
   ],
   "scripts": {
     "test": "gulp lint && gulp karma --browsers=PhantomJS --reporters=progress"
