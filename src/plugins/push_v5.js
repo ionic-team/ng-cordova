@@ -8,39 +8,41 @@ angular.module('ngCordova.plugins.push_v5', [])
 
     var push;
     return {
-      initialize : function (options) {
+      register: function (options) {
         var q = $q.defer();
+
+        var registered = false;
+
         push = PushNotification.init(options);
-        q.resolve(push);
-        return q.promise;
-      },
-      onNotification : function () {
-        $timeout(function () {
-          push.on('notification', function (notification) {
-            $rootScope.$emit('$cordovaPushV5:notificationReceived', notification);
-          });
+
+        push.on('notification', function (notification) {
+            $timeout(function() {
+                $rootScope.$emit('$cordovaPushV5:notificationReceived', notification);
+            });
         });
-      },
-      onError : function () {
-        $timeout(function () {
-          push.on('error', function (error) { $rootScope.$emit('$cordovaPushV5:errorOccurred', error);});
+
+        push.on('error', function (error) {
+            if (!registered) {
+                registered = true;
+                q.reject(error);
+                return;
+            }
+
+            $timeout(function() {
+                $rootScope.$emit('$cordovaPushV5:errorOccurred', error);
+            });
         });
-      },
-      register : function () {
-        var q = $q.defer();
-        if (push === undefined) {
-          q.reject(new Error('init must be called before any other operation'));
-        } else {
-          push.on('registration', function (data) {
+
+        push.on('registration', function (data) {
             q.resolve(data.registrationId);
-          });
-        }
+        });
+
         return q.promise;
       },
       unregister : function () {
         var q = $q.defer();
         if (push === undefined) {
-          q.reject(new Error('init must be called before any other operation'));
+          q.reject(new Error('register must be called before any other operation'));
         } else {
           push.unregister(function (success) {
             q.resolve(success);
@@ -66,7 +68,7 @@ angular.module('ngCordova.plugins.push_v5', [])
       setBadgeNumber : function (number) {
         var q = $q.defer();
         if (push === undefined) {
-          q.reject(new Error('init must be called before any other operation'));
+          q.reject(new Error('register must be called before any other operation'));
         } else {
           push.setApplicationIconBadgeNumber(function (success) {
             q.resolve(success);
