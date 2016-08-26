@@ -1,5 +1,6 @@
 
 [ngCordova](http://ngcordova.com/)
+
 ==========
 
 [![Travis](https://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](https://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
