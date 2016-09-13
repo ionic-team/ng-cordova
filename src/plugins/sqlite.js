@@ -35,23 +35,28 @@ angular.module('ngCordova.plugins.sqlite', [])
       },
 
       insertCollection: function (db, query, bindings) {
-        if (!bindings || bindings.constructor !== Array) {
-          throw new Error('insertCollection expects an array');
-        }
+        var q = $q.defer();
+        var coll = bindings.slice(0); // clone collection
 
-        var q = $q.defer(), queryBatch = [], i = 0, len = bindings.length;
-
-        for (i; i < len; i++) {
-          queryBatch.push([query, bindings[i]]);
-        }
-
-        db.sqlBatch(queryBatch, 
-          function() {
-            q.resolve();
-          }, function(error) {
-            q.reject(error);
-          });
-
+        db.transaction(function (tx) {
+          (function insertOne() {
+            var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
+            try {
+              tx.executeSql(query, record, function (tx, result) {
+                if (coll.length === 0) {
+                  q.resolve(result);
+                } else {
+                  insertOne();
+                }
+              }, function (transaction, error) {
+                q.reject(error);
+                return;
+              });
+            } catch (exception) {
+              q.reject(exception);
+            }
+          })();
+        });
         return q.promise;
       },
 
