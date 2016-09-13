@@ -23,13 +23,11 @@ angular.module('ngCordova.plugins.sqlite', [])
 
       execute: function (db, query, binding) {
         var q = $q.defer();
-        db.transaction(function (tx) {
-          tx.executeSql(query, binding, function (tx, result) {
-              q.resolve(result);
-            },
-            function (transaction, error) {
-              q.reject(error);
-            });
+        db.executeSql(query, binding, function (result) {
+          q.resolve(result);
+        },
+        function (error) {
+          q.reject(error);
         });
         return q.promise;
       },
