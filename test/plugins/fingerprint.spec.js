@@ -14,7 +14,7 @@ describe('Service: $cordovaFingerprint', function() {
     };
   }));
 
-  it("calls isAvailable without params", function() {
+  it("calls isAvailable", function() {
     var result;
 
     spyOn(window.fingerprint, 'isAvailable')
