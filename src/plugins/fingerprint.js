@@ -1,7 +1,7 @@
 // install   :      cordova plugin add https://github.com/NiklasMerz/cordova-plugin-fingerprint-aio
 // link      :      https://github.com/NiklasMerz/cordova-plugin-fingerprint-aio
 
-/* globals fingerprint: true */
+/* globals Fingerprint: true */
 angular.module('ngCordova.plugins.fingerprint', [])
 
   .factory('$cordovaFingerprint', ['$q', function ($q) {
