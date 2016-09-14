@@ -8,7 +8,7 @@ describe('Service: $cordovaFingerprint', function() {
     $cordovaFingerprint = _$cordovaFingerprint_;
     $rootScope = _$rootScope_;
 
-    window.fingerprint = {
+    window.Fingerprint = {
       isAvailable: angular.noop,
       show: angular.noop
     };
@@ -17,7 +17,7 @@ describe('Service: $cordovaFingerprint', function() {
   it("calls isAvailable", function() {
     var result;
 
-    spyOn(window.fingerprint, 'isAvailable')
+    spyOn(window.Fingerprint, 'isAvailable')
       .and.callFake(function(successCb, errCb) {
         successCb();
       });
@@ -28,7 +28,7 @@ describe('Service: $cordovaFingerprint', function() {
       });
     $rootScope.$digest();
     expect(result).toBe(true);
-    expect(window.fingerprint.isAvailable).toHaveBeenCalledWith(
+    expect(window.Fingerprint.isAvailable).toHaveBeenCalledWith(
       jasmine.any(Function),
       jasmine.any(Function)
     );
@@ -37,7 +37,7 @@ describe('Service: $cordovaFingerprint', function() {
   it("rejects isAvailable on err callback", function() {
     var errorResult;
 
-    spyOn(window.fingerprint, 'isAvailable')
+    spyOn(window.Fingerprint, 'isAvailable')
       .and.callFake(function(successCb, errCb) {
         errCb("Not available in test");
       });
@@ -76,7 +76,7 @@ describe('Service: $cordovaFingerprint', function() {
       clientSecret: "test"
     };
 
-    spyOn(window.fingerprint, 'show')
+    spyOn(window.Fingerprint, 'show')
       .and.callFake(function(options, successCb, errCb) {
         successCb();
       });
@@ -87,7 +87,7 @@ describe('Service: $cordovaFingerprint', function() {
       });
     $rootScope.$digest();
     expect(result).toBe(true);
-    expect(window.fingerprint.show).toHaveBeenCalledWith(
+    expect(window.Fingerprint.show).toHaveBeenCalledWith(
       options,
       jasmine.any(Function),
       jasmine.any(Function)
