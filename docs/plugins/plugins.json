@@ -150,6 +150,12 @@
     "short-title": "FileTransfer"
   },
   {
+    "link": "/docs/plugins/fingerprint/",
+    "title": "fingerprint",
+    "keywords": "fingerprint android ios authentication",
+    "short-title": "Fingerprint"
+  },
+  {
     "link": "/docs/plugins/flashlight/",
     "title": "Flashlight",
     "keywords": "light flash",
