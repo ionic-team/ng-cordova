@@ -20,7 +20,7 @@ angular.module('ngCordova.plugins.serial', [])
       return q.promise;
     };
 
-    serialService.open = function(options) {
+    serialService.open = function (options) {
       var q = $q.defer();
 
       serial.open(options, function success() {
@@ -32,7 +32,7 @@ angular.module('ngCordova.plugins.serial', [])
       return q.promise;
     };
 
-    serialService.write = function(data) {
+    serialService.write = function (data) {
       var q = $q.defer();
 
       serial.write(data, function success() {
@@ -44,7 +44,7 @@ angular.module('ngCordova.plugins.serial', [])
       return q.promise;
     };
 
-    serialService.writeHex = function(data) {
+    serialService.writeHex = function (data) {
       var q = $q.defer();
 
       serial.writeHex(data, function success() {
@@ -56,7 +56,7 @@ angular.module('ngCordova.plugins.serial', [])
       return q.promise;
     };
 
-    serialService.read = function() {
+    serialService.read = function () {
       var q = $q.defer();
 
       serial.read(function success(buffer) {
@@ -69,14 +69,14 @@ angular.module('ngCordova.plugins.serial', [])
       return q.promise;
     };
 
-    serialService.registerReadCallback = function(successCallback, errorCallback) {
+    serialService.registerReadCallback = function (successCallback, errorCallback) {
       serial.registerReadCallback(function success(buffer) {
         var view = new Uint8Array(buffer);
         successCallback(view);
       }, errorCallback);
     };
 
-    serialService.close = function() {
+    serialService.close = function () {
       var q = $q.defer();
 
       serial.close(function success() {
