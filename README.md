@@ -62,6 +62,7 @@ $ bower install ngCordova
 - [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads) (:warning: share % Ad revenue)
 - [File](https://github.com/apache/cordova-plugin-file) *
 - [File Transfer](https://github.com/apache/cordova-plugin-file-transfer) *
+- [Fingerprint](https://github.com/NiklasMerz/cordova-plugin-fingerprint-aio) *
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
 - [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurry) (:warning: share % Ad revenue)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
