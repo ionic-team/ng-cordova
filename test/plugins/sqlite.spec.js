@@ -40,14 +40,14 @@ describe('Service: $cordovaSQLite', function() {
 
   it('should call window\'s sqlitePlugin.open method with options', function() {
 
-    var dbName = 'someDbName', successCallback, errorCallback;
+    var dbName = 'someDbName';
     spyOn(window.sqlitePlugin, 'openDatabase');
-    $cordovaSQLite.openDB({name: dbName, createFromLocation: 1}, successCallback, errorCallback);
+    $cordovaSQLite.openDB({name: dbName, createFromLocation: 1});
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
       name: dbName,
       createFromLocation: 1
-    }, successCallback, errorCallback);
+    });
   });
 
   it('should call window\'s sqlitePlugin.deleteDB method', function() {
