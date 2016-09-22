@@ -8,9 +8,9 @@ angular.module('ngCordova.plugins.screensize', [])
                 $window.plugins.screensize.get(function (result) {
                     q.resolve(result);
                 }, function (error) {
-                    q.reject();
+                    q.reject(error);
                 });
                 return q.promise;
             }
-        }
+        };
     }]);
