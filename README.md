@@ -1,5 +1,6 @@
 
 [ngCordova](http://ngcordova.com/)
+
 ==========
 
 [![Travis](https://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](https://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
@@ -61,6 +62,7 @@ $ bower install ngCordova
 - [Facebook AudienceNetwork Ads](https://github.com/floatinghotpot/cordova-plugin-facebookads) (:warning: share % Ad revenue)
 - [File](https://github.com/apache/cordova-plugin-file) *
 - [File Transfer](https://github.com/apache/cordova-plugin-file-transfer) *
+- [Fingerprint](https://github.com/NiklasMerz/cordova-plugin-fingerprint-aio) *
 - [Flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)
 - [Flurry Ads](https://github.com/floatinghotpot/cordova-plugin-flurry) (:warning: share % Ad revenue)
 - [Geolocation](https://github.com/apache/cordova-plugin-geolocation) *
@@ -103,6 +105,7 @@ $ bower install ngCordova
 - [Touchid](https://github.com/leecrossley/cordova-plugin-touchid)
 - [Vibration](https://github.com/apache/cordova-plugin-vibration) *
 - [Video Capture Plus](https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin) *
+- [Web Intent](https://github.com/Initsogar/cordova-webintent)
 - [Zip](https://github.com/MobileChromeApps/cordova-plugin-zip)
 
 `* official Apache Cordova Plugin`

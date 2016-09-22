@@ -13,7 +13,7 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
   /**
    * @ngdoc property
    * @name throwsError
-   * @propertyOf ngCordovaMocks.cordovaGeolocation
+   * @propertyOf ngCordovaMocks.cordovaGoogleAnalytics
    *
    * @description
    * A flag that signals whether a promise should be rejected or not.
@@ -24,14 +24,20 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
   var methodsName = [
     'startTrackerWithId',
     'setUserId',
+    'setAppVersion',
     'debugMode',
+    'setAllowIDFACollection',
     'trackView',
     'addCustomDimension',
     'trackEvent',
+    'trackMetric',
     'trackException',
     'trackTiming',
     'addTransaction',
-    'addTransactionItem'
+    'addTransactionItem',
+    'setAnonymizeIp',
+    'setAllowIDFACollection',
+    'enableUncaughtExceptionReporting'
   ];
 
   methodsName.forEach(function (funcName) {
