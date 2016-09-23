@@ -30,7 +30,7 @@ angular.module('ngCordova.plugins.appRate', [])
       AppRate.preferences.displayAppName = defaults.appName || '';
       AppRate.preferences.promptAgainForEachNewVersion = defaults.promptForNewVersion || true;
       AppRate.preferences.openStoreInApp = defaults.openStoreInApp || false;
-      AppRate.preferences.usesUntilPrompt = defaults.usesUntilPrompt || 3;
+      AppRate.preferences.usesUntilPrompt = (typeof defaults.usesUntilPrompt === 'undefined'|| defaults.usesUntilPrompt===null)?3:defaults.usesUntilPrompt;
       AppRate.preferences.useCustomRateDialog = defaults.useCustomRateDialog || false;
       AppRate.preferences.storeAppURL.ios = defaults.iosURL || null;
       AppRate.preferences.storeAppURL.android = defaults.androidURL || null;

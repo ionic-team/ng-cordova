@@ -9,7 +9,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       startTrackerWithId: function (id) {
         var d = $q.defer();
 
-        $window.analytics.startTrackerWithId(id, function (response) {
+        $window.ga.startTrackerWithId(id, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -21,7 +21,19 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       setUserId: function (id) {
         var d = $q.defer();
 
-        $window.analytics.setUserId(id, function (response) {
+        $window.ga.setUserId(id, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      setAppVersion: function (version) {
+        var d = $q.defer();
+
+        $window.ga.setAppVersion(version, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -33,7 +45,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       debugMode: function () {
         var d = $q.defer();
 
-        $window.analytics.debugMode(function (response) {
+        $window.ga.debugMode(function (response) {
           d.resolve(response);
         }, function () {
           d.reject();
@@ -45,7 +57,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       trackView: function (screenName) {
         var d = $q.defer();
 
-        $window.analytics.trackView(screenName, function (response) {
+        $window.ga.trackView(screenName, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -62,7 +74,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
           d.reject('Parameter "key" must be an integer.');
         }
 
-        $window.analytics.addCustomDimension(parsedKey, value, function () {
+        $window.ga.addCustomDimension(parsedKey, value, function () {
           d.resolve();
         }, function (error) {
           d.reject(error);
@@ -74,7 +86,19 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       trackEvent: function (category, action, label, value) {
         var d = $q.defer();
 
-        $window.analytics.trackEvent(category, action, label, value, function (response) {
+        $window.ga.trackEvent(category, action, label, value, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      trackMetric: function (key, value) {
+        var d = $q.defer();
+
+        $window.ga.trackMetric(key, value, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -86,7 +110,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       trackException: function (description, fatal) {
         var d = $q.defer();
 
-        $window.analytics.trackException(description, fatal, function (response) {
+        $window.ga.trackException(description, fatal, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -98,7 +122,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       trackTiming: function (category, milliseconds, variable, label) {
         var d = $q.defer();
 
-        $window.analytics.trackTiming(category, milliseconds, variable, label, function (response) {
+        $window.ga.trackTiming(category, milliseconds, variable, label, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -110,7 +134,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       addTransaction: function (transactionId, affiliation, revenue, tax, shipping, currencyCode) {
         var d = $q.defer();
 
-        $window.analytics.addTransaction(transactionId, affiliation, revenue, tax, shipping, currencyCode, function (response) {
+        $window.ga.addTransaction(transactionId, affiliation, revenue, tax, shipping, currencyCode, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -122,7 +146,47 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       addTransactionItem: function (transactionId, name, sku, category, price, quantity, currencyCode) {
         var d = $q.defer();
 
-        $window.analytics.addTransactionItem(transactionId, name, sku, category, price, quantity, currencyCode, function (response) {
+        $window.ga.addTransactionItem(transactionId, name, sku, category, price, quantity, currencyCode, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      setAnonymizeIp: function (anonymize) {
+        var d = $q.defer();
+
+        $window.ga.setAnonymizeIp(anonymize, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      setAllowIDFACollection: function (enable) {
+        var d = $q.defer();
+
+        $window.ga.setAllowIDFACollection(enable, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
+      },
+
+      enableUncaughtExceptionReporting: function (enable) {
+        var d = $q.defer();
+
+        if(typeof(enable) === 'undefined') {
+          enable = true;
+        }
+
+        $window.ga.enableUncaughtExceptionReporting(enable, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);

@@ -5732,6 +5732,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.progressIndicator',
   'ngCordova.plugins.push',
   'ngCordova.plugins.push_v5',
+  'ngCordova.plugins.recentsControl',
   'ngCordova.plugins.sms',
   'ngCordova.plugins.socialSharing',
   'ngCordova.plugins.spinnerDialog',

@@ -23,40 +23,70 @@ angular.module('ngCordova.plugins.sqlite', [])
 
       execute: function (db, query, binding) {
         var q = $q.defer();
-        db.transaction(function (tx) {
-          tx.executeSql(query, binding, function (tx, result) {
-              q.resolve(result);
-            },
-            function (transaction, error) {
-              q.reject(error);
-            });
+        db.executeSql(query, binding, function (result) {
+          q.resolve(result);
+        },
+        function (error) {
+          q.reject(error);
+        });
+        return q.promise;
+      },
+
+      batch: function (db, queries) {
+        var q = $q.defer();
+        db.sqlBatch(queries, function () {
+          q.resolve();
+        },
+        function (error) {
+          q.reject(error);
         });
         return q.promise;
       },
 
       insertCollection: function (db, query, bindings) {
-        var q = $q.defer();
-        var coll = bindings.slice(0); // clone collection
+        if (!bindings || bindings.constructor !== Array) {
+          throw new Error('insertCollection expects an array');
+        }
 
-        db.transaction(function (tx) {
-          (function insertOne() {
-            var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
-            try {
-              tx.executeSql(query, record, function (tx, result) {
-                if (coll.length === 0) {
-                  q.resolve(result);
-                } else {
-                  insertOne();
-                }
-              }, function (transaction, error) {
-                q.reject(error);
-                return;
-              });
-            } catch (exception) {
-              q.reject(exception);
-            }
-          })();
-        });
+        var q = $q.defer();
+
+        if (db.sqlBatch) {
+          var queryBatch = [], i = 0, len = bindings.length;
+
+          for (i; i < len; i++) {
+            queryBatch.push([query, bindings[i]]);
+          }
+
+          db.sqlBatch(queryBatch, 
+            function() {
+              q.resolve();
+            }, function(error) {
+              q.reject(error);
+            });
+        } else {
+          var coll = bindings.slice(0); // clone collection
+
+          db.transaction(function (tx) {
+            (function insertOne() {
+              var record = coll.splice(0, 1)[0]; // get the first record of coll and reduce coll by one
+              try {
+                tx.executeSql(query, record, function (tx, result) {
+                  if (coll.length === 0) {
+                    q.resolve(result);
+                  } else {
+                    insertOne();
+                  }
+                }, function (transaction, error) {
+                  q.reject(error);
+                  return;
+                });
+              } catch (exception) {
+                q.reject(exception);
+              }
+            })();
+          });
+        }
+
         return q.promise;
       },
 
@@ -74,6 +104,18 @@ angular.module('ngCordova.plugins.sqlite', [])
           function (transaction, error) {
             q.reject(error);
           });
+
+        return q.promise;
+      },
+
+      closeDB: function (db) {
+        var q = $q.defer();
+
+        db.close(function (success) {
+          q.resolve(success);
+        }, function (error) {
+          q.reject(error);
+        });
 
         return q.promise;
       },
