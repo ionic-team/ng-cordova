@@ -129,6 +129,18 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         });
 
         return d.promise;
+      },
+
+      setAllowIDFACollection: function (allowIDFACollection) {
+        var d = $q.defer();
+
+        $window.analytics.setAllowIDFACollection(allowIDFACollection, function (response) {
+          d.resolve(response);
+        }, function (error) {
+          d.reject(error);
+        });
+
+        return d.promise;
       }
     };
   }]);
