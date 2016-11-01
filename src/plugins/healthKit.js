@@ -222,7 +222,7 @@ angular.module('ngCordova.plugins.healthKit', [])
           }
         );
         return q.promise;
-      }
+      },
       queryCorrelationType: function (correlationQuery) {
         var q = $q.defer();
         $window.plugins.healthkit.queryCorrelationType(correlationQuery,
