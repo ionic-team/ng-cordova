@@ -4,6 +4,7 @@
 		id        = "com.ionicframework.ngCordovaDemoUnique"
 		versionCode=""
 		version   = "">
+		<content src="index.html"/>
 		<name>ngCordovaDemo</name>
 		<description>Demo app for ngCordova plugins		</description>
 	</widget>
