@@ -1,4 +1,4 @@
-// install   :     cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolocation.git
+// install   :     cordova plugin add https://github.com/christocracy/cordova-plugin-background-geolion.git#0.3.7
 // link      :     https://github.com/christocracy/cordova-plugin-background-geolocation
 
 angular.module('ngCordova.plugins.backgroundGeolocation', [])
@@ -18,10 +18,10 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
         this.init();
         var q = $q.defer();
 
-        $window.plugins.backgroundGeoLocation.configure(
+        $window.BackgroundGeolocation.configure(
           function (result) {
             q.notify(result);
-            $window.plugins.backgroundGeoLocation.finish();
+            $window.BackgroundGeolocation.finish();
           },
           function (err) {
             q.reject(err);
@@ -35,7 +35,7 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
       start: function () {
         var q = $q.defer();
 
-        $window.plugins.backgroundGeoLocation.start(
+        $window.BackgroundGeolocation.start(
           function (result) {
             q.resolve(result);
           },
@@ -49,7 +49,7 @@ angular.module('ngCordova.plugins.backgroundGeolocation', [])
       stop: function () {
         var q = $q.defer();
 
-        $window.plugins.backgroundGeoLocation.stop(
+        $window.BackgroundGeolocation.stop(
           function (result) {
             q.resolve(result);
           },
