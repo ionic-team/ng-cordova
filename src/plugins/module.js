@@ -73,5 +73,6 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip',
-  'ngCordova.plugins.insomnia'
+  'ngCordova.plugins.insomnia',
+  'ngCordova.plugins.navigationbar'
 ]);

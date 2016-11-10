@@ -5744,7 +5744,8 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.vibration',
   'ngCordova.plugins.videoCapturePlus',
   'ngCordova.plugins.zip',
-  'ngCordova.plugins.insomnia'
+  'ngCordova.plugins.insomnia',
+  'ngCordova.plugins.navigationbar'
 ]);
 
 // install  :     cordova plugin add https://github.com/floatinghotpot/cordova-plugin-mopub.git
@@ -5937,6 +5938,23 @@ angular.module('ngCordova.plugins.nativeAudio', [])
       }
     };
   }]);
+
+// install   :      cordova plugin add cordova-plugin-navigationbar
+// link      :      https://github.com/Tobiaswk/cordova-plugin-navigationbar
+
+/* globals NavigationBar: true */
+angular.module('ngCordova.plugins.navigationbar', [])
+
+.factory('$cordovaNavigationbar', [function() {
+
+  return {
+
+    styleHex: function(colorHex) {
+      return NavigationBar.backgroundColorByHexString(colorHex);
+    }
+
+  };
+}]);
 
 // install   :      cordova plugin add cordova-plugin-network-information
 // link      :      https://github.com/apache/cordova-plugin-network-information
