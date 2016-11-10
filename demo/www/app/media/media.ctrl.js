@@ -52,9 +52,7 @@ angular.module('demo.media.ctrl', [])
     };
 
     $scope.getDuration = function () {
-      thisMedia.getDuration().then(function(duration){
-        console.log("media duration is:" + duration);
-      });
+      return thisMedia.getDuration();
     };
 
   });

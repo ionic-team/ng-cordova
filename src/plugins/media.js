@@ -5,7 +5,7 @@
 angular.module('ngCordova.plugins.media', [])
 
 .service('NewMedia', ['$q', '$interval', function ($q, $interval) {
-  var q, q2, q3, mediaStatus = null, mediaPosition = -1, mediaTimer, mediaDuration = -1;
+  var q, q2, mediaStatus = null, mediaPosition = -1, mediaTimer, mediaDuration = -1;
 
   function setTimer(media) {
       if (angular.isDefined(mediaTimer)) {
@@ -123,11 +123,7 @@ angular.module('ngCordova.plugins.media', [])
   };
 
   NewMedia.prototype.getDuration = function () {
-    q3 = $q.defer();
-    this.media.getDuration(function (duration){
-    q3.resolve(duration);
-    });
-    return q3.promise;
+      return this.media.getDuration();
   };
 
   return NewMedia;
