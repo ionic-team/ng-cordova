@@ -26,23 +26,33 @@ angular.module('ngCordova.plugins.keyboard', [])
 
     return {
       hideAccessoryBar: function (bool) {
-        return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+          return cordova.plugins.Keyboard.hideKeyboardAccessoryBar(bool);
+        }
       },
 
       close: function () {
-        return cordova.plugins.Keyboard.close();
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+          return cordova.plugins.Keyboard.close();
+        }
       },
 
       show: function () {
-        return cordova.plugins.Keyboard.show();
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+          return cordova.plugins.Keyboard.show();
+        }
       },
 
       disableScroll: function (bool) {
-        return cordova.plugins.Keyboard.disableScroll(bool);
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+          return cordova.plugins.Keyboard.disableScroll(bool);
+        }
       },
 
       isVisible: function () {
-        return cordova.plugins.Keyboard.isVisible;
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+          return cordova.plugins.Keyboard.isVisible;
+        }
       },
 
       clearShowWatch: function () {
