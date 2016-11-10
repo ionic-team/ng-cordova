@@ -9,11 +9,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       setOptions: function (options) {
         var d = $q.defer();
 
-        $window.FacebookAds.setOptions(options, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.setOptions(options, d.resolve, d.reject);
 
         return d.promise;
       },
@@ -21,11 +17,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       createBanner: function (options) {
         var d = $q.defer();
 
-        $window.FacebookAds.createBanner(options, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.createBanner(options, d.resolve, d.reject);
 
         return d.promise;
       },
@@ -33,11 +25,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       removeBanner: function () {
         var d = $q.defer();
 
-        $window.FacebookAds.removeBanner(function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.removeBanner(d.resolve, d.reject);
 
         return d.promise;
       },
@@ -45,11 +33,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       showBanner: function (position) {
         var d = $q.defer();
 
-        $window.FacebookAds.showBanner(position, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.showBanner(position, d.resolve, d.reject);
 
         return d.promise;
       },
@@ -57,11 +41,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       showBannerAtXY: function (x, y) {
         var d = $q.defer();
 
-        $window.FacebookAds.showBannerAtXY(x, y, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.showBannerAtXY(x, y, d.resolve, d.reject);
 
         return d.promise;
       },
@@ -69,11 +49,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       hideBanner: function () {
         var d = $q.defer();
 
-        $window.FacebookAds.hideBanner(function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.hideBanner(d.resolve, d.reject);
 
         return d.promise;
       },
@@ -81,11 +57,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       prepareInterstitial: function (options) {
         var d = $q.defer();
 
-        $window.FacebookAds.prepareInterstitial(options, function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.prepareInterstitial(options, d.resolve, d.reject);
 
         return d.promise;
       },
@@ -93,11 +65,7 @@ angular.module('ngCordova.plugins.facebookAds', [])
       showInterstitial: function () {
         var d = $q.defer();
 
-        $window.FacebookAds.showInterstitial(function () {
-          d.resolve();
-        }, function () {
-          d.reject();
-        });
+        $window.FacebookAds.showInterstitial(d.resolve, d.reject);
 
         return d.promise;
       }
