@@ -13,7 +13,7 @@ icon-windows: true
 Trigger alert, confirm, and prompt windows, or send beeps (beep, beep!)
 
 ```
-cordova plugin add cordova-plugin-dialogs
+cordova plugin add org.apache.cordova.dialogs
 ```
 
 #### Methods

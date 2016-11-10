@@ -13,7 +13,7 @@ icon-windows: true
 Show or hide the Splash Screen.
 
 ```
-cordova plugin add cordova-plugin-splashscreen
+cordova plugin add org.apache.cordova.splashscreen
 ```
 
 ```javascript

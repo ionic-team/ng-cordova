@@ -13,7 +13,7 @@ icon-windows: true
 This plugin provides an implementation of an old version of the [Network Information API](http://www.w3.org/TR/2011/WD-netinfo-api-20110607/). It provides information about the device's cellular and wifi connection, and whether the device has an internet connection.
 
 ```
-cordova plugin add cordova-plugin-network-information
+cordova plugin add org.apache.cordova.network-information
 ```
 
 #### Methods

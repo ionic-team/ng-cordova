@@ -15,7 +15,7 @@ Grab the current location of the user, or grab continuous location changes:
 
 
 ```
-cordova plugin add cordova-plugin-geolocation
+cordova plugin add org.apache.cordova.geolocation
 ```
 
 #### Methods

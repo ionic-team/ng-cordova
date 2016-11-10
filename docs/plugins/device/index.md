@@ -13,7 +13,7 @@ icon-windows: true
 Grab device related information, such as platform, and device model.
 
 ```
-cordova plugin add cordova-plugin-device
+cordova plugin add org.apache.cordova.device
 ```
 
 #### Methods
