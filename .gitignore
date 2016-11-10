@@ -1,12 +1,7 @@
-.*.sw*
 node_modules/
-.idea/*
+bower_components/
+npm-debug.log
+_site
 demo/platforms/*
 demo/plugins/*
-_site
-bower_components
 coverage
-Gemfile.lock
-.DS_Store*
-npm-debug.log
-.project
