@@ -6,13 +6,13 @@ angular.module('ngCordova.plugins.googlePlus', [])
   .factory('$cordovaGooglePlus', ['$q', '$window', function ($q, $window) {
 
     return {
-      login: function (iosKey) {
+      login: function (options) {
         var q = $q.defer();
 
-        if (iosKey === undefined) {
-          iosKey = {};
+        if (options === undefined) {
+          options = {};
         }
-        $window.plugins.googleplus.login({'iOSApiKey': iosKey}, function (response) {
+        $window.plugins.googleplus.login(options, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error);
@@ -21,13 +21,13 @@ angular.module('ngCordova.plugins.googlePlus', [])
         return q.promise;
       },
 
-      silentLogin: function (iosKey) {
+      silentLogin: function (options) {
         var q = $q.defer();
 
-        if (iosKey === undefined) {
-          iosKey = {};
+        if (options === undefined) {
+          options = {};
         }
-        $window.plugins.googleplus.trySilentLogin({'iOSApiKey': iosKey}, function (response) {
+        $window.plugins.googleplus.trySilentLogin(options, function (response) {
           q.resolve(response);
         }, function (error) {
           q.reject(error);
