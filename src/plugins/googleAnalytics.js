@@ -45,7 +45,7 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
       trackView: function (screenName) {
         var d = $q.defer();
 
-        $window.analytics.trackView(screenName, function (response) {
+        $window.analytics.trackView(screenName, '', false, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
