@@ -6,19 +6,36 @@ angular.module('ngCordova.plugins.sqlite', [])
   .factory('$cordovaSQLite', ['$q', '$window', function ($q, $window) {
 
     return {
-      openDB: function (options, background) {
+      openDB: function (options, background, onsuccess, onerror) {
 
         if (angular.isObject(options) && !angular.isString(options)) {
           if (typeof background !== 'undefined') {
             options.bgType = background;
           }
+
+          if (arguments.length >= 3) {
+            if (arguments.length > 3) {
+              return $window.sqlitePlugin.openDatabase(options, onsuccess, onerror);
+            }
+            return $window.sqlitePlugin.openDatabase(options, onsuccess);
+          }
           return $window.sqlitePlugin.openDatabase(options);
         }
 
-        return $window.sqlitePlugin.openDatabase({
+        var settings = {
           name: options,
           bgType: background
-        });
+        };
+
+        if (arguments.length >= 3) {
+          if (arguments.length > 3) {
+            return $window.sqlitePlugin.openDatabase(settings, onsuccess, onerror);
+          }
+          return $window.sqlitePlugin.openDatabase(settings, onsuccess);
+        } else {
+          return $window.sqlitePlugin.openDatabase(settings);
+        }
+
       },
 
       execute: function (db, query, binding) {
