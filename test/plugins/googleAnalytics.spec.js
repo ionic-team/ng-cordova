@@ -33,7 +33,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.ga, 'startTrackerWithId')
-      .and.callFake(function (id, successCb, errorCb) {
+      .and.callFake(function (id, dispatchPeriod, successCb, errorCb) {
         successCb('tracker started');
       });
 
@@ -54,7 +54,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.ga, 'startTrackerWithId')
-      .and.callFake(function (id, successCb, errorCb) {
+      .and.callFake(function (id, dispatchPeriod, successCb, errorCb) {
         errorCb('tracker id is not valid');
       });
 
@@ -196,7 +196,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.ga, 'trackView')
-      .and.callFake(function (screenName, successCb, errorCb) {
+      .and.callFake(function (screenName, campaingUrl, newSession, successCb, errorCb) {
         successCb('Track Screen: ' + screenName);
       });
 
@@ -217,7 +217,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.ga, 'trackView')
-      .and.callFake(function (screenName, successCb, errorCb) {
+      .and.callFake(function (screenName, campaingUrl, newSession, successCb, errorCb) {
         errorCb('Expected one non-empty string argument');
       });
 
@@ -277,12 +277,12 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.ga, 'trackEvent')
-      .and.callFake(function (category, action, label, value, successCb, errorCb) {
+      .and.callFake(function (category, action, label, value, newSession, successCb, errorCb) {
         successCb('Track Event: ' + category);
       });
 
     $cordovaGoogleAnalytics
-      .trackEvent('Videos', 'Video Load Time', 'Gone With the Wind', 100)
+      .trackEvent('Videos', 'Video Load Time', 'Gone With the Wind', 100, false)
       .then(function (response) {
         result = response;
       });
@@ -291,7 +291,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
 
     expect(result).toBe('Track Event: Videos');
     expect($window.ga.trackEvent).toHaveBeenCalledWith(
-      'Videos', 'Video Load Time', 'Gone With the Wind', 100,
+      'Videos', 'Video Load Time', 'Gone With the Wind', 100, false,
       jasmine.any(Function),
       jasmine.any(Function)
     );
@@ -302,7 +302,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     var result;
 
     spyOn($window.ga, 'trackEvent')
-      .and.callFake(function (category, action, label, value, successCb, errorCb) {
+      .and.callFake(function (category, action, label, value, newSession, successCb, errorCb) {
         errorCb('Tracker not started');
       });
 
