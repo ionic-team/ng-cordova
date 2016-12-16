@@ -16,7 +16,7 @@ angular.module('ngCordova.plugins.push_v5', [])
       },
       hasPermission : function () {
         var q = $q.defer();
-        PushNotification.hasPermission(function(response) {
+        PushNotification.hasPermission(function (response) {
           q.resolve(response);
         });
         return q.promise;
@@ -57,6 +57,32 @@ angular.module('ngCordova.plugins.push_v5', [])
         }
         return q.promise;
       },
+      subscribe : function (topic) {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.subscribe(topic, function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
+      },
+      unsubscribe : function (topic) {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.unsubscribe(topic, function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
+      },
       getBadgeNumber : function () {
         var q = $q.defer();
         if (push === undefined) {
@@ -83,7 +109,7 @@ angular.module('ngCordova.plugins.push_v5', [])
         }
         return q.promise;
       },
-      finish: function (){
+      finish : function () {
         var q = $q.defer();
         if (push === undefined) {
           q.reject(new Error('init must be called before any other operation'));
