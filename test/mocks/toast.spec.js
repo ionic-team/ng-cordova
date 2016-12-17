@@ -24,7 +24,7 @@ describe('ngCordovaMocks', function () {
       $rootScope = _$rootScope_;
     }));
 
-    it('should show a toast', function () {
+    it('should show a toast', function (done) {
 
       functionNames.forEach(function(functionName){
         $cordovaToast[functionName](message)
