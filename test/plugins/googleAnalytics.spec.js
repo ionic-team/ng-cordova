@@ -22,7 +22,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
         addTransaction: angular.noop,
         addTransactionItem: angular.noop,
       }
-    };
+    }
   }));
 
   it('should call $window\'s analytics.startTrackerWithId method', function() {
@@ -35,7 +35,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .startTrackerWithId('UA-000000-01')
       .then(function (response) {
         result = response;
@@ -57,7 +56,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .startTrackerWithId()
       .then(angular.noop, function (response) {
         result = response;
@@ -78,7 +76,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .setUserId('USER_ID')
       .then(function (response) {
         result = response;
@@ -100,7 +97,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .setUserId()
       .then(angular.noop, function (response) {
         result = response;
@@ -121,7 +117,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .debugMode()
       .then(function (response) {
         result = response;
@@ -142,7 +137,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .debugMode()
       .then(angular.noop, function (response) {
         result = 'error orccurs';
@@ -163,7 +157,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackView('Home Screen')
       .then(function (response) {
         result = response;
@@ -185,7 +178,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackView()
       .then(angular.noop, function (response) {
         result = response;
@@ -206,7 +198,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .addCustomDimension(1, 'Level 1')
       .then(function (response) {
         result = 'success';
@@ -229,7 +220,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .addCustomDimension()
       .then(angular.noop, function (response) {
         result = response;
@@ -250,7 +240,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackEvent('Videos', 'Video Load Time', 'Gone With the Wind', 100)
       .then(function (response) {
         result = response;
@@ -276,7 +265,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackEvent()
       .then(angular.noop, function (response) {
         result = response;
@@ -297,7 +285,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackException('Video player exception', false)
       .then(function (response) {
         result = response;
@@ -323,7 +310,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackException()
       .then(angular.noop, function (response) {
         result = response;
@@ -344,7 +330,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackTiming('Videos', 100, 'Video Load Time', 'Gone With the Wind')
       .then(function (response) {
         result = response;
@@ -370,7 +355,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .trackTiming()
       .then(angular.noop, function (response) {
         result = response;
@@ -391,7 +375,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .addTransaction('1234', 'Acme Clothing', '11.99', '5', '1.29', 'EUR')
       .then(function (response) {
         result = response;
@@ -417,7 +400,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytic
-      .ga
       .addTransaction()
       .then(angular.noop, function (response) {
         result = response;
@@ -438,7 +420,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .addTransactionItem('1234', 'Fluffy Pink Bunnies', 'DD23444', 'Party Toys', '11.99', '1', 'GBP')
       .then(function (response) {
         result = response;
@@ -464,7 +445,6 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       });
 
     $cordovaGoogleAnalytics
-      .ga
       .addTransactionItem()
       .then(angular.noop, function (response) {
         result = response;

@@ -48,5 +48,5 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
     };
   });
 
-  return methods;
+  return methods.ga;
 }]);
