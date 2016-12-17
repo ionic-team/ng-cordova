@@ -8,7 +8,9 @@
  */
 ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
   var throwsError = false;
-  var methods = {};
+  var methods = {
+    ga: {}
+  };
 
   /**
    * @ngdoc property
@@ -19,7 +21,7 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
    * A flag that signals whether a promise should be rejected or not.
    * This property should only be used in automated tests.
    **/
-  methods.throwsError = throwsError;
+  methods.ga.throwsError = throwsError;
 
   var methodsName = [
     'startTrackerWithId',
@@ -35,7 +37,7 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
   ];
 
   methodsName.forEach(function (funcName) {
-    methods[funcName] = function () {
+    methods.ga[funcName] = function () {
       var defer = $q.defer();
 
       (this.throwsError) ?
