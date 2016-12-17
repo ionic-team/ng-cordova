@@ -13,7 +13,7 @@ describe('ngCordovaMocks', function() {
     }));
 
     var testPromises = function testPromises(funcName) {
-      $cordovaGoogleAnalytics.ga[funcName](1)
+      $cordovaGoogleAnalytics[funcName](1)
         .then(
           function() { expect(true).toBe(true); },
           function() { expect(false).toBe(true); }
@@ -22,7 +22,7 @@ describe('ngCordovaMocks', function() {
       $timeout.flush();
 
       $cordovaGoogleAnalytics.throwsError = true;
-      $cordovaGoogleAnalytics.ga[funcName](1)
+      $cordovaGoogleAnalytics[funcName](1)
         .then(
           function() { expect(false).toBe(true); },
           function() { expect(true).toBe(true); }

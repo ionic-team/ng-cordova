@@ -399,7 +399,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
         errorCb('Tracker not started');
       });
 
-    $cordovaGoogleAnalytic
+    $cordovaGoogleAnalytics
       .addTransaction()
       .then(angular.noop, function (response) {
         result = response;
