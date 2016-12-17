@@ -9,8 +9,8 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $window = _$window_;
     $rootScope = _$rootScope_;
 
-    $window.ga: { 
-      analytics = {
+    $window.ga = { 
+      analytics: {
         startTrackerWithId: angular.noop,
         setUserId: angular.noop,
         debugMode: angular.noop,
