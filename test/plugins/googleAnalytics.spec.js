@@ -9,17 +9,19 @@ describe('Service: $cordovaGoogleAnalytics', function() {
     $window = _$window_;
     $rootScope = _$rootScope_;
 
-    $window.ga.analytics = {
-      startTrackerWithId: angular.noop,
-      setUserId: angular.noop,
-      debugMode: angular.noop,
-      trackView: angular.noop,
-      addCustomDimension: angular.noop,
-      trackEvent: angular.noop,
-      trackException: angular.noop,
-      trackTiming: angular.noop,
-      addTransaction: angular.noop,
-      addTransactionItem: angular.noop,
+    $window.ga: { 
+      analytics = {
+        startTrackerWithId: angular.noop,
+        setUserId: angular.noop,
+        debugMode: angular.noop,
+        trackView: angular.noop,
+        addCustomDimension: angular.noop,
+        trackEvent: angular.noop,
+        trackException: angular.noop,
+        trackTiming: angular.noop,
+        addTransaction: angular.noop,
+        addTransactionItem: angular.noop,
+      }
     };
   }));
 
