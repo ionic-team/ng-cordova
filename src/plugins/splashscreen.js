@@ -6,12 +6,12 @@ angular.module('ngCordova.plugins.splashscreen', [])
   .factory('$cordovaSplashscreen', [function () {
 
     return {
-      hide: function () {
-        return navigator.splashscreen.hide();
+      hide: function() {
+        return navigator.splashscreen ? navigator.splashscreen.hide() : null;
       },
 
-      show: function () {
-        return navigator.splashscreen.show();
+      show: function() {
+        return navigator.splashscreen ? navigator.splashscreen.show() : null;
       }
     };
 
