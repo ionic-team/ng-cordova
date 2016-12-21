@@ -240,7 +240,9 @@ ngCordovaMocks.factory('$cordovaSocialSharing', ['$q', function ($q) {
         this.attachments = file;
         this.link = link;
 
-        defer.resolve();
+        defer.resolve({
+          completed:true
+        });
       }
       return defer.promise;
     },
