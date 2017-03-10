@@ -129,9 +129,6 @@ angular.module('ngCordova.plugins.beacon', [])
         callbackDidChangeAuthorizationStatus = callback;
       },
       createBeaconRegion: function (identifier, uuid, major, minor, notifyEntryStateOnDisplay) {
-        major = major || undefined;
-        minor = minor || undefined;
-
         return new $window.cordova.plugins.locationManager.BeaconRegion(
           identifier,
           uuid,
