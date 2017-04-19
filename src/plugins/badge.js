@@ -19,8 +19,13 @@ angular.module('ngCordova.plugins.badge', [])
         return q.promise;
       },
 
-      promptForPermission: function () {
-        return cordova.plugins.notification.badge.promptForPermission();
+      /*
+       * cordova.plugins.notification.badge.promptForPermission() to cordova.plugins.notification.badge.registerPermission()
+       * https://github.com/katzer/cordova-plugin-badge/commit/3fa0deffc0fc601706a30901f181e46963ec7262
+       * https://github.com/katzer/cordova-plugin-badge/commit/cee67fa3b569cefad3256655278348b01356dcf8
+       */
+      promptForPermission: function (callback, scope) {
+        return cordova.plugins.notification.badge.registerPermission(callback, scope);
       },
 
       set: function (badge, callback, scope) {
