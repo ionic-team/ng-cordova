@@ -124,9 +124,7 @@ angular.module('ngCordova.plugins.media', [])
 
   NewMedia.prototype.getDuration = function () {
     q3 = $q.defer();
-    this.media.getDuration(function (duration){
-    q3.resolve(duration);
-    });
+    q3.resolve(this.media.getDuration());
     return q3.promise;
   };
 
