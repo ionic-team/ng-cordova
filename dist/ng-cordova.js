@@ -6876,7 +6876,8 @@ angular.module('ngCordova.plugins.sqlite', [])
             function (transaction, error) {
               q.reject(error);
             });
-        });
+        }, q.reject);
+
         return q.promise;
       },
 
@@ -6902,7 +6903,8 @@ angular.module('ngCordova.plugins.sqlite', [])
               q.reject(exception);
             }
           })();
-        });
+        }, q.reject);
+
         return q.promise;
       },
 
@@ -6916,10 +6918,7 @@ angular.module('ngCordova.plugins.sqlite', [])
                 q.resolve(res);
               });
             });
-          },
-          function (transaction, error) {
-            q.reject(error);
-          });
+          }, q.reject);
 
         return q.promise;
       },
@@ -6927,11 +6926,7 @@ angular.module('ngCordova.plugins.sqlite', [])
       deleteDB: function (dbName) {
         var q = $q.defer();
 
-        $window.sqlitePlugin.deleteDatabase(dbName, function (success) {
-          q.resolve(success);
-        }, function (error) {
-          q.reject(error);
-        });
+        $window.sqlitePlugin.deleteDatabase(dbName, q.resolve, q.reject);
 
         return q.promise;
       }
