@@ -15,7 +15,8 @@ describe('Service: $cordovaDevice', function() {
       platform: 'iOS',
       uuid: 89749382749823749823,
       version: 5,
-      manufacturer: 'apple'
+      manufacturer: 'apple',
+      serial: 'FK1RK67XGRY1'
     };
   }));
 
@@ -49,6 +50,10 @@ describe('Service: $cordovaDevice', function() {
 
   it('should return window.device.manufacturer on getManufacturer', function() {
     expect($cordovaDevice.getManufacturer()).toBe(window.device.manufacturer);
+  });
+
+  it('should return window.device.serial on getSerial', function() {
+    expect($cordovaDevice.getSerial()).toBe(window.device.serial);
   });
 
 });
