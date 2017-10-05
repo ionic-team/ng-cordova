@@ -65,5 +65,13 @@ describe('ngCordovaMocks', function() {
       var v = $cordovaDevice.getManufacturer();
       expect(v).toEqual(manufacturer);
     });
+
+    it('should get the serial', function () {
+      var serial = 'FK1RK67XGRY1';
+      $cordovaDevice.serial = serial;
+
+      var v = $cordovaDevice.getSerial();
+      expect(v).toEqual(serial);
+    });
   });
-})
+});

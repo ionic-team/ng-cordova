@@ -75,6 +75,14 @@ angular.module('ngCordova.plugins.device', [])
        */
       getManufacturer: function () {
         return device.manufacturer;
+      },
+
+      /**
+       * Returns the device serial.
+       * @returns {String}
+       */
+      getSerial: function () {
+        return device.serial;
       }
     };
   }]);

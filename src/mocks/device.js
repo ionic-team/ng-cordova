@@ -13,6 +13,7 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
   var platform = '';
   var uuid = '';
   var version = '';
+  var serial = '';
 
   return {
     /**
@@ -92,6 +93,17 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
      */
     version: version,
 
+    /**
+     @ngdoc property
+     @name serial
+     @propertyOf ngCordovaMocks.cordovaDevice
+
+     @description
+     The serial of the device.
+     This property should only be used in automated tests.
+     */
+    serial: serial,
+
     getDevice: function () {
       return this.device;
     },
@@ -118,6 +130,10 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
 
     getManufacturer: function () {
       return this.manufacturer;
+    },
+
+    getSerial: function () {
+      return this.serial;
     }
   };
 });
