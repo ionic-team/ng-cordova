@@ -6,6 +6,7 @@
 
 ### Cordova with AngularJS Goodness
 
+#### We are looking for maintainers. Please get in touch if you're willing and able to get involved in maintaining this project. 
 
 [<img src="http://ionicframework.com/img/ngcordova-context-logo.png" alt="ngCordova Logo" width="210px" height="210px" />](http://ngcordova.com/)
 
