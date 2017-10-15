@@ -35,5 +35,4 @@ describe('Service: $cordovaNetwork', function() {
     expect($cordovaNetwork.isOffline()).toBe(true);
   });
 
-
 });
