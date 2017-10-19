@@ -1,5 +1,10 @@
+# This library is obsolete
 
-[ngCordova](http://ngcordova.com/)
+ngCordova is obsolete and is no longer maintained. 
+
+Please move to our new native plugin library, Ionic Native. See this issue for more information: https://github.com/ionic-team/ng-cordova/issues/1452
+
+ngCordova
 ==========
 
 [![Travis](https://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](https://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
