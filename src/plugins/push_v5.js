@@ -98,7 +98,7 @@ angular.module('ngCordova.plugins.push_v5', [])
             q.resolve(success);
           }, function (error) {
             q.reject(error);
-          })
+          });
         }
         return q.promise;
       },
@@ -111,7 +111,7 @@ angular.module('ngCordova.plugins.push_v5', [])
             q.resolve(success);
           }, function (error) {
             q.reject(error);
-          })
+          });
         }
         return q.promise;
       }
