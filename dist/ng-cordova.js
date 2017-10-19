@@ -3886,10 +3886,10 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
   .factory('$cordovaGoogleAnalytics', ['$q', '$window', function ($q, $window) {
 
     return {
-      startTrackerWithId: function (id) {
+      startTrackerWithId: function (id, dispatchPeriod) {
         var d = $q.defer();
 
-        $window.analytics.startTrackerWithId(id, function (response) {
+        $window.analytics.startTrackerWithId(id, dispatchPeriod, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -3922,10 +3922,10 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         return d.promise;
       },
 
-      trackView: function (screenName) {
+      trackView: function (screenName, campaingUrl, newSession) {
         var d = $q.defer();
 
-        $window.analytics.trackView(screenName, function (response) {
+        $window.analytics.trackView(screenName, campaingUrl, newSession, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
@@ -3951,10 +3951,10 @@ angular.module('ngCordova.plugins.googleAnalytics', [])
         return d.promise;
       },
 
-      trackEvent: function (category, action, label, value) {
+      trackEvent: function (category, action, label, value, newSession) {
         var d = $q.defer();
 
-        $window.analytics.trackEvent(category, action, label, value, function (response) {
+        $window.analytics.trackEvent(category, action, label, value, newSession, function (response) {
           d.resolve(response);
         }, function (error) {
           d.reject(error);
