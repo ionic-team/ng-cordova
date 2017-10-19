@@ -3271,10 +3271,11 @@ angular.module('ngCordova.plugins.fileOpener2', [])
 angular.module('ngCordova.plugins.fileTransfer', [])
 
   .factory('$cordovaFileTransfer', ['$q', '$timeout', function ($q, $timeout) {
+    var ft = new FileTransfer();
+
     return {
       download: function (source, filePath, options, trustAllHosts) {
         var q = $q.defer();
-        var ft = new FileTransfer();
         var uri = (options && options.encodeURI === false) ? source : encodeURI(source);
 
         if (options && options.timeout !== undefined && options.timeout !== null) {
@@ -3298,7 +3299,6 @@ angular.module('ngCordova.plugins.fileTransfer', [])
 
       upload: function (server, filePath, options, trustAllHosts) {
         var q = $q.defer();
-        var ft = new FileTransfer();
         var uri = (options && options.encodeURI === false) ? server : encodeURI(server);
 
         if (options && options.timeout !== undefined && options.timeout !== null) {
@@ -3317,6 +3317,13 @@ angular.module('ngCordova.plugins.fileTransfer', [])
         };
 
         ft.upload(filePath, uri, q.resolve, q.reject, options, trustAllHosts);
+        return q.promise;
+      },
+
+      abort: function () {
+        var q = $q.defer;
+        ft.abort();
+        q.resolve;
         return q.promise;
       }
     };
