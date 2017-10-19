@@ -88,6 +88,32 @@ angular.module('ngCordova.plugins.push_v5', [])
           });
         }
         return q.promise;
+      },
+      subscribe: function (topic) {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.subscribe(topic, function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
+      },
+      unsubscribe: function (topic) {
+        var q = $q.defer();
+        if (push === undefined) {
+          q.reject(new Error('init must be called before any other operation'));
+        } else {
+          push.unsubscribe(topic, function (success) {
+            q.resolve(success);
+          }, function (error) {
+            q.reject(error);
+          });
+        }
+        return q.promise;
       }
     };
   }]);
