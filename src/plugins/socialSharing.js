@@ -14,8 +14,8 @@ angular.module('ngCordova.plugins.socialSharing', [])
         subject = subject || null;
         file = file || null;
         link = link || null;
-        $window.plugins.socialsharing.share(message, subject, file, link, function () {
-          q.resolve(true);
+        $window.plugins.socialsharing.share(message, subject, file, link, function (result) {
+          q.resolve(result);
         }, function () {
           q.reject(false);
         });

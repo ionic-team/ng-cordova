@@ -15,7 +15,7 @@ describe('ngCordovaMocks', function() {
 		it('should share with twitter', function (done) {
 			$cordovaSocialSharing.shareViaTwitter('Check out Ecofic!', null, 'http://www.ecofic.com')
 				.then(
-					function() { expect(true).toBe(true); },
+					function() { expect(true).toBeTruthy(); },
 					function() { expect(false).toBe(true); }
 				)
 				.finally(function() { done(); })
@@ -35,7 +35,7 @@ describe('ngCordovaMocks', function() {
 			;
 
 			$rootScope.$digest();
-		});		
+		});
 
 		it('should share with whatsApp', function (done) {
 			$cordovaSocialSharing.shareViaWhatsApp('Check out Ecofic!', null, 'http://www.ecofic.com')
@@ -135,6 +135,6 @@ describe('ngCordovaMocks', function() {
 			;
 
 			$rootScope.$digest();
-		});		
+		});
 	});
 })
