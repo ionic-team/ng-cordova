@@ -70,5 +70,10 @@ describe('ngCordovaMocks', function() {
     it('should add add a transaction item.', function() {
       testPromises('addTransactionItem');
     });
+
+    it('should add setAllowIDFACollection.', function() {
+      testPromises('setAllowIDFACollection');
+    });
+
   });
 })

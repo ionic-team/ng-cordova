@@ -31,7 +31,8 @@ ngCordovaMocks.factory('$cordovaGoogleAnalytics', ['$q', function ($q) {
     'trackException',
     'trackTiming',
     'addTransaction',
-    'addTransactionItem'
+    'addTransactionItem',
+    'setAllowIDFACollection'
   ];
 
   methodsName.forEach(function (funcName) {

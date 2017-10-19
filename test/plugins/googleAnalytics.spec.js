@@ -20,6 +20,7 @@ describe('Service: $cordovaGoogleAnalytics', function() {
       trackTiming: angular.noop,
       addTransaction: angular.noop,
       addTransactionItem: angular.noop,
+      setAllowIDFACollection: angular.noop
     };
   }));
 
@@ -445,5 +446,46 @@ describe('Service: $cordovaGoogleAnalytics', function() {
 
     expect(result).toBe('Tracker not started');
   });
+
+  it('should call $window\'s analytics.setAllowIDFACollection method', function() {
+
+    var result;
+
+    spyOn($window.analytics, 'setAllowIDFACollection')
+      .and.callFake(function (allowIDFACollection, successCb, errorCb) {
+      successCb('setAllowIDFACollection set');
+    });
+
+    $cordovaGoogleAnalytics
+      .setAllowIDFACollection(true)
+      .then(function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe('setAllowIDFACollection set');
+    expect($window.analytics.setAllowIDFACollection.calls.argsFor(0)[0]).toBe(true);
+  });
+
+  it('should call errorCb when in $window\'s analytics.setAllowIDFACollection a error orccurs', function() {
+
+    var result;
+
+    spyOn($window.analytics, 'setAllowIDFACollection')
+      .and.callFake(function (allowIDFACollection, successCb, errorCb) {
+      errorCb('some error');
+    });
+
+    $cordovaGoogleAnalytics.setAllowIDFACollection()
+      .then(angular.noop, function (response) {
+        result = response;
+      });
+
+    $rootScope.$digest();
+
+    expect(result).toBe('some error');
+  });
+
 
 });
