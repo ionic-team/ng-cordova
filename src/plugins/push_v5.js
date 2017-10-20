@@ -34,6 +34,9 @@ angular.module('ngCordova.plugins.push_v5', [])
           push.on('registration', function (data) {
             q.resolve(data.registrationId);
           });
+          push.on('error', function (error) {
+            q.reject(error);
+          });
         }
         return q.promise;
       },
